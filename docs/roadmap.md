@@ -1,7 +1,8 @@
 # Roadmap & progress log
 
-Exam ≈ 2026-12-06 (user estimate "about 2 weeks" on 2026-11-22; she will confirm the date in the app).
-Constraint: **local only** until the user approves deployment (Vercel + Neon, private GitHub repo).
+Exam: **2026-12-04** (confirmed by the user; hard-coded in `src/lib/exam.ts`).
+Constraint: **local only** until the user approves deployment (Vercel + Neon, private GitHub repo). The user chose to
+finish the whole app (M2–M4) before she starts using it.
 
 ## M0 — Foundation & pilot slice ✅ (2026-11-22)
 
@@ -40,11 +41,24 @@ Original acceptance:
 - "Nahlásit problém" stores a report and hides the item.
 - Playwright smoke: log in → 10 cards → reload → continue → state persisted. Manual check at 390 px and desktop.
 
-## M2 — Syllabus content + planner v2 (after M1)
+## M2 — Syllabus content + planner v2 (in progress)
 
-Batches (each verified): (1) ch. 1, 3–9 written comp. 1; (2) ch. 10–11 rest comp. 2; (3) ch. 12, 14 comp. 3/4/9;
-(4) ch. 16, 18–21 comp. 5–7; (5) ch. 13, 22–24 comp. 7h/8/10/11. Goal: every criterion ≥ 4–6 tier-A points.
-Planner: confusable pairs near each other; tune pacing from real usage.
+Done:
+- Exam date fixed to 2026-12-04; the setting was removed (Nastavení shows it read-only).
+- Planner: confusable partners are symmetric; a point whose partner is already known gets a ×1.2 contrast bonus.
+  Feedback shows "Nezaměň s …" (known partners) whenever the Výklad is shown.
+- `pnpm content:check --only a.yaml,b.yaml` lets parallel authors validate their own files against committed content.
+- Authoring brief: `docs/content-authoring.md`.
+
+Budget: `pnpm simulate 450 11 45` → ~210 new points fit (60 min → ~275) ⇒ ≈ 210–230 tier-A points in total.
+
+Batches (author subagent → content:check → verifier subagent → fixes → commit):
+1. ch. 1, 3–5 (1a, 1b, 1d) · 2. ch. 6–9 (1e, 1f) · 3. ch. 10–11 (2a–2e, 2g) · 4. ch. 12 (4a–4c, 9a–9d)
+5. ch. 13 (8a–8e) · 6. ch. 14, 24 (3a–3c, 5b, 10a, 11a, 11b) · 7. ch. 16, 18, 19 (7e, 7b, 7c, 6a)
+8. ch. 20, 21 (7d, 7f, 6c) · 9. ch. 22, 23 (7h, 7g, 3c, 10c, 10d)
+
+Acceptance: 0 criteria without tier A; written criteria ≥ 6 A, others ≥ 4 A (or a documented reason); verifier on
+100 % of items.
 
 ## M3 — Témata, Pokrok, client cases · M4 — Refinement & pre-exam sweep
 

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { PointWithTopic } from "@/content/schema";
 import { useStudy } from "@/client/store";
-import { pagesLabel } from "@/lib/content";
+import { confusablesOf, pagesLabel } from "@/lib/content";
 import { Button } from "../ui";
 
 /** Global keyboard shortcuts, ignored while typing in a text field (except keys listed in allowInInputs). */
@@ -112,7 +112,32 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   return <div className={`inline-flex rounded-full px-3 py-1 text-sm font-semibold ${v.cls}`}>{v.label}</div>;
 }
 
-/** Feedback footer: point explanation, note, source, report link, Next button. */
+/** "Nezaměň s …": contrast with confusable points she has already met. */
+function ContrastBox({ point }: { point: PointWithTopic }) {
+  const { states } = useStudy();
+  const known = confusablesOf(point.id).filter((q) => states.get(q.id)?.introducedAt);
+  if (!known.length) return null;
+  return (
+    <div className="rounded-2xl border border-line px-4 py-3 text-[15px] leading-snug">
+      <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-faint">Nezaměň s</div>
+      <ul className="flex flex-col gap-2">
+        {known.map((q) => (
+          <li key={q.id}>
+            <span className="font-medium">{q.title}</span>
+            <span className="text-muted"> — {firstSentence(q.explanation)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const firstSentence = (s: string) => {
+  const m = s.match(/^.{30,}?[.!?](?=\s|$)/); // ≥ 30 chars so an abbreviation like "např." doesn't cut it short
+  return m ? m[0] : s;
+};
+
+/** Feedback footer: point explanation, contrast with confusables, note, source, report link, Next button. */
 export function FeedbackFooter({
   point,
   exerciseId,
@@ -136,6 +161,7 @@ export function FeedbackFooter({
           {point.explanation}
         </div>
       )}
+      {showExplanation && <ContrastBox point={point} />}
       <NoteBox point={point} />
       <div className="flex items-center justify-between gap-3">
         <SourceLine point={point} />

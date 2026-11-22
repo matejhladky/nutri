@@ -7,6 +7,7 @@ import { dailyPlan } from "@/engine/planner";
 import { pointStatus } from "@/engine/state";
 import { Button, Panel } from "@/components/ui";
 import { czDate, greeting, plural } from "@/lib/format";
+import { EXAM_DATE } from "@/lib/exam";
 
 export default function TodayPage() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function TodayPage() {
   const now = useMemo(() => new Date(), []);
 
   const plan = useMemo(
-    () => dailyPlan({ now, examDate: settings.examDate, points, states, dailyMinutes: settings.dailyMinutes }),
+    () => dailyPlan({ now, examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes }),
     [now, settings, points, states],
   );
   const core = points.filter((p) => p.tier !== "C");
@@ -28,19 +29,13 @@ export default function TodayPage() {
       <header>
         <h1 className="text-2xl font-semibold tracking-tight">{greeting(now)}</h1>
         <p className="mt-1 text-muted">
-          {settings.examDate ? (
-            plan.daysLeft && plan.daysLeft > 0 ? (
-              <>
-                Do zkoušky zbývá <strong className="font-semibold text-ink">{plural(plan.daysLeft, "den", "dny", "dní")}</strong>{" "}
-                <span className="text-faint">({czDate(settings.examDate)})</span>
-              </>
-            ) : (
-              "Den zkoušky je tady. Hodně štěstí!"
-            )
+          {plan.daysLeft && plan.daysLeft > 0 ? (
+            <>
+              Do zkoušky zbývá <strong className="font-semibold text-ink">{plural(plan.daysLeft, "den", "dny", "dní")}</strong>{" "}
+              <span className="text-faint">({czDate(EXAM_DATE)})</span>
+            </>
           ) : (
-            <Link href="/nastaveni" className="text-sage-700 underline underline-offset-4">
-              Nastav si datum zkoušky
-            </Link>
+            "Den zkoušky je tady. Hodně štěstí!"
           )}
         </p>
       </header>

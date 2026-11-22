@@ -17,7 +17,10 @@ import { formulas, instantiate } from "./formulas";
 
 export type Issue = { level: "error" | "warn"; where: string; message: string };
 
-export function loadContentFiles(root = "content"): {
+export function loadContentFiles(
+  root = "content",
+  include: (file: string) => boolean = () => true,
+): {
   criteria: CriteriaFileT;
   topics: { file: string; data: TopicFileT }[];
   issues: Issue[];
@@ -30,7 +33,7 @@ export function loadContentFiles(root = "content"): {
   }
   const topics: { file: string; data: TopicFileT }[] = [];
   const dir = join(root, "topics");
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".yaml")).sort()) {
+  for (const file of readdirSync(dir).filter((f) => f.endsWith(".yaml") && include(f)).sort()) {
     const raw = parseYaml(readFileSync(join(dir, file), "utf8"));
     const parsed = TopicFile.safeParse(raw);
     if (!parsed.success) {

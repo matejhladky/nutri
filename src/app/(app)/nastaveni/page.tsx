@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStudy } from "@/client/store";
 import { Button, Panel } from "@/components/ui";
+import { czDate } from "@/lib/format";
+import { EXAM_DATE } from "@/lib/exam";
 
 const MINUTES = [20, 30, 45, 60, 90];
 
 export default function SettingsPage() {
   const router = useRouter();
   const { settings, saveSettings } = useStudy();
-  const [examDate, setExamDate] = useState(settings.examDate ?? "");
   const [minutes, setMinutes] = useState(settings.dailyMinutes);
   const [state, setState] = useState<"idle" | "saving" | "saved" | "error">("idle");
 
@@ -18,7 +19,7 @@ export default function SettingsPage() {
     e.preventDefault();
     setState("saving");
     try {
-      await saveSettings({ examDate: examDate || null, dailyMinutes: minutes });
+      await saveSettings({ dailyMinutes: minutes });
       setState("saved");
     } catch {
       setState("error");
@@ -33,19 +34,10 @@ export default function SettingsPage() {
       <h1 className="text-2xl font-semibold tracking-tight">Nastavení</h1>
       <Panel className="p-5">
         <form onSubmit={save} className="flex flex-col gap-5">
-          <label className="flex flex-col gap-2">
-            <span className="font-medium">Datum zkoušky</span>
-            <input
-              type="date"
-              value={examDate}
-              onChange={(e) => {
-                setExamDate(e.target.value);
-                setState("idle");
-              }}
-              className="min-h-12 rounded-xl border border-line-strong bg-paper px-4 text-base outline-none focus:border-sage-500"
-            />
-            <span className="text-sm text-muted">Podle něj rozvrhnu nové poznatky tak, aby poslední dva dny zbyly na opakování.</span>
-          </label>
+          <div className="flex flex-col gap-1">
+            <span className="font-medium">Zkouška: {czDate(EXAM_DATE)}</span>
+            <span className="text-sm text-muted">Nové poznatky rozvrhuju tak, aby poslední dva dny zbyly na opakování.</span>
+          </div>
           <fieldset className="flex flex-col gap-2">
             <legend className="mb-2 font-medium">Kolik času denně zhruba máš?</legend>
             <div className="flex flex-wrap gap-2">

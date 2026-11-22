@@ -4,6 +4,7 @@ import { getScheduler, retrievability, type Scheduler } from "./scheduler";
 import { applyEvent } from "./state";
 import { Grade, type PointState, type StudyEvent } from "./types";
 import type { PointWithTopic, Exercise } from "@/content/schema";
+import { EXAM_DATE } from "@/lib/exam";
 
 let s: Scheduler;
 beforeAll(async () => {
@@ -125,6 +126,20 @@ describe("nextCard", () => {
     expect(c).toEqual({ kind: "intro", pointId: "b1" });
   });
 
+  it("introduces the confusable partner of a known point sooner (contrast)", () => {
+    const pts = [
+      pt("a1", "A", 0, { criteria: ["1e"] }),
+      pt("b1", "B", 0, { criteria: ["1f"] }),
+      pt("c1", "C", 0, { criteria: ["1f"], confusableWith: ["a1"] }),
+    ];
+    const earlier = new Date(NOW.getTime() - 86400_000 * 2);
+    const states = withEvents([intro("a1", earlier), ans("a1", earlier, Grade.Good)]);
+    // b1 and c1 score equally on breadth; c1 wins because its partner a1 is known (relation listed on c1 only).
+    expect(nextCard(input(pts, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "c1" });
+    const noPartner = pts.map((p) => ({ ...p, confusableWith: [] }));
+    expect(nextCard(input(noPartner, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "b1" });
+  });
+
   it("does not schedule tier C points in the daily flow, but does in topic practice", () => {
     const pts = [pt("c1", "A", 0, { tier: "C" })];
     expect(nextCard(input(pts, new Map())).kind).toBe("done");
@@ -182,6 +197,13 @@ describe("dailyPlan pacing", () => {
     const plan = dailyPlan({ ...input(pts, new Map()), now: new Date("2026-12-04T17:00:00Z") });
     expect(plan.daysLeft).toBe(2);
     expect(plan.newTarget).toBe(5);
+  });
+
+  it("with the real exam date (4 Dec), 2 Dec is review-only apart from missing tier A", () => {
+    const pts = [...many(3, "A"), ...many(10, "B")];
+    const plan = dailyPlan({ ...input(pts, new Map()), examDate: EXAM_DATE, now: new Date("2026-12-02T09:00:00Z") });
+    expect(plan.daysLeft).toBe(2);
+    expect(plan.newTarget).toBe(3);
   });
 
   it("counts owed first retrievals; the goal is not reached until they are answered", () => {

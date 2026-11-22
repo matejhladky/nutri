@@ -6,7 +6,7 @@
  *  2. due reviews (lowest retrievability first) interleaved with
  *  3. new points — chosen for breadth across official criteria (the written test requires ≥ 50 % per criterion),
  *     paced so all tier A/B points are introduced 2 days before the exam
- * Consecutive cards avoid the same topic when an alternative exists.
+ * Consecutive cards avoid the same topic when an alternative exists; confusable partners are introduced close together.
  */
 import type { PointWithTopic, Exercise } from "@/content/schema";
 import type { PointState } from "./types";
@@ -50,6 +50,7 @@ export const INTRO_GAP = 3;
 const MIN_PER_REVIEW = 0.5;
 const MIN_PER_NEW = 1.5;
 const TIER_WEIGHT = { A: 1, B: 0.4, C: 0 } as const;
+const CONTRAST_BONUS = 1.2;
 
 const isIntroduced = (st: PointState | undefined) => !!st?.introducedAt;
 
@@ -230,11 +231,14 @@ export function pickNew(
     if (p.prereqs.every((r) => introducedIds.has(r) || !inScope.some((q) => q.id === r))) frontier.push(p);
   }
   if (!frontier.length) return null;
+  // Contrast learning: a point whose confusable partner is already known is introduced a bit sooner.
+  const partners = confusablePartners(inScope);
   const score = (p: PointWithTopic) => {
     const c = p.criteria[0];
     const t = total.get(c) ?? 0;
     const uncovered = t ? 1 - (covered.get(c) ?? 0) / t : 0.5;
-    return (TIER_WEIGHT[p.tier] || 0.1) * (0.5 + uncovered);
+    const contrast = [...(partners.get(p.id) ?? [])].some((q) => introducedIds.has(q)) ? CONTRAST_BONUS : 1;
+    return (TIER_WEIGHT[p.tier] || 0.1) * (0.5 + uncovered) * contrast;
   };
   const ranked = frontier
     .map((p, i) => ({ p, s: score(p), i }))
@@ -245,6 +249,22 @@ export function pickNew(
     if (alt) return alt.p;
   }
   return best.p;
+}
+
+/** Symmetric confusable relation (authors may list a pair in one direction only). */
+export function confusablePartners(points: PointWithTopic[]): Map<string, Set<string>> {
+  const m = new Map<string, Set<string>>();
+  const add = (a: string, b: string) => {
+    if (!m.has(a)) m.set(a, new Set());
+    m.get(a)!.add(b);
+  };
+  for (const p of points) {
+    for (const q of p.confusableWith) {
+      add(p.id, q);
+      add(q, p.id);
+    }
+  }
+  return m;
 }
 
 function exercise(p: PointWithTopic, st: PointState, reason: "learning" | "review" | "new" | "practice"): NextCard {

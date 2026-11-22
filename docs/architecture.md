@@ -78,7 +78,8 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
    `tier weight × (0.5 + uncovered fraction of primary criterion)` → breadth across criteria.
 4. Daily new target = min(pace, budget): pace = remaining A+B ÷ (days left − 2); final 2 days only missing tier A.
    Budget = (daily minutes − start-of-day review load × 0.5 min) ÷ 1.5 min, at least 10.
-5. Never two consecutive cards from the same topic when an alternative exists. Topic mode = same engine filtered to one
+5. Confusable partners (symmetric) are introduced close together (×1.2 when a partner is known); feedback contrasts them.
+   Never two consecutive cards from the same topic when an alternative exists. Topic mode = same engine filtered to one
    topic, no daily cap, then extra practice on weakest points.
 6. Study day = 04:00–04:00 Europe/Prague.
 
@@ -106,3 +107,6 @@ until reviewed.
 | 2026-11-22 | Client-side planning + durable outbox; server replays events | instant UI, offline-tolerant, one source of truth |
 | 2026-11-22 | Plain SQL adapter (PGlite/Neon) instead of Drizzle | 4 tables; zero-setup local DB |
 | 2026-11-22 | Goal not reached while first retrievals / learning steps are owed | otherwise "done" appeared with loose ends |
+| 2026-11-22 | Exam date hard-coded (2026-12-04), setting removed | confirmed by the user; one less thing to get wrong |
+| 2026-11-22 | Tier-A budget ≈ 210–230 points | simulation with 11 study days at 45 min/day |
+| 2026-11-22 | Confusables: symmetric, contrast bonus ×1.2 in pickNew, "Nezaměň s" in feedback | discrimination between look-alike facts |

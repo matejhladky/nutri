@@ -1,4 +1,5 @@
 "use client";
+import { EXAM_DATE } from "@/lib/exam";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useStudy } from "@/client/store";
@@ -30,7 +31,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
     const now = new Date();
     const n = nextCard({
       now,
-      examDate: settings.examDate,
+      examDate: EXAM_DATE,
       points,
       states: getStates(),
       session: session.history,
@@ -60,7 +61,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const point = current ? pointsById.get(current.next.pointId) : undefined;
 
   const plan = useMemo(
-    () => dailyPlan({ now: new Date(), examDate: settings.examDate, points, states, dailyMinutes: settings.dailyMinutes }),
+    () => dailyPlan({ now: new Date(), examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes }),
     [settings, points, states],
   );
 

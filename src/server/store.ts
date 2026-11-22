@@ -32,11 +32,10 @@ export const EventSchema = z.object({
 });
 
 export const SettingsSchema = z.object({
-  examDate: z.iso.date().nullable(),
   dailyMinutes: z.number().int().min(10).max(240),
 });
 export type Settings = z.infer<typeof SettingsSchema>;
-export const DEFAULT_SETTINGS: Settings = { examDate: null, dailyMinutes: 45 };
+export const DEFAULT_SETTINGS: Settings = { dailyMinutes: 45 };
 
 export async function getAllStates(): Promise<Record<string, PointState>> {
   const db = await getDb();

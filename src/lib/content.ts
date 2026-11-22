@@ -1,5 +1,6 @@
 import raw from "@/generated/content.json";
 import type { ContentBundle, Criterion, Competency, PointWithTopic, Topic } from "@/content/schema";
+import { confusablePartners } from "@/engine/planner";
 
 export const content = raw as unknown as ContentBundle;
 
@@ -11,6 +12,11 @@ for (const competency of content.competencies) {
   for (const criterion of competency.criteria) criteria.set(criterion.id, { criterion, competency });
 }
 export const criterionInfo = (id: string) => criteria.get(id);
+
+const partners = confusablePartners(content.points);
+/** Points she is likely to mix up with this one (symmetric). */
+export const confusablesOf = (id: string): PointWithTopic[] =>
+  [...(partners.get(id) ?? [])].flatMap((q) => pointsById.get(q) ?? []);
 
 /** Points with reported (hidden) exercises removed; a point whose whole report is point-level, or with no exercises left, disappears. */
 export function visiblePoints(reports: { pointId: string; exerciseId: string | null }[]): PointWithTopic[] {

@@ -10,6 +10,7 @@ Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · 
 - `pnpm extract` — PDF → `source/pages/NNN.txt` (+ outline). Needed for anchor checks and authoring.
 - `pnpm content:build` — validate content, write `src/generated/content.json` + `reports/coverage.md`
 - `pnpm content:check` — build + verify every anchor phrase exists on its cited page
+  (`--only a.yaml,b.yaml`: check just those files against committed content, write nothing)
 - `pnpm validate` — content:check, typecheck, lint, unit tests. **Run before every commit.**
 - `pnpm simulate [points] [days] [minutes]` — planner workload simulation
 - `pnpm dev` — local app (needs `.env.local` with `APP_PASSPHRASE`, `SESSION_SECRET`; see `.env.example`;
@@ -24,7 +25,7 @@ Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · 
 - Do not deploy, push, or create external services without the user's explicit approval. Build locally.
 - Content is "code": YAML in `content/` is the source of truth; never generate content at runtime.
 
-## Content rules (see `docs/content-verification.md`)
+## Content rules (see `docs/content-authoring.md`, `docs/content-verification.md`)
 
 - Teach what the **script** says. Where the script contradicts itself or mainstream science, keep the course answer,
   set `status: course-disputed` and explain in `note`. Additions beyond the script → `status: supplementary`.

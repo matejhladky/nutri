@@ -14,7 +14,7 @@ import { visiblePoints } from "@/lib/content";
 import type { PointWithTopic } from "@/content/schema";
 import { enqueue, flush, pendingEvents, UnauthorizedError } from "./outbox";
 
-export type Settings = { examDate: string | null; dailyMinutes: number };
+export type Settings = { dailyMinutes: number };
 export type Report = { pointId: string; exerciseId: string | null };
 
 type Store = {
@@ -74,7 +74,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
     statesRef.current = update(statesRef.current);
     setStatesRaw(statesRef.current);
   }, []);
-  const [settings, setSettings] = useState<Settings>({ examDate: null, dailyMinutes: 45 });
+  const [settings, setSettings] = useState<Settings>({ dailyMinutes: 45 });
   const [reports, setReports] = useState<Report[]>([]);
   const [pending, setPending] = useState(0);
   const [syncError, setSyncError] = useState(false);

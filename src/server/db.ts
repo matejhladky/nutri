@@ -19,6 +19,8 @@ const SCHEMA = [
      state JSONB NOT NULL,
      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
    )`,
+  // Optimistic-concurrency version for the point_state cache (see store.ts rebuildPoint).
+  `ALTER TABLE point_state ADD COLUMN IF NOT EXISTS version INTEGER NOT NULL DEFAULT 0`,
   `CREATE TABLE IF NOT EXISTS reports (
      id SERIAL PRIMARY KEY,
      point_id TEXT NOT NULL,

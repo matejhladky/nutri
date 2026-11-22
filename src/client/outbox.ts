@@ -29,6 +29,17 @@ export function enqueue(ev: StudyEvent) {
 
 export class UnauthorizedError extends Error {}
 
+const REJECTED_KEY = "nutri.rejected.v1";
+function keepRejected(items: { event: StudyEvent | undefined; error: string }[]) {
+  console.warn("Server rejected study events", items);
+  try {
+    const prev = JSON.parse(localStorage.getItem(REJECTED_KEY) ?? "[]") as unknown[];
+    localStorage.setItem(REJECTED_KEY, JSON.stringify([...prev, ...items].slice(-50)));
+  } catch {
+    /* diagnostics only */
+  }
+}
+
 let inflight: Promise<Record<string, PointState>> | null = null;
 
 /** Send all pending events. Resolves with authoritative states for affected points. */
@@ -46,8 +57,10 @@ export function flush(): Promise<Record<string, PointState>> {
       });
       if (res.status === 401) throw new UnauthorizedError();
       if (!res.ok) throw new Error(`events ${res.status}`);
-      const { states } = (await res.json()) as { states: Record<string, PointState> };
+      const { states, rejected = [] } = (await res.json()) as { states: Record<string, PointState>; rejected?: { index: number; error: string }[] };
       Object.assign(out, states);
+      // Every event in the batch is settled: stored, or rejected as invalid (kept aside for diagnosis, not retried).
+      if (rejected.length) keepRejected(rejected.map((r) => ({ event: batch[r.index], error: r.error })));
       const sent = new Set(batch.map((e) => e.id));
       write(read().filter((e) => !sent.has(e.id)));
     }

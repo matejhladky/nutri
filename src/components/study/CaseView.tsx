@@ -9,11 +9,12 @@ import type { CaseExercise, CaseStep } from "@/content/schema";
 import { fmt, instantiateCase, rng, type CaseStepInstance } from "@/content/formulas";
 import { evaluateCaseStep } from "@/engine/evaluate";
 import type { CaseStepResponse, Evaluation, Outcome } from "@/engine/types";
+import type { CaseStepDone } from "@/client/session";
 import { Button, Kbd } from "../ui";
 import { FeedbackFooter, useKeys, VerdictBadge } from "./shared";
 import { useRecorder, type ExerciseProps } from "./parts";
 
-type Done = { response: CaseStepResponse; outcome: Outcome; summary: string };
+type Done = CaseStepDone;
 
 const dot: Record<Outcome, string> = {
   correct: "bg-sage-600",
@@ -26,15 +27,18 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
   const { exercise, point, seed, onNext } = props;
   const { record } = useRecorder(props);
   const inst = useMemo(() => instantiateCase(exercise, seed), [exercise, seed]);
-  const [done, setDone] = useState<Done[]>([]);
-  const [result, setResult] = useState<Evaluation | null>(null);
+  // Finished steps survive a reload (persisted by StudyScreen via onCaseProgress); a finished case is restored.
+  const [done, setDone] = useState<Done[]>(props.caseSteps ?? []);
+  const [result, setResult] = useState<Evaluation | null>(props.restored?.evaluation ?? null);
   const idx = done.length;
   const total = exercise.steps.length;
 
   const finishStep = (d: Done) => {
     const next = [...done, d];
     setDone(next);
-    if (next.length === total) setResult(record({ type: "case", seed, steps: next.map((x) => x.response) }));
+    // The final step is saved together with the recorded answer (one session write); earlier ones on their own.
+    if (next.length < total) props.onCaseProgress?.(next);
+    else setResult(record({ type: "case", seed, steps: next.map((x) => x.response) }, undefined, { caseSteps: next }));
   };
 
   return (

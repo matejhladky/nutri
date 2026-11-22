@@ -15,6 +15,12 @@ const startButton = (page: Page) => page.getByRole("button", { name: /^(Začít|
 
 /** Work through a client case step by step (case steps continue with "Pokračovat"), then leave via "Další". */
 async function answerCase(page: Page) {
+  await finishCaseSteps(page);
+  await page.getByRole("button", { name: "Další", exact: true }).click();
+}
+
+/** Answer every remaining step of the case on screen, stopping on its result screen. */
+async function finishCaseSteps(page: Page) {
   const btn = (name: string) => page.getByRole("button", { name, exact: true });
   for (let i = 0; i < 10 && (await page.getByText(/^Krok \d+ z \d+$/).isVisible()); i++) {
     if (await btn("Zkontrolovat").isVisible()) {
@@ -34,21 +40,22 @@ async function answerCase(page: Page) {
       await btn("Věděla").click();
     }
   }
-  await btn("Další").click();
+  await expect(btn("Další")).toBeVisible();
 }
 
 /** Answer whatever card is on screen. Returns a label of what was done, or null at the end of the session. */
 async function answerCard(page: Page): Promise<string | null> {
   const btn = (name: string) => page.getByRole("button", { name, exact: true });
   await expect(
-    btn("Rozumím").or(btn("Ukázat odpověď")).or(btn("Potvrdit")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat")).or(page.getByText(/plán je splněný|Pro dnešek je hotovo/)),
+    btn("Rozumím").or(btn("Ukázat odpověď")).or(btn("Potvrdit")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat")).or(page.getByText(/plán je splněný|Pro dnešek je hotovo|Pro tuhle chvíli hotovo/)),
   ).toBeVisible();
   if (await page.getByText(/^Krok \d+ z \d+$/).isVisible()) {
     await answerCase(page);
     return "case";
   }
   if (await btn("Rozumím").isVisible()) {
-    await btn("Rozumím").click();
+    // Go straight to the question: after "Rozumím" the first retrieval is (by design) ≥ 2 minutes away.
+    await btn("Tohle už znám — rovnou se zeptej").click();
     return "intro";
   }
   if (await btn("Ukázat odpověď").isVisible()) {
@@ -165,4 +172,107 @@ test("a model client case is worked through step by step and recorded as one ans
   const before = await caseAnswers();
   await answerCase(page);
   await expect.poll(caseAnswers, { timeout: 20_000 }).toBe(before + 1);
+});
+
+// ---------- R1 reliability regressions ----------
+
+type Sess = { current: { next: { pointId: string }; answer?: unknown; caseSteps?: unknown[] } | null };
+const sessionNow = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem("nutri.session.v1") ?? "null") as Sess);
+const answersOf = async (page: Page, pointId: string) => {
+  const res = await page.request.get("/api/state");
+  const data = (await res.json()) as { states: Record<string, { answers: number }> };
+  return data.states[pointId]?.answers ?? 0;
+};
+
+test("reloading after answering shows the recorded result and never records a second answer", async ({ page }) => {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  await login(page);
+  await page.goto("/studium?tema=sacharidy");
+  // Get to a multiple-choice question (skip intros straight to the question).
+  for (let i = 0; i < 8 && !(await btn("Potvrdit").isVisible()); i++) {
+    const skip = btn("Tohle už znám — rovnou se zeptej");
+    await expect(skip.or(btn("Potvrdit")).or(btn("Ukázat odpověď")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat"))).toBeVisible();
+    if (await skip.isVisible()) await skip.click();
+    else if (!(await btn("Potvrdit").isVisible())) await answerCard(page);
+  }
+  await expect(btn("Potvrdit")).toBeVisible();
+  const pointId = (await sessionNow(page)).current!.next.pointId;
+  const before = await answersOf(page, pointId);
+  await page.locator('[role="radio"],[role="checkbox"]').first().click();
+  await btn("Potvrdit").click();
+  await expect(btn("Další")).toBeVisible();
+  await expect.poll(() => answersOf(page, pointId)).toBe(before + 1);
+
+  await page.reload();
+  // Same card, already answered: feedback, no way to answer again.
+  await expect(btn("Další")).toBeVisible();
+  await expect(btn("Potvrdit")).toHaveCount(0);
+  await page.reload();
+  await btn("Další").click();
+  await expect.poll(() => answersOf(page, pointId)).toBe(before + 1);
+  expect((await sessionNow(page)).current?.next.pointId).not.toBe(pointId);
+});
+
+test("reloading in the middle of a client case resumes at the same step and records the case once", async ({ page }) => {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  await login(page);
+  await page.goto("/studium?tema=pripady");
+  const skip = btn("Tohle už znám — rovnou se zeptej");
+  await expect(skip.or(page.getByText(/^Krok \d+ z \d+$/))).toBeVisible();
+  if (await skip.isVisible()) await skip.click();
+  await expect(page.getByText(/^Krok 1 z \d+$/)).toBeVisible();
+  const pointId = (await sessionNow(page)).current!.next.pointId;
+  const before = await answersOf(page, pointId);
+  // Finish step 1, then reload.
+  if (await btn("Zkontrolovat").isVisible()) {
+    await page.getByLabel("Výsledek").fill("1500");
+    await btn("Zkontrolovat").click();
+  } else if (await btn("Potvrdit").isVisible()) {
+    await page.locator('[role="radio"],[role="checkbox"]').first().click();
+    await btn("Potvrdit").click();
+  } else {
+    await btn("Mám hotovo — porovnat").click();
+  }
+  await btn("Pokračovat").click();
+  await expect(page.getByText(/^Krok 2 z \d+$/)).toBeVisible();
+  await page.reload();
+  await expect(page.getByText(/^Krok 2 z \d+$/)).toBeVisible();
+  await expect(page.getByRole("list", { name: "Hotové kroky" }).getByRole("listitem")).toHaveCount(1);
+  expect(await answersOf(page, pointId)).toBe(before);
+
+  // Finish the case; reloading on the result screen keeps the result and adds nothing.
+  await finishCaseSteps(page);
+  await expect.poll(() => answersOf(page, pointId)).toBe(before + 1);
+  await page.reload();
+  await expect(btn("Další")).toBeVisible();
+  await expect(page.getByText(/^Krok \d+ z \d+$/)).toHaveCount(0);
+  await btn("Další").click();
+  await expect.poll(() => answersOf(page, pointId)).toBe(before + 1);
+});
+
+test("a malformed queued event is rejected on its own and does not block later answers", async ({ page }) => {
+  await login(page);
+  // An answer event without a grade (would break replay) sitting at the head of the outbox.
+  await page.evaluate(() => {
+    const bad = { id: "bad-event-000001", pointId: "sach.funkce-esencialita", at: new Date().toISOString(), kind: "answer" };
+    localStorage.setItem("nutri.outbox.v1", JSON.stringify([bad]));
+  });
+  await page.reload();
+  await expect.poll(() => page.evaluate(() => (JSON.parse(localStorage.getItem("nutri.outbox.v1") ?? "[]") as unknown[]).length), { timeout: 20_000 }).toBe(0);
+  const rejected = await page.evaluate(() => JSON.parse(localStorage.getItem("nutri.rejected.v1") ?? "[]") as { event: { id: string } }[]);
+  expect(rejected.some((r) => r.event?.id === "bad-event-000001")).toBe(true);
+  // And normal studying still syncs.
+  const total = async () => {
+    const d = (await (await page.request.get("/api/state")).json()) as { states: Record<string, { answers: number }> };
+    return Object.values(d.states).reduce((n, s) => n + s.answers, 0);
+  };
+  const before = await total();
+  await startButton(page).click();
+  let answered = 0;
+  for (let i = 0; i < 6 && answered < 1; i++) {
+    const r = await answerCard(page);
+    if (!r) break;
+    if (r !== "intro") answered++;
+  }
+  await expect.poll(total, { timeout: 20_000 }).toBeGreaterThan(before);
 });

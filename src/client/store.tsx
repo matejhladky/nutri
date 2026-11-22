@@ -7,7 +7,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { getScheduler, retrievability as fsrsRetrievability, type Scheduler } from "@/engine/scheduler";
-import { applyEvent } from "@/engine/state";
+import { applyEvent, emptyState } from "@/engine/state";
 import type { PointState, StudyEvent } from "@/engine/types";
 import { dayKey } from "@/engine/time";
 import { visiblePoints } from "@/lib/content";
@@ -41,6 +41,19 @@ export function useStudy(): Store {
   const s = useContext(Ctx);
   if (!s) throw new Error("useStudy must be used inside <StudyProvider>");
   return s;
+}
+
+/**
+ * Apply a queued event to local state, skipping one that cannot be applied (e.g. malformed, from an older client)
+ * instead of failing the whole app load. The outbox still sends it; the server rejects it and the outbox drops it.
+ */
+function applySafely(prev: PointState | undefined, ev: StudyEvent, s: Scheduler): PointState {
+  try {
+    return applyEvent(prev, ev, s);
+  } catch (e) {
+    console.warn("Skipping a queued event that cannot be applied", ev.id, e);
+    return prev ?? emptyState(ev.pointId);
+  }
 }
 
 const TODAY_KEY = "nutri.today.v1";
@@ -91,7 +104,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
       const next = new Map(prev);
       for (const [id, st] of Object.entries(server)) {
         let cur: PointState | undefined = st;
-        for (const ev of queued.filter((e) => e.pointId === id)) cur = applyEvent(cur, ev, s);
+        for (const ev of queued.filter((e) => e.pointId === id)) cur = applySafely(cur, ev, s);
         next.set(id, cur!);
       }
       return next;
@@ -125,7 +138,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
         const map = new Map(Object.entries(data.states));
         // Apply events not yet confirmed by the server (offline answers, closed tab mid-sync).
         for (const ev of [...pendingEvents()].sort((a, b) => a.at.localeCompare(b.at))) {
-          map.set(ev.pointId, applyEvent(map.get(ev.pointId), ev, s));
+          map.set(ev.pointId, applySafely(map.get(ev.pointId), ev, s));
         }
         setStates(() => map);
         setSettings(data.settings);
@@ -163,7 +176,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
       const s = sched.current;
       if (!s) return;
       enqueue(ev);
-      setStates((prev) => new Map(prev).set(ev.pointId, applyEvent(prev.get(ev.pointId), ev, s)));
+      setStates((prev) => new Map(prev).set(ev.pointId, applySafely(prev.get(ev.pointId), ev, s)));
       setPending(pendingEvents().length);
       setTodayCards(bumpToday());
       void sync();

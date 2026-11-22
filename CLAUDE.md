@@ -17,6 +17,7 @@ Deployment runbook: `docs/deploy.md`.
 - `pnpm dev` — local app (needs `.env.local` with `APP_PASSPHRASE`, `SESSION_SECRET`; see `.env.example`;
   without `DATABASE_URL` data lives in embedded PGlite `.pglite/`)
 - `pnpm test:e2e` — Playwright smoke tests; builds and serves on :3100 with an isolated `.pglite-e2e/` DB
+- `pnpm db:rebuild` — rebuild the cached `point_state` from the event log (DATABASE_URL or local PGlite)
 
 ## Hard constraints
 

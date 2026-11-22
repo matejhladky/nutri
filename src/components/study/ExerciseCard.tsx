@@ -35,7 +35,9 @@ export function ExerciseCard(props: Props) {
 function RevealView(props: Props & { exercise: RevealExercise }) {
   const { exercise, point, onNext } = props;
   const { record, hintUsed, setHintUsed } = useRecorder(props);
-  const [phase, setPhase] = useState<"think" | "revealed" | "dontKnow">("think");
+  const [phase, setPhase] = useState<"think" | "revealed" | "dontKnow" | "done">(() =>
+    !props.restored ? "think" : props.restored.response.type === "dontKnow" ? "dontKnow" : "done",
+  );
 
   const grade = (selfGrade: "again" | "hard" | "good") => {
     record({ type: "reveal", selfGrade });
@@ -87,7 +89,7 @@ function RevealView(props: Props & { exercise: RevealExercise }) {
           </div>
         </div>
       )}
-      {phase === "dontKnow" && <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} />}
+      {(phase === "dontKnow" || phase === "done") && <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} />}
     </>
   );
 }
@@ -107,9 +109,10 @@ function ChoiceView(props: Props & { exercise: ChoiceExercise }) {
     }
     return idx;
   }, [exercise.options, seed]);
-  const [selected, setSelected] = useState<number[]>([]);
-  const [guessed, setGuessed] = useState(false);
-  const [result, setResult] = useState<Evaluation | null>(null);
+  const prev = props.restored?.response.type === "choice" ? props.restored.response : null;
+  const [selected, setSelected] = useState<number[]>(prev?.selected ?? []);
+  const [guessed, setGuessed] = useState(prev?.guessed ?? false);
+  const [result, setResult] = useState<Evaluation | null>(props.restored?.evaluation ?? null);
 
   const toggle = (orig: number) => {
     if (result) return;
@@ -208,8 +211,8 @@ function NumericView(props: Props & { exercise: NumericExercise }) {
   const { exercise, point, seed, onNext } = props;
   const { record, hintUsed, setHintUsed } = useRecorder(props);
   const inst = useMemo(() => instantiate(exercise, seed), [exercise, seed]);
-  const [value, setValue] = useState("");
-  const [result, setResult] = useState<Evaluation | null>(null);
+  const [value, setValue] = useState(props.restored?.response.type === "numeric" ? props.restored.response.value : "");
+  const [result, setResult] = useState<Evaluation | null>(props.restored?.evaluation ?? null);
 
   const submit = (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -278,10 +281,13 @@ function NumericView(props: Props & { exercise: NumericExercise }) {
 function ExplainView(props: Props & { exercise: ExplainExercise }) {
   const { exercise, point, onNext } = props;
   const { record } = useRecorder(props);
-  const [phase, setPhase] = useState<"answer" | "check" | "dontKnow">("answer");
+  const prev = props.restored?.response.type === "explain" ? props.restored.response : null;
+  const [phase, setPhase] = useState<"answer" | "check" | "dontKnow" | "done">(() =>
+    !props.restored ? "answer" : props.restored.response.type === "dontKnow" ? "dontKnow" : "done",
+  );
   const [writing, setWriting] = useState(false);
-  const [text, setText] = useState("");
-  const [covered, setCovered] = useState<number[]>([]);
+  const [text, setText] = useState(prev?.text ?? "");
+  const [covered, setCovered] = useState<number[]>(prev?.covered ?? []);
 
   const finish = () => {
     record({ type: "explain", covered, text: text.trim() || undefined });
@@ -365,6 +371,15 @@ function ExplainView(props: Props & { exercise: ExplainExercise }) {
             Hotovo
           </Button>
         </div>
+      )}
+      {phase === "done" && props.restored && (
+        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext}>
+          <div className="flex flex-col gap-3">
+            <VerdictBadge verdict={props.restored.evaluation.outcome} />
+            <p className="text-sm text-muted">Zmínila jsi {covered.length} z {exercise.keyPoints.length} bodů.</p>
+            <p className="text-[16px] leading-relaxed">{exercise.modelAnswer}</p>
+          </div>
+        </FeedbackFooter>
       )}
       {phase === "dontKnow" && (
         <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext}>

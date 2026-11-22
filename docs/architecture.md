@@ -22,9 +22,17 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
 - **Outbox** (`src/client/outbox.ts`): every event is written to localStorage first, then POSTed (batches, idempotent
   ids); retried every 15 s and on `online`. On load, unconfirmed events are re-applied on top of server state.
 - **Session persistence** (`src/client/session.ts`): current card incl. seed (numeric parameters, option order) and the
-  session history survive reloads; a new study day starts a new session.
+  session history survive reloads; a new study day starts a new session. The recorded answer (`current.answer`) and a
+  case's finished steps (`current.caseSteps`) are saved synchronously with the event, so a reload shows the feedback
+  (never the unanswered card) and resumes a case at the same step. A card is graded at most once (session guard +
+  once-only recorder).
 - **Server** (`src/server/`): `db.ts` tiny SQL adapter (Neon HTTP if `DATABASE_URL`, else PGlite in `PGLITE_DIR`;
   idempotent `CREATE TABLE IF NOT EXISTS`), `store.ts` (events, point_state, settings, reports), `session.ts` (auth).
+  `point_state` writes are **version-checked with retry** (version read before events; a writer holding an older
+  snapshot fails and retries), so concurrent submissions cannot leave a stale cache. `pnpm db:rebuild` replays all
+  events. Events are validated **one by one**: invalid ones are returned as `rejected` and dropped by the client
+  (kept in `nutri.rejected.v1`), so one bad event cannot block the queue; the client also skips unappliable queued
+  events instead of failing to load.
   No ORM — four tables don't justify Drizzle + migrations tooling.
 - **Auth:** one passphrase (`APP_PASSPHRASE`) → httpOnly cookie `exp.HMAC(SESSION_SECRET, exp)`, 90 days.
   `src/proxy.ts` redirects pages to `/login`; every API route checks the session again.
@@ -77,7 +85,9 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
 
 ## Planner (`src/engine/planner.ts`)
 
-1. Due learning steps; a just-introduced point is retrieved after ≥ 3 other cards (or immediately if nothing else).
+1. Due learning steps — strictly when due. A just-introduced point is first retrieved after ≥ 3 other cards AND
+   ≥ 2 min. Nothing is shown early: when nothing is due the session stops ("Pro tuhle chvíli hotovo", next time
+   shown); `dailyPlan` reports `laterToday` / `nextLaterAt` separately from what is due now.
 2. Due reviews (lowest retrievability first) interleaved with new points (≈ 1 new per k reviews).
 3. New points: per topic in authored order (separately per tier), prerequisites respected; across topics ranked by
    `tier weight × (0.5 + uncovered fraction of primary criterion)` → breadth across criteria.
@@ -89,6 +99,9 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
 6. Study day = 04:00–04:00 Europe/Prague.
 7. After the goal, "continue" = new points, or (final two days / nothing new left) a **sweep** of introduced points with
    the lowest predicted recall on exam morning. Time budget counts a client case as ~3 min.
+8. **Deliberate extra practice** (topic practice, sweep) is separate from scheduled retrieval: only points past their
+   learning steps and not answered within the last hour. Practice answers are normal FSRS reviews (FSRS handles
+   early reviews; measured effect on review-state cards is negligible).
 
 **Simulation** (`pnpm simulate 500 14 45`): steady ~40 min/day, no final spike, mean predicted recall on exam day ≈ 0.93,
 but only ~240 new points fit in 14 days at 45 min/day (≈ 320 at 60 min). ⇒ keep the bank focused (≈ 250–300 tier A).
@@ -119,4 +132,6 @@ until reviewed.
 | 2026-11-22 | Confusables: symmetric, contrast bonus ×1.2 in pickNew, "Nezaměň s" in feedback | discrimination between look-alike facts |
 | 2026-11-22 | Planner: all prerequisite-ready points compete; prerequisites inherit dependants' priority | simulation: whole criteria were never reached |
 | 2026-11-22 | Pre-exam sweep by predicted recall at the exam; case time weighted | last days = consolidation, honest minutes |
+| 2026-11-22 | No early retrieval; extra practice only past learning steps and ≥ 1 h since last answer | reproduced immediate repeats; meaningful spacing over "never empty" |
+| 2026-11-22 | Answered state + case steps in the stored session; version-checked cache writes; per-event validation | reproduced duplicate grading on reload, lost case work, stale-cache race, queue blocking |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

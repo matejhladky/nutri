@@ -1,9 +1,10 @@
 "use client";
 /** Building blocks shared by the exercise views (ExerciseCard, CaseView). */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Exercise, PointWithTopic } from "@/content/schema";
 import { evaluate } from "@/engine/evaluate";
 import type { Evaluation, Response } from "@/engine/types";
+import type { AnsweredCard, CaseStepDone } from "@/client/session";
 
 export type AnswerRecord = {
   exerciseId: string;
@@ -12,6 +13,8 @@ export type AnswerRecord = {
   response: Response;
   hintUsed: boolean;
   durationMs: number;
+  /** Client case: all finished steps, saved together with the answer. */
+  caseSteps?: CaseStepDone[];
 };
 
 export type ExerciseProps = {
@@ -21,13 +24,22 @@ export type ExerciseProps = {
   reason: string;
   onRecord: (a: AnswerRecord) => void;
   onNext: () => void;
+  /** Already answered (restored after a reload): show the feedback, never record again. */
+  restored?: AnsweredCard;
+  /** Client case: steps finished before a reload, and a callback to persist each finished step. */
+  caseSteps?: CaseStepDone[];
+  onCaseProgress?: (steps: CaseStepDone[]) => void;
 };
 
 export function useRecorder(props: ExerciseProps) {
   const [started] = useState(() => Date.now());
-  const [hintUsed, setHintUsed] = useState(false);
-  const record = (response: Response, evaluation?: Evaluation) => {
+  const [hintUsed, setHintUsed] = useState(props.restored?.hintUsed ?? false);
+  /** One answer per card: a double tap or a restored card can never grade twice. */
+  const recorded = useRef(!!props.restored);
+  const record = (response: Response, evaluation?: Evaluation, extra?: Pick<AnswerRecord, "caseSteps">) => {
     const ev = evaluation ?? evaluate(props.exercise, response, { hintUsed });
+    if (recorded.current) return ev;
+    recorded.current = true;
     props.onRecord({
       exerciseId: props.exercise.id,
       exerciseVersion: props.exercise.version,
@@ -35,6 +47,7 @@ export function useRecorder(props: ExerciseProps) {
       response,
       hintUsed,
       durationMs: Math.min(Date.now() - started, 3_600_000),
+      ...extra,
     });
     return ev;
   };

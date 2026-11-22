@@ -31,13 +31,18 @@ export type PlannerInput = {
 export type NextCard =
   | { kind: "intro"; pointId: string }
   | { kind: "exercise"; pointId: string; exerciseId: string; reason: "learning" | "review" | "new" | "practice" }
-  | { kind: "done"; reason: "goal-reached" | "nothing-left" };
+  /** wait = nothing is due right now, but a learning step / first retrieval becomes due later today (at nextAt). */
+  | { kind: "done"; reason: "goal-reached" | "nothing-left" | "wait"; nextAt?: string };
 
 export type DailyPlan = {
   daysLeft: number | null;
   dueReviews: number;
-  /** First retrievals still owed + learning steps due today. */
+  /** First retrievals and learning steps due NOW. */
   learningDue: number;
+  /** Learning steps / first retrievals scheduled for later today (not part of "now"). */
+  laterToday: number;
+  /** When the earliest of those becomes due (ISO), if any. */
+  nextLaterAt: string | null;
   newTarget: number;
   newToday: number;
   remainingNew: number;
@@ -45,8 +50,14 @@ export type DailyPlan = {
   goalReached: boolean;
 };
 
-/** Gap (in cards) between an intro and its first retrieval within a session. */
+/** First retrieval after an intro: at least this many other cards AND this much time in between. */
 export const INTRO_GAP = 3;
+export const FIRST_RETRIEVAL_DELAY_MS = 2 * 60_000;
+/**
+ * Deliberate extra practice (topic practice, pre-exam sweep) never touches points still in a learning step and
+ * never repeats a point answered within this window — scheduled spacing is not short-circuited.
+ */
+export const PRACTICE_MIN_GAP_MS = 60 * 60_000;
 const MIN_PER_REVIEW = 0.5;
 const MIN_PER_NEW = 1.5;
 const TIER_WEIGHT = { A: 1, B: 0.4, C: 0 } as const;
@@ -69,6 +80,8 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   let learningDue = 0;
   // Minutes rather than counts: a client case takes several minutes, a flashcard half a minute.
   let dueMinutes = 0;
+  let laterToday = 0;
+  let nextLater: number | null = null;
   let startLoadMinutes = 0;
   let newToday = 0;
   let remainingA = 0;
@@ -85,7 +98,12 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
     }
     const shortStep = st?.card && (st.card.scheduleStatus === "learning" || st.card.scheduleStatus === "relearning");
     if (!st?.card || (shortStep && dayKey(st.card.dueAt) <= today)) {
-      learningDue++;
+      const dueAt = st?.card ? Date.parse(st.card.dueAt) : Date.parse(st!.introducedAt!) + FIRST_RETRIEVAL_DELAY_MS;
+      if (dueAt <= now.getTime()) learningDue++;
+      else {
+        laterToday++;
+        if (nextLater === null || dueAt < nextLater) nextLater = dueAt;
+      }
       dueMinutes += reviewMinutes(p);
       continue;
     }
@@ -113,6 +131,8 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
     daysLeft,
     dueReviews,
     learningDue,
+    laterToday,
+    nextLaterAt: nextLater === null ? null : new Date(nextLater).toISOString(),
     newTarget,
     newToday,
     remainingNew,
@@ -141,8 +161,9 @@ export function nextCard(input: PlannerInput): NextCard {
     if (!st?.introducedAt) continue;
     if (!st.card) {
       const idx = introIndex.get(p.id);
-      const ready = idx === undefined || session.length - 1 - idx >= INTRO_GAP;
-      (ready ? learningReady : learningPending).push({ p, st, due: Date.parse(st.introducedAt) });
+      const due = Date.parse(st.introducedAt) + FIRST_RETRIEVAL_DELAY_MS;
+      const ready = (idx === undefined || session.length - 1 - idx >= INTRO_GAP) && due <= now.getTime();
+      (ready ? learningReady : learningPending).push({ p, st, due });
       continue;
     }
     if (dayKey(st.card.dueAt) > today) continue;
@@ -155,7 +176,8 @@ export function nextCard(input: PlannerInput): NextCard {
   const notJustShown = (xs: Cand[]) => xs.filter((c) => c.p.id !== last?.pointId);
 
   // ---- 1. learning steps ----
-  const learnPool = notJustShown(learningReady);
+  // Ready = genuinely due (time-based), so the last card may repeat if it is the only one; otherwise prefer variety.
+  const learnPool = notJustShown(learningReady).length ? notJustShown(learningReady) : learningReady;
   if (learnPool.length) {
     const c = earliest(learnPool);
     return exercise(c.p, c.st, "learning");
@@ -181,31 +203,34 @@ export function nextCard(input: PlannerInput): NextCard {
   if (reviewPick) return exercise(reviewPick.p, reviewPick.st, "review");
   if (newCand) return { kind: "intro", pointId: newCand.id };
 
-  // ---- 4. nothing else: finish pending learning early rather than ending with loose ends ----
-  const pending = [...learningPending, ...learningReady];
-  if (pending.length) {
-    const pool = notJustShown(pending).length ? notJustShown(pending) : pending;
-    const c = earliest(pool);
-    const firstRetrievalOpen = pool.some((x) => !x.st.card);
-    if (firstRetrievalOpen || mode.kind === "topic" || input.beyondGoal || !plan.goalReached) {
-      return exercise(c.p, c.st, "learning");
-    }
-  }
+  // ---- 4. deliberate extra practice (only on request: topic practice / "continue" after the goal) ----
+  // Never a point in a learning step (its next retrieval is scheduled) nor one answered within the last hour.
   if (mode.kind === "topic") {
-    // Extra practice: weakest introduced points of the topic not seen in the last few cards.
-    const recent = new Set(session.slice(-4).map((s) => s.pointId));
-    const practice = inScope
-      .map((p) => ({ p, st: states.get(p.id) }))
-      .filter((x): x is { p: PointWithTopic; st: PointState } => !!x.st?.card && !recent.has(x.p.id))
-      .sort((a, b) => input.retrievability(a.st, now) - input.retrievability(b.st, now));
+    const practice = practiceCandidates(inScope, states, now).sort(
+      (a, b) => input.retrievability(a.st, now) - input.retrievability(b.st, now),
+    );
     if (practice.length) return exercise(practice[0].p, practice[0].st, "practice");
-    return { kind: "done", reason: "nothing-left" };
-  }
-  if (input.beyondGoal) {
+  } else if (input.beyondGoal) {
     const sweep = sweepPick(input, inScope, states);
     if (sweep) return exercise(sweep.p, sweep.st, "practice");
   }
+
+  // ---- 5. natural stopping point; say when the next scheduled step is due if that is still today ----
+  if (learningPending.length) return { kind: "done", reason: "wait", nextAt: new Date(earliest(learningPending).due).toISOString() };
+  if (mode.kind === "topic") return { kind: "done", reason: "nothing-left" };
   return { kind: "done", reason: plan.remainingNew === 0 && !anyIntroduced(inScope, states) ? "nothing-left" : "goal-reached" };
+}
+
+/** Points eligible for deliberate extra practice: past their learning steps, not answered within PRACTICE_MIN_GAP_MS. */
+function practiceCandidates(inScope: PointWithTopic[], states: Map<string, PointState>, now: Date) {
+  return inScope
+    .map((p) => ({ p, st: states.get(p.id) }))
+    .filter(
+      (x): x is { p: PointWithTopic; st: PointState } =>
+        !!x.st?.card &&
+        x.st.card.scheduleStatus === "review" &&
+        (!x.st.lastAnsweredAt || now.getTime() - Date.parse(x.st.lastAnsweredAt) >= PRACTICE_MIN_GAP_MS),
+    );
 }
 
 const anyIntroduced = (ps: PointWithTopic[], states: Map<string, PointState>) => ps.some((p) => states.get(p.id)?.card);
@@ -214,16 +239,13 @@ const anyIntroduced = (ps: PointWithTopic[], states: Map<string, PointState>) =>
 export const examMoment = (examDate: string) => new Date(`${examDate}T08:00:00+01:00`);
 
 /**
- * Pre-exam sweep (after the daily goal, on request): the introduced points with the LOWEST predicted recall at the
- * exam, tier A before B at similar recall, not repeated within the last 10 cards.
+ * Pre-exam sweep (after the daily goal, on request): the practice-eligible points with the LOWEST predicted recall
+ * at the exam, tier A before B at similar recall.
  */
 export function sweepPick(input: PlannerInput, inScope: PointWithTopic[], states: Map<string, PointState>) {
   const at = input.examDate ? examMoment(input.examDate) : input.now;
   const target = at > input.now ? at : input.now;
-  const recent = new Set(input.session.slice(-10).map((s) => s.pointId));
-  return inScope
-    .map((p) => ({ p, st: states.get(p.id) }))
-    .filter((x): x is { p: PointWithTopic; st: PointState } => !!x.st?.card && !recent.has(x.p.id))
+  return practiceCandidates(inScope, states, input.now)
     .map((x) => ({ ...x, key: input.retrievability(x.st, target) + (x.p.tier === "A" ? 0 : 0.05) }))
     .sort((a, b) => a.key - b.key)[0];
 }

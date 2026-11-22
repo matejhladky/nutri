@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeAll } from "vitest";
-import { dailyPlan, nextCard, pickExercise, sweepPick, INTRO_GAP, type PlannerInput, type SessionItem } from "./planner";
+import { dailyPlan, nextCard, pickExercise, sweepPick, INTRO_GAP, FIRST_RETRIEVAL_DELAY_MS, type PlannerInput, type SessionItem } from "./planner";
 import { getScheduler, retrievability, type Scheduler } from "./scheduler";
 import { applyEvent } from "./state";
 import { Grade, type PointState, type StudyEvent } from "./types";
@@ -79,7 +79,7 @@ describe("nextCard", () => {
     expect(c.kind).toBe("intro");
   });
 
-  it("asks the first retrieval only after the intro gap", () => {
+  it("asks the first retrieval only after the intro gap AND the minimum delay", () => {
     const pts = [pt("a1", "A", 0), pt("a2", "A", 1), pt("b1", "B", 0, { criteria: ["2f"] }), pt("c1", "C", 0, { criteria: ["5e"] }), pt("d1", "D", 0, { criteria: ["4a"] })];
     const states = withEvents([intro("a1", NOW)]);
     const session: SessionItem[] = [{ pointId: "a1", kind: "intro", isNew: true }];
@@ -90,15 +90,60 @@ describe("nextCard", () => {
       ...session,
       ...Array.from({ length: INTRO_GAP }, (_, i) => ({ pointId: `x${i}`, kind: "exercise" as const, isNew: false })),
     ];
-    const c2 = nextCard(input(pts, states, { session: later, beyondGoal: true }));
-    expect(c2).toMatchObject({ kind: "exercise", pointId: "a1", reason: "learning" });
+    // Enough cards but too little time: still not asked.
+    const c2 = nextCard(input(pts, states, { session: later, beyondGoal: true, now: new Date(NOW.getTime() + 60_000) }));
+    expect(c2.kind === "exercise" && c2.pointId === "a1").toBe(false);
+    const c3 = nextCard(input(pts, states, { session: later, beyondGoal: true, now: new Date(NOW.getTime() + FIRST_RETRIEVAL_DELAY_MS) }));
+    expect(c3).toMatchObject({ kind: "exercise", pointId: "a1", reason: "learning" });
   });
 
-  it("asks a pending first retrieval immediately if nothing else is left", () => {
+  it("a pending first retrieval is not asked early when nothing else is left — the session waits", () => {
     const pts = [pt("a1", "A", 0)];
     const states = withEvents([intro("a1", NOW)]);
-    const c = nextCard(input(pts, states, { session: [{ pointId: "a1", kind: "intro", isNew: true }] }));
-    expect(c).toMatchObject({ kind: "exercise", pointId: "a1" });
+    const session: SessionItem[] = [{ pointId: "a1", kind: "intro", isNew: true }];
+    expect(nextCard(input(pts, states, { session }))).toEqual({
+      kind: "done",
+      reason: "wait",
+      nextAt: new Date(NOW.getTime() + FIRST_RETRIEVAL_DELAY_MS).toISOString(),
+    });
+    // In a later session (enough time passed) it is asked straight away.
+    expect(nextCard(input(pts, states, { now: new Date(NOW.getTime() + 10 * 60_000) }))).toMatchObject({ kind: "exercise", pointId: "a1" });
+  });
+
+  it("after a wrong answer the point is not shown again before its relearning step, in any mode (regression)", () => {
+    const pts = [pt("a1", "T", 0)];
+    const t = new Date(NOW.getTime() - 3600_000);
+    const states = withEvents([intro("a1", t), ans("a1", NOW, Grade.Again)]);
+    const session: SessionItem[] = [{ pointId: "a1", kind: "exercise", isNew: false }];
+    const soon = new Date(NOW.getTime() + 30_000);
+    const due = states.get("a1")!.card!.dueAt;
+    for (const extra of [{}, { beyondGoal: true }, { mode: { kind: "topic", topicId: "T" } as const }]) {
+      expect(nextCard(input(pts, states, { session, now: soon, ...extra }))).toEqual({ kind: "done", reason: "wait", nextAt: due });
+    }
+    expect(nextCard(input(pts, states, { session, now: new Date(Date.parse(due)) }))).toMatchObject({ kind: "exercise", pointId: "a1" });
+  });
+
+  it("deliberate extra practice skips learning-step points and points answered within the last hour", () => {
+    const pts = [pt("a1", "T", 0), pt("a2", "T", 1), pt("a3", "T", 2)];
+    const old = new Date(NOW.getTime() - 3 * 86400_000);
+    const states = withEvents([
+      intro("a1", old), ans("a1", old, Grade.Good), ans("a1", new Date(old.getTime() + 86400_000), Grade.Good), // review state, long ago
+      intro("a2", old), ans("a2", old, Grade.Good), ans("a2", new Date(NOW.getTime() - 20 * 60_000), Grade.Good), // answered 20 min ago
+      intro("a3", old), ans("a3", new Date(NOW.getTime() - 2 * 3600_000), Grade.Again), // relearning step
+    ]);
+    const topic = { mode: { kind: "topic", topicId: "T" } as const };
+    const c = nextCard(input(pts, states, topic));
+    // a3's relearning step (10 min) is overdue → scheduled learning comes first; then only a1 is practice-eligible.
+    expect(c).toMatchObject({ kind: "exercise", pointId: "a3", reason: "learning" });
+    const afterA3 = withEvents([
+      intro("a1", old), ans("a1", old, Grade.Good), ans("a1", new Date(old.getTime() + 86400_000), Grade.Good),
+      intro("a2", old), ans("a2", old, Grade.Good), ans("a2", new Date(NOW.getTime() - 20 * 60_000), Grade.Good),
+      intro("a3", old), ans("a3", new Date(NOW.getTime() - 2 * 3600_000), Grade.Again), ans("a3", NOW, Grade.Again),
+    ]);
+    const picks = new Set<string>();
+    const r = nextCard(input(pts, afterA3, { ...topic, now: new Date(NOW.getTime() + 60_000) }));
+    if (r.kind === "exercise") picks.add(r.pointId);
+    expect([...picks]).toEqual(["a1"]);
   });
 
   it("a point introduced in an earlier session is retrieved right away", () => {
@@ -242,7 +287,11 @@ describe("dailyPlan pacing", () => {
   it("counts owed first retrievals; the goal is not reached until they are answered", () => {
     const pts = [pt("a1", "A", 0)];
     const states = withEvents([intro("a1", NOW)]);
-    const plan = dailyPlan(input(pts, states));
+    // Right after the intro the first retrieval is scheduled for later, not owed now.
+    const justNow = dailyPlan(input(pts, states));
+    expect([justNow.learningDue, justNow.laterToday]).toEqual([0, 1]);
+    expect(justNow.nextLaterAt).toBe(new Date(NOW.getTime() + FIRST_RETRIEVAL_DELAY_MS).toISOString());
+    const plan = dailyPlan(input(pts, states, { now: new Date(NOW.getTime() + 5 * 60_000) }));
     expect(plan.learningDue).toBe(1);
     expect(plan.goalReached).toBe(false);
     const answered = withEvents([intro("a1", NOW), ans("a1", new Date(NOW.getTime() + 60_000), Grade.Good)]);

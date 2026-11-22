@@ -3,8 +3,8 @@ import "server-only";
  * Learner data access. Events are the source of truth; point_state is a cache rebuilt per point by replay.
  */
 import { z } from "zod";
-import { getDb } from "./db";
-import { getScheduler } from "@/engine/scheduler";
+import { getDb, type Db } from "./db";
+import { getScheduler, type Scheduler } from "@/engine/scheduler";
 import { replay } from "@/engine/state";
 import type { PointState, StudyEvent } from "@/engine/types";
 
@@ -44,7 +44,30 @@ export const EventSchema = z.object({
   hintUsed: z.boolean().optional(),
   response: ResponseSchema.optional(),
   durationMs: z.number().int().nonnegative().max(86_400_000).optional(),
+}).refine((e) => e.kind !== "answer" || (e.grade !== undefined && e.outcome !== undefined), {
+  // replay() cannot apply an answer without a grade — such an event must never reach the log.
+  message: "answer event needs grade and outcome",
 });
+
+export type RejectedEvent = { index: number; id: string | null; error: string };
+
+/**
+ * Validate a batch event by event: one malformed event (an over-long typed answer, an event from an older client)
+ * is rejected on its own instead of failing the batch and blocking the client's queue forever.
+ */
+export function partitionEvents(raw: unknown[]): { valid: StudyEvent[]; rejected: RejectedEvent[] } {
+  const valid: StudyEvent[] = [];
+  const rejected: RejectedEvent[] = [];
+  raw.forEach((item, index) => {
+    const r = EventSchema.safeParse(item);
+    if (r.success) valid.push(r.data as StudyEvent);
+    else {
+      const id = typeof (item as { id?: unknown })?.id === "string" ? (item as { id: string }).id : null;
+      rejected.push({ index, id, error: r.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ").slice(0, 300) });
+    }
+  });
+  return { valid, rejected };
+}
 
 export const SettingsSchema = z.object({
   dailyMinutes: z.number().int().min(10).max(240),
@@ -58,7 +81,7 @@ export async function getAllStates(): Promise<Record<string, PointState>> {
   return Object.fromEntries(rows.map((r) => [r.point_id, r.state]));
 }
 
-/** Insert events idempotently, then rebuild the state of every affected point. */
+/** Insert events idempotently, then rebuild the cached state of every affected point. */
 export async function addEvents(events: StudyEvent[]): Promise<Record<string, PointState>> {
   const db = await getDb();
   for (const ev of events) {
@@ -72,20 +95,53 @@ export async function addEvents(events: StudyEvent[]): Promise<Record<string, Po
   const s = await getScheduler();
   const out: Record<string, PointState> = {};
   for (const pointId of new Set(events.map((e) => e.pointId))) {
+    const st = await rebuildPoint(db, s, pointId);
+    if (st) out[pointId] = st;
+  }
+  return out;
+}
+
+/**
+ * Recompute one point's cached state from ALL its events and store it with an optimistic version check.
+ * The version is read BEFORE the events, so a write succeeds only if no other write happened in between —
+ * a writer holding an older snapshot (concurrent tabs/devices/retries) fails, re-reads and retries, and can never
+ * overwrite a state that already includes more events. Works with single-statement autocommit (Neon HTTP).
+ */
+export async function rebuildPoint(db: Db, s: Scheduler, pointId: string): Promise<PointState | undefined> {
+  for (let attempt = 0; attempt < 25; attempt++) {
+    const cur = await db.query<{ version: number }>("SELECT version FROM point_state WHERE point_id = $1", [pointId]);
     const rows = await db.query<{ payload: StudyEvent }>("SELECT payload FROM events WHERE point_id = $1", [pointId]);
     const st = replay(
       rows.map((r) => r.payload),
       s,
     ).get(pointId);
-    if (!st) continue;
-    await db.query(
-      `INSERT INTO point_state (point_id, state, updated_at) VALUES ($1, $2, now())
-       ON CONFLICT (point_id) DO UPDATE SET state = EXCLUDED.state, updated_at = now()`,
-      [pointId, JSON.stringify(st)],
-    );
-    out[pointId] = st;
+    if (!st) return undefined;
+    const json = JSON.stringify(st);
+    const written = cur.length
+      ? await db.query(
+          `UPDATE point_state SET state = $2, version = version + 1, updated_at = now()
+           WHERE point_id = $1 AND version = $3 RETURNING point_id`,
+          [pointId, json, cur[0].version],
+        )
+      : await db.query(
+          `INSERT INTO point_state (point_id, state, version, updated_at) VALUES ($1, $2, 1, now())
+           ON CONFLICT (point_id) DO NOTHING RETURNING point_id`,
+          [pointId, json],
+        );
+    if (written.length) return st;
+    // Lost the race: back off with jitter so concurrent writers don't retry in lock-step.
+    await new Promise((r) => setTimeout(r, 5 + Math.random() * 20 * (attempt + 1)));
   }
-  return out;
+  throw new Error(`point_state for ${pointId}: too many concurrent updates`);
+}
+
+/** Maintenance: rebuild every cached point state from the event log (the source of truth). */
+export async function rebuildAllStates(): Promise<number> {
+  const db = await getDb();
+  const s = await getScheduler();
+  const ids = await db.query<{ point_id: string }>("SELECT DISTINCT point_id FROM events");
+  for (const { point_id } of ids) await rebuildPoint(db, s, point_id);
+  return ids.length;
 }
 
 export async function getSettings(): Promise<Settings> {

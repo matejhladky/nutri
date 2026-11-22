@@ -27,3 +27,6 @@ test-results/
 src/generated/
 .pglite*/
 .pglite-e2e/
+
+# local archives (may contain materials/ or source/)
+*.zip

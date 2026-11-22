@@ -3,15 +3,23 @@
  * exactly where she left off — same card, same generated numbers, same option order.
  */
 import type { NextCard, SessionItem } from "@/engine/planner";
+import type { CaseStepResponse, Evaluation, Outcome, Response } from "@/engine/types";
 import { dayKey } from "@/engine/time";
 
 export type StudyMode = { kind: "daily" } | { kind: "topic"; topicId: string };
+
+/** The recorded answer to the card on screen — a reload shows its feedback instead of asking again. */
+export type AnsweredCard = { eventId: string; response: Response; evaluation: Evaluation; hintUsed: boolean };
+/** A finished step of a client case (cases are recorded only when complete). */
+export type CaseStepDone = { response: CaseStepResponse; outcome: Outcome; summary: string };
 
 export type CardInstance = {
   next: Exclude<NextCard, { kind: "done" }>;
   /** Seeds numeric parameters and option shuffling. */
   seed: number;
   shownAt: string;
+  answer?: AnsweredCard;
+  caseSteps?: CaseStepDone[];
 };
 
 export type StoredSession = {

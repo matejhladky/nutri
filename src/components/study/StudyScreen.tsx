@@ -11,7 +11,7 @@ import { Button, Spinner } from "../ui";
 import { ExerciseCard, type AnswerRecord } from "./ExerciseCard";
 import { IntroCard } from "./IntroCard";
 
-type Done = Extract<NextCard, { kind: "done" }>["reason"];
+type Done = Extract<NextCard, { kind: "done" }>;
 
 type ScreenState = { session: StoredSession; done: Done | null };
 
@@ -40,7 +40,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       dailyMinutes: settings.dailyMinutes,
       retrievability,
     });
-    if (n.kind === "done") return { session: { ...session, current: null }, done: n.reason };
+    if (n.kind === "done") return { session: { ...session, current: null }, done: n };
     return { session: { ...session, current: { next: n, seed: newSeed(), shownAt: now.toISOString() } }, done: null };
   };
 
@@ -51,6 +51,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
     return fill(s);
   });
   const { session, done } = screen;
+
 
   // Persist the session (external system sync).
   useEffect(() => saveSession(session), [session]);
@@ -82,10 +83,20 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
     } else advance({ pointId: point.id, kind: "intro", isNew: true });
   };
 
+  /** Persist the session now (not in the effect), in the same task as the event is queued: no reload can fall between. */
+  /** Persist the session now (not in the effect), in the same task as the event is queued: no reload can fall between. */
+  const commit = (next: StoredSession) => {
+    saveSession(next);
+    setScreen({ done: null, session: next });
+  };
+
   const onRecord = (a: AnswerRecord) => {
-    if (!point) return;
+    if (!point || !current || current.answer) return; // a card is graded at most once, also after a reload
+    const eventId = uuid();
+    const answer = { eventId, response: a.response, evaluation: a.evaluation, hintUsed: a.hintUsed };
+    commit({ ...session, current: { ...current, answer, caseSteps: a.caseSteps ?? current.caseSteps } });
     record({
-      id: uuid(),
+      id: eventId,
       pointId: point.id,
       at: new Date().toISOString(),
       kind: "answer",
@@ -127,7 +138,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       <main className="flex flex-1 flex-col justify-center py-6">
         {done ? (
           <DoneView
-            reason={done}
+            done={done}
             mode={mode}
             todayCards={todayCards}
             exitHref={exitHref}
@@ -151,6 +162,9 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
                 exercise={exercise}
                 seed={current.seed}
                 reason={current.next.reason}
+                restored={current.answer}
+                caseSteps={current.caseSteps}
+                onCaseProgress={(steps) => commit({ ...session, current: { ...current, caseSteps: steps } })}
                 onRecord={onRecord}
                 onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: false })}
               />
@@ -164,7 +178,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
 }
 
 function DoneView({
-  reason,
+  done,
   mode,
   todayCards,
   exitHref,
@@ -172,7 +186,7 @@ function DoneView({
   sweepOnly,
   onContinue,
 }: {
-  reason: Done;
+  done: Done;
   mode: StudyMode;
   todayCards: number;
   exitHref: string;
@@ -181,6 +195,10 @@ function DoneView({
   onContinue: () => void;
 }) {
   const topicDone = mode.kind === "topic";
+  const reason = done.reason;
+  const nextClock = done.nextAt
+    ? new Date(done.nextAt).toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Prague" })
+    : null;
   return (
     <div className="flex flex-col items-center gap-5 text-center animate-rise">
       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-50 text-2xl text-sage-600" aria-hidden>
@@ -188,11 +206,19 @@ function DoneView({
       </div>
       <div>
         <h2 className="text-xl font-semibold">
-          {topicDone ? "Téma je pro teď procvičené" : reason === "goal-reached" ? "Dnešní plán je splněný" : "Pro dnešek je hotovo"}
+          {reason === "wait"
+            ? "Pro tuhle chvíli hotovo"
+            : topicDone
+              ? "Téma je pro teď procvičené"
+              : reason === "goal-reached"
+                ? "Dnešní plán je splněný"
+                : "Pro dnešek je hotovo"}
         </h2>
         <p className="mt-2 text-muted">
           {todayCards > 0 && <>Dnes {plural(todayCards, "karta", "karty", "karet")}. </>}
-          {topicDone
+          {reason === "wait" && nextClock
+            ? `Další krátké opakování bude připravené kolem ${nextClock} — s odstupem funguje líp než hned po sobě.`
+            : topicDone
             ? "Ostatní opakování naplánuji na další dny."
             : "Teď je nejlepší dát mozku pauzu — opakování s odstupem funguje líp než dlouhé biflování."}
         </p>

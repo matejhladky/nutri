@@ -109,7 +109,42 @@ Done:
 
 Verified: `pnpm validate` (53 unit tests), `pnpm test:e2e` 8/8, screenshots of a session, Pokrok and /priprava at 390 px.
 
-## Next
+## R1 — Reliability ✅ (2026-11-22, after the independent review)
 
-- **Deploy** (needs approval + accounts): follow `docs/deploy.md`. Neon path is untested until then (driver API checked).
-- During her use: fix reported items, watch real minutes per day vs. plan.
+Reproduced and fixed:
+- **Duplicate grading on reload** (answer → reload → same card unanswered → 2nd answer; on a new point this moved the
+  next review from tomorrow to +5 days). Now the answer is saved in the session with the event; reload shows feedback.
+- **Lost case progress on reload** (back to step 1). Finished steps persist; the case resumes at the same step.
+- **Premature repeats** (wrong answer → same point 30 s later in daily/topic/continue modes). Now strictly when due;
+  natural stopping point with the time of the next step; extra practice separated (see architecture, planner 1 & 8).
+- **Stale `point_state` under concurrent writes** (forced interleaving in a test: 1 answer cached instead of 2).
+  Version-checked writes with retry; `pnpm db:rebuild`.
+- **Queue blocking**: a malformed event failed the whole batch forever, and on the client even prevented the app from
+  loading. Per-event validation + client-side guard.
+
+Tests: unit (planner spacing ×4, store race/idempotency/validation ×4 on in-memory PGlite) — 59 total;
+browser (Playwright, mobile + desktop): reload after answering, reload mid-case, malformed queued event — 14 total.
+
+Known limits: the Neon path is still unverified until deployment; cross-device: each device keeps its own session.
+
+## Next (decisions of 2026-11-22)
+
+Deploy as soon as R2-min and the safety audit are done; the rest continues after deployment (content fixes redeploy,
+progress is kept).
+
+- **R2 — Planner: cover what matters.** Transparent *priority ranking* (not a binary flag, no fixed count), grounded in
+  the official competencies, foundational importance, practical relevance and safety; I propose it, the owner reviews.
+  Cases unlock with fewer prerequisites. Fix tier-C counting toward the daily target. Simulation v2: per-type answer
+  times, learner-strength variants, report *which* objectives are omitted. Targets are reported, not hard-coded;
+  simulated estimates are kept separate from observed outcomes, and timing is calibrated from her real `durationMs`
+  once available. **R2-min before deployment:** ranking + case prerequisites + tier-C fix.
+- **R4a — Safety audit before deployment.** Tier-A health/safety content (3c, 7h, 7f, 8b, 8d, 10c, red flags,
+  supplements, pregnancy) checked against primary sources; disputed notes in the three-part form (script · current
+  evidence/regulation · what is actually known about the exam — never claiming the examiner's answer without
+  evidence); in counselling/safety contexts correctness first.
+- **R3 — Learning flow.** Ask-first for facts and comparisons; worked example first for procedures, calculations,
+  cases; recall preferred after the first retrieval; honest status/metric definitions (cards = answers, "upevněno" =
+  unaided Good after ≥ 1 day); case-hint grading; partial multi-select rule.
+- **R4b — Content audit (incremental).** Automated flags (length cue, numbers not on the cited page, disputed MCQ
+  without "podle skript", near-duplicates) are *flags for inspection*, not verdicts; recall item for the 38 MCQ-only
+  tier-A points; absurd distractors.

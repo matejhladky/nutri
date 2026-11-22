@@ -9,6 +9,8 @@ import { Button, Panel } from "@/components/ui";
 import { czDate, greeting, plural } from "@/lib/format";
 import { EXAM_DATE } from "@/lib/exam";
 
+const clock = (iso: string) => new Date(iso).toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Prague" });
+
 export default function TodayPage() {
   const router = useRouter();
   const { states, settings, points, todayCards, pending, syncError } = useStudy();
@@ -52,6 +54,9 @@ export default function TodayPage() {
                 {finalDays
                   ? "Poslední dny před zkouškou už nové poznatky nepřidávám. Jestli máš chuť, procvič si místa, která by ti u zkoušky mohla vypadnout."
                   : "Opakování ti teď nejvíc pomůže zítra — paměť potřebuje odstup. Jestli máš chuť, můžeš ještě pokračovat."}
+                {plan.laterToday > 0 && plan.nextLaterAt && (
+                  <> Později dnes ještě {plural(plan.laterToday, "krátké opakování", "krátká opakování", "krátkých opakování")} (nejdřív {clock(plan.nextLaterAt)}).</>
+                )}
               </p>
             </div>
             {(plan.remainingNew > 0 || seen > 0) && (

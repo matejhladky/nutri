@@ -219,16 +219,15 @@ export function pickNew(
     total.set(c, (total.get(c) ?? 0) + 1);
     if (introducedIds.has(p.id)) covered.set(c, (covered.get(c) ?? 0) + 1);
   }
-  // Frontier: first not-introduced point per (topic, tier) whose prerequisites are introduced.
-  const seen = new Set<string>();
+  // Frontier: every not-introduced point whose prerequisites are introduced. (Only the first point per topic would
+  // hide whole criteria that sit later in a long topic — simulation showed 2a/2c/4c never reached.) Authored order
+  // survives as the tie-break, so within one criterion points still come in topic order.
+  const inScopeIds = new Set(inScope.map((q) => q.id));
   const frontier: PointWithTopic[] = [];
   for (const p of inScope) {
     if (introducedIds.has(p.id)) continue;
     if (!includeAllTiers && p.tier === "C") continue;
-    const key = `${p.topicId}|${p.tier}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    if (p.prereqs.every((r) => introducedIds.has(r) || !inScope.some((q) => q.id === r))) frontier.push(p);
+    if (p.prereqs.every((r) => introducedIds.has(r) || !inScopeIds.has(r))) frontier.push(p);
   }
   if (!frontier.length) return null;
   // Contrast learning: a point whose confusable partner is already known is introduced a bit sooner.

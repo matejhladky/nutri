@@ -3,6 +3,7 @@
  * Reports per-day workload and final coverage, to sanity-check pacing before real use.
  *
  *   pnpm simulate [points=500] [days=14] [minutes=45]
+ *   pnpm simulate real [days] [minutes]   — use the built content bank (src/generated/content.json)
  */
 import { getScheduler, retrievability } from "../src/engine/scheduler";
 import { applyEvent } from "../src/engine/state";
@@ -11,15 +12,17 @@ import { Grade, type PointState, type StudyEvent } from "../src/engine/types";
 import { rng } from "../src/content/formulas";
 import type { PointWithTopic } from "../src/content/schema";
 import { dayKey } from "../src/engine/time";
+import { readFileSync } from "node:fs";
 
-const N = Number(process.argv[2] ?? 500);
+const REAL = process.argv[2] === "real";
+const N = REAL ? 0 : Number(process.argv[2] ?? 500);
 const DAYS = Number(process.argv[3] ?? 14);
 const MINUTES = Number(process.argv[4] ?? 45);
 const SEC_PER_CARD = { intro: 30, exercise: 25 };
 
 const rand = rng(1);
 const criteria = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2d", "2e", "2f", "2g", "3a", "3b", "4a", "4b", "4c", "5e", "7h", "8a"];
-const points: PointWithTopic[] = Array.from({ length: N }, (_, i) => ({
+const synthetic: PointWithTopic[] = Array.from({ length: N }, (_, i) => ({
   id: `p${i}`,
   title: `p${i}`,
   kind: "fact",
@@ -34,6 +37,10 @@ const points: PointWithTopic[] = Array.from({ length: N }, (_, i) => ({
   topicId: `t${Math.floor(i / 20)}`,
   order: i % 20,
 }));
+
+const points: PointWithTopic[] = REAL
+  ? (JSON.parse(readFileSync("src/generated/content.json", "utf8")) as { points: PointWithTopic[] }).points
+  : synthetic;
 
 const start = new Date("2026-11-22T17:00:00Z");
 const exam = new Date(start.getTime() + DAYS * 86400_000);
@@ -104,3 +111,15 @@ const rAtExam = ab
 const avgR = rAtExam.reduce((a, b) => a + b, 0) / Math.max(1, rAtExam.length);
 const aLeft = points.filter((p) => p.tier === "A" && !states.get(p.id)?.introducedAt).length;
 console.log(`\nIntroduced ${introduced}/${ab.length} A/B points; tier-A never seen: ${aLeft}; mean predicted recall on exam day: ${avgR.toFixed(2)}`);
+
+// Coverage of tier-A points per primary criterion at exam time (written test needs ≥ 50 % per criterion).
+const byCrit = new Map<string, { total: number; seen: number }>();
+for (const p of points) {
+  if (p.tier !== "A") continue;
+  const c = byCrit.get(p.criteria[0]) ?? { total: 0, seen: 0 };
+  c.total++;
+  if (states.get(p.id)?.introducedAt) c.seen++;
+  byCrit.set(p.criteria[0], c);
+}
+const weak = [...byCrit].filter(([, c]) => c.seen / c.total < 0.75).map(([k, c]) => `${k} ${c.seen}/${c.total}`);
+console.log(`Criteria with < 75 % of tier A seen: ${weak.length ? weak.join(", ") : "none"}`);

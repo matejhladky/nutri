@@ -37,7 +37,8 @@ export function SourceLine({ point }: { point: PointWithTopic }) {
 /** "Pozn." for course-disputed / supplementary points. */
 export function NoteBox({ point }: { point: PointWithTopic }) {
   if (!point.note) return null;
-  const label = point.status === "supplementary" ? "Doplněk mimo skripta" : "Pozor, nejednoznačné";
+  const label =
+    point.status === "supplementary" ? "Doplněk mimo skripta" : point.status === "course-disputed" ? "Pozor, nejednoznačné" : "Poznámka";
   return (
     <div className="rounded-2xl bg-amber-50 px-4 py-3 text-[15px] leading-snug">
       <div className="mb-0.5 text-xs font-semibold uppercase tracking-wide text-amber-600">{label}</div>

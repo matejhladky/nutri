@@ -28,6 +28,15 @@ describe("course formulas", () => {
     expect(v("glycemic-load", { gi: 70, carbs: 4 })).toBeCloseTo(2.8);
   });
 
+  it("WHR, per-kg dose, FFM and % energy", () => {
+    expect(v("whr", { waist: 90, hip: 100 })).toBeCloseTo(0.9);
+    expect(formulas.whr.compute({ waist: 90, hip: 100, sex: "F" }).steps[1]).toContain("zvýšené riziko");
+    // p. 174: 70 kg × 30–40 ml → 2.1–2.8 l
+    expect(v("per-kg", { weight: 70, perKg: 30 })).toBe(2100);
+    expect(v("ffm", { weight: 80, bodyFat: 25 })).toBe(60);
+    expect(v("macro-percent", { grams: 60, kcalPerG: 9, energy: 2000 })).toBeCloseTo(27);
+  });
+
   it("TDEE by components = BMR + NEAT + EAT + 10 % TEF", () => {
     const p = { sex: "M", weight: 80, height: 180, age: 30, coef: 0.2, met: 6, minutes: 60 };
     const bmr = 1780;

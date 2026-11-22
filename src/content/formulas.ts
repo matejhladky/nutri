@@ -200,6 +200,55 @@ function bmi(p: ParamValues): FormulaResult {
   return { value, steps: [`BMI = hmotnost (kg) / výška² (m) = ${fmt(w)} / ${fmt(m, 2)}² = ${fmt(value, 1)}`] };
 }
 
+/** p. 152: WHR = waist / hip; risk above 0.90 (men) / 0.85 (women). `sex` optional. */
+function whr(p: ParamValues): FormulaResult {
+  const [waist, hip] = [num(p, "waist"), num(p, "hip")];
+  const value = waist / hip;
+  const steps = [`WHR = obvod pasu / obvod boků = ${fmt(waist)} / ${fmt(hip)} = ${fmt(value, 2)}`];
+  if (p.sex === "M" || p.sex === "F") {
+    const limit = p.sex === "M" ? 0.9 : 0.85;
+    steps.push(
+      `Hranice rizika pro ${p.sex === "M" ? "muže" : "ženy"}: nad ${fmt(limit, 2)} → ${value > limit ? "zvýšené riziko (abdominální obezita)" : "v pásmu bez zvýšeného rizika"}.`,
+    );
+  }
+  return { value, steps };
+}
+
+/** Generic per-kilogram dose: protein g/kg, fluids ml/kg, carbohydrates g/kg, caffeine mg/kg … */
+function perKg(p: ParamValues): FormulaResult {
+  const [w, d] = [num(p, "weight"), num(p, "perKg")];
+  const value = w * d;
+  return { value, steps: [`Množství = hmotnost × dávka na kg = ${fmt(w)} kg × ${fmt(d, 2)} = ${fmt(value)}`] };
+}
+
+/** Fat-free mass from weight and body-fat %. */
+function ffm(p: ParamValues): FormulaResult {
+  const [w, bf] = [num(p, "weight"), num(p, "bodyFat")];
+  const fatKg = (w * bf) / 100;
+  const value = w - fatKg;
+  return {
+    value,
+    steps: [
+      `Tuk = ${fmt(w)} kg × ${fmt(bf)} % = ${fmt(fatKg, 1)} kg`,
+      `FFM (beztuková hmota) = ${fmt(w)} − ${fmt(fatKg, 1)} = ${fmt(value, 1)} kg`,
+    ],
+  };
+}
+
+/** Share of energy from one macronutrient: grams × kcal/g ÷ total energy × 100. `kcalPerG` is 4 or 9. */
+function macroPercent(p: ParamValues): FormulaResult {
+  const [g, k, e] = [num(p, "grams"), num(p, "kcalPerG"), num(p, "energy")];
+  const kcal = g * k;
+  const value = (kcal / e) * 100;
+  return {
+    value,
+    steps: [
+      `${fmt(g)} g × ${fmt(k)} kcal/g = ${fmt(kcal)} kcal`,
+      `${fmt(kcal)} / ${fmt(e)} kcal × 100 = ${fmt(value, 1)} % energie`,
+    ],
+  };
+}
+
 export const formulas: Record<string, Formula> = {
   "bmr-mifflin": { label: "BMR Mifflin-St Jeor", inputs: ["sex", "weight", "height", "age"], compute: mifflin },
   "bmr-harris": { label: "BMR Harris-Benedict", inputs: ["sex", "weight", "height", "age"], compute: harris },
@@ -219,6 +268,10 @@ export const formulas: Record<string, Formula> = {
   "glycemic-load": { label: "Glykemická nálož", inputs: ["gi", "carbs"], compute: glycemicLoad },
   "energy-availability": { label: "Energetická dostupnost", inputs: ["intake", "exercise", "ffm"], compute: energyAvailability },
   bmi: { label: "BMI", inputs: ["weight", "height"], compute: bmi },
+  whr: { label: "WHR (pas/boky)", inputs: ["waist", "hip"], compute: whr },
+  "per-kg": { label: "Dávka na kg hmotnosti", inputs: ["weight", "perKg"], compute: perKg },
+  ffm: { label: "Beztuková hmota (FFM)", inputs: ["weight", "bodyFat"], compute: ffm },
+  "macro-percent": { label: "Podíl energie z makroživiny", inputs: ["grams", "kcalPerG", "energy"], compute: macroPercent },
 };
 
 // ---------- Parameter generation (seeded, reproducible) ----------

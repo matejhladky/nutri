@@ -14,7 +14,7 @@ points:
     kind: fact
     tier: A
     criteria: [1a]
-    prereqs: [uv.makro-mikro]
+    prereqs: [uv.deleni-zivin]
     source: { pages: [46, 9, 176], anchor: "Tvoří samostatnou skupinu a nepatří mezi sacharidy" }
     explanation: >-
       Alkohol je především zdrojem energie: 1 g dodá asi 29 kJ / 7 kcal – víc než sacharidy
@@ -31,14 +31,14 @@ points:
           - { text: "Podmíněně esenciální živina potřebná v malém množství", why: "Alkohol esenciální není – tělo se bez něj obejde." }
           - { text: "Seminutrient s přínosem pro dlouhodobé zdraví", why: "Nutriční význam alkoholu je nulový až negativní." }
       - id: energie
-        version: 2
+        version: 3
         type: choice
-        prompt: "Kolik energie dodá 1 g alkoholu?"
+        prompt: "Jak je to s energií z alkoholu ve srovnání s makroživinami?"
         options:
-          - { text: "Asi 29 kJ (7 kcal)", correct: true }
-          - { text: "Asi 38 kJ (9 kcal)", why: "To má 1 g tuku – alkohol má méně." }
-          - { text: "Asi 17 kJ (4 kcal)", why: "To mají sacharidy a bílkoviny – alkohol má víc." }
-          - { text: "Žádnou využitelnou energii", why: "Alkohol je především zdrojem energie." }
+          - { text: "Na gram dodá víc než sacharidy, ale méně než tuky", correct: true }
+          - { text: "Na gram dodá stejně jako tuky, tedy nejvíc", why: "Tuk má 9 kcal/g, alkohol asi 7 kcal/g." }
+          - { text: "Na gram dodá stejně jako sacharidy a bílkoviny", why: "Ty mají 4 kcal/g, alkohol asi 7 kcal/g." }
+          - { text: "Na gram dodá méně než sacharidy, protože se rychle vyloučí", why: "Alkohol je především zdrojem energie – asi 7 kcal/g." }
       - id: resveratrol
         type: reveal
         prompt: "Klient tvrdí, že pije červené víno kvůli resveratrolu. Co mu odpovíš podle skript?"
@@ -125,9 +125,13 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta k 20 g/30 g alkoholu přiřazují objemy (0,5 l piva 10°, 1,6 dcl vína, 5 cl destilátu),
-      které podle vlastní tab. 5.1 obsahují méně alkoholu (asi 14–16 g). Pro test si pamatuj
-      hlavně 20 g ženy / 30 g muži a že nejde o bezpečné množství.
+      Skripta: s. 47 uvádí tzv. tolerovatelný příjem max. 20 g/den pro ženy a 30 g/den pro muže
+      a přiřazuje k němu objemy (0,5 l piva 10°, 1,6 dcl vína, 5 cl destilátu), které podle vlastní
+      tab. 5.1 (s. 46) obsahují méně alkoholu (asi 14–16 g). Současné poznatky: WHO (2023) – žádné
+      množství alkoholu není pro zdraví bezpečné; české zdroje pro tzv. nízkorizikové pití uvádějí
+      různé hranice (např. 16/24 g nebo 20/40 g denně) a vždy aspoň 2 dny v týdnu bez alkoholu;
+      v těhotenství žádný alkohol. Ke zkoušce: pokud se otázka výslovně ptá na skripta, odpověď
+      skript je 20 g ženy / 30 g muži; správně podle obou zdrojů je, že nejde o bezpečné množství.
     criteria: [10d, 7a]
     prereqs: [alk.charakteristika]
     source: { pages: [46, 47], anchor: "Podle WHO nelze stanovit množství alkoholu bez zdravotního rizika" }
@@ -162,7 +166,7 @@ points:
     explanation: >-
       Klienty edukujeme o rizicích alkoholu, hlavně při zdravotních potížích a redukci. U vyšší
       konzumace zjistíme reálné množství – výrazně ovlivňuje energetický příjem a bilanci
-      (např. 8 velkých piv 12° jednou týdně ≈ 10 kg tuku za rok). Sledujeme průběh redukce,
+      (např. 8 velkých piv 12° jednou týdně = energie teoreticky až na 10 kg tuku za rok). Sledujeme průběh redukce,
       hmotnost, tuk, stravu a pohyb. Při podezření na rizikové pití či závislost respektujeme
       hranice kompetencí a doporučíme odbornou pomoc.
     exercises:

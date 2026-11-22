@@ -42,7 +42,7 @@ points:
   - id: sach.glukoza-spotreba
     title: Kdo spotřebovává glukózu
     kind: fact
-    tier: A
+    tier: B
     criteria: [1c, 2f]
     prereqs: [sach.funkce-esencialita]
     source: { pages: [11], anchor: "Glukóza je výhradním zdrojem energie pro červené krvinky" }
@@ -70,8 +70,11 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Kap. 2 uvádí polysacharidy jako „více než 10“ jednotek, kap. 11 (s. 85) „10 a více“. Počítej
-      s dělením z kap. 2: oligosacharidy 2–10, polysacharidy více než 10.
+      Skripta: kap. 2 (s. 10, 13) – oligosacharidy 2–10 jednotek, polysacharidy více než 10; kap. 11
+      (s. 85) uvádí polysacharidy jako „10 a více“. Současné poznatky: hranice mezi oligo-
+      a polysacharidy není v chemii pevně daná (učebnice uvádějí zhruba 3–10 jednotek a víc).
+      Ke zkoušce: pokud se otázka ptá na dělení podle skript, odpověď skript (kap. 2) je oligosacharidy
+      2–10, polysacharidy více než 10.
     criteria: [1c, 1a]
     source: { pages: [10, 11], anchor: "obsahují 2–10 cukerných jednotek" }
     explanation: >-
@@ -98,8 +101,10 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta označují jako „mléčný cukr“ galaktózu i laktózu (obojí s. 12). V běžné terminologii
-      je mléčný cukr laktóza; galaktóza je její součást.
+      Skripta: s. 12 nazývají „mléčným cukrem“ galaktózu i laktózu. Současné poznatky: v běžné
+      i odborné terminologii je mléčný cukr laktóza (disacharid); galaktóza je její součást. Ke zkoušce:
+      na otázku „co je mléčný cukr“ je laktóza správně podle obou zdrojů; u galaktózy se odpověď skript
+      liší od běžné terminologie.
     criteria: [1c]
     prereqs: [sach.deleni]
     confusableWith: [sach.disacharidy-vyskyt]
@@ -127,16 +132,21 @@ points:
   - id: sach.glykemie-norma
     title: Fyziologická hladina glykémie
     kind: fact
-    tier: A
+    tier: B
     criteria: [1c, 3b]
+    note: >-
+      Skripta (s. 11, 236, 241) uvádějí 3,6–5,6 mmol/l bez upřesnění podmínek. Podle ČDS / SVL ČR jde
+      o glykémii nalačno v žilní plazmě: pod 5,6 normální, 5,6–6,9 hraniční glykémie nalačno,
+      od 7,0 podezření na diabetes. Hodnocení nálezu klienta patří lékaři.
     source: { pages: [11], anchor: "3,6–5,6 mmol/l" }
     explanation: >-
       Tělo udržuje hladinu glukózy v krvi (glykémii). Fyziologické rozmezí uvedené ve skriptech
-      je 3,6–5,6 mmol/l. Po jídle glykémie stoupne a hormonální regulace ji opět vyrovná.
+      je 3,6–5,6 mmol/l (platí pro glykémii nalačno). Po jídle glykémie stoupne a hormonální
+      regulace ji opět vyrovná. Nález klienta hodnotí lékař.
     exercises:
       - id: rozmezi
         type: choice
-        prompt: "Jaké je podle skript fyziologické rozmezí glykémie?"
+        prompt: "Jaké je podle skript fyziologické rozmezí glykémie (nalačno)?"
         options:
           - { text: "3,6–5,6 mmol/l", correct: true }
           - { text: "5,6–7,0 mmol/l", why: "To je nad horní hranicí fyziologického rozmezí (5,6 mmol/l)." }
@@ -144,13 +154,13 @@ points:
           - { text: "7,0–11,1 mmol/l", why: "Takové hodnoty jsou zvýšené, fyziologické rozmezí je 3,6–5,6 mmol/l." }
       - id: rozmezi-reveal
         type: reveal
-        prompt: "Jaké je fyziologické rozmezí glykémie (v mmol/l)?"
+        prompt: "Jaké je fyziologické rozmezí glykémie nalačno (v mmol/l)?"
         answer: "3,6–5,6 mmol/l."
 
   - id: sach.fruktoza
     title: Fruktóza – metabolismus a rizika nadbytku
     kind: concept
-    tier: A
+    tier: B
     criteria: [1c, 2f]
     prereqs: [sach.monosacharidy]
     source: { pages: [11, 12], anchor: "K jejímu metabolizmu dochází v játrech" }
@@ -244,7 +254,7 @@ points:
     tier: A
     criteria: [1c, 7h]
     prereqs: [sach.disacharidy-slozeni]
-    source: { pages: [12], anchor: "Primární laktózová intolerance je dána geneticky" }
+    source: { pages: [12, 237, 247], anchor: "Primární laktózová intolerance je dána geneticky" }
     explanation: >-
       Laktózu štěpí enzym laktáza. Při jeho snížené nebo chybějící produkci vzniká laktózová
       intolerance. Primární je dána geneticky (skripta: asi 30 % Evropanů a 70 % Asiatů),
@@ -270,11 +280,13 @@ points:
           - "Intolerance = laktázy je málo nebo chybí úplně"
           - "Primární je dána geneticky (častější u Asiatů než u Evropanů)"
           - "Sekundární vzniká vlivem jiného onemocnění"
+          - "Potvrzení a odlišení od alergie na mléčnou bílkovinu patří lékaři"
         modelAnswer: >-
           Mléčný cukr laktózu štěpí ve střevě enzym laktáza. Když ho tělo tvoří málo nebo vůbec,
           laktózu nezpracuje a mluvíme o laktózové intoleranci. Primární forma je dána geneticky
           (podle skript asi 30 % Evropanů a 70 % Asiatů), sekundární vzniká jako důsledek jiného
-          onemocnění.
+          onemocnění. Potíže po mléce ale mohou mít i jiné příčiny, třeba alergii na mléčnou
+          bílkovinu, proto ať to nejdřív ověří u lékaře a mléčné výrobky naslepo nevyřazuje.
 
   - id: sach.oligosacharidy-lusteniny
     title: Oligosacharidy v luštěninách a nadýmání
@@ -340,16 +352,17 @@ points:
   - id: sach.glykogen-zasoby
     title: Glykogen – množství a rozložení
     kind: fact
-    tier: A
+    tier: B
     status: course-disputed
     criteria: [1c, 2f]
     prereqs: [sach.polysacharidy-funkce]
     source: { pages: [10, 14], anchor: "Jedna třetina v játrech zůstává a dvě třetiny" }
     note: >-
-      Skripta uvádějí dvě různá čísla: na s. 10 „přibližně 250–400 g“, na s. 14 „přibližně
-      300–500 g“. Důležité je řádové množství (stovky gramů) a rozložení 1/3 játra : 2/3 svaly.
-      Mechanismus „glykogen se tvoří v játrech a dvě třetiny se ukládají do svalů“ je zjednodušený:
-      svaly si glykogen tvoří samy z glukózy z krve, játra jim ho nepředávají.
+      Skripta: s. 10 „přibližně 250–400 g“, s. 14 „přibližně 300–500 g“; glykogen se podle s. 14
+      tvoří v játrech a dvě třetiny se ukládají do svalů. Současné poznatky: běžně se uvádí řádově
+      stovky gramů, většina ve svalech; svaly si glykogen tvoří samy z glukózy z krve, játra jim ho
+      nepředávají. Ke zkoušce: nevíme, které číslo zkoušející čeká; správně podle obou zdrojů je
+      „stovky gramů, asi 1/3 játra a 2/3 svaly“.
     explanation: >-
       Glykogen je uložen asi z 1/3 v játrech a ze 2/3 ve svalech, kde slouží jako pohotovostní
       zdroj energie pro výkon. Celkem jde o stovky gramů (u sportovců i dvojnásobek). Zásoby
@@ -371,7 +384,7 @@ points:
   - id: sach.glykogen-voda
     title: Glykogen váže vodu
     kind: fact
-    tier: A
+    tier: B
     criteria: [1c, 7a]
     prereqs: [sach.glykogen-zasoby]
     source: { pages: [14], anchor: "1 g glykogenu na sebe naváže přibližně 3 g vody" }
@@ -403,7 +416,7 @@ points:
   - id: sach.skrob
     title: Škrob – složení a trávení
     kind: concept
-    tier: A
+    tier: B
     criteria: [1c, 2f]
     prereqs: [sach.polysacharidy-funkce]
     source: { pages: [14], anchor: "Jde o směs dvou polysacharidů (amylózy a amylopektinu)" }
@@ -449,7 +462,7 @@ points:
   - id: sach.vlaknina-definice
     title: Vláknina – definice a energetická hodnota
     kind: concept
-    tier: A
+    tier: B
     criteria: [1c]
     prereqs: [sach.polysacharidy-funkce]
     source: { pages: [14], anchor: "kalorická hodnota stanovila na 8" }
@@ -513,10 +526,10 @@ points:
         type: choice
         prompt: "Který zdroj je typický pro NEROZPUSTNOU vlákninu?"
         options:
-          - { text: "Otruby a slupky obilných zrn", correct: true }
+          - { text: "Pšeničné otruby", correct: true }
           - { text: "Ovesné vločky", why: "Oves je typický zdroj rozpustné vlákniny." }
           - { text: "Čekankový sirup", why: "Čekanka je zdrojem inulinu – rozpustné vlákniny." }
-          - { text: "Vařené luštěniny", why: "Luštěniny skripta uvádějí jako zdroj rozpustné vlákniny." }
+          - { text: "Vařená čočka", why: "Luštěniny skripta uvádějí jako zdroj rozpustné vlákniny." }
 
   - id: sach.vlaknina-prijem
     title: Doporučený příjem vlákniny
@@ -649,9 +662,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta definují GI jako „rychlost vstřebávání“ a vařené brambory řadí ke střednímu GI. Přesněji
-      GI porovnává plochu pod glykemickou křivkou (2 h) po potravině s 50 g využitelných sacharidů
-      vůči glukóze; vařené brambory mívají GI spíše vysoký. Kategorie (55 / 70) platí.
+      Skripta: s. 19 definují GI jako rychlost vstřebávání glukózy do krve ve srovnání s čistou
+      glukózou (100) a vařené brambory řadí ke střednímu GI. Současné poznatky: GI porovnává plochu
+      pod glykemickou křivkou (2 h) po porci s 50 g využitelných sacharidů s glukózou (ISO 26642);
+      vařené brambory mívají GI spíše vysoký. Kategorie do 55 / do 70 / nad 70 platí shodně. Ke zkoušce:
+      referenční glukóza (100) a kategorie jsou správně podle obou zdrojů; pokud se otázka výslovně ptá
+      na zařazení brambor podle skript, odpověď skript je „střední GI“.
     criteria: [1c, 2f]
     confusableWith: [sach.gn, sach.inzulinovy-index]
     source: { pages: [19], anchor: "Hodnoty glykemického indexu řadíme do 3 kategorií" }
@@ -663,10 +679,10 @@ points:
       - id: kategorie
         type: reveal
         prompt: "Jaké jsou hranice kategorií glykemického indexu?"
-        answer: "Nízký do 55, střední do 70 (56–70), vysoký nad 70."
+        answer: "Nízký do 55, střední do 70, vysoký nad 70."
       - id: referencni
         type: choice
-        prompt: "S čím se při stanovení glykemického indexu porovnává rychlost vzestupu glykémie?"
+        prompt: "S čím se při stanovení glykemického indexu porovnává vzestup glykémie po potravině?"
         options:
           - { text: "S čistou glukózou (GI = 100)", correct: true }
           - { text: "Se sacharózou (GI = 100)", why: "Sacharóza je měřítko sladivosti, ne GI; referencí je čistá glukóza." }
@@ -676,7 +692,7 @@ points:
   - id: sach.gi-faktory
     title: Co ovlivňuje glykemický index
     kind: concept
-    tier: A
+    tier: B
     criteria: [1c, 4a]
     prereqs: [sach.gi]
     source: { pages: [19, 20], anchor: "Glykemický index lze ovlivnit následujícími faktory" }
@@ -740,7 +756,7 @@ points:
           - { text: "Protože porce obsahuje málo sacharidů.", correct: true }
           - { text: "Protože GN nezávisí na GI.", why: "Závisí – GN = GI × g sacharidů / 100." }
           - { text: "Protože GN měří odezvu inzulinu, ne glukózy.", why: "Odezvu inzulinu popisuje inzulinový index." }
-          - { text: "Protože GN se počítá jen pro tuky.", why: "GN se počítá z GI a množství sacharidů v porci." }
+          - { text: "Protože GN se vždy počítá na 100 g potraviny.", why: "GN se počítá pro konkrétní porci – z GI a gramů sacharidů v ní." }
 
   - id: sach.inzulinovy-index
     title: Inzulinový index

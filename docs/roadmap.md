@@ -170,14 +170,28 @@ minutes vary ±30 % around the plan; a weaker learner still overruns until her r
 **Open question for the owner:** with 297 tier-A points far above capacity, should tier A be narrowed in the content
 audit (R4) so "tier A" means "realistically coverable core" — or is the priority ordering enough?
 
-## Next (decisions of 2026-11-22)
+## R4 — Content audit ✅ (2026-11-23)
 
-Owner decision: no deployment until the whole roadmap is finished.
+Seven auditor subagents (one per file group, `docs/content-audit.md`) + an independent verifier:
+- **Safety & health / legal**: ~230 claims checked against authoritative sources (EFSA, WHO, EU law, SÚKL, SZÚ,
+  zákon 110/1997, ADA/ESC/ESPGHAN/NICE/IOC); ~55 corrected — e.g. hypoglycaemia first aid (15–20 g, re-check, nothing
+  by mouth if unconscious), warfarin interactions, SGLT2/sulfonylurea caveats, liver/retinol in pregnancy, vitamin D
+  supplement limit (SÚKL 2022/2024), forbidden supplement substances (vyhl. 368/2024), caffeine (EFSA 2015), food
+  supervision (SZPI/SVS/KHS since 2025; ČOI is not a food supervisor), allergen labelling, organic and GMO rules.
+  Logs with source URLs: `docs/audit/G1–G7.md`; verifier (93 confirmed, 2 fixed, 2 softened): `docs/audit/verification.md`.
+- **Disputed notes**: ~85 rewritten in the three-part form (script · current evidence/regulation · what is actually
+  known about the exam); safety-relevant disputes now test correct practice.
+- **Tier A narrowed** 297 → 186 by per-criterion quotas (owner decision); every criterion keeps tier A; all 30 safety
+  points and 12 cases are A. Two reconciliation promotions (LDL/HDL roles, breastfeeding).
+- **Flags** (`pnpm content:flags`, inspection aids): length cues 97 → 2, recognition-only tier A 38 → 0; remaining
+  disputed-MCQ / number flags were inspected and dismissed with reasons in the logs.
 
-- **R4a — Safety audit before deployment.** Tier-A health/safety content (3c, 7h, 7f, 8b, 8d, 10c, red flags,
-  supplements, pregnancy) checked against primary sources; disputed notes in the three-part form (script · current
-  evidence/regulation · what is actually known about the exam — never claiming the examiner's answer without
-  evidence); in counselling/safety contexts correctness first.
-- **R4b — Content audit (incremental).** Automated flags (length cue, numbers not on the cited page, disputed MCQ
-  without "podle skript", near-duplicates) are *flags for inspection*, not verdicts; recall item for the 38 MCQ-only
-  tier-A points; absurd distractors.
+Simulation after R4 (11 days, prior 0.5, model estimates): 45 min → ≈ 87/186 tier A introduced (typical learner),
+60 min → ≈ 133/186; safety 30/30 and cases 11–12/12 except the 30-min / weaker-learner scenarios.
+
+## Status
+
+All roadmap milestones (M0–M4, R1–R4) are done locally. Not done (owner decision): deployment — runbook in
+`docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
+AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
+food law changed in 2024–2025 and may change again.

@@ -57,9 +57,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Kap. 8 uvádí resveratrol z červeného vína jako vysvětlení „francouzského paradoxu“. Kap. 5
-      (s. 46) a kap. 13 (s. 144) ale zdůrazňují, že jeho význam je přeceňován (nízká biologická
-      dostupnost) a že ho lze získat bez alkoholu. Víno jako zdroj „zdravých“ látek nedoporučuj.
+      Skripta: kap. 8 (s. 64) uvádí resveratrol z červeného vína jako vysvětlení „francouzského
+      paradoxu“; kap. 5 (s. 46) a kap. 13 (s. 144) ale píší, že jeho význam je přeceňován (nízká
+      biologická dostupnost) a lze ho získat bez alkoholu. Současné poznatky: WHO (2023) uvádí, že
+      neexistuje bezpečná míra pití alkoholu; přínos resveratrolu z vína pro zdraví není prokázán.
+      Ke zkoušce: zařazení resveratrolu mezi stilbenoidy a fytoestrogeny (isoflavonoidy, lignany)
+      platí podle obou zdrojů; víno jako zdroj „zdravých“ látek klientům nedoporučuj.
     criteria: [1a]
     prereqs: [dop.fytochemikalie]
     source: { pages: [64, 46, 144], anchor: "isoflavonoidy, kterým se také říká fytoestrogeny" }
@@ -92,11 +95,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Tvrzení „lykopen snižuje riziko nádoru prostaty“ a „lutein brání šedému zákalu“ vycházejí
-      převážně z pozorovacích studií; jako jistý účinek je klientům neprezentuj. Zvýšené riziko
-      rakoviny plic u kuřáků při vysokých dávkách beta-karotenu z doplňků je dobře doloženo.
-      U testu odpovídej podle skript: lykopen – nižší riziko nádoru prostaty, lutein – prevence
-      šedého zákalu.
+      Skripta (s. 64–65): lykopen snižuje riziko nádoru prostaty, lutein brání šedému zákalu.
+      Současné poznatky: obě tvrzení vycházejí převážně z pozorovacích studií, příčinný účinek
+      prokázán není; zvýšené riziko rakoviny plic u kuřáků při vysokých dávkách beta-karotenu
+      z doplňků je doloženo randomizovanými studiemi (ATBC, CARET). Ke zkoušce: pokud se otázka
+      výslovně ptá na skripta, odpověď skript je lykopen – prostata, lutein – šedý zákal; klientům je
+      jako jistý účinek neprezentuj. Beta-karoten jako hlavní provitamin A platí podle obou zdrojů.
     criteria: [1a, 1e]
     prereqs: [dop.fytochemikalie]
     confusableWith: [vit.a]
@@ -135,16 +139,20 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta uvádějí jako „nejznámějšího zástupce“ fytosterolů ergosterol a nazývají ho rostlinným
-      prekurzorem vitaminu D2. Ergosterol je ale sterol hub (ne rostlin) a mezi fytosteroly snižující
-      cholesterol se běžně neřadí. Zapamatuj si: ergosterol – houby – prekurzor vitaminu D2. Na
-      otázku „nejznámější zástupce fytosterolů podle skript“ odpověz ergosterol.
+      Skripta (s. 65): fytosteroly blokují vstřebávání cholesterolu a „nezvyšují LDL“; jako
+      „nejznámějšího zástupce“ uvádějí ergosterol, rostlinný prekurzor vitaminu D2. Současné
+      poznatky: ergosterol je sterol hub, mezi fytosteroly snižující cholesterol se neřadí.
+      Fytosteroly/stanoly v dávce kolem 2 g denně LDL cholesterol snižují o 7–10 % (ESC/EAS 2019).
+      Potraviny s přidanými fytosteroly nejsou podle předpisů EU určeny lidem, kteří cholesterol
+      snižovat nepotřebují, a mohou být nevhodné pro těhotné, kojící a děti do 5 let. Ke zkoušce:
+      pokud se otázka výslovně ptá na skripta, odpověď skript je ergosterol – houby – prekurzor D2.
     criteria: [1a, 7h]
     prereqs: [dop.fytochemikalie]
     source: { pages: [65], anchor: "Fytosteroly mají strukturu podobnou cholesterolu" }
     explanation: >-
       Fytosteroly mají strukturu podobnou cholesterolu. Blokují vstřebávání cholesterolu z potravy
-      i jeho zpětné vstřebávání ze žlučových kyselin a LDL nezvyšují. Patří sem sitosterol,
+      i jeho zpětné vstřebávání ze žlučových kyselin, takže LDL nezvyšují (v dávce kolem 2 g denně
+      ho mírně snižují). Patří sem sitosterol,
       stigmasterol, kampesterol. Využívají se jako funkční složka v rostlinných margarínech. Výjimkou
       je vzácná sitosterolemie, kdy naopak LDL zvyšují. Ergosterol (houby) je prekurzorem vitaminu D2.
     exercises:
@@ -152,8 +160,8 @@ points:
         type: choice
         prompt: "Jak působí fytosteroly na cholesterol?"
         options:
-          - { text: "Blokují vstřebávání cholesterolu z potravy i ze žlučových kyselin.", correct: true }
-          - { text: "Zvyšují tvorbu HDL v játrech.", why: "Skripta uvádějí blokádu vstřebávání cholesterolu, ne vliv na HDL." }
+          - { text: "Brzdí vstřebávání cholesterolu ve střevě.", correct: true }
+          - { text: "Zvyšují tvorbu HDL cholesterolu v játrech.", why: "Skripta uvádějí blokádu vstřebávání cholesterolu, ne vliv na HDL." }
           - { text: "Přeměňují se v těle na vitamin D3.", why: "Ergosterol je prekurzor vitaminu D2, ne D3, a jde o houbový sterol." }
           - { text: "Zvyšují LDL cholesterol u všech lidí.", why: "LDL zvyšují jen u vzácné sitosterolemie." }
       - id: vyuziti
@@ -181,14 +189,14 @@ points:
         options:
           - { text: "V ovesných otrubách a houbách", correct: true }
           - { text: "V česneku a cibuli", why: "Tam jsou sirné sloučeniny (sulfidy, alicin)." }
-          - { text: "V rajčatech", why: "Rajčata jsou zdrojem lykopenu." }
-          - { text: "V sóje", why: "Sója je zdrojem isoflavonoidů." }
+          - { text: "V rajčatech a kečupu", why: "Rajčata jsou zdrojem lykopenu." }
+          - { text: "V sóje a lněném semínku", why: "Sója a lněné semínko jsou zdrojem fytoestrogenů." }
       - id: glukosinolaty
         type: choice
         prompt: "Glukosinoláty jsou typické pro…"
         options:
-          - { text: "brukvovitou zeleninu (křen, hořčice, růžičková kapusta)", correct: true }
-          - { text: "citrusy", why: "V citrusech jsou flavanony." }
+          - { text: "brukvovitou zeleninu", correct: true }
+          - { text: "citrusové plody", why: "V citrusech jsou flavanony." }
           - { text: "červené víno", why: "Ve víně jsou třísloviny a resveratrol." }
           - { text: "ovesné otruby", why: "V ovesných otrubách jsou beta-glukany." }
 
@@ -270,11 +278,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Alkohol: Zdravá 13 (obr. 9.1) uvádí muži nejvýše 20 g, ženy polovinu (10 g); kap. 5 (s. 47) uvádí
-      tzv. tolerovatelný příjem ženy 20 g, muži 30 g. Obvod pasu: Zdravá 13 má muži 94 / ženy 80 cm,
-      tabulka v kap. 13 (s. 152) má u mužů hranici 90 cm (90–102 zvýšené, nad 102 vysoké riziko).
-      Odpovídej podle toho, na co se otázka ptá – u Zdravé 13 platí 20 g / polovina a 94 / 80 cm.
-      Žádné z čísel o alkoholu není bezpečné množství.
+      Skripta: Zdravá 13 (obr. 9.1, s. 66) – alkohol muži nejvýše 20 g, ženy polovinu (10 g); obvod
+      pasu muži 94 / ženy 80 cm. Kap. 5 (s. 47) uvádí tzv. tolerovatelný příjem alkoholu ženy 20 g,
+      muži 30 g; tabulka v kap. 13 (s. 152) má u mužů hranici pasu 90 cm. Současné poznatky: aktuální
+      Zdravá 13 Společnosti pro výživu (vyzivaspol.cz) má stejná čísla jako obr. 9.1; WHO (2023)
+      uvádí, že žádná míra pití alkoholu není pro zdraví bezpečná. Ke zkoušce: pokud se otázka ptá na
+      Zdravou 13, odpověď je 20 g / polovina a 94 / 80 cm; žádné z čísel neprezentuj jako bezpečnou dávku.
     criteria: [10d, 7c]
     prereqs: [dop.zdrava13]
     confusableWith: [alk.tolerovatelna-davka, por.obvod-pasu]
@@ -292,9 +301,9 @@ points:
         prompt: "Jaký denní limit alkoholu pro muže uvádí Zdravá 13 (obr. 9.1)?"
         options:
           - { text: "20 g (např. 0,5 l piva), ženy polovinu", correct: true }
-          - { text: "30 g, ženy 20 g", why: "To je tzv. tolerovatelný příjem z kap. 5, ne Zdravá 13." }
-          - { text: "10 g pro muže i ženy stejně", why: "Ženy mají poloviční limit než muži." }
-          - { text: "Žádný limit neuvádí", why: "Bod 13 limit uvádí – pro muže 20 g denně." }
+          - { text: "30 g (např. 0,75 l piva), ženy 20 g", why: "To je tzv. tolerovatelný příjem z kap. 5, ne Zdravá 13." }
+          - { text: "10 g (např. 0,25 l piva), ženy stejně", why: "Ženy mají poloviční limit než muži." }
+          - { text: "Žádný limit, jen doporučení nepít", why: "Bod 13 limit uvádí – pro muže 20 g denně." }
       - id: pas
         type: choice
         prompt: "Jaký maximální obvod pasu uvádí Zdravá 13?"
@@ -311,15 +320,16 @@ points:
   - id: dop.pyramida-talir
     title: Potravinová pyramida a výživový talíř
     kind: concept
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Výživový talíř ve skriptech (M. Slimáková) radí margaríny nejíst, zatímco kap. 8 (s. 65) uvádí
-      margaríny s fytosteroly jako funkční potravinu. Talíř je názor jedné autorky; pro pyramidu
-      a Zdravou 13 platí oficiální doporučení (MZ ČR, Společnost pro výživu). Pyramida (definice
-      porce) počítá půl talíře brambor jako porci zeleniny, talíř řadí brambory k polysacharidům –
-      odpovídej podle obrázku, na který se otázka ptá. Talíř dává ovoci celou čtvrtinu; poměr
-      zelenina : ovoce 2 : 1 je ze Zdravé 13.
+      Skripta (s. 67): výživový talíř M. Slimákové radí margaríny nejíst, kap. 8 (s. 65) ale uvádí
+      margaríny s fytosteroly jako funkční potravinu; pyramida MZ ČR (definice porce) počítá půl
+      talíře brambor jako porci zeleniny, talíř řadí brambory k polysacharidům; talíř dává ovoci
+      čtvrtinu, poměr zelenina : ovoce 2 : 1 je ze Zdravé 13. Současné poznatky: talíř je pomůcka
+      jedné autorky, oficiální doporučení v ČR jsou Zdravá 13 (Společnost pro výživu) a pyramida MZ ČR.
+      Ke zkoušce: nevíme, na který obrázek se otázka zaměří; počty porcí v pyramidě a zařazení
+      brambor na talíři jsou v otázkách výslovně vázány na daný obrázek.
     criteria: [7c, 1a]
     prereqs: [dop.doporuceni-kdo]
     source: { pages: [66, 67], anchor: "Potravinová pyramida Ministerstva zdravotnictví ČR" }
@@ -342,7 +352,7 @@ points:
         type: choice
         prompt: "Kam řadí výživový talíř ve skriptech brambory a hranolky?"
         options:
-          - { text: "K polysacharidům, ne k zelenině", correct: true }
+          - { text: "K polysacharidům", correct: true }
           - { text: "K zelenině", why: "Talíř výslovně říká, že se k zelenině nepočítají." }
           - { text: "K tukům", why: "Tuky talíř hledá v ořeších, avokádu, rybách a kvalitních olejích." }
           - { text: "K bílkovinám", why: "Bílkoviny jsou ryby, luštěniny, ořechy, mléčné výrobky, vejce, maso." }

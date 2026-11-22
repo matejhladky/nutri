@@ -13,7 +13,7 @@ points:
   - id: spo.pyramida
     title: Pořadí priorit ve sportovní výživě
     kind: concept
-    tier: A
+    tier: B
     criteria: [7d, 8b]
     source: { pages: [204], anchor: "Cílené doplňky jen podle cíle" }
     explanation: >-
@@ -50,12 +50,13 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta uvádějí pro sportovce více čísel podle situace: většina sportujících 1,4–2,0 g/kg (ISSN),
-      nabírání a obecně 1,6–2,2 g/kg, redukce 1,6–2,4 g/kg, soutěžní příprava 2,3–3,1 g/kg beztukové
-      hmoty (s. 204–207); na s. 209 ale tatáž kapitola doporučuje denní dávku „do 1,8 g/kg“. Jinde:
-      zdravý dospělý min. 0,8–1 g/kg (s. 182), zvýšená potřeba 1,2–2 g/kg (s. 43), sportující děti
-      1,2–2,0 g/kg (s. 225), senioři 1,0–1,2 / 1,2–1,5 g/kg (s. 142, 227). U zkoušky vždy přiřaď číslo
-      k situaci; pro „běžného sportovce“ odpovídej 1,4–2,0 g/kg.
+      Skripta: pro sportovce uvádějí více čísel podle situace – většina sportujících 1,4–2,0 g/kg
+      (ISSN, s. 204), nabírání 1,6–2,2 g/kg, redukce 1,6–2,4 g/kg, soutěžní příprava 2,3–3,1 g/kg
+      beztukové hmoty (s. 205–207); na s. 209 ale tatáž kapitola uvádí denní dávku „do 1,8 g/kg“. Jinde:
+      zdravý dospělý 0,8–1 g/kg (s. 182), senioři 1,0–1,2 / 1,2–1,5 g/kg (s. 227). Současné poznatky:
+      ISSN (2017) 1,4–2,0 g/kg, ACSM/AND/DC (2016) 1,2–2,0 g/kg; vyšší příjem v redukci odpovídá
+      literatuře. Ke zkoušce: nevíme, které číslo zkoušející čeká. Pokud se otázka ptá na skripta nebo
+      na ISSN pro běžně sportující, odpověď je 1,4–2,0 g/kg; jinak číslo vždy přiřaď k situaci.
     criteria: [7d, 1d]
     confusableWith: [spo.faze, obd.senior-bilkoviny, dpl.protein-davka]
     source: { pages: [204], anchor: "trénují průměrně 4× týdně, je 1,4–2,0 g/kg tělesné hmotnosti/den" }
@@ -102,7 +103,7 @@ points:
   - id: spo.faze
     title: Makroživiny podle fáze přípravy
     kind: comparison
-    tier: A
+    tier: B
     criteria: [7d, 7a]
     prereqs: [spo.bilkoviny]
     confusableWith: [spo.bilkoviny, spo.vytrvalost-makra]
@@ -149,7 +150,7 @@ points:
   - id: spo.nalacno
     title: Aerobní trénink nalačno
     kind: concept
-    tier: A
+    tier: B
     criteria: [7d, 7a]
     source: { pages: [206], anchor: "je čistě otázkou jeho preferencí" }
     explanation: >-
@@ -182,7 +183,7 @@ points:
   - id: spo.anabolicke-okno
     title: Načasování bílkovin a „anabolické okno“
     kind: concept
-    tier: A
+    tier: B
     criteria: [7d, 8e]
     prereqs: [spo.bilkoviny]
     source: { pages: [207], anchor: "není nutné s proteinem spěchat hned do šatny" }
@@ -260,16 +261,17 @@ points:
   - id: spo.po-treninku
     title: Jídlo po tréninku
     kind: comparison
-    tier: A
+    tier: B
     criteria: [7d, 7c]
     prereqs: [spo.anabolicke-okno]
     status: course-disputed
     note: >-
-      Skripta jsou nejednotná: s. 208 uvádí po tréninku obecně 1–1,2 g sacharidů/kg, s. 212 pro rychlou
-      obnovu 1,0–1,2 g/kg za hodinu (to odpovídá i mainstreamovým doporučením). Samotná fruktóza je pro
-      obnovu svalového glykogenu horší, směs glukózy a fruktózy je ale vhodná (s. 212 ji doporučuje během
-      výkonu). Ke zkoušce: obecně 1–1,2 g/kg, rychlá obnova 75–90 g glukózy/sacharózy do 2 h, ne samotná
-      fruktóza.
+      Skripta: s. 208 uvádí po tréninku obecně 1–1,2 g sacharidů/kg a pro rychlou obnovu 75–90 g
+      glukózy či sacharózy do 2 h, ne samotnou fruktózu; s. 212 pro rychlou obnovu 1,0–1,2 g/kg za
+      hodinu. Současné poznatky: ACSM/AND/DC (2016) a IOC uvádějí pro rychlou obnovu glykogenu
+      1,0–1,2 g/kg za hodinu během prvních 4 h; samotná fruktóza doplňuje hlavně jaterní glykogen, směs
+      glukózy a fruktózy je vhodná. Ke zkoušce: pokud se otázka ptá na skripta, platí obecně 1–1,2 g/kg
+      a ne samotná fruktóza; „za hodinu“ je přesnější formulace.
     confusableWith: [spo.pred-treninkem]
     source: { pages: [208, 212], anchor: "fruktóza není vhodná" }
     explanation: >-
@@ -293,21 +295,23 @@ points:
           dávkou bílkovin; obecně kolem 1–1,2 g sacharidů na kg, pro rychlou obnovu 75–90 g glukózy nebo
           sacharózy během prvních dvou hodin. Samotná fruktóza se nehodí a velké množství tuku regeneraci zpomalí.
       - id: fruktoza
-        version: 2
+        version: 3
         type: choice
-        prompt: "Který sacharid se podle skript NEHODÍ pro rychlou obnovu glykogenu po tréninku?"
+        prompt: "Který sacharid se podle skript jako jediný zdroj NEHODÍ pro rychlou obnovu glykogenu po tréninku?"
         options:
-          - { text: "Samotná fruktóza", correct: true }
+          - { text: "Fruktóza", correct: true }
           - { text: "Glukóza", why: "Glukóza je pro rychlou obnovu glykogenu vhodná." }
           - { text: "Sacharóza", why: "Sacharóza je podle skript vhodná." }
+          - { text: "Maltodextrin", why: "Maltodextrin je polymer glukózy, rychle se štěpí na glukózu a je vhodný." }
       - id: davka-bilkovin
+        version: 2
         type: choice
-        prompt: "Jaká dávka bílkovin po tréninku je podle skript dostatečným stimulem svalové proteosyntézy?"
+        prompt: "Jaká jedna dávka bílkovin po tréninku je podle skript dostatečným stimulem svalové proteosyntézy?"
         options:
-          - { text: "20–40 g (0,25–0,4 g/kg) v jedné dávce", correct: true }
-          - { text: "5–10 g", why: "To je málo; za dostatečný stimul se uvádí 20–40 g." }
-          - { text: "1,6–2,2 g/kg v jedné dávce", why: "To je celkový denní příjem, ne jedna dávka." }
-          - { text: "80–100 g najednou", why: "Za dostatečný stimul se uvádí 20–40 g v jedné dávce." }
+          - { text: "20–40 g", correct: true }
+          - { text: "5–10 g", why: "To je málo; za dostatečný stimul se uvádí 20–40 g (0,25–0,4 g/kg)." }
+          - { text: "1,6–2,2 g/kg", why: "To je celkový denní příjem, ne jedna dávka." }
+          - { text: "80–100 g", why: "Za dostatečný stimul se uvádí 20–40 g v jedné dávce; víc už efekt nezvyšuje úměrně." }
 
   - id: spo.vytrvalost-makra
     title: Makroživiny ve vytrvalostních sportech
@@ -380,7 +384,7 @@ points:
   - id: spo.red-s
     title: RED-S a nízká energetická dostupnost
     kind: concept
-    tier: B
+    tier: A
     safety: true
     criteria: [7d, 10c]
     confusableWith: [en.energeticka-dostupnost]

@@ -43,7 +43,7 @@ points:
   - id: jid.analyza
     title: Analýza stravovacích návyků
     kind: procedure
-    tier: A
+    tier: B
     criteria: [3b, 5b, 5d]
     source: { pages: [179], anchor: "Záznam by měl vycházet alespoň z týdenního záznamu" }
     explanation: >-
@@ -112,8 +112,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Navýšení podle somatotypu je orientační pomůcka kurzu bez silné vědecké opory — skripta sama
-      zdůrazňují, že rozhoduje skutečná reakce klienta.
+      Skripta (s. 180–181): navýšení o 5–25 % (nejvýš ~500 kcal), orientačně ektomorf až +500,
+      mezomorf +250–350, endomorf +100–150 kcal; vždy ověřit podle reakce klienta. Současné poznatky:
+      odstupňování podle somatotypu nemá oporu ve studiích; přehledy pro nabírání svalů (např.
+      Iraki a kol., Sports 2019) uvádějí mírný přebytek individuálně podle tempa přírůstku. Ke zkoušce:
+      pokud se otázka výslovně ptá na skripta (somatotypy), odpověď skript je uvedené odstupňování;
+      obecný princip – mírný přebytek a úprava podle vývoje hmotnosti – platí podle obou.
     criteria: [7a, 6b, 3a, 5a]
     prereqs: [en.bilance]
     confusableWith: [jid.redukce-prijem]
@@ -133,7 +137,7 @@ points:
           - { text: "Všem stejně", why: "Skripta navýšení orientačně odstupňovávají podle somatotypu." }
       - id: hodnoty
         type: reveal
-        prompt: "O kolik kcal orientačně navýšit příjem při nabírání u ektomorfa, mezomorfa a endomorfa?"
+        prompt: "O kolik kcal podle skript orientačně navýšit příjem při nabírání u ektomorfa, mezomorfa a endomorfa?"
         answer: "Ektomorf až o 500 kcal, mezomorf o 250–350 kcal, endomorf o 100–150 kcal."
       - id: vysvetli
         type: explain

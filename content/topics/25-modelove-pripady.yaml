@@ -500,12 +500,15 @@ points:
     criteria: [5e, 5b, 3b]
     prereqs: [por.bmi, por.whr]
     source: { pages: [152, 153, 158, 254], anchor: "Výsledek slouží pouze k orientačním účelům, nelze jej považovat za zdravotně závazný" }
+    note: >-
+      Hranice obvodu pasu: skripta (tab. 14.1) uvádějí vysoké riziko u žen nad 85 cm, WHO (2008) nad
+      88 cm. Parametry případu (pas 90–96 cm) jsou zvoleny tak, aby závěr platil podle obou.
     explanation: >-
       Spočítej BMI a WHR, zhodnoť pas a % tuku. BMI: pod 18,5 podváha, 18,5–24,9 norma, 25–29,9
       nadváha, od 30 obezita. WHR nad 0,85 (ženy) / 0,90 (muži) = centrální typ, zvýšené riziko. Pas
-      nad 85 cm (ženy) / 102 cm (muži) = vysoké riziko. Tuk orientačně ženy 20–30 %, muži 10–20 %.
-      BMI nerozliší svaly a tuk – u svalnatých ukáže falešnou nadváhu. EASO: obezita i při BMI ≥ 25,
-      pokud pas/výška ≥ 0,5 a je aspoň jedna komplikace. Závěr popisuje riziko, není to diagnóza.
+      nad 88 cm (ženy; skripta 85) / 102 cm (muži) = vysoké riziko. Tuk orientačně ženy 20–30 %, muži 10–20 %.
+      BMI nerozliší svaly a tuk (u svalnatých falešná nadváha). EASO: obezita i od BMI 25 při
+      pas/výška ≥ 0,5 a komplikaci. Závěr popisuje riziko, ne diagnózu.
     exercises:
       - id: pripad
         type: case
@@ -543,9 +546,9 @@ points:
             options:
               - text: "Nadváha s centrálním (androidním) typem; pas, WHR i podíl tuku nad hranicí"
                 correct: true
-                why: "BMI 25–29,9 = nadváha; pas nad 85 cm a WHR nad 0,85 = centrální typ se zvýšeným rizikem; tuk nad orientačními 20–30 %."
+                why: "BMI 25–29,9 = nadváha; pas nad 88 cm (WHO, skripta 85) a WHR nad 0,85 = centrální typ se zvýšeným rizikem; tuk nad orientačními 20–30 %."
               - text: "Normální hmotnost, protože BMI je pod 30; pas, WHR ani podíl tuku nejsou důvod ke znepokojení"
-                why: "BMI 25–29,9 je nadváha; pas nad 85 cm a WHR nad 0,85 navíc ukazují zvýšené riziko."
+                why: "BMI 25–29,9 je nadváha; pas nad 88 cm a WHR nad 0,85 navíc ukazují zvýšené riziko."
               - text: "Obezita podle EASO, protože poměr pasu k výšce je nad 0,5 a BMI je vyšší než 25"
                 why: "EASO navíc vyžaduje alespoň jednu zdravotní komplikaci – klientka žádnou nemá."
               - text: "Nadváha s periferním (gynoidním) typem, kdy se tuk ukládá hlavně na hýždích a stehnech"
@@ -572,7 +575,7 @@ points:
             modelAnswer: >-
               Zapíšu datum, čas a podmínky měření – ráno nalačno, na jakém přístroji – a naměřené hodnoty.
               Dopočítám BMI a WHR a ke každému ukazateli připíšu kategorii: BMI mezi 25 a 29,9 je nadváha,
-              WHR nad 0,85 a pas nad 85 cm ukazují centrální ukládání tuku se zvýšeným rizikem a podíl tuku
+              WHR nad 0,85 a pas nad 88 cm ukazují centrální ukládání tuku se zvýšeným rizikem a podíl tuku
               je nad orientačním rozmezím 20–30 %. Závěr formuluji jako popis stavu a rizika, ne jako diagnózu.
               Měření je výchozí bod, kontroly uděláme za stejných podmínek a budeme hodnotit trend.
 
@@ -660,6 +663,11 @@ points:
     criteria: [7d, 3c, 5e]
     prereqs: [en.energeticka-dostupnost]
     source: { pages: [173, 171, 211], anchor: "varovné signály RED-S patří vždy do rukou lékaře nebo nutričního terapeuta" }
+    note: >-
+      Optimum 45 kcal/kg FFM je hodnota skript (s. 173). Konsenzus IOC 2023 (REDs) pevné prahy
+      nestanovuje a ED považuje za obtížně měřitelnou; rozhodují varovné signály. Případ je proto
+      postaven tak, aby ED vyšla vždy pod 40 a závěr „pod optimem, riziko“ platil podle obou; hlavní
+      důraz je na odeslání k lékaři při varovných příznacích.
     explanation: >-
       Energetická dostupnost (ED) = (denní příjem − energie vydaná na pohyb) / FFM. Postup: FFM =
       hmotnost × (1 − % tuku / 100), výdej na trénink = kg × MET × hodiny, pak ED. Optimum asi
@@ -707,11 +715,11 @@ points:
           - type: choice
             prompt: "ED = {ed} kcal/kg FFM. Jak výsledek vyhodnotíš?"
             options:
-              - text: "Je nízká – pod optimem asi 45 kcal/kg FFM pro ženy, hrozí RED-S."
+              - text: "Je pod optimem (u žen asi 45) – dlouhodobě hrozí RED-S."
                 correct: true
-                why: "Optimum je asi 45 kcal/kg FFM u žen; dlouhodobě nízká energetická dostupnost souvisí s RED-S."
+                why: "Podle skript je optimum u žen asi 45 kcal/kg FFM; dlouhodobě nízká energetická dostupnost souvisí s RED-S."
               - text: "Je v pořádku – hranice 40 kcal/kg FFM platí stejně pro všechny sportovce."
-                why: "40 kcal/kg FFM je optimum pro muže; u žen je to asi 45."
+                why: "40 kcal/kg FFM uvádějí skripta pro muže; pro ženy asi 45 – a výsledek je navíc pod oběma."
               - text: "Je zbytečně vysoká – pro výkon by měla příjem mírně snížit."
                 why: "ED je pod optimem; další snížení příjmu by riziko RED-S ještě zvýšilo."
               - text: "Nelze ji hodnotit, ED se správně počítá z celkové hmotnosti."
@@ -751,7 +759,8 @@ points:
     source: { pages: [227, 228, 174], anchor: "rozložte cílový příjem bílkovin rovnoměrně do všech denních jídel" }
     explanation: >-
       Ve stáří klesá energetická potřeba, ale potřeba bílkovin roste: zdravý senior 1,0–1,2 g/kg/den,
-      při akutní nebo chronické nemoci 1,2–1,5 g/kg/den, rozložené rovnoměrně do všech jídel. Tekutiny
+      při akutní nebo chronické nemoci 1,2–1,5 g/kg/den (ne u závažné nemoci ledvin – tam rozhoduje
+      lékař), rozložené rovnoměrně do všech jídel. Tekutiny
       orientačně 30–40 ml na kg ideální hmotnosti; klinické minimum asi 1,5 l. Pít podle hodin, ne podle
       žízně, která s věkem slábne. Myslet na léky, chrup, chuť k jídlu, zácpu a na to, kdo nakupuje a vaří.
     exercises:
@@ -829,6 +838,10 @@ points:
     criteria: [3c]
     prereqs: [prx.red-flags-lekar]
     source: { pages: [250, 205, 206], anchor: "V tomto případě je nutná okamžitá hospitalizace" }
+    note: >-
+      Skripta (s. 250) píší jen „okamžitá hospitalizace“; číslo 155 (zdravotnická záchranná služba
+      ČR, alternativně 112) je doplněná správná praxe. Příznaky hyperglykémie odpovídají doporučením
+      WHO/ADA – posouzení vždy patří lékaři.
     explanation: >-
       Ve vstupním rozhovoru hledej příznaky, které patří lékaři. Žízeň, časté močení, rozmazané vidění,
       nevolnost nebo bolest břicha mohou ukazovat na vysoký krevní cukr. Poradkyně nediagnostikuje:

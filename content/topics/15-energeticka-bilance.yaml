@@ -44,7 +44,7 @@ points:
   - id: en.energie-zivin
     title: Energetická hodnota živin
     kind: fact
-    tier: A
+    tier: B
     criteria: [5c, 1a]
     source: { pages: [167], anchor: "Alkohol - obsah 29 kJ/7 kcal v 1 g" }
     explanation: >-
@@ -89,7 +89,7 @@ points:
   - id: en.jednotky
     title: Převod kJ a kcal
     kind: procedure
-    tier: A
+    tier: B
     criteria: [5c, 6b]
     source: { pages: [167], anchor: "1 kcal odpovídá přibližně 4,2 kJ" }
     explanation: >-
@@ -231,7 +231,7 @@ points:
   - id: en.bmr-metody
     title: Metody stanovení BMR
     kind: comparison
-    tier: A
+    tier: B
     criteria: [5e, 3b]
     prereqs: [en.bmr-definice]
     source: { pages: [169], anchor: "metoda přímé kalorimetrie, která je považovaná za nejpřesnější" }
@@ -350,8 +350,9 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta uvádějí u mužů koeficient věku 6,775; v původní rovnici je 6,755 (rozdíl asi 1 kcal).
-      Počítej podle skript.
+      Skripta (s. 169) uvádějí u mužů koeficient věku 6,775. Současné poznatky: původní rovnice
+      (Harris a Benedict, 1918/1919) má 6,755 (a konstantu 66,47); rozdíl ve výsledku je řádově 1 kcal.
+      Ke zkoušce: výpočet v aplikaci jde podle skript; tolerance odchylku obou verzí pokrývá.
     criteria: [5e]
     prereqs: [en.bmr-rovnice-volba]
     confusableWith: [en.bmr-mifflin]
@@ -364,7 +365,7 @@ points:
       - id: vypocet
         type: numeric
         formula: bmr-harris
-        prompt: "Vypočítej BMR podle Harris-Benedicta. Klient: {sex}, {age} let, výška {height} cm, hmotnost {weight} kg."
+        prompt: "Použij nejstarší predikční rovnici (Harris-Benedict) a spočítej BMR: {sex}, {age} let, {height} cm, {weight} kg."
         params:
           sex: { choices: [{ value: M, label: muž }, { value: F, label: žena }] }
           age: { min: 20, max: 65, step: 1 }
@@ -377,7 +378,7 @@ points:
   - id: en.bmr-katch
     title: Výpočet BMR – Katch-McArdle
     kind: procedure
-    tier: A
+    tier: B
     criteria: [5e]
     prereqs: [en.bmr-rovnice-volba]
     source: { pages: [169], anchor: "21.6 * FFM (Fat Free Mass) + 370" }
@@ -431,7 +432,7 @@ points:
   - id: en.neat
     title: NEAT a koeficienty aktivity
     kind: procedure
-    tier: A
+    tier: B
     criteria: [5e, 6b]
     prereqs: [en.tdee-slozky, en.bmr-mifflin]
     source: { pages: [170], anchor: "NEAT tvoří přibližně 10–25 % celkového energetického výdeje" }
@@ -475,11 +476,14 @@ points:
   - id: en.eat
     title: EAT a MET jednotky
     kind: procedure
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Hodnota MET zahrnuje i klidový výdej, takže součet BMR + EAT ho během sportu částečně počítá
-      dvakrát. Ke zkoušce počítej podle skript.
+      Skripta (s. 171): EAT = hmotnost × MET × čas a TDEE = BMR + NEAT + EAT + TEF. Současné poznatky:
+      hodnota MET (Compendium of Physical Activities, Ainsworth a kol.) zahrnuje i klidový výdej
+      (1 MET), takže součet BMR + EAT započítá klidový výdej během sportu dvakrát; přesnější je
+      (MET − 1). Rozdíl je u běžného tréninku malý (desítky kcal). Ke zkoušce: výpočty v aplikaci
+      jdou podle skript; pokud se otázka výslovně ptá na skripta, odpověď je hmotnost × MET × čas.
     criteria: [5e, 6b, 7d]
     prereqs: [en.tdee-slozky]
     source: { pages: [171], anchor: "EAT = hmotnost (kg) x MET x čas (h)" }
@@ -518,7 +522,7 @@ points:
   - id: en.tef
     title: Termický efekt potravy (TEF)
     kind: fact
-    tier: A
+    tier: B
     criteria: [5e, 6b]
     prereqs: [en.tdee-slozky]
     source: { pages: [171], anchor: "TEF bílkovin je nejvyšší a to 25–30 %" }
@@ -558,7 +562,7 @@ points:
     tier: A
     criteria: [5e, 6b]
     prereqs: [en.bmr-mifflin, en.neat, en.eat, en.tef]
-    source: { pages: [172], anchor: "TDEE = BMR + NEAT + EAT + TEF" }
+    source: { pages: [170, 171, 172], anchor: "TDEE = BMR + NEAT + EAT + TEF" }
     explanation: >-
       Postup: 1) BMR rovnicí (Katch-McArdle, bez FFM Mifflin-St Jeor), 2) NEAT = BMR × koeficient,
       3) EAT = kg × MET × h, 4) TEF = 10 % z (BMR + NEAT + EAT), 5) sečíst. Vhodné hlavně pro
@@ -599,7 +603,7 @@ points:
   - id: en.tdee-pal
     title: TDEE pomocí PAL
     kind: procedure
-    tier: A
+    tier: B
     criteria: [5e, 6b]
     prereqs: [en.tdee-vypocet]
     confusableWith: [en.neat]
@@ -728,9 +732,16 @@ points:
     title: Energetická dostupnost a RED-S
     kind: procedure
     tier: B
+    status: course-disputed
     criteria: [7d, 5e]
     prereqs: [en.eat]
-    source: { pages: [173], anchor: "Energetická dostupnost (ED) vyjadřuje množství energie" }
+    source: { pages: [173, 211], anchor: "Energetická dostupnost (ED) vyjadřuje množství energie" }
+    note: >-
+      Skripta (s. 173): optimum asi 45 kcal/kg FFM u žen a 40 u mužů. Současné poznatky: konsenzus IOC
+      2023 (Mountjoy a kol., BJSM; nyní zkratka REDs) pevné prahy nedoporučuje – 45 kcal/kg FFM pochází
+      ze starších studií u žen, hranice 30 jako „nízká ED“ u žen je sporná a u mužů žádná hodnota
+      stanovena není (snesou obvykle nižší ED). ED v terénu nelze přesně změřit; RED-S se posuzuje podle
+      příznaků. Ke zkoušce: pokud se otázka výslovně ptá na skripta, odpověď je 45 (ženy) / 40 (muži).
     explanation: >-
       Energetická dostupnost (ED) = (denní příjem − energie vydaná na pohyb) / FFM (kg). Optimum asi
       45 kcal/kg FFM u žen a 40 kcal/kg FFM u mužů. Dlouhodobě nízká dostupnost (NED) souvisí
@@ -757,4 +768,4 @@ points:
           - { text: "Asi 45 kcal/kg FFM", correct: true }
           - { text: "Asi 40 kcal/kg FFM", why: "To je hodnota uváděná pro muže." }
           - { text: "Asi 25 kcal/kg tělesné hmotnosti", why: "ED se vztahuje k beztukové hmotě (FFM), optimum u žen je asi 45 kcal/kg FFM." }
-          - { text: "Asi 4,2 kcal/kg FFM", why: "4,2 je převodní číslo mezi kcal a kJ, ne hodnota ED." }
+          - { text: "Asi 30 kcal/kg FFM", why: "Kolem 30 kcal/kg FFM se ve starší literatuře kladla hranice nízké dostupnosti u žen, ne optimum; skripta uvádějí optimum asi 45." }

@@ -50,12 +50,15 @@ points:
   - id: vit.rozpustnost-dusledky
     title: Důsledky rozpustnosti – vstřebávání, zásoby, toxicita
     kind: comparison
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Kap. 6 uvádí vitaminy rozpustné v tucích jako stabilní vůči vzduchu a teplu a vitaminy rozpustné
-      ve vodě jako obecně méně stabilní. Kap. 12 (s. 100) ale řadí vitamin K mezi labilní a B2, B6,
-      niacin a biotin mezi stabilní. U testu odpovídej obecným pravidlem z kap. 6.
+      Skripta: kap. 6 (s. 49) uvádí vitaminy rozpustné v tucích jako stabilní vůči vzduchu a teplu,
+      vitaminy rozpustné ve vodě jako obecně méně stabilní; kap. 12 (s. 100) ale řadí vitamin K mezi
+      labilní a B2, B6, niacin a biotin mezi stabilní. Současné poznatky: stabilita se liší vitamin od
+      vitaminu (např. A a E jsou citlivé na kyslík a světlo, C a B1 na teplo), obecné pravidlo je jen
+      hrubé zjednodušení. Ke zkoušce: nevíme, jak bude otázka položena; pokud se výslovně ptá na
+      obecné pravidlo z kapitoly o vitaminech, odpověď skript je „rozpustné v tucích stabilnější“.
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     source:
@@ -78,8 +81,8 @@ points:
             why: "Naopak – vstřebávají se společně s tukem."
           - text: "Hromadí se v krvi, protože je ledviny nedokážou vyloučit."
             why: "Zásobárnou jsou játra a tuková tkáň, ne krev."
-          - text: "Jsou méně stabilní a rozpadají se na toxické látky."
-            why: "Vitaminy rozpustné v tucích jsou naopak poměrně stabilní."
+          - text: "Při skladování se rozpadají na toxické látky."
+            why: "Riziko nesouvisí s rozkladem v potravině, ale s ukládáním do zásob v těle."
       - id: vyjimka
         type: choice
         prompt: "Který vitamin rozpustný ve vodě si tělo ukládá do zásob, které vydrží i několik let?"
@@ -104,14 +107,19 @@ points:
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     confusableWith: [vit.d]
-    source: { pages: [49, 50], anchor: "prekurzorem retinalu, který je součástí zrakového pigmentu" }
+    note: >-
+      Doplněno nad rámec kap. 6: skripta (s. 217–218) radí těhotným kontrolovat retinol v multivitaminech
+      a preferovat beta-karoten. Rada vyhnout se v těhotenství játrům a výrobkům z nich (velmi vysoký
+      obsah retinolu) je z doporučení NHS; horní bezpečný příjem retinolu podle EFSA je 3 000 µg denně
+      (platí i pro těhotné).
+    source: { pages: [49, 50, 218], anchor: "prekurzorem retinalu, který je součástí zrakového pigmentu" }
     explanation: >-
-      Vitamin A (retinol) je nutný pro vidění (je prekurzorem retinalu ve zrakovém pigmentu), obnovu
-      sliznic, imunitu, diferenciaci buněk, reprodukci a vývoj kostí. Zdroje: rybí tuk a játra;
-      rostliny obsahují karotenoidy (mrkev, rajčata, listová zelenina), z nichž některé jsou
-      provitaminem A. Nedostatek: šeroslepost, vysychání očí, záněty rohovky, infekce, suchá kůže.
-      Nadbytek ze suplementů: bolest hlavy, nevolnost, poškození jater; v těhotenství je teratogenní.
-      Nadbytek karotenoidů → karotenémie (žlutooranžová kůže).
+      Vitamin A (retinol) je nutný pro vidění (prekurzor retinalu ve zrakovém pigmentu), obnovu
+      sliznic, imunitu, reprodukci a vývoj kostí. Zdroje: rybí tuk, játra; karotenoidy z rostlin
+      (mrkev, rajčata, listová zelenina) jsou zčásti provitaminem A. Nedostatek: šeroslepost,
+      vysychání očí, infekce, suchá kůže. Nadbytek ze suplementů: bolest hlavy, nevolnost, poškození
+      jater; v těhotenství je retinol teratogenní – těhotná hlídá retinol v doplňcích (bezpečnější
+      je beta-karoten) a nejí játra. Nadbytek karotenoidů → karotenémie (žlutooranžová kůže).
     exercises:
       - id: nedostatek
         type: choice
@@ -129,6 +137,18 @@ points:
           - { text: "Snižuje vstřebávání železa.", why: "To skripta u vitaminu A neuvádějí." }
           - { text: "Způsobuje karotenémii u plodu.", why: "Karotenémie je zbarvení kůže z nadbytku karotenoidů." }
           - { text: "Blokuje syntézu vitaminu D v kůži.", why: "To skripta neuvádějí; riziko je poškození plodu." }
+      - id: tehotna-praxe
+        type: choice
+        prompt: "Těhotná klientka se ptá na vitamin A. Co jí poradíš?"
+        options:
+          - text: "Hlídat retinol v doplňcích a nejíst játra."
+            correct: true
+          - text: "Přidat si vitamin A, potřeba v těhotenství roste."
+            why: "Potřeba roste jen mírně; vysoké dávky retinolu mohou poškodit plod."
+          - text: "Vyhýbat se mrkvi a listové zelenině."
+            why: "Karotenoidy z rostlin teratogenní nejsou; rizikový je retinol (doplňky, játra)."
+          - text: "Brát rybí tuk s vitaminem A místo multivitaminu."
+            why: "Rybí tuk (např. z tresčích jater) je bohatý na retinol – v těhotenství nevhodný."
       - id: zdroje
         type: reveal
         prompt: "Jaké jsou živočišné a rostlinné zdroje vitaminu A?"
@@ -165,9 +185,9 @@ points:
         prompt: "Jak se nazývá onemocnění z nedostatku vitaminu D v dětském věku?"
         options:
           - { text: "Křivice (rachitida)", correct: true }
-          - { text: "Osteomalácie", why: "Osteomalácie je projev závažného nedostatku u dospělých." }
-          - { text: "Pelagra", why: "Pelagra je z nedostatku niacinu." }
-          - { text: "Skorbut", why: "Skorbut (kurděje) je z nedostatku vitaminu C." }
+          - { text: "Osteomalácie (měknutí kostí)", why: "Osteomalácie je projev závažného nedostatku u dospělých." }
+          - { text: "Osteoporóza (řídnutí kostí)", why: "Osteoporóza je multifaktoriální úbytek kostní hmoty, hlavně ve vyšším věku." }
+          - { text: "Skorbut (kurděje)", why: "Skorbut (kurděje) je z nedostatku vitaminu C." }
       - id: vyklad
         type: reveal
         prompt: "Proč se o vitaminu D mluví jako o prohormonu a jaká je jeho hlavní funkce?"
@@ -181,10 +201,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Kap. 6 uvádí 15–20 µg (600–800 IU) denně, kap. 21 (s. 218) 15 µg jako adekvátní příjem EFSA,
-      kap. 21 u seniorů (s. 227) „zvýšit na 10 µg“ (méně než u dospělých), kap. 13 (s. 131) preventivní
-      dávku kolem 2000 IU. U testu drž rozmezí z kap. 6 (15–20 µg) a pravidlo, že D je výjimka, kterou
-      je vhodné doplňovat.
+      Skripta: kap. 6 (s. 50) 15–20 µg (600–800 IU) denně; kap. 21 (s. 218) 15 µg jako adekvátní
+      příjem EFSA; u seniorů (s. 227) „zvýšit na 10 µg“ (méně než u dospělých); kap. 13 (s. 131)
+      preventivní dávka kolem 2 000 IU. Současné poznatky: EFSA (2016) stanovila adekvátní příjem
+      15 µg/den pro dospělé, horní bezpečný příjem (UL) je 100 µg (4 000 IU) denně. Ke zkoušce: nevíme,
+      které číslo zkoušející očekává; pokud se otázka ptá na kapitolu o vitaminech, odpověď skript je
+      15–20 µg. Odpověď „15 µg (EFSA)“ je správná podle obou zdrojů.
     criteria: [1e, 8d]
     prereqs: [vit.d]
     source: { pages: [50, 54, 131], anchor: "IU (International Unit) je mezinárodní jednotka" }
@@ -206,10 +228,10 @@ points:
         type: choice
         prompt: "Jaký denní příjem vitaminu D uvádí kapitola o vitaminech?"
         options:
-          - { text: "Přibližně 15–20 µg (600–800 IU)", correct: true }
-          - { text: "Přibližně 5 µg (200 IU)", why: "5 µg je hodnota 100 % RHP pro označování potravin, ne fyziologická potřeba." }
-          - { text: "Přibližně 1–2 mg", why: "Vitamin D se dávkuje v mikrogramech, ne miligramech." }
-          - { text: "Přibližně 150 µg", why: "150 µg je adekvátní příjem jódu." }
+          - { text: "15–20 µg (600–800 IU)", correct: true }
+          - { text: "5 µg (200 IU)", why: "5 µg je hodnota 100 % RHP pro označování potravin, ne fyziologická potřeba." }
+          - { text: "100 µg (4 000 IU)", why: "100 µg je horní bezpečný příjem (UL) podle EFSA, ne doporučený příjem." }
+          - { text: "50 µg (2 000 IU)", why: "Kolem 2 000 IU uvádí kap. 13 jako preventivní dávku v praxi; kapitola o vitaminech uvádí 600–800 IU." }
 
   - id: vit.e
     title: Vitamin E (tokoferol)
@@ -229,9 +251,9 @@ points:
         prompt: "Které potraviny jsou hlavním zdrojem vitaminu E?"
         options:
           - { text: "Rostlinné oleje, semena a ořechy", correct: true }
-          - { text: "Játra a rybí tuk", why: "To jsou typické zdroje vitaminu A." }
-          - { text: "Citrusy a paprika", why: "To jsou zdroje vitaminu C." }
-          - { text: "Mléko a vejce", why: "Typický zdroj B2 či B12, ne vitaminu E." }
+          - { text: "Játra, rybí tuk a vaječný žloutek", why: "To jsou typické zdroje vitaminu A." }
+          - { text: "Citrusy, paprika a černý rybíz", why: "To jsou zdroje vitaminu C." }
+          - { text: "Mléko, jogurty a vejce", why: "Typický zdroj B2 či B12, ne vitaminu E." }
       - id: funkce
         type: reveal
         prompt: "Jakou hlavní roli má vitamin E a proč ho najdeme hlavně v olejích?"
@@ -245,13 +267,14 @@ points:
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     confusableWith: [vit.d]
-    source: { pages: [50], anchor: "Jeho hlavní funkcí je podíl na procesu srážení krve" }
+    source: { pages: [50, 243], anchor: "Jeho hlavní funkcí je podíl na procesu srážení krve" }
     explanation: >-
       Vitamin K je skupina látek: K1 (fylochinon) a K2 (menachinony). Hlavní funkcí je srážení krve,
       účastní se i metabolismu kostí. Zdroje: listová zelenina, kiwi, avokádo, ořechy; část K2 tvoří
       střevní bakterie. Nedostatek: zvýšená krvácivost (i do orgánů, tmavá dehtovitá stolice).
       Warfarin je antagonista vitaminu K – u lidí, kteří ho užívají, se vitamin K ze stravy
-      nevyřazuje, ale jeho příjem má být co nejstabilnější.
+      nevyřazuje, ale jeho příjem má být co nejstabilnější, bez náhlých výrazných změn. Větší změny
+      stravy a doplňky s vitaminem K řeší klient s ošetřujícím lékařem.
     exercises:
       - id: warfarin
         type: choice
@@ -263,8 +286,8 @@ points:
             why: "Cílem není vitamin K vyřadit, ale nekolísat s jeho příjmem."
           - text: "Doplňovat vitamin K vysokými dávkami."
             why: "Vitamin K působí proti warfarinu – vysoké a kolísavé dávky jsou nežádoucí."
-          - text: "Vitamin K a warfarin spolu nesouvisejí."
-            why: "Warfarin je antagonista vitaminu K."
+          - text: "Střídat dny s listovou zeleninou a dny bez ní."
+            why: "Právě kolísání příjmu vitaminu K mění účinek warfarinu."
       - id: funkce
         type: choice
         prompt: "Hlavní funkcí vitaminu K je…"
@@ -283,7 +306,7 @@ points:
   - id: vit.b-skupina
     title: Vitaminy skupiny B – názvy a společná role
     kind: concept
-    tier: A
+    tier: B
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     source: { pages: [51, 52, 53], anchor: "Vitaminy skupiny B často fungují jako koenzymy" }
@@ -429,10 +452,13 @@ points:
   - id: vit.folat
     title: Folát a kyselina listová (B9)
     kind: fact
-    tier: A
+    tier: B
     criteria: [1e, 7f]
     prereqs: [vit.b-skupina]
     confusableWith: [vit.b12]
+    note: >-
+      Doplněno: rada nejíst v těhotenství játra (vysoký obsah retinolu) je z doporučení NHS; skripta
+      (s. 215) uvádějí játra mezi zdroji folátu bez tohoto upozornění.
     source: { pages: [53], anchor: "snižují riziko defektů neurální trubice" }
     explanation: >-
       Foláty jsou přirozené formy B9 v potravinách, kyselina listová je syntetická forma (doplňky,
@@ -440,6 +466,7 @@ points:
       vnitřnosti. Dostatek před početím a v časném těhotenství snižuje riziko defektů neurální trubice
       plodu – ženám plánujícím těhotenství se doporučuje suplementace už před početím. Nedostatek
       vede k megaloblastové anémii. Vysoké dávky kyseliny listové mohou maskovat nedostatek B12.
+      Játra jsou kvůli vitaminu A v těhotenství nevhodný zdroj.
     exercises:
       - id: tehotenstvi
         type: choice
@@ -471,17 +498,18 @@ points:
           - "Nutný pro syntézu DNA a buněčné dělení"
           - "Snižuje riziko defektů neurální trubice plodu"
           - "Suplementace kyselinou listovou už před početím"
-          - "Zdroje: listová zelenina, luštěniny, vnitřnosti"
+          - "Zdroje: listová zelenina, luštěniny; játra v těhotenství ne (vysoký obsah vitaminu A)"
         modelAnswer: >-
           Folát je potřebný pro tvorbu DNA a dělení buněk, proto je klíčový na začátku těhotenství.
           Dostatečný příjem snižuje riziko defektů neurální trubice plodu, a proto se ženám plánujícím
           těhotenství doporučuje užívat kyselinu listovou (syntetickou formu) už před početím. Ze
-          stravy ho dodá listová zelenina, luštěniny a vnitřnosti.
+          stravy ho dodá listová zelenina a luštěniny; játra jsou sice bohatá na folát, ale kvůli
+          vysokému obsahu vitaminu A je v těhotenství nejez.
 
   - id: vit.b12
     title: Vitamin B12 (kobalamin) – vstřebávání a rizikové skupiny
     kind: fact
-    tier: A
+    tier: B
     criteria: [1e, 6a]
     prereqs: [vit.b-skupina]
     confusableWith: [vit.folat]
@@ -506,7 +534,7 @@ points:
         type: choice
         prompt: "Co je nezbytné pro běžné vstřebávání vitaminu B12?"
         options:
-          - { text: "Vnitřní faktor – bílkovina tvořená v žaludku", correct: true }
+          - { text: "Vnitřní faktor ze žaludku", correct: true }
           - { text: "Současný příjem tuku", why: "Tuk potřebují vitaminy A, D, E, K." }
           - { text: "Vitamin C ve stejném jídle", why: "Vitamin C zvyšuje vstřebávání nehemového železa." }
           - { text: "Žlučové kyseliny v tlustém střevě", why: "B12 se vstřebává v koncové části tenkého střeva." }
@@ -529,10 +557,13 @@ points:
   - id: vit.c
     title: Vitamin C (kyselina askorbová)
     kind: fact
-    tier: A
+    tier: B
     criteria: [1e]
     prereqs: [vit.definice-deleni]
-    source: { pages: [54, 239], anchor: "Vitamin C je chemicky označován jako kyselina askorbová" }
+    note: >-
+      Skripta (s. 54) u vysokých dávek uvádějí jen zažívací obtíže (průjem). Zmínka o ledvinových
+      kamenech u predisponovaných je doplněna podle NIH ODS (vysoké dávky zvyšují vylučování oxalátu).
+    source: { pages: [54], anchor: "Vitamin C je chemicky označován jako kyselina askorbová" }
     explanation: >-
       Vitamin C (kyselina askorbová, E300) si člověk na rozdíl od většiny savců neumí vytvořit.
       Podporuje imunitu, nervovou soustavu, hojení ran a syntézu kolagenu, je silný antioxidant
@@ -581,9 +612,9 @@ points:
         prompt: "Beri-beri je onemocnění z nedostatku…"
         options:
           - { text: "vitaminu B1 (thiaminu)", correct: true }
-          - { text: "niacinu", why: "Nedostatek niacinu způsobuje pelagru." }
-          - { text: "vitaminu C", why: "Nedostatek vitaminu C způsobuje kurděje." }
-          - { text: "vitaminu B12", why: "Nedostatek B12 vede k megaloblastové anémii." }
+          - { text: "niacinu (vitaminu B3)", why: "Nedostatek niacinu způsobuje pelagru." }
+          - { text: "vitaminu C (kyseliny askorbové)", why: "Nedostatek vitaminu C způsobuje kurděje." }
+          - { text: "vitaminu B12 (kobalaminu)", why: "Nedostatek B12 vede k megaloblastové anémii." }
       - id: kurdeje
         type: choice
         prompt: "Kurděje (skorbut) vznikají při závažném nedostatku…"
@@ -629,7 +660,7 @@ points:
           - { text: "Nevhodné užívání vysokých dávek doplňků stravy", correct: true }
           - { text: "Pestrá strava s hodně ovocem a zeleninou", why: "Z běžné pestré stravy je velmi nepravděpodobná." }
           - { text: "Porucha vstřebávání v trávicím traktu", why: "Ta vede spíš k nedostatku." }
-          - { text: "Dlouhodobé pobývání na slunci", why: "Skripta jako příčinu uvádějí hlavně vysoké dávky doplňků." }
+          - { text: "Dlouhodobé pobývání na slunci", why: "Sluněním se vitaminem D nepředávkuješ – tělo jeho tvorbu v kůži samo omezí. Hypervitaminóza vzniká hlavně z doplňků." }
       - id: pojmy
         type: reveal
         prompt: "Vysvětli rozdíl mezi hypovitaminózou, avitaminózou a hypervitaminózou."
@@ -654,10 +685,10 @@ points:
         type: choice
         prompt: "Proč se % RHP na etiketě může lišit od doporučení EFSA?"
         options:
-          - { text: "RHP je legislativní hodnota pro označování výrobků, ne aktuální fyziologická potřeba.", correct: true }
-          - { text: "RHP se počítá zvlášť pro muže a ženy.", why: "Na etiketě je jedna hodnota pro všechny." }
-          - { text: "EFSA uvádí hodnoty pro děti, RHP pro dospělé.", why: "Obě hodnoty ve skriptech se týkají dospělých; RHP je legislativní hodnota pro etikety." }
-          - { text: "Liší se jen u minerálních látek, u vitaminů ne.", why: "Rozdíly jsou i u vitaminů (např. D, B12, C)." }
+          - { text: "RHP je legislativní hodnota pro etikety, ne fyziologická potřeba.", correct: true }
+          - { text: "RHP se stanovuje zvlášť pro muže a ženy, EFSA pro všechny stejně.", why: "Je to naopak: na etiketě je jedna hodnota pro všechny, EFSA často rozlišuje muže a ženy." }
+          - { text: "EFSA uvádí hodnoty pro děti, kdežto RHP hodnoty pro dospělé.", why: "Obě hodnoty ve skriptech se týkají dospělých; RHP je legislativní hodnota pro etikety." }
+          - { text: "Liší se jen u minerálních látek, u vitaminů jsou hodnoty shodné.", why: "Rozdíly jsou i u vitaminů (např. D, B12, C)." }
 
   - id: vit.referencni-hodnoty
     title: Doporučený příjem vitaminů – klíčová čísla

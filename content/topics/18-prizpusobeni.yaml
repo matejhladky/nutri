@@ -49,10 +49,10 @@ points:
         type: choice
         prompt: "Proč se doporučuje v biologické noci spíše nejíst?"
         options:
-          - { text: "Stejné jídlo vyvolá v noci horší glykémii a inzulinovou odpověď než ráno.", correct: true }
-          - { text: "Protože v noci se jídlo vůbec netráví.", why: "Tráví, jen je metabolická odpověď horší." }
-          - { text: "Protože noční jídlo nemá žádnou energii.", why: "Energie jídla je stejná, horší je metabolická odpověď." }
-          - { text: "Protože to výslovně nařizuje WHO.", why: "WHO specifická časová doporučení pro noční práci nemá; doporučení je od NIOSH a CDC." }
+          - { text: "Stejné jídlo má v noci horší glykemickou a inzulinovou odpověď.", correct: true }
+          - { text: "V noci se jídlo v trávicím traktu prakticky vůbec netráví.", why: "Tráví, jen je metabolická odpověď horší." }
+          - { text: "Jídlo snědené v noci se celé uloží do tukové tkáně.", why: "Energie jídla se neukládá „celá do tuku“; problém je horší metabolická odpověď." }
+          - { text: "Noční jídlo výslovně zakazují pracovní předpisy WHO.", why: "WHO specifická časová doporučení pro noční práci nemá; doporučení je od NIOSH a CDC." }
 
   - id: pri.smeny-vyjimky
     title: Kdo by v noci jídlo vynechávat neměl
@@ -99,8 +99,8 @@ points:
         prompt: "Klient končí noční směnu v 6:00 a v 8:00 jde spát. Co mu doporučíš?"
         options:
           - { text: "Jen při hladu malou porci, např. skyr s vločkami.", correct: true }
-          - { text: "Vydatnou snídani, aby dobře spal.", why: "Velké jídlo před spánkem zvyšuje glykémii, riziko refluxu a zhoršuje spánek." }
-          - { text: "Sladké pečivo pro rychlou energii.", why: "Před spánkem se vyhýbáme sladkému i tučnému." }
+          - { text: "Vydatnou teplou snídani, aby se dobře vyspal.", why: "Velké jídlo před spánkem zvyšuje glykémii, riziko refluxu a zhoršuje spánek." }
+          - { text: "Sladké pečivo a kakao pro rychlé usnutí.", why: "Před spánkem se vyhýbáme sladkému i tučnému." }
           - { text: "Nic nejíst ani nepít až do odpoledne.", why: "Tekutiny jsou v pořádku a při hladu je vhodná malá porce." }
       - id: proc
         type: reveal
@@ -136,7 +136,7 @@ points:
   - id: pri.cestovani
     title: Cestování autem a jídlo s sebou
     kind: procedure
-    tier: A
+    tier: B
     criteria: [6c]
     source: { pages: [186, 187], anchor: "stravu je třeba přizpůsobit reálným možnostem klienta, ne naopak" }
     explanation: >-
@@ -278,7 +278,7 @@ points:
   - id: pri.oslavy
     title: Oslavy a večírky
     kind: procedure
-    tier: A
+    tier: B
     criteria: [6c]
     source: { pages: [189], anchor: "Hladovět kvůli oslavě celý den se nevyplácí" }
     explanation: >-

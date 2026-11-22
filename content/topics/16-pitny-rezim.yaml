@@ -12,7 +12,7 @@ points:
   - id: pit.funkce-vody
     title: Proč je pitný režim důležitý
     kind: concept
-    tier: A
+    tier: B
     criteria: [7e]
     source: { pages: [174, 175], anchor: "bez vody člověk vydrží přibližně 7 dní" }
     explanation: >-
@@ -70,9 +70,9 @@ points:
         prompt: "Proč mají dospělé ženy nižší podíl vody v těle než muži?"
         options:
           - { text: "Mají vyšší podíl tukové tkáně, která vodu téměř neobsahuje.", correct: true }
-          - { text: "Méně pijí.", why: "Podíl vody v těle je dán složením těla, ne tím, kolik kdo pije." }
-          - { text: "Mají vyšší podíl svalové hmoty.", why: "Sval vodu obsahuje hodně – ženy mají naopak více tuku." }
-          - { text: "Mají vyšší bazální metabolismus.", why: "S podílem vody to nesouvisí – rozhoduje vyšší podíl tukové tkáně." }
+          - { text: "Pijí v průměru méně tekutin, takže mají menší zásobu vody.", why: "Podíl vody v těle je dán složením těla, ne tím, kolik kdo pije." }
+          - { text: "Mají vyšší podíl svalové hmoty, která vodu váže hůř.", why: "Sval vodu obsahuje hodně – ženy mají naopak více tuku." }
+          - { text: "Ženské hormony zvyšují ztráty vody močí a potem.", why: "S podílem vody to nesouvisí – rozhoduje vyšší podíl tukové tkáně." }
       - id: poradi
         type: reveal
         prompt: "Kolik procent tvoří voda u novorozence, dospělého muže, dospělé ženy a seniora?"
@@ -133,7 +133,7 @@ points:
   - id: pit.kontrola
     title: Kontrola hydratace bez počítání
     kind: procedure
-    tier: A
+    tier: B
     criteria: [7e]
     source: { pages: [174, 175], anchor: "Podle frekvence návštěv toalety" }
     explanation: >-
@@ -231,7 +231,7 @@ points:
   - id: pit.alkohol-odvodnuje
     title: Proč alkohol odvodňuje
     kind: concept
-    tier: A
+    tier: B
     criteria: [7e]
     prereqs: [pit.zdroje]
     source: { pages: [176], anchor: "Snižuje produkci antidiuretického hormonu v mozku" }
@@ -245,10 +245,10 @@ points:
         type: choice
         prompt: "Tvorbu kterého hormonu alkohol tlumí, a tím zvyšuje ztráty vody močí?"
         options:
-          - { text: "Antidiuretického hormonu (ADH)", correct: true }
-          - { text: "Inzulinu", why: "Odvodnění po alkoholu souvisí s ADH, ne s inzulinem." }
-          - { text: "Kortizolu", why: "Kortizol zvyšuje kofein, s odvodněním po alkoholu nesouvisí." }
-          - { text: "Leptinu", why: "Leptin souvisí se sytostí, ne s vylučováním vody." }
+          - { text: "ADH (antidiuretický hormon)", correct: true }
+          - { text: "Aldosteron (hormon nadledvin)", why: "Odvodnění po alkoholu vysvětlují skripta útlumem ADH." }
+          - { text: "Inzulin (hormon slinivky)", why: "Odvodnění po alkoholu souvisí s ADH, ne s inzulinem." }
+          - { text: "Leptin (hormon tukové tkáně)", why: "Leptin souvisí se sytostí, ne s vylučováním vody." }
       - id: klient-pivo
         type: explain
         prompt: "Klient tvrdí, že večer vypije tři piva, takže má pitný režim splněný. Co mu vysvětlíš?"
@@ -273,7 +273,7 @@ points:
     explanation: >-
       Energie nápoje závisí na obsahu alkoholu (1 g = 29 kJ / 7 kcal) i zbytkového cukru. Na 100 ml
       mají nejvíc energie destiláty a likéry (krémové a vaječné nejvíc). I malý panák (0,04 l) má
-      asi 340–540 kJ, tedy energeticky dost. Na celou porci má ale nejvíc velké pivo 12° (asi
+      podle tabulky 339–544 kJ, tedy energeticky dost. Na celou porci má ale nejvíc velké pivo 12° (asi
       990 kJ) – víc než dva panáky destilátu. Při rozboru jídelníčku se proto ptej na druh i množství.
     exercises:
       - id: na-100
@@ -332,40 +332,47 @@ points:
     safety: true
     status: course-disputed
     note: >-
-      S. 177 uvádí jako maximální bezpečnou dávku podle EFSA 200–400 mg/den pro běžnou populaci; EFSA
-      pro zdravé dospělé ve skutečnosti uvádí až 400 mg/den (jednorázově do 200 mg); 200 mg/den
-      v těhotenství a při kojení uvádějí i s. 218 a 220. U dětí s. 178 kofein zcela vylučuje,
-      s. 226 ho nedoporučuje do 12 let. U zkoušky: běžná populace 200–400 mg/den (horní hranice 400),
-      těhotné max. 200 mg/den, děti kofein ne.
+      **Skripta:** maximální bezpečná dávka pro běžnou populaci je podle EFSA 200–400 mg/den (s. 177);
+      těhotné max. 200 mg/den (s. 178, 218, 220); děti kofein vůbec (s. 178), resp. ne do 12 let
+      (s. 226). **Současné poznatky / předpisy:** EFSA (Scientific Opinion on the safety of caffeine,
+      2015) – zdraví dospělí mimo těhotenství bez obav do 400 mg denně a jednorázově do 200 mg (asi
+      3 mg/kg); těhotné a kojící do 200 mg/den; pro děti a dospívající navrhuje jako bezpečnou úroveň
+      3 mg/kg/den. Rozmezí „200–400“ tedy slučuje jednorázovou a denní hranici. **Ke zkoušce:**
+      odpověď platná podle obou – denně nejvýš 400 mg, jednorázově do 200 mg, těhotné a kojící do
+      200 mg/den; u dětí kofein spíše vůbec (skripta), nejvýš 3 mg/kg (EFSA).
     criteria: [7e, 7f]
     source: { pages: [177, 178], anchor: "Maximální bezpečná dávka kofeinu pro běžnou populaci je dle EFSA" }
     explanation: >-
-      Maximální bezpečná dávka kofeinu pro běžnou populaci je podle EFSA (dle skript) 200–400 mg denně.
-      Nevhodný je pro děti (v jídelníčku by neměl být), těhotné (max. 200 mg/den, sčítají se všechny
+      Skripta uvádějí jako maximální bezpečnou dávku kofeinu podle EFSA 200–400 mg denně; přesněji EFSA
+      považuje u zdravých dospělých za bezpečné denně do 400 mg a jednorázově do 200 mg. Nevhodný je
+      pro děti (v jídelníčku by neměl být), těhotné a kojící (max. 200 mg/den, sčítají se všechny
       zdroje), přecitlivělé jedince (stres, nervozita, třes) a při lécích s interakcí – např. snižuje
       účinek některých léků na epilepsii (doporučit konzultaci s lékařem). Orientačně: espresso
       průměrně 80 mg.
     exercises:
       - id: bezna-populace
         type: choice
-        prompt: "Jakou maximální bezpečnou denní dávku kofeinu uvádějí skripta (dle EFSA) pro běžnou dospělou populaci?"
+        version: 2
+        prompt: "Kolik kofeinu denně považuje EFSA za bezpečné pro zdravého dospělého (mimo těhotenství)?"
         options:
-          - { text: "200–400 mg", correct: true }
-          - { text: "50–100 mg", why: "To je méně než limit i pro těhotné (200 mg)." }
-          - { text: "600–800 mg", why: "To výrazně překračuje doporučenou horní hranici 400 mg." }
-          - { text: "1 000 mg", why: "Tak vysokou dávku skripta za bezpečnou nepovažují." }
+          - { text: "Nejvýš 400 mg denně", correct: true }
+          - { text: "Nejvýš 200 mg denně", why: "200 mg je hranice pro jednorázovou dávku a pro těhotné a kojící; denně je to u dospělého 400 mg (skripta uvádějí rozmezí 200–400 mg)." }
+          - { text: "Nejvýš 800 mg denně", why: "To je dvojnásobek horní hranice 400 mg." }
+          - { text: "Nejvýš 100 mg denně", why: "To je méně než limit i pro těhotné (200 mg)." }
       - id: pro-koho
         type: explain
+        version: 2
         prompt: "Pro koho není kofein vhodný a jaká je bezpečná denní dávka?"
         keyPoints:
-          - "Běžná populace max. 200–400 mg/den (EFSA)"
+          - "Zdraví dospělí max. 400 mg/den, jednorázově do 200 mg (EFSA; skripta 200–400 mg)"
           - "Děti – kofein by v jídelníčku být neměl"
-          - "Těhotné max. 200 mg/den"
+          - "Těhotné a kojící max. 200 mg/den ze všech zdrojů"
           - "Přecitlivělí jedinci (nervozita, třes)"
           - "Interakce s léky (např. antiepileptika) → lékař"
         modelAnswer: >-
-          Pro běžnou dospělou populaci se podle EFSA uvádí maximálně 200–400 mg kofeinu denně. Děti by
-          kofein neměly přijímat vůbec, těhotné nejvýš 200 mg denně ze všech zdrojů dohromady.
+          Zdravý dospělý by podle EFSA neměl překročit 400 mg kofeinu denně a jednorázově asi 200 mg;
+          skripta to shrnují jako 200–400 mg. Děti by kofein neměly přijímat vůbec, těhotné a kojící
+          nejvýš 200 mg denně ze všech zdrojů dohromady.
           Opatrní musí být přecitlivělí lidé, u kterých vyvolá nervozitu či třes, a lidé užívající léky,
           s nimiž kofein interaguje – například snižuje účinek některých antiepileptik, proto je
           vhodná konzultace s lékařem.
@@ -382,6 +389,11 @@ points:
     title: Pitný režim v nestandardních situacích
     kind: procedure
     tier: A
+    note: >-
+      Ověřeno: sportovní hodnoty odpovídají doporučení ACSM (5–10 ml/kg 2–4 h před výkonem, po výkonu
+      asi 125–150 % ztráty). U seniorů je 1,5 l „klinické minimum“ ze skript (s. 227); ESPEN (2019)
+      doporučuje nabízet starším ženám aspoň 1,6 l a mužům aspoň 2,0 l nápojů denně, pokud zdravotní
+      stav nevyžaduje jinak (např. omezení tekutin u srdečního selhání – to určuje lékař).
     criteria: [7e, 6c]
     prereqs: [pit.potreba, spo.hydratace, obd.senior-pitny-rezim]
     source: { pages: [188, 213, 222, 227], anchor: "nastavte pravidelný pitný režim podle hodin, ne podle pocitu žízně" }

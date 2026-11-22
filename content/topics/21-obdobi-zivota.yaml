@@ -16,13 +16,21 @@ points:
     kind: fact
     tier: A
     criteria: [7f, 1e]
+    status: course-disputed
+    note: >-
+      Skripta: s. 215 uvádějí mezi zdroji folátu pro ženy plánující těhotenství i játra. Současné
+      poznatky: NHS doporučuje ženám, které jsou nebo mohou být těhotné, játra a výrobky z nich nejíst
+      kvůli velmi vysokému obsahu retinolu (vitamin A – riziko vrozených vad; i skripta s. 217–218
+      varují před retinolem). Dávka 400 µg a začátek před početím odpovídají WHO; vyšší dávku (4–5 mg)
+      volí jen lékař u rizikových žen. Ke zkoušce: játra jako zdroj folátu pro tuto situaci
+      nedoporučuj; ostatní údaje platí podle skript i podle současných doporučení.
     source: { pages: [215, 218], anchor: "µg/den ideálně od 2–3 měsíců před plánovaným početím" }
     explanation: >-
       Nedostatek folátu kolem početí zvyšuje riziko rozštěpů neurální trubice a dalších vrozených vad.
       Ženě plánující těhotenství se doporučuje doplněk 400 µg kyseliny listové denně, ideálně už 2–3
       měsíce před plánovaným početím — nečekat na pozitivní test. Běžný dospělý: 330 µg/den (EFSA),
-      v těhotenství 600 µg/den. Zdroje: listová zelenina, luštěniny, droždí, játra, celozrnné pečivo;
-      samotnou stravou je 400 µg těžké pokrýt.
+      v těhotenství 600 µg/den. Zdroje: listová zelenina, luštěniny, droždí, celozrnné pečivo (játra
+      při plánování těhotenství a v těhotenství ne – vitamin A); stravou je 400 µg těžké pokrýt.
     exercises:
       - id: kdy
         type: choice
@@ -47,7 +55,7 @@ points:
           - "Prevence rozštěpů neurální trubice a dalších vrozených vad"
           - "400 µg/den doplňkem"
           - "Začít 2–3 měsíce před početím, nečekat na test"
-          - "Stravou (listová zelenina, luštěniny, játra) se těžko pokryje"
+          - "Stravou (listová zelenina, luštěniny) se těžko pokryje"
         modelAnswer: >-
           Nedostatek folátu v době početí zvyšuje riziko rozštěpu neurální trubice a jiných vrozených vad.
           Doporučím doplněk 400 µg kyseliny listové denně, ideálně už 2–3 měsíce před plánovaným početím,
@@ -85,7 +93,7 @@ points:
   - id: obd.prirustek
     title: Hmotnostní přírůstek v těhotenství podle BMI
     kind: fact
-    tier: A
+    tier: B
     criteria: [7f]
     source: { pages: [216, 219], anchor: "Doporučený celkový hmotnostní přírůstek v těhotenství podle BMI" }
     explanation: >-
@@ -131,7 +139,7 @@ points:
   - id: obd.energie-tehotenstvi
     title: Energie v těhotenství — „jíst za dva“ je mýtus
     kind: fact
-    tier: A
+    tier: B
     criteria: [7f, 6b]
     confusableWith: [obd.kojeni]
     source: { pages: [217], anchor: "energetické navýšení je ve skutečnosti jen malý zlomek celkového příjmu" }
@@ -171,11 +179,13 @@ points:
     safety: true
     status: course-disputed
     note: >-
-      Skripta jsou nejednotná u železa a jódu. Tabulka (s. 218) uvádí železo 16 mg/den, stejnou hodnotu
-      EFSA jako mimo těhotenství, ale text (s. 217) i kap. o doplňcích (s. 141) píší, že potřeba železa
-      roste kvůli objemu krve. Jód: s. 218 uvádí 250 µg/den (WHO), s. 135 „220–250 µg/den“. Ke zkoušce:
-      kvalitativně potřeba železa v těhotenství roste; číselně EFSA uvádí 16 mg/den (nenavyšuje, protože
-      odpadá menstruace a roste vstřebávání); deficit řeší lékař. Jód 250 µg/den.
+      Skripta: tabulka (s. 218) uvádí železo 16 mg/den, stejně jako mimo těhotenství, text (s. 217)
+      i kap. 13 (s. 141) ale píší, že potřeba železa roste s objemem krve. Jód: s. 218 uvádí 250 µg/den
+      (WHO), s. 135 „220–250 µg/den“. Současné poznatky: EFSA (2015) drží pro těhotné 16 mg železa
+      (odpadá menstruace, roste vstřebávání); WHO doporučuje těhotným plošný doplněk železa, NICE
+      naopak jen cíleně – v ČR o něm rozhoduje lékař podle krevního obrazu. Jód: WHO 250 µg, EFSA
+      200 µg/den. Ke zkoušce: pokud se otázka ptá na skripta, jód 250 µg (WHO) a železo 16 mg (EFSA);
+      kvalitativně platí, že nároky na železo rostou a deficit řeší lékař.
     criteria: [7f, 1f]
     prereqs: [obd.folat]
     source: { pages: [217, 218], anchor: "plod získává jód pouze od matky" }
@@ -226,11 +236,14 @@ points:
     safety: true
     status: course-disputed
     note: >-
-      Seznam „co nejíst“ ve skriptech (s. 218–219) obsahuje i vyhýbání se alergenům u alergiček a tvrzení,
-      že citrusy způsobí dítěti alergii; to odporuje s. 221 (alergeny se už neodkládají) i současným
-      doporučením, proto to netestujeme. Skripta si odporují i u makrely: „makrela obecná“ je na seznamu
-      rizikových ryb (s. 218), ale „makrela atlantická“ (tentýž druh) mezi doporučenými (s. 220). Ke
-      zkoušce uváděj body z výkladu níže.
+      Skripta: seznam „co nejíst“ (s. 218–219) obsahuje i vyhýbání se alergenům u alergiček a tvrzení,
+      že citrusy způsobí dítěti alergii; „makrela obecná“ je mezi rizikovými rybami (s. 218), „makrela
+      atlantická“ (tentýž druh) mezi doporučenými (s. 220). Současné poznatky: vyhýbání se alergenům
+      v těhotenství alergiím dítěte nepředchází (EAACI 2020; odporuje i s. 221); rtuti je hodně ve
+      velkých dravých rybách (žralok, mečoun, makrela královská), ne v makrele obecné. Limit kofeinu
+      200 mg (EFSA 2015), abstinence a riziko listerie a toxoplazmy odpovídají současným doporučením.
+      Ke zkoušce: body z výkladu platí podle skript i podle současných doporučení; alergeny a makrelu
+      netestujeme.
     criteria: [7f, 9b]
     prereqs: [obd.tehotenstvi-mikro]
     source: { pages: [218, 219], anchor: "Nepasterované mléčné výrobky – riziko listeriózy" }
@@ -277,6 +290,10 @@ points:
     kind: fact
     tier: A
     criteria: [7f]
+    note: >-
+      Navýšení asi o 500 kcal při plném kojení odpovídá EFSA (2013). Pitný režim: skripta (s. 220)
+      uvádějí kolem 3 l/den; EFSA počítá u kojících s celkovým příjmem vody asi 2,7 l/den včetně vody
+      z jídla – 3 l je tedy spíš štědrá orientační hodnota, prakticky pít podle žízně.
     confusableWith: [obd.energie-tehotenstvi]
     source: { pages: [220], anchor: "energetický náklad jednoho měsíce plného kojení odpovídá zhruba" }
     explanation: >-
@@ -287,8 +304,9 @@ points:
       Pitný režim asi 3 l/den. Po porodu žádné drastické diety.
     exercises:
       - id: kcal
+        version: 2
         type: choice
-        prompt: "O kolik kcal denně se podle skript navyšuje příjem při plném kojení?"
+        prompt: "Klientka plně kojí tříměsíční dítě. O kolik kcal denně jí podle skript navýšíš příjem oproti době před těhotenstvím?"
         options:
           - { text: "Asi o 500 kcal", correct: true }
           - { text: "Asi o 85 kcal", why: "To je navýšení v 1. trimestru těhotenství." }
@@ -318,11 +336,14 @@ points:
     kind: procedure
     tier: A
     criteria: [7f]
+    note: >-
+      Zdůvodnění u medu (riziko kojeneckého botulismu, med ne před 12. měsícem; ESPGHAN 2017) je
+      doplněno nad rámec skript, které med jen uvádějí mezi potravinami, jimž se dítě má vyhnout.
     source: { pages: [221], anchor: "vyčerpávají kolem 6. měsíce, proto by první" }
     explanation: >-
       Do 6 měsíců výlučné kojení (WHO), podle ESPGHAN příkrmy mezi 17. a 26. týdnem. Od 6. do 12. měsíce
       postupně příkrmy: zeleninové, masovo-zeleninové, obilninové, ovocné, mléčné. Žádná sůl, cukr, med
-      ani sladidla. Zásoby železa z porodu dojdou kolem 6. měsíce → první příkrmy s masem (hemové železo)
+      (do 1 roku riziko botulismu) ani sladidla. Zásoby železa z porodu dojdou kolem 6. měsíce → první příkrmy s masem (hemové železo)
       nebo obohacenými obilninami. Alergeny (vejce, arašídy) se už neodkládají — zavádějí se od 4.–6.
       měsíce spolu s příkrmy.
     exercises:
@@ -335,13 +356,14 @@ points:
           - { text: "Kvůli prevenci alergie na lepek", why: "Maso a obohacené obiloviny se volí kvůli železu." }
           - { text: "Dítě potřebuje od 6. měsíce hlavně víc tuku", why: "Skripta zdůvodňují volbu vyčerpáním zásob železa." }
       - id: alergeny
+        version: 2
         type: choice
-        prompt: "Jak se podle aktuálních doporučení (ESPGHAN/EAACI) zavádějí alergeny, např. vejce a arašídy?"
+        prompt: "Kdy se podle aktuálních doporučení (ESPGHAN/EAACI) zavádějí alergeny, např. vejce a arašídy?"
         options:
-          - { text: "Neodkládat — zavádět od 4.–6. měsíce spolu s příkrmy", correct: true }
-          - { text: "Až po 3. roce věku", why: "Odkládání se už nedoporučuje; časné zavedení riziko alergie snižuje." }
-          - { text: "U dětí s ekzémem nikdy", why: "Platí i pro rizikové děti, ideálně po konzultaci s pediatrem." }
-          - { text: "Až po ukončení kojení", why: "Alergeny se zavádějí spolu s příkrmy, kojení se přitom nepřerušuje." }
+          - { text: "Od 4.–6. měsíce spolu s příkrmy", correct: true }
+          - { text: "Až po 3. roce, kdy dozraje imunita", why: "Odkládání se už nedoporučuje; časné zavedení riziko alergie snižuje." }
+          - { text: "U dětí s ekzémem až po 3. roce", why: "Neodkládá se ani u rizikových dětí, ideálně po konzultaci s pediatrem." }
+          - { text: "Až po úplném ukončení kojení", why: "Alergeny se zavádějí spolu s příkrmy, kojení se přitom nepřerušuje." }
       - id: vysvetli
         version: 2
         type: explain
@@ -349,7 +371,7 @@ points:
         keyPoints:
           - "WHO: výlučné kojení do 6 měsíců; ESPGHAN: příkrmy mezi 17. a 26. týdnem (ne před 4. a ne po 6. měsíci)"
           - "Postupně zelenina → maso se zeleninou → obiloviny, ovoce, mléčné"
-          - "Bez soli, cukru, medu a sladidel"
+          - "Bez soli, cukru, medu (botulismus) a sladidel"
           - "Maso / obohacené obiloviny kvůli železu (zásoby dojdou kolem 6. měsíce)"
           - "Alergeny neodkládat, od 4.–6. měsíce"
         modelAnswer: >-
@@ -365,9 +387,11 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Kap. 21 (s. 221, ČPS/OSPDL 2019) uvádí podávání do konce 1. roku a po 1. roce už ne rutinně;
-      kap. o doplňcích (s. 141) píše o plošné suplementaci „u kojenců a batolat“. Ke zkoušce: 400–500 IU
-      od 2. týdne do konce 1. roku, potom jen u rizikových dětí.
+      Skripta: kap. 21 (s. 221, ČPS/OSPDL 2019) uvádí podávání do konce 1. roku a po 1. roce už ne
+      rutinně; kap. 13 (s. 141) píše o plošné suplementaci „u kojenců a batolat“. Současné poznatky:
+      doporučený postup ČPS/OSPDL (2019) – 400–500 IU vitaminu D3 denně od 2. týdne do konce 1. roku,
+      kojené i uměle živené děti stejně. Ke zkoušce: tato odpověď (s. 221) platí podle skript i podle
+      platného českého doporučení.
     criteria: [7f, 1e]
     prereqs: [obd.prikrmy]
     source: { pages: [221], anchor: "Po 1. roce se rutinní podávání zdravým dětem už nedoporučuje" }
@@ -462,10 +486,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Ke zkoušce: kap. 19 (s. 191) veganskou stravu pro děti označuje za nevhodnou, novější ESPGHAN 2025
-      (s. 222) ji připouští jen za přísných podmínek (sledování pediatrem/NT, povinná B12, pozornost na
-      D, Fe, Ca, DHA). Odpověz: paušálně se nedoporučuje, je možná jen za těchto podmínek; poradce
-      dětského vegana sám nevede.
+      Skripta: kap. 19 (s. 191) veganskou stravu pro děti označuje za nevhodnou, kap. 21 (s. 222,
+      ESPGHAN 2025) ji připouští jen za přísných podmínek (sledování pediatrem/NT, povinná B12,
+      pozornost na D, Fe, Ca, DHA). Současné poznatky: odborné společnosti se shodují, že bez
+      odborného dohledu a suplementace je veganská strava u malých dětí riziková. Ke zkoušce: odpověď
+      „paušálně se nedoporučuje, možná jen za těchto podmínek; poradce dětského vegana sám nevede“
+      je slučitelná s oběma kapitolami.
     criteria: [7f, 6a]
     confusableWith: [alt.veganstvi-rizika]
     source: { pages: [222, 191], anchor: "povinná suplementace vitaminu B12" }
@@ -508,7 +534,7 @@ points:
   - id: obd.senior-zmeny
     title: Změny ve stáří a jejich dopad na výživu
     kind: concept
-    tier: A
+    tier: B
     criteria: [7f, 6c]
     confusableWith: [obd.menopauza-zmeny]
     source: { pages: [227, 228], anchor: "sníženou koncentrační schopnost ledvin" }
@@ -549,7 +575,7 @@ points:
     criteria: [7f, 1d]
     prereqs: [obd.senior-zmeny]
     confusableWith: [spo.bilkoviny, dpl.seniori]
-    source: { pages: [227], anchor: "1,2–1,5 g/kg/den při akutním nebo chronickém onemocnění" }
+    source: { pages: [227, 142], anchor: "1,2–1,5 g/kg/den při akutním nebo chronickém onemocnění" }
     explanation: >-
       Energetická potřeba po 60 letech klesá, potřeba bílkovin naopak roste. PROT-AGE a ESPEN doporučují
       zdravým seniorům 1,0–1,2 g/kg/den, při akutní nebo chronické nemoci 1,2–1,5 g/kg/den. Běžných
@@ -623,9 +649,10 @@ points:
     tier: C
     status: course-disputed
     note: >-
-      Skripta radí „lehce zvýšit“ vitamin D na 10 µg, jinde (s. 50, 218) ale uvádějí pro dospělé
-      15–20 µg, resp. 15 µg — 10 µg tedy není zvýšení. Číslo netestovat; pamatovat, že potřeba
-      vitaminu D ve stáří neklesá.
+      Skripta: s. 227 radí „lehce zvýšit“ vitamin D na 10 µg, jinde (s. 50, 218) ale uvádějí pro
+      dospělé 15–20 µg, resp. 15 µg – 10 µg tedy není zvýšení. Současné poznatky: EFSA (2016) uvádí
+      pro dospělé včetně seniorů 15 µg/den. Ke zkoušce: číslo netestujeme; platí, že potřeba vitaminu D
+      ve stáří neklesá.
     criteria: [7f]
     prereqs: [obd.senior-zmeny]
     source: { pages: [227], anchor: "omega-3 : omega-6 ideálně 1 : 3" }
@@ -683,12 +710,13 @@ points:
   - id: obd.menopauza-jidelnicek
     title: Jídelníček v menopauze
     kind: procedure
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Tvrzení, že fosfor z tavených sýrů a koly „zbavuje tělo vápníku“, je zjednodušené – souvislost
-      kolových nápojů s nižší kostní hustotou je slabá a tavené sýry jsou i zdrojem vápníku. Ke zkoušce
-      odpovídej podle skript.
+      Skripta: tavené sýry a kolové nápoje vyloučit, protože fosfor „zbavuje tělo vápníku“ (s. 228–229).
+      Současné poznatky: souvislost kolových nápojů s nižší kostní hustotou je jen pozorovací a slabá,
+      tavené sýry jsou zároveň zdrojem vápníku; jejich omezení je rozumné spíš kvůli soli a tuku.
+      Ke zkoušce: pokud se otázka ptá na skripta, odpověď skript je tavené sýry a kola (fosfor).
     criteria: [6c, 10d]
     prereqs: [obd.menopauza-zmeny]
     source: { pages: [228, 229], anchor: "obsahují fosfor, který tělo zbavuje vápníku" }
@@ -704,9 +732,9 @@ points:
         prompt: "Které potraviny doporučují skripta v menopauze vyloučit kvůli fosforu?"
         options:
           - { text: "Tavené sýry a kolové nápoje", correct: true }
-          - { text: "Sardinky a losos", why: "Ty jsou naopak doporučeným zdrojem vápníku." }
+          - { text: "Sardinky a losos z konzervy", why: "Ty jsou naopak doporučeným zdrojem vápníku." }
           - { text: "Brokolici a kapustu", why: "Jsou zdrojem vápníku a vitaminu K." }
-          - { text: "Lněné semínko", why: "Je zdrojem lignanů." }
+          - { text: "Lněné semínko a tofu", why: "Jsou zdrojem fytoestrogenů, skripta je doporučují." }
       - id: vlaknina
         version: 2
         type: choice
@@ -736,11 +764,11 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta tvrdí, že lignany „nahrazují“ estrogen a předcházejí návalům. Důkazy o účinku fytoestrogenů
-      na návaly jsou slabé a nejednoznačné a nejde o náhradu hormonální léčby. Ke zkoušce odpovídej
-      podle skript (30 mg lignanů, zdroje), u klientky zmiň, že efekt je individuální. Skripta řadí mezi
-      zdroje lignanů i sóju, ta ale obsahuje hlavně isoflavony; lignany jsou hlavně ve lněném semínku
-      (s. 64).
+      Skripta: lignany „nahrazují“ estrogen a předcházejí návalům, doporučuje se 30 mg denně; mezi zdroje
+      lignanů řadí i sóju (s. 229). Současné poznatky: důkazy o účinku fytoestrogenů na návaly jsou slabé
+      a nejednoznačné, nejde o náhradu hormonální léčby; sója obsahuje hlavně isoflavony, lignany jsou
+      hlavně ve lněném semínku (i podle s. 64). Ke zkoušce: pokud se otázka ptá na skripta, odpověď
+      je 30 mg lignanů a uvedené zdroje; u klientky je poctivé zmínit, že efekt je individuální.
     criteria: [6c]
     prereqs: [obd.menopauza-jidelnicek]
     source: { pages: [229], anchor: "Doporučuje se denní konzumace 30 mg lignanů" }
@@ -772,6 +800,10 @@ points:
     tier: A
     safety: true
     criteria: [10c]
+    note: >-
+      BMI 17,5 je vodítko MKN-10, z něhož vycházejí skripta. Novější MKN-11 (WHO) uvádí u dospělých
+      výrazně nízkou hmotnost, typicky BMI pod 18,5. Diagnózu stanoví vždy lékař; poradce řeší jen
+      podezření a předání.
     confusableWith: [obd.bulimie]
     source: { pages: [230], anchor: "klasickým diagnostickým vodítkem (podle ICD-10) je BMI 17,5 a nižší" }
     explanation: >-
@@ -922,7 +954,7 @@ points:
     explanation: >-
       PPP jsou psychická onemocnění. Poradce je nediagnostikuje ani neléčí — rozpozná podezření a předá
       klienta specialistovi: psychiatrovi, psychologovi nebo nutričnímu terapeutovi se specializací na PPP
-      (v ČR specializovaná centra při psychiatrických klinikách). Léčba kombinuje psychoterapii, nutriční
+      (specializovaná centra). Léčba kombinuje psychoterapii, nutriční
       poradenství a případně léky; cílem je návrat k normálnímu jídlu a hmotnosti. Čím dřív, tím lepší
       šance na uzdravení. Kontakt na pracoviště mít připravený předem. Při akutním ohrožení (mdloby,
       velmi nízké BMI, zvracení krve, myšlenky na sebepoškození) neodkládat – lékař / 155; u nezletilé

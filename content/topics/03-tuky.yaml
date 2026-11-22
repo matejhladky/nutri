@@ -160,17 +160,22 @@ points:
   - id: tuk.sfa
     title: Nasycené mastné kyseliny (SFA)
     kind: fact
-    tier: A
+    tier: B
     criteria: [1b]
     prereqs: [tuk.deleni-mk]
     confusableWith: [tuk.mufa]
+    note: >-
+      Skripta (s. 25): SFA slouží hlavně jako zdroj energie a „lze je nahradit sacharidy“ – míněno,
+      že nejsou esenciální. WHO (2023) doporučuje SFA nejvýš 10 % energie a nahrazovat je přednostně
+      PUFA, případně MUFA z rostlin nebo sacharidy z potravin s vlákninou (celozrnné, luštěniny,
+      zelenina); EFSA: příjem SFA co nejnižší v rámci vyvážené stravy.
     source: { pages: [25], anchor: "Tělo si je dokáže vytvořit samo a není nutné je" }
     explanation: >-
-      SFA mají jen jednoduché vazby, bývají tuhé. Tělo si je vytvoří samo, slouží hlavně jako zdroj
-      energie a lze je nahradit sacharidy. Zdroje: uzeniny, máslo, sádlo, tučné maso a tučné mléčné
+      SFA mají jen jednoduché vazby, bývají tuhé. Tělo si je vytvoří samo (nejsou esenciální),
+      slouží hlavně jako zdroj energie. Zdroje: uzeniny, máslo, sádlo, tučné maso a tučné mléčné
       výrobky, z rostlinných tropické tuky (kokosový, palmový olej, kakaové máslo). Nadbytek zvyšuje
-      cholesterol, riziko kardiovaskulárních nemocí a obezity. Zástupci: kyselina máselná, laurová,
-      myristová, palmitová, stearová.
+      cholesterol, riziko kardiovaskulárních nemocí a obezity – omezujeme je a nahrazujeme hlavně
+      nenasycenými MK. Zástupci: kyselina máselná, laurová, myristová, palmitová, stearová.
     exercises:
       - id: zastupce
         type: choice
@@ -193,12 +198,12 @@ points:
       - id: esencialita
         type: reveal
         prompt: "Jsou nasycené MK esenciální? K čemu primárně slouží?"
-        answer: "Ne – tělo si je vytvoří samo. Slouží hlavně jako zdroj energie a lze je nahradit sacharidy."
+        answer: "Ne – tělo si je vytvoří samo. Slouží hlavně jako zdroj energie; ve stravě je vhodné je omezovat."
 
   - id: tuk.mufa
     title: Mononenasycené mastné kyseliny (MUFA)
     kind: fact
-    tier: A
+    tier: B
     criteria: [1b]
     prereqs: [tuk.deleni-mk]
     confusableWith: [tuk.sfa, tuk.pufa-n3-n6]
@@ -231,9 +236,11 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta (s. 23 a 25–26) řadí mezi PUFA i řadu omega-9. Hlavní n-9 kyselina (olejová) je ale
-      mononenasycená, jak uvádějí i skripta na s. 25. Pro test: nutričně významné PUFA jsou řady
-      n-3 a n-6; kyselina olejová je MUFA.
+      Skripta: s. 23 a 25–26 řadí mezi PUFA i řadu omega-9, ale na s. 25 správně uvádějí kyselinu
+      olejovou (hlavní n-9 MK) jako mononenasycenou. Současné poznatky: n-9 MK jsou převážně MUFA;
+      výživově významné PUFA jsou řady n-3 a n-6 (EFSA stanovuje příjem pro LA, ALA a EPA+DHA).
+      Ke zkoušce: zařazení LA, AA do n-6 a ALA, EPA, DHA do n-3 je správně podle obou zdrojů; kyselina
+      olejová je MUFA.
     criteria: [1b]
     prereqs: [tuk.deleni-mk]
     confusableWith: [tuk.esencialni-mk, tuk.mufa]
@@ -298,8 +305,10 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta udávají míru přeměny ALA různě: s. 24 „jednotky až nízké desítky procent“, s. 26
-      „5–10 %“ (ALA → EPA). Pro test počítej s 5–10 % pro EPA a s ještě nižší přeměnou na DHA.
+      Skripta: s. 24 „jednotky až nízké desítky procent“, s. 26 „5–10 %“ (ALA → EPA), na DHA ještě
+      méně. Současné poznatky: přeměna ALA na EPA je malá (jednotky procent, u žen o něco vyšší),
+      na DHA velmi malá. Ke zkoušce: pokud se otázka ptá na číslo ze skript, odpověď skript je 5–10 %
+      pro EPA; že je přeměna velmi omezená, platí podle obou zdrojů.
     criteria: [2e, 1b]
     prereqs: [tuk.esencialni-mk, tuk.pufa-n3-n6]
     source: { pages: [24, 26], anchor: "míra přeměny z ALA na EPA je jen velmi omezená" }
@@ -327,10 +336,14 @@ points:
   - id: tuk.eikosanoidy-pomer
     title: "Eikosanoidy a poměr n-6 : n-3"
     kind: comparison
-    tier: A
+    tier: B
     criteria: [1b]
     prereqs: [tuk.pufa-n3-n6]
     confusableWith: [tuk.pomer-sfa-mufa-pufa]
+    note: >-
+      Poměr n-6 : n-3 = 2–5 : 1 je ze skript (s. 26, 29), odpovídá doporučení DACH (asi 5 : 1).
+      EFSA (2010) ani ESC/EAS (2019) žádný optimální poměr nestanovují pro nedostatek dat; doporučují
+      dostatečný příjem n-3 (EPA + DHA asi 250 mg denně).
     source: { pages: [26, 29], anchor: "Eikosanoidy odvozené od n-6 kyseliny arachidonové jsou spíše prozánětlivé" }
     explanation: >-
       Z koncových PUFA vznikají eikosanoidy – látky podobné hormonům. Eikosanoidy z n-6 kyseliny
@@ -366,15 +379,24 @@ points:
     title: Přínosy EPA a DHA
     kind: fact
     tier: B
+    status: course-disputed
+    note: >-
+      Skripta: s. 27 uvádějí „prokázaný“ vliv EPA a DHA mimo jiné na ochranu před diabetem, obezitou
+      a infarktem. Současné poznatky: EFSA povolila tvrzení, že EPA + DHA přispívají k normální
+      funkci srdce (250 mg/den), DHA k normální funkci mozku a zraku, a ve vyšších dávkách
+      k normálnímu tlaku a hladině TAG; Cochrane (2020) ukazuje u suplementace jen malý nebo žádný
+      vliv na úmrtnost a kardiovaskulární příhody, ochrana před diabetem či obezitou prokázána není.
+      Ke zkoušce: pokud se otázka výslovně ptá na výčet ze skript, odpověď skript je výše; opatrnost
+      při lécích na ředění krve platí podle obou zdrojů.
     criteria: [1b, 10d]
     prereqs: [tuk.eikosanoidy-pomer]
     source: { pages: [27], anchor: "Pozor by si měli dát zejména lidé užívající léky na ředění krve" }
     explanation: >-
-      EPA a DHA mají silný protizánětlivý efekt. Prokazatelně podporují funkci buněk, mozku a zraku
-      (od vývoje plodu po stáří), imunitu, regulaci krevního tlaku a ředí krev. Chrání před
-      chronickými nemocemi (ateroskleróza, dyslipidemie, diabetes, obezita) a snižují riziko
-      infarktu. Pozor u klientů užívajících léky na ředění krve – suplementace může ovlivnit jejich
-      účinek.
+      Skripta přisuzují EPA a DHA silný protizánětlivý efekt a přínos pro funkci buněk, mozku
+      a zraku (od vývoje plodu po stáří), imunitu, krevní tlak, ředění krve, srdce a cévy
+      i ochranu před chronickými nemocemi. Doložené jsou hlavně přínosy pro srdce, mozek a zrak
+      a snížení TAG. Pozor u klientů užívajících léky na ředění krve – suplementace může ovlivnit
+      jejich účinek, ať ji proberou s lékařem.
     exercises:
       - id: leky
         type: choice
@@ -386,10 +408,10 @@ points:
           - { text: "U seniora s velmi nízkým příjmem ryb", why: "Senior, který málo jí ryby, z n-3 MK naopak spíš profituje." }
       - id: prinosy
         type: reveal
-        prompt: "Uveď alespoň čtyři prokázané přínosy EPA a DHA."
+        prompt: "Uveď alespoň čtyři přínosy EPA a DHA, které uvádějí skripta."
         answer: >-
-          Protizánětlivý účinek, ochrana srdce a cév (nižší riziko infarktu), ředění krve, regulace
-          krevního tlaku, vývoj a činnost mozku, zrak, imunita, psychická pohoda.
+          Protizánětlivý účinek, srdce a cévy, ředění krve, regulace krevního tlaku, vývoj a činnost
+          mozku, zrak, imunita, psychická pohoda (doložené jsou hlavně srdce, mozek, zrak a TAG).
 
   - id: tuk.trans
     title: Trans mastné kyseliny
@@ -402,8 +424,9 @@ points:
       U cis vazby jsou vodíky na stejné straně (v přírodě převažuje), u trans na opačných.
       Přirozeně jsou trans MK téměř jen v tuku přežvýkavců (bachorová biohydrogenace). Průmyslově
       vznikají při částečném ztužování tuků a při dezodoraci olejů – sušenky, levné polevy.
-      Zvyšují LDL a snižují HDL cholesterol, zvyšují riziko kardiovaskulárních nemocí a diabetu
-      2. typu. Limit: max. 1 % energie (asi 2 g/den); v EU max. 2 g průmyslových trans MK na 100 g tuku.
+      Zvyšují LDL a snižují HDL cholesterol, zvyšují riziko kardiovaskulárních nemocí a mohou
+      přispět k diabetu 2. typu. Limit: max. 1 % energie (asi 2 g/den); v EU max. 2 g průmyslových
+      trans MK na 100 g tuku.
     exercises:
       - id: ucinek
         type: choice
@@ -432,7 +455,7 @@ points:
         prompt: "Proč bys klientovi doporučila omezit trans mastné kyseliny a kde je hlavně najde?"
         keyPoints:
           - "Zvyšují LDL a snižují HDL cholesterol"
-          - "Zvyšují riziko kardiovaskulárních nemocí, přispívají k diabetu 2. typu"
+          - "Zvyšují riziko kardiovaskulárních nemocí, mohou přispět k diabetu 2. typu"
           - "Vznikají při částečném ztužování tuků – sušenky, levné polevy a náhražky čokolády"
           - "Limit: max. 1 % energie (asi 2 g/den)"
         modelAnswer: >-
@@ -444,7 +467,7 @@ points:
   - id: tuk.puvod-vyjimky
     title: Živočišné a rostlinné tuky – výjimky
     kind: comparison
-    tier: A
+    tier: B
     criteria: [1b]
     prereqs: [tuk.sfa]
     source: { pages: [28, 29], anchor: "Tropické oleje i mořské ryby chladných vod představují výjimky" }
@@ -482,26 +505,29 @@ points:
     status: course-disputed
     confusableWith: [met.lipoproteiny]
     note: >-
-      Skripta uvádějí doporučení asi 300 mg cholesterolu denně a že cholesterol ze stravy zvyšuje
-      LDL. Novější doporučení číselný limit často neuvádějí, protože vliv cholesterolu ze stravy
-      na krevní LDL je u většiny lidí malý (víc působí SFA a trans MK). Na s. 40 skripta navíc
-      chybně řadí cholesterol mezi lipoproteiny. Pro test: 300 mg/den, LDL „škodí“, HDL „uklízí“.
+      Skripta: s. 29 – doporučený příjem „okolo 300 mg denně“ (asi 1,5 vejce) a cholesterol ze stravy
+      zvyšuje LDL; s. 40 chybně řadí cholesterol mezi lipoproteiny. Současné poznatky: ESC/EAS (2019)
+      doporučují omezit cholesterol ze stravy pod 300 mg/den hlavně u lidí s vysokým cholesterolem
+      (slabší důkazy); EFSA (2010) žádnou referenční hodnotu nestanovila; LDL zvyšují víc SFA a trans
+      MK. 300 mg je tedy horní mez, ne cíl – nízký příjem nevadí. Ke zkoušce: pokud se otázka ptá na
+      číslo ze skript, odpověď skript je asi 300 mg denně; LDL „škodí“, HDL „uklízí“ platí podle obou.
     criteria: [1b]
     source: { pages: [29, 89], anchor: "Většinu cholesterolu si organizmus vyrábí sám (přibližně 1 g denně)" }
     explanation: >-
       Cholesterol je steroidní látka, součást každé buňky, nervů a některých hormonů. Většinu si
       tělo vyrobí samo (asi 1 g denně), ze stravy přijmeme asi 0,3 g; najdeme ho jen v živočišných
-      potravinách. Doporučení: asi 300 mg denně (≈ 1,5 vejce). Nadbytek LDL cholesterolu vede
-      k ateroskleróze (riziko infarktu, mrtvice); HDL přebytečný LDL cholesterol „uklízí“.
+      potravinách. Skripta uvádějí asi 300 mg denně (≈ 1,5 vejce) – ber to jako horní mez, ne
+      cíl. Nadbytek LDL cholesterolu vede k ateroskleróze (riziko infarktu, mrtvice); HDL přebytečný LDL cholesterol „uklízí“.
     exercises:
       - id: prijem
+        version: 2
         type: choice
-        prompt: "Kolik cholesterolu denně doporučují skripta u nesportující populace?"
+        prompt: "Jakou hodnotu příjmu cholesterolu ze stravy uvádějí skripta pro nesportující populaci (horní mez)?"
         options:
-          - { text: "Asi 300 mg", correct: true }
-          - { text: "Asi 1 g", why: "Přibližně tolik si tělo denně vyrobí samo." }
-          - { text: "Asi 30 mg", why: "To je desetkrát méně, než skripta doporučují (asi 300 mg)." }
-          - { text: "Asi 3 g", why: "To je desetkrát víc; ze stravy přijímáme asi 0,3 g denně." }
+          - { text: "Asi 300 mg denně", correct: true }
+          - { text: "Asi 1 g denně", why: "Přibližně tolik si tělo denně vyrobí samo." }
+          - { text: "Asi 30 mg denně", why: "Skripta uvádějí asi 300 mg; nižší příjem ale nevadí – tělo si cholesterol vyrobí." }
+          - { text: "Asi 3 g denně", why: "To je desetkrát víc; ze stravy přijímáme asi 0,3 g denně." }
       - id: hdl
         type: choice
         prompt: "Jakou roli má podle skript HDL cholesterol?"
@@ -509,7 +535,7 @@ points:
           - { text: "„Uklízí“ přebytečný LDL cholesterol.", correct: true }
           - { text: "Ukládá cholesterol do stěn tepen.", why: "To je riziko nadbytku LDL." }
           - { text: "Přenáší hlavně triacylglyceroly z jater.", why: "To dělají hlavně VLDL." }
-          - { text: "Je to rostlinná forma cholesterolu.", why: "Cholesterol je jen v živočišných potravinách; HDL je lipoprotein v krvi." }
+          - { text: "Je to cholesterol přijatý ze stravy.", why: "HDL je lipoprotein v krvi; s původem cholesterolu (strava / vlastní tvorba) nesouvisí." }
       - id: zdroje
         type: reveal
         prompt: "Odkud tělo získává cholesterol a v jakých potravinách se vyskytuje?"
@@ -548,10 +574,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Příjem tuků se ve skriptech liší: kap. 3 (s. 29–30) 25–35 % energie, asi 1 g/kg (min. 0,5,
-      horní hranice 1,5 g/kg); kap. 17 (s. 181–182) „tuky 30 %“ a prakticky 0,5–1 g/kg; sportovní
-      kap. (s. 207) nejméně 20 % energie, (s. 205, 211) 20–35 %; senioři (s. 227) 30–35 %. Rozmezí
-      25–35 % ale opakuje i kap. 17 (s. 182). Na otázku o doporučeném příjmu tuků odpovídej podle kap. 3.
+      Skripta: kap. 3 (s. 29–30) 25–35 % energie, asi 1 g/kg (min. 0,5, horní hranice 1,5 g/kg);
+      kap. 17 (s. 181–182) „tuky 30 %“ i 25–35 %, prakticky 0,5–1 g/kg; sportovní kap. (s. 207)
+      nejméně 20 %, (s. 205, 211) 20–35 %; senioři (s. 227) 30–35 %. Současné poznatky: EFSA (2010)
+      referenční rozmezí 20–35 % energie, SFA a trans MK co nejméně; WHO (2023) SFA do 10 %, trans MK
+      do 1 % energie; hodnoty v g/kg jsou praktická pravidla skript. Ke zkoušce: pokud se otázka ptá
+      na kapitolu o tucích, odpověď skript je 25–35 %; toto rozmezí leží celé uvnitř rozmezí EFSA.
     criteria: [1b, 5c]
     source: { pages: [29, 30], anchor: "Minimální denní příjem by měl být 0,5 g na 1 kg" }
     explanation: >-
@@ -608,7 +636,7 @@ points:
   - id: tuk.pomer-sfa-mufa-pufa
     title: "Poměr SFA : MUFA : PUFA"
     kind: fact
-    tier: A
+    tier: B
     criteria: [1b]
     prereqs: [tuk.sfa, tuk.mufa]
     confusableWith: [tuk.eikosanoidy-pomer]

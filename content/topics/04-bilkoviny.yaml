@@ -12,9 +12,9 @@ points:
   - id: bil.charakteristika
     title: Bílkoviny – stavba a postavení mezi živinami
     kind: concept
-    tier: A
+    tier: B
     criteria: [1d]
-    source: { pages: [36, 37], anchor: "jejich primární funkce je spíše stavební" }
+    source: { pages: [36, 37, 8], anchor: "jejich primární funkce je spíše stavební" }
     explanation: >-
       Bílkoviny jsou esenciální makroživina. Dodávají energii (17 kJ / 4 kcal na 1 g), ale jejich
       hlavní funkce je stavební. Mají největší sytící efekt ze všech makroživin a jejich zpracování
@@ -46,7 +46,7 @@ points:
   - id: bil.denaturace
     title: Denaturace bílkovin
     kind: concept
-    tier: A
+    tier: B
     criteria: [1d, 4a]
     prereqs: [bil.charakteristika]
     source: { pages: [36, 40], anchor: "nevratný proces, při kterém vlivem okolních podmínek dochází ke změně prostorové struktury" }
@@ -121,11 +121,13 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Kap. 4 (tab. 4.1, s. 38–39) uvádí 8 esenciálních AK a histidin s argininem jako podmíněně
-      esenciální. Kap. 11 (s. 90) řadí histidin mezi esenciální „v období růstu“ a sportovní kap. 20
-      (s. 211) mluví o 9 esenciálních AK – to odpovídá současnému pojetí (histidin je esenciální
-      i pro dospělé). V testu odpovídej podle kap. 4: 8 esenciálních AK, arginin a histidin
-      podmíněně esenciální.
+      Skripta: kap. 4 (tab. 4.1, s. 38–39) uvádí 8 esenciálních AK a histidin s argininem jako
+      podmíněně esenciální; kap. 11 (s. 90) řadí histidin mezi esenciální „v období růstu“, sportovní
+      kap. 20 (s. 211) mluví o 9 esenciálních AK. Současné poznatky: WHO/FAO (2007) i EFSA (2012)
+      počítají 9 esenciálních AK včetně histidinu i pro dospělé; arginin je podmíněně esenciální.
+      Ke zkoušce: pokud se otázka výslovně ptá na skripta (kap. 4), odpověď skript je 8 esenciálních
+      AK a arginin s histidinem podmíněně esenciální; leucin, lysin, tryptofan aj. jsou esenciální
+      podle obou zdrojů.
     criteria: [1d, 1a]
     prereqs: [bil.charakteristika]
     confusableWith: [bil.limitujici-ak]
@@ -188,9 +190,9 @@ points:
         prompt: "Která aminokyselina bývá limitující u luštěnin?"
         options:
           - { text: "Methionin nebo cystein", correct: true }
-          - { text: "Lysin", why: "Lysin je limitující u obilovin." }
-          - { text: "Tryptofan", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
-          - { text: "Arginin", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
+          - { text: "Lysin nebo threonin", why: "Lysin je limitující u obilovin, ne u luštěnin." }
+          - { text: "Tryptofan nebo valin", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
+          - { text: "Leucin nebo isoleucin", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
       - id: definice
         type: reveal
         prompt: "Co je limitující aminokyselina a jak se u rostlinné stravy řeší?"
@@ -214,7 +216,7 @@ points:
   - id: bil.plnohodnotne
     title: Plnohodnotné a neplnohodnotné bílkoviny
     kind: comparison
-    tier: A
+    tier: B
     criteria: [1d]
     prereqs: [bil.limitujici-ak]
     source: { pages: [39, 40], anchor: "Živočišné bílkoviny mají komplexnější spektrum aminokyselin" }
@@ -294,7 +296,7 @@ points:
   - id: bil.bv
     title: Biologická hodnota bílkovin (BV)
     kind: concept
-    tier: A
+    tier: B
     criteria: [1d]
     prereqs: [bil.plnohodnotne]
     confusableWith: [bil.pdcaas-diaas]
@@ -310,7 +312,7 @@ points:
         type: choice
         prompt: "Která bílkovina má podle skript ideální biologickou hodnotu 100?"
         options:
-          - { text: "Bílkovina vaječného bílku", correct: true }
+          - { text: "Vaječný bílek", correct: true }
           - { text: "Syrovátkový protein", why: "U syrovátky skripta uvádějí využitelnost až 100 %, ne BV." }
           - { text: "Sójová bílkovina", why: "Sója je rostlinný zdroj; hodnotu 100 má podle skript vaječný bílek." }
           - { text: "Kolagen", why: "Kolagen má nejnižší hodnocení (DIAAS 0)." }
@@ -356,10 +358,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Pro seniory kap. 4 (s. 43) uvádí DACH 1 g/kg (65+), kap. 13 (s. 142) a kap. 21 (s. 227)
-      1,0–1,2 g/kg pro zdravé seniory (1,2–1,5 g/kg při nemoci). Kap. 17
-      (s. 182) shrnuje minimum pro zdravého dospělého jako 0,8–1 g/kg. Na otázku o doporučeních
-      EFSA/WHO/DACH odpovídej podle kap. 4.
+      Skripta: kap. 4 (s. 43) 10–15 % energie, EFSA/WHO 0,83 g/kg, DACH 0,8 g/kg (19–64 let)
+      a 1 g/kg (65+); kap. 13 (s. 142) a kap. 21 (s. 227) 1,0–1,2 g/kg pro zdravé seniory
+      (1,2–1,5 g/kg při nemoci); kap. 17 (s. 182) minimum 0,8–1 g/kg. Současné poznatky: EFSA (2012)
+      PRI 0,83 g/kg pro všechny dospělé včetně starších; DACH (2017) 1,0 g/kg od 65 let; ESPEN
+      u seniorů 1,0–1,2 g/kg. Ke zkoušce: hodnoty EFSA/WHO 0,83 a DACH 0,8 / 1,0 g/kg ze skript
+      odpovídají zdrojům; u seniorů se kapitoly liší, rozhodující je, na co se otázka ptá.
     criteria: [1d]
     source: { pages: [43], anchor: "Obecná výživová doporučení uvádějí, že by bílkoviny měly" }
     explanation: >-
@@ -372,10 +376,10 @@ points:
         type: choice
         prompt: "Jaký dostačující příjem bílkovin uvádějí EFSA a WHO?"
         options:
-          - { text: "0,83 g/kg hmotnosti", correct: true }
+          - { text: "0,83 g/kg", correct: true }
           - { text: "1,2–2 g/kg", why: "To je rozmezí pro zvýšenou potřebu." }
           - { text: "1 g/kg", why: "To doporučuje DACH pro lidi 65+." }
-          - { text: "0,5 g/kg", why: "To je minimální příjem tuků." }
+          - { text: "0,5 g/kg", why: "To je podle skript minimální příjem tuků, ne bílkovin." }
       - id: procenta
         type: choice
         prompt: "Kolik procent energie by podle obecných doporučení měly tvořit bílkoviny?"
@@ -395,11 +399,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta se liší: kap. 4 (s. 43) 1,2–2 g/kg pro skupiny se zvýšenou potřebou; sportovní kap.
-      (s. 204, 211) 1,4–2,0 g/kg, (s. 207) 1,6–2,2 g/kg, v redukci (s. 205) 1,6–2,4 g/kg; kap. o
-      doplňcích (s. 137) uvádí, že přínos se nad asi 1,6 g/kg zpomaluje; s. 209 do 1,8 g/kg. Kap. 21
-      (s. 225) uvádí pro sportovce 1,2–2,0 g/kg, shodně s kap. 4. Obecně odpovídej 1,2–2 g/kg (kap. 4);
-      u otázek ze sportovní výživy použij hodnoty sportovní kapitoly.
+      Skripta: kap. 4 (s. 43) 1,2–2 g/kg pro skupiny se zvýšenou potřebou; sportovní kap. (s. 204,
+      211) 1,4–2,0 g/kg, (s. 207) 1,6–2,2 g/kg, v redukci (s. 205) 1,6–2,4 g/kg; s. 137 přínos nad asi
+      1,6 g/kg slábne; s. 209 do 1,8 g/kg; kap. 21 (s. 225) 1,2–2,0 g/kg. Současné poznatky: ACSM
+      (2016) pro sportovce 1,2–2,0 g/kg, ISSN 1,4–2,0 g/kg; u chronického onemocnění ledvin KDIGO
+      (2024) vysoký příjem (nad 1,3 g/kg) nedoporučuje. Ke zkoušce: rozmezí 1,2–2 g/kg je správně
+      podle skript (kap. 4) i podle ACSM; pokud se otázka ptá na sportovní kapitolu, její čísla se liší.
     criteria: [1d, 7d]
     prereqs: [bil.prijem-zakladni]
     source: { pages: [43], anchor: "Vyšší potřeba bílkovin obvykle dosahuje rozmezí 1,2–2 g bílkovin" }
@@ -407,7 +412,7 @@ points:
       Vyšší potřebu mají těhotné a kojící ženy, sportovci, lidé v redukci hmotnosti a lidé po
       úrazech. Obvykle jde o 1,2–2 g bílkovin na kg. Ještě víc přijímají spíš kulturisté – pro
       běžné lidi to není nutné. Nižší hodnoty volíme u lidí nezvyklých na vyšší příjem, s nízkým
-      energetickým příjmem nebo málo aktivních.
+      energetickým příjmem nebo málo aktivních. Při onemocnění ledvin příjem bílkovin určuje lékař.
     exercises:
       - id: rozmezi
         type: choice
@@ -456,17 +461,19 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Kap. 4 uvádí 20–50 g bílkovin na porci. Sportovní kap. 20 (s. 208, 210) uvádí 20–40 g
+      Skripta: kap. 4 (s. 44) 20–50 g bílkovin na porci; sportovní kap. 20 (s. 208, 210) 20–40 g
       (0,25–0,4 g/kg) na dávku, s. 207 pro maximální růst 0,4–0,5 g/kg; kap. 21 (s. 226)
-      0,25–0,3 g/kg po tréninku. Obecně odpovídej 20–50 g (kap. 4); u otázek ze sportovní výživy
-      20–40 g.
+      0,25–0,3 g/kg po tréninku. Současné poznatky: ISSN uvádí 20–40 g (0,25 g/kg) na dávku; obavy
+      o ledviny se týkají lidí s onemocněním ledvin (KDIGO 2024), ne zdravých. Ke zkoušce: pokud se
+      otázka ptá na kapitolu o bílkovinách, odpověď skript je 20–50 g; u sportovní výživy 20–40 g.
     criteria: [1d, 7d]
     prereqs: [bil.prijem-zvyseny]
     source: { pages: [44], anchor: "Obecně se jako optimální dávka udává 20–50 g bílkovin v jedné porci" }
     explanation: >-
       Jako optimální dávka pro proteosyntézu se uvádí 20–50 g bílkovin v jedné porci, při
       dostatečném energetickém příjmu a rovnoměrném rozložení během dne. Dřívější obavy, že víc
-      tělo nezpracuje a zatíží ledviny, nové výzkumy nepotvrzují – záleží na zvyku a trénovanosti.
+      tělo nezpracuje a zatíží ledviny, se u zdravých lidí nepotvrzují – záleží na zvyku
+      a trénovanosti (při nemoci ledvin rozhoduje lékař).
       Náhlé zvýšení příjmu může způsobit trávicí potíže. Při nedostatku sacharidů a tuků tělo
       bílkoviny využije jako energii (přemění AK na glukózu).
     exercises:
@@ -511,8 +518,10 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Na s. 44 skripta píší „Z živočišných zdrojů se za nejhodnotnější … považují sója, ostatní
-      luštěniny“ – jde zjevně o překlep, má být „z rostlinných zdrojů“.
+      Skripta: s. 44 píší „Z živočišných zdrojů se za nejhodnotnější … považují sója, ostatní
+      luštěniny“ – zjevný překlep, sója je rostlinný zdroj. Současné poznatky: sója patří
+      k nejhodnotnějším rostlinným zdrojům bílkovin. Ke zkoušce: „sója = nejhodnotnější rostlinný
+      zdroj“ je správně podle obou čtení.
     criteria: [1d]
     prereqs: [bil.plnohodnotne]
     source: { pages: [44, 45], anchor: "Mezi nejbohatší zdroje plnohodnotných" }

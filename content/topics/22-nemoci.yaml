@@ -103,7 +103,7 @@ points:
   - id: nem.ateroskleroza
     title: Ateroskleróza a její rizikové faktory
     kind: concept
-    tier: A
+    tier: B
     criteria: [10d]
     prereqs: [nem.metabolicky-syndrom]
     source: { pages: [235], anchor: "hromadění tuků (cholesterolu) v cévní stěně" }
@@ -150,7 +150,7 @@ points:
   - id: nem.osteoporoza
     title: Osteoporóza – rizika a prevence
     kind: concept
-    tier: A
+    tier: B
     criteria: [10d]
     source: { pages: [239], anchor: "úbytek kostní hmoty a změna struktury kosti" }
     explanation: >-
@@ -193,7 +193,7 @@ points:
   - id: nem.dyslipidemie
     title: Dyslipidémie – role LDL a HDL
     kind: comparison
-    tier: A
+    tier: B
     criteria: [10c, 3b]
     confusableWith: [nem.lipidovy-panel]
     source: { pages: [235, 236], anchor: "roznáší cholesterol z jater do periferních tkání" }
@@ -240,11 +240,16 @@ points:
     criteria: [3b]
     prereqs: [nem.dyslipidemie]
     confusableWith: [nem.dyslipidemie]
+    note: >-
+      Hodnoty ze skript odpovídají běžným referenčním mezím českých laboratoří a cílům ESC/EAS (2019)
+      pro lidi s nízkým rizikem. U vyššího kardiovaskulárního rizika stanoví lékař nižší cílový LDL
+      (podle ESC až pod 1,8 nebo 1,4 mmol/l) – proto výsledky nehodnotí poradce.
     source: { pages: [240, 241], anchor: "Lipidový profil se používá pro hodnocení rizika aterosklerózy" }
     explanation: >-
       Lipidový profil slouží k hodnocení rizika aterosklerózy. Optimální hodnoty podle skript:
-      celkový cholesterol do 5 mmol/l, LDL do 3 mmol/l, HDL nejméně 1,0 mmol/l u mužů a
-      1,2 mmol/l u žen, triacylglyceroly do 1,7 mmol/l. Interpretace výsledků patří lékaři.
+      celkový cholesterol do 5 mmol/l, LDL do 3 mmol/l, HDL nejméně 1 mmol/l u mužů a
+      1,2 mmol/l u žen, triacylglyceroly do 1,7 mmol/l. U lidí s vyšším rizikem stanoví lékař přísnější
+      cíl LDL. Interpretace výsledků patří lékaři.
     exercises:
       - id: ldl
         type: choice
@@ -264,7 +269,7 @@ points:
         options:
           - text: "Minimálně 1,2 mmol/l"
             correct: true
-          - text: "Minimálně 1,0 mmol/l"
+          - text: "Minimálně 1 mmol/l"
             why: "To je minimum pro muže."
           - text: "Maximálně 1,2 mmol/l"
             why: "U HDL je rizikový nízký stav, hodnota je tedy minimální, ne maximální."
@@ -273,18 +278,19 @@ points:
       - id: hodnoty
         type: reveal
         prompt: "Uveď optimální hodnoty celkového cholesterolu, LDL, HDL a triacylglycerolů."
-        answer: "Celkový do 5, LDL do 3, HDL min. 1,0 (muži) / 1,2 (ženy), TAG do 1,7 mmol/l."
+        answer: "Celkový do 5, LDL do 3, HDL min. 1 (muži) / 1,2 (ženy), TAG do 1,7 mmol/l."
 
   - id: nem.dm-typy
     title: Typy cukrovky
     kind: comparison
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Kap. 23 (s. 250) označuje DM 1. typu jako „vrozený“, kap. 22 (s. 236) správně uvádí, že jde
-      o autoimunitní onemocnění, které se může projevit i v dospělosti. DM 1 není vrozený v pravém
-      smyslu (dědí se jen sklon). U zkoušky popiš DM 1 jako autoimunitní, s absolutním nedostatkem
-      inzulinu, nejčastěji od dětství.
+      Skripta: kap. 23 (s. 250) označuje DM 1. typu jako „vrozený“, kap. 22 (s. 236) uvádí, že jde
+      o autoimunitní onemocnění, které se může projevit i v dospělosti. Současné poznatky (ADA): DM 1
+      je autoimunitní zánik buněk slinivky; vrozený v pravém smyslu není, dědí se jen sklon. Ke
+      zkoušce: popis „autoimunitní, absolutní nedostatek inzulinu, nejčastěji od dětství“ platí podle
+      obou kapitol skript i podle současných poznatků.
     criteria: [10c, 7h]
     source: { pages: [236, 250], anchor: "Podkladem cukrovky 1. typu je autoimunitní zánět slinivky" }
     explanation: >-
@@ -330,7 +336,7 @@ points:
   - id: nem.glykemie-hba1c
     title: Glykémie, prediabetes a glykovaný hemoglobin
     kind: fact
-    tier: A
+    tier: B
     criteria: [3b, 3c]
     prereqs: [sach.glykemie-norma]
     source: { pages: [236, 241], anchor: "Glykovaný hemoglobin je dlouhodobým ukazatelem hladiny krevního cukru" }
@@ -415,12 +421,13 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Rozdíl v důrazu: kap. 23 (s. 244) doporučuje u hypotyreózy strumigenní potraviny omezit a pro
-      denní konzumaci upřednostnit jiné druhy (zároveň říká, že není nutné se jim vyhýbat), kap. 7
-      (s. 60) uvádí, že při dostatku jódu a běžné konzumaci není důvod se brukvovité zelenině vyhýbat.
-      To odpovídá i běžným poznatkům. U zkoušky: strumigeny jmenuj, ale řekni, že je není nutné
-      vyřazovat, jen nejíst denně. Doplněno: u autoimunitní hypotyreózy je nevhodný nadbytek jódu,
-      proto řasy jen opatrně.
+      Skripta: kap. 23 (s. 244) doporučuje u hypotyreózy strumigenní potraviny omezit a pro denní
+      konzumaci upřednostnit jiné druhy (zároveň říká, že není nutné se jim vyhýbat); kap. 7 (s. 60)
+      uvádí, že při dostatku jódu a běžné konzumaci není důvod se brukvovité zelenině vyhýbat.
+      Současné poznatky: při dostatku jódu běžné množství brukvovité zeleniny štítné žláze neškodí;
+      u autoimunitní hypotyreózy je nevhodný nadbytek jódu (řasy jen opatrně) – doplněno nad rámec
+      skript. Ke zkoušce: pokud se otázka ptá na skripta, strumigeny se jmenují a „nejíst denně“;
+      vyřazovat je podle obou kapitol není nutné.
     criteria: [3b, 10c]
     prereqs: [min.jod]
     source: { pages: [239, 244], anchor: "Laboratorně svědčí pro hypofunkci štítné žlázy zvýšená hladina TSH" }
@@ -458,6 +465,11 @@ points:
     kind: procedure
     tier: A
     criteria: [7h, 10d, 3b]
+    note: >-
+      Ověřeno: hranice hypertenze 140/90 mm Hg (opakovaně, v ordinaci) platí i podle ESH 2023 a ESC
+      2024. ESC 2024 navíc zavádí kategorii „zvýšený tlak“ 120–139/70–89, u níž doporučuje úpravu
+      životního stylu; „vysoký normální“ (130–139/85–89) je starší terminologie ESH, kterou používají
+      skripta. Sůl kolem 5 g denně (sodík asi 2 g) odpovídá WHO i ESC/ESH.
     prereqs: [min.sodik]
     source: { pages: [235, 249, 58], anchor: "Hypertenze nebolí, a proto se ji říká tichý zabiják" }
     explanation: >-
@@ -515,10 +527,12 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta (s. 236, také s. 29 – doporučení okolo 300 mg/den) uvádějí omezení cholesterolu ze stravy.
-      Současná doporučení už striktní limit cholesterolu ze stravy většinou nestanovují; na LDL má
-      větší vliv příjem nasycených a trans tuků. U zkoušky uveď kurzovou odpověď (omezit cholesterol
-      i nasycené MK), ale důraz dej na trans a nasycené tuky, vlákninu a nenasycené tuky.
+      Skripta: s. 236 (a s. 29 – okolo 300 mg/den) uvádějí omezení cholesterolu ze stravy spolu
+      s nasycenými MK. Současné poznatky: ESC/EAS (2019) i většina současných doporučení kladou důraz
+      hlavně na omezení nasycených a trans tuků, vlákninu a nenasycené tuky; pevný limit cholesterolu
+      ze stravy už obvykle nestanovují, jeho vliv na LDL je menší. Ke zkoušce: pokud se otázka ptá na
+      skripta, omezení cholesterolu ze stravy k odpovědi patří; opatření z výkladu jsou správná podle
+      obou zdrojů.
     criteria: [7h, 10d]
     prereqs: [nem.dyslipidemie]
     source: { pages: [236, 249], anchor: "omezení konzumace cholesterolu a nasycených mastných kyselin" }
@@ -578,19 +592,20 @@ points:
     tier: A
     safety: true
     note: >-
-      Doplněno nad rámec skript jako bezpečnostní rámec: u DM 2 léčeného inzulinem nebo jinými léky
-      snižujícími glykémii hrozí při omezení sacharidů hypoglykémie a při onemocnění ledvin je
-      nevhodný vyšší příjem bílkovin (srov. s. 238) – takové změny je nutné konzultovat s lékařem.
+      Doplněno nad rámec skript jako bezpečnostní rámec: u DM 2 léčeného inzulinem nebo deriváty
+      sulfonylurey hrozí při omezení sacharidů hypoglykémie, u gliflozinů (SGLT2 inhibitory) při velmi
+      nízkém příjmu sacharidů ketoacidóza (varování EMA/FDA) a při onemocnění ledvin je nevhodný vyšší
+      příjem bílkovin (srov. s. 238) – takové změny je nutné konzultovat s lékařem. Nízkosacharidovou
+      stravu jako jednu z možností u DM 2 připouští i ADA (konsenzus 2019, Standards of Care).
     criteria: [7h, 10c]
     prereqs: [nem.dm-typy, sach.gi, sach.gn]
     source: { pages: [236, 250], anchor: "upřednostňovala potraviny s nízkým GI a GN" }
     explanation: >-
-      Základ: vyvážená strava s přiměřenou energií, pohyb a redukce hmotnosti. Upřednostňují se
+      Základ: vyvážená strava s přiměřenou energií, pohyb a hubnutí. Upřednostňují se
       potraviny s nízkým GI a GN. Nevhodné jsou bílé a sladké pečivo, bílá rýže a těstoviny,
-      sladkosti, slazené nápoje i džusy, med, sušené ovoce, ochucené mléčné výrobky, uzeniny a
-      ztužené tuky. Lze zvážit nízkosacharidovou stravu a víc bílkovin; sacharidy se ubírají postupně.
-      Při léčbě inzulinem či jinými léky na cukrovku nebo při nemoci ledvin to vždy konzultovat
-      s lékařem. U DM 1 nikdy low-carb bez diabetologa.
+      sladkosti, slazené nápoje i džusy, med, sušené ovoce, uzeniny a ztužené tuky. Lze zvážit nízkosacharidovou stravu a víc bílkovin; sacharidy se ubírají postupně.
+      Při léčbě inzulinem či jinými léky na cukrovku (riziko hypoglykémie, u některých i ketoacidózy)
+      nebo při nemoci ledvin to vždy konzultovat s lékařem. U DM 1 nikdy low-carb bez diabetologa.
     exercises:
       - id: nevhodne
         type: choice
@@ -677,12 +692,14 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta řadí mezi omezované zdroje purinů i čaj, kakao a luštěniny (s. 239) a doporučují omezit
-      kávu a černý čaj (s. 244). Podle současných poznatků káva riziko dny spíš snižuje a rostlinné
-      zdroje purinů (luštěniny, zelenina) riziko dny výrazně nezvyšují; kofein a teobromin v kávě,
-      čaji a kakau jsou methylxanthiny, které kyselinu močovou nezvyšují jako puriny z masa. Hlavní
-      rizika jsou maso, vnitřnosti, mořské plody, alkohol (pivo) a fruktóza. U zkoušky uveď kurzový
-      výčet, ale důraz dej na živočišné zdroje, alkohol a slazené nápoje.
+      Skripta: mezi omezované zdroje purinů řadí i čaj, kakao a luštěniny (s. 239) a doporučují omezit
+      kávu a černý čaj (s. 244). Současné poznatky: ACR (2020) doporučuje omezit alkohol, puriny
+      (hlavně z masa, vnitřností a mořských plodů) a fruktózový sirup, při nadváze hubnout; ke kávě
+      a čaji doporučení nedává. Pozorovací studie ukazují, že káva riziko dny spíš snižuje a rostlinné
+      zdroje purinů (luštěniny, zelenina) ho výrazně nezvyšují; methylxanthiny v kávě, čaji a kakau
+      nejsou puriny z masa. Ke zkoušce: pokud se otázka ptá na skripta, patří do výčtu i luštěniny,
+      kakao, káva a čaj; hlavní rizika podle obou zdrojů jsou maso, vnitřnosti, mořské plody,
+      alkohol (pivo) a fruktóza.
     criteria: [7h, 7g]
     prereqs: [nem.dna-mechanismus]
     source: { pages: [239, 244], anchor: "Maso by mělo být konzumováno pouze v malých porcích" }
@@ -710,13 +727,13 @@ points:
         type: choice
         prompt: "Jak podle skript zařazovat maso při dně?"
         options:
-          - text: "Malá porce cca 75–100 g, nejvýše jednou denně"
+          - text: "Porce 75–100 g, nejvýš 1× denně"
             correct: true
-          - text: "Úplně vyřadit"
+          - text: "Úplně vyřadit i drůbež a ryby"
             why: "Skripta maso nevyřazují, jen omezují porci a frekvenci."
-          - text: "Neomezeně, pokud je libové"
+          - text: "Bez omezení, pokud je libové"
             why: "Maso je významným zdrojem purinů, porce je potřeba omezit."
-          - text: "Nahradit masovým vývarem"
+          - text: "Místo masa denně masový vývar"
             why: "Puriny při vaření přecházejí do vody, vývary jsou rizikové."
       - id: vysvetli
         type: explain
@@ -738,12 +755,21 @@ points:
     title: Celiakie
     kind: concept
     tier: A
+    status: course-disputed
+    note: >-
+      Skripta: s. 238 řadí mezi obiloviny s lepkem i oves (avenin); s. 246–247 upřesňuje, že avenin
+      není totéž co lepek a nekontaminovaný oves lze v remisi pod lékařským dohledem zavádět.
+      Současné poznatky: lepek tvoří bílkoviny pšenice, žita a ječmene; čistý oves většina celiaků
+      snese, problémem bývá kontaminace (ESPGHAN, nařízení EU 828/2014 připouští oves v potravinách
+      „bez lepku“ jen při obsahu lepku do 20 mg/kg). Ke zkoušce: pokud se otázka ptá na skripta, oves
+      se jmenuje mezi obilovinami, kterým se celiak vyhýbá; běžný oves skutečně nejí.
     criteria: [7h]
     confusableWith: [nem.laktoza-strava]
     source: { pages: [238, 246], anchor: "Jedinou možností léčby je eliminace lepku" }
     explanation: >-
-      Celiakie je autoimunitní onemocnění: imunita reaguje na štěpné produkty lepku (glutenu), směsi
-      bílkovin z pšenice, žita, ječmene a ovsa. Projevit se může i mimo trávicí trakt (např. na kůži).
+      Celiakie je autoimunitní onemocnění: imunita reaguje na štěpné produkty lepku (glutenu), bílkovin
+      pšenice, žita a ječmene; skripta sem řadí i oves (běžný bývá kontaminovaný). Projevit se může
+      i mimo trávicí trakt (např. na kůži).
       Jedinou léčbou je celoživotní přísná bezlepková dieta. Hrozí malnutrice – hlavně nedostatek
       bílkovin, železa, vápníku, vitaminů B9 a B12 a kvůli horšímu vstřebávání tuků i vitaminů
       rozpustných v tucích. Nesnášenlivost lepku má tři formy: celiakie, alergie a neceliakální
@@ -778,13 +804,13 @@ points:
         type: explain
         prompt: "Vysvětli, co je celiakie a jaké má důsledky pro výživu."
         keyPoints:
-          - "Autoimunitní reakce na lepek (pšenice, žito, ječmen, oves)"
+          - "Autoimunitní reakce na lepek (pšenice, žito, ječmen; skripta i oves)"
           - "Může se projevit i mimo trávicí trakt"
           - "Jediná léčba: celoživotní přísná bezlepková dieta"
           - "Riziko malnutrice: bílkoviny, Fe, Ca, B9, B12, vitaminy rozpustné v tucích"
         modelAnswer: >-
           Celiakie je autoimunitní onemocnění, při kterém imunita reaguje na lepek – bílkoviny z
-          pšenice, žita, ječmene a ovsa – a poškozuje střevo; projevy mohou být i mimo trávení, třeba na
+          pšenice, žita a ječmene, skripta uvádějí i oves – a poškozuje střevo; projevy mohou být i mimo trávení, třeba na
           kůži. Jedinou léčbou je přísná bezlepková dieta. Kvůli poškozenému vstřebávání hrozí
           nedostatek bílkovin, železa, vápníku, vitaminů B9 a B12 i vitaminů rozpustných v tucích,
           na což musí jídelníček myslet.
@@ -792,7 +818,7 @@ points:
   - id: nem.bezlepkova-dieta
     title: Bezlepková dieta v praxi
     kind: procedure
-    tier: A
+    tier: B
     criteria: [7g, 7h]
     prereqs: [nem.celiakie]
     source: { pages: [246, 247], anchor: "kuskus a bulgur, o nichž mnoho lidí neví" }
@@ -896,7 +922,7 @@ points:
   - id: nem.laktoza-strava
     title: Výživa při laktózové intoleranci
     kind: procedure
-    tier: A
+    tier: B
     criteria: [7h]
     prereqs: [sach.laktozova-intolerance]
     confusableWith: [nem.intolerance-alergie, nem.celiakie]
@@ -982,13 +1008,15 @@ points:
   - id: nem.histaminova-intolerance
     title: Histaminová intolerance a nízkohistaminová dieta
     kind: procedure
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Skripta popisují histaminovou intoleranci jako jasně definovaný stav. Podle současných poznatků
-      je to sporná diagnóza bez spolehlivého testu (ani měření DAO v krvi není průkazné) a důkazy pro
-      nízkohistaminovou dietu jsou omezené. U zkoušky uveď kurzový postup (DAO, eliminační a zkušební
-      fáze); v praxi ať diagnózu stanoví lékař.
+      Skripta: histaminovou intoleranci popisují jako jasně definovaný stav (nedostatek DAO) s dvoufázovou
+      dietou (s. 237, 245). Současné poznatky: německo-švýcarsko-rakouská guideline (Reese a kol. 2021)
+      uvádí, že důkazy pro reprodukovatelné potíže po histaminu z jídla jsou omezené a rozporné, měření
+      DAO v krvi ani histaminu diagnózu nepotvrdí a dlouhodobé plošné diety vedou ke zbytečným
+      omezením. Ke zkoušce: pokud se otázka ptá na skripta, odpověď je DAO a eliminační + zkušební
+      fáze; v praxi diagnózu řeší lékař a eliminace má být jen krátkodobá.
     criteria: [7h, 7g]
     confusableWith: [nem.intolerance-alergie]
     source: { pages: [237, 245], anchor: "Významnou roli při odbourávání histaminu přijatého potravou hraje enzym diaminoxidáza" }
@@ -1001,15 +1029,16 @@ points:
       přidávání po jedné potravině). Menší porce, pitný režim, bez alkoholu, méně stresu.
     exercises:
       - id: enzym
+        version: 2
         type: choice
-        prompt: "Nedostatečná funkce kterého enzymu je podstatou histaminové intolerance?"
+        prompt: "Nedostatečná funkce kterého enzymu je podle skript podstatou histaminové intolerance?"
         options:
-          - text: "Diaminoxidázy (DAO)"
+          - text: "Diaminoxidázy"
             correct: true
+          - text: "Histidindekarboxylázy"
+            why: "Ta histamin naopak vytváří (z histidinu); odbourávání histaminu z potravy zajišťuje diaminoxidáza."
           - text: "Laktázy"
             why: "Laktáza souvisí s laktózovou intolerancí."
-          - text: "Amylázy"
-            why: "Amyláza štěpí škrob."
           - text: "Lipázy"
             why: "Lipáza štěpí tuky."
       - id: faze
@@ -1038,15 +1067,15 @@ points:
   - id: nem.crohn
     title: Výživa při Crohnově chorobě
     kind: procedure
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Skripta (s. 248–249) uvádějí pro fázi remise mezi doporučenými způsoby stravování paleo, zónovou
-      dietu a nízkosacharidovou stravu. Pro to nejsou u Crohnovy choroby dobré důkazy; běžně se
-      doporučuje pestrá individuálně snášená strava pod vedením lékaře či nutričního terapeuta.
-      Kap. 22 (s. 238) navíc pro remisi uvádí lehkou plnohodnotnou stravu. U zkoušky zdůrazni
-      remisi = pestrá individuální strava, relaps = bezezbytková strava, péče lékaře; paleo,
-      zónovou a nízkosacharidovou stravu zmiň jako kurzovou odpověď.
+      Skripta: s. 248–249 uvádějí pro remisi mezi doporučenými způsoby stravování paleo, zónovou dietu
+      a nízkosacharidovou stravu; kap. 22 (s. 238) pro remisi lehkou plnohodnotnou stravu. Současné
+      poznatky (ESPEN 2023 pro IBD): v remisi pestrá, individuálně snášená strava bez speciální diety,
+      vedení lékař / nutriční terapeut; pro paleo či zónovou dietu u Crohnovy choroby nejsou dobré
+      důkazy. Ke zkoušce: „remise = pestrá individuální strava, relaps = bezezbytková, péče lékaře“
+      platí podle obou zdrojů; paleo, zónová a nízkosacharidová strava jsou jen odpovědí podle s. 249.
     criteria: [7h, 7g]
     prereqs: [nem.lehka-strava]
     source: { pages: [238, 248], anchor: "U relapsu se pracuje s metodou pokus-omyl" }
@@ -1103,7 +1132,7 @@ points:
   - id: nem.ibs
     title: Syndrom dráždivého tračníku (IBS)
     kind: procedure
-    tier: A
+    tier: B
     status: supplementary
     note: >-
       Skripta IBS vůbec nepopisují, ale kritérium 7h ho výslovně jmenuje. Doplněny jen obecně
@@ -1163,20 +1192,25 @@ points:
     safety: true
     status: course-disputed
     note: >-
-      Skripta (s. 243) radí omezit nejbohatší zdroje vitaminu K a jako příklad uvádějí růžičkovou
-      kapustu a kysané zelí. Kysané zelí ale obsahuje vitaminu K jen středně; nejbohatší jsou
-      kapusta kadeřavá, špenát, petržel a mangold. Skripta zároveň říkají, že cílem není vitamin K
-      výrazně omezovat. U zkoušky: hlavní zásada je stabilní příjem. Doplněno nad rámec skript:
-      novější antikoagulancia (DOAC) na vitamin K nereagují, proto zjisti, jaký lék klient bere.
+      Skripta (s. 243): cílem není vitamin K výrazně omezovat, hlavní je stabilní příjem; zároveň radí
+      omezovat nejbohatší druhy zeleniny (uvádějí kysané zelí a růžičkovou kapustu) a opatrnost
+      s alkoholem. Současné poznatky (NHS, NHS Inform): zelenina bohatá na vitamin K se jíst může,
+      rozhoduje stálé množství bez náhlých změn, protože dávku warfarinu nastavuje lékař podle
+      aktuálního jídelníčku; kysané zelí má vitaminu K jen středně (nejvíc kadeřavá kapusta, špenát,
+      petržel). Doplněno nad rámec skript: NHS radí při warfarinu nepít grapefruitovou a brusinkovou
+      šťávu, nebrat třezalku ani doplňky s vitaminem K; novější antikoagulancia (DOAC) na vitamin K
+      ze stravy nereagují (EHRA), proto zjisti, jaký lék klient bere. Ke zkoušce: stabilní příjem
+      vitaminu K je správná odpověď podle skript i podle současných doporučení.
     criteria: [3c, 7h]
     prereqs: [vit.k]
     source: { pages: [243], anchor: "Neplatí mýtus, že zeleninu je třeba z jídelníčku vyřadit" }
     explanation: >-
       Warfarin ředí krev – působí jako antagonista vitaminu K, potřebného pro tvorbu srážecích faktorů.
-      Dávku určuje lékař podle krevních testů (Quickův test). Vitamin K (hlavně zelenina) se ze stravy
-      nevyřazuje, ale jeho příjem má být co nejstabilnější, bez náhlých výrazných změn. Skripta navíc
-      radí omezit nejbohatší zdroje (uvádějí růžičkovou kapustu a kysané zelí); kořenová zelenina je
-      v pořádku. Opatrně s alkoholem. Změny jídelníčku konzultovat s ošetřujícím lékařem.
+      Dávku určuje lékař podle krevních testů (Quickův test, INR). Vitamin K (hlavně zelená zelenina)
+      se ze stravy nevyřazuje; jeho příjem má být co nejstabilnější, bez náhlých výrazných změn
+      (skripta navíc radí omezit nejbohatší druhy). Opatrně s alkoholem. Grapefruitovou a brusinkovou
+      šťávu, třezalku a doplňky s vitaminem K NHS při warfarinu nedoporučuje vůbec – každou takovou
+      změnu ať klient probere s lékařem. Novější antikoagulancia (DOAC) na vitamin K nereagují.
     exercises:
       - id: zasada
         type: choice
@@ -1189,16 +1223,17 @@ points:
           - text: "Zvýšit příjem vitaminu K, aby se posílil účinek léku."
             why: "Vitamin K účinek warfarinu naopak oslabuje."
           - text: "Doplňovat vitamin K doplňkem stravy."
-            why: "Náhlé změny příjmu ovlivní srážlivost; doplněk jen po domluvě s lékařem."
+            why: "Doplňky s vitaminem K se při warfarinu neberou (NHS) – náhlá změna příjmu ovlivní srážlivost."
       - id: vysvetli
+        version: 2
         type: explain
         prompt: "Klientka bere warfarin a chce začít jíst hodně listové zeleniny. Co jí řekneš?"
         keyPoints:
           - "Warfarin je antagonista vitaminu K (srážení krve)"
           - "Vitamin K nevyřazovat, ale přijímat stabilně"
           - "Náhlá velká změna (hodně zelené zeleniny) ovlivní účinek léku"
-          - "Změnu konzultovat s lékařem (dávka, Quickův test)"
-          - "Opatrně s alkoholem"
+          - "Změnu konzultovat s lékařem (dávka, Quickův test / INR)"
+          - "Opatrně s alkoholem; bez grapefruitové a brusinkové šťávy, třezalky a doplňků s vitaminem K"
         modelAnswer: >-
           Warfarin působí proti vitaminu K, který je potřeba pro srážení krve. Zeleninu vyřazovat nemusí,
           ale příjem vitaminu K má být co nejstabilnější – náhlý přechod na velké množství listové
@@ -1211,19 +1246,24 @@ points:
     tier: A
     safety: true
     note: >-
-      Pravidlo pro bezvědomí (nic ústy, volat 155) a pokyn volat 155, když se stav nezlepší, jsou doplněny
-      nad rámec skript jako standardní první pomoc; skripta (s. 250) uvádějí jen podání rychle
-      vstřebatelného cukru a okamžitou hospitalizaci při hyperglykémii.
+      Skripta (s. 250) uvádějí jen podání rychle vstřebatelného cukru (džus, sladký nápoj, cukr)
+      a okamžitou hospitalizaci při hyperglykémii s uvedenými projevy. Doplněno podle ADA (Standards
+      of Care 2025–2026, kap. 6) a standardní první pomoci: člověku při vědomí, který polyká, asi
+      15–20 g glukózy či jiného rychlého cukru, po 15 minutách při trvajících potížích zopakovat; při
+      bezvědomí nic ústy, zotavovací poloha, volat 155 (lékař může podat glukagon). Projevy ze skript
+      (dehydratace, nízký tlak, zrychlený tep, bolesti břicha) odpovídají hyperglykemické krizi, proto
+      okamžitá lékařská pomoc; mírně zvýšená glykémie bez těchto projevů akutní stav není.
     criteria: [3c, 7h]
     prereqs: [nem.dm-typy]
     source: { pages: [250], anchor: "podání rychle vstřebatelného cukru" }
     explanation: >-
-      Diabetik se může dostat do dvou akutních rizikových stavů. Při hypoglykémii (nízký cukr)
-      pomůže rychle vstřebatelný cukr – nejlépe ovocný džus, jiný sladký nápoj nebo cukr. Je-li
-      v bezvědomí nebo nemůže polykat, nic ústy: volej 155 a dej ho do stabilizované polohy; volej
-      155 i tehdy, když se do 15 minut nezlepší. Hyperglykémie se projevuje žízní, nevolností,
-      bolestmi břicha, častým močením, dehydratací, rozmazaným viděním, nízkým tlakem a zrychleným
-      tepem – je nutná okamžitá hospitalizace.
+      Dva akutní stavy. Při hypoglykémii (nízký cukr), je-li diabetik při vědomí a polyká,
+      pomůže rychle vstřebatelný cukr (asi 15–20 g) – ovocný džus, jiný sladký nápoj nebo cukr; po
+      15 minutách, pokud potíže trvají, zopakovat. V bezvědomí nebo když nemůže
+      polykat nic ústy: stabilizovaná poloha a volat 155; volat i tehdy, když se stav nelepší.
+      Hyperglykemická krize se projevuje žízní, nevolností, bolestmi břicha, častým močením,
+      dehydratací, rozmazaným viděním, nízkým tlakem a zrychleným tepem – nutná okamžitá lékařská
+      pomoc a hospitalizace.
     exercises:
       - id: hypo
         type: choice
@@ -1247,14 +1287,15 @@ points:
         type: explain
         prompt: "Jaké akutní stavy mohou u diabetika nastat a jak na ně zareaguješ?"
         keyPoints:
-          - "Hypoglykémie → rychle vstřebatelný cukr (džus, sladký nápoj, cukr)"
-          - "Bezvědomí / nemůže polykat → nic ústy, volat 155"
+          - "Hypoglykémie při vědomí → rychle vstřebatelný cukr (džus, sladký nápoj, cukr), po 15 min případně zopakovat"
+          - "Bezvědomí / nemůže polykat → nic ústy, stabilizovaná poloha, volat 155"
           - "Hyperglykémie: žízeň, nevolnost, časté močení, dehydratace, rozmazané vidění"
           - "Hyperglykémie → okamžitě lékařská pomoc / hospitalizace"
         modelAnswer: >-
-          Při hypoglykémii, tedy příliš nízkém cukru, mu dám hned rychle vstřebatelný cukr – džus,
-          sladký nápoj nebo cukr. Když je v bezvědomí nebo nemůže polykat, nedám mu nic ústy a volám
-          155; volám i tehdy, když se do čtvrthodiny nezlepší. Hyperglykémie se projevuje žízní,
+          Při hypoglykémii, tedy příliš nízkém cukru, mu dám hned, pokud je při vědomí a polyká, rychle
+          vstřebatelný cukr – džus, sladký nápoj nebo cukr; když se do čtvrthodiny nezlepší, dávku
+          zopakuji. Když je v bezvědomí nebo nemůže polykat, nedám mu nic ústy, otočím ho do
+          stabilizované polohy a volám 155; volám i tehdy, když se stav nelepší. Hyperglykémie se projevuje žízní,
           nevolností, bolestí břicha, častým močením, dehydratací, rozmazaným viděním a rychlým tepem;
           to je stav pro okamžitou hospitalizaci, volám pomoc.
 
@@ -1263,7 +1304,7 @@ points:
   - id: nem.lehka-strava
     title: Lehká plnohodnotná strava
     kind: concept
-    tier: A
+    tier: B
     criteria: [7g, 7h]
     source: { pages: [236, 237], anchor: "Pod konceptem lehké plnohodnotné stravy rozumíme stravu" }
     explanation: >-
@@ -1310,10 +1351,11 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta (s. 246) uvádějí přísnou bezlepkovou dietu u všech tří forem nesnášenlivosti lepku.
-      Podle běžné praxe je celoživotní přísná bezlepková dieta nutná u celiakie; u alergie na pšenici
-      a neceliakální glutenové senzitivity bývá míra omezení individuální (určí lékař). U zkoušky
-      uveď kurzovou odpověď, celiakie = vždy přísně bezlepková.
+      Skripta: s. 246 uvádějí přísnou bezlepkovou dietu u všech tří forem nesnášenlivosti lepku.
+      Současné poznatky: celoživotní přísná bezlepková dieta je nutná u celiakie; u alergie na pšenici
+      jde o vyřazení pšenice (ne nutně žita a ječmene) a u neceliakální citlivosti na lepek bývá míra
+      omezení individuální – určí lékař. Ke zkoušce: „celiakie = přísně bezlepková“ platí podle obou;
+      pokud se otázka ptá na skripta, uvádějí bezlepkovou dietu i u ostatních forem.
     criteria: [7g, 7h]
     source: { pages: [238, 244], anchor: "Základním opatřením je nasazení nízkopurinové diety" }
     explanation: >-
@@ -1330,12 +1372,12 @@ points:
         options:
           - text: "Bílkoviny, fosfáty a draslík"
             correct: true
-          - text: "Puriny a alkohol"
+          - text: "Puriny, alkohol a fruktóza"
             why: "To je dieta při dně."
-          - text: "Lepek"
-            why: "Bezlepková dieta je léčbou celiakie."
-          - text: "Histamin"
-            why: "Nízkohistaminová dieta patří k histaminové intoleranci."
+          - text: "Vláknina, sacharidy a vápník"
+            why: "Skripta u selhávání ledvin uvádějí omezení bílkovin, fosfátů a draslíku."
+          - text: "Lepek, laktóza a histamin"
+            why: "To jsou úpravy při celiakii a intolerancích."
       - id: prirazeni
         type: reveal
         prompt: "Přiřaď dietu k onemocnění: dna, celiakie, Crohnova choroba v relapsu, selhávání ledvin."
@@ -1408,16 +1450,19 @@ points:
     status: supplementary
     note: >-
       Ve skriptech není. Doplněno kvůli kritériu 7g („Základní typy dietních režimů – nutriční
-      terapeuti, lékaři“): v českých nemocnicích se léčebné diety označují čísly (léčebný dietní
-      systém); uvedena jen nejběžnější čísla. Jednotlivé nemocnice používají i vlastní varianty
-      (např. šetřící „S“ verze).
+      terapeuti, lékaři“). Čísla a názvy ověřeny ve dvou českých zdrojích (WikiSkripta „Výživa
+      nemocných“; bezpecnostpotravin.cz „Dietní systém v ČR“): č. 0 tekutá, 1 kašovitá, 2 šetřící,
+      3 racionální, 4 s omezením tuků, 5 bezezbytková, 6 nízkobílkovinná, 7 nízkocholesterolová,
+      8 redukční, 9 diabetická, 10 neslaná (šetřící), 11 výživná; vyšší čísla jsou dětské a výběrové
+      diety. Systém vychází z dietního systému z 50. let; nemocnice používají i vlastní varianty
+      (např. „S“ verze jako 4S s přísným omezením tuků).
     criteria: [7g]
     prereqs: [nem.kompetence]
     source: { pages: [238], anchor: "Nutriční intervence patří výhradně do rukou lékařů a dietologů" }
     explanation: >-
-      V českých nemocnicích se léčebné diety označují čísly: č. 0 tekutá, č. 1 tekutá kašovitá,
+      V českých nemocnicích se léčebné diety označují čísly: č. 0 tekutá, č. 1 kašovitá,
       č. 2 šetřící (lehce stravitelná), č. 3 racionální (základní strava bez omezení), č. 4
-      s omezením tuků (např. žlučník, slinivka), č. 5 bezezbytková, č. 6 s omezením bílkovin (ledviny),
+      s omezením tuků (např. žlučník, slinivka), č. 5 bezezbytková, č. 6 nízkobílkovinná (ledviny),
       č. 8 redukční, č. 9 diabetická, č. 10 neslaná. Léčebné diety předepisuje lékař a sestavuje
       nutriční terapeut; výživový poradce je nepředepisuje.
     exercises:
@@ -1442,14 +1487,14 @@ points:
         prompt: "Jaké znáš základní typy nemocničních léčebných diet a kdo je nastavuje?"
         keyPoints:
           - "Diety se v nemocnicích označují čísly (léčebný dietní systém)"
-          - "č. 0 tekutá, č. 1 tekutá kašovitá, č. 2 šetřící, č. 3 racionální"
-          - "č. 4 s omezením tuků, č. 5 bezezbytková, č. 6 s omezením bílkovin"
+          - "č. 0 tekutá, č. 1 kašovitá, č. 2 šetřící, č. 3 racionální"
+          - "č. 4 s omezením tuků, č. 5 bezezbytková, č. 6 nízkobílkovinná"
           - "č. 8 redukční, č. 9 diabetická, č. 10 neslaná"
           - "Předepisuje lékař, sestavuje nutriční terapeut; poradce je nepředepisuje"
         modelAnswer: >-
           V nemocnicích se léčebné diety označují čísly. Základní je dieta č. 3 racionální, tedy strava
-          bez omezení. Dále tekutá (č. 0), tekutá kašovitá (č. 1), šetřící (č. 2), s omezením tuků
-          při nemocech žlučníku a slinivky (č. 4), bezezbytková (č. 5), s omezením bílkovin (č. 6),
+          bez omezení. Dále tekutá (č. 0), kašovitá (č. 1), šetřící (č. 2), s omezením tuků
+          při nemocech žlučníku a slinivky (č. 4), bezezbytková (č. 5), nízkobílkovinná (č. 6),
           redukční (č. 8), diabetická (č. 9) a neslaná (č. 10). Léčebnou dietu předepisuje lékař a
           sestavuje nutriční terapeut; já jako poradkyně ji nepředepisuji, jen s klientem pracuji
           v mezích jejich doporučení.
@@ -1535,7 +1580,7 @@ points:
         type: choice
         prompt: "Co podle skript zvyšuje napětí svěrače mezi jícnem a žaludkem (reflux tedy zmírňuje)?"
         options:
-          - text: "Potrava bohatá na bílkoviny"
+          - text: "Bílkovinná jídla"
             correct: true
           - text: "Tučná jídla"
             why: "Tuky napětí svěrače snižují."

@@ -48,7 +48,7 @@ points:
   - id: uv.makro-mikro
     title: Makronutrienty vs. mikronutrienty
     kind: comparison
-    tier: A
+    tier: B
     criteria: [1a]
     prereqs: [uv.deleni-zivin]
     confusableWith: [uv.seminutrienty]
@@ -88,7 +88,7 @@ points:
   - id: uv.seminutrienty
     title: Seminutrienty
     kind: concept
-    tier: A
+    tier: B
     criteria: [1a]
     prereqs: [uv.deleni-zivin]
     confusableWith: [uv.nenutricni-slozky, uv.makro-mikro]
@@ -98,14 +98,14 @@ points:
       ovlivňují dlouhodobou kvalitu života a zdraví. Skripta sem řadí vlákninu a fytochemikálie
       (sekundární rostlinné látky, např. polyfenoly).
     exercises:
-      - id: zastupci
+      - id: vymezeni
         type: choice
-        prompt: "Které dvě skupiny látek řadí skripta mezi seminutrienty?"
+        prompt: "Jaký význam přisuzují skripta seminutrientům?"
         options:
-          - { text: "Vlákninu a fytochemikálie", correct: true }
-          - { text: "Probiotika a symbiotika", why: "To jsou nenutriční složky." }
-          - { text: "Vitaminy a minerální látky", why: "To jsou mikronutrienty." }
-          - { text: "Alkohol a polyoly", why: "Alkohol je podle skript samostatný nositel energie; seminutrienty jsou vláknina a fytochemikálie." }
+          - { text: "Dlouhodobá kvalita života", correct: true }
+          - { text: "Hlavní zdroj energie", why: "To je význam makronutrientů." }
+          - { text: "Řízení biochemických procesů", why: "To je význam mikronutrientů (vitaminy, minerální látky)." }
+          - { text: "Živé bakterie s vlivem na zdraví", why: "To popisuje probiotika – nenutriční složky." }
       - id: vyznam
         type: reveal
         prompt: "Co jsou seminutrienty, jaký mají podle skript význam a kdo do nich patří?"
@@ -114,7 +114,7 @@ points:
   - id: uv.nenutricni-slozky
     title: Nenutriční složky potravy
     kind: concept
-    tier: A
+    tier: B
     criteria: [1a]
     prereqs: [uv.deleni-zivin]
     confusableWith: [uv.seminutrienty]
@@ -178,12 +178,17 @@ points:
     kind: concept
     tier: B
     criteria: [11a, 3c]
+    note: >-
+      Skripta (s. 7) u složitých zdravotních potíží radí zvážit předání zkušenějšímu kolegovi nebo
+      nutričnímu terapeutovi. Diagnostika a léčba nemocí ale patří lékaři (léčebná dieta lékaři
+      a nutričnímu terapeutovi), viz Hranice kompetencí – proto otázka testuje předání lékaři či
+      nutričnímu terapeutovi.
     source: { pages: [7, 8], anchor: "Jaká témata bychom ve spolupráci s klientem měli zohlednit" }
     explanation: >-
       Dobrý poradce neřeší jen jídlo a kalorie. S klientem probírá: aktuální stravování (nejlepší
-      základ pro nastavení příjmu), zdravotní potíže (složité případy předat zkušenějšímu kolegovi
-      či nutričnímu terapeutovi), pitný režim, denní režim, spánek, vztah k jídlu (strach z jídla
-      = varovný signál), psychiku a stres a suplementaci.
+      základ pro nastavení příjmu), zdravotní potíže (složité případy předat lékaři či nutričnímu
+      terapeutovi, případně zkušenějšímu kolegovi), pitný režim, denní režim, spánek, vztah k jídlu
+      (strach z jídla = varovný signál), psychiku a stres a suplementaci.
     exercises:
       - id: temata
         type: explain
@@ -197,14 +202,14 @@ points:
         modelAnswer: >-
           Začínám analýzou dosavadního stravování, protože z ní nejlépe nastavím energetický příjem.
           Ptám se na zdravotní potíže – klient nesmí hubnout na úkor zdraví a složitější případy
-          předám nutričnímu terapeutovi. Řeším pitný režim, denní režim, spánek, stres a psychiku,
+          předám lékaři nebo nutričnímu terapeutovi. Řeším pitný režim, denní režim, spánek, stres a psychiku,
           vztah k jídlu, abych nepřispěla k poruše příjmu potravy, a případně vhodnou suplementaci.
       - id: predani
-        version: 2
+        version: 3
         type: choice
-        prompt: "Klient má složité zdravotní komplikace, kterým nerozumíš. Co skripta doporučují?"
+        prompt: "Klient má složité zdravotní komplikace, kterým nerozumíš. Jak správně postupuješ?"
         options:
-          - { text: "Zvážit předání kolegovi nebo nutričnímu terapeutovi", correct: true }
+          - { text: "Předám ho lékaři nebo nutričnímu terapeutovi", correct: true }
           - { text: "Sestavit běžný redukční jídelníček a sledovat, co se stane", why: "Klient nesmí hubnout na úkor zdraví." }
           - { text: "Doporučit doplňky stravy podle příznaků, které popisuje", why: "Neznámé zdravotní potíže nelze řešit doplňky – nejdřív jim porozumět, případně klienta předat." }
           - { text: "Ukončit spolupráci bez dalšího doporučení", why: "Klienta nenecháš bez pomoci – doporučíš mu odborníka, který jeho potíže zvládne." }

@@ -18,6 +18,7 @@ Deployment runbook: `docs/deploy.md`.
   without `DATABASE_URL` data lives in embedded PGlite `.pglite/`)
 - `pnpm test:e2e` — Playwright smoke tests; builds and serves on :3100 with an isolated `.pglite-e2e/` DB
 - `pnpm db:rebuild` — rebuild the cached `point_state` from the event log (DATABASE_URL or local PGlite)
+- `pnpm content:flags` — quality flags for inspection (`reports/flags.md`); `pnpm simulate matrix` — planner scenarios
 
 ## Hard constraints
 
@@ -33,8 +34,10 @@ Deployment runbook: `docs/deploy.md`.
   set `status: course-disputed` and explain in `note`. Additions beyond the script → `status: supplementary`.
 - Before finalising a point, grep the WHOLE script (`source/pages`) for the key term — contradictions are usually in another chapter.
 - First criterion in `criteria` is the primary one (planner uses it for breadth).
-- Tier A = core / criterion-critical; B = useful; C = not scheduled in daily flow (trivia, trends).
-- Target total ≈ 250–300 tier-A points (workload simulation: ~45 min/day covers ~250 new points in 14 days).
+- Tier A = realistically coverable core (≈ 185 points; per-criterion quotas in `docs/content-audit.md` §3); B = useful,
+  still reachable; C = not scheduled in daily flow. `safety: true` (hand-tagged) and model cases always stay A.
+- Disputed notes use the three-part form (Skripta · Současné poznatky / předpisy · Ke zkoušce) and never claim to know
+  the examiner's answer; in counselling/safety contexts correctness wins (see `docs/content-audit.md`).
 - Every batch: author → `pnpm content:check` → independent verifier subagent with `docs/content-verification.md` → fix → commit.
 - Stable ids. Changing an exercise's meaning → bump its `version`. Never reuse an id for a different meaning.
 

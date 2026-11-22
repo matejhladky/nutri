@@ -16,6 +16,16 @@ points:
     title: Doplněk stravy je potravina, ne lék
     kind: concept
     tier: A
+    status: course-disputed
+    note: >-
+      **Skripta:** vitamin D smí být doplňkem stravy jen do 1000 IU v denní dávce, vyšší dávka je lék
+      (s. 120). **Současné poznatky / předpisy:** hranici mezi doplňkem a lékem určuje rozhodovací
+      praxe SÚKL. V roce 2022 ji posunul na 2000 IU a od roku 2024, po revizi horní hranice příjmu
+      EFSA (100 µg/den), nepovažuje za léky výrobky do 4000 IU (100 µg) v denní dávce
+      (sukl.gov.cz – Změna rozhodovací praxe v případech výrobků s obsahem vitaminu D). Doplňky
+      stravy upravuje směrnice 2002/46/ES, zákon č. 110/1997 Sb. o potravinách a vyhláška
+      č. 58/2018 Sb. **Ke zkoušce:** princip platí – o zařazení může rozhodnout dávka. Pokud se
+      otázka výslovně ptá na skripta, odpověď skript je 1000 IU; aktuální hranice SÚKL je 4000 IU.
     criteria: [8c, 8b]
     source: { pages: [120], anchor: "Doplňky stravy jsou typem potravin, jejichž účelem je doplňovat běžnou stravu" }
     explanation: >-
@@ -23,36 +33,38 @@ points:
       s nutričním či fyziologickým účinkem, určený k užití v malých odměřených dávkách. Má doplňovat
       běžnou stravu, ne ji nahrazovat. Od léku se liší legislativou výroby a uvádění na trh a hlavně tím,
       že nemá prokázané léčivé účinky – není určen k léčbě ani prevenci nemocí. Někdy je dělí jen
-      množství látky: vitamin D smí být doplňkem jen do denní dávky 1000 IU, vyšší dávka už je lék.
+      množství látky: vitamin D nad určitou denní dávkou už je lék (skripta 1000 IU, SÚKL dnes 4000 IU).
     exercises:
       - id: lek-vs-doplnek
         type: explain
+        version: 2
         prompt: "Klientka se ptá, jaký je rozdíl mezi doplňkem stravy a lékem. Vysvětli jí to."
         keyPoints:
           - "Doplněk stravy je potravina (koncentrovaný zdroj živin/látek v odměřených dávkách)"
           - "Má doplňovat stravu, ne ji nahrazovat"
           - "Lék má prokázané léčivé účinky, doplněk ne – není k léčbě ani prevenci"
           - "Liší se legislativou výroby a uvádění na trh"
-          - "Někdy rozhoduje jen dávka (vitamin D: doplněk do 1000 IU/den, výš lék)"
+          - "Někdy rozhoduje jen dávka (vitamin D nad hranicí SÚKL je lék)"
         modelAnswer: >-
           Doplněk stravy je z pohledu zákona potravina – koncentrovaný zdroj vitaminů, minerálů nebo
           jiných látek v malých odměřených dávkách, který má doplnit běžnou stravu. Lék musí mít
           prokázaný léčivý účinek na konkrétní zdravotní problém, doplněk ne a k léčbě ani prevenci
           nemocí určen není. Liší se i pravidla výroby a uvedení na trh. Někdy je dělí jen dávka:
-          vitamin D se jako doplněk smí prodávat do 1000 IU denně, vyšší dávka už je lék.
+          vitamin D nad určitou denní dávkou už SÚKL považuje za lék.
       - id: vitamin-d-hranice
         type: choice
-        prompt: "Do jaké denní dávky lze podle skript prodávat vitamin D jako doplněk stravy?"
+        version: 2
+        prompt: "Co může u vitaminu D rozhodnout, jestli jde o doplněk stravy, nebo o lék?"
         options:
-          - { text: "1000 IU", correct: true }
-          - { text: "400 IU", why: "Hranice uvedená ve skriptech je 1000 IU." }
-          - { text: "2000 IU", why: "2000 IU skripta uvádějí jako preventivní dávku v praxi, ne jako hranici pro doplněk." }
-          - { text: "10 000 IU", why: "10 000 IU je horní hranice retinolu (vitamin A) v těhotenství." }
+          - { text: "Množství vitaminu D v denní dávce", correct: true }
+          - { text: "Léková forma – kapky, nebo tablety", why: "Rozhoduje obsah v denní dávce, ne forma výrobku." }
+          - { text: "Zda výrobek doporučil lékař", why: "Zařazení výrobku na tom, kdo ho doporučil, nezávisí." }
+          - { text: "Zda se prodává v lékárně", why: "V lékárně se prodávají i doplňky stravy; rozhoduje dávka." }
       - id: urceni
         type: choice
         prompt: "Které tvrzení o doplňcích stravy odpovídá skriptům?"
         options:
-          - text: "Jsou to potraviny, které mohou příznivě ovlivnit zdraví, ale nejsou určeny k léčbě."
+          - text: "Jsou to potraviny; zdraví mohou prospět, ale neléčí."
             correct: true
           - text: "Jsou to volně prodejné léky s nižší dávkou účinné látky."
             why: "Doplňky jsou potraviny, nikoli léky."
@@ -65,6 +77,11 @@ points:
     title: Uvedení doplňku na trh – notifikace
     kind: procedure
     tier: A
+    note: >-
+      Ověřeno: oznámení se podává v Systému pro oznamování potravin MZe; právní rámec tvoří směrnice
+      2002/46/ES (transponovaná vyhláškou č. 58/2018 Sb., novelizovanou vyhláškou č. 368/2024 Sb.
+      s účinností od 1. 7. 2025) a zákon č. 110/1997 Sb. o potravinách. Za splnění požadavků
+      odpovídá provozovatel (mze.gov.cz – Doplňky stravy).
     criteria: [8c]
     prereqs: [dpl.definice, pot.dozor-cr]
     source: { pages: [120, 121, 105], anchor: "stačí pouze to, aby vytvořila notifikaci" }
@@ -74,7 +91,7 @@ points:
       uvádění na trh je nikdo nekontroluje (žádné schvalování jako u léků). Při každé změně výrobku
       (složení, název…) je nutná nová notifikace. Obsahuje mj. údaje o podniku, původ, název, složení,
       účinné látky, hmotnost balení, případně text etikety. Na trhu pak doplňky jako potraviny
-      kontrolují dozorové orgány (hlavně SZPI, dále krajské hygienické stanice, ČOI).
+      kontrolují dozorové orgány (hlavně SZPI, ve vybraném stravování krajské hygienické stanice).
     exercises:
       - id: postup
         type: explain
@@ -86,13 +103,13 @@ points:
           - "Nejpozději v den uvedení na trh"
           - "Za údaje odpovídá provozovatel, při uvádění na trh je nikdo nekontroluje"
           - "Při každé změně (složení, název) nová notifikace"
-          - "Na trhu dozorové orgány (hlavně SZPI, KHS, ČOI)"
+          - "Na trhu je kontrolují dozorové orgány (hlavně SZPI)"
         modelAnswer: >-
           Výrobce nemusí doplněk nechat schválit, stačí splnit oznamovací povinnost – notifikaci
           v systému Ministerstva zemědělství, nejpozději v den, kdy výrobek uvádí na trh. Za správnost
           údajů odpovídá sám provozovatel, při uvedení na trh je nikdo neověřuje. Při každé změně
           výrobku, třeba složení nebo názvu, musí podat notifikaci novou. Na trhu pak doplněk jako
-          každou potravinu kontrolují dozorové orgány, hlavně SZPI, dále hygienické stanice a ČOI.
+          každou potravinu kontrolují dozorové orgány, hlavně SZPI.
       - id: kdy
         type: choice
         prompt: "Kdy nejpozději musí firma splnit oznamovací povinnost k doplňku stravy?"
@@ -113,7 +130,7 @@ points:
   - id: dpl.tvrzeni-typy
     title: Čtyři typy tvrzení na doplňcích
     kind: concept
-    tier: A
+    tier: B
     criteria: [8c]
     prereqs: [dpl.definice]
     confusableWith: [dpl.tvrzeni-formulace]
@@ -163,7 +180,7 @@ points:
   - id: dpl.tvrzeni-formulace
     title: Jak smí znít zdravotní tvrzení
     kind: procedure
-    tier: A
+    tier: B
     criteria: [8c]
     prereqs: [dpl.tvrzeni-typy]
     confusableWith: [dpl.tvrzeni-typy]
@@ -237,22 +254,29 @@ points:
     tier: C
     status: course-disputed
     note: >-
-      Melatonin skripta uvádějí mezi látkami zakázanými ve výrobě potravin (s. 130), ale s nejasnou
-      výhradou (léčivý přípravek – zvláštní režim); zároveň ho řadí do dělení doplňků (Hormony –
-      melatonin, s. 125) a popisují jako běžný doplněk na spánek (s. 135). U zkoušky uváděj jako
-      jednoznačné příklady zakázaných látek DHEA, 5-HTP a koloidní stříbro, melatonin raději ne.
+      **Skripta:** mezi látkami zakázanými ve výrobě potravin uvádějí mj. DHEA, 5-HTP, koloidní stříbro,
+      N-acetylcystein a melatonin (s výhradou, s. 130); melatonin přitom zároveň řadí mezi běžné
+      doplňky (s. 125, 135). **Současné poznatky / předpisy:** novela vyhlášky 58/2018 Sb. (č. 368/2024
+      Sb., účinná od 1. 7. 2025) vypustila ze seznamu zakázaných látek melatonin, DHEA a 5-HTP – DHEA
+      a 5-HTP jako potenciální nové potraviny nyní spadají pod evropská pravidla; melatonin pod 0,5 mg
+      v denní dávce SÚKL nepovažuje za lék (kmvs.cz – Novela vyhlášky o doplňcích stravy). Koloidní
+      stříbro ani N-acetylcystein novela podle dostupného shrnutí neměnila. **Ke zkoušce:** pokud se
+      otázka výslovně ptá na skripta, uvádějí tyto látky jako zakázané; český seznam se ale od
+      července 2025 změnil.
     criteria: [8c, 8b]
     source: { pages: [128, 129, 130], anchor: "Mezi další zakázané látky patří také" }
     explanation: >-
       U rostlinných extraktů i dalších látek platí podmínky použití – omezená část rostliny
       a nejvyšší přípustné množství v denní dávce (např. taurin 2000 mg, koenzym Q10 200 mg,
       acetylkarnitin 500 mg). Některé látky jsou v potravinách zcela zakázány: řada jedovatých rostlin
-      (např. oměj, rulík) a také DHEA, 5-hydroxytryptofan (5-HTP), koloidní stříbro či N-acetylcystein.
+      (např. oměj, rulík); skripta k nim řadí i DHEA, 5-HTP, koloidní stříbro či N-acetylcystein
+      (seznam se novelou od 7/2025 změnil – viz poznámka).
     exercises:
       - id: zakazane
         type: choice
         multiple: true
-        prompt: "Které látky jsou podle skript v potravinách (a tedy v doplňcích) zakázané?"
+        version: 2
+        prompt: "Které látky uvádějí skripta mezi látkami zakázanými v potravinách (stav před novelou 2025)?"
         options:
           - { text: "DHEA (dehydroepiandrosteron)", correct: true }
           - { text: "5-HTP (5-hydroxytryptofan)", correct: true }
@@ -307,7 +331,7 @@ points:
   - id: dpl.kvalita
     title: Kvalita a biologická dostupnost
     kind: concept
-    tier: A
+    tier: B
     criteria: [8b, 8a]
     source: { pages: [120], anchor: "Ideální biologická dostupnost je hodnota 1" }
     explanation: >-
@@ -343,7 +367,7 @@ points:
   - id: dpl.etiketa
     title: Jak číst etiketu doplňku
     kind: procedure
-    tier: A
+    tier: B
     criteria: [8b, 8d]
     prereqs: [dpl.kvalita]
     source: { pages: [127], anchor: "Čtení etikety je dovednost, kterou poradce použije u každé kategorie doplňků" }
@@ -383,6 +407,10 @@ points:
     kind: concept
     tier: A
     safety: true
+    note: >-
+      Doplnění (ne ze skript): horní hranice bezpečného příjmu (UL) podle EFSA pro dospělé – vitamin
+      B6 12 mg/den (revize 2023), retinol 3000 µg/den (2024), vitamin D 100 µg = 4000 IU/den (2023).
+      Při kontrole součtu dávek ze všech doplňků se hodí právě tyto limity.
     criteria: [8b, 8d]
     source: { pages: [120, 128, 133, 134], anchor: "přírodní složení nemusí znamenat, že je látka bezpečná" }
     explanation: >-
@@ -412,13 +440,13 @@ points:
         type: choice
         prompt: "V čem vidí skripta hlavní riziko multivitaminu?"
         options:
-          - text: "V kombinaci s dalšími doplňky – snadno se překročí horní hranice vitaminů rozpustných v tucích"
+          - text: "Souběh s dalšími doplňky – překročení limitu vitaminů A, D, E, K"
             correct: true
-          - text: "Multivitamin sám o sobě obsahuje toxické dávky vitaminů"
+          - text: "Sám o sobě obsahuje pro dospělé toxické dávky vitaminů"
             why: "Riziko je podle skript v souběhu s dalšími doplňky, ne v samotném multivitaminu."
-          - text: "Vitaminy rozpustné ve vodě se v těle hromadí"
+          - text: "Vitaminy rozpustné ve vodě se z něj v těle postupně hromadí"
             why: "Hromadí se spíše vitaminy rozpustné v tucích."
-          - text: "Multivitamin blokuje vstřebávání vitaminů ze stravy"
+          - text: "Snižuje vstřebávání vitaminů a minerálů z běžné stravy"
             why: "To skripta neuvádějí."
 
   - id: dpl.novinka-filtr
@@ -565,14 +593,20 @@ points:
     kind: procedure
     tier: A
     safety: true
+    note: >-
+      Ověřeno: EFSA (2024) ponechala horní hranici příjmu předem vytvořeného vitaminu A (retinolu)
+      3000 µg RE = 10 000 IU/den i pro těhotné; kritickým účinkem je teratogenita. Doplnění (ne ze
+      skript): kyselina listová se podle WHO doporučuje v dávce 400 µg denně, ideálně už od doby
+      plánování těhotenství (CDC: aspoň měsíc před početím). Železo 30 mg/den je
+      doporučení CDC; WHO uvádí 30–60 mg, v praxi o něm rozhoduje gynekolog podle krevního obrazu.
     criteria: [8d, 8a]
     source: { pages: [135, 141], anchor: "prenatální doplněk obsahuje jód a kyselinu listovou" }
     explanation: >-
       V těhotenství a při kojení stoupá potřeba kyseliny listové (prevence rozštěpu neurální trubice,
-      ideálně už před početím), jódu (až 220–250 µg/den oproti běžným 150 µg), DHA (vývoj mozku
-      plodu) a železa (rostoucí objem krve). Nevhodný je vitamin A ve formě retinolu ve vysokých dávkách –
-      bezpečná horní hranice je 10 000 IU/den, výš roste riziko vrozených vad; volí se beta-karoten.
-      V nejasných případech rozhoduje lékař/gynekolog, ne poradce.
+      ideálně už před početím), jódu (skripta 220–250 µg/den, EFSA 200 µg; běžně 150 µg), DHA (vývoj mozku
+      plodu) a železa (rostoucí objem krve). Rizikový je vitamin A ve formě retinolu: horní hranice je
+      10 000 IU (3000 µg) denně, nad ní roste riziko vrozených vad; NICE radí retinolu (i játrům) se
+      vyhnout a volit beta-karoten. V nejasných případech rozhoduje lékař/gynekolog, ne poradce.
     exercises:
       - id: tehotna
         type: explain
@@ -581,13 +615,13 @@ points:
           - "Kyselina listová (rozštěp neurální trubice, ideálně už před početím)"
           - "Jód (220–250 µg/den) a DHA – vývoj mozku a štítné žlázy plodu"
           - "Železo – rostoucí objem krve (podle vyšetření)"
-          - "Ne vysoké dávky retinolu (nad 10 000 IU/den) → beta-karoten"
+          - "Retinol ne (nad 10 000 IU/den riziko vrozených vad) → beta-karoten"
           - "Rozhodnutí v nejasných případech patří lékaři/gynekologovi"
         modelAnswer: >-
           Prenatální doplněk by měl obsahovat kyselinu listovou, ideálně už od doby plánování, kvůli
           prevenci rozštěpu neurální trubice, a jód, jehož potřeba stoupá na 220–250 µg denně. Důležitá
-          je i DHA pro vývoj mozku a železo kvůli rostoucímu objemu krve. Naopak se vyhýbej vysokým
-          dávkám vitaminu A ve formě retinolu – nad 10 000 IU denně roste riziko vrozených vad, lepší je
+          je i DHA pro vývoj mozku a železo kvůli rostoucímu objemu krve. Naopak se vyhýbej vitaminu A
+          ve formě retinolu včetně jater – nad 10 000 IU denně roste riziko vrozených vad, lepší je
           beta-karoten. Konkrétní dávky a nejasné situace má rozhodnout lékař nebo gynekolog.
       - id: vitamin-a
         type: choice
@@ -632,6 +666,9 @@ points:
     title: Biotin a krevní testy
     kind: fact
     tier: B
+    note: >-
+      Potřeba 30 µg/den je americká hodnota (AI); EFSA uvádí pro dospělé adekvátní příjem 40 µg/den.
+      Na podstatě (vysoké dávky zkreslují imunoanalytické testy) to nic nemění.
     criteria: [8d, 8a]
     source: { pages: [136], anchor: "vysadit biotin 48-72 h před odběrem krve" }
     explanation: >-
@@ -659,9 +696,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Kap. 13 (s. 141) uvádí plošnou suplementaci vitaminu D u kojenců i batolat, kapitola o dětech
-      (s. 221) podle ČPS 400–500 IU/den od 2. týdne do konce 1. roku a po 1. roce už jen individuálně
-      u rizikových dětí. U zkoušky: kojenci 400–500 IU/den plošně, po 1. roce jen rizikové děti.
+      **Skripta:** kap. 13 (s. 141) uvádí plošnou suplementaci vitaminu D u kojenců i batolat,
+      kapitola o dětech (s. 221) podle ČPS/OSPDL (2019) 400–500 IU/den od 2. týdne do konce 1. roku
+      a po 1. roce už jen individuálně u rizikových dětí. **Současné poznatky / předpisy:** stanovisko
+      ČPS/OSPDL odpovídá s. 221; EFSA má pro děti nižší horní hranice příjmu (1–10 let 50 µg = 2000
+      IU/den), proto je souběh více zdrojů u dětí rizikovější. **Ke zkoušce:** odpověď platná podle
+      obou zdrojů skript i stanoviska ČPS: kojenci 400–500 IU/den plošně, po 1. roce individuálně.
     criteria: [8d, 8a]
     source: { pages: [141, 221], anchor: "se u dětí nikdy nemá podávat paušálně" }
     explanation: >-
@@ -675,10 +715,10 @@ points:
         type: choice
         prompt: "Kdy je podle skript vhodné podat dítěti železo jako doplněk?"
         options:
-          - { text: "Jen na základě laboratorního vyšetření a doporučení pediatra", correct: true }
-          - { text: "Preventivně v zimních měsících", why: "Železo se dětem nikdy nepodává paušálně." }
-          - { text: "Vždy, když je dítě unavené", why: "Bez vyšetření nikdy – nadbytek je pro dítě rizikový." }
-          - { text: "Každému kojenci jako vitamin D", why: "Plošně se u kojenců podává vitamin D, ne železo." }
+          - { text: "Jen po laboratorním vyšetření a na doporučení pediatra", correct: true }
+          - { text: "Preventivně v zimě, kdy dítě jí méně masa a zeleniny", why: "Železo se dětem nikdy nepodává paušálně." }
+          - { text: "Vždy, když je dítě delší dobu unavené a nesoustředěné", why: "Bez vyšetření nikdy – nadbytek je pro dítě rizikový." }
+          - { text: "Každému kojenci od 2. týdne, stejně jako vitamin D", why: "Plošně se u kojenců podává vitamin D, ne železo." }
       - id: tuky
         type: reveal
         prompt: "Na jaký souběh si musíš dát pozor u dětí kvůli vitaminům rozpustným v tucích?"
@@ -711,16 +751,17 @@ points:
   - id: dpl.omega3
     title: Omega-3 (EPA a DHA) jako doplněk
     kind: fact
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Skripta uvádějí dvě horní hranice: podle amerických doporučení nepřekračovat 3000 mg denně
-      (s. 130), podmínky zdravotních tvrzení EU pak doplňkový přívod 5 g EPA+DHA denně (s. 131).
-      „Pro praxi“ (1–2 g pro protizánětlivý efekt, lepší vstřebání triglyceridové formy) je bez opory
-      v hlavním textu. Sportovní kapitola je opatrnější: AIS řadí rybí olej do skupiny B (vznikající,
-      nejednoznačné důkazy) a základem jsou 2 porce tučných ryb týdně (s. 209, 213). U zkoušky:
-      sportovci 500–1000 mg/den, nepřekračovat 3 g/den (US), doplňkově max. 5 g/den (podmínka tvrzení
-      EU); u sportovců nejdřív ryby ve stravě.
+      **Skripta:** dvě horní hranice – podle amerických doporučení nepřekračovat 3000 mg EPA+DHA denně
+      (s. 130), v podmínkách zdravotních tvrzení EU doplňkový přívod max. 5 g denně (s. 131); sportovcům
+      500–1000 mg/den. Sportovní kapitola je opatrnější: AIS řadí rybí olej do skupiny B a základem
+      jsou 2 porce tučných ryb týdně (s. 209, 213). **Současné poznatky / předpisy:** EFSA (2012)
+      považuje doplňkový příjem EPA+DHA do 5 g/den za bezpečný; americká FDA uvádí do 3 g/den celkem
+      (z toho max. 2 g z doplňků). Obě čísla tedy platí, každé podle jiného úřadu. **Ke zkoušce:**
+      pokud se otázka výslovně ptá na skripta, sportovcům 500–1000 mg/den a horní hranice 3000 mg/den
+      (US); u sportovců nejdřív ryby ve stravě.
     criteria: [8a]
     source: { pages: [130, 131], anchor: "Sportovcům je doporučeno užívat 500–1000 mg/den" }
     explanation: >-
@@ -771,12 +812,15 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      Skripta uvádějí tři různá čísla: doporučený příjem 15–20 µg (600–800 IU) v kap. o vitaminech
-      (s. 50), hranici 1000 IU v denní dávce pro doplněk stravy (vyšší = lék, s. 120) a „bezpečnou
-      preventivní dávku“ kolem 2000 IU/den v rámečku Pro praxi (s. 131). U zkoušky: doporučený příjem
-      600–800 IU, doplněk stravy do 1000 IU/den, preventivně v praxi až kolem 2000 IU – ideálně podle
-      hladiny 25-OH-D v krvi a po domluvě s lékařem. U dětí (s. 221): kojenci 400–500 IU/den od
-      2. týdne do konce 1. roku, po 1. roce jen rizikové děti (kap. 13, s. 141, uvádí plošně i batolata).
+      **Skripta:** tři různá čísla – doporučený příjem 15–20 µg (600–800 IU, s. 50), hranice 1000 IU
+      v denní dávce pro doplněk stravy (vyšší = lék, s. 120) a „bezpečná preventivní dávka“ kolem
+      2000 IU/den (Pro praxi, s. 131). Děti: kojenci 400–500 IU/den do konce 1. roku, po 1. roce jen
+      rizikové děti (s. 221; s. 141 uvádí plošně i batolata). **Současné poznatky / předpisy:** EFSA
+      (2023) stanovila horní hranici bezpečného příjmu pro dospělé 100 µg = 4000 IU/den; SÚKL od roku
+      2024 nepovažuje za léky výrobky do 4000 IU v denní dávce (sukl.gov.cz). 2000 IU/den je tedy pod
+      horní hranicí. **Ke zkoušce:** doporučený příjem 600–800 IU a preventivní dávka kolem 2000 IU
+      platí podle obou zdrojů; pokud se otázka výslovně ptá na skripta, hranice pro doplněk je podle
+      nich 1000 IU, aktuálně podle SÚKL 4000 IU.
     criteria: [8a, 8d]
     prereqs: [dpl.definice]
     source: { pages: [131, 50, 221], anchor: "mezi říjnem a březnem prakticky vůbec" }
@@ -785,23 +829,25 @@ points:
       prakticky vůbec; nedostatek (pod 50 nmol/l) je u velké části Čechů celoroční. Doporučený příjem
       je 600–800 IU (15–20 µg) denně. Kojenci ho dostávají plošně (400–500 IU/den do 1 roku). Skripta
       uvádějí jako bezpečnou preventivní dávku pro dospělé kolem 2000 IU/den; přesné dávkování by se
-      mělo řídit hladinou 25-OH-D v krvi. Jako doplněk stravy smí mít nejvýš 1000 IU v denní dávce.
+      mělo řídit hladinou 25-OH-D v krvi. Horní hranice bezpečného příjmu (EFSA) je 4000 IU/den;
+      do této dávky ho dnes SÚKL řadí mezi doplňky stravy (skripta uvádějí 1000 IU).
     exercises:
       - id: proc
         type: explain
+        version: 2
         prompt: "Proč a jak doporučíš klientce vitamin D?"
         keyPoints:
           - "Kůže ho tvoří ze slunce, ale od října do března u nás prakticky ne"
           - "Nedostatek je častý a celoroční (pod 50 nmol/l)"
           - "Preventivně kolem 2000 IU/den (skripta), doporučený příjem 600–800 IU"
           - "Ideálně dávkovat podle hladiny 25-OH-D v krvi"
-          - "Doplněk stravy do 1000 IU/den, vyšší dávka je lék"
+          - "Nepřekračovat horní hranici 4000 IU/den (EFSA); vysoké dávky po domluvě s lékařem"
         modelAnswer: >-
           V našich zeměpisných šířkách si kůže od října do března vitamin D prakticky netvoří,
           a nedostatek má velká část populace po celý rok. Doporučený příjem je 600–800 IU, skripta
           v praxi uvádějí jako bezpečnou preventivní dávku pro dospělé kolem 2000 IU denně. Nejlepší
-          je dávku nastavit podle hladiny 25-OH-D v krvi. Doplněk stravy smí obsahovat do 1000 IU
-          v denní dávce, vyšší dávky už jsou léky.
+          je dávku nastavit podle hladiny 25-OH-D v krvi. Horní hranice bezpečného příjmu je 4000 IU
+          denně; vyšší dávky patří jen pod dohled lékaře.
       - id: obdobi
         type: choice
         prompt: "Kdy si v našich zeměpisných šířkách kůže vitamin D prakticky netvoří?"
@@ -814,7 +860,10 @@ points:
   - id: dpl.horcik
     title: Hořčík – formy a vstřebatelnost
     kind: comparison
-    tier: A
+    tier: B
+    note: >-
+      Doplnění (ne ze skript): pro hořčík z doplňků (ne ze stravy) uvádí EFSA/SCF horní hranici
+      250 mg denně pro dospělé – nad ní přibývá průjmů.
     criteria: [8a, 8b]
     prereqs: [dpl.kvalita]
     source: { pages: [132], anchor: "levný oxid má smysl spíše jako projímadlo" }
@@ -851,6 +900,11 @@ points:
     kind: procedure
     tier: A
     safety: true
+    note: >-
+      Ověřeno: 30 mg elementárního železa v těhotenství je doporučení CDC (skripta s. 135); WHO uvádí
+      pro těhotné 30–60 mg denně. V ČR o železe v těhotenství rozhoduje gynekolog podle krevního
+      obrazu – poradce ho sám nenasazuje. Užívání ob den kvůli hepcidinu podporují studie
+      (von Siebenthal 2023).
     criteria: [8a, 8d]
     source: { pages: [134, 135], anchor: "Suplementaci železa vždy vázejte na potvrzený nedostatek z krevního obrazu" }
     explanation: >-
@@ -858,7 +912,8 @@ points:
       menstruující ženy, těhotné a dospívající dívky. Mimo těhotenství se paušálně („preventivně“)
       nedoplňuje – nadbytek je rizikový a mužům a ženám po menopauze hrozí přetížení železem.
       Suplementace patří jen k potvrzenému nedostatku (krevní obraz, feritin). Užívání ob den může
-      zlepšit vstřebávání (klesne hepcidin). V těhotenství se uvádí 30 mg elementárního železa denně.
+      zlepšit vstřebávání (klesne hepcidin). V těhotenství se uvádí 30 mg elementárního železa denně
+      (CDC), o dávce rozhoduje lékař.
     exercises:
       - id: unava-zelezo
         type: explain
@@ -917,8 +972,8 @@ points:
         type: choice
         prompt: "Jak podle skript užívat probiotika při léčbě antibiotiky?"
         options:
-          - { text: "Od prvního dne léčby, s odstupem alespoň 2 hodiny od antibiotika", correct: true }
-          - { text: "Až po dobrání antibiotik, aby je nezničila", why: "Skripta doporučují začít ideálně od prvního dne." }
+          - { text: "Od 1. dne léčby, aspoň 2 h odstup od antibiotika", correct: true }
+          - { text: "Až po dobrání antibiotik, aby je antibiotika nezničila", why: "Skripta doporučují začít ideálně od prvního dne." }
           - { text: "Současně s antibiotikem, aby se účinky sčítaly", why: "Je potřeba odstup aspoň 2 hodiny." }
           - { text: "Při antibiotikách probiotika nemají smysl", why: "Průjem spojený s antibiotiky je jedna z nejlépe podložených indikací." }
       - id: symbiotikum
@@ -961,6 +1016,9 @@ points:
     title: Vitamin C a zinek při nachlazení
     kind: fact
     tier: B
+    note: >-
+      Doplnění (ne ze skript): EFSA uvádí pro zinek horní hranici bezpečného příjmu 25 mg/den pro
+      dospělé – dávky kolem 75 mg z pastilek proto jen na pár dní při akutním nachlazení.
     criteria: [8a]
     source: { pages: [131, 132], anchor: "zahájení až po objevení příznaků účinek na délku nachlazení nemá" }
     explanation: >-
@@ -988,11 +1046,13 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Tvrzení, že K2 „směruje vápník do kostí a mimo cévní stěny“, je marketingový mechanismus –
-      skripta sama přiznávají smíšené klinické výsledky a čerpají z průzkumu ConsumerLab. Příjem
-      90 µg (ženy) / 120 µg (muži) je americké číslo; kap. o vitaminech (s. 50) uvádí podle EFSA
-      přibližně 70 µg. U zkoušky: hlavní funkce vitaminu K je srážení krve (a metabolismus kostí),
-      důkazy pro K2 v doplňcích jsou smíšené, pozor na warfarin.
+      **Skripta:** K2 „pomáhá směrovat vápník do kostí“, klinické výsledky jsou ale smíšené (s. 133);
+      příjem 90 µg (ženy) / 120 µg (muži), zatímco kap. o vitaminech (s. 50) uvádí podle EFSA asi
+      70 µg. **Současné poznatky / předpisy:** 90/120 µg je americká hodnota (AI), EFSA uvádí
+      70 µg/den pro dospělé; mechanismus „vápník do kostí, ne do cév“ je hlavně marketingový argument,
+      přesvědčivé klinické důkazy chybí. Vitamin K oslabuje účinek warfarinu. **Ke zkoušce:** platí podle
+      obou zdrojů – hlavní funkce vitaminu K je srážení krve (a metabolismus kostí), důkazy pro K2
+      v doplňcích jsou smíšené, pozor na warfarin.
     criteria: [8a, 8d]
     prereqs: [dpl.interakce]
     source: { pages: [133], anchor: "K2 pomáhá směrovat vápník do kostí" }
@@ -1059,10 +1119,10 @@ points:
         type: choice
         prompt: "Za jakých podmínek smí výrobce uvést, že glukomanan přispívá ke snížení hmotnosti?"
         options:
-          - { text: "3 g denně ve třech dávkách po 1 g, s vodou před jídlem, v rámci nízkoenergetické diety", correct: true }
-          - { text: "1 g denně kdykoli během dne, bez ohledu na dietu", why: "Tvrzení vyžaduje 3 × 1 g a nízkoenergetickou dietu." }
-          - { text: "10 g večer před spaním", why: "Podmínky jsou 3 × 1 g před jídlem." }
-          - { text: "Toto tvrzení není u glukomananu povoleno", why: "Je to příklad schváleného zdravotního tvrzení." }
+          - { text: "3 × 1 g denně s vodou před jídlem, při nízkoenergetické dietě", correct: true }
+          - { text: "1 g denně kdykoli během dne, i bez úpravy jídelníčku", why: "Tvrzení vyžaduje 3 × 1 g a nízkoenergetickou dietu." }
+          - { text: "10 g najednou večer před spaním, zapít sklenicí mléka", why: "Podmínky jsou 3 × 1 g před jídlem." }
+          - { text: "Žádné – toto zdravotní tvrzení u glukomananu povoleno není", why: "Je to příklad schváleného zdravotního tvrzení." }
       - id: princip
         type: reveal
         prompt: "Jak glukomanan podporuje hubnutí?"
@@ -1072,6 +1132,10 @@ points:
     title: Spalovače tuků a detox – realistická očekávání
     kind: concept
     tier: B
+    note: >-
+      Doplnění (ne ze skript): kvůli riziku poškození jater omezilo nařízení Komise (EU) 2022/2340
+      extrakty zeleného čaje – denní porce musí obsahovat méně než 800 mg EGCG a na etiketě musí být
+      varování (ne pro těhotné, kojící a mladší 18 let, ne nalačno).
     criteria: [8a, 8b]
     confusableWith: [dpl.glukomanan, met.karnitin-doplnek]
     source: { pages: [128, 129, 139, 143], anchor: "žádná z těchto látek nenahradí kalorický deficit" }
@@ -1103,25 +1167,27 @@ points:
         prompt: "Co je skutečnou příčinou rychlého úbytku hmotnosti po „detox“ čaji?"
         options:
           - { text: "Ztráta vody a obsahu střev (projímavý účinek)", correct: true }
-          - { text: "Zrychlené spalování tuku v játrech", why: "Detox čaje spalování tuku nezrychlují." }
-          - { text: "Vyplavení toxinů z tukové tkáně", why: "To je marketingové tvrzení bez opory." }
-          - { text: "Zvýšení bazálního metabolismu", why: "Skripta uvádějí, že jde o vodu a obsah střev." }
+          - { text: "Zrychlené spalování tukové tkáně v játrech", why: "Detox čaje spalování tuku nezrychlují." }
+          - { text: "Vyplavení nahromaděných toxinů z tuku", why: "To je marketingové tvrzení bez opory." }
+          - { text: "Zvýšení bazálního metabolismu o desítky %", why: "Skripta uvádějí, že jde o vodu a obsah střev." }
 
   # ---------- 8e Doplňky a růst svalové hmoty ----------
 
   - id: dpl.protein-davka
     title: Kolik bílkovin pro růst svalů
     kind: fact
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Skripta uvádějí několik rozmezí: kap. 13 (s. 137) – přínos pro sílu a svaly se zpomaluje nad
-      ~1,6 g/kg (metaanalýza 2018, na s. 137 jako Morton, na s. 204 jako Norton); sportovní kapitola – ISSN 1,4–2,0 g/kg (s. 204), nabírání 1,6–2,2 g/kg
-      a redukce tuku 1,6–2,4 g/kg (s. 205, 207), ale také „do 1,8 g/kg“ jako horní mez včetně stravy
-      (s. 209). U zkoušky: pro trénující obecně 1,4–2,0 g/kg (ISSN), při nabírání 1,6–2,2 g/kg,
-      při redukci až 2,4 g/kg; nad ~1,6 g/kg už další přínos pro svaly výrazně neroste a protein
-      z doplňku je pak hlavně pohodlí. Pokud se ptají na horní mez denní dávky bílkovin podle
-      kap. 19.7 (zátěž srdce a ledvin), odpověz „do 1,8 g/kg včetně stravy“.
+      **Skripta:** několik rozmezí – přínos pro sílu a svaly se zpomaluje nad ~1,6 g/kg (metaanalýza
+      2018, s. 137); ISSN 1,4–2,0 g/kg (s. 204), nabírání 1,6–2,2 g/kg, redukce tuku 1,6–2,4 g/kg
+      (s. 205, 207); zároveň „do 1,8 g/kg včetně stravy“ jako horní mez kvůli zátěži srdce a ledvin
+      (s. 209). **Současné poznatky / předpisy:** metaanalýza Morton et al. (BJSM 2018) našla plató
+      kolem 1,6 g/kg; ISSN (2017) doporučuje trénujícím 1,4–2,0 g/kg a u zdravých trénujících
+      nenachází doklady o poškození ledvin ani při vyšším příjmu – limit 1,8 g/kg tedy není obecně uznaná bezpečnostní
+      hranice (u nemocí ledvin rozhoduje lékař). **Ke zkoušce:** platí podle obou – trénující
+      1,4–2,0 g/kg, nad ~1,6 g/kg přínos výrazně neroste. Pokud se otázka výslovně ptá na skripta
+      a horní mez, odpověď skript je do 1,8 g/kg včetně stravy.
     criteria: [8e]
     confusableWith: [spo.bilkoviny]
     source: { pages: [137, 204, 205, 207], anchor: "se zpomaluje nad příjmem cca 1,6 g bílkovin na kg" }
@@ -1173,6 +1239,10 @@ points:
     title: Kreatin monohydrát
     kind: fact
     tier: A
+    note: >-
+      Ověřeno: odpovídá ISSN position stand ke kreatinu (2017) – nasycení cca 0,3 g/kg (asi 20 g)
+      denně 5–7 dní, nebo rovnou 3–5 g denně (plné nasycení svalů pak trvá zhruba 3–4 týdny).
+      Bezpečnost v těhotenství a při kojení není ověřena, proto lékař.
     criteria: [8e, 8a]
     confusableWith: [dpl.beta-alanin]
     source: { pages: [137, 210], anchor: "Standardní dávka je 3-5 g denně dlouhodobě" }
@@ -1221,6 +1291,11 @@ points:
     title: Kofein ve sportu
     kind: fact
     tier: A
+    note: >-
+      Ověřeno: ISSN (2021) – účinná dávka 3–6 mg/kg asi 60 min před výkonem. EFSA (2015): u zdravých
+      dospělých bez obav jednorázově do 200 mg (asi 3 mg/kg) a denně do 400 mg, i před intenzivním
+      výkonem; těhotné a kojící do 200 mg/den; pro děti a dospívající bezpečná úroveň 3 mg/kg/den.
+      Dávka 6 mg/kg tak u většiny dospělých přesahuje jednorázových 200 mg – začínat na nižší dávce.
     criteria: [8e, 8a]
     confusableWith: [spo.kofein]
     source: { pages: [138, 212, 177, 226], anchor: "Kofein blokuje adenozinové receptory v mozku" }
@@ -1273,13 +1348,16 @@ points:
   - id: dpl.beta-alanin
     title: Beta-alanin
     kind: fact
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Kap. 13 (s. 138) uvádí největší efekt u zátěže trvající 1–4 minuty, sportovní kapitola (s. 212)
-      u vysoké intenzity zhruba 30 sekund až 10 minut. U zkoušky: přínos u opakované/souvislé
-      vysoké intenzity v řádu desítek sekund až minut (typicky 1–4 min), ne u čisté vytrvalosti ani
-      jednorázové krátké síly.
+      **Skripta:** kap. 13 (s. 138) uvádí největší efekt u zátěže trvající 1–4 minuty, sportovní
+      kapitola (s. 212) u vysoké intenzity zhruba 30 s až 10 min; dávka 3,2–6,4 g/den aspoň 4 týdny.
+      **Současné poznatky / předpisy:** ISSN position stand (2015) – přínos hlavně u výkonů 1–4 min,
+      dávka 4–6 g denně v dílčích dávkách po dobu aspoň 2–4 týdnů; parestezie lze omezit menšími
+      dávkami nebo formou s postupným uvolňováním. **Ke zkoušce:** platí podle obou – vysoká intenzita
+      v řádu minut (typicky 1–4 min), ne čistá vytrvalost ani jednorázová síla; dávkuje se denně
+      několik týdnů, rozděleně.
     criteria: [8e, 8a]
     confusableWith: [dpl.kreatin]
     source: { pages: [138, 212], anchor: "zvyšuje hladinu karnosinu ve svalech" }
@@ -1308,10 +1386,10 @@ points:
         type: choice
         prompt: "Klient po beta-alaninu cítí mravenčení kůže. Co mu poradíš?"
         options:
-          - { text: "Jde o neškodnou parestezii – rozdělit dávku do menších porcí během dne", correct: true }
-          - { text: "Ihned vysadit, jde o alergickou reakci", why: "Mravenčení je typický neškodný účinek vyšší jednorázové dávky." }
-          - { text: "Zvýšit dávku, tělo si zvykne", why: "Pomáhá naopak menší dávka." }
-          - { text: "Kombinovat s kofeinem, který mravenčení ruší", why: "To skripta neuvádějí." }
+          - { text: "Neškodná parestezie – rozdělit dávku na menší porce", correct: true }
+          - { text: "Ihned vysadit, jde o alergickou reakci na přípravek", why: "Mravenčení je typický neškodný účinek vyšší jednorázové dávky." }
+          - { text: "Dávku naopak zvýšit, tělo si na ni brzy zvykne", why: "Pomáhá naopak menší dávka." }
+          - { text: "Brát ho spolu s kofeinem, který mravenčení tlumí", why: "To skripta neuvádějí." }
       - id: vykon
         type: choice
         version: 2

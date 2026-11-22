@@ -15,7 +15,7 @@ points:
   - id: prx.tri-faze
     title: Tři fáze spolupráce s klientem
     kind: concept
-    tier: A
+    tier: B
     criteria: [11a]
     source: { pages: [253, 255], anchor: "Spolupráce s klientem má typicky tři fáze" }
     explanation: >-
@@ -50,10 +50,10 @@ points:
         type: choice
         prompt: "Co je hlavní náplní druhé konzultace?"
         options:
-          - { text: "Předání a vysvětlení jídelníčku, nastavení kroků a očekávání", correct: true }
-          - { text: "Podpis smlouvy a souhlasu s GDPR", why: "Dokumenty se podepisují na první konzultaci." }
-          - { text: "Vstupní anamnéza", why: "Anamnéza patří do první konzultace." }
-          - { text: "Pouze kontrolní vážení", why: "Vážení na druhé konzultaci není pravidlem." }
+          - { text: "Předání a vysvětlení jídelníčku, kroky a očekávání", correct: true }
+          - { text: "Podpis smlouvy, obchodních podmínek a souhlasu s GDPR", why: "Dokumenty se podepisují na první konzultaci." }
+          - { text: "Vstupní anamnéza a vyplnění úvodního dotazníku", why: "Anamnéza i dotazník patří do první konzultace." }
+          - { text: "Kontrolní vážení a hodnocení úbytku hmotnosti", why: "To je náplň kontrolních konzultací." }
 
   - id: prx.prvni-konzultace
     title: Průběh první konzultace
@@ -87,10 +87,10 @@ points:
         type: choice
         prompt: "Proč máš klientovi hned na první konzultaci vysvětlit, že nejde o krátkodobou dietu?"
         options:
-          - { text: "Aby měl reálná očekávání a nebyl zklamaný z tempa výsledků", correct: true }
-          - { text: "Aby si koupil dražší balíček", why: "Cílem je nastavit očekávání, ne prodej." }
-          - { text: "Protože to vyžaduje GDPR", why: "GDPR se týká zpracování osobních údajů." }
-          - { text: "Aby nemusel vyplňovat dotazník", why: "Dotazník je standardní součástí první konzultace." }
+          - { text: "Aby měl reálná očekávání a nebyl pak zklamaný", correct: true }
+          - { text: "Aby si raději koupil dlouhodobý předplacený balíček", why: "Cílem je nastavit očekávání, ne prodej." }
+          - { text: "Protože to poradci ukládá nařízení GDPR", why: "GDPR se týká zpracování osobních údajů." }
+          - { text: "Aby mohl vynechat úvodní dotazník a záznam stravy", why: "Dotazník je standardní součástí první konzultace." }
 
   - id: prx.dokumenty
     title: Dokumenty k podpisu – GDPR, smlouva, podmínky
@@ -109,10 +109,10 @@ points:
         type: choice
         prompt: "Proč zpracování zdravotních údajů klienta vyžaduje jeho výslovný souhlas?"
         options:
-          - { text: "Zdravotní údaje jsou podle GDPR zvláštní kategorií osobních údajů.", correct: true }
-          - { text: "Výživový poradce je zdravotnické zařízení.", why: "Není; důvodem je zvláštní kategorie údajů v GDPR." }
-          - { text: "Souhlas je nutný jen u fotografií.", why: "Fotografie mají samostatný souhlas, zdravotní údaje také." }
-          - { text: "Nevyžaduje, stačí ústní domluva.", why: "U zdravotních údajů je nutný výslovný souhlas." }
+          - { text: "Jde o zvláštní kategorii osobních údajů podle GDPR.", correct: true }
+          - { text: "Výživová poradna je ze zákona zdravotnické zařízení.", why: "Není; důvodem je zvláštní kategorie údajů v GDPR." }
+          - { text: "Nevyžaduje – písemný souhlas je nutný jen u fotografií.", why: "Fotografie mají samostatný souhlas, zdravotní údaje také." }
+          - { text: "Nevyžaduje – u zdravotních údajů stačí ústní domluva.", why: "U zdravotních údajů je nutný výslovný souhlas." }
       - id: smlouva
         type: choice
         prompt: "Co vymezuje smlouva o poskytování poradenských služeb?"
@@ -158,15 +158,15 @@ points:
         type: choice
         prompt: "Co je při předání jídelníčku podle skript klíčové?"
         options:
-          - { text: "Srozumitelně ho vysvětlit včetně záměn a jídel mimo domov", correct: true }
-          - { text: "Poslat ho e-mailem a konzultaci zkrátit", why: "Samotné předání dokumentu nestačí." }
-          - { text: "Trvat na přesném dodržení bez záměn", why: "Skripta doporučují vysvětlit možnosti záměn." }
-          - { text: "Neříkat, jak rychle se dostaví výsledky", why: "Očekávání je třeba realisticky nastavit." }
+          - { text: "Vysvětlit ho včetně záměn a jídel mimo domov", correct: true }
+          - { text: "Poslat ho předem e-mailem a konzultaci tím zkrátit", why: "Samotné předání dokumentu nestačí." }
+          - { text: "Trvat na přesném dodržení gramáží bez jakýchkoli záměn", why: "Skripta doporučují vysvětlit možnosti záměn." }
+          - { text: "Raději neříkat, jak rychle se výsledky dostaví", why: "Očekávání je třeba realisticky nastavit." }
 
   - id: prx.motivace
     title: Vnitřní vs. vnější motivace klienta
     kind: comparison
-    tier: A
+    tier: B
     criteria: [11a, 10b]
     source: { pages: [256], anchor: "vede vnitřní motivace k výrazně stabilnějším a dlouhodoběji udržitelným výsledkům" }
     explanation: >-
@@ -203,7 +203,7 @@ points:
   - id: prx.anamneza
     title: Zdravotní anamnéza ve vstupním záznamu
     kind: procedure
-    tier: A
+    tier: B
     criteria: [5b, 3c]
     source: { pages: [253], anchor: "zdravotní stránku (onemocnění, medikace, laboratorní výsledky, alergie a intolerance)" }
     explanation: >-
@@ -350,10 +350,10 @@ points:
         type: choice
         prompt: "Co si zapíšeš do karty po každé kontrolní konzultaci?"
         options:
-          - { text: "Datum, naměřené hodnoty, hodnocení, úpravy plánu a další kroky", correct: true }
-          - { text: "Nic, stačí vstupní údaje", why: "Bez záznamu kontrol nelze sledovat vývoj." }
-          - { text: "Jen novou hmotnost", why: "Důležité je i hodnocení a domluvené kroky." }
-          - { text: "Diagnózu stanovenou poradcem", why: "Poradce nediagnostikuje." }
+          - { text: "Datum, hodnoty, hodnocení, úpravy plánu a další kroky", correct: true }
+          - { text: "Nic nového – stačí vstupní údaje z první konzultace", why: "Bez záznamu kontrol nelze sledovat vývoj." }
+          - { text: "Jen novou hmotnost a rozdíl oproti minulému vážení", why: "Důležité je i hodnocení a domluvené kroky." }
+          - { text: "Diagnózu, kterou poradce z měření a rozhovoru stanovil", why: "Poradce nediagnostikuje." }
 
   # ---------- Hranice kompetencí, red flags (3c) ----------
 
@@ -389,10 +389,10 @@ points:
         type: choice
         prompt: "Klient přinese výsledek s glykémií nalačno 6,5 mmol/l a ptá se, zda má cukrovku. Jak správně odpovíš?"
         options:
-          - { text: "Hodnocení nálezu patří lékaři – doporučím, ať to s ním probere.", correct: true }
-          - { text: "Ano, má cukrovku, nastavím mu diabetickou dietu.", why: "Diagnostika patří do kompetence lékaře." }
-          - { text: "Ne, to je v normě, nemusí nic řešit.", why: "Nález nehodnotím a varovné hodnoty nebagatelizuji." }
-          - { text: "Doporučím mu doplněk na snížení cukru.", why: "Doplněk diagnostiku ani léčbu nenahradí." }
+          - { text: "Posoudit to musí lékař – ať to s ním brzy probere.", correct: true }
+          - { text: "Ano, je to cukrovka, rovnou mu nastavím diabetickou dietu.", why: "Diagnostika patří do kompetence lékaře." }
+          - { text: "Ne, hodnota je v normě, nemusí nic dalšího řešit.", why: "Nález nehodnotím a varovné hodnoty nebagatelizuji (6,5 mmol/l nalačno je nad normou)." }
+          - { text: "Zatím nic, doporučím doplněk na snížení cukru v krvi.", why: "Doplněk diagnostiku ani léčbu nenahradí." }
 
   - id: prx.ppp-podezreni
     title: Podezření na poruchu příjmu potravy
@@ -403,34 +403,42 @@ points:
     prereqs: [prx.hranice-kompetenci, obd.ppp-role-poradce]
     confusableWith: [obd.ppp-role-poradce]
     source: { pages: [230, 232], anchor: "poradce diagnostikuje pouze podezření a předává klienta specialistovi" }
+    note: >-
+      Ověřeno proti NICE NG69 (Eating disorders, 2017/2020): při podezření na PPP odeslat k posouzení
+      specialistovi a tělesné riziko nechat zhodnotit lékaře. Doporučení praktického lékaře při
+      tělesných varovných příznacích je doplněk nad rámec skript.
     explanation: >-
       Praktický případ: v dotazníku a rozhovoru zachytíš signály – velmi nízké BMI, pocit „jsem
       tlustá“, i když okolí tvrdí opak, nutkavé cvičení, pocity viny po jídle, zvracení či projímadla,
       výpadky menstruace. Redukční plán nesestavíš. Citlivě řekneš, čeho si všímáš, a doporučíš
       vyšetření u psychiatra nebo psychologa se specializací na PPP (léčba pak kombinuje psychoterapii
-      a nutriční péči). Do karty zapíšeš, co jsi doporučila.
+      a nutriční péči). Při omdlévání, bušení srdce či velmi nízkém BMI doporuč co nejdřív i lékaře.
+      Do karty zapíšeš, co jsi doporučila.
     exercises:
       - id: postup
         type: explain
+        version: 2
         prompt: "Klientka s BMI 17 mluví o tom, že je pořád tlustá, a cvičí dvakrát denně. Jak postupuješ?"
         keyPoints:
           - "Rozpoznám varovné signály PPP (nízké BMI, zkreslený obraz těla, nutkavé cvičení)"
           - "Nediagnostikuji, nehodnotím – mluvím citlivě a bez odsuzování"
           - "Doporučím vyšetření u psychiatra / psychologa se specializací na PPP"
           - "Redukční jídelníček nesestavím; doporučení zapíšu do karty"
+          - "Při tělesných varovných příznacích (omdlévání, bušení srdce) i co nejdřív lékař"
         modelAnswer: >-
-          BMI pod 17,5, pocit, že je tlustá, a nutkavé cvičení jsou varovné signály poruchy příjmu
+          BMI 17 (vodítkem pro anorexii je BMI 17,5 a nižší), pocit, že je tlustá, a nutkavé cvičení jsou varovné signály poruchy příjmu
           potravy. Diagnózu nestanovuji, ale citlivě jí řeknu, čeho si všímám a že se o ni bojím.
           Doporučím vyšetření u psychiatra nebo psychologa se specializací na PPP; léčba pak spojuje
-          psychoterapii a nutriční péči. Redukční plán jí nesestavím a doporučení si zapíšu do karty.
+          psychoterapii a nutriční péči. Při tak nízkém BMI je vhodné i vyšetření u praktického lékaře.
+          Redukční plán jí nesestavím a doporučení si zapíšu do karty.
       - id: redukce
         type: choice
         prompt: "Klientka s BMI 17,2 chce jídelníček na zhubnutí dalších 3 kg, protože se cítí tlustá. Jak zareaguješ?"
         options:
-          - { text: "Plán nesestavím, řeknu jí, čeho si všímám, a doporučím specialistu na PPP.", correct: true }
-          - { text: "Sestavím mírný deficit, aby hubla aspoň bezpečně.", why: "Při podezření na PPP hubnutí nepodporuji." }
-          - { text: "Řeknu jí, že má anorexii, a pošlu ji k lékaři.", why: "Diagnózu poradce nestanovuje, jen vysloví podezření." }
-          - { text: "Bez vysvětlení spolupráci odmítnu.", why: "Je třeba citlivě vysvětlit důvod a doporučit pomoc." }
+          - { text: "Plán nesestavím, řeknu, čeho si všímám, a doporučím specialistu.", correct: true }
+          - { text: "Sestavím jen mírný deficit, aby hubla aspoň bezpečně a pod dohledem.", why: "Při podezření na PPP hubnutí nepodporuji." }
+          - { text: "Řeknu jí, že má zřejmě anorexii, a pošlu ji rovnou k lékaři.", why: "Diagnózu poradce nestanovuje, jen vysloví podezření." }
+          - { text: "Spolupráci bez dalšího vysvětlování zdvořile odmítnu.", why: "Je třeba citlivě vysvětlit důvod a doporučit pomoc." }
 
   - id: prx.red-flags-lekar
     title: Varovné tělesné příznaky – poslat k lékaři
@@ -555,15 +563,15 @@ points:
         type: choice
         prompt: "Klient dosáhl cílové hmotnosti a motivace mu klesá. Co podle skript uděláš?"
         options:
-          - { text: "Připomenu, že jde o trvalou změnu, a přenastavím cíl na udržování.", correct: true }
-          - { text: "Ukončím spolupráci, cíl je splněn.", why: "Bez navazujícího cíle hrozí návrat ke starým návykům." }
-          - { text: "Stanovím další velký redukční cíl.", why: "Vhodné je přejít do udržovací fáze." }
-          - { text: "Zpřísním jídelníček, aby měl novou výzvu.", why: "Skripta doporučují přechod na udržování." }
+          - { text: "Připomenu trvalou změnu a přenastavím cíl na udržování.", correct: true }
+          - { text: "Pogratuluji mu a spolupráci ukončím, cíl je splněný.", why: "Bez navazujícího cíle hrozí návrat ke starým návykům." }
+          - { text: "Stanovím další velký redukční cíl, aby měl motivaci.", why: "Vhodné je přejít do udržovací fáze." }
+          - { text: "Zpřísním jídelníček, aby měl novou výzvu a nepolevil.", why: "Skripta doporučují přechod na udržování." }
 
   - id: prx.ostychavy
     title: Ostýchavý klient
     kind: procedure
-    tier: A
+    tier: B
     status: supplementary
     criteria: [11b]
     source: { pages: [257], anchor: "Řeč těla, mimika a celkové vystupování klienta často prozradí víc" }
@@ -641,7 +649,7 @@ points:
   - id: prx.precitliveny
     title: Přecitlivělý klient
     kind: procedure
-    tier: A
+    tier: B
     status: supplementary
     criteria: [11b]
     source: { pages: [255], anchor: "praktické překážky (čas, dostupnost potravin, sociální situace)" }
@@ -748,18 +756,18 @@ points:
         type: choice
         prompt: "Co patří k technikám motivačního rozhovoru?"
         options:
-          - { text: "Otevřené otázky a posilování klientových vlastních důvodů ke změně", correct: true }
-          - { text: "Přesvědčování klienta pomocí argumentů a studií", why: "Motivační rozhovor se direktivnímu přesvědčování vyhýbá." }
-          - { text: "Zavřené otázky typu ano/ne", why: "Pracuje se s otevřenými otázkami." }
-          - { text: "Strašení zdravotními riziky", why: "Cílem je posílit vlastní důvody klienta." }
+          - { text: "Otevřené otázky a posilování vlastních důvodů klienta", correct: true }
+          - { text: "Přesvědčování klienta pomocí argumentů a výsledků studií", why: "Motivační rozhovor se direktivnímu přesvědčování vyhýbá." }
+          - { text: "Uzavřené otázky typu ano/ne, aby byl rozhovor rychlý", why: "Pracuje se s otevřenými otázkami." }
+          - { text: "Důrazné upozorňování na zdravotní rizika obezity", why: "Strašení nefunguje; cílem je posílit vlastní důvody klienta." }
       - id: otazka
         type: choice
         prompt: "Která otázka je v duchu motivačního rozhovoru?"
         options:
-          - { text: "„Co by se pro vás změnilo, kdybyste se cítil fit?“", correct: true }
-          - { text: "„Víte, že vaše BMI je rizikové?“", why: "Poučování, ne posilování vlastních důvodů." }
-          - { text: "„Budete to už konečně dodržovat?“", why: "Uzavřená a výčitková otázka." }
-          - { text: "„Proč jste to zase nezvládl?“", why: "Vyvolává obranu." }
+          - { text: "„Co by se změnilo, kdybyste se cítil fit?“", correct: true }
+          - { text: "„Víte, že vaše BMI je už zdravotně rizikové?“", why: "Poučování, ne posilování vlastních důvodů." }
+          - { text: "„Budete to od příštího týdne konečně dodržovat?“", why: "Uzavřená a výčitková otázka." }
+          - { text: "„Proč jste ten plán zase nezvládl dodržet?“", why: "Vyvolává obranu." }
 
   - id: prx.komunikace
     title: Verbální a neverbální komunikace s klientem
@@ -777,10 +785,10 @@ points:
         type: choice
         prompt: "Klient nehubne a opakovaně zmiňuje stres v práci a péči o rodiče. Co z toho podle skript plyne?"
         options:
-          - { text: "Skutečná příčina může být ve stresu, je třeba ji řešit, nejen jídelníček.", correct: true }
-          - { text: "Je to odbočka, vrať rozhovor k jídelníčku.", why: "Skripta doporučují vnímat souvislosti." }
-          - { text: "Klient se vymlouvá, zpřísni plán.", why: "Nejde o vymlouvání, ale o možnou příčinu." }
-          - { text: "Ukonči spolupráci.", why: "Situace je řešitelná úpravou přístupu." }
+          - { text: "Příčina může být ve stresu – řešit ji, nejen jídelníček.", correct: true }
+          - { text: "Je to odbočka od tématu, vrať rozhovor k jídelníčku.", why: "Skripta doporučují vnímat souvislosti." }
+          - { text: "Klient se jen vymlouvá, plán je potřeba zpřísnit.", why: "Nejde o vymlouvání, ale o možnou příčinu." }
+          - { text: "Doporuč mu ukončit spolupráci, dokud se situace nezlepší.", why: "Situace je řešitelná úpravou přístupu." }
 
   - id: prx.klient-odmita
     title: Klient odmítá pomoc

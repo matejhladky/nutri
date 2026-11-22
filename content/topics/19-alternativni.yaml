@@ -77,10 +77,10 @@ points:
         type: choice
         prompt: "Co je flexitariánství?"
         options:
-          - { text: "Převážně rostlinná strava s občasnou konzumací masa a ryb", correct: true }
-          - { text: "Strava bez masa, ale s rybami", why: "To je jedna z forem vegetariánství, maso savců vylučuje." }
-          - { text: "Střídání dnů s masem a dnů půstu", why: "To je spíš forma půstu, ne flexitariánství." }
-          - { text: "Strava založená jen na syrových potravinách", why: "To je RAW strava." }
+          - { text: "Převážně rostlinná strava, občas maso a ryby", correct: true }
+          - { text: "Strava bez masa savců, ale s rybami a drůbeží", why: "To je jedna z forem vegetariánství, maso savců vylučuje." }
+          - { text: "Pravidelné střídání dnů s masem a dnů půstu", why: "To je spíš forma půstu, ne flexitariánství." }
+          - { text: "Strava založená jen na syrových rostlinných potravinách", why: "To je RAW strava." }
       - id: vyhoda
         type: reveal
         prompt: "Jakou výhodu má flexitariánství oproti vegetariánství a veganství?"
@@ -92,39 +92,47 @@ points:
     tier: A
     status: course-disputed
     note: >-
-      S. 191 uvádí, že veganství se nedoporučuje v těhotenství a je nevhodné pro děti. Tabulka na
-      s. 192 ale ukazuje rozdílné postoje (AND 2025: dobře naplánovaná veganská strava je adekvátní;
-      DGE 2024 postoj zmírnila); organizace se shodují, že bez odborného vedení a suplementace je
-      riziková. Ke zkoušce: kap. 19 (s. 191) ji pro děti označuje za nevhodnou, novější ESPGHAN 2025
-      (s. 222) ji připouští jen za přísných podmínek (sledování pediatrem/NT, povinná B12, pozornost
-      na D, Fe, Ca, DHA). Odpověz: paušálně se nedoporučuje, je možná jen za těchto podmínek; poradce
-      dětského vegana sám nevede.
+      **Skripta:** veganství se nedoporučuje v těhotenství a je nevhodné pro děti (s. 191); tabulka na
+      s. 192 ukazuje rozdílné postoje (ČPS 2016 a SpV 2023 ne pro děti a těhotné; AND 2025 „dobře
+      naplánovaná je adekvátní“; DGE 2024 zmírnila) a kap. o dětech cituje ESPGHAN 2025 – jen za
+      přísných podmínek (s. 222). **Současné poznatky / předpisy:** ESPGHAN (Verduci et al., JPGN 2025)
+      – důkazy o dostatečném růstu veganských dětí jsou nejednoznačné; nutné pravidelné sledování
+      růstu a stavu výživy, vedení dětským nutričním terapeutem a suplementace mikroživin (B12,
+      vitamin D aj.). DGE (2024) u dětí, těhotných a kojících nedává doporučení pro ani proti, zdůrazňuje
+      odborné vedení a B12. Postoj AND z roku 2025 se týká jen dospělých mimo těhotenství a kojení
+      (pro všechna životní období mluvil starší postoj AND z roku 2016). **Ke zkoušce:** platí podle
+      obou – u dětí, kojenců a těhotných se veganství paušálně nedoporučuje; pokud ho rodina dodržuje,
+      jen pod lékařským a nutričním dohledem s povinnou B12; poradce dětského vegana sám nevede.
+      Rostlinné nápoje nikdy nenahrazují mateřské mléko ani kojeneckou výživu.
     criteria: [6a]
     confusableWith: [alt.vegetarianstvi, obd.veganstvi-deti]
     source: { pages: [191, 192], anchor: "Veganství se nedoporučuje v těhotenství" }
     explanation: >-
       Veganství je nejpřísnější forma vegetariánství – žádné živočišné produkty. Rizikové živiny:
       omega-3, železo, vápník, zinek, vitamin D, B12. Výhody: úprava hmotnosti (díky deficitu),
-      šetrnost ke zvířatům. Podle skript se nedoporučuje v těhotenství (málo železa) a je nevhodné pro
-      děti (málo vápníku a vitaminu D → rachitida); největší riziko mají kojenci na rostlinném (hlavně
-      mandlovém) mléce. Dospělý musí jídelníček sestavit velmi pečlivě a suplementovat.
+      šetrnost ke zvířatům. Skripta ho nedoporučují v těhotenství (málo železa) a u dětí (málo vápníku
+      a vitaminu D → rachitida); nejrizikovější jsou kojenci na rostlinném (mandlovém) mléce. Novější
+      stanoviska (ESPGHAN, DGE) ho u dětí a těhotných připouštějí jen pod odborným dohledem s povinnou
+      B12. Dospělý musí jídelníček pečlivě sestavit a suplementovat.
     exercises:
       - id: hodnoceni
         type: explain
+        version: 2
         prompt: "Klientka se chce stát vegankou. Jaké výhody a rizika jí vysvětlíš a pro koho veganství není vhodné?"
         keyPoints:
           - "Žádné živočišné produkty – nejpřísnější forma vegetariánství"
           - "Rizikové živiny: B12, Fe, Ca, Zn, vitamin D, omega-3"
           - "Výhody: úprava hmotnosti, šetrnost ke zvířatům"
-          - "Nevhodné pro děti a kojence, nedoporučuje se v těhotenství"
+          - "Děti, kojenci, těhotné: paušálně se nedoporučuje; jen pod lékařským a nutričním dohledem s B12"
           - "Dospělí: pečlivý jídelníček + suplementace, ideálně s odborným vedením"
         modelAnswer: >-
           Veganství vylučuje všechny živočišné produkty. Může pomoci s úpravou hmotnosti a je šetrné ke
           zvířatům, ale hrozí nedostatek B12, železa, vápníku, zinku, vitaminu D a omega-3. Podle skript
           se nedoporučuje v těhotenství a není vhodné pro děti – hrozí třeba rachitida, u kojenců na
-          rostlinném mléce i nedostatek esenciálních aminokyselin. Dospělá veganka musí jídelníček
-          sestavit velmi pečlivě a suplementovat; organizace se shodují, že bez odborného vedení je
-          veganství rizikové.
+          rostlinném mléce i nedostatek esenciálních aminokyselin. Novější stanoviska (ESPGHAN, DGE) ho
+          u dětí a těhotných připouštějí jen pod odborným dohledem a s povinnou B12, takže takovou
+          klientku pošlu k lékaři a nutričnímu terapeutovi. Dospělá veganka musí jídelníček sestavit
+          velmi pečlivě a suplementovat.
       - id: deti
         type: choice
         prompt: "Proč skripta považují veganství za nevhodné pro děti?"
@@ -137,10 +145,10 @@ points:
         type: choice
         prompt: "U koho skripta uvádějí obzvlášť velká rizika veganské výživy?"
         options:
-          - { text: "U kojenců vyživovaných rostlinným (např. mandlovým) mlékem", correct: true }
-          - { text: "U zdravých dospělých mužů", why: "Dospělý může veganství zvládnout při pečlivém plánování a suplementaci." }
-          - { text: "U vrcholových sportovců", why: "Skripta zvlášť zdůrazňují kojence na rostlinném mléce." }
-          - { text: "U lidí s nadváhou", why: "U nich skripta uvádějí spíš výhodu – úpravu hmotnosti." }
+          - { text: "U kojenců živených rostlinným (např. mandlovým) mlékem", correct: true }
+          - { text: "U zdravých dospělých mužů se sedavým zaměstnáním", why: "Dospělý může veganství zvládnout při pečlivém plánování a suplementaci." }
+          - { text: "U vrcholových sportovců v přípravném období", why: "Skripta zvlášť zdůrazňují kojence na rostlinném mléce." }
+          - { text: "U dospělých s nadváhou, kteří chtějí zhubnout", why: "U nich skripta uvádějí spíš výhodu – úpravu hmotnosti." }
 
   - id: alt.veganstvi-kompenzace
     title: Veganství – kompenzace rizikových živin
@@ -184,10 +192,10 @@ points:
         type: choice
         prompt: "Proč celozrnné výrobky nejsou pro vegany spolehlivým zdrojem zinku?"
         options:
-          - { text: "Obsahují fytin, který snižuje biologickou dostupnost zinku.", correct: true }
-          - { text: "Zinek v nich vůbec není.", why: "Zinku obsahují poměrně dost, problém je využitelnost." }
-          - { text: "Zinek se z nich ztrácí tepelnou úpravou.", why: "Skripta jako důvod uvádějí fytin, ne tepelnou úpravu." }
-          - { text: "Obsahují příliš mnoho vitaminu C.", why: "Problémem je fytin, ne vitamin C." }
+          - { text: "Fytin v nich snižuje využitelnost zinku.", correct: true }
+          - { text: "Zinek v nich prakticky vůbec není, je jen v mase.", why: "Zinku obsahují poměrně dost, problém je využitelnost." }
+          - { text: "Zinek se z nich ztrácí při pečení a vaření.", why: "Skripta jako důvod uvádějí fytin, ne tepelnou úpravu." }
+          - { text: "Vláknina v nich zinek váže a vylučuje močí.", why: "Problémem je fytin, ne vylučování močí." }
       - id: b12
         type: reveal
         prompt: "Proč je u veganství nutná suplementace vitaminu B12?"
@@ -240,7 +248,7 @@ points:
   - id: alt.makrobiotika
     title: Makrobiotika
     kind: concept
-    tier: A
+    tier: B
     criteria: [6a]
     source: { pages: [193], anchor: "Makrobiotika je stravovací směr bez vědeckého zdůvodnění" }
     explanation: >-
@@ -277,10 +285,10 @@ points:
         type: choice
         prompt: "Jaké důsledky makrobiotické stravy u dětí skripta uvádějí?"
         options:
-          - { text: "Zpomalení růstu a klinické známky rachitidy", correct: true }
-          - { text: "Obezitu a diabetes 2. typu", why: "Problémem je nedostatek energie a živin, ne nadbytek." }
-          - { text: "Žádné, pro děti je vhodná", why: "Studie u dětí prokázala zpomalení růstu a rachitidu." }
-          - { text: "Nadbytek vitaminu D", why: "Naopak – hrozí nedostatek vitaminu D a rachitida." }
+          - { text: "Zpomalení růstu a známky rachitidy", correct: true }
+          - { text: "Dětskou obezitu a diabetes 2. typu", why: "Problémem je nedostatek energie a živin, ne nadbytek." }
+          - { text: "Žádné – pro rostoucí děti je vhodná", why: "Studie u dětí prokázala zpomalení růstu a rachitidu." }
+          - { text: "Předávkování vitaminem D a vápníkem", why: "Naopak – hrozí nedostatek vitaminu D a rachitida." }
 
   - id: alt.lchf
     title: Nízkosacharidová strava (LCHF) – princip a hodnocení
@@ -354,15 +362,18 @@ points:
   - id: alt.keto
     title: Ketogenní dieta
     kind: concept
-    tier: A
+    tier: B
     status: course-disputed
     note: >-
-      Skripta (s. 196) popisují keto jako režim s „doplňováním velkého množství bílkovin“ a se
-      zeleninou a ovocem vyřazenými na začátku. V běžném pojetí je ketogenní dieta vysokotuková s
-      přiměřeným (ne vysokým) příjmem bílkovin a bezškrobová zelenina v ní zůstává. U zkoušky drž
-      popis skript (maximální omezení sacharidů, dostatek bílkovin, tělo přejde na tuky); pokud test
-      nabídne popis „maximální omezení sacharidů + velké množství bílkovin“, je podle skript správně.
-      Můžeš zmínit, že hlavním zdrojem energie je tuk (tak to uvádí i s. 89 – ketolátky z tuků).
+      **Skripta:** keto = maximální omezení sacharidů s „doplňováním velkého množství bílkovin“,
+      zelenina a ovoce jsou na začátku vyřazené (s. 196); s. 89 uvádí ketolátky z tuků.
+      **Současné poznatky / předpisy:** klinicky používaná ketogenní dieta je vysokotuková
+      s přiměřeným (ne vysokým) příjmem bílkovin – nadbytek bílkovin ketózu oslabuje – a bezškrobová
+      zelenina v ní zůstává; zavedenou léčbou je u farmakorezistentní epilepsie. Diabetik na lécích
+      (inzulin, deriváty sulfonylurey, glifloziny) ji smí zkoušet jen pod dohledem lékaře (riziko
+      hypoglykémie, u gliflozinů ketoacidózy). **Ke zkoušce:** platí podle obou – maximální omezení
+      sacharidů, tělo přejde na tuky a tvoří ketolátky. Pokud se otázka výslovně ptá na skripta,
+      jejich popis zdůrazňuje i velké množství bílkovin.
     criteria: [6a, 7b]
     confusableWith: [alt.lchf]
     prereqs: [alt.lchf]
@@ -424,9 +435,9 @@ points:
         prompt: "Které skupiny potravin paleo strava vylučuje nebo omezuje?"
         options:
           - { text: "Obiloviny a mléčné výrobky", correct: true }
-          - { text: "Maso a vejce", why: "Ty tvoří základ paleo stravy." }
-          - { text: "Bobuloviny a houby", why: "Ty jsou v paleo stravě povolené." }
-          - { text: "Ryby", why: "Ryby patří k základu paleo stravy." }
+          - { text: "Maso, vnitřnosti a vejce", why: "Ty tvoří základ paleo stravy." }
+          - { text: "Bobuloviny a lesní plody", why: "Ty jsou v paleo stravě povolené." }
+          - { text: "Ryby a mořské plody", why: "Ryby patří k základu paleo stravy." }
       - id: riziko
         type: reveal
         prompt: "Jaký nutriční deficit hrozí u paleo stravy a proč?"
@@ -438,9 +449,12 @@ points:
     tier: B
     status: course-disputed
     note: >-
-      Skripta uvádějí, že carnivore „bývá používána např. u Crohnovy choroby či ulcerózní kolitidy“
-      a snižuje záněty; pro to chybí kvalitní důkazy a žádná uznávaná organizace ji nepodporuje (to
-      uvádějí i skripta). U zkoušky zdůrazni rizika a nedoporučení odborníků.
+      **Skripta:** carnivore „bývá používána např. u Crohnovy choroby či ulcerózní kolitidy“ a má
+      snižovat záněty; zároveň uvádějí, že ji žádná uznávaná organizace nepodporuje (s. 197).
+      **Současné poznatky / předpisy:** pro léčebné využití u střevních zánětů chybí kvalitní studie;
+      dietní léčbu IBD vede gastroenterolog a nutriční terapeut. **Ke zkoušce:** platí podle obou –
+      zdůraznit rizika (vitamin C, vláknina, nasycené tuky) a to, že ji odborné organizace
+      nedoporučují; klienta s Crohnovou chorobou nebo kolitidou poradce na carnivore nepřevádí.
     criteria: [6a, 7b]
     source: { pages: [197], anchor: "vylučuje veškeré rostlinné potraviny" }
     explanation: >-
@@ -467,7 +481,7 @@ points:
   - id: alt.raw
     title: RAW strava
     kind: concept
-    tier: A
+    tier: B
     criteria: [6a]
     source: { pages: [198], anchor: "neprošly tepelnou úpravou nad určitou teplotu, obvykle mezi 40–48 °C" }
     explanation: >-
@@ -504,10 +518,10 @@ points:
         type: choice
         prompt: "Proč je u RAW stravy obtížné zajistit dostatek kvalitních rostlinných bílkovin?"
         options:
-          - { text: "Luštěniny a většina obilovin jsou bez tepelné úpravy nepoužitelné.", correct: true }
-          - { text: "RAW strava zakazuje ořechy a semena.", why: "Ořechy a semena jsou v RAW stravě základní." }
-          - { text: "Syrové bílkoviny tělo neumí vůbec trávit.", why: "Problém je v tom, že luštěniny a obiloviny syrové použít nelze." }
-          - { text: "Tepelná úprava bílkoviny vždy zničí.", why: "RAW strava tepelnou úpravu vylučuje – nedostatek bílkovin plyne z nepoužitelnosti luštěnin a obilovin." }
+          - { text: "Luštěniny a většina obilovin jsou syrové nepoužitelné.", correct: true }
+          - { text: "RAW strava zakazuje ořechy, semena a klíčky.", why: "Ořechy a semena jsou v RAW stravě základní." }
+          - { text: "Syrové bílkoviny lidské tělo neumí vůbec trávit.", why: "Problém je v tom, že luštěniny a obiloviny syrové použít nelze." }
+          - { text: "Rostlinné bílkoviny se rozkládají už nad 40 °C.", why: "Nedostatek bílkovin plyne z nepoužitelnosti syrových luštěnin a obilovin." }
 
   - id: alt.krevni-skupiny
     title: Dieta podle krevních skupin
@@ -553,10 +567,10 @@ points:
         type: choice
         prompt: "Čím se Dukanova dieta liší od Atkinsovy?"
         options:
-          - { text: "Omezuje kromě sacharidů i tuky; Atkinsova tuky povoluje.", correct: true }
-          - { text: "Dukanova je vysokosacharidová.", why: "Obě jsou nízkosacharidové." }
-          - { text: "Atkinsova je vegetariánská.", why: "Atkinsova je převážně živočišná strava bohatá na tuky." }
-          - { text: "Dukanova nemá žádné fáze.", why: "Dukanova má 4 fáze." }
+          - { text: "Omezuje i tuky; Atkinsova tuky povoluje.", correct: true }
+          - { text: "Dukanova je naopak vysokosacharidová.", why: "Obě jsou nízkosacharidové." }
+          - { text: "Atkinsova je vegetariánská, Dukanova ne.", why: "Atkinsova je převážně živočišná strava bohatá na tuky." }
+          - { text: "Dukanova nemá fáze, Atkinsova ano.", why: "Dukanova má 4 fáze." }
       - id: indukce
         type: reveal
         prompt: "Jak vypadá první fáze Atkinsovy a první fáze Dukanovy diety?"
@@ -587,6 +601,10 @@ points:
     title: Přerušovaný půst (IF)
     kind: concept
     tier: A
+    note: >-
+      Citaci postoje AND (s. 201) se v primárním zdroji ověřit nepodařilo – formální stanovisko AND
+      k přerušovanému půstu jsme nenašli. Bezpečnostní jádro ale platí: u diabetiků na inzulinu nebo
+      derivátech sulfonylurey hrozí při půstu hypoglykémie, režim musí upravit lékař.
     criteria: [7b]
     source: { pages: [200, 201], anchor: "střídá období jídla s obdobími půstu" }
     explanation: >-
@@ -594,7 +612,8 @@ points:
       500–600 kcal). Může zlepšit inzulinovou senzitivitu a lipidy; hubne se díky deficitu – podobně
       jako při klasické redukční dietě. Nevhodný při poruchách příjmu potravy, v těhotenství, pro
       děti a při náročném fyzickém režimu; u žen může narušit cyklus. Riziko přejídání v okně, nízká
-      adherence. DGE: žádná výhoda oproti jiné redukci; AND ho nedoporučuje (nevhodný i pro diabetiky).
+      adherence. DGE: žádná výhoda oproti jiné redukci; AND ho podle skript nedoporučuje (nevhodný
+      i pro diabetiky – diabetik na lécích jen po domluvě s lékařem).
     exercises:
       - id: hodnoceni
         type: explain
@@ -670,10 +689,10 @@ points:
         type: choice
         prompt: "Co je podstatou přístupu IIFYM?"
         options:
-          - { text: "Splnit denní cíle makroživin bez zakazování konkrétních potravin", correct: true }
-          - { text: "Jíst jen v osmihodinovém okně", why: "To je přerušovaný půst 16/8." }
-          - { text: "Jíst podle signálů hladu bez počítání", why: "To je intuitivní stravování." }
-          - { text: "Vyřadit všechny sacharidy", why: "IIFYM nevyřazuje skupiny potravin, sacharidy jsou součástí makro cílů." }
+          - { text: "Splnit denní cíle makroživin, nic nezakazovat", correct: true }
+          - { text: "Jíst jen v osmihodinovém okně, zbytek dne nic", why: "To je přerušovaný půst 16/8." }
+          - { text: "Jíst podle signálů hladu a sytosti bez počítání", why: "To je intuitivní stravování." }
+          - { text: "Vyřadit sacharidy a jíst hlavně maso a tuky", why: "IIFYM nevyřazuje skupiny potravin, sacharidy jsou součástí makro cílů." }
 
   - id: alt.modre-zony
     title: Modré zóny

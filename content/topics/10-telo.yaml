@@ -39,11 +39,17 @@ points:
           - { text: "Hemoglobin", why: "Hemoglobin je bílkovina červených krvinek, která váže kyslík." }
           - { text: "Inzulin", why: "Inzulin se na membránu jen váže přes receptor, její stavební složkou není." }
           - { text: "Mucin", why: "Mucin je hlen chránící sliznice (např. žaludku)." }
+      - id: stavba
+        type: reveal
+        prompt: "Popiš stavbu plazmatické membrány: jakým modelem se popisuje a co ji tvoří?"
+        answer: >-
+          Model tekuté mozaiky. Dvojvrstva fosfolipidů (hydrofilní části k vodě, hydrofobní dovnitř),
+          cholesterol ovlivňuje její vlastnosti, bílkoviny zajišťují transport, receptory a imunitní reakce.
 
   - id: telo.organely
     title: Buněčné organely a jejich funkce
     kind: comparison
-    tier: A
+    tier: B
     criteria: [2b]
     prereqs: [telo.membrana]
     source: { pages: [68, 69], anchor: "Ribozomy jsou malé buněčné organely důležité pro proteosyntézu" }
@@ -324,10 +330,11 @@ points:
     confusableWith: [telo.traveni-bilkovin, telo.zluc]
     source: { pages: [73, 74], anchor: "Sliny obsahují slinnou amylázu (ptyalin)" }
     note: >-
-      Na s. 74 skripta píší, že pankreatická amyláza štěpí škrob „na glukózu“; na s. 14 a 73 přesněji
-      na menší jednotky (dextriny), které až enzymy kartáčového lemu rozloží na monosacharidy.
-      U zkoušky: amyláza (slinná i pankreatická) štěpí škrob; konečné štěpení na monosacharidy
-      zajišťují disacharidázy tenkého střeva.
+      Skripta: s. 74 uvádí, že pankreatická amyláza štěpí škrob „na glukózu“; s. 14 a 73 přesněji
+      „na menší jednotky“. Současné poznatky (učebnice fyziologie, např. StatPearls): amylázy štěpí
+      škrob na maltózu, maltotriózu a dextriny; na glukózu je rozloží až enzymy kartáčového lemu
+      (maltáza aj.). Ke zkoušce: otázky tohoto bodu mají klíč správný podle obou výkladů. Pokud by se
+      otázka výslovně ptala na skripta, odpověď skript je „amyláza ze slinivky štěpí škrob na glukózu“.
     explanation: >-
       Trávení sacharidů začíná v ústech: slinná amyláza (ptyalin) štěpí škrob na menší jednotky.
       Žaludek enzymy na sacharidy netvoří. Ve dvanáctníku pokračuje amyláza ze slinivky. Disacharidy
@@ -338,7 +345,7 @@ points:
         type: choice
         prompt: "Kde začíná trávení škrobu a kterým enzymem?"
         options:
-          - { text: "V ústech – slinnou amylázou (ptyalinem)", correct: true }
+          - { text: "V ústech – slinnou amylázou", correct: true }
           - { text: "V žaludku – pepsinem", why: "Pepsin štěpí bílkoviny; žaludek enzymy na sacharidy netvoří." }
           - { text: "Ve dvanáctníku – lipázou", why: "Lipáza štěpí tuky." }
           - { text: "V tlustém střevě – bakteriemi", why: "Bakterie fermentují vlákninu; škrob se začíná trávit už v ústech." }
@@ -350,11 +357,17 @@ points:
           - { text: "Slinné žlázy", why: "Tvoří slinnou amylázu (ptyalin)." }
           - { text: "Slinivka břišní", why: "Tvoří pankreatickou amylázu." }
           - { text: "Tenké střevo", why: "V kartáčovém lemu má disacharidázy (maltáza, sacharáza, laktáza)." }
+      - id: cesta
+        type: reveal
+        prompt: "Popiš cestu trávení škrobu od úst až po vstřebání."
+        answer: >-
+          Ústa: slinná amyláza (ptyalin) → žaludek enzymy na sacharidy netvoří → dvanáctník: amyláza
+          ze slinivky → kartáčový lem: maltáza, sacharáza, laktáza → monosacharidy se vstřebají do krve.
 
   - id: telo.traveni-bilkovin
     title: Trávení bílkovin – pepsin, HCl, trypsin
     kind: procedure
-    tier: A
+    tier: B
     criteria: [2a, 2b]
     prereqs: [telo.travici-trubice]
     confusableWith: [telo.traveni-sacharidu, telo.zluc]
@@ -415,7 +428,7 @@ points:
           - { text: "Rozptýlí tuky do micel dostupných pro lipázu", correct: true }
           - { text: "Sama štěpí tuky na mastné kyseliny", why: "Štěpení zajišťuje lipáza; žluč tuky jen rozptýlí." }
           - { text: "Štěpí bílkoviny ve dvanáctníku", why: "To dělají trypsin, chymotrypsin a elastáza." }
-          - { text: "Vstřebává vodu v tlustém střevě", why: "Vodu vstřebává sliznice tlustého střeva." }
+          - { text: "Štěpí škrob ve dvanáctníku", why: "Škrob štěpí amyláza ze slinivky." }
       - id: kde
         type: choice
         prompt: "Kde se žluč tvoří a kde se skladuje?"
@@ -460,6 +473,13 @@ points:
           - { text: "Vnitřní faktor", correct: true }
           - { text: "Amylázu", why: "Žaludek enzymy na sacharidy netvoří." }
           - { text: "Trypsin", why: "Trypsin tvoří slinivka." }
+      - id: prehled
+        type: reveal
+        prompt: "Co všechno tvoří žaludek a k čemu to slouží?"
+        answer: >-
+          HCl (denaturuje bílkoviny, umožní činnost pepsinu), pepsin (štěpí bílkoviny), trochu žaludeční
+          lipázy, u dětí chymosin (mléko), mucin (ochrana sliznice), vnitřní faktor (vstřebání B12).
+          Enzymy na sacharidy netvoří.
 
   - id: telo.reflux
     title: Svěrače žaludku a reflux
@@ -510,11 +530,17 @@ points:
           - { text: "V žaludku", why: "V žaludku se vstřebává např. alkohol, ne hlavní podíl živin." }
           - { text: "V tlustém střevě", why: "V tlustém střevě se vstřebává hlavně voda." }
           - { text: "V dutině ústní", why: "V ústech se vstřebávají jen některé léky a toxické látky." }
+      - id: lem
+        type: reveal
+        prompt: "Čím je sliznice tenkého střeva přizpůsobená vstřebávání a které enzymy jsou v kartáčovém lemu?"
+        answer: >-
+          Klky s kartáčovým lemem mnohonásobně zvětšují plochu. V lemu jsou disacharidázy (maltáza,
+          sacharáza, laktáza, trehaláza), peptidázy a nukleázy.
 
   - id: telo.tluste-strevo
     title: Tlusté střevo a střevní mikroflóra
     kind: fact
-    tier: A
+    tier: B
     criteria: [2b, 2a]
     prereqs: [telo.travici-trubice]
     source: { pages: [75], anchor: "V tlustém střevě již neprobíhají vlastní trávicí procesy" }
@@ -537,22 +563,31 @@ points:
         type: choice
         prompt: "Co platí o vitaminech tvořených bakteriemi tlustého střeva?"
         options:
-          - { text: "Tvoří např. vitamin K a B12, potřebu ale nepokryjí", correct: true }
-          - { text: "Pokryjí celou potřebu vitaminu K i B12", why: "Produkce bakterií nedosahuje potřebného množství." }
-          - { text: "Tvoří hlavně vitamin C a D", why: "Skripta uvádějí B1, B2, K a B12." }
+          - { text: "Tvoří K a B12, ale potřebu nepokryjí", correct: true }
+          - { text: "Pokryjí celou potřebu vitaminů K a B12", why: "Produkce bakterií nedosahuje potřebného množství." }
+          - { text: "Tvoří hlavně vitaminy C a D pro celé tělo", why: "Skripta uvádějí B1, B2, K a B12." }
 
   - id: telo.zlucove-kameny
     title: Žlučové kameny
     kind: fact
     tier: B
+    status: course-disputed
     criteria: [2b, 7h]
     prereqs: [telo.zluc]
     source: { pages: [75, 238], anchor: "Důležitou prevencí žlučových kamenů je pitný režim" }
+    note: >-
+      Skripta (s. 75, 238): rizikem je obezita, ženské pohlaví, nedostatečný pitný režim a zácpa;
+      hlavní prevencí je pitný režim. Současné poznatky (NIDDK, NIH): hlavní rizika jsou obezita,
+      ženské pohlaví a rychlé hubnutí (velmi nízkoenergetické diety, bariatrie); prevencí je zdravá
+      hmotnost, pozvolné hubnutí, vláknina a pravidelný pohyb. Pitný režim ani zácpu NIDDK jako rizika
+      neuvádí. Ke zkoušce: otázka „podle skript“ testuje výčet skript; v poradenství varuj hlavně před
+      rychlým hubnutím.
     explanation: >-
       Žluč je tekutá díky vyváženému poměru cholesterolu, žlučových kyselin a fosfolipidů. Změna
       koncentrace některé složky může vést k vysrážení – vznikají žlučové kameny. Rizikovým faktorem
-      je obezita a ženské pohlaví, podle kap. 22 i nedostatečný pitný režim a zácpa. Prevencí je
-      dostatečný pitný režim.
+      je obezita a ženské pohlaví, podle skript (kap. 22) i nedostatečný pitný režim a zácpa. Podle
+      současných doporučení zvyšuje riziko také rychlé hubnutí; prevencí je zdravá hmotnost
+      a pozvolná redukce.
     exercises:
       - id: rizika
         type: choice
@@ -564,6 +599,14 @@ points:
           - { text: "Nedostatečný pitný režim", correct: true }
           - { text: "Mužské pohlaví", why: "Rizikovější je ženské pohlaví." }
           - { text: "Vysoký příjem vlákniny", why: "Vlákninu skripta jako riziko neuvádějí; rizikem je spíš zácpa." }
+      - id: rychle-hubnuti
+        type: choice
+        prompt: "Klientka s nadváhou chce zhubnout co nejrychleji velmi nízkoenergetickou dietou. Co je z pohledu žlučových kamenů správné?"
+        options:
+          - { text: "Rychlé hubnutí riziko kamenů zvyšuje, vhodná je pozvolná redukce", correct: true }
+          - { text: "Rychlé hubnutí riziko kamenů snižuje, protože ubývá tuku", why: "Prudká redukce (velmi nízkoenergetické diety) riziko naopak zvyšuje." }
+          - { text: "Na riziko kamenů má vliv jen pitný režim, ne tempo hubnutí", why: "Podle NIDDK je rychlé hubnutí jedním z hlavních rizik." }
+          - { text: "Tempo hubnutí je jedno, rozhoduje jen ženské pohlaví", why: "Pohlaví ovlivnit nelze, tempo hubnutí ano – a riziko ovlivňuje." }
 
   - id: telo.vstrebavani
     title: Kam se vstřebávají živiny
@@ -597,6 +640,12 @@ points:
           - { text: "Glukóza", why: "Jednoduché cukry jdou do krve." }
           - { text: "Aminokyseliny", why: "Aminokyseliny jdou do krve." }
           - { text: "Vitamin C", why: "Vitaminy rozpustné ve vodě vstřebávají transportéry do krve." }
+      - id: cesty
+        type: reveal
+        prompt: "Kam se vstřebávají jednotlivé živiny a kudy putují dál?"
+        answer: >-
+          Monosacharidy a aminokyseliny do krve → vrátnicovou žílou do jater → do dalších tkání. Tuky
+          s vitaminy A, D, E, K do lymfy. Minerály a vitaminy rozpustné ve vodě přes speciální transportéry.
 
   - id: telo.vstrebavani-mikroziviny
     title: Vstřebávání B12, železa a vápníku
@@ -646,7 +695,7 @@ points:
         type: choice
         prompt: "Která funkce slinivky je exokrinní?"
         options:
-          - { text: "Tvorba trávicích enzymů do dvanáctníku", correct: true }
+          - { text: "Tvorba trávicích enzymů", correct: true }
           - { text: "Tvorba inzulinu β-buňkami", why: "Hormony do krve = endokrinní funkce." }
           - { text: "Tvorba glukagonu α-buňkami", why: "Hormony do krve = endokrinní funkce." }
       - id: endokrinni
@@ -689,14 +738,21 @@ points:
     title: Acidobazická rovnováha
     kind: concept
     tier: B
+    status: course-disputed
     criteria: [2a]
     prereqs: [telo.homeostaza]
     source: { pages: [77], anchor: "proto je moč „masožravců“ více kyselá" }
+    note: >-
+      Skripta (s. 77): kost kompenzuje kyselou nálož „za cenu ztráty kostního minerálu“. Současné
+      poznatky: systematické přehledy a metaanalýzy (Fenton et al., J Bone Miner Res 2009; Nutr J 2011)
+      neprokázaly, že by kyselinotvorná strava u zdravých lidí vedla ke ztrátě kostní hmoty nebo
+      osteoporóze; „zásaditá dieta“ kvůli kostem podložená není. Ke zkoušce: tvrzení skript o kosti
+      se zde netestuje; vliv stravy na pH moči a role ledvin a plic platí podle obou výkladů.
     explanation: >-
       Při metabolismu vzniká mnoho vodíkových iontů (kyselá nálož). Ledviny je odstraňují kyselou močí,
-      plíce vydýchávají oxid uhličitý (kyselinotvorný plyn) a kost funguje jako nárazník – ale za cenu
-      ztráty kostního minerálu. Strava bohatá na živočišné bílkoviny moč okyseluje, převaha rostlinné
-      stravy pH moči zvyšuje.
+      plíce vydýchávají oxid uhličitý (kyselinotvorný plyn) a kost funguje jako nárazník (skripta
+      dodávají „za cenu ztráty minerálu“ – viz poznámka). Strava bohatá na živočišné bílkoviny moč
+      okyseluje, převaha rostlinné stravy pH moči zvyšuje.
     exercises:
       - id: rostlinna
         type: choice
@@ -890,7 +946,7 @@ points:
   - id: telo.stitna-zlaza
     title: Štítná žláza – T3 a T4
     kind: fact
-    tier: A
+    tier: B
     criteria: [2a, 2d]
     prereqs: [telo.hypotalamus-hypofyza]
     source: { pages: [79, 60], anchor: "hormony štítné žlázy zvyšují využití kyslíku tkáněmi" }
@@ -923,10 +979,11 @@ points:
     criteria: [2a, 1f]
     source: { pages: [78, 79], anchor: "Mají důležité postavení v regulaci metabolizmu vápníku" }
     note: >-
-      Skripta (s. 79) uvádějí, že příštítná tělíska tvoří parathormon a kalcitonin. Ve skutečnosti
-      kalcitonin tvoří C-buňky štítné žlázy; příštítná tělíska tvoří parathormon. U zkoušky:
-      parathormon = příštítná tělíska; ptá-li se otázka výslovně „podle skript“, počítej s tím, že tam
-      je uveden i kalcitonin.
+      Skripta (s. 79): příštítná tělíska tvoří parathormon a kalcitonin. Současné poznatky
+      (učebnice fyziologie, např. StatPearls „Physiology, Calcitonin“): kalcitonin tvoří parafolikulární
+      C-buňky štítné žlázy; příštítná tělíska tvoří parathormon. Ke zkoušce: „parathormon = příštítná
+      tělíska“ platí podle obou výkladů. Pokud se otázka výslovně ptá na skripta, odpověď skript řadí
+      k příštítným tělískům i kalcitonin.
     explanation: >-
       Příštítná tělíska leží na zadní straně štítné žlázy a tvoří parathormon, který se podílí na
       regulaci metabolismu vápníku (skripta k nim řadí i kalcitonin – viz poznámka). S vápníkem
@@ -979,7 +1036,7 @@ points:
   - id: telo.langerhans
     title: Langerhansovy ostrůvky – inzulin a glukagon
     kind: fact
-    tier: A
+    tier: B
     criteria: [2c, 2d]
     prereqs: [telo.zlazy-exo-endo]
     source: { pages: [80, 69], anchor: "Inzulin je typický anabolický hormon" }
@@ -1016,7 +1073,9 @@ points:
     note: >-
       Trávicí hormony (gastrin, sekretin, cholecystokinin, ghrelin) skripta nejmenují – jen uvádějí,
       že endokrinní funkci má i trávicí trakt (s. 78). Doplněno podle standardní fyziologie, protože
-      kritérium 2c se na hormonální řízení trávení výslovně ptá.
+      kritérium 2c se na hormonální řízení trávení výslovně ptá. Ověřeno: StatPearls „Physiology,
+      Gastrin“ a „Physiology, Gastrointestinal Hormonal Control“ (G-buňky antra; podnětem roztažení
+      žaludku a produkty trávení bílkovin; účinek: sekrece HCl a motilita žaludku).
     explanation: >-
       Gastrin je hormon, který tvoří buňky žaludeční sliznice po jídle – podnětem je roztažení žaludku
       a bílkoviny v potravě. Stimuluje tvorbu kyseliny chlorovodíkové (a pepsinu) a pohyby žaludku.
@@ -1038,6 +1097,10 @@ points:
           - { text: "Ve slinivce břišní", why: "Slinivka tvoří trávicí enzymy, inzulin a glukagon – gastrin ne." }
           - { text: "V tukové tkáni", why: "Tuková tkáň tvoří leptin." }
           - { text: "V Langerhansových ostrůvcích", why: "Ty tvoří inzulin a glukagon." }
+      - id: souhrn
+        type: reveal
+        prompt: "Gastrin: kde vzniká, co spouští jeho uvolnění a jak působí?"
+        answer: "Ve sliznici žaludku; po jídle při roztažení žaludku a bílkovinách v potravě; zvyšuje tvorbu HCl (a pepsinu) a pohyby žaludku."
 
   - id: telo.sekretin
     title: Sekretin
@@ -1050,7 +1113,9 @@ points:
     source: { pages: [74], anchor: "Ze slinivky se po příjmu potravy začíná vylučovat trávicí šťáva" }
     note: >-
       Sekretin skripta nezmiňují (popisují jen, že slinivka po jídle vylučuje trávicí šťávu, s. 74).
-      Doplněno podle standardní fyziologie kvůli kritériu 2c.
+      Doplněno podle standardní fyziologie kvůli kritériu 2c. Ověřeno: StatPearls „Physiology,
+      Gastrointestinal Hormonal Control“ (S-buňky dvanáctníku, podnětem kyselá trávenina s pH < 4,5)
+      a „Physiology, Gastrin“ (sekretin tlumí žaludeční kyselinu, ve slinivce spouští sekreci bikarbonátu).
     explanation: >-
       Sekretin tvoří sliznice dvanáctníku, když do něj ze žaludku přijde kyselá trávenina. Stimuluje
       slinivku k vylučování šťávy bohaté na hydrogenuhličitan (bikarbonát), který kyselinu neutralizuje
@@ -1060,7 +1125,7 @@ points:
         type: choice
         prompt: "Na jaký podnět se uvolňuje sekretin?"
         options:
-          - { text: "Kyselá trávenina vstupující do dvanáctníku", correct: true }
+          - { text: "Kyselá trávenina ve dvanáctníku", correct: true }
           - { text: "Tuky a bílkoviny ve dvanáctníku", why: "To je podnět pro cholecystokinin." }
           - { text: "Roztažení žaludku po jídle", why: "To je podnět pro gastrin." }
           - { text: "Prázdný žaludek při lačnění", why: "Při lačnění stoupá ghrelin." }
@@ -1072,6 +1137,12 @@ points:
           - { text: "Žlučník se stáhne a vypudí žluč do dvanáctníku", why: "To je účinek cholecystokininu." }
           - { text: "Žaludek začne tvořit víc kyseliny chlorovodíkové", why: "To dělá gastrin; sekretin ji naopak tlumí." }
           - { text: "Vznikne pocit hladu", why: "To dělá ghrelin." }
+      - id: proc
+        type: reveal
+        prompt: "Proč je sekretin důležitý pro činnost enzymů slinivky?"
+        answer: >-
+          Uvolní se, když do dvanáctníku přijde kyselá trávenina; slinivka pak vyloučí bikarbonát, který
+          kyselinu neutralizuje – enzymy slinivky potřebují zhruba neutrální prostředí.
 
   - id: telo.cck
     title: Cholecystokinin (CCK)
@@ -1084,7 +1155,10 @@ points:
     source: { pages: [74], anchor: "Spolu s trávicí šťávou ze slinivky přitéká do tenkého střeva žlučovodem žluč" }
     note: >-
       Cholecystokinin skripta nezmiňují (popisují jen přítok žluči a šťávy slinivky do dvanáctníku,
-      s. 74). Doplněno podle standardní fyziologie kvůli kritériu 2c.
+      s. 74). Doplněno podle standardní fyziologie kvůli kritériu 2c. Ověřeno: StatPearls „Physiology,
+      Gastrointestinal Hormonal Control“ (I-buňky dvanáctníku a lačníku, podnětem produkty trávení tuků
+      a bílkovin; stah žlučníku, enzymy slinivky) a přehled Cholecystokinin (ScienceDirect Topics:
+      zpomalení vyprazdňování žaludku, sytost).
     explanation: >-
       Cholecystokinin (CCK) tvoří sliznice dvanáctníku, když do něj přijdou tuky a bílkoviny. Vyvolá
       stah žlučníku (vypuzení žluči) a vylučování enzymů slinivky (lipáza, trypsin, amyláza). Zpomaluje
@@ -1125,7 +1199,9 @@ points:
     note: >-
       Ghrelin skripta nezmiňují; leptin jen okrajově jako „hormon sytosti“ (s. 201, 220). Skripta
       uvádějí, že endokrinní funkci má trávicí trakt i tuková tkáň (s. 78). Doplněno podle standardní
-      fyziologie kvůli kritériu 2c.
+      fyziologie kvůli kritériu 2c. Ověřeno: StatPearls „Physiology, Obesity Neurohormonal Appetite
+      And Satiety Control“ (ghrelin z GIT stoupá před jídlem, působí na hypotalamus) a přehledy
+      leptinu (PMC8167040, PMC12486228: leptin z tukové tkáně, při obezitě leptinová rezistence).
     explanation: >-
       Ghrelin je „hormon hladu“: tvoří ho hlavně žaludek při lačnění, hladina stoupá před jídlem a po
       jídle klesá; působí na hypotalamus a vyvolá chuť k jídlu. Leptin je „hormon sytosti“: tvoří ho
@@ -1148,3 +1224,9 @@ points:
           - { text: "V žaludku", why: "V žaludku se tvoří ghrelin a gastrin." }
           - { text: "Ve dvanáctníku", why: "Ve dvanáctníku vznikají sekretin a CCK." }
           - { text: "V hypofýze", why: "Hypofýza tvoří TSH, ACTH, STH, LH a FSH." }
+      - id: srovnani
+        type: reveal
+        prompt: "Porovnej ghrelin a leptin: kde vznikají, kdy jich přibývá a jak působí na hlad?"
+        answer: >-
+          Ghrelin: hlavně žaludek, stoupá při lačnění a před jídlem, vyvolá hlad (hypotalamus). Leptin:
+          tuková tkáň úměrně zásobám tuku, dlouhodobě tlumí hlad; při obezitě bývá leptinová rezistence.

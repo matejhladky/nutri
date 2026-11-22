@@ -22,7 +22,7 @@ function pt(id: string, topicId: string, order: number, opts: Partial<PointWithT
   return {
     id,
     title: id,
-    kind: "fact",
+    kind: "concept", // explanation-first by default; ask-first kinds are tested explicitly
     tier: "A",
     safety: false,
     status: "course",
@@ -344,9 +344,10 @@ describe("pickExercise", () => {
     const exs = [ex("r", "reveal"), ex("c", "choice"), ex("x", "explain")];
     expect(pickExercise(exs, undefined).id).toBe("c"); // early → recognition first
     const st = { exerciseCounts: { c: 1 }, lastExerciseId: "c", answers: 1 } as unknown as PointState;
-    expect(pickExercise(exs, st).id).toBe("r");
-    const mature = { exerciseCounts: { c: 1, r: 1 }, lastExerciseId: "r", answers: 3 } as unknown as PointState;
-    expect(pickExercise(exs, mature).id).toBe("x");
+    // After the first answer: production preferred (explain before reveal), never the same one twice in a row.
+    expect(pickExercise(exs, st).id).toBe("x");
+    const mature = { exerciseCounts: { c: 1, r: 1, x: 1 }, lastExerciseId: "x", answers: 3 } as unknown as PointState;
+    expect(pickExercise(exs, mature).id).toBe("r");
   });
 });
 
@@ -362,5 +363,24 @@ describe("same-day relearning", () => {
     expect(dailyPlan(input(pts, states)).learningDue).toBe(0);
     const tomorrow = new Date(NOW.getTime() + 86400_000);
     expect(nextCard(input(pts, states, { now: tomorrow }))).toMatchObject({ kind: "exercise", pointId: "a1" });
+  });
+});
+
+describe("ask-first policy for new points", () => {
+  it("facts and comparisons start with a question; concepts and procedures with the explanation", () => {
+    const fact = pt("f1", "F", 0, { kind: "fact" });
+    const cmp = pt("c1", "C", 0, { kind: "comparison", criteria: ["2f"] });
+    const proc = pt("p1", "P", 0, { kind: "procedure", criteria: ["5e"] });
+    expect(nextCard(input([fact], new Map()))).toMatchObject({ kind: "exercise", pointId: "f1", reason: "new", exerciseId: "e2" }); // recognition first
+    expect(nextCard(input([cmp], new Map()))).toMatchObject({ kind: "exercise", pointId: "c1", reason: "new" });
+    expect(nextCard(input([proc], new Map()))).toEqual({ kind: "intro", pointId: "p1" });
+  });
+
+  it("a failed first question is retried after its learning step, not immediately", () => {
+    const fact = pt("f1", "F", 0, { kind: "fact" });
+    const states = withEvents([ans("f1", NOW, Grade.Again)]);
+    expect(states.get("f1")!.introducedAt).toBe(NOW.toISOString());
+    const c = nextCard(input([fact], states, { now: new Date(NOW.getTime() + 60_000), session: [{ pointId: "f1", kind: "exercise", isNew: true }] }));
+    expect(c).toMatchObject({ kind: "done", reason: "wait" });
   });
 });

@@ -6,7 +6,9 @@
  *
  * Everything printed here is a MODEL ESTIMATE, not observed learning:
  *  - answer time per card = DEFAULT_TIMING by exercise type (src/engine/planner.ts); intro 0.6 min
- *  - P(correct) = max(0.25, R × accuracy), with R = FSRS-predicted recall (0.8 × accuracy for a first retrieval)
+ *  - P(correct) = max(0.25, R × accuracy), with R = FSRS-predicted recall (0.8 × accuracy for a first retrieval
+ *    after an explanation; PRIOR × accuracy for an ask-first question on a new point — an ASSUMPTION about how much
+ *    she already knows from the lectures, default 0.5, override with PRIOR=0.3 pnpm simulate …)
  *    — FSRS grading its own predictions, so "recall at exam" is optimistic by construction
  *  - she studies until the daily goal (capped at 1.6 × the nominal minutes), never beyond
  * Use it to compare planner policies and to see WHAT gets left out; calibrate with her real durations later.
@@ -24,6 +26,7 @@ const points: PointWithTopic[] = bundle.points;
 const EXAM = "2026-12-04";
 const START = new Date("2026-11-23T17:00:00Z");
 const s = await getScheduler();
+const PRIOR = Number(process.env.PRIOR ?? 0.5);
 
 type Result = { minutes: number[]; seenA: number; totalA: number; safety: [number, number]; cases: [number, number]; expRecall: number; omitted: PointWithTopic[] };
 
@@ -58,7 +61,7 @@ function run(days: number, minutes: number, accuracy: number): Result {
       } else {
         const st = states.get(c.pointId);
         const ex = byId.get(c.pointId)!.exercises.find((e) => e.id === c.exerciseId)!;
-        const r = st?.card ? retrievability(s, st.card, now) : 0.8;
+        const r = st?.card ? retrievability(s, st.card, now) : c.reason === "new" ? PRIOR : 0.8;
         const ok = rand() < Math.max(0.25, r * accuracy);
         apply({ pointId: c.pointId, at: now.toISOString(), kind: "answer", exerciseId: c.exerciseId, grade: ok ? Grade.Good : Grade.Again, outcome: ok ? "correct" : "wrong" });
         session.push({ pointId: c.pointId, kind: "exercise", isNew: c.reason === "new" });
@@ -90,7 +93,7 @@ const line = (label: string, r: Result) =>
 const args = process.argv.slice(2);
 if (args[0] === "matrix") {
   const days = Number(args[1] ?? 11);
-  console.log(`Simulated ${days} days to ${EXAM}; model estimates only (see header).`);
+  console.log(`Simulated ${days} days to ${EXAM}, prior knowledge ${PRIOR}; model estimates only (see header).`);
   for (const acc of [1, 0.8]) for (const m of [30, 45, 60]) console.log(line(`${m} min, ${acc === 1 ? "typical" : "weaker"} learner`, run(days, m, acc)));
 } else {
   const [days, minutes, accuracy] = [Number(args[0] ?? 11), Number(args[1] ?? 45), Number(args[2] ?? 1)];

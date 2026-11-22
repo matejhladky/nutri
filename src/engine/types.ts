@@ -17,7 +17,7 @@ export type Response =
 /** Response to one step of a client case (choice indices refer to the ORIGINAL option order). */
 export type CaseStepResponse =
   | { type: "dontKnow" }
-  | { type: "numeric"; value: string }
+  | { type: "numeric"; value: string; hint?: boolean }
   | { type: "choice"; selected: number[]; guessed: boolean }
   | { type: "explain"; covered: number[] }
   | { type: "reveal"; selfGrade: "again" | "hard" | "good" };
@@ -60,6 +60,8 @@ export type StudyEvent = {
   skippedIntro?: boolean;
   exerciseId?: string;
   exerciseVersion?: number;
+  /** choice | reveal | explain | numeric | case — lets the state tell recognition from production evidence. */
+  exerciseType?: "choice" | "reveal" | "explain" | "numeric" | "case";
   outcome?: Outcome;
   grade?: Grade;
   hintUsed?: boolean;
@@ -82,6 +84,10 @@ export type PointState = {
   /** Study day (YYYY-MM-DD) of the latest failure and how many failures happened that day. */
   failDay?: string | null;
   failsThatDay?: number;
+  /** Grade of the latest answer (Good = unaided, not guessed). */
+  lastGrade?: Grade | null;
+  /** Good answers on production exercises (recall / explanation / calculation / case), not just recognition. */
+  productionGood?: number;
   /** Reducer version that produced this state; older cached states are rebuilt on read. */
   v?: number;
 };

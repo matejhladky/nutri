@@ -22,7 +22,7 @@ export default function TodayPage() {
   );
   const core = points.filter((p) => p.tier !== "C");
   const seen = core.filter((p) => states.get(p.id)?.introducedAt).length;
-  const solid = core.filter((p) => pointStatus(states.get(p.id)) === "solid").length;
+  const solid = core.filter((p) => pointStatus(states.get(p.id), p) === "solid").length;
   const newLeft = Math.max(0, plan.newTarget - plan.newToday);
   const started = todayCards > 0;
   const finalDays = plan.daysLeft !== null && plan.daysLeft <= 2;
@@ -50,7 +50,7 @@ export default function TodayPage() {
             <div>
               <h2 className="text-lg font-semibold">Dnešní plán je splněný</h2>
               <p className="mt-1 text-muted">
-                {started ? `Dnes ${plural(todayCards, "karta", "karty", "karet")}. ` : ""}
+                {started ? `Dnes ${plural(todayCards, "odpověď", "odpovědi", "odpovědí")}. ` : ""}
                 {finalDays
                   ? "Poslední dny před zkouškou už nové poznatky nepřidávám. Jestli máš chuť, procvič si místa, která by ti u zkoušky mohla vypadnout."
                   : "Opakování ti teď nejvíc pomůže zítra — paměť potřebuje odstup. Jestli máš chuť, můžeš ještě pokračovat."}

@@ -15,7 +15,15 @@ export type { AnswerRecord } from "./parts";
 export function ExerciseCard(props: Props) {
   const { point, exercise, reason } = props;
   const label =
-    exercise.type === "case" ? "Modelový případ" : reason === "review" ? "Opakování" : reason === "practice" ? "Procvičení" : "Ověření";
+    exercise.type === "case"
+      ? "Modelový případ"
+      : reason === "new"
+        ? "Nové"
+        : reason === "review"
+          ? "Opakování"
+          : reason === "practice"
+            ? "Procvičení"
+            : "Ověření";
   return (
     <div className="flex flex-col gap-5 animate-rise" key={`${point.id}/${exercise.id}/${props.seed}`}>
       <Eyebrow>
@@ -69,6 +77,12 @@ function RevealView(props: Props & { exercise: RevealExercise }) {
       )}
       {phase !== "think" && (
         <div className="rounded-2xl border border-sage-100 bg-sage-50/60 px-4 py-3 text-[17px] leading-relaxed animate-rise">{exercise.answer}</div>
+      )}
+      {phase === "revealed" && props.reason === "new" && (
+        <div className="rounded-2xl bg-paper px-4 py-3 text-[15px] leading-relaxed text-ink/90">
+          <div className="mb-0.5 text-xs font-semibold uppercase tracking-wide text-faint">Výklad</div>
+          {point.explanation}
+        </div>
       )}
       {phase === "revealed" && (
         <div className="flex flex-col gap-3 animate-rise">
@@ -193,7 +207,7 @@ function ChoiceView(props: Props & { exercise: ChoiceExercise }) {
         </>
       )}
       {result && (
-        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={result.outcome !== "correct"}>
+        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={props.reason === "new" || result.outcome !== "correct"}>
           <div className="flex flex-col gap-2">
             <VerdictBadge verdict={result.outcome} />
             {result.outcome === "correct" && guessed && <p className="text-sm text-muted">Tip vyšel — příště to zkusíme znovu, ať je to jisté.</p>}
@@ -255,7 +269,7 @@ function NumericView(props: Props & { exercise: NumericExercise }) {
         </form>
       )}
       {result && (
-        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={result.outcome !== "correct"}>
+        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={props.reason === "new" || result.outcome !== "correct"}>
           <div className="flex flex-col gap-3">
             <VerdictBadge verdict={result.outcome} />
             <div className="text-[17px]">

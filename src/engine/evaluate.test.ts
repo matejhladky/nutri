@@ -90,3 +90,21 @@ describe("evaluate", () => {
     expect(evaluate(numeric, { type: "numeric", value: "nevím", seed: 7 }).outcome).toBe("wrong");
   });
 });
+
+describe("partial credit for multiple choice", () => {
+  const four: ChoiceExercise = {
+    ...single,
+    multiple: true,
+    options: [
+      { text: "A", correct: true },
+      { text: "B", correct: true },
+      { text: "C", correct: true },
+      { text: "D", correct: false },
+    ],
+  };
+  it("needs at least half of the correct options and no wrong pick", () => {
+    expect(evaluate(four, { type: "choice", selected: [0, 1], guessed: false }).outcome).toBe("partial"); // 2 of 3
+    expect(evaluate(four, { type: "choice", selected: [0], guessed: false }).outcome).toBe("wrong"); // 1 of 3
+    expect(evaluate(four, { type: "choice", selected: [0, 1, 3], guessed: false }).outcome).toBe("wrong"); // wrong pick
+  });
+});

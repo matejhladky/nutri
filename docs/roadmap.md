@@ -149,6 +149,27 @@ Honest compromise: with realistic timing only ~40 % (45 min) to ~55 % (60 min) o
 knows from the lectures will be cheaper once R3 (ask first) is in — not modelled here. Overruns for a weaker learner
 remain until calibration from her real success rate kicks in.
 
+## R3 — Learning flow ✅ (2026-11-23)
+
+Done: ask-first for facts and comparisons (explanation shown after the attempt), explanation-first for concepts,
+procedures and cases; production preferred after the first retrieval; honest status definitions (see architecture);
+daily counter = answers; hint in a case step counted; stricter partial multi-select; events carry `exerciseType`.
+Tests: 69 unit (ask-first, statuses, partial credit, case hint), 14 browser.
+
+Simulation matrix after R2+R3 (11 days, prior knowledge 0.5 — an ASSUMPTION; model estimates):
+
+| daily plan | typical learner: minutes/day · tier A · safety · cases | weaker learner |
+|---|---|---|
+| 30 min | 18–49 · 65/297 · 28/30 · 8/12 | 21–51 · 46/297 · 23/30 · 6/12 |
+| 45 min | 32–58 · 86/297 · 30/30 · 9/12 | 39–70 · 65/297 · 28/30 · 8/12 |
+| 60 min | 39–74 · 146/297 · 30/30 · 12/12 | 47–91 · 102/297 · 30/30 · 10/12 |
+
+The honest time model is decisive: realistic per-card times (spoken answers, calculations, cases) mean only about a
+third (45 min) to a half (60 min) of tier A can be introduced in 11 days; safety and cases come first. Day-to-day
+minutes vary ±30 % around the plan; a weaker learner still overruns until her real success rate calibrates the model.
+**Open question for the owner:** with 297 tier-A points far above capacity, should tier A be narrowed in the content
+audit (R4) so "tier A" means "realistically coverable core" — or is the priority ordering enough?
+
 ## Next (decisions of 2026-11-22)
 
 Owner decision: no deployment until the whole roadmap is finished.
@@ -157,9 +178,6 @@ Owner decision: no deployment until the whole roadmap is finished.
   supplements, pregnancy) checked against primary sources; disputed notes in the three-part form (script · current
   evidence/regulation · what is actually known about the exam — never claiming the examiner's answer without
   evidence); in counselling/safety contexts correctness first.
-- **R3 — Learning flow.** Ask-first for facts and comparisons; worked example first for procedures, calculations,
-  cases; recall preferred after the first retrieval; honest status/metric definitions (cards = answers, "upevněno" =
-  unaided Good after ≥ 1 day); case-hint grading; partial multi-select rule.
 - **R4b — Content audit (incremental).** Automated flags (length cue, numbers not on the cited page, disputed MCQ
   without "podle skript", near-duplicates) are *flags for inspection*, not verdicts; recall item for the 38 MCQ-only
   tier-A points; absurd distractors.

@@ -86,6 +86,13 @@ const CONTRAST_BONUS = 1.2;
 
 const isIntroduced = (st: PointState | undefined) => !!st?.introducedAt;
 
+/**
+ * Ask-first policy for NEW points: facts and comparisons start with a question ("Nevím" is fine; the explanation
+ * follows the attempt) — she attended the lectures, and a retrieval attempt with feedback beats re-reading.
+ * Concepts, procedures/calculations and client cases start with the explanation (worked example first).
+ */
+export const asksFirst = (p: PointWithTopic) => (p.kind === "fact" || p.kind === "comparison") && !p.exercises.some((e) => e.type === "case");
+
 const priorityCache = new WeakMap<PointWithTopic[], Map<string, Priority>>();
 /** Priorities depend only on the content, so compute once per points array. */
 function prioritiesFor(points: PointWithTopic[]): Map<string, Priority> {
@@ -98,6 +105,7 @@ const minutesFor = (t: Timing | undefined, k: keyof typeof DEFAULT_TIMING) => t?
 const cardMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing) => minutesFor(t, pickExercise(p.exercises, st).type);
 /** Expected share of retrievals that fail and cost an extra relearning retrieval the same day (model assumption). */
 const RELEARN_NEW = 0.25;
+const RELEARN_ASK_FIRST = 0.5;
 /**
  * While new material remains (and outside the final two days), this share of the daily minutes is reserved for it;
  * due reviews fill the rest, best value per minute first. Without it, accumulating reviews crowd out coverage.
@@ -106,8 +114,20 @@ export const NEW_SHARE = 0.4;
 /** Expected minutes for a due review incl. the relearning step a lapse adds: card × (1 + P(fail)), P(fail) ≈ 1 − R. */
 const reviewMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing, r = 0.9) =>
   cardMinutes(p, st, t) * (2 - Math.min(r, t?.successRate ?? 1));
-/** Expected minutes to learn a new point today: intro (or pretest) + first retrieval + one learning step (+ relearning). */
-const newMinutes = (p: PointWithTopic, t?: Timing) => minutesFor(t, "intro") + 2 * cardMinutes(p, undefined, t) * (1 + RELEARN_NEW);
+/** Expected minutes a new point costs today. */
+const newMinutes = (p: PointWithTopic, t?: Timing) => {
+  // Expected extra relearning: her observed failure rate when known; otherwise a model default (an ask-first question
+  // on unseen material fails more often than a retrieval right after an explanation).
+  const relearn = t?.successRate !== undefined ? 1 - t.successRate : asksFirst(p) ? RELEARN_ASK_FIRST : RELEARN_NEW;
+  // Explanation (unless ask-first) + first retrieval (recognition preferred) + the next retrieval (production preferred),
+  // each with expected relearning. Strictly the next retrieval often falls on the next day; counting it here is a
+  // deliberate, empirically closer approximation of the same-day relearning chains (simulation: mean daily minutes ≈
+  // plan, ±30 % day to day). Her observed timing / success rate replace the defaults once available.
+  const first = pickExercise(p.exercises, undefined);
+  const afterFirst = { answers: 1, lastExerciseId: first.id, exerciseCounts: { [first.id]: 1 } } as unknown as PointState;
+  const cards = minutesFor(t, first.type) + minutesFor(t, pickExercise(p.exercises, afterFirst).type);
+  return (asksFirst(p) ? 0 : minutesFor(t, "intro")) + cards * (1 + relearn);
+};
 
 function eligibleForDaily(p: PointWithTopic) {
   return p.tier !== "C";
@@ -125,7 +145,7 @@ export function dailyPlan(
   const today = dayKey(now);
   let learningDue = 0;
   let laterToday = 0;
-  let newCostSum = 0;
+  const remainingNewList: { cost: number; factor: number; tier: string }[] = [];
   let nextLater: number | null = null;
   let newToday = 0;
   let remainingA = 0;
@@ -139,7 +159,7 @@ export function dailyPlan(
     if (!isIntroduced(st)) {
       if (p.tier === "A") remainingA++;
       else remainingB++;
-      newCostSum += newMinutes(p, timing);
+      remainingNewList.push({ cost: newMinutes(p, timing), factor: prio.get(p.id)?.factor ?? 1, tier: p.tier });
       continue;
     }
     // Any earlier-learned point already answered today used review time — whatever its state now (a failed review
@@ -188,10 +208,22 @@ export function dailyPlan(
   }
   const selectedMinutes = selected.reduce((n, d) => n + d.minutes, 0);
   // New points get what remains of the day (≥ the reserved share while new material remains).
-  const perNew = remainingNew ? newCostSum / remainingNew : minutesFor(timing, "intro") + 2 * minutesFor(timing, "choice") * (1 + RELEARN_NEW);
-  // Whole-day number of new points from minutes that stay constant during the day (done + selected reviews).
-  const newMinutesForDay = dailyMinutes - doneReviewMinutes - selectedMinutes - learningMinutes;
-  const budgetTarget = Math.floor(Math.max(0, newMinutesForDay) / perNew);
+  // Whole-day number of new points from minutes that stay constant during the day (done + selected reviews):
+  // walk the remaining new points in the order the planner prefers them (tier, then priority) and add up their
+  // individual costs — a case costs far more than a flashcard, and the high-priority ones come first.
+  const newMinutesForDay = Math.max(0, dailyMinutes - doneReviewMinutes - selectedMinutes - learningMinutes);
+  const ordered = [...remainingNewList].sort((a, b) => b.factor * (TIER_WEIGHT[b.tier as "A"] || 0.1) - a.factor * (TIER_WEIGHT[a.tier as "A"] || 0.1));
+  // Points already introduced today are paid for by the same daily minutes: start from what they cost on average.
+  const avgCost = ordered.length ? ordered.reduce((n, x) => n + x.cost, 0) / ordered.length : 1;
+  let budgetLeft = newMinutesForDay - newToday * avgCost;
+  let fit = newToday;
+  for (const x of ordered) {
+    if (x.cost > budgetLeft) break;
+    budgetLeft -= x.cost;
+    fit++;
+  }
+  const budgetTarget = fit;
+  const perNew = avgCost;
   const newTarget = Math.max(0, Math.min(paceTarget, Math.max(budgetTarget, newToday)));
   const estimatedMinutes = Math.round(selectedMinutes + learningMinutes + Math.max(0, newTarget - newToday) * perNew);
   const dueReviews = selected.length;
@@ -274,10 +306,10 @@ export function nextCard(input: PlannerInput): NextCard {
     // Roughly one new point per k reviews, k = due reviews / new points still planned today.
     const newRemaining = Math.max(1, plan.newTarget - plan.newToday);
     const k = Math.max(1, Math.round(reviewPool.length / newRemaining));
-    return cardsSinceLastNew(session) >= k ? { kind: "intro", pointId: newCand.id } : exercise(reviewPick.p, reviewPick.st, "review");
+    return cardsSinceLastNew(session) >= k ? introduce(newCand) : exercise(reviewPick.p, reviewPick.st, "review");
   }
   if (reviewPick) return exercise(reviewPick.p, reviewPick.st, "review");
-  if (newCand) return { kind: "intro", pointId: newCand.id };
+  if (newCand) return introduce(newCand);
 
   // ---- 4. deliberate extra practice (only on request: topic practice / "continue" after the goal) ----
   // Never a point in a learning step (its next retrieval is scheduled) nor one answered within the last hour.
@@ -418,7 +450,12 @@ export function confusablePartners(points: PointWithTopic[]): Map<string, Set<st
   return m;
 }
 
-function exercise(p: PointWithTopic, st: PointState, reason: "learning" | "review" | "new" | "practice"): NextCard {
+/** First contact with a new point: a question (ask-first kinds) or the explanation card. */
+function introduce(p: PointWithTopic): NextCard {
+  return asksFirst(p) ? exercise(p, undefined, "new") : { kind: "intro", pointId: p.id };
+}
+
+function exercise(p: PointWithTopic, st: PointState | undefined, reason: "learning" | "review" | "new" | "practice"): NextCard {
   return { kind: "exercise", pointId: p.id, exerciseId: pickExercise(p.exercises, st).id, reason };
 }
 
@@ -428,7 +465,8 @@ function exercise(p: PointWithTopic, st: PointState, reason: "learning" | "revie
  */
 export function pickExercise(exercises: Exercise[], st: PointState | undefined): Exercise {
   if (exercises.length === 1) return exercises[0];
-  const early = !st || st.answers < 2;
+  // Only the very first retrieval prefers recognition; after that, production (recall, explanation, calculation).
+  const early = !st || st.answers < 1;
   const pref = early ? ["choice", "reveal", "numeric", "case", "explain"] : ["case", "explain", "numeric", "reveal", "choice"];
   const candidates = exercises.filter((e) => e.id !== st?.lastExerciseId);
   return [...candidates].sort(

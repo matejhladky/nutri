@@ -5,7 +5,7 @@
  *  - "Nevím" → unknown / Again
  *  - wrong → Again
  *  - correct but guessed, or hint used → Hard
- *  - partially correct → Hard
+ *  - partially correct → Hard (multi-select: no wrong pick and at least half of the correct options)
  *  - correct → Good
  *  - explain: all key points → Good, ≥ half → Hard, otherwise Again
  *  - case: each step scored (correct 1, partial ½); all correct → Good, ≥ half → Hard, otherwise Again
@@ -45,7 +45,7 @@ function evaluateRaw(ex: Exercise, res: Response): Omit<Evaluation, "grade"> {
       const wrongPicked = [...selected].some((i) => !correct.has(i));
       const missed = [...correct].filter((i) => !selected.has(i)).length;
       if (!wrongPicked && missed === 0) return { outcome: "correct" };
-      if (ex.multiple && !wrongPicked && selected.size > 0) return { outcome: "partial" };
+      if (ex.multiple && !wrongPicked && correct.size - missed >= correct.size / 2) return { outcome: "partial" };
       return { outcome: "wrong" };
     }
     case "numeric": {
@@ -81,9 +81,11 @@ export function evaluateCaseStep(step: CaseStep, inst: CaseStepInstance, res: Ca
   if (res.type !== step.type) return "wrong";
   switch (step.type) {
     case "numeric": {
-      const value = parseNumber((res as Extract<CaseStepResponse, { type: "numeric" }>).value);
+      const r = res as Extract<CaseStepResponse, { type: "numeric" }>;
+      const value = parseNumber(r.value);
       const expected = inst.type === "numeric" ? inst.answer : NaN;
-      return value !== null && withinTolerance(value, expected, step.tolerance) ? "correct" : "wrong";
+      const ok = value !== null && withinTolerance(value, expected, step.tolerance);
+      return ok ? (r.hint ? "partial" : "correct") : "wrong"; // a hint caps the step at partial, as everywhere else
     }
     case "choice": {
       const r = res as Extract<CaseStepResponse, { type: "choice" }>;
@@ -91,7 +93,8 @@ export function evaluateCaseStep(step: CaseStep, inst: CaseStepInstance, res: Ca
       const wrongPicked = r.selected.some((i) => !correct.has(i));
       const missed = [...correct].some((i) => !r.selected.includes(i));
       if (!wrongPicked && !missed) return r.guessed ? "partial" : "correct";
-      return step.multiple && !wrongPicked && r.selected.length ? "partial" : "wrong";
+      const hit = r.selected.filter((i) => correct.has(i)).length;
+      return step.multiple && !wrongPicked && hit >= correct.size / 2 ? "partial" : "wrong";
     }
     case "explain":
       return explainOutcome((res as Extract<CaseStepResponse, { type: "explain" }>).covered, step.keyPoints.length);

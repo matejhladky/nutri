@@ -39,7 +39,7 @@ export default function TopicPage() {
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-faint">Poznatky</h2>
         <ul className="flex flex-col gap-2">
           {ps.map((p) => {
-            const st = pointStatus(states.get(p.id));
+            const st = pointStatus(states.get(p.id), p);
             return (
               <li key={p.id}>
                 <Panel className="p-0">

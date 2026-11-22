@@ -4,6 +4,7 @@ import { useStudy } from "@/client/store";
 import { pointStatus, type PointStatus } from "@/engine/state";
 import { content, topicsById } from "@/lib/content";
 import { Panel } from "@/components/ui";
+import { plural } from "@/lib/format";
 import { emptyCounts, StatusBar, StatusDot, statusMeta } from "@/components/StatusDot";
 
 const METHOD_LABEL = { P: "písemně", U: "ústně", PR: "prakticky" } as const;
@@ -13,19 +14,19 @@ export default function ProgressPage() {
   const core = points.filter((p) => p.tier !== "C");
 
   const total = emptyCounts();
-  for (const p of core) total[pointStatus(states.get(p.id))]++;
+  for (const p of core) total[pointStatus(states.get(p.id), p)]++;
 
   // Per competency: points whose PRIMARY criterion belongs to it (no double counting).
   const rows = content.competencies.map((comp) => {
     const ids = new Set(comp.criteria.map((c) => c.id));
     const ps = core.filter((p) => ids.has(p.criteria[0]));
     const counts = emptyCounts();
-    for (const p of ps) counts[pointStatus(states.get(p.id))]++;
+    for (const p of ps) counts[pointStatus(states.get(p.id), p)]++;
     const methods = [...new Set(comp.criteria.flatMap((c) => c.method))];
     return { comp, ps, counts, methods };
   });
 
-  const weak = core.filter((p) => pointStatus(states.get(p.id)) === "weak").slice(0, 10);
+  const weak = core.filter((p) => pointStatus(states.get(p.id), p) === "weak").slice(0, 10);
 
   return (
     <div className="flex flex-col gap-6 animate-rise">
@@ -46,7 +47,8 @@ export default function ProgressPage() {
           ))}
         </ul>
         <p className="text-xs text-faint">
-          „Upevněno“ = správně vybaveno i s odstupem aspoň jednoho dne. Dnes {todayCards} karet.
+          „Upevněno“ = naposledy vybaveno bez nápovědy a bez tipování, aspoň den po prvním setkání (a u poznatků, které
+          mají otázku na vlastní vybavení, aspoň jednou právě takovou odpovědí). Dnes {plural(todayCards, "odpověď", "odpovědi", "odpovědí")}.
         </p>
       </Panel>
 

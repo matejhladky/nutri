@@ -29,7 +29,7 @@ export default function TopicsPage() {
         {content.topics.map((t) => {
           const ps = points.filter((p) => p.topicId === t.id);
           const counts = emptyCounts();
-          for (const p of ps) counts[pointStatus(states.get(p.id))]++;
+          for (const p of ps) counts[pointStatus(states.get(p.id), p)]++;
           return (
             <li key={t.id}>
               <Link href={`/temata/${t.id}`} className="block">

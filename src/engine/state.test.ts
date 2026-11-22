@@ -78,3 +78,28 @@ describe("scheduler via state reducer", () => {
     expect(r1).toBeGreaterThan(r2);
   });
 });
+
+describe("status definitions", () => {
+  let sch: Scheduler;
+  beforeAll(async () => {
+    sch = await getScheduler();
+  });
+  const pointWithRecall = { exercises: [{ type: "choice" }, { type: "reveal" }] };
+  const onlyChoice = { exercises: [{ type: "choice" }] };
+  const ev = (id: string, minutes: number, grade: Grade, exerciseType: StudyEvent["exerciseType"]): StudyEvent => ({
+    ...answer(id, minutes, grade, grade === Grade.Again ? "wrong" : "correct"),
+    exerciseType,
+  });
+  it("'upevněno' needs an unaided Good a day later — and production evidence when the point has a recall exercise", () => {
+    const base = [ev("1", 0, Grade.Good, "choice")];
+    const recognitionOnly = replay([...base, ev("2", 24 * 60 + 60, Grade.Good, "choice")], sch).get("p")!;
+    expect(pointStatus(recognitionOnly, onlyChoice)).toBe("solid");
+    expect(pointStatus(recognitionOnly, pointWithRecall)).toBe("learning");
+    const withRecall = replay([...base, ev("2", 24 * 60 + 60, Grade.Good, "reveal")], sch).get("p")!;
+    expect(pointStatus(withRecall, pointWithRecall)).toBe("solid");
+    const guessedLast = replay([...base, ev("2", 24 * 60 + 60, Grade.Hard, "reveal")], sch).get("p")!;
+    expect(pointStatus(guessedLast, pointWithRecall)).toBe("learning");
+    const sameDay = replay([ev("1", 0, Grade.Good, "reveal"), ev("2", 30, Grade.Good, "reveal")], sch).get("p")!;
+    expect(pointStatus(sameDay, pointWithRecall)).not.toBe("solid");
+  });
+});

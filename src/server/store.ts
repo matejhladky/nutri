@@ -22,7 +22,7 @@ const ResponseSchema = z.union([
       .array(
         z.union([
           z.object({ type: z.literal("dontKnow") }),
-          z.object({ type: z.literal("numeric"), value: z.string().max(50) }),
+          z.object({ type: z.literal("numeric"), value: z.string().max(50), hint: z.boolean().optional() }),
           z.object({ type: z.literal("choice"), selected: z.array(z.number().int()), guessed: z.boolean() }),
           z.object({ type: z.literal("explain"), covered: z.array(z.number().int()) }),
           z.object({ type: z.literal("reveal"), selfGrade: z.enum(["again", "hard", "good"]) }),
@@ -40,6 +40,7 @@ export const EventSchema = z.object({
   skippedIntro: z.boolean().optional(),
   exerciseId: z.string().max(80).optional(),
   exerciseVersion: z.number().int().optional(),
+  exerciseType: z.enum(["choice", "reveal", "explain", "numeric", "case"]).optional(),
   outcome: z.enum(["correct", "partial", "wrong", "unknown"]).optional(),
   grade: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
   hintUsed: z.boolean().optional(),

@@ -124,9 +124,8 @@ function NumericStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "
   const check = (e?: React.FormEvent) => {
     e?.preventDefault();
     if (res || !value.trim()) return;
-    const response: CaseStepResponse = { type: "numeric", value };
-    const outcome = evaluateCaseStep(step, inst, response);
-    setRes({ response, outcome: hint && outcome === "correct" ? "partial" : outcome });
+    const response: CaseStepResponse = { type: "numeric", value, ...(hint ? { hint: true } : {}) };
+    setRes({ response, outcome: evaluateCaseStep(step, inst, response) });
   };
   const correctLabel = `${fmt(answer, step.decimals)} ${step.unit}`;
 

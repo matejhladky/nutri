@@ -103,6 +103,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       kind: "answer",
       exerciseId: a.exerciseId,
       exerciseVersion: a.exerciseVersion,
+      exerciseType: point.exercises.find((e) => e.id === a.exerciseId)?.type,
       outcome: a.evaluation.outcome,
       grade: a.evaluation.grade,
       hintUsed: a.hintUsed || undefined,
@@ -131,7 +132,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
             <div className="truncate text-sm font-medium text-muted">{mode.kind === "topic" ? topicsById.get(mode.topicId)?.title : ""}</div>
           )}
         </div>
-        <div className="text-xs tabular-nums text-faint" title="Karet dnes">
+        <div className="text-xs tabular-nums text-faint" title="Odpovědí dnes">
           {todayCards}
         </div>
       </header>
@@ -167,7 +168,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
                 caseSteps={current.caseSteps}
                 onCaseProgress={(steps) => commit({ ...session, current: { ...current, caseSteps: steps } })}
                 onRecord={onRecord}
-                onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: false })}
+                onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: current.next.kind === "exercise" && current.next.reason === "new" })}
               />
             );
           })()
@@ -216,7 +217,7 @@ function DoneView({
                 : "Pro dnešek je hotovo"}
         </h2>
         <p className="mt-2 text-muted">
-          {todayCards > 0 && <>Dnes {plural(todayCards, "karta", "karty", "karet")}. </>}
+          {todayCards > 0 && <>Dnes {plural(todayCards, "odpověď", "odpovědi", "odpovědí")}. </>}
           {reason === "wait" && nextClock
             ? `Další krátké opakování bude připravené kolem ${nextClock} — s odstupem funguje líp než hned po sobě.`
             : topicDone

@@ -66,6 +66,7 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
 earlier steps' *correct, displayed* results, so one slip doesn't spoil the rest and later prompts can say "BMR = {bmr}".
 The case is recorded as one answer; each repetition is a new seed = a new client with the same procedure.
 
+Partial multi-select = no wrong pick and ≥ half of the correct options. A hint in a case step caps that step at partial.
 *Nevím* → Again everywhere. A hint caps the grade at Hard. No Easy grade (14-day horizon). Comparison, misconception and
 scenario questions are written in these four forms; client cases will be sequences of them.
 
@@ -74,7 +75,15 @@ scenario questions are written in these four forms; client cases will be sequenc
 - **Events** (`intro`, `answer`) are append-only with client-generated UUIDs (idempotent submit). **Point state is a
   cache** rebuilt by `replay(events)`; the same reducer runs in the browser (optimistic) and on the server.
 - **Scheduling unit = point**, not exercise. Exercises of a point rotate (least used, never the same twice in a row;
-  recognition early, production later). Fixing an exercise therefore never loses progress.
+  recognition only for the very first retrieval, production afterwards). Fixing an exercise never loses progress.
+- **First contact (ask-first policy):** facts and comparisons start with a question (*Nevím* is fine; feedback always
+  shows the Výklad for a new point); concepts, procedures/calculations and client cases start with the explanation
+  (worked example). A failed first question follows the normal learning steps.
+- **Status** (`pointStatus`, Pokrok/Témata): *upevněno* = latest answer Good (unaided: no hint, not guessed), ≥ ~1 day
+  after first exposure, review state, and — if the point has a recall/explanation/calculation exercise — at least one
+  Good on such a production exercise. *Potřebuje opakovat* = last answer wrong / Nevím, or repeated lapses with a recent
+  failure. *Rozpracováno* = the rest. The daily counter counts **answers**, not explanation cards. Events carry
+  `exerciseType`; `STATE_VERSION` bumps rebuild cached states lazily.
 
 ## Scheduler (`src/engine/scheduler.ts`)
 
@@ -145,4 +154,6 @@ until reviewed.
 | 2026-11-22 | Transparent priority (safety, case, foundation) instead of a binary "essential" set | review: safety/case points were starved; owner asked for a ranking |
 | 2026-11-22 | Minutes-based budget, 40 % reserved for new, value-per-minute review selection, deferral | honest time model showed reviews crowding out coverage and overruns |
 | 2026-11-22 | Max 2 failures per point per day; observed timing calibrates the model; STATE_VERSION lazy rebuild | relearning loops; simulated ≠ observed |
+| 2026-11-23 | Ask-first for facts/comparisons; explanation-first for concepts/procedures/cases | pretesting with feedback vs worked-example effect; she attended the lectures |
+| 2026-11-23 | "Upevněno" requires unaided Good, spacing and production evidence; counter = answers | review: status overstated recognition/guessed/hinted answers |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

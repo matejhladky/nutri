@@ -5,10 +5,10 @@
  */
 import { review, type Scheduler } from "./scheduler";
 import { dayKey } from "./time";
-import type { PointState, StudyEvent } from "./types";
+import { Grade, type PointState, type StudyEvent } from "./types";
 
 /** Bump when PointState's shape or the reducer's logic changes: cached states are then rebuilt from events. */
-export const STATE_VERSION = 2;
+export const STATE_VERSION = 3;
 
 export function emptyState(pointId: string): PointState {
   return {
@@ -24,6 +24,8 @@ export function emptyState(pointId: string): PointState {
     recent: [],
     failDay: null,
     failsThatDay: 0,
+    lastGrade: null,
+    productionGood: 0,
     v: STATE_VERSION,
   };
 }
@@ -56,6 +58,8 @@ export function applyEvent(
     st.exerciseCounts[ev.exerciseId] = (st.exerciseCounts[ev.exerciseId] ?? 0) + 1;
   }
   st.recent = [...st.recent, ev.outcome].slice(-5);
+  st.lastGrade = ev.grade;
+  if (ev.grade === Grade.Good && ev.exerciseType && ev.exerciseType !== "choice") st.productionGood = (st.productionGood ?? 0) + 1;
   if (ev.outcome === "wrong" || ev.outcome === "unknown") {
     const d = dayKey(ev.at);
     st.failsThatDay = st.failDay === d ? (st.failsThatDay ?? 0) + 1 : 1;
@@ -72,17 +76,29 @@ export function replay(events: StudyEvent[], s: Scheduler): Map<string, PointSta
   return states;
 }
 
-/** Coarse, honest status used by progress views — no percentages. */
+/**
+ * Coarse, honest status used by progress views — no percentages.
+ *  new       never seen
+ *  weak      last answer wrong / "Nevím", or repeated lapses with a recent failure ("potřebuje opakovat")
+ *  solid     "upevněno": latest answer Good (unaided — not guessed, no hint), at least ~1 day after first exposure,
+ *            in review state; and if the point has a recall/explanation/calculation exercise, at least one Good on
+ *            such a production exercise (recognition alone is not enough)
+ *  learning  everything in between ("rozpracováno")
+ */
 export type PointStatus = "new" | "learning" | "weak" | "solid";
 
-export function pointStatus(st: PointState | undefined): PointStatus {
+const DAY_MS = 20 * 3600_000; // "a day later" with some slack for study times
+
+export function pointStatus(st: PointState | undefined, point?: { exercises: { type: string }[] }): PointStatus {
   if (!st || !st.introducedAt) return "new";
   if (!st.card || st.answers === 0) return "learning";
   const lastTwo = st.recent.slice(-2);
   if (st.lastOutcome === "wrong" || st.lastOutcome === "unknown" || (st.card.lapses >= 2 && lastTwo.includes("wrong"))) {
     return "weak";
   }
-  // "solid" = recalled successfully after at least a one-day gap.
-  if (st.card.scheduleStatus === "review" && st.card.stability >= 2 && st.lastOutcome === "correct") return "solid";
+  const spaced = !!st.lastAnsweredAt && Date.parse(st.lastAnsweredAt) - Date.parse(st.introducedAt) >= DAY_MS;
+  const needsProduction = !!point && point.exercises.some((e) => e.type !== "choice");
+  const productionOk = !needsProduction || (st.productionGood ?? 0) >= 1;
+  if (st.card.scheduleStatus === "review" && st.card.stability >= 2 && st.lastGrade === Grade.Good && spaced && productionOk) return "solid";
   return "learning";
 }

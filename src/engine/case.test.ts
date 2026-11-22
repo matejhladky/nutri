@@ -63,6 +63,21 @@ describe("client cases", () => {
     expect(none).toMatchObject({ outcome: "unknown", grade: Grade.Again });
   });
 
+  it("a hint in a numeric step caps that step at partial", () => {
+    const r = evaluate(ex, {
+      type: "case",
+      seed: 1,
+      steps: [
+        { type: "numeric", value: "1420", hint: true },
+        { type: "numeric", value: "142" },
+        { type: "choice", selected: [0], guessed: false },
+        { type: "explain", covered: [0, 1] },
+      ],
+    });
+    expect(r.stepOutcomes?.[0]).toBe("partial");
+    expect(r).toMatchObject({ outcome: "partial", grade: Grade.Hard });
+  });
+
   it("validates step references", async () => {
     const { validateContent } = await import("@/content/validate");
     const bad = CaseExercise.parse({ ...ex, steps: [{ ...ex.steps[1] }, ex.steps[2]] }); // NEAT before BMR exists

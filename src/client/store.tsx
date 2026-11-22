@@ -183,7 +183,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
       enqueue(ev);
       setStates((prev) => new Map(prev).set(ev.pointId, applySafely(prev.get(ev.pointId), ev, s)));
       setPending(pendingEvents().length);
-      setTodayCards(bumpToday());
+      if (ev.kind === "answer") setTodayCards(bumpToday()); // answers only — reading an explanation is not an answer
       void sync();
     },
     [sync, setStates],

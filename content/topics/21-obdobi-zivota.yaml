@@ -1,0 +1,972 @@
+topic:
+  id: obdobi-zivota
+  title: Výživa v různých obdobích života
+  chapter: 21
+  pages: [215, 233]
+  order: 210
+  summary: >-
+    Příprava na těhotenství (kyselina listová), těhotenství (přírůstek, energie, mikroživiny, rizikové
+    potraviny), kojení, výživa kojenců a dětí do 6 let, senioři a stárnutí, menopauza a poruchy příjmu
+    potravy včetně role poradce.
+
+points:
+  # ---------- Před početím a těhotenství ----------
+  - id: obd.folat
+    title: Kyselina listová před početím a v těhotenství
+    kind: fact
+    tier: A
+    criteria: [7f, 1e]
+    source: { pages: [215, 218], anchor: "µg/den ideálně od 2–3 měsíců před plánovaným početím" }
+    explanation: >-
+      Nedostatek folátu kolem početí zvyšuje riziko rozštěpů neurální trubice a dalších vrozených vad.
+      Ženě plánující těhotenství se doporučuje doplněk 400 µg kyseliny listové denně, ideálně už 2–3
+      měsíce před plánovaným početím — nečekat na pozitivní test. Běžný dospělý: 330 µg/den (EFSA),
+      v těhotenství 600 µg/den. Zdroje: listová zelenina, luštěniny, droždí, játra, celozrnné pečivo;
+      samotnou stravou je 400 µg těžké pokrýt.
+    exercises:
+      - id: kdy
+        type: choice
+        prompt: "Kdy má žena podle skript začít s doplňkem kyseliny listové?"
+        options:
+          - { text: "Ideálně 2–3 měsíce před plánovaným početím", correct: true }
+          - { text: "Až po pozitivním těhotenském testu", why: "To je pozdě — neurální trubice se uzavírá velmi brzy." }
+          - { text: "Až ve třetím trimestru", why: "Pozdě – neurální trubice se uzavírá v prvních týdnech těhotenství." }
+          - { text: "Jen pokud má prokázaný deficit", why: "Suplementace se doporučuje všem ženám plánujícím těhotenství, stravou se 400 µg těžko pokryje." }
+      - id: davka
+        type: choice
+        prompt: "Jaká dávka kyseliny listové se doporučuje jako perikoncepční suplementace?"
+        options:
+          - { text: "400 µg/den", correct: true }
+          - { text: "330 µg/den", why: "To je referenční příjem folátu pro běžné dospělé." }
+          - { text: "600 µg/den", why: "To je doporučený příjem v těhotenství (EFSA)." }
+          - { text: "4 mg/den", why: "Vysoká dávka jen pro rizikové ženy po lékařské indikaci; skripta uvádějí 400 µg." }
+      - id: vysvetli
+        type: explain
+        prompt: "Proč a jak doporučíš kyselinu listovou ženě, která plánuje otěhotnět?"
+        keyPoints:
+          - "Prevence rozštěpů neurální trubice a dalších vrozených vad"
+          - "400 µg/den doplňkem"
+          - "Začít 2–3 měsíce před početím, nečekat na test"
+          - "Stravou (listová zelenina, luštěniny, játra) se těžko pokryje"
+        modelAnswer: >-
+          Nedostatek folátu v době početí zvyšuje riziko rozštěpu neurální trubice a jiných vrozených vad.
+          Doporučím doplněk 400 µg kyseliny listové denně, ideálně už 2–3 měsíce před plánovaným početím,
+          protože trubice se uzavírá dřív, než žena o těhotenství ví. Ze stravy, například z listové
+          zeleniny a luštěnin, se takové množství pokrývá obtížně.
+
+  - id: obd.prekoncepce
+    title: Příprava na těhotenství u obou partnerů
+    kind: concept
+    tier: B
+    criteria: [7f, 6c]
+    prereqs: [obd.folat]
+    source: { pages: [215, 216], anchor: "mužský faktor se odhadem podílí až na polovině případů" }
+    explanation: >-
+      Přípravu na těhotenství mají řešit oba partneři — mužský faktor se odhadem podílí až na polovině
+      neplodnosti páru. Muž: vláknina, kvalitní bílkoviny a tuky, omega-3, zinek, selen, vitamin C a E.
+      Žena: pravidelný cyklus, kvalitní bílkoviny v hlavních jídlech, komplexní sacharidy, omega-3.
+      Cílené doplňky (B9, jód) ano, necílené multivitaminy ne (riziko předávkování vitaminem A). Alkohol:
+      úplná abstinence už v přípravě. Nabídnout konkrétní krok, např. 2× týdně silový trénink.
+    exercises:
+      - id: oba
+        type: choice
+        prompt: "Proč se má příprava na těhotenství podle skript týkat obou partnerů?"
+        options:
+          - { text: "Mužský faktor tvoří až polovinu případů neplodnosti", correct: true }
+          - { text: "Protože muž musí před početím také užívat kyselinu listovou 600 µg denně", why: "600 µg je doporučení pro těhotné ženy; u muže skripta zdůrazňují vlákninu, bílkoviny, tuky, omega-3 a antioxidanty." }
+          - { text: "Jen kvůli společnému nákupu potravin, jinak to pro početí nemá význam", why: "Strava a životní styl muže ovlivňují kvalitu spermií." }
+      - id: multivitamin
+        type: reveal
+        prompt: "Proč nedoporučit ženě při plánování těhotenství „pro jistotu“ jakýkoli multivitamin?"
+        answer: >-
+          Necílené multidoplňky nesou riziko předávkování, hlavně vitaminem A (retinolem), který může
+          způsobit vrozené vady. Doplňovat cíleně (kyselina listová, jód).
+
+  - id: obd.prirustek
+    title: Hmotnostní přírůstek v těhotenství podle BMI
+    kind: fact
+    tier: A
+    criteria: [7f]
+    source: { pages: [216, 219], anchor: "Doporučený celkový hmotnostní přírůstek v těhotenství podle BMI" }
+    explanation: >-
+      Doporučený celkový přírůstek se řídí BMI před otěhotněním: podváha (pod 18,5) 12,5–18 kg, normální
+      váha (18,5–24,9) 11,5–16 kg, nadváha (25–29,9) 7–11,5 kg, obezita (30 a víc) 5–9 kg. Čím vyšší BMI,
+      tím menší přírůstek. U obézní ženy cílíme na tento menší přírůstek, ne na hubnutí v těhotenství.
+      Přírůstek sledovat trendem — výkyvy 0,5–1 kg za týden jsou normální.
+    exercises:
+      - id: normalni
+        type: choice
+        prompt: "Jaký celkový přírůstek doporučují skripta ženě s normálním BMI (18,5–24,9) před otěhotněním?"
+        options:
+          - { text: "11,5–16 kg", correct: true }
+          - { text: "12,5–18 kg", why: "To platí pro ženy s podváhou." }
+          - { text: "7–11,5 kg", why: "To platí pro ženy s nadváhou." }
+          - { text: "5–9 kg", why: "To platí pro ženy s obezitou." }
+      - id: obezita
+        type: choice
+        prompt: "Těhotná klientka má BMI 33. Jaký je správný přístup?"
+        options:
+          - { text: "Cílit na menší přírůstek asi 5–9 kg, ne na redukci hmotnosti", correct: true }
+          - { text: "Nasadit redukční dietu, aby během těhotenství zhubla", why: "V těhotenství se nehubne; cílí se na doporučený přírůstek." }
+          - { text: "Stejný přírůstek jako při normální váze, 11,5–16 kg", why: "Čím vyšší BMI, tím menší doporučený přírůstek." }
+          - { text: "Žádný přírůstek, hmotnost držet na nule", why: "I u obezity se počítá s přírůstkem 5–9 kg." }
+      - id: tabulka
+        type: reveal
+        prompt: "Vyjmenuj doporučený celkový přírůstek v těhotenství pro jednotlivé kategorie BMI."
+        answer: "Podváha 12,5–18 kg; normální váha 11,5–16 kg; nadváha 7–11,5 kg; obezita 5–9 kg."
+      - id: vysvetli
+        type: explain
+        prompt: "Těhotná klientka se bojí, kolik v těhotenství přibere. Jak jí vysvětlíš doporučený přírůstek?"
+        keyPoints:
+          - "Přírůstek se řídí BMI před otěhotněním: čím vyšší BMI, tím menší přírůstek"
+          - "Podváha 12,5–18 kg, normální váha 11,5–16 kg, nadváha 7–11,5 kg, obezita 5–9 kg"
+          - "U obezity cílit na menší přírůstek, ne na hubnutí v těhotenství"
+          - "Sledovat trend za více týdnů; výkyvy 0,5–1 kg za týden jsou normální"
+        modelAnswer: >-
+          Doporučený přírůstek se odvíjí od BMI před otěhotněním – čím vyšší BMI, tím menší přírůstek.
+          Při normální váze je to 11,5–16 kg, při podváze 12,5–18 kg, při nadváze 7–11,5 kg a při obezitě
+          5–9 kg; ani při obezitě se v těhotenství nehubne. Hmotnost sledujeme trendem za více týdnů,
+          protože týdenní výkyvy o půl až jeden kilogram jsou normální.
+
+  - id: obd.energie-tehotenstvi
+    title: Energie v těhotenství — „jíst za dva“ je mýtus
+    kind: fact
+    tier: A
+    criteria: [7f, 6b]
+    confusableWith: [obd.kojeni]
+    source: { pages: [217], anchor: "energetické navýšení je ve skutečnosti jen malý zlomek celkového příjmu" }
+    explanation: >-
+      „Jíst za dva“ je mýtus. Navýšení podle FAO/WHO/UNU: 1. trimestr asi +85 kcal/den, 2. trimestr
+      +285 kcal/den, 3. trimestr +475 kcal/den. Protože ženy často zjistí těhotenství až ve 2.–3. měsíci,
+      v praxi se uvádí souhrnně +360 kcal/den od 2. trimestru. V 1. trimestru je mírný úbytek hmotnosti
+      normální; doporučují se častější menší porce a nejíst pod úroveň bazálního metabolismu.
+    exercises:
+      - id: treti
+        type: choice
+        prompt: "O kolik kcal denně se podle skript navyšuje příjem ve třetím trimestru?"
+        options:
+          - { text: "Asi o 475 kcal", correct: true }
+          - { text: "Asi o 285 kcal", why: "To je navýšení ve druhém trimestru." }
+          - { text: "Asi o 85 kcal", why: "To je navýšení v prvním trimestru." }
+          - { text: "Asi o 500 kcal", why: "+500 kcal se uvádí pro plné kojení." }
+          - { text: "Na dvojnásobek běžného příjmu", why: "„Jíst za dva“ je mýtus." }
+      - id: myty
+        type: explain
+        prompt: "Těhotná klientka říká, že teď musí jíst za dva. Jak jí vysvětlíš skutečnou potřebu energie?"
+        keyPoints:
+          - "Jíst za dva je mýtus, navýšení je malý zlomek příjmu"
+          - "1. trimestr asi +85, 2. +285, 3. +475 kcal/den"
+          - "V praxi souhrnně +360 kcal/den od 2. trimestru"
+          - "Důraz na kvalitu: bílkoviny, komplexní sacharidy, omega-3"
+        modelAnswer: >-
+          Jíst za dva je mýtus — potřeba energie roste jen o malý zlomek. Podle FAO/WHO/UNU je to v prvním
+          trimestru asi 85 kcal denně, ve druhém 285 a ve třetím 475 kcal; prakticky se počítá s navýšením
+          asi o 360 kcal od druhého trimestru. Důležitější než množství je kvalita: pestrá strava s dostatkem
+          bílkovin, komplexních sacharidů a omega-3.
+
+  - id: obd.tehotenstvi-mikro
+    title: Klíčové mikroživiny v těhotenství
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta jsou nejednotná u železa a jódu. Tabulka (s. 218) uvádí železo 16 mg/den, stejnou hodnotu
+      EFSA jako mimo těhotenství, ale text (s. 217) i kap. o doplňcích (s. 141) píší, že potřeba železa
+      roste kvůli objemu krve. Jód: s. 218 uvádí 250 µg/den (WHO), s. 135 „220–250 µg/den“. Ke zkoušce:
+      kvalitativně potřeba železa v těhotenství roste; číselně EFSA uvádí 16 mg/den (nenavyšuje, protože
+      odpadá menstruace a roste vstřebávání); deficit řeší lékař. Jód 250 µg/den.
+    criteria: [7f, 1f]
+    prereqs: [obd.folat]
+    source: { pages: [217, 218], anchor: "plod získává jód pouze od matky" }
+    explanation: >-
+      Kyselina listová 600 µg/den (suplementace ideálně už před početím). Jód 250 µg/den v těhotenství
+      i při kojení — plod ho dostává jen od matky, nedostatek poškozuje mozek (až kretenismus); zdroje
+      ryby, jodizovaná sůl. Vitamin D 15 µg/den. Vápník 1 000 mg/den jako mimo těhotenství. Potřeba
+      železa roste s objemem krve, EFSA ale hodnotu 16 mg/den nenavyšuje (odpadá menstruace); deficit
+      řeší lékař. Vitamin A: vysoké dávky retinolu zvyšují riziko vad — preferovat beta-karoten.
+    exercises:
+      - id: jod
+        type: choice
+        prompt: "Kolik jódu denně doporučuje WHO v těhotenství a při kojení (podle skript)?"
+        options:
+          - { text: "250 µg/den", correct: true }
+          - { text: "150 µg/den", why: "To je adekvátní příjem běžného dospělého." }
+          - { text: "600 µg/den", why: "600 µg je doporučení pro kyselinu listovou v těhotenství." }
+          - { text: "15 µg/den", why: "15 µg je doporučení pro vitamin D." }
+      - id: vitamin-a
+        type: choice
+        prompt: "Proč se v těhotenství doporučuje preferovat beta-karoten před retinolem?"
+        options:
+          - { text: "Vysoké dávky retinolu zvyšují riziko vrozených vad", correct: true }
+          - { text: "Beta-karoten se vstřebává rychleji a plod ho využije bez přeměny", why: "Důvodem je bezpečnost, ne rychlost vstřebání; beta-karoten se na vitamin A teprve přeměňuje." }
+          - { text: "Retinol v těhotenství výrazně zvyšuje riziko gestačního diabetu", why: "Riziko vysokých dávek retinolu jsou vrozené vývojové vady." }
+          - { text: "Potřeba vitaminu A v těhotenství klesá téměř na nulu", why: "Potřeba je naopak mírně zvýšená." }
+      - id: vysvetli
+        version: 2
+        type: explain
+        prompt: "Které mikroživiny jsou v těhotenství klíčové a na co si dát pozor?"
+        keyPoints:
+          - "Kyselina listová 600 µg (prevence vad neurální trubice)"
+          - "Jód 250 µg — plod ho má jen od matky; ryby, jodizovaná sůl"
+          - "Vitamin D 15 µg; vápník 1 000 mg; železo – potřeba roste, EFSA číslo 16 mg nenavyšuje"
+          - "Pozor na retinol (vitamin A) — preferovat beta-karoten"
+          - "Deficity (např. železo) řeší lékař podle laboratoře"
+        modelAnswer: >-
+          Klíčová je kyselina listová, v těhotenství 600 µg denně, a jód 250 µg, protože plod ho získává
+          jen od matky a jeho nedostatek poškozuje vývoj mozku. Dále vitamin D 15 µg a vápník 1 000 mg.
+          Potřeba železa roste s objemem krve, EFSA ale doporučených 16 mg denně nenavyšuje, protože
+          odpadá menstruace; prokázaný deficit řeší lékař. Pozor na vysoké dávky retinolu, třeba
+          v multivitaminech, které zvyšují riziko vrozených vad, proto raději beta-karoten.
+
+  - id: obd.tehotenstvi-rizika
+    title: Kofein, alkohol a rizikové potraviny v těhotenství
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Seznam „co nejíst“ ve skriptech (s. 218–219) obsahuje i vyhýbání se alergenům u alergiček a tvrzení,
+      že citrusy způsobí dítěti alergii; to odporuje s. 221 (alergeny se už neodkládají) i současným
+      doporučením, proto to netestujeme. Skripta si odporují i u makrely: „makrela obecná“ je na seznamu
+      rizikových ryb (s. 218), ale „makrela atlantická“ (tentýž druh) mezi doporučenými (s. 220). Ke
+      zkoušce uváděj body z výkladu níže.
+    criteria: [7f, 9b]
+    prereqs: [obd.tehotenstvi-mikro]
+    source: { pages: [218, 219], anchor: "Nepasterované mléčné výrobky – riziko listeriózy" }
+    explanation: >-
+      Kofein nejvýš 200 mg/den (EFSA) ze všech zdrojů dohromady — káva, čaj, energetické nápoje,
+      čokoláda; to jsou asi dva šálky filtrované kávy. Alkohol: bezpečná dávka neexistuje, úplná
+      abstinence (i při kojení). Nejíst: dravé ryby a ryby s vysokým obsahem rtuti (žralok, bílý tuňák),
+      syrová vejce a maso (salmonelóza, toxoplazmóza), nepasterované mléčné výrobky (listerióza),
+      přípravky a čaje na hubnutí. U bylin střídmost.
+    exercises:
+      - id: kofein
+        type: choice
+        prompt: "Jaký je podle EFSA maximální bezpečný denní příjem kofeinu v těhotenství?"
+        options:
+          - { text: "200 mg ze všech zdrojů dohromady", correct: true }
+          - { text: "400 mg", why: "400 mg se běžně uvádí pro zdravé dospělé, ne pro těhotné." }
+          - { text: "200 mg jen z kávy, čaj a čokoláda se nepočítají", why: "Sčítají se všechny zdroje do jednoho limitu." }
+          - { text: "Kofein je v těhotenství zcela zakázán", why: "Zakázaný není, platí limit 200 mg denně ze všech zdrojů." }
+      - id: listerioza
+        type: choice
+        prompt: "Riziko kterého onemocnění představují v těhotenství nepasterované mléčné výrobky?"
+        options:
+          - { text: "Listeriózy", correct: true }
+          - { text: "Toxoplazmózy", why: "Toxoplazmóza hrozí hlavně ze syrového masa." }
+          - { text: "Otravy rtutí", why: "Rtuť hrozí z dravých ryb." }
+          - { text: "Celiakie", why: "Celiakie je autoimunitní onemocnění vyvolané lepkem, ne infekce z potravin." }
+      - id: seznam
+        type: explain
+        prompt: "Čemu by se těhotná žena měla ve stravě vyhnout a proč?"
+        keyPoints:
+          - "Alkohol úplně — bezpečná dávka neexistuje"
+          - "Kofein max. 200 mg/den ze všech zdrojů"
+          - "Ryby s vysokým obsahem rtuti (dravé ryby, žralok, bílý tuňák)"
+          - "Syrové maso a vejce (salmonelóza, toxoplazmóza); nepasterované mléčné výrobky (listerióza)"
+          - "Přípravky a čaje na hubnutí"
+        modelAnswer: >-
+          Alkohol úplně, protože bezpečná dávka neexistuje. Kofein nejvýš 200 mg denně, sčítat kávu, čaj,
+          energetické nápoje i čokoládu. Vynechat dravé ryby s vysokým obsahem rtuti, syrové maso a vejce
+          kvůli salmonelóze a toxoplazmóze, nepasterované mléčné výrobky kvůli listerióze a jakékoli
+          přípravky či čaje na hubnutí.
+
+  - id: obd.kojeni
+    title: Výživa při kojení
+    kind: fact
+    tier: A
+    criteria: [7f]
+    confusableWith: [obd.energie-tehotenstvi]
+    source: { pages: [220], anchor: "energetický náklad jednoho měsíce plného kojení odpovídá zhruba" }
+    explanation: >-
+      Kojení je energeticky náročné: měsíc plného kojení odpovídá zhruba 4–6 měsícům těhotenství. Při
+      plném kojení se doporučuje navýšení asi o 500 kcal/den; část energie jde z tukových zásob (úbytek
+      asi 0,8 kg/měsíc). WHO: výlučné kojení do 6 měsíců, s příkrmy do 2 let i déle. Strava pestrá,
+      s vitaminy B, C, jódem a selenem; 2–3 porce ryb týdně s nízkým obsahem rtuti (DHA pro mozek).
+      Pitný režim asi 3 l/den. Po porodu žádné drastické diety.
+    exercises:
+      - id: kcal
+        type: choice
+        prompt: "O kolik kcal denně se podle skript navyšuje příjem při plném kojení?"
+        options:
+          - { text: "Asi o 500 kcal", correct: true }
+          - { text: "Asi o 85 kcal", why: "To je navýšení v 1. trimestru těhotenství." }
+          - { text: "Asi o 1 500 kcal", why: "Výrazně přehnané; skripta uvádějí asi +500 kcal." }
+          - { text: "Není potřeba navyšovat", why: "Kojení je energeticky náročné, doporučuje se navýšení." }
+      - id: pitny
+        type: reveal
+        prompt: "Jak dlouho doporučuje WHO výlučné kojení a jaký pitný režim má kojící žena mít?"
+        answer: "Výlučné kojení do 6 měsíců, pak s příkrmy do 2 let i déle. Pitný režim asi 3 l denně (neperlivá voda, kojící čaje, ředěné šťávy)."
+      - id: vysvetli
+        type: explain
+        prompt: "Kojící klientka chce co nejrychleji zhubnout. Co jí poradíš?"
+        keyPoints:
+          - "Kojení je energeticky náročné, potřeba asi +500 kcal/den"
+          - "Hubnutí není cílem prvních týdnů, prioritou je regenerace a energie pro kojení"
+          - "Žádné drastické diety; tuk ubývá přirozeně (asi 0,8 kg/měsíc)"
+          - "Pestrá strava, ryby 2–3× týdně, pitný režim asi 3 l"
+        modelAnswer: >-
+          Kojení spotřebuje hodně energie, při plném kojení zhruba o 500 kcal denně víc, a část se bere
+          z tukových zásob, takže hmotnost přirozeně klesá asi o 0,8 kg měsíčně. Drastická dieta je
+          nevhodná; v prvních týdnech je prioritou regenerace a dost energie pro kojení. Doporučím pestrou
+          stravu, ryby dvakrát až třikrát týdně a pitný režim kolem tří litrů.
+
+  # ---------- Děti ----------
+  - id: obd.prikrmy
+    title: Kojenec a zavádění příkrmů
+    kind: procedure
+    tier: A
+    criteria: [7f]
+    source: { pages: [221], anchor: "vyčerpávají kolem 6. měsíce, proto by první" }
+    explanation: >-
+      Do 6 měsíců výlučné kojení (WHO), podle ESPGHAN příkrmy mezi 17. a 26. týdnem. Od 6. do 12. měsíce
+      postupně příkrmy: zeleninové, masovo-zeleninové, obilninové, ovocné, mléčné. Žádná sůl, cukr, med
+      ani sladidla. Zásoby železa z porodu dojdou kolem 6. měsíce → první příkrmy s masem (hemové železo)
+      nebo obohacenými obilninami. Alergeny (vejce, arašídy) se už neodkládají — zavádějí se od 4.–6.
+      měsíce spolu s příkrmy.
+    exercises:
+      - id: zelezo
+        type: choice
+        prompt: "Proč mají první příkrmy obsahovat maso nebo obohacené obiloviny?"
+        options:
+          - { text: "Zásoby železa z porodu se vyčerpávají kolem 6. měsíce", correct: true }
+          - { text: "Mateřské mléko neobsahuje žádné bílkoviny", why: "Bílkoviny obsahuje; důvodem je železo." }
+          - { text: "Kvůli prevenci alergie na lepek", why: "Maso a obohacené obiloviny se volí kvůli železu." }
+          - { text: "Dítě potřebuje od 6. měsíce hlavně víc tuku", why: "Skripta zdůvodňují volbu vyčerpáním zásob železa." }
+      - id: alergeny
+        type: choice
+        prompt: "Jak se podle aktuálních doporučení (ESPGHAN/EAACI) zavádějí alergeny, např. vejce a arašídy?"
+        options:
+          - { text: "Neodkládat — zavádět od 4.–6. měsíce spolu s příkrmy", correct: true }
+          - { text: "Až po 3. roce věku", why: "Odkládání se už nedoporučuje; časné zavedení riziko alergie snižuje." }
+          - { text: "U dětí s ekzémem nikdy", why: "Platí i pro rizikové děti, ideálně po konzultaci s pediatrem." }
+          - { text: "Až po ukončení kojení", why: "Alergeny se zavádějí spolu s příkrmy, kojení se přitom nepřerušuje." }
+      - id: vysvetli
+        version: 2
+        type: explain
+        prompt: "Maminka se ptá, jak začít s příkrmy. Co jí řekneš?"
+        keyPoints:
+          - "WHO: výlučné kojení do 6 měsíců; ESPGHAN: příkrmy mezi 17. a 26. týdnem (ne před 4. a ne po 6. měsíci)"
+          - "Postupně zelenina → maso se zeleninou → obiloviny, ovoce, mléčné"
+          - "Bez soli, cukru, medu a sladidel"
+          - "Maso / obohacené obiloviny kvůli železu (zásoby dojdou kolem 6. měsíce)"
+          - "Alergeny neodkládat, od 4.–6. měsíce"
+        modelAnswer: >-
+          WHO doporučuje výlučné kojení do 6 měsíců; podle ESPGHAN se příkrmy zavádějí mezi 17. a 26. týdnem,
+          tedy ne před 4. a ne po 6. měsíci, podle dítěte. Začíná se zeleninou,
+          pak masem se zeleninou, obilninami, ovocem a mléčnými příkrmy, vše bez soli, cukru, medu a
+          sladidel. Brzy má být v příkrmech maso nebo obohacené obiloviny, protože zásoby železa z porodu
+          docházejí kolem šestého měsíce. Alergeny jako vejce a arašídy se už neodkládají.
+
+  - id: obd.vitamin-d-deti
+    title: Vitamin D u kojenců
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 21 (s. 221, ČPS/OSPDL 2019) uvádí podávání do konce 1. roku a po 1. roce už ne rutinně;
+      kap. o doplňcích (s. 141) píše o plošné suplementaci „u kojenců a batolat“. Ke zkoušce: 400–500 IU
+      od 2. týdne do konce 1. roku, potom jen u rizikových dětí.
+    criteria: [7f, 1e]
+    prereqs: [obd.prikrmy]
+    source: { pages: [221], anchor: "Po 1. roce se rutinní podávání zdravým dětem už nedoporučuje" }
+    explanation: >-
+      Podle České pediatrické společnosti se vitamin D podává 400–500 IU denně od 2. týdne věku do konce
+      1. roku, stejně u kojených i uměle živených dětí. Po 1. roce se zdravým dětem rutinně nepodává,
+      řeší se jen u rizikových (málo slunce, obezita, chronická nemoc). Železo se dětem nikdy nedává
+      paušálně bez laboratoře.
+    exercises:
+      - id: davka
+        type: choice
+        prompt: "Jak se podle skript (ČPS/OSPDL) podává vitamin D kojencům?"
+        options:
+          - { text: "400–500 IU denně od 2. týdne do konce 1. roku", correct: true }
+          - { text: "Jen kojeným dětem, uměle živeným ne", why: "Platí stejně pro kojené i uměle živené." }
+          - { text: "Až od 6. měsíce spolu s příkrmy", why: "Podává se už od 2. týdne věku." }
+          - { text: "Plošně všem dětem až do 6 let", why: "Po 1. roce se zdravým dětem rutinně nepodává, jen rizikovým." }
+
+  - id: obd.batole-predskolak
+    title: Batolata a předškoláci — režim, vybíravost, pitný režim
+    kind: procedure
+    tier: B
+    criteria: [7f]
+    prereqs: [obd.prikrmy]
+    source: { pages: [221, 222], anchor: "potřebuje 8–15 opakovaných ochutnání nové potraviny" }
+    explanation: >-
+      Batole (1–3 roky) a předškolák: pestrá strava ze základních potravin, bez přidaného cukru,
+      nedosolovat, žádné slazené nápoje a ultrazpracované potraviny; režim 3 hlavní jídla + 2–3 svačiny.
+      Novou potravinu dítě přijme často až po 8–15 ochutnáních — nevzdávat se, nenutit, neuplácet
+      sladkostmi; funguje napodobování rodičů. Pít hlavně neperlivou vodu, v zimě neslazené čaje;
+      tabu jsou slazené a sycené nápoje, sirupy, kofein.
+    exercises:
+      - id: vybiravost
+        type: choice
+        prompt: "Tříleté dítě odmítá brokolici. Co rodičům doporučíš?"
+        options:
+          - { text: "Nabízet ji opakovaně bez nátlaku", correct: true }
+          - { text: "Po dvou odmítnutích ji ze stravy natrvalo vyřadit", why: "Přijetí nové potraviny trvá často 8–15 ochutnání." }
+          - { text: "Odměnit dítě sladkostí pokaždé, když ji sní", why: "Uplácení jídlem nebo sladkostmi se nedoporučuje." }
+          - { text: "Trvat na tom, že ji musí sníst celou, než odejde od stolu", why: "Nutit dítě do jídla se nedoporučuje." }
+      - id: rezim
+        type: reveal
+        prompt: "Jaký stravovací režim a pitný režim doporučíš předškolákovi?"
+        answer: >-
+          3 hlavní jídla + 2–3 svačiny, pestrá strava bez přidaného cukru a soli. Pít hlavně neperlivou
+          vodu, případně neslazené čaje; vyhnout se slazeným a syceným nápojům, sirupům a kofeinu.
+
+  - id: obd.deti-voda-energie
+    title: Potřeba vody a energie u dětí na kg
+    kind: fact
+    tier: B
+    criteria: [7f, 7e]
+    prereqs: [obd.batole-predskolak]
+    source: { pages: [222, 223], anchor: "Denní potřeba vody u donošených novorozenců, kojenců a starších dětí" }
+    explanation: >-
+      Potřeba vody se u dětí počítá na kg hmotnosti a s věkem klesá (ESPGHAN/ESPEN): od 10. dne do
+      7. měsíce 150–160 ml/kg, 8.–12. měsíc 100–140, 2. rok 80–120, 3.–5. rok 80–100, 6.–10. rok
+      60–80 ml/kg. Orientační energetická potřeba: šestileté dítě asi 80 kcal/kg, desetileté 65,
+      patnáctileté 50 kcal/kg. Na samotný růst jde mimo kojenecké období jen asi 1–3 % energie, u kojenců
+      až asi 35 %.
+    exercises:
+      - id: voda
+        type: numeric
+        formula: per-kg
+        prompt: >-
+          Čtyřleté dítě váží {weight} kg. Kolik ml vody denně odpovídá HORNÍ hranici potřeby podle
+          tabulky ESPGHAN/ESPEN ve skriptech?
+        params:
+          weight: { min: 14, max: 22, step: 1 }
+          perKg: { choices: [{ value: 100, label: "100" }] }
+        unit: ml
+        tolerance: { abs: 5 }
+        hint: "3.–5. rok: 80–100 ml/kg."
+      - id: energie
+        type: choice
+        prompt: "Jaká je podle skript orientační energetická potřeba šestiletého dítěte?"
+        options:
+          - { text: "Asi 80 kcal/kg", correct: true }
+          - { text: "Asi 65 kcal/kg", why: "To se uvádí pro desetileté dítě." }
+          - { text: "Asi 50 kcal/kg", why: "To se uvádí pro patnáctileté dítě." }
+          - { text: "Asi 30 kcal/kg", why: "Příliš málo; potřeba na kg je u malých dětí výrazně vyšší než u dospělých." }
+      - id: trend
+        type: reveal
+        prompt: "Jak se s věkem mění potřeba vody na kg u dětí? Uveď aspoň tři věková pásma."
+        answer: >-
+          Klesá: 10. den–7. měsíc 150–160 ml/kg, 8.–12. měsíc 100–140, 2. rok 80–120, 3.–5. rok 80–100,
+          6.–10. rok 60–80, 11.–14. rok 50–70 ml/kg.
+
+  - id: obd.veganstvi-deti
+    title: Veganská strava u dětí
+    kind: concept
+    tier: B
+    status: course-disputed
+    note: >-
+      Ke zkoušce: kap. 19 (s. 191) veganskou stravu pro děti označuje za nevhodnou, novější ESPGHAN 2025
+      (s. 222) ji připouští jen za přísných podmínek (sledování pediatrem/NT, povinná B12, pozornost na
+      D, Fe, Ca, DHA). Odpověz: paušálně se nedoporučuje, je možná jen za těchto podmínek; poradce
+      dětského vegana sám nevede.
+    criteria: [7f, 6a]
+    confusableWith: [alt.veganstvi-rizika]
+    source: { pages: [222, 191], anchor: "povinná suplementace vitaminu B12" }
+    explanation: >-
+      Podle ESPGHAN (2025) je přísně veganská strava u dětí možná jen za podmínek: pravidelné sledování
+      pediatrem nebo nutričním terapeutem, povinný doplněk vitaminu B12 a pozornost vitaminu D, železu,
+      vápníku a DHA. Bez toho hrozí poruchy růstu a vývoje. Rizikové jsou zvlášť rostlinná „mléka“
+      místo kojenecké výživy.
+    exercises:
+      - id: podminky
+        type: reveal
+        prompt: "Za jakých podmínek je podle aktuálního stanoviska ESPGHAN možná veganská strava u dítěte?"
+        answer: >-
+          Pravidelné sledování pediatrem nebo nutričním terapeutem, povinná suplementace B12 a pozornost
+          vitaminu D, železu, vápníku a DHA.
+
+  - id: obd.obezni-dite
+    title: Práce s obézním dítětem a limity poradce
+    kind: procedure
+    tier: B
+    criteria: [7f, 6c]
+    source: { pages: [225], anchor: "nedrží redukční dieta, tedy nejde se do kalorického deficitu" }
+    explanation: >-
+      Začínající poradce by se neměl věnovat dětem do 6 let se speciálními nároky ani dětem s nemocí,
+      alergií či intolerancí. U obézního dítěte se pracuje s celou rodinou, někdy s psychologem. Dítě
+      (až na výjimky) nedrží redukční dietu ani kalorický deficit — upravují se návyky a odstraňují
+      chyby, pomalu, s pozitivní motivací a zdravým vztahem k jídlu. Sleduje se trend v percentilových
+      grafech; varováním je přeskok o 2 a více pásem.
+    exercises:
+      - id: deficit
+        type: choice
+        prompt: "Jak podle skript přistupovat k obéznímu dítěti?"
+        options:
+          - { text: "Upravovat návyky s celou rodinou, bez deficitu", correct: true }
+          - { text: "Nastavit kalorický deficit asi 500 kcal denně stejně jako u dospělého", why: "U dětí se (až na výjimky) redukční dieta nedrží." }
+          - { text: "Pracovat jen s dítětem samotným, rodiče do změn nezapojovat", why: "Obézní dítě má často obézní rodiče; zapojuje se celá rodina." }
+          - { text: "Vyřadit ze stravy dítěte všechny zdroje sacharidů", why: "Dítě potřebuje pestrou stravu; upravují se návyky, nevyřazují celé skupiny živin." }
+
+  # ---------- Senioři ----------
+  - id: obd.senior-zmeny
+    title: Změny ve stáří a jejich dopad na výživu
+    kind: concept
+    tier: A
+    criteria: [7f, 6c]
+    confusableWith: [obd.menopauza-zmeny]
+    source: { pages: [227, 228], anchor: "sníženou koncentrační schopnost ledvin" }
+    explanation: >-
+      Ve stáří klesá bazální metabolismus a svalová hmota, ubývá slin a trávicích šťáv, chuť k jídlu
+      i peristaltika (zácpa), ledviny hůř zahušťují moč (riziko dehydratace), klesá tolerance glukózy
+      (riziko diabetu 2. typu) a pohyblivost. Energetická potřeba je stabilní asi do 60 let, pak klesá
+      (asi 0,7 % ročně). V praxi zjistit léky, rozpočet, kdo nakupuje a vaří, chrup (protézy).
+    exercises:
+      - id: zmeny
+        type: choice
+        multiple: true
+        prompt: "Které změny jsou podle skript typické pro stárnutí?"
+        options:
+          - { text: "Pokles bazálního metabolismu a svalové hmoty", correct: true }
+          - { text: "Snížená tvorba slin a trávicích šťáv", correct: true }
+          - { text: "Snížená koncentrační schopnost ledvin", correct: true }
+          - { text: "Zvýšená tolerance glukózy", why: "Tolerance glukózy naopak klesá." }
+          - { text: "Zvýšený pocit žízně", why: "Pocit žízně spíš klesá, proto pitný režim podle hodin." }
+      - id: praxe
+        type: explain
+        prompt: "Na co budeš myslet při sestavování jídelníčku pro seniora?"
+        keyPoints:
+          - "Fyziologické změny: nižší BMR, úbytek svalů, méně slin a trávicích šťáv, nižší chuť k jídlu"
+          - "Vyšší potřeba bílkovin, riziko dehydratace a zácpy"
+          - "Medikace a lékové interakce"
+          - "Rozpočet, kdo nakupuje a vaří, chrup, pohyblivost"
+        modelAnswer: >-
+          Senior má nižší bazální metabolismus a méně svalů, méně slin a trávicích šťáv, menší chuť k jídlu
+          a slabší žízeň, takže hrozí podvýživa bílkovin, dehydratace a zácpa. Nejdřív zjistím jeho léky
+          kvůli interakcím. Doporučení musí být reálná: podle rozpočtu, toho, kdo mu nakupuje a vaří,
+          stavu chrupu a pohyblivosti.
+
+  - id: obd.senior-bilkoviny
+    title: Bílkoviny ve stáří
+    kind: fact
+    tier: A
+    criteria: [7f, 1d]
+    prereqs: [obd.senior-zmeny]
+    confusableWith: [spo.bilkoviny, dpl.seniori]
+    source: { pages: [227], anchor: "1,2–1,5 g/kg/den při akutním nebo chronickém onemocnění" }
+    explanation: >-
+      Energetická potřeba po 60 letech klesá, potřeba bílkovin naopak roste. PROT-AGE a ESPEN doporučují
+      zdravým seniorům 1,0–1,2 g/kg/den, při akutní nebo chronické nemoci 1,2–1,5 g/kg/den. Běžných
+      0,8 g/kg už nestačí. Bílkoviny rozložit rovnoměrně do všech jídel (lepší využití pro svaly — prevence
+      sarkopenie), dbát na kvalitu zdroje a šetrnou úpravu; smažená jídla jsou nejhůř stravitelná.
+    exercises:
+      - id: zdravy
+        type: choice
+        prompt: "Kolik bílkovin doporučují skripta zdravému seniorovi?"
+        options:
+          - { text: "1,0–1,2 g/kg/den", correct: true }
+          - { text: "1,2–1,5 g/kg/den", why: "To je doporučení pro seniora s akutní či chronickou nemocí." }
+          - { text: "0,8 g/kg/den", why: "Běžná RDA na seniory už nestačí." }
+          - { text: "1,6–2,2 g/kg/den", why: "To je rozmezí pro sportovce při nabírání svalů." }
+      - id: nemocny
+        type: numeric
+        formula: per-kg
+        prompt: >-
+          Seniorka s chronickým onemocněním váží {weight} kg. Kolik gramů bílkovin denně odpovídá HORNÍ
+          hranici doporučení pro nemocné seniory?
+        params:
+          weight: { min: 45, max: 90, step: 1 }
+          perKg: { choices: [{ value: 1.5, label: "1,5" }] }
+        unit: g
+        tolerance: { abs: 2 }
+        hint: "Při akutním či chronickém onemocnění 1,2–1,5 g/kg."
+      - id: vysvetli
+        type: explain
+        prompt: "Proč a jak řešíš příjem bílkovin u seniora?"
+        keyPoints:
+          - "Energetická potřeba klesá, potřeba bílkovin roste (úbytek svalů)"
+          - "Zdravý senior 1,0–1,2 g/kg, nemocný 1,2–1,5 g/kg"
+          - "Rovnoměrně do všech jídel dne"
+          - "Kvalitní zdroje, šetrná úprava (ne smažené)"
+        modelAnswer: >-
+          Ve stáří ubývá svalová hmota a zatímco energie je potřeba méně, bílkovin víc. Zdravému seniorovi
+          doporučím 1,0–1,2 g/kg denně, při nemoci 1,2–1,5 g/kg. Bílkoviny rozložím rovnoměrně do všech
+          jídel, aby se lépe využily pro svaly, a volím kvalitní zdroje a šetrnou úpravu místo smažení.
+
+  - id: obd.senior-pitny-rezim
+    title: Pitný režim seniorů
+    kind: fact
+    tier: B
+    criteria: [7f, 7e]
+    prereqs: [obd.senior-zmeny]
+    source: { pages: [227], anchor: "nastavte pravidelný pitný režim podle hodin, ne podle pocitu žízně" }
+    explanation: >-
+      S věkem klesá podíl vody v těle i pocit žízně a roste riziko dehydratace. Klinické minimum
+      samotných tekutin je asi 1,5 l/den; celkový příjem vody (nápoje i jídlo) podle EFSA asi 2,0 l u žen
+      a 2,5 l u mužů. Dehydratace hrozí zmateností (nižší průtok krve mozkem), zácpou, infekcemi močových
+      cest, trombózou a nerovnováhou elektrolytů. Pít pravidelně podle hodin, ne podle žízně.
+    exercises:
+      - id: minimum
+        type: choice
+        prompt: "Jaké bezpečné klinické minimum samotných tekutin se podle skript uvádí u seniorů?"
+        options:
+          - { text: "Asi 1,5 l/den", correct: true }
+          - { text: "Asi 0,5 l/den", why: "Příliš málo; klinické minimum je asi 1,5 l tekutin." }
+          - { text: "Asi 3 l/den", why: "Kolem 3 l se doporučuje kojícím ženám." }
+          - { text: "Podle pocitu žízně, minimum se neuvádí", why: "U seniorů je žízeň oslabená, pije se podle hodin." }
+      - id: rizika
+        type: reveal
+        prompt: "Proč a jak nastavit pitný režim seniorovi?"
+        answer: >-
+          Klesá pocit žízně a podíl vody v těle; dehydratace vede ke zmatenosti, zácpě, infekcím močových
+          cest, trombóze a poruchám elektrolytů. Pít pravidelně podle hodin, minimum asi 1,5 l tekutin denně.
+
+  - id: obd.senior-makra-mikro
+    title: Makro- a mikroživiny ve stáří
+    kind: fact
+    tier: C
+    status: course-disputed
+    note: >-
+      Skripta radí „lehce zvýšit“ vitamin D na 10 µg, jinde (s. 50, 218) ale uvádějí pro dospělé
+      15–20 µg, resp. 15 µg — 10 µg tedy není zvýšení. Číslo netestovat; pamatovat, že potřeba
+      vitaminu D ve stáří neklesá.
+    criteria: [7f]
+    prereqs: [obd.senior-zmeny]
+    source: { pages: [227], anchor: "omega-3 : omega-6 ideálně 1 : 3" }
+    explanation: >-
+      Tuky 30–35 % energie (omega-3 : omega-6 ideálně 1 : 3, nejvýš 1 : 5), sacharidy 50–55 %, vláknina
+      25–30 g/den, navyšovat postupně. Při horší toleranci laktózy kysané mléčné výrobky. Vyšší pozornost
+      vitaminu D, B12, folátu, antioxidantům, vápníku (asi 1,2 g/den), železu, zinku a draslíku. Pozor na
+      lékové interakce — suplementaci konzultovat s lékařem či lékárníkem.
+    exercises:
+      - id: laktoza
+        type: choice
+        prompt: "Senior hůř toleruje mléko. Co doporučíš?"
+        options:
+          - { text: "Zařadit kysané mléčné výrobky", correct: true }
+          - { text: "Vyřadit úplně všechny mléčné výrobky včetně sýrů", why: "Přišel by o zdroj vápníku a bílkovin." }
+          - { text: "Nahradit mléko kolovými nápoji kvůli tekutinám", why: "Kola obsahuje fosfor a je nevhodná." }
+
+  # ---------- Menopauza ----------
+  - id: obd.menopauza-zmeny
+    title: Změny a rizika v menopauze
+    kind: concept
+    tier: A
+    criteria: [6c, 7a]
+    confusableWith: [obd.senior-zmeny]
+    source: { pages: [228], anchor: "Po menopauze dochází ke snížení bazálního metabolismu" }
+    explanation: >-
+      Po menopauze klesá bazální metabolismus a tím potřeba energie — proto mnoho žen přibírá. Zároveň
+      ubývá svalová hmota a přibývá tuku. Rizika: osteoporóza a úbytek kostní hmoty, artróza, poruchy
+      štítné žlázy, potíže se žlučníkem, chronická zácpa, diabetes 2. typu, ischemická choroba srdeční
+      a infarkt. Nepodceňovat psychický stav.
+    exercises:
+      - id: proc-pribira
+        type: choice
+        prompt: "Proč ženy po menopauze často přibírají?"
+        options:
+          - { text: "Klesá jim bazální metabolismus a potřeba energie", correct: true }
+          - { text: "Zvyšuje se jim potřeba energie, a proto přirozeně víc jedí", why: "Potřeba energie naopak klesá." }
+          - { text: "Přestanou úplně vstřebávat vápník, a tím i ostatní živiny", why: "Vstřebávání se úplně nezastaví; roste riziko osteoporózy." }
+          - { text: "Přírůstek hmotnosti je jen zadržená voda, tuk nepřibývá", why: "Skripta popisují úbytek svalů a zvýšené ukládání tuku." }
+      - id: rizika
+        type: explain
+        prompt: "Jaké změny a zdravotní rizika přináší menopauza z pohledu výživy?"
+        keyPoints:
+          - "Nižší BMR → nižší potřeba energie → sklon k přibírání"
+          - "Úbytek svalů, více tuku"
+          - "Osteoporóza, úbytek kostní hmoty"
+          - "Diabetes 2. typu, ischemická choroba srdeční, zácpa, štítná žláza, žlučník"
+          - "Psychický stav"
+        modelAnswer: >-
+          Po menopauze klesá bazální metabolismus, takže žena potřebuje méně energie a snadno přibírá;
+          zároveň ubývá svalů a přibývá tuku. Roste riziko osteoporózy, diabetu 2. typu, ischemické
+          choroby srdeční a infarktu, objevuje se zácpa, potíže se štítnou žlázou či žlučníkem. Nesmím
+          podcenit ani psychiku.
+
+  - id: obd.menopauza-jidelnicek
+    title: Jídelníček v menopauze
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Tvrzení, že fosfor z tavených sýrů a koly „zbavuje tělo vápníku“, je zjednodušené – souvislost
+      kolových nápojů s nižší kostní hustotou je slabá a tavené sýry jsou i zdrojem vápníku. Ke zkoušce
+      odpovídej podle skript.
+    criteria: [6c, 10d]
+    prereqs: [obd.menopauza-zmeny]
+    source: { pages: [228, 229], anchor: "obsahují fosfor, který tělo zbavuje vápníku" }
+    explanation: >-
+      Dodržovat pitný režim (zácpa), omezit sůl (hypertenze), trans tuky (plněné sladkosti), sladkosti
+      a alkohol. Vyloučit tavené sýry a kolové nápoje — obsahují fosfor, který tělo připravuje o vápník.
+      Pro kosti vápník (sardinky, losos, brokolice, luštěniny, mléčné výrobky) a vitamin K (tmavě zelená
+      listová zelenina, natto). Vláknina aspoň 30 g/den. Dále antioxidanty a flavonoidy z ovoce a zeleniny
+      a fytoestrogeny (lignany).
+    exercises:
+      - id: fosfor
+        type: choice
+        prompt: "Které potraviny doporučují skripta v menopauze vyloučit kvůli fosforu?"
+        options:
+          - { text: "Tavené sýry a kolové nápoje", correct: true }
+          - { text: "Sardinky a losos", why: "Ty jsou naopak doporučeným zdrojem vápníku." }
+          - { text: "Brokolici a kapustu", why: "Jsou zdrojem vápníku a vitaminu K." }
+          - { text: "Lněné semínko", why: "Je zdrojem lignanů." }
+      - id: vlaknina
+        version: 2
+        type: choice
+        prompt: "Kolik vlákniny denně doporučují skripta ženám v menopauze?"
+        options:
+          - { text: "Minimálně 30 g", correct: true }
+          - { text: "Asi 20 g", why: "Málo; skripta uvádějí minimálně 30 g denně." }
+          - { text: "Nejvýš 25 g", why: "Skripta stanovují spodní hranici 30 g, ne horní limit." }
+      - id: vysvetli
+        type: explain
+        prompt: "Jak upravíš jídelníček ženě v menopauze?"
+        keyPoints:
+          - "Pitný režim, vláknina min. 30 g (zácpa)"
+          - "Méně soli, trans tuků, sladkostí a alkoholu"
+          - "Vyloučit tavené sýry a kolu (fosfor)"
+          - "Vápník a vitamin K pro kosti"
+          - "Fytoestrogeny, antioxidanty"
+        modelAnswer: >-
+          Kvůli zácpě dbám na pitný režim a aspoň 30 g vlákniny denně. Omezím sůl, trans tuky, sladkosti
+          a alkohol a vyloučím tavené sýry a kolové nápoje, protože fosfor tělo připravuje o vápník. Pro
+          kosti zařadím zdroje vápníku jako sardinky, brokolici a mléčné výrobky a vitamin K z tmavé listové
+          zeleniny, dále fytoestrogeny ze lněného semínka a sóji.
+
+  - id: obd.fytoestrogeny
+    title: Fytoestrogeny (lignany) v menopauze
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta tvrdí, že lignany „nahrazují“ estrogen a předcházejí návalům. Důkazy o účinku fytoestrogenů
+      na návaly jsou slabé a nejednoznačné a nejde o náhradu hormonální léčby. Ke zkoušce odpovídej
+      podle skript (30 mg lignanů, zdroje), u klientky zmiň, že efekt je individuální. Skripta řadí mezi
+      zdroje lignanů i sóju, ta ale obsahuje hlavně isoflavony; lignany jsou hlavně ve lněném semínku
+      (s. 64).
+    criteria: [6c]
+    prereqs: [obd.menopauza-jidelnicek]
+    source: { pages: [229], anchor: "Doporučuje se denní konzumace 30 mg lignanů" }
+    explanation: >-
+      Podle skript fytoestrogeny (lignany) částečně nahrazují klesající estrogeny a mají působit proti
+      návalům; doporučuje se asi 30 mg lignanů denně. Zdroje: lněné semínko a lněný olej (2 lžíce),
+      sója, tofu, tempeh, miso, černé fazole. Lněné semínko je nutné pomlít, namočit nebo pečlivě
+      rozkousat — celé projde trávicím traktem téměř bez užitku.
+    exercises:
+      - id: len
+        type: choice
+        prompt: "Jak má klientka v menopauze jíst lněné semínko, aby z něj měla užitek?"
+        options:
+          - { text: "Pomleté, namočené nebo důkladně rozkousané", correct: true }
+          - { text: "Celé a nenamočené, aby se zachovaly lignany", why: "Celé semínko projde trávicím traktem většinou nestrávené." }
+          - { text: "Jedině ve formě oleje smaženého při vysoké teplotě", why: "Lněný olej se na smažení nehodí; skripta doporučují semínko pomleté nebo namočené." }
+      - id: zdroje
+        version: 2
+        type: reveal
+        prompt: "Kolik lignanů doporučují skripta v menopauze a jaké jsou zdroje fytoestrogenů?"
+        answer: >-
+          Asi 30 mg lignanů denně. Lignany: drcené lněné semínko, lněný olej. Skripta uvádějí spolu
+          s nimi sóju a sójové výrobky (tofu, tempeh, miso) a černé fazole; sója obsahuje hlavně isoflavony.
+
+  # ---------- Poruchy příjmu potravy ----------
+  - id: obd.anorexie
+    title: Mentální anorexie
+    kind: concept
+    tier: A
+    criteria: [10c]
+    confusableWith: [obd.bulimie]
+    source: { pages: [230], anchor: "klasickým diagnostickým vodítkem (podle ICD-10) je BMI 17,5 a nižší" }
+    explanation: >-
+      Mentální anorexie je duševní nemoc: odmítání jídla a zkreslená představa o vlastním těle, strach
+      z tloušťky, potěšení z kontroly a hubnutí. Klasickým vodítkem (ICD-10) je BMI 17,5 a nižší. Tělesné
+      projevy: lámavé nehty a vlasy, suchá kůže, pocit chladu, poruchy či ztráta menstruace, řídnutí kostí,
+      nízký tlak. Je dlouhodobá a může ohrozit život. Postihuje hlavně dívky v pubertě (asi 10× častěji
+      než muže), ale věk ani pohlaví nevylučují.
+    exercises:
+      - id: bmi
+        type: choice
+        prompt: "Jaká hodnota BMI je podle skript klasickým diagnostickým vodítkem mentální anorexie?"
+        options:
+          - { text: "BMI 17,5 a nižší", correct: true }
+          - { text: "BMI pod 25", why: "Pod 25 je i normální hmotnost; vodítkem anorexie je 17,5 a méně." }
+          - { text: "BMI 18,5–24,9", why: "To je pásmo normální hmotnosti." }
+          - { text: "BMI nad 30", why: "To je obezita." }
+      - id: vysvetli
+        type: explain
+        prompt: "Popiš mentální anorexii — co ji charakterizuje a jak se projevuje?"
+        keyPoints:
+          - "Psychické onemocnění, odmítání jídla, zkreslené vnímání těla"
+          - "Strach z tloušťky, pocit kontroly z hubnutí"
+          - "Vodítko BMI ≤ 17,5"
+          - "Projevy: ztráta menstruace, lámavé nehty a vlasy, suchá kůže, zimomřivost, řídnutí kostí"
+          - "Hlavně dívky v pubertě; patří do péče lékaře a psychologa"
+        modelAnswer: >-
+          Mentální anorexie je psychické onemocnění, kdy člověk odmítá jídlo a má zkreslenou představu
+          o svém těle; hubnutí mu dává pocit kontroly a má silný strach z tloušťky. Vodítkem je BMI 17,5
+          a méně. Projevuje se ztrátou menstruace, lámavými nehty a vlasy, suchou kůží, zimomřivostí
+          a řídnutím kostí. Nejčastěji postihuje dívky v pubertě a léčí ji lékař s psychologem.
+
+  - id: obd.bulimie
+    title: Mentální bulimie
+    kind: concept
+    tier: A
+    criteria: [10c]
+    confusableWith: [obd.anorexie, obd.prejidani]
+    source: { pages: [230], anchor: "jedinci s bulimií mívají postavu normální nebo s mírnou nadváhou" }
+    explanation: >-
+      Bulimie: neustálé zabývání se jídlem, záchvaty přejídání a snaha zmírnit jejich dopad zvracením,
+      projímadly nebo cvičením; strach z tloušťky, nízké sebevědomí, přehnaná závislost na vzhledu.
+      Na rozdíl od anorexie mívá člověk normální postavu nebo mírnou nadváhu, proto se hůř pozná.
+      Často se prolíná s anorexií (část nemocných jí dříve trpěla). Projevy: kazivost zubů, dehydratace.
+    exercises:
+      - id: rozdil
+        type: choice
+        prompt: "Čím se bulimie typicky liší od anorexie?"
+        options:
+          - { text: "Hmotnost bývá normální, přejídání se kompenzuje", correct: true }
+          - { text: "U bulimie je BMI vždy pod 17,5 a nemocná jídlo odmítá", why: "Nízké BMI a odmítání jídla jsou vodítkem anorexie." }
+          - { text: "Bulimie se týká hlavně starších mužů po padesátce", why: "Vyskytuje se především u mladých žen." }
+          - { text: "U bulimie chybí strach z tloušťky i zájem o vzhled", why: "Strach z tloušťky a závislost na vzhledu jsou typické." }
+      - id: srovnani
+        type: explain
+        prompt: "Porovnej anorexii, bulimii a záchvatovité přejídání."
+        keyPoints:
+          - "Anorexie: odmítání jídla, BMI ≤ 17,5, zkreslené vnímání těla"
+          - "Bulimie: přejídání + kompenzace (zvracení, projímadla, cvičení), hmotnost normální či mírná nadváha"
+          - "Záchvatovité přejídání: bez kompenzace, jídlo jako útěcha, vede k obezitě"
+          - "Poruchy se mohou prolínat a přecházet jedna v druhou"
+        modelAnswer: >-
+          U anorexie člověk odmítá jídlo, má zkreslenou představu o těle a BMI kolem 17,5 a méně. U bulimie
+          se střídá přejídání se snahou ho kompenzovat zvracením, projímadly nebo cvičením a hmotnost bývá
+          normální nebo mírně vyšší. Záchvatovité přejídání nemá kompenzační chování, jídlo slouží jako
+          útěcha či odměna a vede k obezitě. Poruchy se často prolínají a jedna může přejít v druhou.
+
+  - id: obd.prejidani
+    title: Záchvatovité (psychogenní) přejídání
+    kind: concept
+    tier: B
+    criteria: [10c, 7a]
+    confusableWith: [obd.bulimie]
+    source: { pages: [230], anchor: "jídlo funguje jako odměna, útěcha nebo únik" }
+    explanation: >-
+      Psychogenní (záchvatovité) přejídání často navazuje na bulimii nebo časté redukční diety. Jídlo
+      slouží jako odměna, útěcha nebo únik, bez kompenzačního zvracení. Je to nejčastější porucha příjmu
+      potravy u dospělých. Dlouhodobě poškozuje tělesné i duševní zdraví a může vést k obezitě nebo
+      k jiné PPP.
+    exercises:
+      - id: spoustec
+        type: choice
+        prompt: "Na co podle skript nejčastěji navazuje psychogenní přejídání?"
+        options:
+          - { text: "Na bulimii nebo časté redukční diety", correct: true }
+          - { text: "Na nadměrný příjem bílkovin", why: "Skripta uvádějí jako spouštěč bulimii nebo časté redukční diety." }
+          - { text: "Na nedostatek spánku u sportovců", why: "Skripta uvádějí jako spouštěč bulimii nebo časté redukční diety." }
+          - { text: "Na laktózovou intoleranci", why: "Intolerance je trávicí potíž, ne psychogenní spouštěč." }
+
+  - id: obd.ppp-znaky
+    title: Varovné znaky poruchy příjmu potravy
+    kind: concept
+    tier: A
+    criteria: [10c, 3c]
+    prereqs: [obd.anorexie]
+    source: { pages: [231], anchor: "všímejte si kombinace více znaků najednou" }
+    explanation: >-
+      Varovné znaky: hubnutí a skrývání postavy ve volném oblečení, vynechávání společných jídel (výmluvy
+      na rozvrh či vegetariánství), vaření pro ostatní bez vlastního jídla, jen zelenina a minimum
+      sacharidů, krájení jídla na malé kousky, nadměrná aktivita, hodně kávy a dietních nápojů, výkyvy
+      nálad, uzavírání se, mizení jídla a obaly v pokoji, zvracení, projímadla, časté chození do koupelny.
+      Rozhoduje kombinace více znaků, ne jeden projev.
+    exercises:
+      - id: znaky
+        type: choice
+        multiple: true
+        prompt: "Které chování může podle skript signalizovat poruchu příjmu potravy?"
+        options:
+          - { text: "Vaří pro rodinu, ale sama nejí", correct: true }
+          - { text: "Krájí jídlo na malé kousky a přesouvá je po talíři", correct: true }
+          - { text: "Po každém jídle hned odchází do koupelny", correct: true }
+          - { text: "Jí pravidelně tři hlavní jídla denně se zbytkem rodiny", why: "To je znak normálního, flexibilního stravování." }
+      - id: kombinace
+        type: choice
+        prompt: "Klientka zmíní, že začala být vegetariánka. Jak to vyhodnotíš?"
+        options:
+          - { text: "Sleduji, zda se nepřidají další znaky", correct: true }
+          - { text: "Je to jasný důkaz anorexie, okamžitě ji posílám k psychiatrovi", why: "Jeden projev sám o sobě nic neznamená." }
+          - { text: "Nehraje to žádnou roli, poruchy příjmu potravy se týkají jen sportovkyň", why: "PPP se mohou týkat kohokoli." }
+      - id: vysvetli
+        type: explain
+        prompt: "Jakých znaků si všimneš, které mohou ukazovat na poruchu příjmu potravy?"
+        keyPoints:
+          - "Hubnutí, volné oblečení, vyhýbání se společnému jídlu"
+          - "Jí málo (jen zelenina), krájí na malé kousky, vaří jiným a sama nejí"
+          - "Nadměrný pohyb, hodně kávy a dietních nápojů"
+          - "Změny nálad, uzavřenost; mizení jídla, zvracení, projímadla, koupelna po jídle"
+          - "Hodnotit kombinaci znaků, ne jeden projev"
+        modelAnswer: >-
+          Všímám si hubnutí a skrývání postavy, vyhýbání se společnému jídlu, toho, že vaří ostatním a sama
+          nejí, jí hlavně zeleninu a krájí jídlo na drobné kousky. Dalšími znaky jsou nadměrný pohyb, hodně
+          kávy a dietních nápojů, změny nálad a uzavřenost, mizení jídla, stopy zvracení, projímadla nebo
+          odchody do koupelny po jídle. Rozhoduje kombinace více znaků, ne jeden projev.
+
+  - id: obd.ppp-role-poradce
+    title: Role a limity poradce u PPP
+    kind: procedure
+    tier: A
+    note: >-
+      Věta o akutním ohrožení (lékař / 155, zapojení rodičů u nezletilé) je bezpečnostní doplněk nad
+      rámec skript.
+    criteria: [10c, 3c]
+    prereqs: [obd.ppp-znaky]
+    source: { pages: [230, 232], anchor: "poradce diagnostikuje pouze podezření a předává klienta specialistovi" }
+    explanation: >-
+      PPP jsou psychická onemocnění. Poradce je nediagnostikuje ani neléčí — rozpozná podezření a předá
+      klienta specialistovi: psychiatrovi, psychologovi nebo nutričnímu terapeutovi se specializací na PPP
+      (v ČR specializovaná centra při psychiatrických klinikách). Léčba kombinuje psychoterapii, nutriční
+      poradenství a případně léky; cílem je návrat k normálnímu jídlu a hmotnosti. Čím dřív, tím lepší
+      šance na uzdravení. Kontakt na pracoviště mít připravený předem. Při akutním ohrožení (mdloby,
+      velmi nízké BMI, zvracení krve, myšlenky na sebepoškození) neodkládat – lékař / 155; u nezletilé
+      zapojit rodiče.
+    exercises:
+      - id: role
+        type: choice
+        prompt: "Máš u klientky podezření na bulimii. Co je správný postup poradce?"
+        options:
+          - { text: "Doporučit vyšetření u psychiatra nebo psychologa se specializací na PPP", correct: true }
+          - { text: "Sestavit jí přísný jídelníček, aby se přestala přejídat", why: "PPP jsou psychická onemocnění; poradce je sám neléčí." }
+          - { text: "Stanovit diagnózu a zahájit léčbu", why: "Poradce zachytí jen podezření, diagnózu stanoví lékař." }
+          - { text: "Počkat, jestli to samo neodezní", why: "Čím dřív léčba začne, tím větší šance na uzdravení." }
+      - id: vysvetli
+        type: explain
+        prompt: "Jaká je role výživového poradce u klienta s podezřením na poruchu příjmu potravy?"
+        keyPoints:
+          - "Rozpozná podezření, nediagnostikuje a neléčí"
+          - "Předá specialistovi: psychiatr, psycholog, nutriční terapeut se specializací na PPP"
+          - "Léčba = psychoterapie + nutriční poradenství (+ léky)"
+          - "Včasnost zvyšuje šanci na uzdravení; kontakt mít připravený"
+          - "Může spolupracovat na edukaci, co znamená jíst normálně"
+        modelAnswer: >-
+          Poradce poruchu nediagnostikuje ani neléčí, umí ale zachytit podezření. Klientovi citlivě doporučím
+          vyšetření u psychiatra nebo psychologa se specializací na PPP, případně nutričního terapeuta,
+          a kontakt na specializované centrum mám připravený předem. Léčba kombinuje psychoterapii
+          a nutriční poradenství a čím dřív začne, tím větší je šance na uzdravení.
+
+  - id: obd.ortorexie
+    title: Ortorexie
+    kind: concept
+    tier: C
+    status: supplementary
+    note: >-
+      Ve skriptech není; doplněno jako často zmiňovaný pojem (Bratman), není oficiální diagnózou v MKN
+      ani DSM. Postup poradce je stejný jako u ostatních PPP (podezření → specialista).
+    criteria: [10c]
+    prereqs: [obd.ppp-role-poradce]
+    source: { pages: [229, 232], anchor: "Pod tlakem dietní kultury přestává být v běžné populaci jasné" }
+    explanation: >-
+      Ortorexie je nutkavá posedlost „zdravým“ a „čistým“ jídlem. Nejde o množství, ale o kvalitu:
+      člověk vyřazuje stále víc potravin, má úzkost a pocit viny při porušení pravidel a jídlo mu omezuje
+      společenský život; může vést k podvýživě. Nejde o oficiální diagnózu. Poradce si toho všímá
+      (rigidita, strach z „nečistých“ potravin) a stejně jako u PPP odkáže na specialistu.
+    exercises:
+      - id: rozdil
+        type: choice
+        prompt: "Čím se ortorexie liší od mentální anorexie?"
+        options:
+          - { text: "Jde hlavně o kvalitu a „čistotu“ jídla", correct: true }
+          - { text: "U ortorexie člověk pravidelně zvrací po každém jídle", why: "Zvracení je typické spíš pro bulimii." }
+          - { text: "Ortorexie je oficiální diagnóza s vodítkem BMI pod 17,5", why: "Nejde o oficiální diagnózu; BMI 17,5 je vodítko anorexie." }
+          - { text: "Ortorexie se týká výhradně vrcholových sportovců", why: "Může se týkat kohokoli, kdo jídlo rigidně třídí na „čisté“ a „nečisté“." }

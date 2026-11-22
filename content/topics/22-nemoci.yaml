@@ -1,0 +1,1540 @@
+topic:
+  id: nemoci
+  title: Nemoci a zdravotní omezení
+  chapter: 22
+  pages: [234, 251]
+  order: 220
+  summary: >-
+    Civilizační a metabolická onemocnění, nemoci trávicího traktu, ledvin, kostí a štítné žlázy,
+    laboratorní vyšetření a úprava jídelníčku při warfarinu, dně, alergiích a intolerancích,
+    Crohnově chorobě, vysokém cholesterolu, hypertenzi, cukrovce a stresu.
+
+points:
+  # ---------- Prevence civilizačních onemocnění (10d) ----------
+
+  - id: nem.civilizacni-choroby
+    title: Civilizační onemocnění
+    kind: concept
+    tier: A
+    criteria: [10d]
+    source: { pages: [235], anchor: "nemoci hromadného výskytu neinfekčního původu" }
+    explanation: >-
+      Civilizační onemocnění jsou hromadně se vyskytující neinfekční nemoci, na jejichž vzniku se
+      podílí hlavně životní styl: nevhodné stravování, kouření, alkohol, stres a málo pohybu. Patří
+      sem obezita, nemoci srdce a cév, cukrovka, poruchy imunity, nádory i duševní onemocnění.
+      Ve vyspělých zemích jsou nejčastější příčinou smrti nemoci srdce a cév, na druhém místě
+      nádory. Rozvíjejí se dlouho a základem prevence je zdravý životní styl.
+    exercises:
+      - id: poradi
+        type: choice
+        prompt: "Co je podle skript nejčastější příčinou úmrtí ve vyspělých zemích?"
+        options:
+          - text: "Nemoci srdce a cév"
+            correct: true
+          - text: "Nádorová onemocnění"
+            why: "Nádory jsou podle skript až na druhém místě."
+          - text: "Cukrovka"
+            why: "Cukrovka je rizikový faktor nemocí srdce a cév, ale nejčastější příčinou úmrtí není."
+          - text: "Infekční nemoci"
+            why: "Ve vyspělých zemích dominují neinfekční civilizační nemoci."
+      - id: vysvetli
+        type: explain
+        prompt: "Co jsou civilizační onemocnění a jakou roli v jejich prevenci hraje výživa?"
+        keyPoints:
+          - "Hromadně se vyskytující neinfekční nemoci"
+          - "Příčiny: strava, kouření, alkohol, stres, málo pohybu"
+          - "Příklady: obezita, nemoci srdce a cév, cukrovka, nádory"
+          - "Nejčastější příčina úmrtí: srdce a cévy, pak nádory"
+          - "Rozvíjejí se dlouho → prevence = zdravý životní styl včetně stravy"
+        modelAnswer: >-
+          Jsou to neinfekční nemoci hromadného výskytu, které vznikají hlavně kvůli životnímu stylu –
+          nevhodné stravě, kouření, alkoholu, stresu a nedostatku pohybu. Patří sem obezita, nemoci
+          srdce a cév, cukrovka nebo nádory; nemoci srdce a cév jsou ve vyspělých zemích nejčastější
+          příčinou smrti, nádory druhou. Protože se vyvíjejí mnoho let, dá se jim předcházet zdravým
+          životním stylem, jehož důležitou součástí je výživa.
+
+  - id: nem.metabolicky-syndrom
+    title: Metabolický syndrom
+    kind: concept
+    tier: A
+    criteria: [10d, 10c, 3b]
+    source: { pages: [235], anchor: "alespoň tři z uvedených příznaků" }
+    explanation: >-
+      Metabolický syndrom je rizikový stav, který zvyšuje pravděpodobnost aterosklerózy a cukrovky.
+      Tvoří ho pět znaků: zvětšený obvod pasu (viscerální tuk), nízký HDL cholesterol, vysoké
+      triacylglyceroly, zvýšená glykémie a zvýšený krevní tlak. U dospělého o něm mluvíme, pokud má
+      alespoň tři z pěti. Je hlavním aterogenním syndromem; často ho doprovází i zvýšená kyselina močová.
+    exercises:
+      - id: kriteria
+        type: choice
+        multiple: true
+        prompt: "Které z uvedených znaků patří podle skript mezi znaky metabolického syndromu?"
+        options:
+          - text: "Zvětšený obvod pasu"
+            correct: true
+          - text: "Snížená hladina HDL cholesterolu"
+            correct: true
+          - text: "Zvýšená hladina triacylglycerolů"
+            correct: true
+          - text: "Zvýšená hladina HDL cholesterolu"
+            why: "Rizikový je naopak nízký HDL."
+          - text: "Snížená hladina TSH"
+            why: "TSH souvisí se štítnou žlázou, mezi znaky metabolického syndromu nepatří."
+      - id: kolik
+        type: reveal
+        prompt: "Vyjmenuj pět znaků metabolického syndromu. Kolik jich musí být přítomno?"
+        answer: >-
+          Velký obvod pasu, nízký HDL, vysoké TAG, zvýšená glykémie, zvýšený krevní tlak.
+          Metabolický syndrom = alespoň 3 z 5.
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli, co je metabolický syndrom a proč je důležitý pro prevenci."
+        keyPoints:
+          - "Soubor rizikových znaků, ne samostatná nemoc"
+          - "Pas, nízký HDL, vysoké TAG, vysoká glykémie, vysoký tlak"
+          - "Alespoň 3 z 5"
+          - "Zvyšuje riziko aterosklerózy a cukrovky (hlavní aterogenní syndrom)"
+        modelAnswer: >-
+          Metabolický syndrom je soubor rizikových znaků: zvětšený obvod pasu kvůli viscerálnímu tuku,
+          nízký HDL cholesterol, vysoké triacylglyceroly, zvýšená glykémie a vysoký krevní tlak. Mluvíme
+          o něm, když má dospělý aspoň tři z nich. Výrazně zvyšuje riziko aterosklerózy a cukrovky,
+          proto je úprava stravy, hmotnosti a pohybu u těchto lidí klíčovou prevencí.
+
+  - id: nem.ateroskleroza
+    title: Ateroskleróza a její rizikové faktory
+    kind: concept
+    tier: A
+    criteria: [10d]
+    prereqs: [nem.metabolicky-syndrom]
+    source: { pages: [235], anchor: "hromadění tuků (cholesterolu) v cévní stěně" }
+    explanation: >-
+      Ateroskleróza je chronické onemocnění tepen: v cévní stěně se hromadí tuky (cholesterol), vzniká
+      zánět a plát, který zužuje cévu. Postihuje hlavně velké tepny (srdce, mozek, krk, dolní
+      končetiny) a může vést k infarktu či cévní mozkové příhodě. Rizikové faktory: kouření, vysoký
+      tlak, obezita, cukrovka, sedavý život, mužské pohlaví, genetika a věk.
+    exercises:
+      - id: rizika
+        type: choice
+        multiple: true
+        prompt: "Které z těchto faktorů řadí skripta mezi nejvýznamnější rizikové faktory aterosklerózy?"
+        options:
+          - text: "Kouření"
+            correct: true
+          - text: "Vysoký krevní tlak"
+            correct: true
+          - text: "Cukrovka"
+            correct: true
+          - text: "Ženské pohlaví"
+            why: "Rizikovým faktorem je podle skript mužské pohlaví."
+          - text: "Vysoká hladina HDL cholesterolu"
+            why: "HDL vrací cholesterol do jater; rizikový je jeho nízký stav."
+      - id: dusledky
+        type: reveal
+        prompt: "K jakým závažným onemocněním může ateroskleróza vést?"
+        answer: "K ischemické chorobě srdeční (angina pectoris, infarkt myokardu) a k cévní mozkové příhodě."
+      - id: vysvetli
+        type: explain
+        prompt: "Co je ateroskleróza a jak jí lze předcházet životním stylem?"
+        keyPoints:
+          - "Ukládání tuků (cholesterolu) ve stěně tepen, zánět, pláty zužují cévu"
+          - "Následky: infarkt, angina pectoris, cévní mozková příhoda"
+          - "Ovlivnitelná rizika: kouření, vysoký tlak, obezita, cukrovka, sedavý život"
+          - "Prevence: nekouřit, pohyb, zdravá hmotnost, strava pro zdravé lipidy a tlak"
+        modelAnswer: >-
+          Ateroskleróza je chronické onemocnění tepen, při kterém se ve stěně cév ukládá cholesterol,
+          vzniká zánět a plát, který cévu zužuje; může vést k infarktu nebo cévní mozkové příhodě.
+          Rozvíjí se mnoho let. Neovlivníme pohlaví, věk ani genetiku, ale můžeme nekouřit, hýbat se,
+          udržet zdravou hmotnost a jíst tak, abychom předešli vysokému tlaku, cukrovce a poruchám
+          lipidů.
+
+  - id: nem.osteoporoza
+    title: Osteoporóza – rizika a prevence
+    kind: concept
+    tier: A
+    criteria: [10d]
+    source: { pages: [239], anchor: "úbytek kostní hmoty a změna struktury kosti" }
+    explanation: >-
+      Osteoporóza je metabolické onemocnění s úbytkem kostní hmoty a změnou struktury kosti, takže
+      roste riziko zlomenin (typicky stehenní kost, obratle, předloktí). Rizika: genetika, ženské
+      pohlaví (hlavně po menopauze), kouření, nedostatek vitaminu D a vápníku. Prevence: pohyb a
+      dostatek vápníku, vitaminu D a bílkovin ve stravě.
+    exercises:
+      - id: prevence
+        type: choice
+        multiple: true
+        prompt: "Co uvádějí skripta jako preventivní faktory osteoporózy?"
+        options:
+          - text: "Pohybová aktivita"
+            correct: true
+          - text: "Dostatek vápníku a vitaminu D"
+            correct: true
+          - text: "Dostatek bílkovin ve stravě"
+            correct: true
+          - text: "Co nejnižší příjem bílkovin"
+            why: "Skripta naopak řadí dostatek bílkovin mezi preventivní faktory."
+          - text: "Omezení pohybu, aby nedošlo ke zlomenině"
+            why: "Pohyb kost posiluje a patří k prevenci."
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka po menopauze se ptá, jak jídlem a režimem předcházet osteoporóze. Co jí řekneš?"
+        keyPoints:
+          - "Osteoporóza = úbytek kostní hmoty → zlomeniny"
+          - "Je v rizikové skupině (žena po menopauze)"
+          - "Dostatek vápníku a vitaminu D"
+          - "Dostatek bílkovin"
+          - "Pravidelný pohyb, nekouřit"
+        modelAnswer: >-
+          Osteoporóza znamená úbytek kostní hmoty, kost je křehčí a snáz se zlomí. Ženy po menopauze
+          jsou riziková skupina, stejně jako kuřáci a lidé s nedostatkem vitaminu D a vápníku.
+          Prevencí je strava s dostatkem vápníku, vitaminu D a bílkovin, pravidelný pohyb a nekouření.
+
+  # ---------- Metabolické poruchy (10c) a laboratoř (3b) ----------
+
+  - id: nem.dyslipidemie
+    title: Dyslipidémie – role LDL a HDL
+    kind: comparison
+    tier: A
+    criteria: [10c, 3b]
+    confusableWith: [nem.lipidovy-panel]
+    source: { pages: [235, 236], anchor: "roznáší cholesterol z jater do periferních tkání" }
+    explanation: >-
+      Poruchy metabolismu tuků (dyslipidémie) zahrnují zvýšený celkový cholesterol, změny LDL a HDL
+      nebo zvýšené triacylglyceroly. LDL roznáší cholesterol z jater do tkání; HDL („hodný“)
+      vrací přebytek cholesterolu zpět do jater. Rizikový je vysoký LDL (zvlášť s dalšími riziky,
+      často se léčí statiny), nízký HDL a vysoké triacylglyceroly.
+    exercises:
+      - id: hdl
+        type: choice
+        prompt: "Jakou roli má v metabolismu HDL cholesterol?"
+        options:
+          - text: "Vrací přebytečný cholesterol z tkání zpět do jater."
+            correct: true
+          - text: "Roznáší cholesterol z jater do periferních tkání."
+            why: "To dělá LDL."
+          - text: "Přenáší triacylglyceroly ze střeva do tukové tkáně."
+            why: "Tuto roli skripta HDL nepřisuzují."
+          - text: "Ukládá cholesterol do cévní stěny."
+            why: "Ukládání v cévách souvisí s nadbytkem LDL; HDL působí opačně."
+      - id: rizikove
+        type: reveal
+        prompt: "Které změny lipidového spektra jsou podle skript rizikové?"
+        answer: "Vysoký LDL cholesterol, nízký HDL cholesterol a vysoké triacylglyceroly."
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli rozdíl mezi LDL a HDL cholesterolem a proč je důležitý jejich poměr."
+        keyPoints:
+          - "LDL: z jater do tkání"
+          - "HDL: přebytek zpět do jater („hodný“)"
+          - "Nadbytek LDL → ukládání v cévách, ateroskleróza"
+          - "Rizikový je i nízký HDL a vysoké TAG"
+        modelAnswer: >-
+          LDL je transportní forma cholesterolu, která ho roznáší z jater do tkání; při nadbytku se
+          cholesterol ukládá v cévách a podporuje aterosklerózu. HDL působí opačně – přebytečný
+          cholesterol vrací do jater, proto mu říkáme hodný. Důležitý je jejich poměr; rizikový je
+          vysoký LDL, nízký HDL a také vysoké triacylglyceroly.
+
+  - id: nem.lipidovy-panel
+    title: Lipidový panel – optimální hodnoty
+    kind: fact
+    tier: A
+    criteria: [3b]
+    prereqs: [nem.dyslipidemie]
+    confusableWith: [nem.dyslipidemie]
+    source: { pages: [240, 241], anchor: "Lipidový profil se používá pro hodnocení rizika aterosklerózy" }
+    explanation: >-
+      Lipidový profil slouží k hodnocení rizika aterosklerózy. Optimální hodnoty podle skript:
+      celkový cholesterol do 5 mmol/l, LDL do 3 mmol/l, HDL nejméně 1,0 mmol/l u mužů a
+      1,2 mmol/l u žen, triacylglyceroly do 1,7 mmol/l. Interpretace výsledků patří lékaři.
+    exercises:
+      - id: ldl
+        type: choice
+        prompt: "Jaká je podle skript optimální hodnota LDL cholesterolu?"
+        options:
+          - text: "Do 3 mmol/l"
+            correct: true
+          - text: "Do 5 mmol/l"
+            why: "To je hranice pro celkový cholesterol."
+          - text: "Do 1,7 mmol/l"
+            why: "To je hranice pro triacylglyceroly."
+          - text: "Minimálně 1,2 mmol/l"
+            why: "To je minimum HDL u žen."
+      - id: hdl-zeny
+        type: choice
+        prompt: "Jaká je podle skript optimální hladina HDL cholesterolu u žen?"
+        options:
+          - text: "Minimálně 1,2 mmol/l"
+            correct: true
+          - text: "Minimálně 1,0 mmol/l"
+            why: "To je minimum pro muže."
+          - text: "Maximálně 1,2 mmol/l"
+            why: "U HDL je rizikový nízký stav, hodnota je tedy minimální, ne maximální."
+          - text: "Maximálně 3 mmol/l"
+            why: "To je horní hranice pro LDL."
+      - id: hodnoty
+        type: reveal
+        prompt: "Uveď optimální hodnoty celkového cholesterolu, LDL, HDL a triacylglycerolů."
+        answer: "Celkový do 5, LDL do 3, HDL min. 1,0 (muži) / 1,2 (ženy), TAG do 1,7 mmol/l."
+
+  - id: nem.dm-typy
+    title: Typy cukrovky
+    kind: comparison
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 23 (s. 250) označuje DM 1. typu jako „vrozený“, kap. 22 (s. 236) správně uvádí, že jde
+      o autoimunitní onemocnění, které se může projevit i v dospělosti. DM 1 není vrozený v pravém
+      smyslu (dědí se jen sklon). U zkoušky popiš DM 1 jako autoimunitní, s absolutním nedostatkem
+      inzulinu, nejčastěji od dětství.
+    criteria: [10c, 7h]
+    source: { pages: [236, 250], anchor: "Podkladem cukrovky 1. typu je autoimunitní zánět slinivky" }
+    explanation: >-
+      Cukrovka je metabolické onemocnění s trvale zvýšenou glykémií. Typ 1: autoimunitní zánět
+      slinivky, absolutní nedostatek inzulinu, nejčastěji od dětství, léčí se inzulinem. Typ 2: vzniká
+      dlouho z genetické dispozice a životního stylu, typická je inzulinová rezistence (tkáně přestávají
+      reagovat na inzulin). Dále těhotenská cukrovka (riziková pro matku i plod) a jiné typy.
+      Chronické komplikace: srdce a cévy, ledviny, sítnice, nervy.
+    exercises:
+      - id: inzulinova-rezistence
+        type: choice
+        prompt: "Co je typické pro cukrovku 2. typu?"
+        options:
+          - text: "Tkáně přestávají dostatečně reagovat na inzulin (inzulinová rezistence)."
+            correct: true
+          - text: "Autoimunitní zánět slinivky s absolutním nedostatkem inzulinu."
+            why: "To je podstata cukrovky 1. typu."
+          - text: "Vzniká jen v těhotenství vlivem hormonálních změn."
+            why: "To je těhotenská cukrovka."
+          - text: "Projevuje se nejčastěji v dětství a léčí se vždy jen inzulinem."
+            why: "To odpovídá spíš 1. typu; 2. typ se rozvíjí dlouho, hlavně vlivem životního stylu."
+      - id: komplikace
+        type: reveal
+        prompt: "Vyjmenuj chronické komplikace dlouhodobě zvýšené glykémie."
+        answer: >-
+          Vyšší riziko nemocí srdce a cév, poškození ledvin (nefropatie), sítnice (retinopatie) a
+          nervů (neuropatie).
+      - id: vysvetli
+        type: explain
+        prompt: "Čím se liší cukrovka 1. a 2. typu?"
+        keyPoints:
+          - "1. typ: autoimunitní zánět slinivky, absolutní nedostatek inzulinu"
+          - "1. typ: nejčastěji od dětství, léčba inzulinem"
+          - "2. typ: genetika + životní styl, rozvíjí se dlouho"
+          - "2. typ: inzulinová rezistence"
+          - "Ovlivnitelnost: u 2. typu velká role stravy, pohybu, hmotnosti"
+        modelAnswer: >-
+          Cukrovka 1. typu je autoimunitní – imunita poškodí slinivku, vznikne absolutní nedostatek
+          inzulinu, nejčastěji už v dětství, a léčí se podáváním inzulinu. Cukrovka 2. typu se vyvíjí
+          dlouho z kombinace genetiky a životního stylu; tkáně přestávají reagovat na inzulin
+          (inzulinová rezistence). U 2. typu proto hraje zásadní roli strava, pohyb a redukce hmotnosti.
+
+  - id: nem.glykemie-hba1c
+    title: Glykémie, prediabetes a glykovaný hemoglobin
+    kind: fact
+    tier: A
+    criteria: [3b, 3c]
+    prereqs: [sach.glykemie-norma]
+    source: { pages: [236, 241], anchor: "Glykovaný hemoglobin je dlouhodobým ukazatelem hladiny krevního cukru" }
+    explanation: >-
+      Sacharidový panel tvoří glukóza a glykovaný hemoglobin (HbA1c). Fyziologická glykémie je
+      3,6–5,6 mmol/l; vyšší hodnota ještě nemusí znamenat cukrovku. Šedá zóna mezi normou a cukrovkou
+      se nazývá prediabetes. Glykovaný hemoglobin ukazuje průměrnou glykémii za poslední 2–3 měsíce
+      a slouží ke sledování kompenzace cukrovky. Diagnostika patří lékaři. Na odběr se chodí nalačno
+      (10–12 h, jen čistá voda).
+    exercises:
+      - id: hba1c
+        type: choice
+        prompt: "Za jaké období vypovídá glykovaný hemoglobin o hladině krevního cukru?"
+        options:
+          - text: "Za poslední 2–3 měsíce"
+            correct: true
+          - text: "Za posledních 10–12 hodin"
+            why: "10–12 h je doba lačnění před odběrem."
+          - text: "Za poslední týden"
+            why: "Je to dlouhodobý ukazatel – měsíce, ne dny."
+          - text: "Za poslední rok"
+            why: "Skripta uvádějí 2–3 měsíce."
+      - id: prediabetes
+        type: explain
+        version: 2
+        prompt: "Klientka má glykémii nalačno 6,2 mmol/l. Co jí řekneš a co uděláš?"
+        keyPoints:
+          - "Hodnota je nad fyziologickým rozmezím 3,6–5,6 mmol/l"
+          - "Nemusí jít o cukrovku – může jít o prediabetes"
+          - "Hodnocení a diagnóza patří lékaři → doporučím lékaře"
+          - "Mezitím zásady zdravé stravy, pohybu a případně redukce hmotnosti"
+        modelAnswer: >-
+          Řeknu jí, že 6,2 mmol/l je nad fyziologickým rozmezím 3,6–5,6 mmol/l, ale samo o sobě to
+          ještě neznamená cukrovku – může jít o prediabetes. Výsledek nehodnotím ani nediagnostikuji,
+          doporučím jí, ať ho probere s lékařem. Mezitím může začít se zdravou stravou s méně
+          rychlými cukry, s pohybem a případně s pozvolným hubnutím.
+      - id: nalacno
+        type: choice
+        prompt: "Co se podle skript rozumí pojmem „nalačno“ před odběrem krve?"
+        options:
+          - text: "10–12 hodin bez jídla, čistou vodu lze pít"
+            correct: true
+          - text: "3–4 hodiny bez jídla i pití"
+            why: "Skripta uvádějí 10–12 h a voda je povolena."
+          - text: "24 hodin bez jídla"
+            why: "Skripta uvádějí 10–12 h."
+          - text: "Bez snídaně, ale káva s mlékem je v pořádku"
+            why: "Lze pít jen čistou vodu."
+
+  - id: nem.laboratorni-panely
+    title: Další laboratorní vyšetření
+    kind: fact
+    tier: B
+    criteria: [3b]
+    source: { pages: [241], anchor: "Močovina a kreatinin se používají pro sledování filtračních schopností ledvin" }
+    explanation: >-
+      CRP (C-reaktivní protein) stoupá při zánětu. Kyselina močová, močovina a kreatinin jsou dusíkaté
+      metabolity; močovina a kreatinin slouží ke sledování funkce ledvin (glomerulární filtrace).
+      Jaterní panel tvoří enzymy AST, ALT a GGT – rostou při poškození jaterních buněk (zánět,
+      ztučnění, alkohol, poruchy odtoku žluči). Krevní obraz odhalí mj. nedostatek železa nebo B9 a B12.
+    exercises:
+      - id: ledviny
+        type: choice
+        prompt: "Které parametry se podle skript používají ke sledování filtrační funkce ledvin?"
+        options:
+          - text: "Močovina a kreatinin"
+            correct: true
+          - text: "AST a ALT"
+            why: "To jsou jaterní enzymy."
+          - text: "CRP"
+            why: "CRP je ukazatel zánětu."
+          - text: "Glykovaný hemoglobin"
+            why: "Ten sleduje kompenzaci cukrovky."
+      - id: panely
+        type: reveal
+        prompt: "Co ukazuje CRP a které enzymy tvoří jaterní panel?"
+        answer: "CRP = zánět. Jaterní panel: AST, ALT, GGT."
+
+  - id: nem.stitna-zlaza
+    title: Hypotyreóza a hypertyreóza
+    kind: comparison
+    tier: B
+    status: course-disputed
+    note: >-
+      Rozdíl v důrazu: kap. 23 (s. 244) doporučuje u hypotyreózy strumigenní potraviny omezit a pro
+      denní konzumaci upřednostnit jiné druhy (zároveň říká, že není nutné se jim vyhýbat), kap. 7
+      (s. 60) uvádí, že při dostatku jódu a běžné konzumaci není důvod se brukvovité zelenině vyhýbat.
+      To odpovídá i běžným poznatkům. U zkoušky: strumigeny jmenuj, ale řekni, že je není nutné
+      vyřazovat, jen nejíst denně. Doplněno: u autoimunitní hypotyreózy je nevhodný nadbytek jódu,
+      proto řasy jen opatrně.
+    criteria: [3b, 10c]
+    prereqs: [min.jod]
+    source: { pages: [239, 244], anchor: "Laboratorně svědčí pro hypofunkci štítné žlázy zvýšená hladina TSH" }
+    explanation: >-
+      Hypotyreóza (snížená funkce štítné žlázy, častěji u žen, často autoimunitní) zpomaluje
+      metabolismus: sklon k přibírání, zimomřivost, deprese. Laboratorně zvýšené TSH; léčí se vždy
+      podáváním hormonů. Hypertyreóza má zrcadlové projevy a snížené TSH. Ve stravě: zdroje jódu a
+      selenu (mořské ryby, mléčné výrobky, vejce, jodizovaná sůl, para ořechy). Strumigenní potraviny
+      (růžičková kapusta, červené zelí, brokolice, květák, kedlubna, ředkvičky, hořčice) skripta
+      doporučují nejíst denně; úplně vyřazovat je není nutné.
+    exercises:
+      - id: tsh
+        type: choice
+        prompt: "Jak se v laboratoři projeví snížená funkce štítné žlázy?"
+        options:
+          - text: "Zvýšenou hladinou TSH"
+            correct: true
+          - text: "Sníženou hladinou TSH"
+            why: "Snížené TSH svědčí pro hypertyreózu."
+          - text: "Zvýšenou hladinou CRP"
+            why: "CRP je ukazatel zánětu."
+          - text: "Zvýšenou hladinou kreatininu"
+            why: "Kreatinin souvisí s funkcí ledvin."
+      - id: strava
+        type: reveal
+        prompt: "Které živiny jsou ve stravě při hypotyreóze vhodné a v jakých potravinách je najdeš?"
+        answer: >-
+          Jód a selen – mořské ryby, řasy (jen opatrně – riziko nadbytku jódu), mléčné výrobky, vejce,
+          jodizovaná sůl, para ořechy. Léčba je ale vždy hormonální (lékař).
+
+  # ---------- Výživa při onemocněních (7h) ----------
+
+  - id: nem.hypertenze
+    title: Hypertenze – hodnoty a nefarmakologická opatření
+    kind: procedure
+    tier: A
+    criteria: [7h, 10d, 3b]
+    prereqs: [min.sodik]
+    source: { pages: [235, 249, 58], anchor: "Hypertenze nebolí, a proto se ji říká tichý zabiják" }
+    explanation: >-
+      Normální krevní tlak je 120/80 mm Hg, vysoký normální do 139/89; na hypertenzi ukazují
+      dlouhodobě hodnoty nad 140/90. Hypertenze nebolí („tichý zabiják“) a poškozuje cévy, srdce,
+      ledviny, mozek i oči. Opatření: omezit sůl (cca 5 g denně, viz sodík), polotovary, uzeniny,
+      fast food a slané pochutiny, abstinence, nekouřit, snížit stres, pravidelný aerobní pohyb, při
+      nadváze zhubnout; dost zeleniny, ovoce a zdrojů omega-3. Káva škodí spíš jen v nadbytku.
+    exercises:
+      - id: hodnoty
+        type: choice
+        prompt: "Od jakých dlouhodobých hodnot krevního tlaku mluví skripta o hypertenzi?"
+        options:
+          - text: "Nad 140/90 mm Hg"
+            correct: true
+          - text: "Nad 120/80 mm Hg"
+            why: "120/80 je normální tlak."
+          - text: "Nad 130/85 mm Hg"
+            why: "Do 139/89 jde podle skript o vysoký normální tlak."
+          - text: "Nad 160/100 mm Hg"
+            why: "Hranice hypertenze je podle skript 140/90."
+      - id: opatreni
+        type: choice
+        multiple: true
+        prompt: "Která opatření patří podle skript k nefarmakologické léčbě hypertenze?"
+        options:
+          - text: "Omezení soli a slaných polotovarů"
+            correct: true
+          - text: "Redukce hmotnosti při nadváze"
+            correct: true
+          - text: "Více zeleniny a ovoce"
+            correct: true
+          - text: "Úplné vyřazení kávy u každého hypertonika"
+            why: "Káva je problémem spíš jen při nadměrné konzumaci."
+          - text: "Vyřazení ovoce kvůli cukru"
+            why: "Ovoce a zelenina se naopak doporučují."
+      - id: vysvetli
+        type: explain
+        prompt: "Klient má vysoký krevní tlak. Jaká režimová a výživová opatření mu doporučíš?"
+        keyPoints:
+          - "Omezit sůl a slané/průmyslově zpracované potraviny (polotovary, uzeniny, fast food)"
+          - "Dost zeleniny, ovoce, zdrojů omega-3"
+          - "Redukce hmotnosti při nadváze"
+          - "Pravidelný aerobní pohyb, méně stresu"
+          - "Alkohol a kouření pryč; léčbu (antihypertenziva) řídí lékař"
+        modelAnswer: >-
+          Základem je omezit sůl – nejen solenku, ale hlavně polotovary, konzervy, uzeniny, fast food a
+          slané pochutiny. Do jídelníčku zařadíme víc zeleniny, ovoce a zdrojů omega-3 mastných kyselin.
+          Při nadváze pomůže zhubnout, dále pravidelný aerobní pohyb, méně stresu, abstinence a nekouření.
+          Léky nasazuje lékař; výživa léčbu doplňuje, nenahrazuje.
+
+  - id: nem.hypercholesterolemie
+    title: Výživa při vysokém cholesterolu
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 236, také s. 29 – doporučení okolo 300 mg/den) uvádějí omezení cholesterolu ze stravy.
+      Současná doporučení už striktní limit cholesterolu ze stravy většinou nestanovují; na LDL má
+      větší vliv příjem nasycených a trans tuků. U zkoušky uveď kurzovou odpověď (omezit cholesterol
+      i nasycené MK), ale důraz dej na trans a nasycené tuky, vlákninu a nenasycené tuky.
+    criteria: [7h, 10d]
+    prereqs: [nem.dyslipidemie]
+    source: { pages: [236, 249], anchor: "omezení konzumace cholesterolu a nasycených mastných kyselin" }
+    explanation: >-
+      Nefarmakologická opatření při poruchách lipidů: redukce hmotnosti, dostatek pohybu (zvyšuje
+      HDL), více nenasycených a omega-3 mastných kyselin, méně trans tuků, dost zeleniny a ovoce
+      (vláknina), omezení cholesterolu a nasycených tuků. Omezit ultrazpracované potraviny, nekvalitní
+      uzeniny, pevné margaríny, palmový a kokosový olej, sladké a trvanlivé pečivo, smažená jídla,
+      alkohol; nekouřit. Léky (nejčastěji statiny) nasazuje lékař.
+    exercises:
+      - id: omezit
+        type: choice
+        multiple: true
+        prompt: "Které potraviny je podle skript vhodné omezit při vysokém cholesterolu?"
+        options:
+          - text: "Palmový a kokosový olej"
+            correct: true
+          - text: "Pevné margaríny a sladké trvanlivé pečivo"
+            correct: true
+          - text: "Smažené pokrmy"
+            correct: true
+          - text: "Tučné mořské ryby"
+            why: "Jsou zdrojem omega-3 MK, které se naopak doporučují."
+          - text: "Zeleninu a ovoce"
+            why: "Doporučují se – vláknina a fytochemikálie."
+      - id: pohyb
+        type: choice
+        prompt: "Proč skripta doporučují při vysokém cholesterolu pravidelný pohyb (kromě hubnutí)?"
+        options:
+          - text: "Pomáhá zvýšit HDL cholesterol."
+            correct: true
+          - text: "Snižuje HDL cholesterol."
+            why: "HDL je žádoucí; pohyb ho naopak zvyšuje."
+          - text: "Snižuje tvorbu žlučových kyselin."
+            why: "Tento mechanismus skripta neuvádějí."
+          - text: "Nahrazuje léčbu statiny."
+            why: "Léčbu řídí lékař, pohyb ji jen doplňuje."
+      - id: vysvetli
+        type: explain
+        prompt: "Klientce zjistili vysoký LDL cholesterol. Jak jí upravíš stravu a režim?"
+        keyPoints:
+          - "Méně trans a nasycených tuků (palmový/kokosový olej, pevné margaríny, smažené, sušenky, uzeniny)"
+          - "Více nenasycených a omega-3 MK"
+          - "Dost zeleniny, ovoce, vlákniny"
+          - "Pohyb (zvyšuje HDL), redukce hmotnosti při nadváze"
+          - "Omezit alkohol, nekouřit; léky řeší lékař"
+        modelAnswer: >-
+          Omezíme zdroje trans a nasycených tuků – pevné margaríny, palmový a kokosový olej, sladké a
+          trvanlivé pečivo, uzeniny, smažená jídla a ultrazpracované potraviny – a podle skript i
+          cholesterol ze stravy. Naopak přidáme nenasycené tuky a omega-3, hodně zeleniny a ovoce kvůli
+          vláknině. Důležitý je pohyb, který zvyšuje HDL, při nadváze redukce hmotnosti, omezení
+          alkoholu a nekouření. O případných lécích rozhoduje lékař.
+
+  - id: nem.dm2-strava
+    title: Výživa při diabetu 2. typu
+    kind: procedure
+    tier: A
+    note: >-
+      Doplněno nad rámec skript jako bezpečnostní rámec: u DM 2 léčeného inzulinem nebo jinými léky
+      snižujícími glykémii hrozí při omezení sacharidů hypoglykémie a při onemocnění ledvin je
+      nevhodný vyšší příjem bílkovin (srov. s. 238) – takové změny je nutné konzultovat s lékařem.
+    criteria: [7h, 10c]
+    prereqs: [nem.dm-typy, sach.gi, sach.gn]
+    source: { pages: [236, 250], anchor: "upřednostňovala potraviny s nízkým GI a GN" }
+    explanation: >-
+      Základ: vyvážená strava s přiměřenou energií, pohyb a redukce hmotnosti. Upřednostňují se
+      potraviny s nízkým GI a GN. Nevhodné jsou bílé a sladké pečivo, bílá rýže a těstoviny,
+      sladkosti, slazené nápoje i džusy, med, sušené ovoce, ochucené mléčné výrobky, uzeniny a
+      ztužené tuky. Lze zvážit nízkosacharidovou stravu a víc bílkovin; sacharidy se ubírají postupně.
+      Při léčbě inzulinem či jinými léky na cukrovku nebo při nemoci ledvin to vždy konzultovat
+      s lékařem. U DM 1 nikdy low-carb bez diabetologa.
+    exercises:
+      - id: nevhodne
+        type: choice
+        multiple: true
+        prompt: "Které potraviny řadí skripta mezi nevhodné při diabetu 2. typu?"
+        options:
+          - text: "Džusy a freshe"
+            correct: true
+          - text: "Med a sušené ovoce"
+            correct: true
+          - text: "Bílá rýže a bílé těstoviny"
+            correct: true
+          - text: "Zelenina"
+            why: "Zelenina má nízký GI i GN a je vhodná."
+          - text: "Luštěniny"
+            why: "Luštěniny mezi nevhodnými potravinami skripta neuvádějí."
+      - id: lowcarb
+        type: choice
+        prompt: "Jak podle skript postupovat, když chceš diabetikovi 2. typu snížit příjem sacharidů?"
+        options:
+          - text: "Vyjít z jeho aktuálního stravování a sacharidy ubírat postupně."
+            correct: true
+          - text: "Sacharidy ihned vyřadit a přejít na ketogenní stravu."
+            why: "Skripta doporučují postupné snižování."
+          - text: "Stejně postupovat i u diabetika 1. typu bez konzultace."
+            why: "U DM 1 je samovolný přechod na low-carb zcela nevhodný – vždy s diabetologem."
+          - text: "Snížit sacharidy a zároveň snížit i bílkoviny."
+            why: "Skripta naopak zmiňují vhodnost vyššího podílu bílkovin."
+      - id: vysvetli
+        type: explain
+        prompt: "Jaké jsou zásady výživy u klienta s diabetem 2. typu?"
+        keyPoints:
+          - "Přiměřený energetický příjem, redukce hmotnosti, pravidelný pohyb"
+          - "Potraviny s nízkým GI a GN"
+          - "Vyřadit cukr, sladkosti, slazené nápoje a džusy, bílé pečivo"
+          - "Možná nízkosacharidová strava a víc bílkovin – ubírat postupně"
+          - "Při léčbě inzulinem / léky na cukrovku nebo nemoci ledvin změny jen po domluvě s lékařem"
+          - "Zjistit celý zdravotní stav a komplikace; léčba u lékaře"
+        modelAnswer: >-
+          Strava má mít přiměřenou energii, aby klient při nadváze hubnul, doplněná pravidelným pohybem.
+          Volíme potraviny s nízkým glykemickým indexem a náloží a vyřazujeme cukr, med, sladkosti,
+          slazené nápoje včetně džusů, bílé pečivo a bílou rýži. Lze zvážit nízkosacharidovou stravu a
+          vyšší podíl bílkovin, ale sacharidy ubíráme postupně. Pokud bere inzulin nebo jiné léky na
+          cukrovku, nebo má nemocné ledviny, takovou změnu musí schválit lékař (riziko hypoglykémie).
+          Vždy zjišťuji celý zdravotní stav a komplikace; léčba cukrovky patří lékaři a nutričnímu
+          terapeutovi.
+
+  - id: nem.dna-mechanismus
+    title: Dna a hyperurikémie
+    kind: concept
+    tier: B
+    criteria: [10c, 7h]
+    prereqs: [met.puriny]
+    source: { pages: [239, 244], anchor: "její vyšší hladina v krvi se nazývá hyperurikémie" }
+    explanation: >-
+      Kyselina močová je konečným produktem odbourávání purinů. Její zvýšená hladina v krvi je
+      hyperurikémie. Je špatně rozpustná, při vyšších koncentracích se sráží a krystalky v kloubech
+      vyvolají dnavý záchvat (velmi bolestivý zánět kloubu). Na vzniku se podílí genetika i životní
+      styl (strava, alkohol, sedavost, obezita); často doprovází metabolický syndrom. Záchvat typicky
+      spustí exces: hodně purinů plus alkohol, který zpomaluje vylučování kyseliny močové.
+    exercises:
+      - id: hyperurikemie
+        type: choice
+        prompt: "Co označuje pojem hyperurikémie?"
+        options:
+          - text: "Zvýšenou hladinu kyseliny močové v krvi"
+            correct: true
+          - text: "Zvýšenou hladinu močoviny v krvi"
+            why: "Močovina je produkt metabolismu aminokyselin; hyperurikémie se týká kyseliny močové."
+          - text: "Zvýšenou hladinu glukózy v krvi"
+            why: "To je hyperglykémie."
+          - text: "Zánět kloubu vyvolaný krystalky"
+            why: "To je dnavý záchvat – důsledek, ne samotná hyperurikémie."
+      - id: zachvat
+        type: reveal
+        prompt: "Co typicky vyvolá dnavý záchvat a proč hraje roli alkohol?"
+        answer: >-
+          Dietní exces – hodně zdrojů purinů v kombinaci s alkoholem (typicky pivo). Alkohol zpomaluje
+          vylučování kyseliny močové.
+
+  - id: nem.dna-strava
+    title: Nízkopurinová dieta při dně
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta řadí mezi omezované zdroje purinů i čaj, kakao a luštěniny (s. 239) a doporučují omezit
+      kávu a černý čaj (s. 244). Podle současných poznatků káva riziko dny spíš snižuje a rostlinné
+      zdroje purinů (luštěniny, zelenina) riziko dny výrazně nezvyšují; kofein a teobromin v kávě,
+      čaji a kakau jsou methylxanthiny, které kyselinu močovou nezvyšují jako puriny z masa. Hlavní
+      rizika jsou maso, vnitřnosti, mořské plody, alkohol (pivo) a fruktóza. U zkoušky uveď kurzový
+      výčet, ale důraz dej na živočišné zdroje, alkohol a slazené nápoje.
+    criteria: [7h, 7g]
+    prereqs: [nem.dna-mechanismus]
+    source: { pages: [239, 244], anchor: "Maso by mělo být konzumováno pouze v malých porcích" }
+    explanation: >-
+      Základ: nízkopurinová dieta, dost tekutin, abstinence, pohyb, při obezitě pozvolné hubnutí.
+      Potraviny nad 150 mg purinů/100 g ideálně nejíst, s 50–150 mg jen omezeně. Maso cca 75–100 g
+      nejvýš jednou denně, omezit masné výrobky; nejvíc purinů má mladé maso, zvěřina, vnitřnosti,
+      ryby a mořské plody. Pozor na vývary (puriny přejdou do vody). Skripta omezují i luštěniny (hl. sóju, čočku),
+      kakao, čokoládu, špenát, hrášek, kávu a černý čaj. Pomůže středomořská strava a méně
+      přidaného cukru a fruktózy.
+    exercises:
+      - id: limit
+        type: choice
+        prompt: "Potraviny s jakým obsahem purinů by se podle skript při dně ideálně neměly jíst vůbec?"
+        options:
+          - text: "Více než 150 mg ve 100 g"
+            correct: true
+          - text: "Více než 50 mg ve 100 g"
+            why: "Potraviny s 50–150 mg se jedí jen v menší míře, ne zcela vyřazují."
+          - text: "Více než 500 mg ve 100 g"
+            why: "Hranice je podle skript 150 mg/100 g."
+          - text: "Jakékoli množství purinů"
+            why: "Puriny nelze vyřadit úplně; omezují se hlavně bohaté zdroje."
+      - id: maso
+        type: choice
+        prompt: "Jak podle skript zařazovat maso při dně?"
+        options:
+          - text: "Malá porce cca 75–100 g, nejvýše jednou denně"
+            correct: true
+          - text: "Úplně vyřadit"
+            why: "Skripta maso nevyřazují, jen omezují porci a frekvenci."
+          - text: "Neomezeně, pokud je libové"
+            why: "Maso je významným zdrojem purinů, porce je potřeba omezit."
+          - text: "Nahradit masovým vývarem"
+            why: "Puriny při vaření přecházejí do vody, vývary jsou rizikové."
+      - id: vysvetli
+        type: explain
+        prompt: "Klient má zvýšenou kyselinu močovou a prodělal dnavý záchvat. Jak mu upravíš jídelníček a režim?"
+        keyPoints:
+          - "Nízkopurinová dieta: omezit maso (75–100 g max. 1× denně), vnitřnosti, zvěřinu, mořské plody, vývary"
+          - "Potraviny nad 150 mg purinů/100 g ideálně vynechat"
+          - "Abstinence (hlavně pivo), dostatek tekutin"
+          - "Pohyb a pozvolná redukce hmotnosti"
+          - "Méně přidaného cukru a fruktózy; akutní stav a léky řeší lékař"
+        modelAnswer: >-
+          Nasadíme nízkopurinový jídelníček: maso jen v malé porci kolem 75–100 g nejvýš jednou denně,
+          omezíme masné výrobky, vnitřnosti, zvěřinu, ryby a mořské plody a vynecháme masové vývary.
+          Potraviny nad 150 mg purinů na 100 g ideálně nejí vůbec. Nutná je abstinence – hlavně pivo – a
+          dostatek tekutin. Pomůže pohyb, pozvolné hubnutí a méně přidaného cukru a fruktózy. Akutní
+          záchvat a léky patří lékaři.
+
+  - id: nem.celiakie
+    title: Celiakie
+    kind: concept
+    tier: A
+    criteria: [7h]
+    confusableWith: [nem.laktoza-strava]
+    source: { pages: [238, 246], anchor: "Jedinou možností léčby je eliminace lepku" }
+    explanation: >-
+      Celiakie je autoimunitní onemocnění: imunita reaguje na štěpné produkty lepku (glutenu), směsi
+      bílkovin z pšenice, žita, ječmene a ovsa. Projevit se může i mimo trávicí trakt (např. na kůži).
+      Jedinou léčbou je celoživotní přísná bezlepková dieta. Hrozí malnutrice – hlavně nedostatek
+      bílkovin, železa, vápníku, vitaminů B9 a B12 a kvůli horšímu vstřebávání tuků i vitaminů
+      rozpustných v tucích. Nesnášenlivost lepku má tři formy: celiakie, alergie a neceliakální
+      glutenová senzitivita.
+    exercises:
+      - id: podstata
+        type: choice
+        prompt: "Co je podstatou celiakie?"
+        options:
+          - text: "Autoimunitní reakce na štěpné produkty lepku"
+            correct: true
+          - text: "Nedostatek enzymu, který štěpí lepek, bez účasti imunity"
+            why: "Tak funguje spíš intolerance (např. laktózová); celiakie je autoimunitní."
+          - text: "Alergie na škrob v obilovinách"
+            why: "Problémem je bílkovina lepek, ne škrob."
+          - text: "Přecitlivělost na histamin z obilovin"
+            why: "To je histaminová intolerance, jiný stav."
+      - id: deficity
+        type: choice
+        multiple: true
+        prompt: "Nedostatek kterých živin hrozí podle skript u celiakie?"
+        options:
+          - text: "Železo a vápník"
+            correct: true
+          - text: "Vitaminy B9 a B12"
+            correct: true
+          - text: "Vitaminy rozpustné v tucích"
+            correct: true
+          - text: "Vitamin C"
+            why: "Vitamin C mezi rizikovými živinami u celiakie skripta neuvádějí."
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli, co je celiakie a jaké má důsledky pro výživu."
+        keyPoints:
+          - "Autoimunitní reakce na lepek (pšenice, žito, ječmen, oves)"
+          - "Může se projevit i mimo trávicí trakt"
+          - "Jediná léčba: celoživotní přísná bezlepková dieta"
+          - "Riziko malnutrice: bílkoviny, Fe, Ca, B9, B12, vitaminy rozpustné v tucích"
+        modelAnswer: >-
+          Celiakie je autoimunitní onemocnění, při kterém imunita reaguje na lepek – bílkoviny z
+          pšenice, žita, ječmene a ovsa – a poškozuje střevo; projevy mohou být i mimo trávení, třeba na
+          kůži. Jedinou léčbou je přísná bezlepková dieta. Kvůli poškozenému vstřebávání hrozí
+          nedostatek bílkovin, železa, vápníku, vitaminů B9 a B12 i vitaminů rozpustných v tucích,
+          na což musí jídelníček myslet.
+
+  - id: nem.bezlepkova-dieta
+    title: Bezlepková dieta v praxi
+    kind: procedure
+    tier: A
+    criteria: [7g, 7h]
+    prereqs: [nem.celiakie]
+    source: { pages: [246, 247], anchor: "kuskus a bulgur, o nichž mnoho lidí neví" }
+    explanation: >-
+      Vyřazují se pšeničná, žitná a ječná mouka, krupice, kroupy, pšeničný škrob, strouhanka, špalda,
+      kamut, běžné pečivo, těstoviny, knedlíky, sušenky – a také kuskus a bulgur (jsou z pšenice).
+      Vhodné jsou rýže, kukuřice, brambory, pohanka, jáhly (proso), quinoa, amarant, luštěniny, maso,
+      vejce, ovoce, zelenina, ořechy a výrobky označené přeškrtnutým klasem. Běžný oves bývá
+      kontaminovaný lepkem; oves označený „bez lepku“ lze zavádět až v remisi pod lékařským dohledem.
+    exercises:
+      - id: skryty-lepek
+        type: choice
+        multiple: true
+        prompt: "Které z těchto potravin obsahují lepek?"
+        options:
+          - text: "Kuskus"
+            correct: true
+          - text: "Bulgur"
+            correct: true
+          - text: "Špalda"
+            correct: true
+          - text: "Pohanka"
+            why: "Pohanka je přirozeně bezlepková pseudoobilovina."
+          - text: "Jáhly"
+            why: "Jáhly (proso) jsou přirozeně bezlepkové."
+      - id: oves
+        type: choice
+        prompt: "Jak je to podle skript s ovsem v bezlepkové dietě?"
+        options:
+          - text: "Jen oves označený „bez lepku“, a to v remisi pod dohledem lékaře."
+            correct: true
+          - text: "Oves je přirozeně bezlepkový, takže ho lze jíst bez omezení i běžný z obchodu."
+            why: "Oves obsahuje avenin a běžný oves bývá kontaminovaný lepkem."
+          - text: "Oves je zakázán vždy, i když nese označení „bez lepku“ a nemoc je v remisi."
+            why: "Nekontaminovaný oves lze v remisi postupně zavádět pod lékařským dohledem."
+          - text: "Oves stačí důkladně uvařit, lepek se tím rozloží."
+            why: "Tepelná úprava lepek neodstraní."
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka s diagnostikovanou celiakií se ptá, co může a nemůže jíst. Co jí poradíš?"
+        keyPoints:
+          - "Vyřadit pšenici, žito, ječmen a výrobky z nich (i špaldu, kuskus, bulgur, strouhanku)"
+          - "Vhodné: rýže, kukuřice, brambory, pohanka, jáhly, quinoa, amarant, luštěniny, maso, vejce, ovoce, zelenina"
+          - "Hledat přeškrtnutý klas, pozor na neoznačené výrobky"
+          - "Oves jen „bez lepku“ a až v remisi pod dohledem lékaře"
+          - "Pohlídat železo, vápník, B9, B12, bílkoviny"
+        modelAnswer: >-
+          Vyřadíš všechno z pšenice, žita a ječmene – mouku, pečivo, těstoviny, knedlíky, strouhanku,
+          ale i špaldu, kuskus a bulgur. Jíst můžeš rýži, kukuřici, brambory, pohanku, jáhly, quinou,
+          amarant, luštěniny, maso, vejce, mléčné výrobky bez lepku, ovoce a zeleninu. U balených
+          potravin hledej přeškrtnutý klas. Oves jen s označením bez lepku a až v remisi po domluvě
+          s lékařem. Pohlídej si i železo, vápník a vitaminy B9 a B12.
+
+  - id: nem.celiakie-diagnostika
+    title: Podezření na celiakii – nejdřív lékař, pak bezlepková dieta
+    kind: procedure
+    tier: A
+    status: supplementary
+    note: >-
+      Skripta jen obecně uvádějí, že intolerance a alergie má ideálně diagnostikovat lékař (s. 248).
+      Doplněno: vyšetření na celiakii (protilátky, biopsie) je spolehlivé jen při běžné konzumaci
+      lepku – bezlepková dieta zahájená před vyšetřením může výsledky zkreslit.
+    criteria: [3c, 7h]
+    prereqs: [nem.celiakie]
+    source: { pages: [248], anchor: "V ideálním případě má klient intolerance či alergie diagnostikované lékařem" }
+    explanation: >-
+      Intolerance a alergie má ideálně diagnostikovat lékař. U podezření na celiakii (trávicí
+      potíže po pečivu, chudokrevnost, hubnutí, kožní projevy) poradce bezlepkovou dietu sám
+      nenasazuje: vyšetření je spolehlivé jen tehdy, když člověk lepek dosud běžně jí. Klienta pošle
+      k lékaři a dietu podle výsledku pak pomáhá nastavit. Pokud už lepek nejí, o případném
+      znovuzavedení před vyšetřením rozhoduje lékař, ne poradce.
+    exercises:
+      - id: postup
+        type: choice
+        prompt: "Klientka má po pečivu trávicí potíže a myslí si, že má celiakii. Jaký je správný postup?"
+        options:
+          - text: "Doporučit vyšetření u lékaře ještě před vyřazením lepku."
+            correct: true
+          - text: "Nasadit na měsíc přísnou bezlepkovou dietu a podle reakce rozhodnout."
+            why: "Dieta před vyšetřením může zkreslit výsledky a diagnózu oddálit."
+          - text: "Doporučit jí jen omezit pečivo, celiakie se u dospělých neobjevuje."
+            why: "Celiakie se může projevit v jakémkoli věku; diagnózu stanoví lékař."
+          - text: "Doporučit doplněk s trávicími enzymy na lepek."
+            why: "Jedinou léčbou celiakie je bezlepková dieta a diagnózu stanoví lékař."
+      - id: vysvetli
+        type: explain
+        prompt: "Proč bys klientce s podezřením na celiakii nedoporučila rovnou bezlepkovou dietu?"
+        keyPoints:
+          - "Diagnózu (intolerance, alergie, celiakie) stanoví lékař"
+          - "Vyšetření je spolehlivé jen při běžném příjmu lepku"
+          - "Dieta předem může zkreslit výsledek"
+          - "Celiakie = celoživotní přísná dieta, proto musí být jistota"
+          - "Když už lepek vyřadila, o jeho znovuzavedení rozhoduje lékař"
+        modelAnswer: >-
+          Celiakii, alergii nebo intoleranci má diagnostikovat lékař. Vyšetření funguje spolehlivě jen
+          tehdy, když člověk lepek běžně jí – kdyby ho předem vyřadila, výsledky mohou vyjít zkresleně.
+          A protože celiakie znamená celoživotní přísnou bezlepkovou dietu, potřebuje jistou diagnózu.
+          Pošlu ji tedy nejdřív k lékaři a jídelníček pak nastavíme podle výsledku.
+
+  - id: nem.laktoza-strava
+    title: Výživa při laktózové intoleranci
+    kind: procedure
+    tier: A
+    criteria: [7h]
+    prereqs: [sach.laktozova-intolerance]
+    confusableWith: [nem.intolerance-alergie, nem.celiakie]
+    source: { pages: [237, 247], anchor: "je důležité nevynechávat všechny mléčné výrobky" }
+    explanation: >-
+      Laktózová intolerance není imunitní reakce: chybí enzym laktáza a nerozštěpenou laktózu
+      zkvašují střevní bakterie (plyny, průjem). Může vzniknout i sekundárně (střevní záněty,
+      operace, antibiotika). Laktóza se omezí na individuálně snesitelné množství, ne všechny mléčné
+      výrobky: dobře snášené bývají zakysané výrobky, tvrdé sýry, máslo a bezlaktózové varianty. Mléko
+      raději po jídle, ne nalačno. Pomoct mohou probiotika nebo laktáza. Nejvíc laktózy mají syrovátka,
+      sušené mléko, mléko, podmáslí, smetana a čerstvé sýry.
+    exercises:
+      - id: lepe-snasene
+        type: choice
+        multiple: true
+        prompt: "Které mléčné výrobky bývají podle skript při laktózové intoleranci lépe snášeny?"
+        options:
+          - text: "Tvrdé sýry"
+            correct: true
+          - text: "Zakysané (fermentované) mléčné výrobky"
+            correct: true
+          - text: "Máslo"
+            correct: true
+          - text: "Sušené mléko a syrovátka"
+            why: "Patří mezi potraviny s vyšším obsahem laktózy."
+          - text: "Čerstvé sýry"
+            why: "Skripta je řadí mezi potraviny s vyšším obsahem laktózy."
+      - id: proc-nevyradit
+        type: reveal
+        prompt: "Proč při laktózové intoleranci nevyřazovat všechny mléčné výrobky?"
+        answer: >-
+          Jsou zdrojem kvalitních bílkovin, vápníku, vitaminu D a prospěšných bakterií. Laktózu stačí
+          omezit na snesitelné množství.
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka má laktózovou intoleranci. Jak jí nastavíš mléčné výrobky v jídelníčku?"
+        keyPoints:
+          - "Neimunitní – chybí laktáza, množství je individuální"
+          - "Nevyřazovat vše: zakysané výrobky, tvrdé sýry, máslo, bezlaktózové varianty"
+          - "Mléko po jídle / v kombinaci, ne nalačno"
+          - "Omezit mléko, smetanu, čerstvé sýry, syrovátku; pozor na skryté zdroje"
+          - "Probiotika nebo laktáza jako pomoc; hlídat vápník, bílkoviny, vitamin D"
+        modelAnswer: >-
+          U laktózové intolerance chybí enzym laktáza, nejde o alergii, takže hledáme množství, které
+          snese. Mléčné výrobky úplně nevyřadíme, protože jsou zdrojem vápníku, bílkovin a vitaminu D:
+          zařadíme zakysané výrobky, tvrdé sýry, máslo nebo bezlaktózové varianty. Mléko spíš po jídle
+          a v kombinaci s jinými potravinami, ne nalačno. Omezíme mléko, smetanu, čerstvé sýry a
+          syrovátku a hlídáme skryté zdroje v hotových jídlech. Pomoct mohou probiotika nebo laktáza.
+
+  - id: nem.intolerance-alergie
+    title: Intolerance vs. alergie (laktóza vs. mléčná bílkovina)
+    kind: comparison
+    tier: B
+    criteria: [7h]
+    confusableWith: [nem.laktoza-strava, nem.histaminova-intolerance]
+    source: { pages: [237, 248], anchor: "Alergie na mléko je odezvou imunitního systému" }
+    explanation: >-
+      Intolerance (laktózová, histaminová) není reakcí imunity a záleží na množství – malé dávky
+      člověk často snese. Alergie je imunitní reakce a vyvolá ji i velmi malé množství. Při alergii na
+      mléčnou bílkovinu je nutné vyřadit všechny mléčné výrobky (pozor i na hotová jídla, pečivo,
+      sušenky, uzeniny, výrobky s kaseinem) a nahradit vápník, bílkoviny a vitamin D – obohacené
+      alternativy, jiné zdroje bílkovin, případně suplementace vápníku.
+    exercises:
+      - id: rozdil
+        type: choice
+        prompt: "Čím se alergie na mléko liší od laktózové intolerance?"
+        options:
+          - text: "Je to imunitní reakce a vyvolá ji i velmi malé množství."
+            correct: true
+          - text: "Je způsobena nedostatkem enzymu laktázy."
+            why: "To je laktózová intolerance."
+          - text: "Stačí přejít na zakysané mléčné výrobky."
+            why: "To pomáhá u intolerance; při alergii je nutné vyřadit všechny mléčné výrobky."
+          - text: "Problém způsobuje mléčný cukr, ne bílkovina."
+            why: "Alergie je na mléčnou bílkovinu; mléčný cukr je problémem u intolerance."
+      - id: nahrada
+        type: reveal
+        prompt: "O které živiny klient přichází při vyřazení mléčných výrobků kvůli alergii a jak je nahradit?"
+        answer: >-
+          Vápník, bílkoviny, vitamin D. Obohacené alternativy mléčných výrobků, jiné zdroje bílkovin,
+          zvážit suplementaci vápníku.
+
+  - id: nem.histaminova-intolerance
+    title: Histaminová intolerance a nízkohistaminová dieta
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta popisují histaminovou intoleranci jako jasně definovaný stav. Podle současných poznatků
+      je to sporná diagnóza bez spolehlivého testu (ani měření DAO v krvi není průkazné) a důkazy pro
+      nízkohistaminovou dietu jsou omezené. U zkoušky uveď kurzový postup (DAO, eliminační a zkušební
+      fáze); v praxi ať diagnózu stanoví lékař.
+    criteria: [7h, 7g]
+    confusableWith: [nem.intolerance-alergie]
+    source: { pages: [237, 245], anchor: "Významnou roli při odbourávání histaminu přijatého potravou hraje enzym diaminoxidáza" }
+    explanation: >-
+      Histaminová intolerance je nerovnováha mezi příjmem histaminu a jeho odbouráváním enzymem
+      diaminoxidázou (DAO); nejde o alergii. Projevy: břišní potíže, bolest hlavy, kopřivka, svědění.
+      Hodně histaminu mají fermentované a kvašené výrobky, zrající sýry, uzeniny, rajčata, špenát,
+      ryby a mořské plody; uvolnění podporuje alkohol, ocet a siřičitany. Dieta má dvě fáze:
+      eliminační (striktní, jídelní záznam, stabilizace, jen omezenou dobu) a zkušební (postupné
+      přidávání po jedné potravině). Menší porce, pitný režim, bez alkoholu, méně stresu.
+    exercises:
+      - id: enzym
+        type: choice
+        prompt: "Nedostatečná funkce kterého enzymu je podstatou histaminové intolerance?"
+        options:
+          - text: "Diaminoxidázy (DAO)"
+            correct: true
+          - text: "Laktázy"
+            why: "Laktáza souvisí s laktózovou intolerancí."
+          - text: "Amylázy"
+            why: "Amyláza štěpí škrob."
+          - text: "Lipázy"
+            why: "Lipáza štěpí tuky."
+      - id: faze
+        type: reveal
+        prompt: "Jaké dvě fáze má nastavení nízkohistaminové diety a co se v nich děje?"
+        answer: >-
+          Eliminační – striktní dieta s minimálně rizikovými potravinami, jídelní záznam, cílem je
+          stabilizace bez příznaků (jen omezenou dobu). Zkušební – postupně a po jedné přidávat další
+          potraviny (pokus-omyl).
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli, co je histaminová intolerance a jak se nastavuje jídelníček."
+        keyPoints:
+          - "Nerovnováha mezi histaminem a jeho odbouráváním (enzym DAO), není to alergie"
+          - "Rizikové: fermentované a kvašené potraviny, zrající sýry, uzeniny, ryby, alkohol"
+          - "Eliminační fáze (striktní, záznam, krátce) → zkušební fáze (po jedné potravině)"
+          - "Menší porce, pitný režim, vynechat alkohol, méně stresu"
+        modelAnswer: >-
+          Histaminová intolerance vzniká, když tělo nestačí odbourávat histamin, hlavně kvůli nízké
+          aktivitě enzymu diaminoxidázy; s alergií nesouvisí. Nejdřív se drží přísná eliminační fáze,
+          kdy jí jen málo rizikové potraviny a vede jídelní záznam, dokud se příznaky neustálí – jen po
+          omezenou dobu, aby nechyběly živiny. Pak ve zkušební fázi přidává po jedné další potraviny.
+          Vyřazuje fermentované a kvašené potraviny, zrající sýry, uzeniny a alkohol, jí menší porce a
+          dodržuje pitný režim.
+
+  - id: nem.crohn
+    title: Výživa při Crohnově chorobě
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 248–249) uvádějí pro fázi remise mezi doporučenými způsoby stravování paleo, zónovou
+      dietu a nízkosacharidovou stravu. Pro to nejsou u Crohnovy choroby dobré důkazy; běžně se
+      doporučuje pestrá individuálně snášená strava pod vedením lékaře či nutričního terapeuta.
+      Kap. 22 (s. 238) navíc pro remisi uvádí lehkou plnohodnotnou stravu. U zkoušky zdůrazni
+      remisi = pestrá individuální strava, relaps = bezezbytková strava, péče lékaře; paleo,
+      zónovou a nízkosacharidovou stravu zmiň jako kurzovou odpověď.
+    criteria: [7h, 7g]
+    prereqs: [nem.lehka-strava]
+    source: { pages: [238, 248], anchor: "U relapsu se pracuje s metodou pokus-omyl" }
+    explanation: >-
+      Crohnova choroba je chronický neinfekční zánět trávicího traktu, zánět prostupuje celou stěnou
+      střeva. Léčba je farmakologická, výživa se řídí fází. V relapsu: pokus-omyl, nejdřív co nejméně
+      dráždivé potraviny (libové maso, bílé pečivo, rýže, vařené brambory, pyré, domácí vývar), dlouhé
+      vaření a mixování, bezezbytková strava; nevhodné jsou celozrnné výrobky, syrové ovoce a
+      zelenina, ořechy, tučná a smažená jídla, alkohol. V remisi: pestrá strava, individuálně
+      (skripta zmiňují i paleo, zónovou a nízkosacharidovou stravu).
+    exercises:
+      - id: relaps
+        type: choice
+        multiple: true
+        prompt: "Které potraviny se podle skript nedoporučují ve fázi relapsu Crohnovy choroby?"
+        options:
+          - text: "Celozrnné výrobky"
+            correct: true
+          - text: "Syrové ovoce a zelenina"
+            correct: true
+          - text: "Ořechy a semínka"
+            correct: true
+          - text: "Rýže a vařené brambory"
+            why: "Patří mezi vhodné, málo dráždivé potraviny."
+          - text: "Zeleninová a ovocná pyré"
+            why: "Pyré jsou v relapsu vhodná."
+      - id: remise
+        type: choice
+        prompt: "Jak se podle skript stravuje člověk s Crohnovou chorobou v klidové fázi (remisi)?"
+        options:
+          - text: "Pestře a individuálně, bez speciální diety."
+            correct: true
+          - text: "Trvale bezezbytkovou stravou, aby se předešlo relapsu."
+            why: "Bezezbytková strava patří do relapsu."
+          - text: "Celoživotně bezlepkově."
+            why: "To je léčba celiakie, ne Crohnovy choroby."
+          - text: "Jen mixovanou stravou a pyré."
+            why: "Mixování a dlouhé vaření se doporučuje v relapsu."
+      - id: vysvetli
+        type: explain
+        prompt: "Jak se liší výživa při Crohnově chorobě v relapsu a v remisi?"
+        keyPoints:
+          - "Chronický zánět střeva, léčba farmakologická, péče lékaře / nutričního terapeuta"
+          - "Relaps: co nejméně dráždivé potraviny, pokus-omyl, postupné přidávání"
+          - "Relaps: dlouhé vaření, mixování, bezezbytková strava; bez celozrnných, syrové zeleniny, ořechů, tučného, alkoholu"
+          - "Remise: pestrá plnohodnotná strava, individuálně"
+        modelAnswer: >-
+          Crohnova choroba je chronický zánět trávicího traktu a léčí ji lékař. V relapsu začínáme co
+          nejméně dráždivými potravinami – libové maso, bílé pečivo, rýže, vařené brambory, pyré – a
+          ostatní přidáváme postupně metodou pokus-omyl. Jídla dlouho vaříme nebo mixujeme a volíme
+          bezezbytkovou stravu, takže vynecháme celozrnné výrobky, syrové ovoce a zeleninu, ořechy,
+          tučná a smažená jídla a alkohol. V remisi stačí pestrá, individuálně snášená strava.
+
+  - id: nem.ibs
+    title: Syndrom dráždivého tračníku (IBS)
+    kind: procedure
+    tier: A
+    status: supplementary
+    note: >-
+      Skripta IBS vůbec nepopisují, ale kritérium 7h ho výslovně jmenuje. Doplněny jen obecně
+      přijímané zásady (diagnóza vylučovací u lékaře, režim, vláknina, low-FODMAP pod odborným vedením).
+    criteria: [7h, 3c]
+    prereqs: [nem.lehka-strava]
+    source: { pages: [236], anchor: "do péče osob se zdravotnickým vzděláním" }
+    explanation: >-
+      IBS je funkční porucha střeva: opakované bolesti břicha, nadýmání, průjem nebo zácpa bez
+      zjistitelného poškození střeva. Diagnózu stanoví lékař po vyloučení jiných nemocí; varovné
+      znaky (krev ve stolici, nechtěné hubnutí, noční potíže, chudokrevnost) patří vždy k lékaři.
+      Výživa: pravidelné menší porce, pomalé jedení, pitný režim, spíš rozpustná vláknina, méně tuku,
+      alkoholu, kávy a nadýmavých jídel. Při přetrvávání potíží dieta s nízkým obsahem FODMAP –
+      dočasně a pod odborným vedením, potom postupné znovuzavádění.
+    exercises:
+      - id: varovne
+        type: choice
+        multiple: true
+        prompt: "Které příznaky u klienta s „dráždivým střevem“ patří vždy k lékaři?"
+        options:
+          - text: "Krev ve stolici"
+            correct: true
+          - text: "Nechtěný úbytek hmotnosti"
+            correct: true
+          - text: "Potíže, které ho budí v noci"
+            correct: true
+          - text: "Občasné nadýmání po luštěninách"
+            why: "Nadýmání po luštěninách je běžné (oligosacharidy), samo o sobě varovným znakem není."
+      - id: fodmap
+        type: reveal
+        prompt: "Jak se používá dieta s nízkým obsahem FODMAP u IBS?"
+        answer: >-
+          Jen dočasně a pod odborným vedením: omezení fermentovatelných sacharidů, pak postupné
+          znovuzavádění, aby se zjistilo, co klient snáší. Nejde o trvalou dietu.
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka si myslí, že má syndrom dráždivého tračníku. Jak budeš postupovat?"
+        keyPoints:
+          - "Diagnózu stanoví lékař (vyloučení jiných nemocí, např. celiakie, střevních zánětů)"
+          - "Varovné znaky (krev, hubnutí, noční potíže) → lékař hned"
+          - "Režim: pravidelné menší porce, pitný režim, rozpustná vláknina"
+          - "Omezit tuk, alkohol, kávu, nadýmavá jídla; jídelní záznam"
+          - "Low-FODMAP jen dočasně a pod odborným vedením"
+        modelAnswer: >-
+          Nejdřív ji pošlu k lékaři, protože IBS se diagnostikuje vyloučením jiných nemocí, třeba
+          celiakie nebo střevního zánětu; při krvi ve stolici, hubnutí nebo nočních potížích hned.
+          Pak můžeme upravit režim: pravidelné menší porce, pomalé jedení, pitný režim, spíš rozpustná
+          vláknina a méně tuku, alkoholu, kávy a nadýmavých jídel. Pomůže jídelní záznam. Dieta s nízkým
+          obsahem FODMAP se dělá jen dočasně a pod odborným vedením.
+
+  # ---------- Zdravotní omezení a červené vlajky (3c) ----------
+
+  - id: nem.warfarin
+    title: Warfarin a vitamin K
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 243) radí omezit nejbohatší zdroje vitaminu K a jako příklad uvádějí růžičkovou
+      kapustu a kysané zelí. Kysané zelí ale obsahuje vitaminu K jen středně; nejbohatší jsou
+      kapusta kadeřavá, špenát, petržel a mangold. Skripta zároveň říkají, že cílem není vitamin K
+      výrazně omezovat. U zkoušky: hlavní zásada je stabilní příjem. Doplněno nad rámec skript:
+      novější antikoagulancia (DOAC) na vitamin K nereagují, proto zjisti, jaký lék klient bere.
+    criteria: [3c, 7h]
+    prereqs: [vit.k]
+    source: { pages: [243], anchor: "Neplatí mýtus, že zeleninu je třeba z jídelníčku vyřadit" }
+    explanation: >-
+      Warfarin ředí krev – působí jako antagonista vitaminu K, potřebného pro tvorbu srážecích faktorů.
+      Dávku určuje lékař podle krevních testů (Quickův test). Vitamin K (hlavně zelenina) se ze stravy
+      nevyřazuje, ale jeho příjem má být co nejstabilnější, bez náhlých výrazných změn. Skripta navíc
+      radí omezit nejbohatší zdroje (uvádějí růžičkovou kapustu a kysané zelí); kořenová zelenina je
+      v pořádku. Opatrně s alkoholem. Změny jídelníčku konzultovat s ošetřujícím lékařem.
+    exercises:
+      - id: zasada
+        type: choice
+        prompt: "Klient užívá warfarin. Jaká je hlavní zásada pro vitamin K ve stravě?"
+        options:
+          - text: "Udržovat jeho příjem co nejstabilnější, bez náhlých změn."
+            correct: true
+          - text: "Vyřadit veškerou zeleninu."
+            why: "To je mýtus – vitamin K je nezbytný a zeleninu nevyřazujeme."
+          - text: "Zvýšit příjem vitaminu K, aby se posílil účinek léku."
+            why: "Vitamin K účinek warfarinu naopak oslabuje."
+          - text: "Doplňovat vitamin K doplňkem stravy."
+            why: "Náhlé změny příjmu ovlivní srážlivost; doplněk jen po domluvě s lékařem."
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka bere warfarin a chce začít jíst hodně listové zeleniny. Co jí řekneš?"
+        keyPoints:
+          - "Warfarin je antagonista vitaminu K (srážení krve)"
+          - "Vitamin K nevyřazovat, ale přijímat stabilně"
+          - "Náhlá velká změna (hodně zelené zeleniny) ovlivní účinek léku"
+          - "Změnu konzultovat s lékařem (dávka, Quickův test)"
+          - "Opatrně s alkoholem"
+        modelAnswer: >-
+          Warfarin působí proti vitaminu K, který je potřeba pro srážení krve. Zeleninu vyřazovat nemusí,
+          ale příjem vitaminu K má být co nejstabilnější – náhlý přechod na velké množství listové
+          zeleniny by oslabil účinek léku. Takovou změnu musí probrat s ošetřujícím lékařem, který
+          podle krevních testů upraví dávku. A s alkoholem má být opatrná.
+
+  - id: nem.dm-akutni-stavy
+    title: Hypoglykémie a hyperglykémie – první pomoc
+    kind: procedure
+    tier: A
+    note: >-
+      Pravidlo pro bezvědomí (nic ústy, volat 155) a pokyn volat 155, když se stav nezlepší, jsou doplněny
+      nad rámec skript jako standardní první pomoc; skripta (s. 250) uvádějí jen podání rychle
+      vstřebatelného cukru a okamžitou hospitalizaci při hyperglykémii.
+    criteria: [3c, 7h]
+    prereqs: [nem.dm-typy]
+    source: { pages: [250], anchor: "podání rychle vstřebatelného cukru" }
+    explanation: >-
+      Diabetik se může dostat do dvou akutních rizikových stavů. Při hypoglykémii (nízký cukr)
+      pomůže rychle vstřebatelný cukr – nejlépe ovocný džus, jiný sladký nápoj nebo cukr. Je-li
+      v bezvědomí nebo nemůže polykat, nic ústy: volej 155 a dej ho do stabilizované polohy; volej
+      155 i tehdy, když se do 15 minut nezlepší. Hyperglykémie se projevuje žízní, nevolností,
+      bolestmi břicha, častým močením, dehydratací, rozmazaným viděním, nízkým tlakem a zrychleným
+      tepem – je nutná okamžitá hospitalizace.
+    exercises:
+      - id: hypo
+        type: choice
+        prompt: "Diabetička se na konzultaci náhle cítí slabá, třese se a potí – má hypoglykémii. Co uděláš?"
+        options:
+          - text: "Podám jí rychle vstřebatelný cukr – džus, sladký nápoj nebo cukr."
+            correct: true
+          - text: "Nabídnu jí celozrnný chléb se sýrem, aby cukr stoupal pomalu."
+            why: "Při hypoglykémii je potřeba rychle vstřebatelný cukr."
+          - text: "Dám jí vodu a počkáme, až to přejde."
+            why: "Voda cukr nezvýší; stav se může zhoršit."
+          - text: "Doporučím jí aplikovat inzulin."
+            why: "Inzulin by glykémii dál snížil."
+      - id: hyper
+        type: reveal
+        prompt: "Jak se projevuje hyperglykémie a co je nutné udělat?"
+        answer: >-
+          Žízeň, nevolnost, bolest břicha, časté močení, dehydratace, rozmazané vidění, nízký tlak,
+          rychlý tep. Nutná okamžitá hospitalizace.
+      - id: vysvetli
+        type: explain
+        prompt: "Jaké akutní stavy mohou u diabetika nastat a jak na ně zareaguješ?"
+        keyPoints:
+          - "Hypoglykémie → rychle vstřebatelný cukr (džus, sladký nápoj, cukr)"
+          - "Bezvědomí / nemůže polykat → nic ústy, volat 155"
+          - "Hyperglykémie: žízeň, nevolnost, časté močení, dehydratace, rozmazané vidění"
+          - "Hyperglykémie → okamžitě lékařská pomoc / hospitalizace"
+        modelAnswer: >-
+          Při hypoglykémii, tedy příliš nízkém cukru, mu dám hned rychle vstřebatelný cukr – džus,
+          sladký nápoj nebo cukr. Když je v bezvědomí nebo nemůže polykat, nedám mu nic ústy a volám
+          155; volám i tehdy, když se do čtvrthodiny nezlepší. Hyperglykémie se projevuje žízní,
+          nevolností, bolestí břicha, častým močením, dehydratací, rozmazaným viděním a rychlým tepem;
+          to je stav pro okamžitou hospitalizaci, volám pomoc.
+
+  # ---------- Dietní režimy (7g) ----------
+
+  - id: nem.lehka-strava
+    title: Lehká plnohodnotná strava
+    kind: concept
+    tier: A
+    criteria: [7g, 7h]
+    source: { pages: [236, 237], anchor: "Pod konceptem lehké plnohodnotné stravy rozumíme stravu" }
+    explanation: >-
+      Základním principem při nemocech trávicího systému je vyloučit těžko stravitelné potraviny.
+      Lehká plnohodnotná strava neobsahuje pečená a smažená jídla, uzeniny, nadbytek tuku, čerstvé
+      pečivo, nezralé ovoce, ořechy, ostré koření, nadýmavé potraviny, často ani plnotučné mléčné
+      výrobky a alkohol. Jinak se od zdravého stravování příliš neliší. Používá se např. u nemocí jater,
+      žlučníku, slinivky a u střevních zánětů v remisi; konkrétní úpravy vždy individuálně.
+    exercises:
+      - id: nepatri
+        type: choice
+        multiple: true
+        prompt: "Co lehká plnohodnotná strava podle skript neobsahuje?"
+        options:
+          - text: "Smažená a pečená jídla"
+            correct: true
+          - text: "Čerstvé pečivo"
+            correct: true
+          - text: "Ostré koření a nadýmavé potraviny"
+            correct: true
+          - text: "Vařené libové maso"
+            why: "Libové maso šetrně upravené do lehké stravy patří."
+          - text: "Vařenou zeleninu"
+            why: "Šetrně upravená zelenina je vhodná; vyřazují se nadýmavé druhy."
+      - id: vysvetli
+        type: explain
+        prompt: "Co je lehká plnohodnotná strava a kdy se používá?"
+        keyPoints:
+          - "Vyloučení těžko stravitelných potravin, které zatěžují trávení"
+          - "Bez smaženého a pečeného, uzenin, nadbytku tuku, čerstvého pečiva, ostrého koření, nadýmavých jídel, alkoholu"
+          - "Jinak blízká zdravému stravování (plnohodnotná)"
+          - "Nemoci trávicího traktu, jater, žlučníku, slinivky; střevní záněty v remisi"
+          - "Vždy individuální úprava"
+        modelAnswer: >-
+          Je to šetrná, ale nutričně plnohodnotná strava, ze které vyřadíme potraviny těžko stravitelné:
+          smažená a pečená jídla, uzeniny, nadbytek tuku, čerstvé pečivo, nezralé ovoce, ořechy, ostré
+          koření, nadýmavé potraviny a alkohol. Jinak se od zdravého stravování moc neliší. Používá se
+          u nemocí trávicího traktu, jater, žlučníku a slinivky nebo u střevních zánětů v remisi, vždy
+          s individuální úpravou.
+
+  - id: nem.typy-diet
+    title: Typy dietních úprav podle onemocnění
+    kind: comparison
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 246) uvádějí přísnou bezlepkovou dietu u všech tří forem nesnášenlivosti lepku.
+      Podle běžné praxe je celoživotní přísná bezlepková dieta nutná u celiakie; u alergie na pšenici
+      a neceliakální glutenové senzitivity bývá míra omezení individuální (určí lékař). U zkoušky
+      uveď kurzovou odpověď, celiakie = vždy přísně bezlepková.
+    criteria: [7g, 7h]
+    source: { pages: [238, 244], anchor: "Základním opatřením je nasazení nízkopurinové diety" }
+    explanation: >-
+      Přehled dietních úprav ze skript: dna → nízkopurinová dieta; celiakie → přísná bezlepková
+      (skripta: i u ostatních forem nesnášenlivosti lepku); laktózová intolerance → omezení laktózy dle tolerance; alergie na
+      mléko → vyřazení všech mléčných výrobků; histaminová intolerance → nízkohistaminová
+      (eliminační a zkušební fáze); Crohnova choroba v relapsu → bezezbytková; selhávání ledvin →
+      omezení bílkovin, fosfátů a draslíku; hypertenze → omezení soli; diabetes 2. typu → nízký
+      GI/GN, případně nízkosacharidová.
+    exercises:
+      - id: ledviny
+        type: choice
+        prompt: "Co se podle skript omezuje ve stravě pacientů se selháváním ledvin?"
+        options:
+          - text: "Bílkoviny, fosfáty a draslík"
+            correct: true
+          - text: "Puriny a alkohol"
+            why: "To je dieta při dně."
+          - text: "Lepek"
+            why: "Bezlepková dieta je léčbou celiakie."
+          - text: "Histamin"
+            why: "Nízkohistaminová dieta patří k histaminové intoleranci."
+      - id: prirazeni
+        type: reveal
+        prompt: "Přiřaď dietu k onemocnění: dna, celiakie, Crohnova choroba v relapsu, selhávání ledvin."
+        answer: >-
+          Dna – nízkopurinová; celiakie – bezlepková; Crohn v relapsu – bezezbytková (šetřící);
+          ledviny – omezení bílkovin, fosfátů a draslíku.
+      - id: vysvetli
+        type: explain
+        prompt: "Vyjmenuj základní typy dietních úprav, se kterými se u klientů s onemocněním setkáš."
+        keyPoints:
+          - "Nízkopurinová (dna), bezlepková (celiakie)"
+          - "Omezení laktózy (intolerance) vs. bez mléčných výrobků (alergie)"
+          - "Nízkohistaminová, bezezbytková (Crohn v relapsu), lehká plnohodnotná (trávicí potíže)"
+          - "Omezení bílkovin, fosfátů, draslíku (ledviny); soli (hypertenze); nízký GI (DM 2)"
+          - "Léčebné diety nastavuje lékař / nutriční terapeut"
+        modelAnswer: >-
+          Podle onemocnění se používá nízkopurinová dieta při dně, přísná bezlepková při celiakii,
+          omezení laktózy při intoleranci nebo úplné vyřazení mléčných výrobků při alergii,
+          nízkohistaminová dieta s eliminační a zkušební fází a bezezbytková strava v relapsu
+          Crohnovy choroby. U nemocí trávení se používá lehká plnohodnotná strava, při selhávání ledvin
+          omezení bílkovin, fosfátů a draslíku, u hypertenze omezení soli a u diabetu 2. typu potraviny
+          s nízkým GI. Léčebné diety ale nastavuje lékař nebo nutriční terapeut.
+
+  - id: nem.kompetence
+    title: Kde končí kompetence výživového poradce
+    kind: procedure
+    tier: A
+    criteria: [7g, 3c]
+    prereqs: [prx.hranice-kompetenci]
+    source: { pages: [238], anchor: "Tato omezení jsou vysoce individuální a nutriční intervence patří" }
+    explanation: >-
+      Léčebná dieta při nemoci patří zdravotníkům. Léčba cukrovky patří lékaři a nutričnímu
+      terapeutovi; výživa u střevních zánětů, selhávání ledvin, nemocí jater, žlučníku a slinivky
+      lékařům a dietologům, protože omezení jsou vysoce individuální. Poradce léčebnou dietu
+      nepředepisuje ani nemění léky; ptá se na zdravotní stav, doporučí lékaře či nutričního
+      terapeuta a v mezích jejich doporučení pomáhá se zdravým stravováním.
+    exercises:
+      - id: crohn-aktivni
+        type: choice
+        prompt: "Klient s Crohnovou chorobou v aktivní fázi chce, abys mu sestavila jídelníček. Jak postupuješ?"
+        options:
+          - text: "Pošlu ho k lékaři či nutričnímu terapeutovi a pracuji v mezích jejich rad."
+            correct: true
+          - text: "Sestavím mu sama léčebnou dietu podle toho, co skripta píšou o relapsu."
+            why: "Nutriční intervence u střevních zánětů patří lékařům a dietologům."
+          - text: "Doporučím mu vysadit léky a zvládnout to jen úpravou jídelníčku."
+            why: "Do léčby a léků poradce nezasahuje; léčba Crohnovy choroby je farmakologická."
+          - text: "Nasadím mu na zkoušku přísnou bezlepkovou dietu."
+            why: "Bezlepková dieta je léčbou celiakie a léčebnou dietu stejně nenastavuje poradce."
+      - id: vysvetli
+        type: explain
+        prompt: "Klient s onemocněním ledvin chce, abys mu sestavila dietu. Jak zareaguješ?"
+        keyPoints:
+          - "Léčebná dieta (ledviny, cukrovka, střevní záněty) patří lékaři / nutričnímu terapeutovi / dietologovi"
+          - "Poradce nediagnostikuje, neinterpretuje laboratoř, nemění léky"
+          - "Doporučí lékaře a spolupracuje s ním"
+          - "Může pomoci se zdravým stravováním v mezích doporučení lékaře"
+        modelAnswer: >-
+          Výživa při onemocnění ledvin patří podle skript výhradně do rukou lékařů a dietologů, protože
+          se omezují bílkoviny, fosfáty a draslík podle konkrétních hodnot. Jako výživová poradkyně
+          nediagnostikuji, neinterpretuji laboratorní výsledky a nepředepisuji léčebnou dietu. Klienta
+          pošlu k lékaři nebo nutričnímu terapeutovi a v mezích jejich doporučení mu pomohu se
+          zdravým, pravidelným stravováním.
+
+  - id: nem.dietni-system
+    title: Nemocniční dietní systém
+    kind: fact
+    tier: A
+    status: supplementary
+    note: >-
+      Ve skriptech není. Doplněno kvůli kritériu 7g („Základní typy dietních režimů – nutriční
+      terapeuti, lékaři“): v českých nemocnicích se léčebné diety označují čísly (léčebný dietní
+      systém); uvedena jen nejběžnější čísla. Jednotlivé nemocnice používají i vlastní varianty
+      (např. šetřící „S“ verze).
+    criteria: [7g]
+    prereqs: [nem.kompetence]
+    source: { pages: [238], anchor: "Nutriční intervence patří výhradně do rukou lékařů a dietologů" }
+    explanation: >-
+      V českých nemocnicích se léčebné diety označují čísly: č. 0 tekutá, č. 1 tekutá kašovitá,
+      č. 2 šetřící (lehce stravitelná), č. 3 racionální (základní strava bez omezení), č. 4
+      s omezením tuků (např. žlučník, slinivka), č. 5 bezezbytková, č. 6 s omezením bílkovin (ledviny),
+      č. 8 redukční, č. 9 diabetická, č. 10 neslaná. Léčebné diety předepisuje lékař a sestavuje
+      nutriční terapeut; výživový poradce je nepředepisuje.
+    exercises:
+      - id: diabeticka
+        type: choice
+        prompt: "Jaké číslo má v českém nemocničním dietním systému diabetická dieta?"
+        options:
+          - text: "9"
+            correct: true
+          - text: "3"
+            why: "Dieta č. 3 je racionální (základní)."
+          - text: "4"
+            why: "Dieta č. 4 je s omezením tuků."
+          - text: "2"
+            why: "Dieta č. 2 je šetřící."
+      - id: racionalni
+        type: reveal
+        prompt: "Co označuje dieta č. 3 a kdo léčebné diety předepisuje?"
+        answer: "Racionální (základní) stravu bez omezení. Léčebné diety předepisuje lékař, sestavuje nutriční terapeut."
+      - id: vysvetli
+        type: explain
+        prompt: "Jaké znáš základní typy nemocničních léčebných diet a kdo je nastavuje?"
+        keyPoints:
+          - "Diety se v nemocnicích označují čísly (léčebný dietní systém)"
+          - "č. 0 tekutá, č. 1 tekutá kašovitá, č. 2 šetřící, č. 3 racionální"
+          - "č. 4 s omezením tuků, č. 5 bezezbytková, č. 6 s omezením bílkovin"
+          - "č. 8 redukční, č. 9 diabetická, č. 10 neslaná"
+          - "Předepisuje lékař, sestavuje nutriční terapeut; poradce je nepředepisuje"
+        modelAnswer: >-
+          V nemocnicích se léčebné diety označují čísly. Základní je dieta č. 3 racionální, tedy strava
+          bez omezení. Dále tekutá (č. 0), tekutá kašovitá (č. 1), šetřící (č. 2), s omezením tuků
+          při nemocech žlučníku a slinivky (č. 4), bezezbytková (č. 5), s omezením bílkovin (č. 6),
+          redukční (č. 8), diabetická (č. 9) a neslaná (č. 10). Léčebnou dietu předepisuje lékař a
+          sestavuje nutriční terapeut; já jako poradkyně ji nepředepisuji, jen s klientem pracuji
+          v mezích jejich doporučení.
+
+  # ---------- Další onemocnění (B/C) ----------
+
+  - id: nem.mocove-kameny
+    title: Močové kameny a ledviny
+    kind: concept
+    tier: B
+    criteria: [10d, 7g]
+    source: { pages: [238, 239], anchor: "kritický význam pitný režim" }
+    explanation: >-
+      Výkon ledvin určuje glomerulární filtrace, která s věkem přirozeně klesá; ledviny nejvíc
+      poškozuje hypertenze a cukrovka. Močové kameny vznikají vysrážením kyseliny močové nebo kyseliny
+      šťavelové a jejích solí. Šťavelová kyselina je hlavně ve špenátu, mangoldu, rebarboře a červené
+      řepě; u predisponovaných lidí je rizikový i vysoký příjem vitaminu C z doplňků (mění se na ni).
+      V prevenci má zásadní význam pitný režim.
+    exercises:
+      - id: stavelan
+        type: choice
+        multiple: true
+        prompt: "Které potraviny uvádějí skripta jako významné zdroje kyseliny šťavelové?"
+        options:
+          - text: "Špenát"
+            correct: true
+          - text: "Rebarbora"
+            correct: true
+          - text: "Červená řepa"
+            correct: true
+          - text: "Brambory"
+            why: "Mezi významnými zdroji je skripta neuvádějí."
+      - id: prevence
+        type: reveal
+        prompt: "Co má zásadní význam v prevenci močových kamenů a který doplněk je u predisponovaných rizikový?"
+        answer: "Pitný režim. Vysoké dávky vitaminu C v doplňcích (metabolizuje se na kyselinu šťavelovou)."
+
+  - id: nem.stres
+    title: Chronický stres, kortizol a metabolismus
+    kind: concept
+    tier: B
+    criteria: [10c, 10d]
+    prereqs: [nem.metabolicky-syndrom]
+    source: { pages: [250, 251], anchor: "Kortizol se zvyšuje zejména při chronickém stresu" }
+    explanation: >-
+      Při chronickém stresu roste kortizol. Jeho přemíra rozkládá svalovou hmotu a uvolněné
+      aminokyseliny slouží k tvorbě glukózy, takže glykémie stoupá a podporuje inzulinovou rezistenci
+      a metabolický syndrom. Dlouhodobý stres také oslabuje imunitu. Pomáhá pravidelný pohyb, který
+      baví, cílená relaxace, kvalitní strava; zvážit lze doplňky (vitamin C, omega-3, hořčík, vitamin E).
+    exercises:
+      - id: kortizol
+        type: choice
+        prompt: "Jak podle skript přispívá chronický stres k inzulinové rezistenci?"
+        options:
+          - text: "Kortizol rozkládá sval a z aminokyselin vzniká glukóza."
+            correct: true
+          - text: "Stres zvyšuje citlivost tkání na inzulin, takže slinivka musí tvořit víc inzulinu."
+            why: "Opak – zvýšená glykémie přispívá k inzulinové rezistenci."
+          - text: "Kortizol zvyšuje tvorbu svalové hmoty, která pak spotřebuje víc glukózy."
+            why: "Přemíra kortizolu svalovou hmotu snižuje."
+          - text: "Stres snižuje hladinu kortizolu."
+            why: "Při chronickém stresu kortizol roste."
+      - id: opatreni
+        type: reveal
+        prompt: "Co doporučíš klientovi pod dlouhodobým stresem?"
+        answer: >-
+          Pravidelný pohyb, který ho baví (aktivní odpočinek), každodenní krátkou relaxaci, kvalitní
+          pestrou stravu; případně zvážit doplňky jako hořčík, vitamin C, omega-3.
+
+  - id: nem.refluks
+    title: Refluxní choroba jícnu
+    kind: fact
+    tier: C
+    criteria: [7g]
+    source: { pages: [237], anchor: "Naopak, napětí zvyšuje potrava bohatá na bílkoviny" }
+    explanation: >-
+      Při refluxu oslabený svěrač mezi jícnem a žaludkem propouští kyselý žaludeční obsah do jícnu
+      (pálení žáhy). Napětí svěrače snižují tuky, káva, čokoláda, kouření, alkohol a ovocné šťávy;
+      potrava bohatá na bílkoviny ho zvyšuje. Reflux zhoršují velké porce, tlačení na stolici, obezita
+      a nedostatek vlákniny.
+    exercises:
+      - id: zvysuje-napeti
+        type: choice
+        prompt: "Co podle skript zvyšuje napětí svěrače mezi jícnem a žaludkem (reflux tedy zmírňuje)?"
+        options:
+          - text: "Potrava bohatá na bílkoviny"
+            correct: true
+          - text: "Tučná jídla"
+            why: "Tuky napětí svěrače snižují."
+          - text: "Káva a čokoláda"
+            why: "Napětí svěrače snižují."
+          - text: "Ovocné šťávy"
+            why: "Napětí svěrače snižují."

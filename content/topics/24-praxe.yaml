@@ -1,0 +1,795 @@
+topic:
+  id: praxe
+  title: Poradenská praxe
+  chapter: 24
+  pages: [253, 257]
+  order: 240
+  summary: >-
+    Průběh spolupráce s klientem (první, druhá a kontrolní konzultace), dokumenty a vstupní záznam,
+    karta klienta, motivace, náročné situace a typy klientů, komunikace a hranice kompetencí –
+    kdy klienta předat lékaři nebo psychologovi.
+
+points:
+  # ---------- Fáze spolupráce a komunikace (11a) ----------
+
+  - id: prx.tri-faze
+    title: Tři fáze spolupráce s klientem
+    kind: concept
+    tier: A
+    criteria: [11a]
+    source: { pages: [253, 255], anchor: "Spolupráce s klientem má typicky tři fáze" }
+    explanation: >-
+      1) První konzultace (min. 60 min): dotazník, anamnéza, dokumenty, vysvětlení principu
+      spolupráce, vstupní vážení. 2) Druhá konzultace (min. 45 min): předání a vysvětlení jídelníčku,
+      kroky a očekávání, edukace, domluva komunikace. 3) Kontrolní konzultace (asi 30 min): vážení,
+      hodnocení úspěchu, úprava jídelníčku a očekávání, další edukace.
+    exercises:
+      - id: popis
+        type: explain
+        prompt: "Popiš, jak probíhá spolupráce s klientem od první konzultace po kontroly."
+        keyPoints:
+          - "První konzultace (min. 60 min): dotazník, anamnéza, dokumenty, vstupní měření"
+          - "Vysvětlit, že jde o dlouhodobou změnu životního stylu, ne dietu"
+          - "Druhá konzultace (min. 45 min): předání a vysvětlení jídelníčku, kroky, očekávání"
+          - "Kontroly (asi 30 min): vážení, hodnocení, úprava plánu, edukace"
+        modelAnswer: >-
+          Spolupráce má tři fáze. Na první konzultaci, asi hodinu, sbírám anamnézu a dotazník,
+          podepíšeme dokumenty, vysvětlím, že nejde o krátkou dietu, ale o změnu životního stylu, a
+          provedu vstupní měření. Na druhé, nejméně 45 minut, předám a vysvětlím jídelníček, nastavíme
+          konkrétní kroky a realistická očekávání. Kontrolní konzultace trvají kolem 30 minut: vážení,
+          zhodnocení, úprava plánu a další edukace.
+      - id: delka-prvni
+        type: choice
+        prompt: "S jakou délkou první konzultace podle skript počítat?"
+        options:
+          - { text: "Minimálně 60 minut", correct: true }
+          - { text: "Asi 30 minut", why: "To stačí na kontrolní konzultaci." }
+          - { text: "Minimálně 45 minut", why: "To je doporučení pro druhou konzultaci." }
+          - { text: "Asi 15 minut", why: "Na anamnézu, dokumenty a vysvětlení to nestačí." }
+      - id: druha-napln
+        type: choice
+        prompt: "Co je hlavní náplní druhé konzultace?"
+        options:
+          - { text: "Předání a vysvětlení jídelníčku, nastavení kroků a očekávání", correct: true }
+          - { text: "Podpis smlouvy a souhlasu s GDPR", why: "Dokumenty se podepisují na první konzultaci." }
+          - { text: "Vstupní anamnéza", why: "Anamnéza patří do první konzultace." }
+          - { text: "Pouze kontrolní vážení", why: "Vážení na druhé konzultaci není pravidlem." }
+
+  - id: prx.prvni-konzultace
+    title: Průběh první konzultace
+    kind: procedure
+    tier: A
+    criteria: [11a, 5b]
+    prereqs: [prx.tri-faze]
+    source: { pages: [253, 254], anchor: "nejedná o krátkodobou dietu, ale o dlouhodobou změnu životního stylu" }
+    explanation: >-
+      Cíl: zjistit vše pro individuální plán. Úvodní dotazník (předem nebo na místě), podpis dokumentů,
+      předání odkazů na web a sociální sítě. Hned na začátku vysvětli, že nejde o krátkou dietu, ale o
+      dlouhodobou změnu životního stylu – předejdeš zklamání. Vstupní vážení a měření jako výchozí bod.
+      Domluva formy a ceny spolupráce: jednotlivé konzultace, nebo předplacený balíček.
+    exercises:
+      - id: prubeh
+        type: explain
+        prompt: "Simulujeme první konzultaci. Jak ji strukturuješ od přivítání po rozloučení?"
+        keyPoints:
+          - "Úvodní dotazník a vstupní rozhovor (zdraví, strava, pohyb, zázemí, motivace)"
+          - "Podpis dokumentů (GDPR, smlouva, podmínky)"
+          - "Vysvětlení principu: dlouhodobá změna životního stylu, ne dieta"
+          - "Vstupní vážení a měření"
+          - "Domluva formy spolupráce a ceny (jednotlivě / balíček), další postup"
+        modelAnswer: >-
+          Klienta přivítám a projdeme úvodní dotazník a rozhovor o zdraví, stravě, pohybu, zázemí a
+          motivaci. Podepíšeme souhlas se zpracováním údajů, smlouvu a obchodní podmínky. Vysvětlím, že
+          nejde o krátkou dietu, ale o dlouhodobou změnu životního stylu. Provedu vstupní vážení a
+          měření a domluvíme formu spolupráce – jednotlivé konzultace nebo balíček – a termín další
+          schůzky; předám kontakty a odkazy.
+      - id: princip
+        type: choice
+        prompt: "Proč máš klientovi hned na první konzultaci vysvětlit, že nejde o krátkodobou dietu?"
+        options:
+          - { text: "Aby měl reálná očekávání a nebyl zklamaný z tempa výsledků", correct: true }
+          - { text: "Aby si koupil dražší balíček", why: "Cílem je nastavit očekávání, ne prodej." }
+          - { text: "Protože to vyžaduje GDPR", why: "GDPR se týká zpracování osobních údajů." }
+          - { text: "Aby nemusel vyplňovat dotazník", why: "Dotazník je standardní součástí první konzultace." }
+
+  - id: prx.dokumenty
+    title: Dokumenty k podpisu – GDPR, smlouva, podmínky
+    kind: fact
+    tier: A
+    criteria: [11a, 5b]
+    prereqs: [prx.prvni-konzultace]
+    source: { pages: [254], anchor: "Souhlas se zpracováním osobních údajů" }
+    explanation: >-
+      Na první konzultaci klient podepíše: souhlas se zpracováním osobních údajů (zdravotní údaje jsou
+      podle GDPR zvláštní kategorií – nutný výslovný souhlas, jasný účel a doba uchování); souhlas s
+      fotografiemi (před/po, použití v prezentacích či na sítích); smlouvu o poradenských službách
+      (rozsah, cena, podmínky); všeobecné podmínky (storno, platby, reklamace). Měj je připravené předem.
+    exercises:
+      - id: gdpr
+        type: choice
+        prompt: "Proč zpracování zdravotních údajů klienta vyžaduje jeho výslovný souhlas?"
+        options:
+          - { text: "Zdravotní údaje jsou podle GDPR zvláštní kategorií osobních údajů.", correct: true }
+          - { text: "Výživový poradce je zdravotnické zařízení.", why: "Není; důvodem je zvláštní kategorie údajů v GDPR." }
+          - { text: "Souhlas je nutný jen u fotografií.", why: "Fotografie mají samostatný souhlas, zdravotní údaje také." }
+          - { text: "Nevyžaduje, stačí ústní domluva.", why: "U zdravotních údajů je nutný výslovný souhlas." }
+      - id: smlouva
+        type: choice
+        prompt: "Co vymezuje smlouva o poskytování poradenských služeb?"
+        options:
+          - { text: "Rozsah, cenu a podmínky spolupráce", correct: true }
+          - { text: "Klientův jídelníček na první týden", why: "Jídelníček se předává až na druhé konzultaci." }
+          - { text: "Diagnózu klienta", why: "Poradce nediagnostikuje." }
+          - { text: "Souhlas s použitím fotografií", why: "Na to je samostatný souhlas." }
+      - id: vyjmenuj
+        type: explain
+        prompt: "Jaké dokumenty necháš klienta podepsat na první konzultaci a co obsahují?"
+        keyPoints:
+          - "Souhlas se zpracováním osobních údajů (GDPR) – zdravotní údaje, účel, doba uchování"
+          - "Souhlas s pořízením a použitím fotografií"
+          - "Smlouva o poradenských službách – rozsah, cena, podmínky"
+          - "Všeobecné podmínky – storno, platby, reklamace"
+        modelAnswer: >-
+          Nejdřív souhlas se zpracováním osobních údajů – zdravotní údaje jsou podle GDPR zvláštní
+          kategorií, takže potřebuji výslovný souhlas a stanovím účel a dobu uchování. Pokud budu
+          fotit, také souhlas s fotografiemi. Dále smlouvu, která určuje rozsah, cenu a podmínky
+          spolupráce, a všeobecné podmínky se stornem, platbami a reklamacemi.
+
+  - id: prx.druha-konzultace
+    title: Druhá konzultace – předání jídelníčku
+    kind: procedure
+    tier: B
+    criteria: [11a]
+    prereqs: [prx.tri-faze]
+    source: { pages: [254, 255], anchor: "Na druhé konzultaci poradce klientovi předává individuálně sestavený jídelníček" }
+    explanation: >-
+      Jídelníček nejen předej, ale vysvětli: jak jsou jídla sestavena, jaké jsou záměny, co dělat při
+      jídle mimo domov. Nastav konkrétní kroky a realistická očekávání. Prostor pro edukaci (principy,
+      nákup, příprava). Domluv komunikaci mezi konzultacemi – v ceně, nebo zvlášť placená, případně
+      dotazy sepsat na příště. Na konci ověř, že klient má kontakty a ví, co dál.
+    exercises:
+      - id: komunikace
+        type: reveal
+        prompt: "Co je potřeba na druhé konzultaci domluvit ohledně dotazů mezi konzultacemi?"
+        answer: >-
+          Jakou cestou (e-mail, telefon, zprávy), zda je to v ceně, nebo placené zvlášť, a zda si má
+          klient dotazy raději zapisovat a probrat je na další konzultaci.
+      - id: vysvetlit
+        type: choice
+        prompt: "Co je při předání jídelníčku podle skript klíčové?"
+        options:
+          - { text: "Srozumitelně ho vysvětlit včetně záměn a jídel mimo domov", correct: true }
+          - { text: "Poslat ho e-mailem a konzultaci zkrátit", why: "Samotné předání dokumentu nestačí." }
+          - { text: "Trvat na přesném dodržení bez záměn", why: "Skripta doporučují vysvětlit možnosti záměn." }
+          - { text: "Neříkat, jak rychle se dostaví výsledky", why: "Očekávání je třeba realisticky nastavit." }
+
+  - id: prx.motivace
+    title: Vnitřní vs. vnější motivace klienta
+    kind: comparison
+    tier: A
+    criteria: [11a, 10b]
+    source: { pages: [256], anchor: "vede vnitřní motivace k výrazně stabilnějším a dlouhodoběji udržitelným výsledkům" }
+    explanation: >-
+      Vnitřní motivace: klient chce změnu pro sebe (zdraví, pohoda, výkon). Vnější: kvůli tlaku okolí
+      nebo jednorázové akci (svatba, dovolená). Podle teorie sebeurčení (Deci a Ryan) vede vnitřní
+      motivace ke stabilnějším výsledkům; vnější po pominutí podnětu rychle slábne. Typ motivace
+      zjišťuj už na první konzultaci a posiluj vnitřní složku – propojením plánu s hodnotami klienta.
+    exercises:
+      - id: rozdil
+        type: explain
+        prompt: "Vysvětli rozdíl mezi vnitřní a vnější motivací a co s tím uděláš v poradně."
+        keyPoints:
+          - "Vnitřní = kvůli sobě (zdraví, pohoda, výkon)"
+          - "Vnější = tlak okolí, jednorázová událost (svatba, dovolená)"
+          - "Vnitřní vede ke stabilnějším výsledkům (teorie sebeurčení)"
+          - "Typ motivace zjistit už na první konzultaci"
+          - "Posilovat vnitřní motivaci – plán propojit s hodnotami, ne jen s váhou"
+        modelAnswer: >-
+          Vnitřně motivovaný klient chce změnu kvůli sobě – pro zdraví, pohodu nebo výkon. Vnější
+          motivace vychází z tlaku okolí nebo z jednorázové události jako svatba. Vnitřní motivace
+          podle teorie sebeurčení přináší stabilnější výsledky, vnější po události rychle mizí. Proto
+          už na první konzultaci zjišťuji, proč klient přišel, a plán propojuji s jeho hodnotami.
+      - id: svatba
+        type: choice
+        prompt: "Klientka chce zhubnout „do svatby za dva měsíce“. O jakou motivaci jde převážně?"
+        options:
+          - { text: "Vnější – po události obvykle rychle slábne", correct: true }
+          - { text: "Vnitřní – je proto nejstabilnější", why: "Jednorázová událost je typická vnější motivace." }
+          - { text: "Žádnou, se svatbou motivace nesouvisí", why: "Je to motivace, ale vnější." }
+          - { text: "Vnitřní – klientka to dělá pro sebe", why: "Termín svatby je vnější podnět; po něm motivace obvykle slábne." }
+
+  # ---------- Vstupní záznam a karta klienta (5b) ----------
+
+  - id: prx.anamneza
+    title: Zdravotní anamnéza ve vstupním záznamu
+    kind: procedure
+    tier: A
+    criteria: [5b, 3c]
+    source: { pages: [253], anchor: "zdravotní stránku (onemocnění, medikace, laboratorní výsledky, alergie a intolerance)" }
+    explanation: >-
+      Do vstupního záznamu patří zdravotní stránka: onemocnění (i v rodině), užívané léky, laboratorní
+      výsledky, alergie a intolerance; zvlášť pak pracovní a rodinné zázemí a zkušenosti s dietami. Bez toho hrozí, že plán nebude
+      odpovídat možnostem klienta nebo mu uškodí. Výsledky vyšetření zapisuješ, ale jejich diagnostické
+      hodnocení patří lékaři; varovné nálezy jsou důvodem doporučit lékaře.
+    exercises:
+      - id: co-zjistit
+        type: explain
+        prompt: "Na co se ptáš klienta v rámci zdravotní anamnézy a proč?"
+        keyPoints:
+          - "Onemocnění (i v rodině)"
+          - "Léky (medikace)"
+          - "Laboratorní výsledky"
+          - "Alergie a intolerance"
+          - "Proč: plán musí být bezpečný; varovné nálezy → lékař"
+        modelAnswer: >-
+          Ptám se na onemocnění, i v rodině, na léky, které užívá, na poslední laboratorní výsledky a na
+          alergie a intolerance. Zajímá mě i to, jaké diety už zkoušel. Potřebuji to, aby byl plán
+          bezpečný a realistický. Laboratorní výsledky si zapíšu, ale hodnotit je diagnosticky není
+          moje role – když něco vypadá varovně, doporučím lékaře.
+      - id: polozky
+        type: choice
+        multiple: true
+        version: 2
+        prompt: "Co podle skript patří do zdravotní části vstupního rozhovoru?"
+        options:
+          - { text: "Onemocnění", correct: true }
+          - { text: "Užívané léky", correct: true }
+          - { text: "Laboratorní výsledky", correct: true }
+          - { text: "Alergie a intolerance", correct: true }
+          - { text: "Pracovní a rodinné zázemí", why: "Patří do vstupního rozhovoru, ale ne do zdravotní stránky." }
+
+  - id: prx.dotaznik
+    title: Úvodní dotazník – životní styl a zázemí
+    kind: procedure
+    tier: B
+    criteria: [5b, 11a]
+    prereqs: [jid.analyza]
+    source: { pages: [253, 254], anchor: "Dotazník by měl pokrývat zdravotní anamnézu, dosavadní zkušenosti s dietami" }
+    explanation: >-
+      Úvodní dotazník klient vyplní předem nebo na místě. Pokrývá zdravotní anamnézu, zkušenosti s
+      dietami, stravovací zvyklosti, pohybovou aktivitu, spánek, pitný režim a motivaci ke změně.
+      Ve vstupním rozhovoru doplníš pracovní a rodinné zázemí a ochotu ke změně. Podrobný obraz
+      stravy pak dá týdenní záznam jídelníčku.
+    exercises:
+      - id: oblasti
+        type: explain
+        prompt: "Co zjišťuješ v úvodním dotazníku a ve vstupním rozhovoru?"
+        keyPoints:
+          - "Zdravotní anamnéza a zkušenosti s dietami"
+          - "Stravovací zvyklosti a pitný režim"
+          - "Pohybová aktivita a spánek"
+          - "Pracovní a rodinné zázemí"
+          - "Motivace a ochota ke změně"
+        modelAnswer: >-
+          Dotazník mapuje zdravotní anamnézu a dosavadní zkušenosti s dietami, stravovací zvyklosti a
+          pitný režim, pohybovou aktivitu a spánek. Ve vstupním rozhovoru se doptám na práci a rodinu,
+          protože ovlivňují, co je reálné, a na motivaci a ochotu ke změně. Na stravu pak navazuje
+          záznam jídelníčku alespoň za týden.
+      - id: chybi
+        type: choice
+        version: 2
+        multiple: true
+        prompt: "Které oblasti podle skript pokrývá úvodní dotazník?"
+        options:
+          - { text: "Dosavadní zkušenosti s dietami", correct: true }
+          - { text: "Spánek", correct: true }
+          - { text: "Pitný režim", correct: true }
+          - { text: "Motivace ke změně", correct: true }
+          - { text: "Výsledek bioimpedančního měření", why: "Měří se až na konzultaci, klient ho do dotazníku nevyplňuje." }
+          - { text: "Návrh jídelníčku", why: "Jídelníček sestavuje poradce až po analýze." }
+
+  - id: prx.vstupni-mereni
+    title: Vstupní měření a jeho záznam
+    kind: procedure
+    tier: A
+    criteria: [5b, 3b]
+    prereqs: [por.bia-zasady, por.whr, por.bmi]
+    source: { pages: [254], anchor: "které slouží jako výchozí bod pro sledování pokroku" }
+    explanation: >-
+      Vstupní vážení a měření (hmotnost, obvod pasu a boků, % tuku, případně další obvody) je výchozí
+      bod pro sledování pokroku. Zapiš datum, denní dobu a podmínky (nalačno, oblečení, přístroj),
+      aby se kontroly dělaly stejně. Z hodnot spočítáš BMI a WHR. Kontrolní měření porovnávej se
+      vstupními a hodnoť trend, ne jedno číslo.
+    exercises:
+      - id: co-zapsat
+        type: explain
+        prompt: "Provádíš vstupní měření. Co změříš a co si k výsledkům zapíšeš?"
+        keyPoints:
+          - "Hmotnost, výška, obvod pasu a boků (případně další obvody)"
+          - "% tuku a další údaje z bioimpedance, pokud ji lze použít"
+          - "Dopočítat BMI a WHR"
+          - "Zapsat datum, denní dobu, podmínky a přístroj"
+          - "Kontroly za stejných podmínek, hodnotit trend"
+        modelAnswer: >-
+          Změřím hmotnost a výšku, obvod pasu a boků, případně stehna nebo biceps, a pokud to jde,
+          bioimpedancí procento tuku a svalů. Dopočítám BMI a WHR. Ke každému měření si zapíšu datum,
+          čas, zda byl klient nalačno, v čem byl a na jakém přístroji, abychom kontroly dělali stejně
+          a mohli hodnotit trend.
+      - id: proc
+        type: choice
+        prompt: "K čemu slouží vstupní měření na první konzultaci?"
+        options:
+          - { text: "Jako výchozí bod pro sledování pokroku", correct: true }
+          - { text: "K diagnóze obezity jako nemoci", why: "Diagnóza patří lékaři." }
+          - { text: "Jen jako podklad k fakturaci", why: "Měření slouží ke sledování vývoje." }
+          - { text: "K určení přesného BMR bez dalších výpočtů", why: "BMR se dál odhaduje rovnicemi." }
+
+  - id: prx.karta-klienta
+    title: Co obsahuje karta klienta
+    kind: concept
+    tier: A
+    status: supplementary
+    criteria: [5b]
+    prereqs: [prx.anamneza, prx.dotaznik, prx.vstupni-mereni]
+    source: { pages: [253], anchor: "Cílem první konzultace je zjistit o klientovi vše potřebné" }
+    note: >-
+      Skripta pojem karta klienta nepoužívají; obsah je složen z náplně první konzultace (s. 253–254),
+      měření (kap. 14) a analýzy stravy (kap. 17) podle kritéria 5b.
+    explanation: >-
+      Karta klienta shromažďuje vše potřebné k plánu a sledování: osobní a kontaktní údaje a podepsané
+      souhlasy; zdravotní anamnézu (nemoci, léky, výsledky, alergie); stravu, pohyb, spánek, pitný
+      režim; práci, rodinu a motivaci; cíl; vstupní měření; analýzu záznamu stravy; a záznam každé
+      kontroly (datum, měření, hodnocení, úpravy plánu, domluvené kroky). Zdravotní údaje chráníš podle GDPR.
+    exercises:
+      - id: obsah
+        type: explain
+        prompt: "U praktické zkoušky máš vyplnit kartu klienta. Jaké oddíly v ní budou?"
+        keyPoints:
+          - "Osobní a kontaktní údaje, podepsané souhlasy (GDPR)"
+          - "Zdravotní anamnéza: nemoci, léky, výsledky, alergie a intolerance"
+          - "Životní styl: strava, pohyb, spánek, pitný režim, práce a rodina"
+          - "Motivace a cíl klienta"
+          - "Vstupní měření a záznamy z kontrol (datum, hodnoty, úpravy, další kroky)"
+        modelAnswer: >-
+          Karta začíná osobními a kontaktními údaji a informací o podepsaných souhlasech. Následuje
+          zdravotní anamnéza – nemoci, léky, laboratorní výsledky, alergie a intolerance – a životní
+          styl: strava, pohyb, spánek, pitný režim, práce a rodina. Zapíšu motivaci a cíl, vstupní
+          měření včetně BMI a WHR a analýzu záznamu stravy. Při každé kontrole doplním datum, hodnoty,
+          hodnocení, úpravy plánu a domluvené kroky.
+      - id: kontrola
+        type: choice
+        prompt: "Co si zapíšeš do karty po každé kontrolní konzultaci?"
+        options:
+          - { text: "Datum, naměřené hodnoty, hodnocení, úpravy plánu a další kroky", correct: true }
+          - { text: "Nic, stačí vstupní údaje", why: "Bez záznamu kontrol nelze sledovat vývoj." }
+          - { text: "Jen novou hmotnost", why: "Důležité je i hodnocení a domluvené kroky." }
+          - { text: "Diagnózu stanovenou poradcem", why: "Poradce nediagnostikuje." }
+
+  # ---------- Hranice kompetencí, red flags (3c) ----------
+
+  - id: prx.hranice-kompetenci
+    title: Hranice kompetencí výživového poradce
+    kind: concept
+    tier: A
+    criteria: [3c]
+    source: { pages: [7, 48, 206, 236, 249], anchor: "spadá do kompetence lékařů" }
+    explanation: >-
+      Výživový poradce pracuje se životním stylem, nediagnostikuje ani neléčí. Hodnocení nálezů
+      (např. glykémie) je kompetence lékaře; léčba diabetu patří lékaři a nutričnímu terapeutovi.
+      Při podezření na rizikové pití nebo závislost doporuč odbornou pomoc. Při varovných příznacích
+      odešli klienta k lékaři nebo nutričnímu terapeutovi. U PPP jen vyslovíš podezření a předáš ho.
+    exercises:
+      - id: vysvetli
+        type: explain
+        prompt: "Kde končí kompetence výživové poradkyně a kam klienta posíláš?"
+        keyPoints:
+          - "Poradkyně nediagnostikuje ani neléčí nemoci"
+          - "Hodnocení laboratorních nálezů a diagnóza → lékař"
+          - "Léčebná dieta u nemoci (např. diabetes) → lékař a nutriční terapeut"
+          - "Rizikové pití, závislost → odborná pomoc (adiktolog, lékař)"
+          - "Podezření na PPP → psychiatr, psycholog, nutriční terapeut se specializací"
+        modelAnswer: >-
+          Pracuji se zdravými lidmi a jejich životním stylem – nemoci nediagnostikuji ani neléčím.
+          Laboratorní nálezy a diagnózy patří lékaři, léčba nemocí jako diabetes lékaři a nutričnímu
+          terapeutovi. Při podezření na závislost na alkoholu doporučím odbornou pomoc. Když vidím
+          varovné příznaky nebo podezření na poruchu příjmu potravy, klienta předám specialistovi
+          a dál spolupracuji jen v rozsahu, který je bezpečný.
+      - id: glykemie
+        type: choice
+        prompt: "Klient přinese výsledek s glykémií nalačno 6,5 mmol/l a ptá se, zda má cukrovku. Jak správně odpovíš?"
+        options:
+          - { text: "Hodnocení nálezu patří lékaři – doporučím, ať to s ním probere.", correct: true }
+          - { text: "Ano, má cukrovku, nastavím mu diabetickou dietu.", why: "Diagnostika patří do kompetence lékaře." }
+          - { text: "Ne, to je v normě, nemusí nic řešit.", why: "Nález nehodnotím a varovné hodnoty nebagatelizuji." }
+          - { text: "Doporučím mu doplněk na snížení cukru.", why: "Doplněk diagnostiku ani léčbu nenahradí." }
+
+  - id: prx.ppp-podezreni
+    title: Podezření na poruchu příjmu potravy
+    kind: procedure
+    tier: A
+    criteria: [3c, 10c]
+    prereqs: [prx.hranice-kompetenci, obd.ppp-role-poradce]
+    confusableWith: [obd.ppp-role-poradce]
+    source: { pages: [230, 232], anchor: "poradce diagnostikuje pouze podezření a předává klienta specialistovi" }
+    explanation: >-
+      Praktický případ: v dotazníku a rozhovoru zachytíš signály – velmi nízké BMI, pocit „jsem
+      tlustá“, i když okolí tvrdí opak, nutkavé cvičení, pocity viny po jídle, zvracení či projímadla,
+      výpadky menstruace. Redukční plán nesestavíš. Citlivě řekneš, čeho si všímáš, a doporučíš
+      vyšetření u psychiatra nebo psychologa se specializací na PPP (léčba pak kombinuje psychoterapii
+      a nutriční péči). Do karty zapíšeš, co jsi doporučila.
+    exercises:
+      - id: postup
+        type: explain
+        prompt: "Klientka s BMI 17 mluví o tom, že je pořád tlustá, a cvičí dvakrát denně. Jak postupuješ?"
+        keyPoints:
+          - "Rozpoznám varovné signály PPP (nízké BMI, zkreslený obraz těla, nutkavé cvičení)"
+          - "Nediagnostikuji, nehodnotím – mluvím citlivě a bez odsuzování"
+          - "Doporučím vyšetření u psychiatra / psychologa se specializací na PPP"
+          - "Redukční jídelníček nesestavím; doporučení zapíšu do karty"
+        modelAnswer: >-
+          BMI pod 17,5, pocit, že je tlustá, a nutkavé cvičení jsou varovné signály poruchy příjmu
+          potravy. Diagnózu nestanovuji, ale citlivě jí řeknu, čeho si všímám a že se o ni bojím.
+          Doporučím vyšetření u psychiatra nebo psychologa se specializací na PPP; léčba pak spojuje
+          psychoterapii a nutriční péči. Redukční plán jí nesestavím a doporučení si zapíšu do karty.
+      - id: redukce
+        type: choice
+        prompt: "Klientka s BMI 17,2 chce jídelníček na zhubnutí dalších 3 kg, protože se cítí tlustá. Jak zareaguješ?"
+        options:
+          - { text: "Plán nesestavím, řeknu jí, čeho si všímám, a doporučím specialistu na PPP.", correct: true }
+          - { text: "Sestavím mírný deficit, aby hubla aspoň bezpečně.", why: "Při podezření na PPP hubnutí nepodporuji." }
+          - { text: "Řeknu jí, že má anorexii, a pošlu ji k lékaři.", why: "Diagnózu poradce nestanovuje, jen vysloví podezření." }
+          - { text: "Bez vysvětlení spolupráci odmítnu.", why: "Je třeba citlivě vysvětlit důvod a doporučit pomoc." }
+
+  - id: prx.red-flags-lekar
+    title: Varovné tělesné příznaky – poslat k lékaři
+    kind: fact
+    tier: A
+    status: supplementary
+    criteria: [3c]
+    prereqs: [prx.hranice-kompetenci]
+    source: { pages: [205, 206], anchor: "při varovných příznacích klienta odeslat k lékaři nebo nutričnímu terapeutovi" }
+    note: >-
+      Skripta říkají jen obecně, že při varovných příznacích má poradce klienta odeslat k lékaři
+      (s. 205–206). Konkrétní seznam je běžná praxe nad rámec skript.
+    explanation: >-
+      K lékaři posílej při: nevysvětlitelném úbytku hmotnosti, krvi ve stolici nebo černé stolici,
+      dlouhodobých trávicích potížích (průjem, bolesti, potíže s polykáním), bolesti na hrudi či
+      dušnosti, omdlévání, velké žízni a častém močení, vynechání menstruace, potížích v těhotenství
+      (krvácení, otoky, silné zvracení). Akutní bolest na hrudi, náhlá dušnost, bezvědomí nebo
+      zmatenost → hned volej 155 (nebo 112).
+    exercises:
+      - id: kdy-lekar
+        type: choice
+        multiple: true
+        prompt: "Se kterými příznaky klienta pošleš k lékaři dřív, než budete pokračovat?"
+        options:
+          - { text: "Za 2 měsíce zhubl 8 kg, aniž by se snažil", correct: true }
+          - { text: "Občas vidí krev ve stolici", correct: true }
+          - { text: "Při chůzi do schodů ho tlačí na hrudi", correct: true }
+          - { text: "Chce zlepšit snídaně, protože dopoledne mívá hlad", why: "To je běžná práce poradce." }
+      - id: seznam
+        type: reveal
+        prompt: "Vyjmenuj aspoň pět tělesných varovných příznaků, kvůli kterým pošleš klienta k lékaři."
+        answer: >-
+          Nevysvětlitelný úbytek hmotnosti, krev ve stolici, dlouhodobé trávicí potíže, bolest na hrudi
+          či dušnost, omdlévání, velká žízeň a časté močení, vynechání menstruace, potíže v těhotenství.
+      - id: jak-odeslat
+        type: explain
+        prompt: "Klient v dotazníku uvede, že poslední měsíce hubne, aniž by se snažil, a má časté průjmy. Jak s ním mluvíš?"
+        keyPoints:
+          - "Rozpoznám varovné příznaky – nehubnutí ze snahy, dlouhodobé trávicí potíže"
+          - "Nediagnostikuji a nestraším, vysvětlím, proč je potřeba lékař"
+          - "Doporučím co nejdřív návštěvu praktického lékaře"
+          - "Redukci zatím nezačínám; pokračujeme po vyšetření"
+          - "Zapíšu do karty, co jsem doporučila"
+        modelAnswer: >-
+          Neplánovaný úbytek hmotnosti a dlouhodobé průjmy jsou varovné příznaky, které patří lékaři.
+          Klidně klientovi vysvětlím, že nejde o věc výživy, kterou bych mohla posoudit, a doporučím mu
+          co nejdřív praktického lékaře. Redukční plán zatím nezačneme, pokračovat můžeme po vyšetření
+          podle doporučení lékaře. Do karty si zapíšu, co jsem doporučila.
+
+  - id: prx.red-flags-psychika
+    title: Psychické varovné signály – psycholog či krizová pomoc
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [3c, 11b]
+    prereqs: [prx.hranice-kompetenci]
+    source: { pages: [48], anchor: "hranice svých kompetencí a doporučit klientovi odpovídající odbornou pomoc" }
+    note: >-
+      Skripta zmiňují hranice kompetencí u alkoholu (s. 48) a PPP (s. 230–232). Obecné psychické
+      signály a postup při riziku sebevraždy jsou běžná praxe nad rámec skript.
+    explanation: >-
+      Psychologa či psychiatra doporuč při dlouhodobém smutku a beznaději, ztrátě zájmu, silné úzkosti,
+      záchvatovitém přejídání, sebepoškozování, závislosti nebo traumatu (i když souvisí s jídlem). Zmíní-li
+      klient myšlenky na sebevraždu, ber to vážně: zeptej se přímo, nenechávej ho bez pomoci a předej
+      kontakt na krizovou linku; při akutním ohrožení volej 155/112. Mluv klidně a nehodnoť.
+    exercises:
+      - id: sebevrazda
+        type: explain
+        prompt: "Klientka během konzultace řekne, že ji už nic nebaví a občas myslí na to, že by tu nebyla. Co uděláš?"
+        keyPoints:
+          - "Beru to vážně, nebagatelizuji, mluvím klidně"
+          - "Zeptám se přímo, zda myslí na sebevraždu / zda je v bezpečí"
+          - "Výživu odložím, podstatná je její bezpečnost"
+          - "Doporučím psychologa/psychiatra, předám kontakt na krizovou linku"
+          - "Při akutním ohrožení volám 155 / 112"
+        modelAnswer: >-
+          Beru to vážně a nebagatelizuji to. Klidně se zeptám, jestli myslí na to, že by si ublížila,
+          a jestli je teď v bezpečí. Jídelníček jde stranou. Doporučím jí psychologa nebo psychiatra a
+          dám kontakt na krizovou linku; pokud je v akutním ohrožení, zavolám záchrannou službu 155
+          nebo 112 a zůstanu s ní, dokud nepřijede pomoc.
+      - id: psycholog
+        type: choice
+        prompt: "Klient popisuje opakované záchvaty přejídání se ztrátou kontroly a pocity studu. Jaký je nejlepší postup?"
+        options:
+          - { text: "Doporučit psychologa a stravu řešit ve spolupráci s ním", correct: true }
+          - { text: "Nastavit pevný režim tří jídel a přejídání dál neřešit", why: "Pravidelnost pomáhá, ale psychickou příčinu sama nevyřeší." }
+          - { text: "Doporučit mu, ať si jídlo víc hlídá a přesně počítá kalorie", why: "Větší kontrola a restrikce záchvatové přejídání spíše zhoršují." }
+          - { text: "Zvýšit podíl bílkovin, aby se lépe zasytil", why: "Úprava makroživin psychickou příčinu neřeší." }
+
+  # ---------- Typy klientů a náročné situace (11b) ----------
+
+  - id: prx.ztrata-motivace
+    title: Klient ztrácí motivaci – hledání příčiny
+    kind: procedure
+    tier: A
+    criteria: [11b]
+    prereqs: [prx.motivace]
+    source: { pages: [256], anchor: "Ztráta motivace patří k nejčastějším důvodům" }
+    explanation: >-
+      Hledej příčinu: 1) klient nedosahuje cíle – byl reálný? pracuj s dílčími cíli; 2) přestává ho to
+      bavit – režim je stereotypní nebo náročný, uprav ho; 3) cíle už dosáhl – připomeň trvalou změnu
+      a přenastav cíl na udržování; 4) změnila se životní situace – uprav plán, nevyžaduj ho striktně.
+      Ať klient příčinu napíše a ujasní si ji.
+    exercises:
+      - id: postup
+        type: explain
+        prompt: "Klientka po dvou měsících říká, že už ji to nebaví a nemá motivaci. Jak s ní budeš pracovat?"
+        keyPoints:
+          - "Zjistit příčinu: nereálný cíl, stereotyp, dosažený cíl, změna životní situace"
+          - "Dílčí dosažitelné cíle místo jednoho vzdáleného"
+          - "Upravit jídelníček/režim, aby nebyl stereotypní a šel skloubit se životem"
+          - "Nechat ji příčinu napsat a ujasnit si ji"
+          - "Odejde s konkrétním krokem do příští konzultace"
+        modelAnswer: >-
+          Nejdřív zjistím, odkud ztráta motivace pramení – jestli cíl nebyl nereálný, jestli je plán
+          stereotypní nebo náročný, jestli už cíle dosáhla, nebo se jí změnil život. Požádám ji, ať
+          si příčinu napíše. Podle toho upravím plán, rozdělím cíl na dílčí kroky, nebo ho přenastavím
+          na udržování. Odchází s jedním konkrétním krokem do příště.
+      - id: dosazeny-cil
+        type: choice
+        prompt: "Klient dosáhl cílové hmotnosti a motivace mu klesá. Co podle skript uděláš?"
+        options:
+          - { text: "Připomenu, že jde o trvalou změnu, a přenastavím cíl na udržování.", correct: true }
+          - { text: "Ukončím spolupráci, cíl je splněn.", why: "Bez navazujícího cíle hrozí návrat ke starým návykům." }
+          - { text: "Stanovím další velký redukční cíl.", why: "Vhodné je přejít do udržovací fáze." }
+          - { text: "Zpřísním jídelníček, aby měl novou výzvu.", why: "Skripta doporučují přechod na udržování." }
+
+  - id: prx.ostychavy
+    title: Ostýchavý klient
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [11b]
+    source: { pages: [257], anchor: "Řeč těla, mimika a celkové vystupování klienta často prozradí víc" }
+    note: >-
+      Skripta typy klientů nerozebírají; uvádějí jen význam neverbální komunikace (s. 257) a
+      motivačního rozhovoru (s. 256). Postup je běžná poradenská praxe nad rámec skript.
+    explanation: >-
+      Ostýchavý klient málo mluví, stydí se za jídlo či postavu a bojí se hodnocení. Vytvoř bezpečné
+      prostředí: klidné tempo, vysvětli, co bude následovat, ujisti o diskrétnosti a že nic neodsuzuješ.
+      Začni lehčími tématy, citlivé otázky až později, ptej se otevřeně a dej čas na odpověď. Měření jen
+      se souhlasem a s možností volby. Dotazník předem pomůže.
+    exercises:
+      - id: postup
+        type: explain
+        prompt: "Do poradny přijde ostýchavá klientka, odpovídá jednoslovně a vyhýbá se očnímu kontaktu. Jak s ní budeš jednat?"
+        keyPoints:
+          - "Klidné tempo, bezpečné a neodsuzující prostředí, diskrétnost"
+          - "Vysvětlit průběh konzultace"
+          - "Nejdřív lehčí témata, citlivé otázky později"
+          - "Otevřené otázky, aktivní naslouchání, dát čas"
+          - "Měření jen se souhlasem; dotazník lze vyplnit předem"
+        modelAnswer: >-
+          Zpomalím, vysvětlím, co nás čeká, a ujistím ji, že vše zůstane mezi námi a nic nehodnotím.
+          Začnu jednoduššími tématy a k citlivým se dostaneme postupně. Ptám se otevřeně, nechám jí čas
+          a oceňuji, co mi řekne. Měření nabídnu jen s jejím souhlasem a část informací může doplnit
+          písemně v dotazníku.
+      - id: chyba
+        type: choice
+        prompt: "Která reakce na ostýchavou klientku je nevhodná?"
+        options:
+          - { text: "Hned na začátku ji zvážit a komentovat výsledek", correct: true }
+          - { text: "Nechat jí čas na odpověď", why: "To je vhodné." }
+          - { text: "Ujistit ji, že její stravování nebudeš odsuzovat", why: "To je vhodné." }
+          - { text: "Nabídnout, že část informací doplní písemně", why: "To je vhodné." }
+
+  - id: prx.agresivni
+    title: Agresivní nebo konfrontační klient
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [11b]
+    source: { pages: [256], anchor: "posilování vlastních důvodů klienta pro změnu místo direktivního přesvědčování" }
+    note: >-
+      Skripta tento typ klienta výslovně nerozebírají (jen doporučují nepřesvědčovat direktivně,
+      s. 256). Postup je běžná poradenská praxe nad rámec skript.
+    explanation: >-
+      Zůstaň klidná, mluv pomalu a tišeji, nepřeváděj to na sebe a nehádej se. Nech klienta domluvit,
+      pojmenuj emoci („vidím, že vás to štve“) a hledej, co za ní stojí (zklamání, strach). Drž se
+      faktů a toho, co lze udělat. Stanov hranice: urážky nebo vyhrožování netoleruješ, konzultaci
+      můžeš přerušit. Při ohrožení odejdi do bezpečí a volej policii 158 nebo 112.
+    exercises:
+      - id: postup
+        type: explain
+        prompt: "Klient na kontrole zvýší hlas: „Platím vám a nic to nedělá, vaše rady jsou k ničemu!“ Jak reaguješ?"
+        keyPoints:
+          - "Zůstat klidná, nehádat se, nebrat osobně"
+          - "Nechat ho domluvit, aktivně naslouchat"
+          - "Pojmenovat a uznat emoci (zklamání, frustrace)"
+          - "Přejít k faktům a společnému hledání příčin a řešení"
+          - "Nastavit hranice – urážky netoleruji, konzultaci lze přerušit"
+        modelAnswer: >-
+          Zůstanu klidná a nechám ho domluvit. Pak řeknu, že chápu, že je zklamaný, když nevidí
+          výsledky, a že to chci společně vyřešit. Projdeme fakta – co se dařilo a co ne – a hledáme
+          příčinu a konkrétní krok. Kdyby začal urážet, klidně řeknu, že takto pokračovat nemůžeme,
+          a nabídnu jiný termín.
+      - id: reakce
+        type: choice
+        prompt: "Která první reakce na rozzlobeného klienta je nejvhodnější?"
+        options:
+          - { text: "Nechat ho domluvit a pojmenovat jeho emoci", correct: true }
+          - { text: "Ihned mu vysvětlit, že chyba je na jeho straně", why: "Konfrontace emoce vyhrotí." }
+          - { text: "Zvýšit hlas, aby tě respektoval", why: "Agrese plodí agresi." }
+          - { text: "Mlčky dokončit vážení a nic neřešit", why: "Emoci je třeba uznat a řešit příčinu." }
+
+  - id: prx.precitliveny
+    title: Přecitlivělý klient
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [11b]
+    source: { pages: [255], anchor: "praktické překážky (čas, dostupnost potravin, sociální situace)" }
+    note: >-
+      Skripta tento typ klienta nerozebírají (jen upozorňují, že neúspěch nebývá jen věcí disciplíny
+      a nemá se řešit mravním apelem, s. 255). Postup je běžná poradenská praxe nad rámec skript.
+    explanation: >-
+      Přecitlivělý klient bere poznámky osobně, snadno se rozpláče nebo cítí kritizovaný. Volíš slova
+      pečlivě: hodnotíš chování a plán, ne osobu („tento krok se nedařil“ místo „vy jste selhala“).
+      Začni tím, co se povedlo, zpětnou vazbu dávej konkrétně a citlivě, bez mravních apelů. Emoci
+      uznej, nech prostor (kapesníky, pauza). Pomáhá ověřit, jak to vnímá.
+    exercises:
+      - id: postup
+        type: explain
+        prompt: "Klientka se při kontrolním vážení rozpláče, že je neschopná. Jak budeš komunikovat?"
+        keyPoints:
+          - "Uznat emoci, dát prostor a čas"
+          - "Hodnotit chování a plán, ne osobu"
+          - "Začít tím, co se povedlo"
+          - "Bez mravních apelů – hledat praktické překážky"
+          - "Ověřit, jak zpětnou vazbu vnímá; domluvit malý konkrétní krok"
+        modelAnswer: >-
+          Nechám ji vyplakat a řeknu, že chápu, že je to pro ni těžké. Zdůrazním, že hodnotíme plán,
+          ne ji jako člověka, a připomenu, co se jí podařilo. Společně hledáme praktické překážky, ne
+          vinu. Ověřím si, jak to slyší, a domluvíme jeden malý zvládnutelný krok do příště.
+      - id: formulace
+        type: choice
+        prompt: "Která formulace je pro přecitlivělou klientku nejvhodnější?"
+        options:
+          - { text: "„Večeře se zatím nedařily, zkusíme najít, co tomu brání.“", correct: true }
+          - { text: "„Zase jste to nedodržela, musíte se víc snažit.“", why: "Mravní apel a hodnocení osoby." }
+          - { text: "„Jiné klientky to zvládají bez problémů.“", why: "Srovnávání zraňuje." }
+          - { text: "„Když nebudete poslouchat, nemá to smysl.“", why: "Výčitka a hrozba." }
+
+  - id: prx.klient-nehubne
+    title: Klient nehubne – co dělat
+    kind: procedure
+    tier: B
+    criteria: [11b, 7a]
+    prereqs: [prx.ztrata-motivace]
+    source: { pages: [255, 256], anchor: "je klíčové situaci neodkládat a řešit ji hned" }
+    explanation: >-
+      Když klient nedosahuje cíle, řeš to hned – odkládání oslabuje motivaci i důvěru. Systematicky
+      hledej příčinu: drží plán? Pokud ne, proč – nechutná mu, nemá čas, nemá zájem? Často jde o
+      praktické překážky (čas, dostupnost, sociální situace), které vyřeší úprava plánu, ne mravní
+      apel. Klient vždy odchází s konkrétním krokem, ne s radou „víc se snažte“.
+    exercises:
+      - id: krok
+        type: choice
+        prompt: "Čím má podle skript klient odejít z konzultace, když nehubne?"
+        options:
+          - { text: "Konkrétním krokem, který do příště vyzkouší", correct: true }
+          - { text: "Doporučením víc se snažit", why: "Obecná rada nepomáhá." }
+          - { text: "Přísnějším jídelníčkem bez vysvětlení", why: "Nejdřív je třeba najít příčinu." }
+          - { text: "Doplňkem na spalování tuků", why: "Doplněk příčinu nevyřeší." }
+      - id: kdy
+        type: reveal
+        prompt: "Kdy a jak řešit, že klient nedosahuje výsledků?"
+        answer: >-
+          Hned, jakmile se to objeví. Hledat příčinu (dodržuje plán? proč ne – chuť, čas, zájem,
+          praktické překážky), upravit plán a dát konkrétní krok.
+
+  - id: prx.gramazovy-jidelnicek
+    title: Gramážový jídelníček a úpravy na kontrolách
+    kind: fact
+    tier: B
+    criteria: [11a, 7b]
+    prereqs: [prx.druha-konzultace]
+    source: { pages: [255], anchor: "nastavuje na o něco vyšší hmotnost/energetický příjem" }
+    explanation: >-
+      Přesný gramážový jídelníček se podle skript nastavuje na o něco vyšší hmotnost či energetický
+      příjem, než je cílová hodnota – zůstane prostor pro flexibilitu a postupné snižování příjmu
+      místo agresivní restrikce od začátku. Na kontrolách: zkušený, edukovaný klient si drobné úpravy
+      (záměny, porce) dělá sám, méně zkušený potřebuje úpravy s poradcem opakovaně.
+    exercises:
+      - id: nastaveni
+        type: choice
+        prompt: "Na jakou hodnotu se podle skript nastavuje přesný gramážový jídelníček?"
+        options:
+          - { text: "Na o něco vyšší hmotnost či příjem, než je cílová hodnota", correct: true }
+          - { text: "Přesně na cílovou hmotnost", why: "Skripta doporučují nechat rezervu pro postupné snižování." }
+          - { text: "Na co nejnižší příjem, aby se výsledky dostavily rychle", why: "Agresivní restrikce od začátku je nevhodná." }
+          - { text: "Na bazální metabolismus", why: "Jídelníček se nastavuje s rezervou nad cílovou hodnotou, ne na BMR." }
+      - id: upravy
+        type: reveal
+        prompt: "Kdo upravuje jídelníček mezi kontrolami?"
+        answer: >-
+          Záleží na klientovi: zkušený a edukovaný klient zvládne drobné úpravy (záměny, porce) sám,
+          méně zkušený je potřebuje dělat s poradcem opakovaně.
+
+  - id: prx.motivacni-rozhovor
+    title: Motivační rozhovor
+    kind: concept
+    tier: B
+    criteria: [11b, 11a]
+    prereqs: [prx.motivace]
+    source: { pages: [256], anchor: "techniky motivačního rozhovoru" }
+    explanation: >-
+      U nemotivovaného nebo nerozhodného (ambivalentního) klienta se osvědčuje motivační rozhovor
+      (Miller a Rollnick): otevřené otázky, aktivní naslouchání a posilování klientových vlastních
+      důvodů ke změně – místo direktivního přesvědčování a poučování.
+    exercises:
+      - id: techniky
+        type: choice
+        prompt: "Co patří k technikám motivačního rozhovoru?"
+        options:
+          - { text: "Otevřené otázky a posilování klientových vlastních důvodů ke změně", correct: true }
+          - { text: "Přesvědčování klienta pomocí argumentů a studií", why: "Motivační rozhovor se direktivnímu přesvědčování vyhýbá." }
+          - { text: "Zavřené otázky typu ano/ne", why: "Pracuje se s otevřenými otázkami." }
+          - { text: "Strašení zdravotními riziky", why: "Cílem je posílit vlastní důvody klienta." }
+      - id: otazka
+        type: choice
+        prompt: "Která otázka je v duchu motivačního rozhovoru?"
+        options:
+          - { text: "„Co by se pro vás změnilo, kdybyste se cítil fit?“", correct: true }
+          - { text: "„Víte, že vaše BMI je rizikové?“", why: "Poučování, ne posilování vlastních důvodů." }
+          - { text: "„Budete to už konečně dodržovat?“", why: "Uzavřená a výčitková otázka." }
+          - { text: "„Proč jste to zase nezvládl?“", why: "Vyvolává obranu." }
+
+  - id: prx.komunikace
+    title: Verbální a neverbální komunikace s klientem
+    kind: concept
+    tier: B
+    criteria: [11b, 11a]
+    source: { pages: [257], anchor: "Řeč těla, mimika a celkové vystupování klienta často prozradí víc" }
+    explanation: >-
+      Verbálně: na začátku společně nastavit jasné cíle a vnímat souvislosti v tom, co klient říká –
+      opakované zmínky o stresu či rodinných povinnostech při stagnaci mohou být skutečnou příčinou,
+      kterou je třeba řešit víc než jídelníček. Neverbálně: řeč těla a mimika prozradí nejistotu,
+      nesouhlas i odhodlání; konzultaci přizpůsob aktuálnímu rozpoložení klienta.
+    exercises:
+      - id: souvislosti
+        type: choice
+        prompt: "Klient nehubne a opakovaně zmiňuje stres v práci a péči o rodiče. Co z toho podle skript plyne?"
+        options:
+          - { text: "Skutečná příčina může být ve stresu, je třeba ji řešit, nejen jídelníček.", correct: true }
+          - { text: "Je to odbočka, vrať rozhovor k jídelníčku.", why: "Skripta doporučují vnímat souvislosti." }
+          - { text: "Klient se vymlouvá, zpřísni plán.", why: "Nejde o vymlouvání, ale o možnou příčinu." }
+          - { text: "Ukonči spolupráci.", why: "Situace je řešitelná úpravou přístupu." }
+
+  - id: prx.klient-odmita
+    title: Klient odmítá pomoc
+    kind: procedure
+    tier: C
+    criteria: [11b]
+    source: { pages: [256], anchor: "je ale důležité, aby klient odcházel s pozitivní zkušeností" }
+    explanation: >-
+      Klient, který tvrdí, že „všechno ví“ a problém si vyřeší sám, může spolupráci ukončit dřív.
+      I tak má odcházet s pozitivní zkušeností – i bývalý klient je „vizitka“ poradce a zdroj
+      doporučení.
+    exercises:
+      - id: pozitivni
+        type: reveal
+        prompt: "Jak se zachovat ke klientovi, který pomoc odmítá a chce spolupráci ukončit?"
+        answer: "Respektovat to a rozloučit se tak, aby odcházel s pozitivní zkušeností – je to budoucí zdroj doporučení."

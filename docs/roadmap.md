@@ -41,24 +41,39 @@ Original acceptance:
 - "Nahlásit problém" stores a report and hides the item.
 - Playwright smoke: log in → 10 cards → reload → continue → state persisted. Manual check at 390 px and desktop.
 
-## M2 — Syllabus content + planner v2 (in progress)
+## M2 — Syllabus content + planner v2 ✅ (2026-11-22)
 
 Done:
 - Exam date fixed to 2026-12-04; the setting was removed (Nastavení shows it read-only).
-- Planner: confusable partners are symmetric; a point whose partner is already known gets a ×1.2 contrast bonus.
-  Feedback shows "Nezaměň s …" (known partners) whenever the Výklad is shown.
-- `pnpm content:check --only a.yaml,b.yaml` lets parallel authors validate their own files against committed content.
-- Authoring brief: `docs/content-authoring.md`.
+- **Whole syllabus authored:** 22 topics (ch. 1–24; ch. 9 merged into 8, ch. 23 into 22), 479 points
+  (A 285 / B 158 / C 36), 1 080 exercises (choice 663, reveal 207, explain 183, numeric 27).
+  Every criterion meets its floor (written ≥ 6 tier A, oral/practical ≥ 4; `reports/coverage.md`).
+- Process per batch: author subagent (`docs/content-authoring.md`) → `content:check` → independent verifier subagent
+  (`docs/content-verification.md`) on 100 % of new items → the verifier applied its findings → full check.
+  Main finding classes: cross-chapter contradictions with conflicting "correct" answers (vegan children, iron in
+  pregnancy, alcohol limits, vitamin D for toddlers, waist limits) → one consistent exam guidance in both notes;
+  script vs EU law in labelling (allergens, organic, aroma, GMO) → course-disputed; safety gaps in red flags
+  (hypoglycaemia when unconscious, chest pain → 155, DM2 meds) → added with notes; duplicates across chapters merged
+  or linked; ~300 missing "why" texts added.
+- Supplementary (beyond the script, clearly labelled): gut hormones (2c), client types (11b), red flags (3c),
+  IBS, coeliac diagnosis, Czech hospital diet numbers (7g), allergen list, E-number ranges, KHS/ČOI split.
+- Formulas: WHR, per-kg dose, FFM, % energy from a macronutrient.
+- Planner: confusables symmetric + contrast bonus + "Nezaměň s" in feedback; every prerequisite-ready point competes
+  for breadth (before, only the first point per topic did → whole criteria unseen); prerequisites inherit the priority
+  of what they unlock. `pnpm simulate real 11 45|60` on the real bank.
+- `content:check` warns on wrong options without "why", anchors > 12 words, oral/practical tier-A without explain;
+  `--only` for parallel authoring. Verbatim scan: no copied run longer than 23 words (tables/lists only).
 
-Budget: `pnpm simulate 450 11 45` → ~210 new points fit (60 min → ~275) ⇒ ≈ 210–230 tier-A points in total.
+Verified: `pnpm validate` green (content:check 0 errors, typecheck, lint, 49 unit tests); `pnpm test:e2e` 6/6;
+screenshots of Dnes / Nastavení / Témata at 390 px.
 
-Batches (author subagent → content:check → verifier subagent → fixes → commit):
-1. ch. 1, 3–5 (1a, 1b, 1d) · 2. ch. 6–9 (1e, 1f) · 3. ch. 10–11 (2a–2e, 2g) · 4. ch. 12 (4a–4c, 9a–9d)
-5. ch. 13 (8a–8e) · 6. ch. 14, 24 (3a–3c, 5b, 10a, 11a, 11b) · 7. ch. 16, 18, 19 (7e, 7b, 7c, 6a)
-8. ch. 20, 21 (7d, 7f, 6c) · 9. ch. 22, 23 (7h, 7g, 3c, 10c, 10d)
+**Workload (simulation, 11 study days from 2026-11-22):** 45 min/day → ~208 new points, every criterion ≥ 60 % of its
+tier A introduced (written test needs ≥ 50 % correct per criterion); 60 min/day → ~278, every criterion ≥ 75 %,
+only 11 tier-A points never seen. Mean predicted recall on exam day 0.93. **Recommend 60 min/day if she can.**
 
-Acceptance: 0 criteria without tier A; written criteria ≥ 6 A, others ≥ 4 A (or a documented reason); verifier on
-100 % of items.
+Known limits / open:
+- Content is AI-authored and AI-verified only (no human review, by decision); she can report items in-app.
+- Image-only content (figures) is covered only where a verifier rendered the page (ch. 9, Obr. 12.7).
 
 ## M3 — Témata, Pokrok, client cases · M4 — Refinement & pre-exam sweep
 

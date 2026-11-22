@@ -39,7 +39,6 @@ export default function TopicsPage() {
           );
         })}
       </ul>
-      <p className="text-center text-xs text-faint">Další kapitoly přibývají.</p>
     </div>
   );
 }

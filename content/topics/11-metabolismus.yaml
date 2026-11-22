@@ -2,13 +2,227 @@ topic:
   id: metabolismus
   title: Metabolismus
   chapter: 11
-  pages: [85, 87]
+  pages: [81, 91]
   order: 110
   summary: >-
-    Metabolické dráhy sacharidů (glykolýza, glykogeneze, glykogenolýza, glukoneogeneze)
-    a hormonální regulace glykémie inzulinem a glukagonem.
+    Anabolismus a katabolismus, ATP, enzymy, neurohumorální regulace a energetický metabolismus
+    v mitochondriích; metabolismus sacharidů (glykolýza, glykogen, glukoneogeneze, inzulin a glukagon),
+    tuků (lipolýza, β-oxidace, lipogeneze, lipoproteiny, ketolátky, cholesterol), bílkovin (aminokyseliny,
+    močovinový cyklus, dusíková bilance) a purinů.
 
 points:
+  - id: met.anabolismus-katabolismus
+    title: Anabolismus vs. katabolismus
+    kind: comparison
+    tier: A
+    criteria: [2d]
+    source: { pages: [81], anchor: "Anabolické reakce (skladné) jsou takové, které vedou k novotvorbě" }
+    explanation: >-
+      Metabolismus je soubor všech chemických dějů v těle. Anabolismus (skladné děje) vytváří
+      z jednodušších látek složitější a energii spotřebovává – např. proteosyntéza, glykogeneze,
+      lipogeneze. Katabolismus (rozkladné děje) štěpí složité molekuly na jednodušší a energii
+      uvolňuje – např. glykolýza, lipolýza, proteolýza. Při vyrovnané energetické bilanci jsou oba děje v rovnováze (metabolický obrat).
+    exercises:
+      - id: anabolismus
+        type: choice
+        prompt: "Které tvrzení o anabolismu je správné?"
+        options:
+          - { text: "Jde o skladné děje, které energii spotřebovávají", correct: true }
+          - { text: "Jde o rozkladné děje, které energii uvolňují", why: "To je katabolismus." }
+          - { text: "Jde o skladné děje, které energii uvolňují", why: "Tvorba složitějších molekul energii vyžaduje." }
+          - { text: "Jde o rozkladné děje, které energii spotřebovávají", why: "Rozkladné děje energii uvolňují; anabolismus je skladný." }
+      - id: katabolicke
+        type: choice
+        multiple: true
+        prompt: "Které děje jsou katabolické? (vyber všechny)"
+        options:
+          - { text: "Lipolýza", correct: true }
+          - { text: "Glykogenolýza", correct: true }
+          - { text: "Proteolýza", correct: true }
+          - { text: "Lipogeneze", why: "Tvorba tuků je anabolický děj." }
+          - { text: "Proteosyntéza", why: "Tvorba bílkovin je anabolický děj." }
+
+  - id: met.atp
+    title: ATP – energetické platidlo buňky
+    kind: concept
+    tier: A
+    criteria: [2d]
+    prereqs: [met.anabolismus-katabolismus]
+    source: { pages: [81, 82], anchor: "Molekula ATP má funkci peněz" }
+    explanation: >-
+      ATP (adenosintrifosfát) je univerzální „energetické platidlo“ buňky. Energie z chemických vazeb
+      živin se přeměňuje na ATP – nejvíc za přítomnosti kyslíku (aerobně), přičemž odpadem je oxid
+      uhličitý; bez kyslíku je zisk výrazně nižší. Při využití se ATP rozkládá na ADP a fosfát a z ADP
+      buňka z makroživin opět vytvoří ATP. Energii nelze vytvořit ani zničit, jen přeměnit.
+    exercises:
+      - id: rozklad
+        type: choice
+        prompt: "Na co se rozkládá ATP, když buňka využije jeho energii?"
+        options:
+          - { text: "Na ADP a fosfát", correct: true }
+          - { text: "Na glukózu a vodu", why: "ATP není sacharid; uvolňuje energii odštěpením fosfátu." }
+          - { text: "Na acetylkoenzym A a CO2", why: "Acetylkoenzym A je meziprodukt odbourávání živin, ne produkt rozkladu ATP." }
+          - { text: "Na kyselinu mléčnou", why: "Kyselina mléčná vzniká při anaerobní glykolýze." }
+      - id: kyslik
+        type: choice
+        prompt: "Kdy vzniká z živin nejvíce ATP?"
+        options:
+          - { text: "Za přítomnosti kyslíku", correct: true }
+          - { text: "Bez kyslíku", why: "Bez kyslíku je zisk ATP výrazně nižší." }
+          - { text: "Při glykogenezi", why: "Glykogeneze je anabolický děj – energii spotřebovává." }
+
+  - id: met.enzymy
+    title: Enzymy a kofaktory
+    kind: concept
+    tier: A
+    criteria: [2d, 2a]
+    source: { pages: [83], anchor: "Jejich funkce je tedy katalytická – urychlují chemické reakce" }
+    explanation: >-
+      Enzymy jsou bílkoviny, které urychlují (katalyzují) chemické reakce, takže v těle probíhají za
+      mírných podmínek – při tělesné teplotě a tlaku. Téměř každá reakce má svůj enzym. Substrát se
+      naváže do aktivního místa enzymu a přemění se na produkt. Aktivitu enzymů lze zvýšit i potlačit
+      (inhibovat), a tak metabolismus regulovat. Mnoho enzymů potřebuje kofaktor – malou molekulu;
+      kofaktory jsou často vitaminy, proto je musíme přijímat potravou.
+    exercises:
+      - id: povaha
+        type: choice
+        prompt: "Jakou chemickou povahu mají enzymy?"
+        options:
+          - { text: "Bílkoviny", correct: true }
+          - { text: "Sacharidy", why: "Enzymy jsou bílkoviny." }
+          - { text: "Lipidy", why: "Enzymy jsou bílkoviny." }
+          - { text: "Vitaminy", why: "Vitaminy bývají kofaktory enzymů, enzym sám je bílkovina." }
+      - id: vitaminy
+        type: choice
+        prompt: "Proč jsou vitaminy důležité pro činnost enzymů?"
+        options:
+          - { text: "Fungují jako kofaktory enzymů", correct: true }
+          - { text: "Jsou substrátem, který enzym přemění", why: "Substrát je látka, kterou enzym mění; vitamin mu pomáhá jako kofaktor." }
+          - { text: "Dodávají enzymům energii jako ATP", why: "Energetickým platidlem je ATP." }
+      - id: substrat
+        type: choice
+        prompt: "Jak se nazývá látka, kterou enzym naváže do aktivního místa a přemění?"
+        options:
+          - { text: "Substrát", correct: true }
+          - { text: "Produkt", why: "Produkt je výsledek reakce." }
+          - { text: "Kofaktor", why: "Kofaktor je pomocná malá molekula (např. vitamin)." }
+          - { text: "Inhibitor", why: "Inhibitor aktivitu enzymu tlumí." }
+
+  - id: met.mitochondrialni-drahy
+    title: Acetylkoenzym A, Krebsův cyklus a dýchací řetězec
+    kind: procedure
+    tier: A
+    criteria: [2d]
+    prereqs: [met.atp, telo.mitochondrie]
+    source: { pages: [84, 85], anchor: "Acetylkoenzym A se nazývá centrální molekulou metabolizmu" }
+    explanation: >-
+      Sacharidy, tuky i bílkoviny se pro zisk energie nejprve přemění na acetylkoenzym A – „centrální
+      molekulu metabolismu“. Ten vstupuje v mitochondrii do Krebsova cyklu (cyklu kyseliny citronové),
+      kde vzniká oxid uhličitý (vydechujeme ho) a meziprodukty pro dýchací řetězec. V dýchacím řetězci
+      vzniká ATP a kyslík se mění na vodu – proto probíhá jen za přítomnosti kyslíku.
+    exercises:
+      - id: centralni
+        type: choice
+        prompt: "Která látka je „centrální molekulou metabolismu“, do níž ústí odbourávání všech makroživin?"
+        options:
+          - { text: "Acetylkoenzym A", correct: true }
+          - { text: "Pyruvát", why: "Pyruvát je produkt glykolýzy; tuky se na něj nemění – do energetického metabolismu vstupují přes acetylkoenzym A." }
+          - { text: "Glycerol", why: "Glycerol vzniká z tuků a může jít do glukoneogeneze." }
+          - { text: "Kyselina mléčná", why: "Laktát vzniká z pyruvátu bez kyslíku." }
+      - id: atp
+        type: choice
+        prompt: "Ve které dráze vzniká ATP za spotřeby kyslíku, který se mění na vodu?"
+        options:
+          - { text: "V dýchacím řetězci", correct: true }
+          - { text: "V Krebsově cyklu", why: "V Krebsově cyklu vzniká hlavně CO2 a meziprodukty pro dýchací řetězec." }
+          - { text: "V anaerobní glykolýze", why: "Ta kyslík nepotřebuje a dává jen 2 ATP." }
+          - { text: "V β-oxidaci", why: "β-oxidace dodává acetylkoenzym A." }
+      - id: poradi
+        type: reveal
+        prompt: "Popiš cestu energie z makroživin až k ATP."
+        answer: "Makroživiny → acetylkoenzym A → Krebsův cyklus (CO2 + meziprodukty) → dýchací řetězec (s kyslíkem) → ATP a voda."
+
+  - id: met.kyslik-pohyb
+    title: Kyslík, spalování tuků a pohyb
+    kind: concept
+    tier: B
+    status: course-disputed
+    criteria: [2e, 2d]
+    prereqs: [met.mitochondrialni-drahy]
+    source: { pages: [83, 84], anchor: "lze efektivně metabolizovat (spalovat) pouze při dostatečném zásobení kyslíkem" }
+    note: >-
+      „Pálení způsobuje kyselina mléčná“ je zjednodušení skript – podle současné fyziologie jde hlavně
+      o okyselení (ionty H⁺) a další metabolity, laktát sám je spíš palivo. U zkoušky odpověz podle skript.
+    explanation: >-
+      Bez dostatku kyslíku (velmi intenzivní zátěž) hradí sval energii jen z glukózy: ATP vzniká málo
+      a tvoří se kyselina mléčná (pálení svalů). Při aerobní zátěži je sval dobře zásoben kyslíkem
+      a ochotně spaluje mastné kyseliny. Silový trénink podle skript zvyšuje výdej dlouhodobě a chrání
+      svaly při redukci. Pro redukci tuku proto skripta doporučují kombinovat silovou a aerobní aktivitu.
+    exercises:
+      - id: paleni
+        type: choice
+        prompt: "Proč při velmi intenzivní zátěži bez dostatku kyslíku pálí svaly?"
+        options:
+          - { text: "Sval čerpá energii jen z glukózy a tvoří kyselinu mléčnou", correct: true }
+          - { text: "Sval spaluje mastné kyseliny a tvoří ketolátky", why: "Mastné kyseliny vyžadují kyslík; ketolátky tvoří játra." }
+          - { text: "Sval rozkládá bílkoviny na amoniak", why: "Pálení způsobuje kyselina mléčná." }
+      - id: redukce
+        type: choice
+        prompt: "Jakou kombinaci pohybu doporučují skripta pro redukci tuku?"
+        options:
+          - { text: "Silovou i aerobní aktivitu", correct: true }
+          - { text: "Pouze aerobní aktivitu", why: "Silový trénink navíc chrání svaly a zvyšuje výdej." }
+          - { text: "Pouze silový trénink", why: "Tuky se spalují za dostatku kyslíku, proto i aerobní aktivita." }
+
+  - id: met.vegetativni-nervy
+    title: Sympatikus vs. parasympatikus
+    kind: comparison
+    tier: B
+    criteria: [2c, 2d]
+    source: { pages: [82, 83], anchor: "Parasympatikus je systém, který uvádí organizmus do klidu, podporuje trávení" }
+    explanation: >-
+      Neurohumorální regulace je spolupráce nervového systému a hormonů. Vegetativní nervy nejsou
+      ovladatelné vůlí a řídí dýchání, srdce, trávení a močení. Sympatikus mobilizuje tělo ve stresu
+      („útok nebo útěk“) a zvyšuje hladinu adrenalinu. Parasympatikus uvádí tělo do klidu a podporuje
+      trávení a odpočinek.
+    exercises:
+      - id: traveni
+        type: choice
+        prompt: "Který systém podporuje trávení?"
+        options:
+          - { text: "Parasympatikus", correct: true }
+          - { text: "Sympatikus", why: "Sympatikus mobilizuje tělo ve stresu." }
+          - { text: "Dřeň nadledvin", why: "Tvoří adrenalin – stresová reakce." }
+      - id: stres
+        type: reveal
+        prompt: "Čím se liší působení sympatiku a parasympatiku?"
+        answer: "Sympatikus: rychlá mobilizace ve stresu (útok/útěk), adrenalin. Parasympatikus: klid, trávení, odpočinek."
+
+  - id: met.hormony-metabolismus
+    title: Anabolické hormony a hormony mobilizující zásoby
+    kind: comparison
+    tier: B
+    criteria: [2d, 2c]
+    prereqs: [met.anabolismus-katabolismus]
+    source: { pages: [83, 90, 80], anchor: "Mezi typické hormony, které podporují proteosyntézu patří inzulin, testosteron" }
+    explanation: >-
+      Anabolické hormony podporují novotvorbu: inzulin (glykogen, tuky, bílkoviny), testosteron (svalová
+      a kostní hmota) a růstový hormon – všechny podporují proteosyntézu. Zásoby mobilizují glukagon
+      (rozklad glykogenu a tuků, glukoneogeneze), glukokortikoidy (sacharidy, tuky, bílkoviny)
+      a katecholaminy – adrenalin a noradrenalin (stresová reakce). Hormony štítné žlázy zvyšují
+      bazální metabolismus.
+    exercises:
+      - id: proteosynteza
+        type: choice
+        multiple: true
+        prompt: "Které hormony podporují proteosyntézu? (vyber všechny)"
+        options:
+          - { text: "Inzulin", correct: true }
+          - { text: "Testosteron", correct: true }
+          - { text: "Růstový hormon", correct: true }
+          - { text: "Glukagon", why: "Glukagon mobilizuje zásoby." }
+          - { text: "Adrenalin", why: "Adrenalin mobilizuje zásoby ve stresu." }
+
   - id: met.sach-drahy
     title: Dráhy metabolismu sacharidů – názvosloví
     kind: comparison
@@ -67,8 +281,8 @@ points:
         options:
           - { text: "Kyselina mléčná (laktát)", correct: true }
           - { text: "Acetylkoenzym A", why: "Acetylkoenzym A vzniká za aerobních podmínek." }
-          - { text: "Glykogen" }
-          - { text: "Ketolátky" }
+          - { text: "Glykogen", why: "Glykogen je zásobní forma glukózy, z pyruvátu při glykolýze nevzniká." }
+          - { text: "Ketolátky", why: "Ketolátky tvoří játra z acetylkoenzymu A z mastných kyselin." }
       - id: srovnani
         type: reveal
         prompt: "Porovnej aerobní a anaerobní glykolýzu: produkt a energetický zisk."
@@ -92,8 +306,8 @@ points:
         options:
           - { text: "Jaterní", correct: true }
           - { text: "Svalový", why: "Sval si svůj glykogen ponechává pro vlastní potřebu." }
-          - { text: "Mozkový" }
-          - { text: "Glykogen z tukové tkáně" }
+          - { text: "Mozkový", why: "Mozek zásobu glykogenu pro tělo nedrží – je naopak největším spotřebitelem glukózy." }
+          - { text: "Glykogen z tukové tkáně", why: "Tuková tkáň ukládá tuk, ne glykogen." }
 
   - id: met.glukoneogeneze
     title: Glukoneogeneze – výchozí látky
@@ -116,9 +330,9 @@ points:
         prompt: "Která látka NENÍ výchozí látkou glukoneogeneze podle skript?"
         options:
           - { text: "Mastné kyseliny", correct: true, why: "Mastné kyseliny se odbourávají β-oxidací na acetylkoenzym A; zdrojem pro glukoneogenezi je glycerol." }
-          - { text: "Glycerol" }
-          - { text: "Kyselina mléčná" }
-          - { text: "Alanin" }
+          - { text: "Glycerol", why: "Glycerol (z tuků) je výchozí látkou glukoneogeneze." }
+          - { text: "Kyselina mléčná", why: "Laktát z pracujícího svalu a červených krvinek je výchozí látkou glukoneogeneze." }
+          - { text: "Alanin", why: "Alanin je aminokyselina, ze které játra glukózu tvoří." }
 
   - id: met.inzulin-tkane
     title: Tkáně závislé a nezávislé na inzulinu
@@ -138,9 +352,9 @@ points:
         options:
           - { text: "Mozek", correct: true }
           - { text: "Červené krvinky", correct: true }
-          - { text: "Kosterní sval" }
-          - { text: "Tuková tkáň" }
-          - { text: "Srdeční svalovina" }
+          - { text: "Kosterní sval", why: "Vstup glukózy do svalové tkáně je závislý na inzulinu." }
+          - { text: "Tuková tkáň", why: "Tuková tkáň potřebuje k příjmu glukózy inzulin." }
+          - { text: "Srdeční svalovina", why: "Srdeční svalovina patří podle skript mezi tkáně závislé na inzulinu." }
       - id: zavisle
         type: reveal
         prompt: "Do kterých tkání je vstup glukózy závislý na inzulinu?"
@@ -162,10 +376,10 @@ points:
         type: choice
         prompt: "Co dělá glukagon při lačnění?"
         options:
-          - { text: "Spouští glykogenolýzu a glukoneogenezi – zvyšuje glykémii.", correct: true }
-          - { text: "Podporuje glykogenezi – snižuje glykémii.", why: "To je účinek inzulinu." }
-          - { text: "Zvyšuje vstup glukózy do tukové tkáně." }
-          - { text: "Zastavuje uvolňování glukózy z jater." }
+          - { text: "Spouští glykogenolýzu a glukoneogenezi.", correct: true }
+          - { text: "Podporuje glykogenezi, a tím snižuje glykémii.", why: "To je účinek inzulinu." }
+          - { text: "Zvyšuje vstup glukózy do tukové tkáně.", why: "To dělá inzulin, glukagon glykémii zvyšuje." }
+          - { text: "Zastavuje uvolňování glukózy z jater do krve.", why: "Glukagon naopak uvolňování glukózy z jater spouští." }
       - id: vysvetli
         type: explain
         prompt: "Vysvětli, jak tělo udržuje glykémii po jídle a při lačnění."
@@ -178,3 +392,394 @@ points:
           Po jídle glykémie stoupne a slinivka vyloučí inzulin, který umožní vstup glukózy do svalových
           a tukových buněk a její uložení do glykogenu. Při lačnění inzulin klesá a roste glukagon,
           který rozkládá jaterní glykogen a spouští glukoneogenezi, takže se glukóza dostává do krve.
+
+  - id: met.lipoliza-lipogeneze
+    title: Lipolýza vs. lipogeneze
+    kind: comparison
+    tier: A
+    criteria: [2e]
+    source: { pages: [87, 88], anchor: "Novotvorbu tuků souhrnně nazýváme lipogenezí a jejich rozklad lipolýzou" }
+    explanation: >-
+      Hlavní zásobní formou tuku jsou triacylglyceroly (glycerol + mastné kyseliny). Lipolýza je rozklad
+      tuků na mastné kyseliny a glycerol; probíhá, když je třeba mobilizovat zásoby – při lačnění,
+      hladovění, kalorické restrikci a pohybu. Lipogeneze je tvorba tuků z mastných kyselin a glycerolu,
+      hlavně v játrech a tukových buňkách. Glycerol z lipolýzy může jít do glukoneogeneze, mastné
+      kyseliny se odbourávají β-oxidací.
+    exercises:
+      - id: produkty
+        type: choice
+        prompt: "Na co se při lipolýze rozkládají tuky?"
+        options:
+          - { text: "Na mastné kyseliny a glycerol", correct: true }
+          - { text: "Na acetylkoenzym A a ketolátky", why: "Ty vznikají až dále z mastných kyselin (β-oxidace, ketogeneze)." }
+          - { text: "Na glukózu a vodu", why: "Z mastných kyselin glukóza nevzniká." }
+          - { text: "Na cholesterol a žlučové kyseliny", why: "To se týká metabolismu cholesterolu." }
+      - id: kdy
+        type: choice
+        prompt: "Kdy typicky probíhá lipolýza?"
+        options:
+          - { text: "Při lačnění a pohybové aktivitě", correct: true }
+          - { text: "Po jídle bohatém na sacharidy", why: "Tehdy převládá inzulin a ukládání zásob." }
+          - { text: "Při hyperkalorickém příjmu", why: "Při nadbytku energie převládá lipogeneze." }
+
+  - id: met.beta-oxidace
+    title: β-oxidace mastných kyselin a karnitin
+    kind: procedure
+    tier: A
+    criteria: [2e]
+    prereqs: [met.lipoliza-lipogeneze, met.mitochondrialni-drahy]
+    source: { pages: [87, 88], anchor: "Vstup mastných kyselin do mitochondrie je závislý na karnitinu" }
+    explanation: >-
+      Mastné kyseliny uvolněné lipolýzou z tukové tkáně putují krví do buněk, např. do pracujícího
+      svalu. Do mitochondrie se dostanou pomocí karnitinu. Tam se β-oxidací mění na acetylkoenzym A,
+      který pokračuje Krebsovým cyklem a dýchacím řetězcem – vzniká oxid uhličitý a hodně ATP.
+      β-oxidace vyžaduje kyslík, tuky se proto „spalují“ jen za aerobních podmínek.
+    exercises:
+      - id: kde
+        type: choice
+        prompt: "Kde probíhá β-oxidace mastných kyselin?"
+        options:
+          - { text: "V mitochondriích", correct: true }
+          - { text: "V cytosolu", why: "V cytosolu probíhá naopak tvorba mastných kyselin." }
+          - { text: "V lyzozomech", why: "Lyzozomy jsou „buněčná popelnice“." }
+          - { text: "Ve střevě", why: "Ve střevě se tuky tráví lipázou, ne odbourávají β-oxidací." }
+      - id: karnitin
+        type: choice
+        prompt: "Která látka umožňuje vstup mastných kyselin do mitochondrie?"
+        options:
+          - { text: "Karnitin", correct: true }
+          - { text: "Inzulin", why: "Inzulin podporuje naopak tvorbu tuků." }
+          - { text: "Žluč", why: "Žluč rozptyluje tuky ve střevě." }
+          - { text: "Kreatin", why: "Kreatin s přenosem mastných kyselin nesouvisí." }
+      - id: produkt
+        type: choice
+        prompt: "Na co se mastné kyseliny při β-oxidaci mění?"
+        options:
+          - { text: "Na acetylkoenzym A", correct: true }
+          - { text: "Na glukózu", why: "Z mastných kyselin glukóza vzniknout nemůže." }
+          - { text: "Na pyruvát", why: "Pyruvát vzniká z glukózy v glykolýze." }
+          - { text: "Na glycerol", why: "Glycerol vzniká při lipolýze, ne z mastných kyselin." }
+
+  - id: met.karnitin-doplnek
+    title: Karnitin jako „spalovač“
+    kind: fact
+    tier: B
+    criteria: [2e, 8a]
+    prereqs: [met.beta-oxidace]
+    source: { pages: [87, 139], anchor: "Potenciál suplementovaného karnitinu je v tomto ohledu velmi sporný" }
+    explanation: >-
+      Karnitin je nezbytný pro vstup mastných kyselin do mitochondrií, proto bývá součástí „spalovačů“
+      tuků. Zdraví lidé si ho ale vytvářejí sami v dostatečném množství a skripta hodnotí účinek
+      karnitinu z doplňků na urychlení spalování tuků jako velmi sporný.
+    exercises:
+      - id: ucinek
+        type: choice
+        prompt: "Jak skripta hodnotí karnitin jako doplněk pro spalování tuků?"
+        options:
+          - { text: "Jeho účinek je velmi sporný", correct: true }
+          - { text: "Spolehlivě urychluje hubnutí", why: "Studie přinášejí nekonzistentní a slabé výsledky." }
+          - { text: "Je nutný, protože si ho tělo neumí vytvořit", why: "Zdraví lidé si karnitin vytvářejí sami v dostatečném množství." }
+
+  - id: met.lipogeneze-nadbytek
+    title: Lipogeneze z nadbytku sacharidů a bílkovin
+    kind: concept
+    tier: A
+    criteria: [2e]
+    prereqs: [met.lipoliza-lipogeneze]
+    source: { pages: [88, 89], anchor: "Nadbytečná glukóza, která se dále nevyužije" }
+    explanation: >-
+      Při nadbytku energie a nasycených zásobách glykogenu se nadbytečná glukóza mění v játrech přes
+      acetylkoenzym A na mastné kyseliny a pak na tuk; podporuje to inzulin. Podobně se může na tuk
+      přeměnit fruktóza (např. z glukózo-fruktózových sirupů) i nadbytek bílkovin. Opačná cesta není
+      možná: z mastných kyselin glukóza vzniknout nemůže (jen z glycerolu). Tvorba mastných kyselin
+      probíhá v cytosolu.
+    exercises:
+      - id: podminky
+        type: choice
+        prompt: "Za jakých podmínek se glukóza mění na tuk?"
+        options:
+          - { text: "Při nadbytku energie a plných zásobách glykogenu", correct: true }
+          - { text: "Při lačnění, kdy klesá inzulin", why: "Při lačnění se tuky naopak rozkládají." }
+          - { text: "Jen při nedostatku kyslíku", why: "Bez kyslíku vzniká z glukózy kyselina mléčná." }
+          - { text: "Nikdy – z cukrů tuk vzniknout nemůže", why: "Přes acetylkoenzym A to možné je." }
+      - id: tvrzeni
+        type: choice
+        prompt: "Které tvrzení odpovídá skriptům?"
+        options:
+          - { text: "Z glukózy mohou vzniknout mastné kyseliny, opačně ne", correct: true }
+          - { text: "Z mastných kyselin vzniká glukóza glukoneogenezí", why: "Do glukoneogeneze jde jen glycerol z tuků." }
+          - { text: "Na tuk se může přeměnit jen glukóza", why: "Také fruktóza a nadbytek bílkovin." }
+          - { text: "Lipogenezi podporuje glukagon", why: "Lipogenezi podporuje inzulin." }
+
+  - id: met.lipoproteiny
+    title: Lipoproteiny – transport tuků krví
+    kind: fact
+    tier: A
+    criteria: [2e, 1b]
+    source: { pages: [89], anchor: "Lipoproteiny jsou hlavními transportními částicemi tuků v krvi" }
+    explanation: >-
+      Tuky se ve vodě, a tedy ani v krvi, nerozpouštějí. Krví se proto přenášejí v lipoproteinech –
+      komplexech tuků s bílkovinami, které jsou díky bílkovinám rozpustnější. Třídy podle skript:
+      VLDL (hlavně triacylglyceroly, např. z jater do tukové tkáně), LDL („špatný cholesterol“) a HDL
+      („hodný cholesterol“). Ketolátky jsou v krvi rozpustné a lipoproteiny nepotřebují.
+    exercises:
+      - id: proc
+        type: choice
+        prompt: "Proč se tuky přenášejí krví v lipoproteinech?"
+        options:
+          - { text: "Díky bílkovinám se tuky stanou ve vodě rozpustnějšími", correct: true }
+          - { text: "Lipoproteiny tuky štěpí na mastné kyseliny", why: "Tuky štěpí lipáza." }
+          - { text: "Lipoproteiny chrání tuky před žlučí", why: "Žluč působí ve střevě, ne v krvi." }
+      - id: vldl
+        type: choice
+        prompt: "Která třída lipoproteinů podle skript přenáší hlavně triacylglyceroly?"
+        options:
+          - { text: "VLDL", correct: true }
+          - { text: "LDL", why: "LDL je „špatný cholesterol“." }
+          - { text: "HDL", why: "HDL je „hodný cholesterol“." }
+
+  - id: met.ketolatky
+    title: Ketolátky a ketóza
+    kind: concept
+    tier: A
+    criteria: [2e]
+    prereqs: [met.beta-oxidace]
+    source: { pages: [89], anchor: "Ketolátky jsou alternativním energetickým substrátem buněk" }
+    explanation: >-
+      Při nedostatku sacharidů dochází k výrazné lipolýze. Játra pak z nadbytku acetylkoenzymu A
+      z mastných kyselin tvoří ketolátky (ketogeneze) a posílají je krví do svalů, srdce i mozku jako
+      náhradní zdroj energie. Ketolátky jsou v krvi rozpustné. Při přísné nízkosacharidové či ketogenní
+      dietě jde o nutriční ketózu; ketolátky vznikají i při nedostatku inzulinu (patologický stav) –
+      tyto stavy se nesmějí zaměňovat.
+    exercises:
+      - id: vznik
+        type: choice
+        prompt: "Kde a z čeho vznikají ketolátky?"
+        options:
+          - { text: "V játrech z acetylkoenzymu A z mastných kyselin", correct: true }
+          - { text: "Ve svalech z kyseliny mléčné při anaerobní práci", why: "Laktát slouží ke glukoneogenezi." }
+          - { text: "V ledvinách z močoviny a dalších dusíkatých látek", why: "Močovina je odpadní produkt dusíku." }
+          - { text: "V tukové tkáni z glycerolu uvolněného lipolýzou", why: "Glycerol jde do glukoneogeneze." }
+      - id: tvrzeni
+        type: choice
+        prompt: "Které tvrzení o ketolátkách je správné?"
+        options:
+          - { text: "Jsou v krvi rozpustné a využije je i mozek", correct: true }
+          - { text: "Krví se přenášejí v lipoproteinech", why: "Ketolátky jsou rozpustné, lipoproteiny nepotřebují." }
+          - { text: "Tvoří se hlavně po jídle bohatém na sacharidy", why: "Tvoří se při nedostatku sacharidů." }
+          - { text: "Nutriční ketóza je totéž co ketóza při nedostatku inzulinu", why: "Biochemie je podobná, ale stavy se nesmějí zaměňovat." }
+
+  - id: met.cholesterol
+    title: Cholesterol – tvorba, funkce, odbourání
+    kind: fact
+    tier: A
+    criteria: [2e, 1b]
+    source: { pages: [89, 90], anchor: "Lidské tělo si dokáže cholesterol vytvořit v dostatečném množství" }
+    explanation: >-
+      Tělo si cholesterol dokáže vytvořit v dostatečném množství. Je nezbytný pro buněčné membrány
+      a vzniká z něj vitamin D a pohlavní hormony. Krví se přenáší v lipoproteinech. Tělo ho neumí
+      rozložit – odbourává ho přeměnou na žlučové kyseliny, které odcházejí žlučí do střeva. Vláknina
+      omezuje jejich zpětné vstřebávání do jater, a tím podporuje jejich vylučování.
+    exercises:
+      - id: odbourani
+        type: choice
+        prompt: "Jak se tělo zbavuje cholesterolu?"
+        options:
+          - { text: "Přeměnou na žlučové kyseliny", correct: true }
+          - { text: "Rozkladem na CO2 a vodu v mitochondriích", why: "Tělo molekulu cholesterolu rozložit neumí." }
+          - { text: "Vylučováním do moči", why: "Cholesterol odchází přes žlučové kyseliny do střeva." }
+          - { text: "Přeměnou na ketolátky", why: "Ketolátky vznikají z mastných kyselin." }
+      - id: vznika
+        type: choice
+        multiple: true
+        prompt: "Co vzniká z cholesterolu? (vyber všechny)"
+        options:
+          - { text: "Vitamin D", correct: true }
+          - { text: "Pohlavní hormony", correct: true }
+          - { text: "Žlučové kyseliny", correct: true }
+          - { text: "Inzulin", why: "Inzulin je bílkovinný hormon." }
+          - { text: "Glykogen", why: "Glykogen vzniká z glukózy." }
+
+  - id: met.ak-glukogenni-ketogenni
+    title: Glukogenní a ketogenní aminokyseliny
+    kind: comparison
+    tier: A
+    criteria: [2g]
+    source: { pages: [90, 91], anchor: "Z metabolického hlediska můžeme aminokyseliny dělit na glukogenní a ketogenní" }
+    explanation: >-
+      Glukogenní aminokyseliny lze přeměnit na glukózu – např. alanin ze svalu v glukoneogenezi.
+      Ketogenní aminokyseliny (typicky leucin) vstupují do energetického metabolismu (Krebsova cyklu)
+      a glukóza z nich vzniknout nemůže. Uhlíkatou kostru aminokyselin lze využít jako zdroj energie,
+      např. BCAA ve svalu.
+    exercises:
+      - id: ketogenni
+        type: choice
+        prompt: "Která aminokyselina je podle skript typicky ketogenní?"
+        options:
+          - { text: "Leucin", correct: true }
+          - { text: "Alanin", why: "Alanin je glukogenní – slouží ke glukoneogenezi." }
+          - { text: "Žádná – z každé lze vytvořit glukózu", why: "Z ketogenních aminokyselin glukóza vzniknout nemůže." }
+      - id: glukogenni
+        type: choice
+        prompt: "Co platí pro glukogenní aminokyseliny?"
+        options:
+          - { text: "Tělo z nich umí vytvořit glukózu", correct: true }
+          - { text: "Tělo si je neumí samo vytvořit", why: "To je definice esenciálních aminokyselin." }
+          - { text: "Vznikají z nich jen ketolátky", why: "To platí pro ketogenní aminokyseliny." }
+          - { text: "Patří sem hlavně leucin", why: "Leucin je typicky ketogenní." }
+
+  - id: met.proteosynteza-proteolyza
+    title: Proteosyntéza a proteolýza
+    kind: comparison
+    tier: A
+    criteria: [2g]
+    prereqs: [met.anabolismus-katabolismus]
+    source: { pages: [90, 91], anchor: "Tento proces je energeticky nesmírně náročný" }
+    explanation: >-
+      Proteosyntéza je tvorba bílkovin z aminokyselin podle informace v DNA (pořadí aminokyselin). Je
+      energeticky velmi náročná – proto je růst svalové hmoty složitý. Podporují ji inzulin, testosteron
+      a růstový hormon. Proteolýza je rozklad bílkovin: odstraňuje opotřebované a poškozené bílkoviny
+      a uvolňuje volné aminokyseliny. Oba děje probíhají neustále (metabolický obrat bílkovin).
+    exercises:
+      - id: proteolyza
+        type: choice
+        prompt: "Co je proteolýza?"
+        options:
+          - { text: "Rozklad bílkovin na aminokyseliny", correct: true }
+          - { text: "Tvorba bílkovin z aminokyselin", why: "To je proteosyntéza." }
+          - { text: "Přeměna amoniaku na močovinu", why: "To je močovinový cyklus." }
+          - { text: "Tvorba glukózy z aminokyselin", why: "To je glukoneogeneze." }
+      - id: svaly
+        type: choice
+        prompt: "Proč je podle skript růst svalové hmoty složitý proces?"
+        options:
+          - { text: "Proteosyntéza je energeticky velmi náročná", correct: true }
+          - { text: "Svaly nedokážou využít aminokyseliny z potravy", why: "Aminokyseliny z potravy jsou stavebním materiálem pro proteosyntézu." }
+          - { text: "Bílkoviny ve svalu se nikdy nerozkládají", why: "Probíhá stálý obrat – syntéza i rozklad." }
+
+  - id: met.deaminace-transaminace
+    title: Deaminace a transaminace
+    kind: comparison
+    tier: A
+    status: supplementary
+    criteria: [2g]
+    prereqs: [met.proteosynteza-proteolyza]
+    confusableWith: [met.amoniak-mocovina]
+    source: { pages: [91], anchor: "Aminokyseliny obsahují ve své molekule aminodusík" }
+    note: >-
+      Pojmy deaminace a transaminace skripta nepoužívají – popisují jen, že z aminodusíku vzniká amoniak
+      (s. 90–91). Doplněno, protože jde o běžné zkouškové pojmy metabolismu bílkovin.
+    explanation: >-
+      Při odbourávání aminokyselin se musí odstranit dusík (aminoskupina). Transaminace je přenos
+      aminoskupiny z aminokyseliny na jinou molekulu (ketokyselinu) – tak si tělo vytváří neesenciální
+      aminokyseliny. Deaminace je odštěpení aminoskupiny, při kterém vzniká amoniak; zbylá uhlíková
+      kostra slouží jako zdroj energie nebo pro tvorbu glukózy či ketolátek. Amoniak se v játrech mění
+      na močovinu.
+    exercises:
+      - id: deaminace
+        type: choice
+        prompt: "Jak se nazývá odštěpení aminoskupiny z aminokyseliny, při kterém vzniká amoniak?"
+        options:
+          - { text: "Deaminace", correct: true }
+          - { text: "Transaminace", why: "Transaminace aminoskupinu přenáší na jinou molekulu." }
+          - { text: "Proteolýza", why: "Proteolýza je rozklad bílkovin na aminokyseliny." }
+          - { text: "Glukoneogeneze", why: "Glukoneogeneze je tvorba glukózy." }
+      - id: transaminace
+        type: choice
+        prompt: "K čemu slouží transaminace?"
+        options:
+          - { text: "Tvoří neesenciální aminokyseliny přenosem aminoskupiny", correct: true }
+          - { text: "Mění v játrech jedovatý amoniak na močovinu", why: "To je močovinový cyklus." }
+          - { text: "Spojuje aminokyseliny peptidovou vazbou do bílkovin", why: "To je proteosyntéza." }
+          - { text: "Odbourává puriny z nukleových kyselin na kyselinu močovou", why: "To je metabolismus purinů." }
+
+  - id: met.amoniak-mocovina
+    title: Amoniak a močovinový cyklus
+    kind: procedure
+    tier: A
+    criteria: [2g, 2a]
+    prereqs: [met.proteosynteza-proteolyza]
+    confusableWith: [met.puriny, met.deaminace-transaminace]
+    source: { pages: [90, 91], anchor: "Močovinový cyklus probíhá pouze v játrech" }
+    explanation: >-
+      Na rozdíl od sacharidů a tuků obsahují aminokyseliny dusík. Při jejich odbourávání vzniká toxický
+      amoniak, který se musí okamžitě zneškodnit: v močovinovém cyklu (probíhá pouze v játrech) se mění
+      na netoxickou močovinu. Ta putuje krví do ledvin a vylučuje se močí. Močovina je konečný produkt
+      metabolismu dusíku z aminokyselin.
+    exercises:
+      - id: kde
+        type: choice
+        prompt: "Kde probíhá močovinový cyklus?"
+        options:
+          - { text: "Pouze v játrech", correct: true }
+          - { text: "V ledvinách", why: "Ledviny močovinu jen vylučují." }
+          - { text: "Ve svalech", why: "Ve svalu se může využít uhlíková kostra aminokyselin, močovina tam nevzniká." }
+          - { text: "V tlustém střevě", why: "Močovinový cyklus probíhá v játrech." }
+      - id: produkt
+        type: choice
+        prompt: "Co je konečným produktem metabolismu dusíku z aminokyselin?"
+        options:
+          - { text: "Močovina", correct: true }
+          - { text: "Amoniak", why: "Amoniak je toxický meziprodukt, mění se na močovinu." }
+          - { text: "Kyselina močová", why: "Kyselina močová je produkt metabolismu purinů." }
+          - { text: "Kreatinin", why: "Kreatinin je jiný odpadní produkt vylučovaný močí." }
+
+  - id: met.dusikova-bilance
+    title: Dusíková bilance
+    kind: concept
+    tier: A
+    criteria: [2g, 1d]
+    prereqs: [met.amoniak-mocovina]
+    source: { pages: [41], anchor: "Kladná bilance se vyskytuje při růstu nebo rekonvalescenci" }
+    explanation: >-
+      Dusíková bilance je rozdíl mezi dusíkem přijatým v bílkovinách a dusíkem vyloučeným (hlavně
+      močovinou v moči, také stolicí), obvykle za 24 h. 1 g dusíku odpovídá 6,25 g bílkovin. Kladná
+      bilance (příjem > výdej, syntéza převažuje nad rozpadem): růst, rekonvalescence. Záporná (rozpad
+      převažuje): některá onemocnění, stavy po břišních operacích, poruchy příjmu potravy. Ve většině
+      případů je bilance vyrovnaná.
+    exercises:
+      - id: kladna
+        type: choice
+        prompt: "Kdy se typicky vyskytuje kladná dusíková bilance?"
+        options:
+          - { text: "Při růstu a rekonvalescenci", correct: true }
+          - { text: "Po břišní operaci", why: "Tehdy bývá bilance záporná." }
+          - { text: "Při poruše příjmu potravy", why: "Tehdy bývá bilance záporná." }
+          - { text: "U zdravého dospělého se stálou hmotností", why: "U něj bývá bilance vyrovnaná." }
+      - id: prepocet
+        type: choice
+        prompt: "Kolika gramům bílkovin odpovídá 1 g dusíku?"
+        options:
+          - { text: "6,25 g", correct: true }
+          - { text: "4 g", why: "4 kcal je energie z 1 g bílkovin – jiný údaj." }
+          - { text: "16 g", why: "16 % je přibližný podíl dusíku v bílkovině, ne přepočet." }
+          - { text: "9 g", why: "Přepočtový faktor je 6,25." }
+
+  - id: met.puriny
+    title: Metabolismus purinů a kyselina močová
+    kind: fact
+    tier: A
+    criteria: [2g]
+    confusableWith: [met.amoniak-mocovina]
+    source: { pages: [91], anchor: "Produktem metabolizmu purinů je kyselina močová" }
+    explanation: >-
+      Puriny jsou stavebními kameny nukleových kyselin (DNA, RNA) a základem molekuly ATP. Jejich
+      odbouráváním vzniká kyselina močová; její obrat souvisí s tvorbou tkání a buněčným dělením.
+      Kyselina močová je ve vodě špatně rozpustná: při vysoké hladině (hyperurikémie) se ukládá
+      v kloubech a tkáních – dna (strava při dně: viz téma Nemoci).
+    exercises:
+      - id: produkt
+        type: choice
+        prompt: "Co je konečným produktem metabolismu purinů?"
+        options:
+          - { text: "Kyselina močová", correct: true }
+          - { text: "Močovina", why: "Močovina je produkt metabolismu dusíku z aminokyselin." }
+          - { text: "Amoniak", why: "Amoniak vzniká z aminokyselin a mění se na močovinu." }
+          - { text: "Kyselina mléčná", why: "Laktát vzniká při anaerobní glykolýze." }
+      - id: dna
+        type: choice
+        prompt: "Proč se kyselina močová u dny ukládá v kloubech?"
+        options:
+          - { text: "Je ve vodě špatně rozpustná a při vyšší hladině se sráží", correct: true }
+          - { text: "Je toxická a poškozuje kloubní chrupavku podobně jako amoniak", why: "Problém je nízká rozpustnost, ne toxicita." }
+          - { text: "Krví se přenáší v lipoproteinech, které se v kloubech usazují", why: "V lipoproteinech se přenášejí tuky a cholesterol." }

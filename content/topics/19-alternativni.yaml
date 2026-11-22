@@ -1,0 +1,695 @@
+topic:
+  id: alternativni
+  title: Alternativní směry ve výživě
+  chapter: 19
+  pages: [190, 203]
+  order: 190
+  summary: >-
+    Vegetariánství, flexitariánství, veganství, makrobiotika, nízkosacharidová a ketogenní strava, paleo,
+    carnivore, RAW, další diety, přerušovaný půst, intuitivní stravování, IIFYM a Modré zóny – principy,
+    výhody, rizika a kompenzace rizikových živin.
+
+points:
+  - id: alt.vegetarianstvi
+    title: Vegetariánství – typy, rizika a výhody
+    kind: concept
+    tier: A
+    criteria: [6a]
+    confusableWith: [alt.flexitarianstvi, alt.veganstvi-rizika]
+    source: { pages: [190, 132], anchor: "Nejrozšířenější vegetariánskou skupinu nazýváme ovo-laktovegetariánství" }
+    explanation: >-
+      Vegetariáni nejedí potraviny z mrtvých zvířat, ale jedí vejce, mléko a med. Nejrozšířenější jsou ovo-laktovegetariáni (mléko i vejce), méně laktovegetariáni (jen
+      mléčné výrobky); někteří jedí ryby či drůbež, ale ne maso savců. Rizikové živiny: omega-3,
+      železo, zinek, vitamin D, B12 – při konzumaci vajec a mléka je riziko nízké (kromě těhotných),
+      doplněk B12 bývá i tak vhodný. Výhody: dost vlákniny; bez UZPP a při vhodném energetickém
+      nastavení může (jako jiné směry) snížit riziko srdečně-cévních nemocí a pomoci s hmotností.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Popiš vegetariánství – jaké má typy, výhody a na které živiny si dát pozor."
+        keyPoints:
+          - "Nejí maso zabitých zvířat, ale jí vejce, mléko, med"
+          - "Ovo-lakto (nejčastější), lakto; někteří i ryby/drůbež"
+          - "Rizikové živiny: omega-3, Fe, Zn, vitamin D, B12"
+          - "S vejci a mlékem nízké riziko, výjimka těhotné"
+          - "Výhody: vláknina; bez UZPP a při vhodné energii může snížit riziko KVO a pomoci s hmotností"
+        modelAnswer: >-
+          Vegetariáni nejedí maso zabitých zvířat, ale mohou jíst vejce, mléko a med. Nejčastější je
+          ovo-laktovegetariánství, méně časté laktovegetariánství, někteří jedí i ryby nebo drůbež.
+          Rizikem je nedostatek omega-3 mastných kyselin, železa, zinku, vitaminu D a B12; pokud ale
+          jedí vejce a mléčné výrobky, je riziko nízké, s výjimkou těhotných. Strava bývá bohatá na
+          vlákninu, a pokud není postavená na ultrazpracovaných potravinách a má přiměřenou energii,
+          může snížit riziko srdečně-cévních onemocnění a pomoci s hmotností.
+      - id: lakto
+        type: choice
+        prompt: "Klientka jí mléčné výrobky, ale ne maso, ryby ani vejce. Jak se tento směr nazývá?"
+        options:
+          - { text: "Laktovegetariánství", correct: true }
+          - { text: "Ovo-laktovegetariánství", why: "Ovo-laktovegetariáni jedí i vejce." }
+          - { text: "Veganství", why: "Vegani nejedí žádné živočišné produkty, ani mléko." }
+          - { text: "Flexitariánství", why: "Flexitariáni občas jedí i maso." }
+      - id: rizikove
+        type: choice
+        multiple: true
+        prompt: "Které živiny skripta uvádějí jako rizikové u vegetariánů?"
+        options:
+          - { text: "Vitamin B12", correct: true }
+          - { text: "Železo", correct: true }
+          - { text: "Omega-3 mastné kyseliny", correct: true }
+          - { text: "Vláknina", why: "Vlákniny mívají vegetariáni naopak dostatek." }
+          - { text: "Vitamin C", why: "Vitamin C je v rostlinné stravě hojně." }
+
+  - id: alt.flexitarianstvi
+    title: Flexitariánství
+    kind: concept
+    tier: B
+    criteria: [6a]
+    confusableWith: [alt.vegetarianstvi]
+    source: { pages: [190, 191], anchor: "převážně rostlinný způsob stravování, který povoluje občasnou konzumaci masa" }
+    explanation: >-
+      Flexitariánství („flexibilní vegetariánství“) je převážně rostlinná strava, která občas povoluje
+      maso a ryby – kompromis mezi vegetariánstvím a běžnou stravou. Živočišné produkty jí méně a
+      kvalitně (bio, lokální, ne z velkochovů), důraz na udržitelnost a etiku. Výhody: víc vlákniny a
+      větší nutriční flexibilita, tedy nižší riziko nedostatku B12, železa a zinku než u vegetariánů
+      a veganů.
+    exercises:
+      - id: definice
+        type: choice
+        prompt: "Co je flexitariánství?"
+        options:
+          - { text: "Převážně rostlinná strava s občasnou konzumací masa a ryb", correct: true }
+          - { text: "Strava bez masa, ale s rybami", why: "To je jedna z forem vegetariánství, maso savců vylučuje." }
+          - { text: "Střídání dnů s masem a dnů půstu", why: "To je spíš forma půstu, ne flexitariánství." }
+          - { text: "Strava založená jen na syrových potravinách", why: "To je RAW strava." }
+      - id: vyhoda
+        type: reveal
+        prompt: "Jakou výhodu má flexitariánství oproti vegetariánství a veganství?"
+        answer: "Větší nutriční flexibilitu – nižší riziko nedostatku B12, železa, zinku apod.; zároveň víc vlákniny než běžná strava."
+
+  - id: alt.veganstvi-rizika
+    title: Veganství – rizika a rizikové skupiny
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      S. 191 uvádí, že veganství se nedoporučuje v těhotenství a je nevhodné pro děti. Tabulka na
+      s. 192 ale ukazuje rozdílné postoje (AND 2025: dobře naplánovaná veganská strava je adekvátní;
+      DGE 2024 postoj zmírnila); organizace se shodují, že bez odborného vedení a suplementace je
+      riziková. Ke zkoušce: kap. 19 (s. 191) ji pro děti označuje za nevhodnou, novější ESPGHAN 2025
+      (s. 222) ji připouští jen za přísných podmínek (sledování pediatrem/NT, povinná B12, pozornost
+      na D, Fe, Ca, DHA). Odpověz: paušálně se nedoporučuje, je možná jen za těchto podmínek; poradce
+      dětského vegana sám nevede.
+    criteria: [6a]
+    confusableWith: [alt.vegetarianstvi, obd.veganstvi-deti]
+    source: { pages: [191, 192], anchor: "Veganství se nedoporučuje v těhotenství" }
+    explanation: >-
+      Veganství je nejpřísnější forma vegetariánství – žádné živočišné produkty. Rizikové živiny:
+      omega-3, železo, vápník, zinek, vitamin D, B12. Výhody: úprava hmotnosti (díky deficitu),
+      šetrnost ke zvířatům. Podle skript se nedoporučuje v těhotenství (málo železa) a je nevhodné pro
+      děti (málo vápníku a vitaminu D → rachitida); největší riziko mají kojenci na rostlinném (hlavně
+      mandlovém) mléce. Dospělý musí jídelníček sestavit velmi pečlivě a suplementovat.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Klientka se chce stát vegankou. Jaké výhody a rizika jí vysvětlíš a pro koho veganství není vhodné?"
+        keyPoints:
+          - "Žádné živočišné produkty – nejpřísnější forma vegetariánství"
+          - "Rizikové živiny: B12, Fe, Ca, Zn, vitamin D, omega-3"
+          - "Výhody: úprava hmotnosti, šetrnost ke zvířatům"
+          - "Nevhodné pro děti a kojence, nedoporučuje se v těhotenství"
+          - "Dospělí: pečlivý jídelníček + suplementace, ideálně s odborným vedením"
+        modelAnswer: >-
+          Veganství vylučuje všechny živočišné produkty. Může pomoci s úpravou hmotnosti a je šetrné ke
+          zvířatům, ale hrozí nedostatek B12, železa, vápníku, zinku, vitaminu D a omega-3. Podle skript
+          se nedoporučuje v těhotenství a není vhodné pro děti – hrozí třeba rachitida, u kojenců na
+          rostlinném mléce i nedostatek esenciálních aminokyselin. Dospělá veganka musí jídelníček
+          sestavit velmi pečlivě a suplementovat; organizace se shodují, že bez odborného vedení je
+          veganství rizikové.
+      - id: deti
+        type: choice
+        prompt: "Proč skripta považují veganství za nevhodné pro děti?"
+        options:
+          - { text: "Je chudá na vápník a vitamin D – hrozí rachitida.", correct: true }
+          - { text: "Obsahuje příliš mnoho bílkovin, které zatěžují ledviny.", why: "Problémem je spíš nedostatek, ne nadbytek." }
+          - { text: "Obsahuje málo vlákniny, takže děti trpí zácpou.", why: "Vlákniny je ve veganské stravě naopak hodně." }
+          - { text: "Vede k hromadění nadbytku vitaminu C v těle.", why: "Vitamin C se nehromadí a riziko ve skriptech je opačné – nedostatek vápníku a vitaminu D." }
+      - id: kojenci
+        type: choice
+        prompt: "U koho skripta uvádějí obzvlášť velká rizika veganské výživy?"
+        options:
+          - { text: "U kojenců vyživovaných rostlinným (např. mandlovým) mlékem", correct: true }
+          - { text: "U zdravých dospělých mužů", why: "Dospělý může veganství zvládnout při pečlivém plánování a suplementaci." }
+          - { text: "U vrcholových sportovců", why: "Skripta zvlášť zdůrazňují kojence na rostlinném mléce." }
+          - { text: "U lidí s nadváhou", why: "U nich skripta uvádějí spíš výhodu – úpravu hmotnosti." }
+
+  - id: alt.veganstvi-kompenzace
+    title: Veganství – kompenzace rizikových živin
+    kind: procedure
+    tier: A
+    criteria: [6a]
+    prereqs: [alt.veganstvi-rizika, vit.b12, min.zelezo-formy, min.jod]
+    source: { pages: [191, 192, 135], anchor: "U rostlinných produktů je absolutní absence vitaminu B12" }
+    explanation: >-
+      B12: v rostlinách chybí úplně → suplementace je nutná. Železo: hlavní zdroje jsou maso a játra;
+      rostlinné zdroje (ovesné vločky, celozrnný chléb, ořechy) ho mají, ale vstřebává se mnohem hůř.
+      Zinek: hlavně z masa; v celozrnných výrobcích je ho dost, ale fytin snižuje využitelnost.
+      Omega-3: chybí EPA i DHA, přeměna z ALA je velmi malá → doplněk z mořských řas. Jód: vegani
+      jsou rizikoví (bez ryb a mléka) → jodizovaná sůl. Hlídat i vápník a vitamin D.
+    exercises:
+      - id: kompenzace
+        type: explain
+        prompt: "Jak by měla veganka kompenzovat rizikové živiny?"
+        keyPoints:
+          - "B12 v rostlinách chybí → povinná suplementace"
+          - "Železo z rostlin se vstřebává mnohem hůř"
+          - "Zinek: fytin v celozrnných výrobcích snižuje využitelnost"
+          - "Omega-3: chybí EPA/DHA, přeměna z ALA malá → doplněk z mořských řas"
+          - "Jód (jodizovaná sůl), vápník a vitamin D hlídat"
+        modelAnswer: >-
+          Vitamin B12 se v rostlinných potravinách vůbec nevyskytuje, takže ho musí suplementovat.
+          Železo sice obsahují třeba ovesné vločky nebo ořechy, ale vstřebává se z nich mnohem hůř než
+          z masa. Zinek je v celozrnných výrobcích, ale fytin jeho využitelnost výrazně snižuje.
+          Omega-3 EPA a DHA ve veganské stravě chybí a přeměna z kyseliny alfa-linolenové je malá,
+          proto doporučím doplněk z mořských řas. Pohlídat musí i jód (jodizovaná sůl), vápník a
+          vitamin D.
+      - id: omega3
+        type: choice
+        prompt: "Jaký doplněk omega-3 mastných kyselin skripta doporučují veganům?"
+        options:
+          - { text: "Doplněk z mořských řas", correct: true }
+          - { text: "Rybí olej", why: "Rybí olej není veganský." }
+          - { text: "Lněný olej jako jediný zdroj – přemění se na EPA a DHA dostatečně", why: "Přeměna ALA na EPA a DHA je velmi malá." }
+          - { text: "Veganům omega-3 nehrozí", why: "Omega-3 patří mezi rizikové živiny veganů." }
+      - id: zinek
+        type: choice
+        prompt: "Proč celozrnné výrobky nejsou pro vegany spolehlivým zdrojem zinku?"
+        options:
+          - { text: "Obsahují fytin, který snižuje biologickou dostupnost zinku.", correct: true }
+          - { text: "Zinek v nich vůbec není.", why: "Zinku obsahují poměrně dost, problém je využitelnost." }
+          - { text: "Zinek se z nich ztrácí tepelnou úpravou.", why: "Skripta jako důvod uvádějí fytin, ne tepelnou úpravu." }
+          - { text: "Obsahují příliš mnoho vitaminu C.", why: "Problémem je fytin, ne vitamin C." }
+      - id: b12
+        type: reveal
+        prompt: "Proč je u veganství nutná suplementace vitaminu B12?"
+        answer: "Rostlinné potraviny vitamin B12 vůbec neobsahují – přirozeně je jen v živočišných zdrojích (játra, ryby, maso)."
+
+  - id: alt.rostlinne-bilkoviny
+    title: Kvalita bílkovin v rostlinné stravě
+    kind: concept
+    tier: B
+    criteria: [6a, 1d]
+    prereqs: [alt.veganstvi-kompenzace, bil.limitujici-ak, bil.vyuzitelnost]
+    source: { pages: [39, 41, 192], anchor: "u luštěnin methionin nebo cystein" }
+    explanation: >-
+      Rostlinné bílkoviny mají obvykle limitující aminokyselinu (obiloviny lysin, luštěniny methionin
+      či cystein), proto jsou „neplnohodnotné“ a tělo je využije jen z 55–60 %. Kombinací obilovin
+      a luštěnin se využitelnost zvýší až na 80 %. Vegan by měl preferovat nezpracované zdroje –
+      luštěniny, tofu, tempeh – před masovými analogy.
+    exercises:
+      - id: kombinace
+        type: choice
+        prompt: "Jak může vegan zlepšit kvalitu přijímaných bílkovin?"
+        options:
+          - { text: "Kombinovat obiloviny s luštěninami", correct: true }
+          - { text: "Jíst jen obiloviny, ty mají všechny aminokyseliny", why: "Obilovinám chybí hlavně lysin." }
+          - { text: "Nahradit luštěniny veganskými salámy", why: "Masové analogy jsou ultrazpracované; preferují se luštěniny, tofu, tempeh." }
+          - { text: "Kvalitu rostlinných bílkovin nelze ovlivnit", why: "Vhodnou kombinací se využitelnost zvýší až na 80 %." }
+
+  - id: alt.vegan-uzpp
+    title: Veganské ≠ automaticky zdravé
+    kind: concept
+    tier: B
+    criteria: [6a]
+    source: { pages: [191, 192], anchor: "upřednostňují nezpracované rostlinné zdroje bílkovin" }
+    explanation: >-
+      Veganský je i cukr a řada ultrazpracovaných potravin – typicky masové analogy („salámy“,
+      „burgery“, „nugetky“) s dlouhým složením (izoláty bílkovin, oleje, škroby, stabilizátory,
+      aromata), navíc drahé. Poradce má vést klienta k nezpracovaným zdrojům (luštěniny, tofu,
+      tempeh) a ke čtení složení. Mýty (bez masa nelze být silný, maso v střevě hnije, živočišné
+      produkty vůbec nepotřebujeme) nemají jednoznačnou oporu – probrat je věcně.
+    exercises:
+      - id: analog
+        type: choice
+        prompt: "Klient přešel na veganskou stravu a jí hlavně veganské burgery a salámy. Co mu doporučíš?"
+        options:
+          - { text: "Upřednostnit luštěniny, tofu a tempeh a číst složení výrobků.", correct: true }
+          - { text: "Nic, veganské výrobky jsou automaticky zdravé.", why: "Masové analogy bývají ultrazpracované potraviny." }
+          - { text: "Přidat k nim ještě sójové nugety pro víc bílkovin.", why: "Nugety jsou také ultrazpracovaný masový analog." }
+          - { text: "Vrátit se okamžitě k masu.", why: "Úkolem poradce není směr odsuzovat, ale věcně pomoci." }
+
+  - id: alt.makrobiotika
+    title: Makrobiotika
+    kind: concept
+    tier: A
+    criteria: [6a]
+    source: { pages: [193], anchor: "Makrobiotika je stravovací směr bez vědeckého zdůvodnění" }
+    explanation: >-
+      Makrobiotika je směr bez vědeckého zdůvodnění, převážně vegetariánský, založený filozofem Ohsawou.
+      Základem jsou obiloviny a zelenina. Vychází z rovnováhy jin a jang – ideální poměr 5 : 1 má
+      hnědá rýže; argumentuje i chrupem (z 32 zubů jen 4 na maso). Odmítá pesticidy a umělá hnojiva.
+      Rizika jako u veganství: omega-3, železo, vápník, zinek, vitamin D, B12. U dětí prokázáno
+      zpomalení růstu a rachitida.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Co je makrobiotika a jaká jsou její rizika?"
+        keyPoints:
+          - "Bez vědeckého zdůvodnění, zakladatel Ohsawa"
+          - "Převážně vegetariánská – obiloviny a zelenina"
+          - "Filozofie jin a jang, ideál 5 : 1 (hnědá rýže)"
+          - "Rizika jako u veganství: B12, D, Fe, Ca, Zn, omega-3"
+          - "Děti: zpomalení růstu, rachitida"
+        modelAnswer: >-
+          Makrobiotika je převážně vegetariánský směr bez vědeckého podkladu, který založil japonský
+          filozof Ohsawa. Základem jsou obiloviny a zelenina a jídla se volí podle rovnováhy jin a
+          jang – za ideální se považuje poměr 5 : 1, jaký má hnědá rýže. Rizika jsou podobná jako
+          u veganství: nedostatek B12, vitaminu D, železa, vápníku, zinku a omega-3. Nejvíc ohrožuje
+          děti – studie u nich prokázala zpomalení růstu a rachitidu.
+      - id: jin-jang
+        type: choice
+        prompt: "Která potravina podle makrobiotiky splňuje ideální poměr jin a jang 5 : 1?"
+        options:
+          - { text: "Hnědá rýže", correct: true }
+          - { text: "Tofu", why: "Za ideál 5 : 1 skripta uvádějí hnědou rýži." }
+          - { text: "Ovoce", why: "Za ideál 5 : 1 skripta uvádějí hnědou rýži." }
+          - { text: "Rybí maso", why: "Makrobiotika je převážně vegetariánská; ideálem je hnědá rýže." }
+      - id: deti
+        type: choice
+        prompt: "Jaké důsledky makrobiotické stravy u dětí skripta uvádějí?"
+        options:
+          - { text: "Zpomalení růstu a klinické známky rachitidy", correct: true }
+          - { text: "Obezitu a diabetes 2. typu", why: "Problémem je nedostatek energie a živin, ne nadbytek." }
+          - { text: "Žádné, pro děti je vhodná", why: "Studie u dětí prokázala zpomalení růstu a rachitidu." }
+          - { text: "Nadbytek vitaminu D", why: "Naopak – hrozí nedostatek vitaminu D a rachitida." }
+
+  - id: alt.lchf
+    title: Nízkosacharidová strava (LCHF) – princip a hodnocení
+    kind: concept
+    tier: A
+    criteria: [7b, 6a]
+    confusableWith: [alt.keto]
+    source: { pages: [194, 195, 196], anchor: "Typicky neobsahuje více než 130 g sacharidů denně" }
+    explanation: >-
+      LCHF má obvykle nejvýš 130 g sacharidů denně (15–25 % energie). Místo pečiva a příloh listová
+      zelenina; základ zelenina, maso, ryby, vejce, mléčné výrobky, ořechy, semínka, méně ovoce;
+      mizí rafinované sacharidy, cukr a netučné produkty. Možné výhody: hubnutí (hlavně zpočátku),
+      stabilnější glykémie, nižší chuť na sladké, nižší tlak. Rizika: víc nasycených tuků, málo
+      vlákniny (zácpa), nedostatek mikroživin, „keto chřipka“, udržitelnost. SZÚ: krátkodobě může
+      pomoci s redukcí, dlouhodobé vyřazení obilovin a ovoce vede k deficitům.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Klient se ptá na nízkosacharidovou stravu (LCHF). Jak ji popíšeš a zhodnotíš?"
+        keyPoints:
+          - "Max. cca 130 g sacharidů/den (15–25 % energie)"
+          - "Místo příloh a pečiva zelenina; maso, ryby, vejce, mléčné výrobky, ořechy"
+          - "Výhody: hubnutí, glykémie (DM2), menší chuť na sladké"
+          - "Rizika: nasycené tuky, málo vlákniny, mikroživiny, keto chřipka, udržitelnost"
+          - "SZÚ/SpV: krátkodobě může pomoci, dlouhodobé vyloučení skupin → deficity"
+        modelAnswer: >-
+          Nízkosacharidová strava obvykle nepřesahuje 130 g sacharidů denně. Pečivo a přílohy nahradí
+          zelenina a základem je maso, ryby, vejce, mléčné výrobky a ořechy. Může pomoci s hubnutím,
+          hlavně na začátku, může stabilizovat glykémii a snížit chuť na sladké, což se hodí třeba
+          při diabetu 2. typu. Rizikem je vyšší příjem nasycených tuků, málo vlákniny a některých
+          mikroživin, keto chřipka a obtížná udržitelnost. Podle SZÚ a Společnosti pro výživu může
+          krátkodobě pomoci s redukcí, ale dlouhodobé vyřazení obilovin a ovoce vede k deficitům.
+      - id: hranice
+        type: choice
+        prompt: "Kolik sacharidů denně typicky nepřesahuje nízkosacharidová strava?"
+        options:
+          - { text: "130 g", correct: true }
+          - { text: "20 g", why: "Do 20 g je velmi nízkosacharidová strava." }
+          - { text: "250 g", why: "To je víc, než připouští i volnější nízkosacharidová strava (do 130 g)." }
+          - { text: "50 % energie", why: "LCHF tvoří obvykle 15–25 % energie." }
+      - id: riziko
+        type: choice
+        prompt: "Které riziko nízkosacharidové stravy skripta uvádějí?"
+        options:
+          - { text: "Zácpa kvůli nízkému příjmu vlákniny", correct: true }
+          - { text: "Nadbytek vlákniny a nadýmání", why: "Vlákniny je naopak málo." }
+          - { text: "Nadměrný příjem vlákniny", why: "Vlákniny je naopak málo." }
+          - { text: "Nedostatek bílkovin", why: "Bílkovin bývá dost – základem je maso, ryby, vejce, mléčné výrobky." }
+
+  - id: alt.lchf-deleni
+    title: Dělení stravy podle příjmu sacharidů
+    kind: fact
+    tier: C
+    criteria: [7b]
+    prereqs: [alt.lchf]
+    source: { pages: [194], anchor: "Velmi nízkosacharidová strava (do 20 g denně)" }
+    explanation: >-
+      Podle denního příjmu sacharidů: bezsacharidová (asi 0 g), velmi nízkosacharidová (do 20 g),
+      nízkosacharidová (21–60 g), se sníženým příjmem sacharidů (61–100 g), volnější nízkosacharidová
+      (101–130 g).
+    exercises:
+      - id: velmi-nizka
+        type: choice
+        prompt: "Jak skripta označují stravu s příjmem do 20 g sacharidů denně?"
+        options:
+          - { text: "Velmi nízkosacharidová", correct: true }
+          - { text: "Nízkosacharidová", why: "Ta má 21–60 g." }
+          - { text: "Se sníženým příjmem sacharidů", why: "Ta má 61–100 g." }
+          - { text: "Volnější nízkosacharidová", why: "Ta má 101–130 g." }
+
+  - id: alt.keto
+    title: Ketogenní dieta
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 196) popisují keto jako režim s „doplňováním velkého množství bílkovin“ a se
+      zeleninou a ovocem vyřazenými na začátku. V běžném pojetí je ketogenní dieta vysokotuková s
+      přiměřeným (ne vysokým) příjmem bílkovin a bezškrobová zelenina v ní zůstává. U zkoušky drž
+      popis skript (maximální omezení sacharidů, dostatek bílkovin, tělo přejde na tuky); pokud test
+      nabídne popis „maximální omezení sacharidů + velké množství bílkovin“, je podle skript správně.
+      Můžeš zmínit, že hlavním zdrojem energie je tuk (tak to uvádí i s. 89 – ketolátky z tuků).
+    criteria: [6a, 7b]
+    confusableWith: [alt.lchf]
+    prereqs: [alt.lchf]
+    source: { pages: [196, 89, 194], anchor: "Ketogenní dieta znamená maximální omezení příjmu sacharidů" }
+    explanation: >-
+      Keto = maximální omezení sacharidů. Tělo pak místo glukózy využívá uložený tuk a tvoří ketolátky
+      (nutriční ketóza); při dostatku bílkovin šetří svaly. Základ: maso, sýry, ryby, vejce, oleje;
+      vyřazuje cukr, obiloviny a průmyslově zpracované potraviny. Výhody: efektivní hubnutí, lepší
+      glykémie (DM2); léčebně u epilepsie. Nevýhody: málo vitaminů, minerálů a vlákniny, „keto
+      chřipka“ (bolest hlavy, únava, nevolnost, podrážděnost), obtížná udržitelnost, jojo efekt.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Vysvětli princip ketogenní diety, její výhody a nevýhody."
+        keyPoints:
+          - "Maximální omezení sacharidů → tělo využívá tuky, tvoří ketolátky"
+          - "Maso, sýry, ryby, vejce, oleje; bez cukru a obilovin"
+          - "Výhody: hubnutí, glykémie u DM2; léčebně epilepsie"
+          - "Nevýhody: málo vitaminů, minerálů, vlákniny; keto chřipka"
+          - "Obtížná udržitelnost, jojo efekt"
+        modelAnswer: >-
+          Ketogenní dieta maximálně omezuje sacharidy, takže tělo přejde na tuky a tvoří ketolátky –
+          mluvíme o nutriční ketóze. Jí se hlavně maso, sýry, ryby, vejce a oleje, vyřazuje se cukr a
+          obiloviny. Je účinná pro hubnutí a zlepšuje glykémii u diabetu 2. typu, léčebně se používá
+          u epilepsie. Je ale velmi přísná, chudá na vitaminy, minerály a vlákninu, při přechodu bývá
+          keto chřipka a dlouhodobě se těžko dodržuje, takže hrozí jojo efekt.
+      - id: keto-chripka
+        type: choice
+        prompt: "Co je tzv. „keto chřipka“?"
+        options:
+          - { text: "Bolest hlavy, únava, nevolnost a podrážděnost při přechodu na dietu", correct: true }
+          - { text: "Virová infekce, ke které jsou lidé na keto náchylnější", why: "Nejde o infekci, ale o přechodné potíže při přechodu na dietu." }
+          - { text: "Horečka z nadbytku bílkovin", why: "S bílkovinami ani s horečkou nesouvisí." }
+          - { text: "Dlouhodobý následek ukončení keto diety", why: "Objevuje se při přechodu na dietu, ne po jejím ukončení." }
+      - id: epilepsie
+        type: choice
+        prompt: "U kterého onemocnění je ketogenní dieta zavedenou léčebnou možností?"
+        options:
+          - { text: "Epilepsie", correct: true }
+          - { text: "Celiakie", why: "Celiakie se léčí bezlepkovou dietou." }
+          - { text: "Dna", why: "Pro dnu se ketogenní dieta jako léčba neuvádí." }
+          - { text: "Anémie", why: "Pro anémii se ketogenní dieta neuvádí." }
+
+  - id: alt.paleo
+    title: Paleo dieta
+    kind: concept
+    tier: B
+    criteria: [6a, 7b]
+    source: { pages: [196, 197], anchor: "strava typu „lovec a sběrač”" }
+    explanation: >-
+      Paleo („lovec a sběrač“) vychází z představy, že se genom od doby kamenné téměř nezměnil a
+      trávení není přizpůsobené obilí ani mléku. Základ: maso, vejce, ryby, volně rostoucí plodiny,
+      bobuloviny; vylučuje obiloviny, pečivo, mléko a mléčné výrobky. Poměr živin zónový 40 % S,
+      30 % B, 30 % T. Výhody: sytost, nezpracované potraviny, méně cukru. Nevýhody: nedostatek
+      vápníku a vitaminu D, cena, udržitelnost.
+    exercises:
+      - id: vylucuje
+        type: choice
+        prompt: "Které skupiny potravin paleo strava vylučuje nebo omezuje?"
+        options:
+          - { text: "Obiloviny a mléčné výrobky", correct: true }
+          - { text: "Maso a vejce", why: "Ty tvoří základ paleo stravy." }
+          - { text: "Bobuloviny a houby", why: "Ty jsou v paleo stravě povolené." }
+          - { text: "Ryby", why: "Ryby patří k základu paleo stravy." }
+      - id: riziko
+        type: reveal
+        prompt: "Jaký nutriční deficit hrozí u paleo stravy a proč?"
+        answer: "Vápník a vitamin D – kvůli vyřazení mléčných výrobků (a obilovin)."
+
+  - id: alt.carnivore
+    title: Carnivore dieta
+    kind: concept
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta uvádějí, že carnivore „bývá používána např. u Crohnovy choroby či ulcerózní kolitidy“
+      a snižuje záněty; pro to chybí kvalitní důkazy a žádná uznávaná organizace ji nepodporuje (to
+      uvádějí i skripta). U zkoušky zdůrazni rizika a nedoporučení odborníků.
+    criteria: [6a, 7b]
+    source: { pages: [197], anchor: "vylučuje veškeré rostlinné potraviny" }
+    explanation: >-
+      Carnivore = jen živočišné produkty (maso, ryby, vejce, vnitřnosti), žádné ovoce, zelenina,
+      obiloviny, luštěniny, ořechy ani semena; téměř nulové sacharidy – extrémní forma low-carb/keto.
+      Zastánci uvádějí rychlé hubnutí a lepší glykémii. Rizika: nedostatek vitaminu C a vlákniny,
+      hodně nasycených tuků (srdce a cévy), malá pestrost, neudržitelnost. Žádná uznávaná organizace
+      ji nepovažuje za vyváženou ani bezpečnou.
+    exercises:
+      - id: rizika
+        type: choice
+        multiple: true
+        prompt: "Která rizika carnivore diety skripta uvádějí?"
+        options:
+          - { text: "Nedostatek vitaminu C a vlákniny", correct: true }
+          - { text: "Vysoký příjem nasycených tuků", correct: true }
+          - { text: "Malá pestrost a obtížná udržitelnost", correct: true }
+          - { text: "Nedostatek bílkovin", why: "Bílkovin je v carnivore stravě dostatek." }
+      - id: postoj
+        type: reveal
+        prompt: "Jak se k carnivore dietě staví odborné organizace?"
+        answer: "Žádná uznávaná organizace (AND, BDA, DGE, WHO, SZÚ) ji nepodporuje ani nepovažuje za vyváženou a bezpečnou dlouhodobou stravu."
+
+  - id: alt.raw
+    title: RAW strava
+    kind: concept
+    tier: A
+    criteria: [6a]
+    source: { pages: [198], anchor: "neprošly tepelnou úpravou nad určitou teplotu, obvykle mezi 40–48 °C" }
+    explanation: >-
+      RAW = potraviny neupravené nad asi 40–48 °C (víra, že vaření ničí živiny a enzymy). Hodně ovoce,
+      zeleniny, ořechů, semen, naklíčených obilovin a luštěnin, úprava sušením či fermentací; může
+      zahrnovat i syrové maso, ryby, vejce a nepasterizované mléko. Rizika: hygiena (u nás vhodná jen
+      v létě), kontaminace bakteriemi a parazity, luštěniny a obiloviny syrové nepoužitelné → málo
+      bílkovin, monotónnost, časová a finanční náročnost. Nevhodná pro děti, těhotné a seniory.
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Klientka zvažuje RAW stravu. Jaká rizika s ní probereš?"
+        keyPoints:
+          - "Bez tepelné úpravy nad cca 40–48 °C"
+          - "Hygienické riziko – kontaminace bakteriemi, parazity (syrové maso, ryby, vejce)"
+          - "Luštěniny a většina obilovin syrové nepoužitelné → riziko nízkého příjmu bílkovin"
+          - "Monotónnost, časová a finanční náročnost, sociální omezení"
+          - "Nevhodná pro děti, těhotné, seniory"
+        modelAnswer: >-
+          RAW strava vylučuje potraviny upravené nad zhruba 40–48 °C. V našem klimatu je hygienicky
+          riziková, prakticky vhodná jen v létě, a u syrového masa, ryb či vajec hrozí kontaminace
+          bakteriemi a parazity. Luštěniny a většinu obilovin nelze jíst syrové, takže hrozí nízký
+          příjem bílkovin a úbytek svalů. Strava je monotónní, časově i finančně náročná a omezuje
+          společenský život. Pro děti, těhotné a seniory vhodná není.
+      - id: teplota
+        type: choice
+        prompt: "Nad jakou teplotu se podle RAW stravy potraviny obvykle neupravují?"
+        options:
+          - { text: "40–48 °C", correct: true }
+          - { text: "70–80 °C", why: "Skripta uvádějí obvykle 40–48 °C." }
+          - { text: "100 °C (bod varu)", why: "Skripta uvádějí obvykle 40–48 °C." }
+          - { text: "20–25 °C", why: "Tak nízkou hranici skripta neuvádějí – obvykle 40–48 °C." }
+      - id: bilkoviny
+        type: choice
+        prompt: "Proč je u RAW stravy obtížné zajistit dostatek kvalitních rostlinných bílkovin?"
+        options:
+          - { text: "Luštěniny a většina obilovin jsou bez tepelné úpravy nepoužitelné.", correct: true }
+          - { text: "RAW strava zakazuje ořechy a semena.", why: "Ořechy a semena jsou v RAW stravě základní." }
+          - { text: "Syrové bílkoviny tělo neumí vůbec trávit.", why: "Problém je v tom, že luštěniny a obiloviny syrové použít nelze." }
+          - { text: "Tepelná úprava bílkoviny vždy zničí.", why: "RAW strava tepelnou úpravu vylučuje – nedostatek bílkovin plyne z nepoužitelnosti luštěnin a obilovin." }
+
+  - id: alt.krevni-skupiny
+    title: Dieta podle krevních skupin
+    kind: concept
+    tier: B
+    criteria: [7b, 6a]
+    source: { pages: [198, 199], anchor: "odborná obec ji považuje za vyvrácenou" }
+    explanation: >-
+      Autor Peter D'Adamo (1996): lidé s různými krevními skupinami mají jíst jinak. Skupina A
+      „zemědělec“ – vegetariánská strava; B „pastevec“; AB zemědělec i pastevec; 0 „lovec“ – bílkoviny
+      (maso, ryby), méně obilovin a mléka. Systematické přehledy nenašly žádný kvalitní důkaz,
+      odborná obec dietu považuje za vyvrácenou. Svépomocí sestavený jídelníček může být deficitní.
+    exercises:
+      - id: dukaz
+        type: choice
+        prompt: "Jak odborná obec hodnotí dietu podle krevních skupin?"
+        options:
+          - { text: "Jako vyvrácenou – kvalitní důkazy chybí.", correct: true }
+          - { text: "Jako vhodnou pro skupinu 0, ale nevhodnou pro skupinu A.", why: "Důkazy chybí pro všechny skupiny." }
+          - { text: "Jako podloženou genetickými studiemi o antigenech.", why: "Systematické přehledy žádné důkazy nenašly." }
+          - { text: "Jako oficiální doporučení SZÚ pro dospělé.", why: "SZÚ ji nedoporučuje; odborná obec ji považuje za vyvrácenou." }
+      - id: skupiny
+        type: reveal
+        prompt: "Jaké „typy“ přiřazuje dieta podle krevních skupin skupinám A, B, AB a 0?"
+        answer: "A – zemědělec, B – pastevec, AB – zemědělec i pastevec, 0 – lovec."
+
+  - id: alt.atkins-dukan
+    title: Atkinsova a Dukanova dieta
+    kind: comparison
+    tier: B
+    criteria: [7b]
+    prereqs: [alt.lchf]
+    source: { pages: [199], anchor: "První, indukční fáze trvá 14 dní s max. 20 g sacharidů denně" }
+    explanation: >-
+      Atkinsova: nízkosacharidová, bohatá na tuky a bílkoviny (maso, tučné sýry, vejce); indukční fáze
+      14 dní s max. 20 g sacharidů, pak se sacharidy postupně přidávají. Kalorie se nepočítají, hubnutí
+      rychlé. Dukanova: vysokobílkovinná, nízkosacharidová i nízkotučná, 4 fáze – útočná (jen
+      bílkoviny), střídání (+ zelenina), konsolidační (+ ovoce, chléb), stabilizační (1 bílkovinný den
+      týdně). Atkins: chuť na sladké, málo energie, dlouhodobá bezpečnost sporná. Dukan: nevyváženost,
+      jojo efekt.
+    exercises:
+      - id: rozdil
+        type: choice
+        prompt: "Čím se Dukanova dieta liší od Atkinsovy?"
+        options:
+          - { text: "Omezuje kromě sacharidů i tuky; Atkinsova tuky povoluje.", correct: true }
+          - { text: "Dukanova je vysokosacharidová.", why: "Obě jsou nízkosacharidové." }
+          - { text: "Atkinsova je vegetariánská.", why: "Atkinsova je převážně živočišná strava bohatá na tuky." }
+          - { text: "Dukanova nemá žádné fáze.", why: "Dukanova má 4 fáze." }
+      - id: indukce
+        type: reveal
+        prompt: "Jak vypadá první fáze Atkinsovy a první fáze Dukanovy diety?"
+        answer: "Atkins: indukční fáze 14 dní, max. 20 g sacharidů denně. Dukan: útočná fáze – pouze bílkoviny (maso, vejce, nízkotučný tvaroh)."
+
+  - id: alt.stredomorska
+    title: Středomořská strava
+    kind: concept
+    tier: C
+    criteria: [6a]
+    source: { pages: [200], anchor: "Primárně není určena k hubnutí" }
+    explanation: >-
+      Převážně rostlinná strava zemí Středomoří: zelenina, ovoce, olivový olej, ořechy, semena,
+      luštěniny, celozrnné obiloviny, bylinky; méně ryb, libového masa, mléčných výrobků a vajec;
+      minimum červeného masa a průmyslově zpracovaných potravin. Patří k nejzdravějším směrům, ale
+      primárně není určena k hubnutí – je to spíš životní styl.
+    exercises:
+      - id: hubnuti
+        type: choice
+        prompt: "Které tvrzení o středomořské stravě odpovídá skriptům?"
+        options:
+          - { text: "Patří k nejzdravějším směrům, ale primárně není určena k hubnutí.", correct: true }
+          - { text: "Je to především redukční dieta s rychlým úbytkem hmotnosti.", why: "Primárně není určena k hubnutí – je to spíš životní styl." }
+          - { text: "Je založená hlavně na červeném mase.", why: "Červeného masa obsahuje velmi málo." }
+          - { text: "Vylučuje olivový olej kvůli vysoké energii.", why: "Olivový olej patří k jejím základům." }
+
+  - id: alt.prerusovany-pust
+    title: Přerušovaný půst (IF)
+    kind: concept
+    tier: A
+    criteria: [7b]
+    source: { pages: [200, 201], anchor: "střídá období jídla s obdobími půstu" }
+    explanation: >-
+      IF střídá období jídla a půstu. Metody: 16/8 (jí se v 8hodinovém okně) a 5:2 (dva dny v týdnu
+      500–600 kcal). Může zlepšit inzulinovou senzitivitu a lipidy; hubne se díky deficitu – podobně
+      jako při klasické redukční dietě. Nevhodný při poruchách příjmu potravy, v těhotenství, pro
+      děti a při náročném fyzickém režimu; u žen může narušit cyklus. Riziko přejídání v okně, nízká
+      adherence. DGE: žádná výhoda oproti jiné redukci; AND ho nedoporučuje (nevhodný i pro diabetiky).
+    exercises:
+      - id: hodnoceni
+        type: explain
+        prompt: "Klientka chce hubnout přerušovaným půstem. Jak jí ho vysvětlíš a zhodnotíš?"
+        keyPoints:
+          - "Střídání jídla a půstu: 16/8, 5:2 (2 dny 500–600 kcal)"
+          - "Hubne se díky kalorickému deficitu – výsledky podobné klasické redukci"
+          - "Možné zlepšení inzulinové senzitivity a lipidů"
+          - "Nevhodný: PPP, těhotenství, děti, náročný fyzický režim; u žen cyklus"
+          - "Riziko přejídání v okně, nízká adherence"
+        modelAnswer: >-
+          Přerušovaný půst střídá období jídla a půstu – nejčastěji 16/8, kdy se jí v osmihodinovém
+          okně, nebo 5:2 se dvěma dny po 500–600 kcal. Hubne se díky kalorickému deficitu a výsledky
+          jsou podobné jako u klasické redukční diety; může zlepšit inzulinovou senzitivitu a lipidy.
+          Není vhodný při poruchách příjmu potravy, v těhotenství, pro děti ani při náročném fyzickém
+          režimu a u některých žen může narušit cyklus. Hrozí i přejídání v jídelním okně.
+      - id: metoda-52
+        type: choice
+        prompt: "Co znamená metoda přerušovaného půstu 5:2?"
+        options:
+          - { text: "5 dní normálně, 2 dny v týdnu 500–600 kcal", correct: true }
+          - { text: "5 hodin jídla, 2 hodiny půstu", why: "Čísla 5:2 označují dny v týdnu, ne hodiny." }
+          - { text: "5 jídel denně, z toho 2 bez sacharidů", why: "Jde o dny v týdnu se sníženým příjmem energie." }
+          - { text: "5 dní půst, 2 dny normálně", why: "Je to naopak – 5 dní normálně, 2 dny 500–600 kcal." }
+      - id: nevhodny
+        type: choice
+        multiple: true
+        prompt: "Pro koho podle skript přerušovaný půst není vhodný?"
+        options:
+          - { text: "Pro osoby s poruchou příjmu potravy", correct: true }
+          - { text: "Pro těhotné", correct: true }
+          - { text: "Pro děti", correct: true }
+          - { text: "Pro zdravého dospělého s nadváhou", why: "U něj může IF fungovat jako jedna z redukčních strategií." }
+
+  - id: alt.intuitivni
+    title: Intuitivní stravování
+    kind: concept
+    tier: B
+    criteria: [7b]
+    source: { pages: [201], anchor: "aktivně naslouchá biologickým potřebám svého těla" }
+    explanation: >-
+      Strávník naslouchá tělu: jí, když má hlad, do příjemné sytosti. Nezakazuje potraviny, neurčuje,
+      kdy jíst, nedělí potraviny na dobré a špatné. Pozor: u většiny klientů s obezitou či
+      metabolickým syndromem jsou signály hladu a sytosti narušené, takže samostatně nemusí fungovat.
+      Nevýhody: klient může sníst víc a přechod na tento styl trvá dlouho.
+    exercises:
+      - id: obezita
+        type: choice
+        prompt: "Proč nemusí být intuitivní stravování vhodnou samostatnou strategií u klienta s obezitou?"
+        options:
+          - { text: "Mívá narušené fyziologické signály hladu a sytosti.", correct: true }
+          - { text: "Protože intuitivní stravování zakazuje sacharidy.", why: "Intuitivní stravování nic nezakazuje." }
+          - { text: "Protože vyžaduje přesné vážení jídla.", why: "Intuitivní stravování nic neváží ani nepočítá." }
+          - { text: "Protože je určené jen pro sportovce.", why: "Není určené konkrétní skupině; problémem jsou narušené signály hladu a sytosti." }
+      - id: princip
+        type: reveal
+        prompt: "Na čem je založeno intuitivní stravování?"
+        answer: "Na respektování signálů hladu a sytosti – jíst při hladu do příjemné sytosti, bez zákazů a bez dělení na dobré a špatné potraviny."
+
+  - id: alt.iifym
+    title: IIFYM (If It Fits Your Macros)
+    kind: concept
+    tier: C
+    criteria: [7b]
+    source: { pages: [201, 202], anchor: "flexibilní dietní přístup, který se zaměřuje na dosažení konkrétních cílů" }
+    explanation: >-
+      IIFYM je flexibilní přístup: cílem je splnit individuálně spočítaný příjem energie a makroživin
+      (bílkoviny, tuky, sacharidy) podle cíle, přičemž jíst lze v podstatě cokoli, co se do čísel
+      vejde. Výhoda: volnost, udržitelnost, lepší vztah k jídlu. Pozor: je třeba hlídat i výživovou
+      kvalitu potravin, nejen čísla.
+    exercises:
+      - id: princip
+        type: choice
+        prompt: "Co je podstatou přístupu IIFYM?"
+        options:
+          - { text: "Splnit denní cíle makroživin bez zakazování konkrétních potravin", correct: true }
+          - { text: "Jíst jen v osmihodinovém okně", why: "To je přerušovaný půst 16/8." }
+          - { text: "Jíst podle signálů hladu bez počítání", why: "To je intuitivní stravování." }
+          - { text: "Vyřadit všechny sacharidy", why: "IIFYM nevyřazuje skupiny potravin, sacharidy jsou součástí makro cílů." }
+
+  - id: alt.modre-zony
+    title: Modré zóny
+    kind: concept
+    tier: C
+    criteria: [6a]
+    source: { pages: [202], anchor: "Okinawané jedí jen do 80 % sytosti" }
+    explanation: >-
+      Oblasti s mnoha stoletými lidmi: Okinawa, Sardinie, Ikaria, Nicoya a Loma Linda (adventisté).
+      Společné: převážně rostlinná strava s luštěninami, maso 1–2× týdně, minimum zpracovaných
+      potravin, střídmost (Okinawa: jíst do 80 % sytosti), pohyb, vztahy, smysl života. Koncept je
+      odborně zpochybňován (nespolehlivé záznamy o věku) – prezentovat ho jako inspiraci, ne důkaz.
+    exercises:
+      - id: spolecne
+        type: reveal
+        prompt: "Jaké jsou společné znaky stravování v Modrých zónách a s jakou výhradou je máš klientovi podat?"
+        answer: >-
+          Převážně rostlinná strava, hodně luštěnin, maso 1–2× týdně, minimum zpracovaných potravin,
+          střídmost. Koncept je zpochybňovaný (nespolehlivá data o věku) – jen jako inspirace.

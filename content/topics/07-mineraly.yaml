@@ -1,0 +1,715 @@
+topic:
+  id: mineraly
+  title: Minerální látky
+  chapter: 7
+  pages: [56, 63]
+  order: 70
+  summary: >-
+    Dělení minerálních látek (makroelementy, mikroelementy, stopové prvky), funkce, zdroje,
+    vstřebávání a projevy nedostatku či nadbytku vápníku, hořčíku, sodíku, draslíku, železa, jódu,
+    zinku, selenu a dalších prvků.
+
+points:
+  - id: min.definice
+    title: Minerální látky – co to je
+    kind: concept
+    tier: B
+    criteria: [1f, 1a]
+    source: { pages: [56], anchor: "Minerální látky tvoří přibližně 4 % tělesné hmotnosti" }
+    explanation: >-
+      Minerální látky patří mezi mikronutrienty. Tělo si je neumí vytvořit, musí je získat stravou.
+      Regulují metabolismus, jsou součástí enzymů, řídí nervosvalovou činnost a hospodaření
+      s tekutinami a stavějí tkáně (kosti). Tvoří asi 4 % tělesné hmotnosti. Nejsou totéž co
+      „minerály“ – to jsou přírodní anorganické látky, nerosty. Funkce minerálních látek a vitaminů
+      se často propojují.
+    exercises:
+      - id: podil
+        type: choice
+        prompt: "Jakou část tělesné hmotnosti tvoří minerální látky?"
+        options:
+          - { text: "Přibližně 4 %", correct: true }
+          - { text: "Přibližně 15 %", why: "Skripta uvádějí asi 4 % tělesné hmotnosti." }
+          - { text: "Přibližně 0,4 %", why: "Je to desetkrát víc – asi 4 %." }
+          - { text: "Přibližně 40 %", why: "Je to desetkrát víc – minerální látky tvoří asi 4 %." }
+      - id: mineraly
+        type: reveal
+        prompt: "Proč nejsou „minerální látky“ a „minerály“ totéž?"
+        answer: >-
+          Minerální látky jsou prvky, které tělo potřebuje ze stravy (mikronutrienty). Minerály jsou
+          přírodní anorganické látky – nerosty.
+
+  - id: min.deleni
+    title: Makroelementy, mikroelementy, stopové prvky
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Dělení do tří skupin je specifické pro skripta; v běžné literatuře se mikroelementy a stopové
+      prvky často používají jako synonyma. Navíc chrom je ve skriptech v seznamu mikroelementů,
+      ale text uvádí, že se „dříve řadil mezi stopové prvky“ a jeho esencialita není prokázána.
+      Fluor je ve skriptech stopový prvek. U testu odpovídej podle dělení ve skriptech.
+    criteria: [1f, 1a]
+    source:
+      pages: [56, 59, 62]
+      anchor: "přijímat ve vyšším množství než 100 mg za den"
+    explanation: >-
+      Dělení podle potřeby: makroelementy – hlavní prvky organické hmoty (C, H, O, N) a prvky
+      s potřebou nad 100 mg denně: vápník, fosfor, hořčík, draslík, sodík, chlor, síra.
+      Mikroelementy – potřeba pod 100 mg denně: železo, jód, zinek, měď, mangan, chrom, selen.
+      Stopové prvky – optimální příjem není přesně stanoven, ale je malý: křemík, vanad, nikl, bor,
+      dále kobalt, molybden, hliník, fluor.
+    exercises:
+      - id: makro
+        type: choice
+        multiple: true
+        prompt: "Které z těchto prvků patří podle skript mezi makroelementy?"
+        options:
+          - { text: "Hořčík", correct: true }
+          - { text: "Draslík", correct: true }
+          - { text: "Síra", correct: true }
+          - { text: "Železo", why: "Železo je mikroelement (potřeba pod 100 mg denně)." }
+          - { text: "Jód", why: "Jód je mikroelement." }
+          - { text: "Fluor", why: "Fluor řadí skripta mezi stopové prvky." }
+      - id: hranice
+        type: choice
+        prompt: "Jaká denní potřeba odděluje makroelementy od mikroelementů?"
+        options:
+          - { text: "100 mg", correct: true }
+          - { text: "1 g", why: "Hranice je 100 mg za den." }
+          - { text: "10 mg", why: "Hranice je 100 mg za den." }
+          - { text: "100 µg", why: "Mikrogramy se uvádějí u mikroelementů, hranice je ale 100 mg." }
+      - id: mikro
+        type: reveal
+        prompt: "Vyjmenuj mikroelementy podle skript."
+        answer: "Železo, jód, zinek, měď, mangan, chrom, selen."
+
+  - id: min.vapnik
+    title: Vápník – funkce a zdroje
+    kind: fact
+    tier: A
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [56], anchor: "Přibližně 99 % vápníku v organismu je uloženo v kostech a zubech" }
+    explanation: >-
+      Asi 99 % vápníku (Ca) je v kostech a zubech, zbytek v krvi a tkáních. Je nutný pro stavbu
+      a mineralizaci kostí a zubů, svalovou kontrakci, přenos nervových vzruchů a srážení krve.
+      Doporučený příjem pro dospělé podle EFSA je asi 950 mg denně. Zdroje: mléko a mléčné výrobky,
+      ryby jedené i s kostmi (sardinky), mák, sezam, ořechy, luštěniny, zelenina, rostlinné nápoje
+      obohacené vápníkem.
+    exercises:
+      - id: ulozeni
+        type: choice
+        prompt: "Kolik vápníku v těle je uloženo v kostech a zubech?"
+        options:
+          - { text: "Přibližně 99 %", correct: true }
+          - { text: "Přibližně 85 %", why: "85 % platí pro fosfor." }
+          - { text: "Přibližně 50 %", why: "V kostech a zubech je téměř všechen vápník – asi 99 %." }
+          - { text: "Přibližně 70 %", why: "V kostech a zubech je asi 99 % vápníku." }
+      - id: zdroje
+        type: choice
+        multiple: true
+        prompt: "Které potraviny jsou podle skript významným zdrojem vápníku?"
+        options:
+          - { text: "Mák a sezam", correct: true }
+          - { text: "Sardinky jedené i s kostmi", correct: true }
+          - { text: "Mléčné výrobky", correct: true }
+          - { text: "Bílé pečivo", why: "Bílé pečivo není významným zdrojem vápníku." }
+          - { text: "Jablka", why: "Ovoce obsahuje vápníku málo." }
+      - id: funkce
+        type: reveal
+        prompt: "Jaké má vápník v těle funkce?"
+        answer: "Stavba a mineralizace kostí a zubů, svalová kontrakce, přenos nervových vzruchů, srážení krve."
+
+  - id: min.vapnik-vyuzitelnost
+    title: Vápník – využitelnost a zdraví kostí
+    kind: concept
+    tier: A
+    criteria: [1f, 10d]
+    prereqs: [min.vapnik]
+    source: { pages: [57, 239], anchor: "oxaláty významně snižují využitelnost vápníku ze špenátu" }
+    explanation: >-
+      Z mléčných výrobků se vstřebá asi 30 % vápníku. U rostlin to nelze paušalizovat: oxaláty
+      ve špenátu využitelnost výrazně snižují, z některé brukvovité zeleniny se vápník využije velmi
+      dobře. Vstřebávání závisí na vitaminu D. Maximální kostní hmoty dosahujeme kolem 30 let, kost se
+      ale přestavuje celý život. Osteoporóza je multifaktoriální – kromě vápníku a vitaminu D je
+      důležitá pohybová zátěž kostí. Hladina vápníku v krvi o jeho zásobení moc neřekne.
+    exercises:
+      - id: spenat
+        type: choice
+        prompt: "Proč je špenát podle skript špatně využitelným zdrojem vápníku?"
+        options:
+          - { text: "Obsahuje oxaláty, které využitelnost vápníku snižují.", correct: true }
+          - { text: "Obsahuje málo vápníku.", why: "Problém není množství, ale využitelnost kvůli oxalátům." }
+          - { text: "Neobsahuje vitamin D.", why: "Vstřebávání ovlivňuje stav vitaminu D v těle, ne jeho obsah ve špenátu." }
+          - { text: "Vápník se ze všech rostlin vstřebává jen 5–10 %.", why: "Skripta výslovně říkají, že takto paušalizovat nelze." }
+      - id: mlecne
+        type: choice
+        prompt: "Kolik vápníku se přibližně vstřebá z mléčných výrobků?"
+        options:
+          - { text: "Asi 30 %", correct: true }
+          - { text: "Asi 5–10 %", why: "Tento údaj skripta odmítají jako paušální údaj pro rostliny." }
+          - { text: "Asi 90 %", why: "Z mléčných výrobků se vstřebá asi 30 %." }
+          - { text: "Asi 60 %", why: "Z mléčných výrobků se vstřebá asi 30 %." }
+      - id: osteoporoza
+        type: explain
+        prompt: "Klientka se bojí osteoporózy a chce brát jen vápník. Co jí vysvětlíš?"
+        keyPoints:
+          - "Osteoporóza je multifaktoriální, nejen nedostatek vápníku"
+          - "Vstřebávání vápníku závisí na vitaminu D"
+          - "Důležitá je pohybová aktivita – zatěžování kostí"
+          - "Kost se přestavuje celý život (vrchol kostní hmoty kolem 30 let)"
+          - "Vápník přednostně ze stravy; krevní hladina o zásobení moc neřekne"
+        modelAnswer: >-
+          Osteoporóza nevzniká jen z nedostatku vápníku, je multifaktoriální. Vápník přijímej hlavně
+          stravou (mléčné výrobky, mák, sezam, ryby s kostmi), ale vstřebá se jen s dostatkem
+          vitaminu D. Stejně důležitý je pohyb, který kosti zatěžuje. Vrcholu kostní hmoty dosahujeme
+          kolem třicítky, kost se ale přestavuje po celý život, takže má smysl o ni pečovat stále.
+
+  - id: min.fosfor
+    title: Fosfor
+    kind: fact
+    tier: B
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [57], anchor: "Přibližně 85 % fosforu v organismu je uloženo v kostech a zubech" }
+    explanation: >-
+      Asi 85 % fosforu (P) je v kostech a zubech. Je součástí fosfolipidů membrán, nukleových kyselin
+      a ATP – podílí se na stavbě tkání, energetickém metabolismu a s vápníkem na mineralizaci kostí.
+      Je široce zastoupen (mléčné výrobky, maso, ryby, vejce, luštěniny, obiloviny, i aditiva).
+      Nedostatek je velmi vzácný; nadměrný příjem je problém hlavně u lidí s nemocnými ledvinami.
+    exercises:
+      - id: atp
+        type: choice
+        prompt: "Součástí kterých sloučenin je fosfor?"
+        options:
+          - { text: "Fosfolipidů, nukleových kyselin a ATP", correct: true }
+          - { text: "Hemoglobinu a myoglobinu", why: "To je železo." }
+          - { text: "Hormonů štítné žlázy", why: "To je jód." }
+          - { text: "Sirných aminokyselin", why: "To je síra." }
+      - id: ledviny
+        type: reveal
+        prompt: "U koho může být problémem vysoký příjem fosforu?"
+        answer: "U lidí s poruchou funkce ledvin."
+
+  - id: min.fytaty
+    title: Fytáty a vstřebávání minerálních látek
+    kind: concept
+    tier: B
+    criteria: [1f]
+    prereqs: [min.fosfor]
+    source: { pages: [57, 60], anchor: "Potraviny obsahující fytáty však není vhodné automaticky" }
+    explanation: >-
+      V rostlinách je část fosforu vázána ve fytátech, které člověk neumí plně štěpit. Fytáty navíc
+      snižují vstřebávání železa a zinku. Najdeš je v celozrnných obilovinách, luštěninách, ořeších
+      a semenech – to jsou ale nutričně hodnotné potraviny, proto je není vhodné automaticky
+      považovat za nevhodné.
+    exercises:
+      - id: ktere
+        type: choice
+        multiple: true
+        prompt: "Vstřebávání kterých minerálních látek fytáty snižují?"
+        options:
+          - { text: "Železa", correct: true }
+          - { text: "Zinku", correct: true }
+          - { text: "Sodíku", why: "Sodík se vstřebává snadno, fytáty ho neomezují." }
+          - { text: "Jódu", why: "Metabolismus jódu ovlivňují strumigenní látky, ne fytáty." }
+      - id: postoj
+        type: reveal
+        prompt: "Má klient vyřadit potraviny s fytáty?"
+        answer: >-
+          Ne – jde o nutričně hodnotné potraviny (celozrnné obiloviny, luštěniny, ořechy, semena);
+          fytáty jen snižují vstřebávání železa a zinku, což je dobré znát.
+
+  - id: min.horcik
+    title: Hořčík
+    kind: fact
+    tier: A
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [57, 58], anchor: "Hořčík je součástí chlorofylu, zeleného rostlinného barviva" }
+    explanation: >-
+      Hořčík (Mg) je hlavně v kostech a svalech. Je nutný pro stovky enzymatických reakcí: energetický
+      metabolismus, syntéza bílkovin, nervosvalová činnost, zdraví kostí. Zdroje: celozrnné obiloviny,
+      luštěniny, ořechy, semena, zelená listová zelenina (je součástí chlorofylu). Nedostatek: svalová
+      slabost, třes, křeče, poruchy srdečního rytmu; riziko při průjmech, nemocech trávicího traktu,
+      alkoholu. Ze stravy se nepředávkuješ (vyloučí ledviny), vysoké dávky z doplňků způsobují průjem.
+    exercises:
+      - id: chlorofyl
+        type: choice
+        prompt: "Která minerální látka je součástí chlorofylu, takže je jí bohatá zelená listová zelenina?"
+        options:
+          - { text: "Hořčík", correct: true }
+          - { text: "Železo", why: "Železo je součástí hemoglobinu." }
+          - { text: "Draslík", why: "Draslík je hlavní kationt uvnitř buněk, chlorofyl ale obsahuje hořčík." }
+          - { text: "Vápník", why: "Vápník je hlavně v kostech a zubech, součástí chlorofylu není." }
+      - id: doplnky
+        type: choice
+        prompt: "Jaký je typický nežádoucí účinek vyšších dávek hořčíku z doplňků?"
+        options:
+          - { text: "Průjem a další zažívací obtíže", correct: true }
+          - { text: "Zácpa", why: "Hořčík působí spíš projímavě." }
+          - { text: "Poškození jater", why: "Skripta u hořčíku uvádějí hlavně zažívací obtíže." }
+          - { text: "Ukládání v tukové tkáni", why: "Přebytek hořčíku vylučují ledviny." }
+      - id: nedostatek
+        type: reveal
+        prompt: "Jak se projevuje výraznější nedostatek hořčíku a kdo je ohrožen?"
+        answer: >-
+          Svalová slabost, třes, křeče, poruchy srdečního rytmu. Riziko: nemoci trávicího traktu,
+          dlouhodobé průjmy, nadměrné pití alkoholu, některé léky.
+
+  - id: min.horcik-doplnky
+    title: Hořčík v doplňcích – formy a křeče
+    kind: fact
+    tier: C
+    criteria: [8b, 1f]
+    prereqs: [min.horcik]
+    source: { pages: [58, 132], anchor: "suplementace hořčíkem není univerzálním řešením" }
+    explanation: >-
+      Formy hořčíku v doplňcích se liší rozpustností, dostupností a snášenlivostí. Rozpustnější
+      formy (např. citrát) bývají lépe využitelné než oxid hořečnatý, univerzální procenta
+      vstřebatelnosti ale neexistují. Sleduj množství elementárního hořčíku. Nedostatek hořčíku
+      může ke křečím přispět, ale křeče mají mnoho příčin – hořčík není univerzální řešení.
+    exercises:
+      - id: krece
+        type: reveal
+        prompt: "Klient má křeče a chce hořčík. Co mu řekneš?"
+        answer: >-
+          Nedostatek hořčíku ke křečím přispět může, ale křeče mají řadu příčin, takže hořčík není
+          univerzální řešení. Pokud doplněk, tak lépe vstřebatelnou formu (např. citrát) a sledovat
+          množství elementárního hořčíku.
+
+  - id: min.sodik
+    title: Sodík a kuchyňská sůl
+    kind: fact
+    tier: A
+    criteria: [1f, 10d]
+    prereqs: [min.deleni]
+    confusableWith: [min.draslik]
+    source: { pages: [58, 109], anchor: "což odpovídá přibližně 5 g kuchyňské soli" }
+    explanation: >-
+      Sodík (Na) je hlavní kationt extracelulární (mimobuněčné) tekutiny. Udržuje objem a osmotické
+      poměry tekutin a nervosvalovou činnost. EFSA: bezpečný a adekvátní příjem 2 000 mg sodíku denně
+      ≈ 5 g soli. Hlavním zdrojem je sůl – významná část není ze slánky, ale skrytá v pečivu, sýrech, masných
+      výrobcích, hotových jídlech a pochutinách; obsah soli uvádí tabulka výživových údajů. Vysoký
+      příjem zvyšuje krevní tlak, riziko kardiovaskulárních nemocí i vylučování vápníku močí.
+    exercises:
+      - id: sul
+        type: choice
+        prompt: "Kolika gramům kuchyňské soli přibližně odpovídá 2 000 mg sodíku?"
+        options:
+          - { text: "5 g", correct: true }
+          - { text: "2 g", why: "Sůl není čistý sodík – sodík tvoří jen asi 40 % hmotnosti soli." }
+          - { text: "10 g", why: "10 g soli obsahuje asi 4 000 mg sodíku." }
+          - { text: "1 g", why: "1 g soli obsahuje jen asi 400 mg sodíku." }
+      - id: kationt
+        type: choice
+        prompt: "Sodík je hlavním kationtem…"
+        options:
+          - { text: "extracelulární (mimobuněčné) tekutiny", correct: true }
+          - { text: "intracelulární (vnitrobuněčné) tekutiny", why: "Hlavním kationtem uvnitř buněk je draslík." }
+          - { text: "kostní tkáně", why: "V kostech je hlavně vápník a fosfor." }
+          - { text: "žaludeční šťávy", why: "V žaludeční šťávě je důležitý chlorid (HCl)." }
+      - id: prevence
+        type: explain
+        version: 2
+        prompt: "Klient tvrdí, že nesolí, takže soli moc nejí. Jak mu vysvětlíš skrytou sůl a čtení etiket?"
+        keyPoints:
+          - "Bezpečný a adekvátní příjem 2 000 mg sodíku ≈ 5 g soli denně"
+          - "Významná část sodíku nepochází ze slánky, ale ze soli přidané při výrobě"
+          - "Skrytá sůl: pečivo, sýry, masné výrobky, hotová jídla, pochutiny"
+          - "Obsah soli je uveden v tabulce výživových údajů na etiketě – porovnávej výrobky"
+        modelAnswer: >-
+          Nedosolování je dobrý začátek, ale významnou část sodíku přijímáme ze soli, kterou přidal výrobce –
+          v pečivu, sýrech, uzeninách, hotových jídlech a slaných pochutinách. Bezpečné je zhruba
+          2 000 mg sodíku, tedy asi 5 g soli denně. Obsah soli najdeš v tabulce výživových údajů na
+          obalu, takže můžeš výrobky porovnávat a vybírat ty s nižším obsahem.
+
+  - id: min.draslik
+    title: Draslík
+    kind: fact
+    tier: B
+    criteria: [1f]
+    prereqs: [min.deleni]
+    confusableWith: [min.sodik]
+    source: { pages: [58], anchor: "představuje hlavní kationt intracelulární tekutiny" }
+    explanation: >-
+      Draslík (K) je hlavní kationt uvnitř buněk (hodně ve svalech). Udržuje membránový potenciál,
+      nervosvalovou činnost, hospodaření s tekutinami a acidobazickou rovnováhu; dostatek příznivě
+      působí na krevní tlak. Zdroje: zelenina, ovoce, brambory, luštěniny, ořechy; při vaření přechází
+      do vody. Ztráty zvracením, průjmy, léky → slabost, křeče, poruchy rytmu. Hyperkalémie hrozí
+      hlavně při nemocných ledvinách.
+    exercises:
+      - id: tlak
+        type: choice
+        prompt: "Který minerál je podle skript spojen s příznivým působením na krevní tlak?"
+        options:
+          - { text: "Draslík", correct: true }
+          - { text: "Sodík", why: "Vysoký příjem sodíku krevní tlak naopak zvyšuje." }
+          - { text: "Chlor", why: "Chloridy se v běžné stravě pojí se solí, tedy i se sodíkem." }
+          - { text: "Fosfor", why: "Fosfor souvisí s kostmi a energetickým metabolismem, ne s krevním tlakem." }
+      - id: vareni
+        type: reveal
+        prompt: "Co se děje s draslíkem při vaření ve vodě?"
+        answer: "Část přechází do vývaru/vody, ve které se potravina vaří."
+
+  - id: min.chlor-sira
+    title: Chlor a síra
+    kind: fact
+    tier: C
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [59], anchor: "Chlorid je také součástí kyseliny chlorovodíkové (HCl) v žaludku" }
+    explanation: >-
+      Chlor se v těle vyskytuje jako chloridový iont: hlavní elektrolyt mimobuněčné tekutiny a součást
+      žaludeční kyseliny chlorovodíkové (HCl), potřebné pro trávení bílkovin. Hlavním zdrojem je sůl
+      (NaCl). Síra je součástí sirných aminokyselin methioninu a cysteinu a vitaminů thiaminu
+      a biotinu; její potřebu pokryje dostatek bílkovin, samostatná hodnota příjmu není stanovena.
+    exercises:
+      - id: hcl
+        type: choice
+        prompt: "Který prvek je součástí žaludeční kyseliny potřebné pro trávení bílkovin?"
+        options:
+          - { text: "Chlor (chlorid)", correct: true }
+          - { text: "Síra", why: "Síra je v sirných aminokyselinách a vitaminech, ne v HCl." }
+          - { text: "Sodík", why: "Sodík tvoří se chloridem kuchyňskou sůl, ne HCl." }
+          - { text: "Fosfor", why: "Fosfor je ve fosfolipidech, nukleových kyselinách a ATP." }
+      - id: sira
+        type: reveal
+        prompt: "Kde v těle najdeme síru a proč se její příjem samostatně neřeší?"
+        answer: >-
+          V sirných aminokyselinách (methionin, cystein) a ve vitaminech thiamin a biotin. Při dostatku
+          bílkovin je potřeba pokrytá.
+
+  - id: min.zelezo-formy
+    title: Železo – hemové a nehemové, vstřebávání
+    kind: comparison
+    tier: A
+    criteria: [1f, 6a]
+    prereqs: [min.deleni]
+    source: { pages: [59, 60, 75], anchor: "Hemové železo pochází především z masa" }
+    explanation: >-
+      Hemové železo je hlavně z masa a dalších živočišných zdrojů a má vyšší biologickou dostupnost.
+      Nehemové je hlavně v rostlinách (luštěniny, celozrnné obiloviny, ořechy, semena) a jeho
+      vstřebávání víc závisí na složení stravy. Podporuje ho vitamin C (a žaludeční HCl), snižují ho
+      fytáty a polyfenoly z čaje a kávy. Proto je dobré nepít větší množství kávy či čaje přímo
+      k jídlu, které má být zdrojem železa.
+    exercises:
+      - id: inhibitory
+        type: choice
+        multiple: true
+        prompt: "Co snižuje vstřebávání nehemového železa?"
+        options:
+          - { text: "Polyfenoly z čaje a kávy", correct: true }
+          - { text: "Fytáty", correct: true }
+          - { text: "Vitamin C", why: "Vitamin C vstřebávání nehemového železa naopak zvyšuje." }
+          - { text: "Kyselina chlorovodíková v žaludku", why: "HCl vstřebávání železa podporuje." }
+      - id: hemove
+        type: choice
+        prompt: "Které tvrzení o hemovém železe platí?"
+        options:
+          - { text: "Pochází hlavně z masa a má vyšší biologickou dostupnost.", correct: true }
+          - { text: "Je hlavně v luštěninách a vstřebává se hůř.", why: "To popisuje nehemové železo." }
+          - { text: "Jeho vstřebávání výrazně zvyšuje vitamin C.", why: "Vitamin C pomáhá hlavně nehemovému železu." }
+          - { text: "Fytáty jeho vstřebávání blokují nejvíc.", why: "Složení stravy ovlivňuje hlavně nehemové železo." }
+      - id: vegetarianka
+        type: explain
+        prompt: "Vegetariánka se ptá, jak z rostlinné stravy co nejlépe využít železo. Co jí poradíš?"
+        keyPoints:
+          - "Rostliny obsahují nehemové železo – nižší dostupnost než hemové z masa"
+          - "Zdroje: luštěniny, celozrnné obiloviny, ořechy, semena"
+          - "Kombinovat s vitaminem C (zelenina, ovoce) – zvyšuje vstřebávání"
+          - "Kávu a čaj nepít přímo k jídlu bohatému na železo (polyfenoly)"
+          - "Fytáty vstřebávání snižují, ale potraviny s nimi jsou hodnotné"
+        modelAnswer: >-
+          V rostlinách je nehemové železo, které se vstřebává hůř než hemové z masa a víc záleží na
+          tom, s čím ho jíš. Zařaď luštěniny, celozrnné obiloviny, ořechy a semínka a kombinuj je
+          se zdrojem vitaminu C, třeba paprikou nebo citrusy. Kávu a čaj si dej raději mimo hlavní
+          jídlo, protože polyfenoly vstřebávání snižují.
+
+  - id: min.zelezo-nedostatek
+    title: Železo – funkce, nedostatek a nadbytek
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 7 (s. 59) i s. 217 uvádějí vyšší potřebu železa v těhotenství, tabulka na s. 218 ale
+      ponechává číslo EFSA 16 mg/den jako mimo těhotenství (odpadá menstruace). Potřeba tedy roste
+      kvalitativně, číslo EFSA se nenavyšuje (viz obd.tehotenstvi-mikro). Na otázku „kdo má vyšší
+      potřebu železa“ odpovídej menstruující a těhotné ženy.
+    criteria: [1f]
+    prereqs: [min.zelezo-formy]
+    source: { pages: [59, 60], anchor: "není vhodné vysoké dávky železa suplementovat bezdůvodně" }
+    explanation: >-
+      Železo (Fe) je hlavně v hemoglobinu, dále v myoglobinu a enzymech – přenos kyslíku a energetický
+      metabolismus. Potřeba se liší podle věku, pohlaví a ztrát; vyšší mají menstruující a těhotné
+      ženy. Nedostatek vede k anémii (únava, slabost, nižší výkon, dušnost při námaze); příčinou je
+      nízký příjem, horší vstřebávání, vyšší potřeba nebo krevní ztráty (silná menstruace). Nadbytek
+      škodí – volné železo tvoří reaktivní formy kyslíku (hemochromatóza). Doplňovat jen po vyšetření.
+    exercises:
+      - id: suplementace
+        type: choice
+        prompt: "Klientka je unavená a chce si „pro jistotu“ koupit vysoké dávky železa. Co odpovídá skriptům?"
+        options:
+          - text: "Nejdřív ověřit stav vyšetřením a postup řešit s lékařem."
+            correct: true
+          - text: "Je to v pořádku, přebytek železa se vyloučí."
+            why: "Nadbytek železa je škodlivý (reaktivní formy kyslíku, poškození tkání)."
+          - text: "Je to vhodné, únava je vždy známkou nedostatku železa."
+            why: "Únava má mnoho příčin; bez vyšetření se suplementovat nemá."
+          - text: "Stačí, když ho zapije kávou kvůli lepšímu vstřebání."
+            why: "Polyfenoly z kávy vstřebávání železa snižují."
+      - id: riziko
+        type: choice
+        version: 2
+        prompt: "Kdo má podle kapitoly o minerálních látkách vyšší potřebu železa?"
+        options:
+          - { text: "Menstruující a těhotné ženy", correct: true }
+          - { text: "Muži nad 50 let", why: "Skripta je mezi skupinami s vyšší potřebou neuvádějí." }
+          - { text: "Ženy po menopauze", why: "Po menopauze odpadají menstruační ztráty." }
+          - { text: "Sportovci s vysokým příjmem masa", why: "Maso je dobrým zdrojem hemového železa; skripta tuto skupinu v kap. 7 neuvádějí." }
+      - id: anemie
+        type: reveal
+        prompt: "Jak se projevuje anémie z nedostatku železa a jaké má příčiny?"
+        answer: >-
+          Únava, slabost, nižší výkonnost, dušnost při námaze. Příčiny: nízký příjem, horší
+          vstřebávání, zvýšená potřeba, krevní ztráty (silná menstruace, jiné krvácení).
+
+  - id: min.jod
+    title: Jód a štítná žláza
+    kind: fact
+    tier: A
+    criteria: [1f, 7f]
+    prereqs: [min.deleni]
+    source: { pages: [60], anchor: "Je nezbytnou součástí hormonů štítné žlázy" }
+    explanation: >-
+      Jód je součástí hormonů štítné žlázy tyroxinu (T4) a trijodtyroninu (T3), které řídí
+      metabolismus, růst a vývoj. Zvlášť důležitý je v těhotenství a raném dětství pro vývoj
+      nervové soustavy. Dospělí asi 150 µg denně, těhotné a kojící více. Zdroje: jodizovaná sůl,
+      mořské ryby a plody, mléčné výrobky; mořské řasy mohou mít extrémně mnoho. Nedostatek: porucha
+      štítné žlázy a její zvětšení (struma). Škodí i nadbytek (hypo- i hypertyreóza). Strumigenní
+      látky z brukvovité zeleniny nevadí při dostatku jódu.
+    exercises:
+      - id: hormony
+        type: choice
+        prompt: "Součástí kterých hormonů je jód?"
+        options:
+          - { text: "Tyroxinu (T4) a trijodtyroninu (T3)", correct: true }
+          - { text: "Inzulinu a glukagonu", why: "To jsou hormony slinivky, jód neobsahují." }
+          - { text: "Kortizolu a adrenalinu", why: "To jsou hormony nadledvin, jód neobsahují." }
+          - { text: "Estrogenu a progesteronu", why: "To jsou pohlavní hormony, jód neobsahují." }
+      - id: struma
+        type: choice
+        prompt: "Dlouhodobý nedostatek jódu může vést ke zvětšení štítné žlázy, které se nazývá…"
+        options:
+          - { text: "struma", correct: true }
+          - { text: "selenóza", why: "Selenóza je otrava selenem." }
+          - { text: "hemochromatóza", why: "Hemochromatóza je nadměrné ukládání železa." }
+          - { text: "karotenémie", why: "Karotenémie je zbarvení kůže z nadbytku karotenoidů." }
+      - id: tehotna
+        type: explain
+        prompt: "Proč je jód důležitý v těhotenství a odkud ho klientka získá?"
+        keyPoints:
+          - "Součást hormonů štítné žlázy T3 a T4 (metabolismus, růst, vývoj)"
+          - "Nezbytný pro vývoj nervové soustavy plodu"
+          - "V těhotenství a při kojení vyšší potřeba než běžných 150 µg"
+          - "Zdroje: jodizovaná sůl, mořské ryby, mléčné výrobky"
+          - "Pozor na nadbytek – mořské řasy a doplňky s vysokým obsahem"
+        modelAnswer: >-
+          Jód je součástí hormonů štítné žlázy T3 a T4, které řídí metabolismus, růst a vývoj.
+          V těhotenství je nezbytný pro vývoj nervové soustavy plodu, proto je potřeba vyšší než
+          běžných 150 µg. Zdrojem je jodizovaná sůl, mořské ryby a mléčné výrobky. Nadbytek také
+          škodí, proto pozor na mořské řasy a doplňky s velmi vysokým obsahem.
+
+  - id: min.zinek
+    title: Zinek
+    kind: fact
+    tier: A
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [60, 61], anchor: "Organismus nemá velké zásoby zinku" }
+    explanation: >-
+      Zinek (Zn) je nutný pro funkci mnoha enzymů: metabolismus živin, syntéza DNA a bílkovin,
+      buněčné dělení, imunita, hojení ran, reprodukce, kůže, vlasy, nehty, zrak. Zdroje: maso, vejce,
+      mléčné výrobky, celozrnné obiloviny, luštěniny, ořechy, semena; ze živočišných se využije lépe,
+      fytáty vstřebávání snižují. Tělo nemá velké zásoby → nutný pravidelný příjem. Nedostatek:
+      zpomalený růst, špatné hojení, kožní změny, poruchy chuti a čichu, slabší imunita. Dlouhodobě
+      vysoké dávky z doplňků snižují vstřebávání mědi.
+    exercises:
+      - id: med
+        type: choice
+        prompt: "Čím může škodit dlouhodobé užívání vysokých dávek zinku?"
+        options:
+          - { text: "Snižuje vstřebávání mědi a může vést k jejímu nedostatku.", correct: true }
+          - { text: "Způsobuje selenózu.", why: "Selenóza vzniká z nadbytku selenu." }
+          - { text: "Způsobuje strumu.", why: "Struma souvisí s jódem." }
+          - { text: "Ukládá se v játrech jako železo při hemochromatóze.", why: "Skripta jako riziko vysokých dávek zinku uvádějí nedostatek mědi." }
+      - id: nedostatek
+        type: choice
+        multiple: true
+        prompt: "Které projevy jsou typické pro nedostatek zinku?"
+        options:
+          - { text: "Poruchy chuti a čichu", correct: true }
+          - { text: "Horší hojení ran", correct: true }
+          - { text: "Snížená imunita", correct: true }
+          - { text: "Šeroslepost", why: "Šeroslepost je typická pro nedostatek vitaminu A." }
+          - { text: "Struma", why: "Struma je z nedostatku jódu." }
+      - id: zasoby
+        type: reveal
+        prompt: "Proč je u zinku důležitý pravidelný příjem a co ovlivňuje jeho potřebu?"
+        answer: >-
+          Tělo nemá velké zásoby zinku. Potřebu zvyšují fytáty ve stravě (snižují vstřebávání) –
+          zinek ze živočišných zdrojů je lépe využitelný.
+
+  - id: min.selen
+    title: Selen
+    kind: fact
+    tier: B
+    criteria: [1f]
+    prereqs: [min.deleni]
+    confusableWith: [min.jod]
+    source: { pages: [61], anchor: "V organismu je součástí selenoproteinů" }
+    explanation: >-
+      Selen (Se) je součástí selenoproteinů: antioxidační ochrana buněk, imunita a metabolismus hormonů
+      štítné žlázy (přeměna T4 na aktivnější T3). Dospělí asi 70 µg denně. Obsah v potravinách závisí
+      na půdě (Finsko ho přidává do hnojiv). Zdroje: maso, ryby, vejce, ořechy, semena; para ořechy
+      mají hodně, ale velmi kolísavě. Nadbytek způsobuje selenózu: vypadávání vlasů, lámavé nehty,
+      kožní a zažívací obtíže.
+    exercises:
+      - id: selenoza
+        type: choice
+        prompt: "Vypadávání vlasů a lámavé nehty při dlouhodobém nadměrném příjmu jsou typické pro…"
+        options:
+          - { text: "selenózu (nadbytek selenu)", correct: true }
+          - { text: "nadbytek jódu", why: "Nadbytek jódu vede k poruchám funkce štítné žlázy." }
+          - { text: "nedostatek železa", why: "Nedostatek železa vede hlavně k anémii a únavě." }
+          - { text: "nadbytek hořčíku", why: "Vysoké dávky hořčíku způsobují průjem." }
+      - id: stitna
+        type: reveal
+        prompt: "Jak souvisí selen se štítnou žlázou?"
+        answer: "Selenoproteiny se účastní přeměny hormonu T4 na biologicky aktivnější T3."
+
+  - id: min.med-mangan
+    title: Měď a mangan
+    kind: fact
+    tier: C
+    criteria: [1f]
+    prereqs: [min.zinek]
+    source: { pages: [61], anchor: "v důsledku dlouhodobého nadměrného příjmu zinku" }
+    explanation: >-
+      Měď (Cu) je součástí enzymů: energetický metabolismus, metabolismus železa, pojivové tkáně,
+      nervový systém, antioxidační ochrana. Zdroje: vnitřnosti, mořské plody, ořechy, semena, kakao.
+      Nedostatek je vzácný – při poruchách vstřebávání nebo při dlouhodobě vysokém příjmu zinku
+      (anémie, úbytek bílých krvinek). Mangan (Mn) aktivuje enzymy (pojivové tkáně, kosti,
+      antioxidační ochrana); zdroje jsou hlavně rostlinné (celozrnné obiloviny, ovesné vločky,
+      luštěniny, čaj, kakao). Nedostatek je velmi vzácný.
+    exercises:
+      - id: med-zinek
+        type: choice
+        prompt: "Nedostatek mědi se může objevit při dlouhodobě nadměrném příjmu…"
+        options:
+          - { text: "zinku", correct: true }
+          - { text: "vápníku", why: "Skripta spojují nedostatek mědi s nadbytkem zinku." }
+          - { text: "selenu", why: "Nadbytek selenu vede k selenóze." }
+          - { text: "jódu", why: "Nadbytek jódu narušuje funkci štítné žlázy." }
+
+  - id: min.chrom
+    title: Chrom – esencialita a doplňky
+    kind: fact
+    tier: B
+    criteria: [1f, 8b]
+    prereqs: [min.deleni]
+    source: { pages: [62], anchor: "EFSA pro chrom nestanovila referenční hodnotu příjmu" }
+    explanation: >-
+      Chrom se dříve spojoval s metabolismem glukózy a inzulinem, jeho nezbytnost pro člověka ale
+      dnes není jednoznačně prokázána a EFSA pro něj referenční hodnotu nestanovila. Přesto je
+      v doplňcích na hubnutí a glykémii – neprezentuj ho jako prostředek, který „omezuje chutě“, ani
+      jako standard redukční terapie. V potravinách a doplňcích je trojmocný chrom (Cr III);
+      šestimocný (Cr VI) je toxický.
+    exercises:
+      - id: chute
+        type: choice
+        prompt: "Klientka chce chrom „na chutě“ při hubnutí. Co odpovídá skriptům?"
+        options:
+          - text: "Esencialita chromu není jednoznačně prokázána a jako prostředek na chutě se prezentovat nemá."
+            correct: true
+          - text: "Je to standardní a doporučená součást redukční terapie."
+            why: "Skripta výslovně říkají, že není standardní součástí redukce."
+          - text: "Má smysl, protože EFSA stanovila jeho doporučený příjem."
+            why: "EFSA pro chrom referenční hodnotu nestanovila."
+          - text: "Má volit šestimocný chrom, který je účinnější."
+            why: "Šestimocný chrom (Cr VI) je toxický."
+      - id: formy
+        type: reveal
+        prompt: "Která forma chromu je toxická a která se vyskytuje v potravinách a doplňcích?"
+        answer: "Toxický je šestimocný chrom (Cr VI); v potravinách a doplňcích je trojmocný (Cr III)."
+
+  - id: min.stopove
+    title: Stopové prvky – fluor, kobalt, nikl a další
+    kind: fact
+    tier: B
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source: { pages: [62, 63], anchor: "Nedostatek fluoru se může projevit kazivostí zubů" }
+    explanation: >-
+      Fluor je důležitý pro pevnost zubů a kostí (zdroje: minerální vody, fluoridované zubní pasty);
+      nedostatek se projevuje kazivostí zubů. Kobalt je potřebný jen jako součást vitaminu B12 – řeší
+      se příjmem B12. Nikl je významný hlavně jako kontaktní alergen. Molybden je potřebný pro některé
+      oxidázy. Hliník se může uvolňovat z hliníkového nádobí, hlavně při vaření kyselých jídel.
+      U křemíku, vanadu a niklu esencialita prokázána není.
+    exercises:
+      - id: kobalt
+        type: choice
+        prompt: "Proč se příjem kobaltu samostatně neřeší?"
+        options:
+          - { text: "Člověk ho potřebuje jen jako součást vitaminu B12.", correct: true }
+          - { text: "Tělo si ho umí vyrobit.", why: "Prvky si tělo vytvořit neumí." }
+          - { text: "Je toxický v jakémkoli množství.", why: "Kobalt je potřebný – jako součást vitaminu B12." }
+          - { text: "Je obsažen v kuchyňské soli.", why: "Sůl je zdrojem sodíku a chloru (případně jódu)." }
+      - id: fluor
+        type: reveal
+        prompt: "K čemu je fluor, odkud ho získáváme a jak se projeví jeho nedostatek?"
+        answer: "Pevnost zubů a kostí; minerální vody a fluoridované zubní pasty; nedostatek → kazivost zubů."
+      - id: hlinik
+        type: choice
+        prompt: "Kdy se podle skript nejvíc uvolňuje hliník z hliníkového nádobí?"
+        options:
+          - { text: "Při vaření kyselých potravin", correct: true }
+          - { text: "Při smažení na tuku", why: "Uvolňování znásobuje vaření kyselých potravin." }
+          - { text: "Při mražení", why: "Skripta zmiňují vaření kyselých potravin." }
+          - { text: "Při vaření bez soli", why: "Rozhoduje kyselost potraviny, ne sůl." }
+
+  - id: min.referencni-hodnoty
+    title: Doporučený příjem minerálních látek – klíčová čísla
+    kind: fact
+    tier: B
+    criteria: [1f]
+    prereqs: [min.deleni]
+    source:
+      pages: [56, 57, 58, 60, 61]
+      anchor: "Doporučený příjem pro dospělé podle EFSA činí přibližně 950 mg denně"
+    explanation: >-
+      Hodnoty EFSA pro dospělé (doporučený nebo adekvátní příjem): vápník asi 950 mg (kap. 21
+      zaokrouhluje na 1 000 mg); fosfor 550 mg; hořčík 300 mg ženy / 350 mg muži; draslík 3 500 mg;
+      sodík 2 000 mg (≈ 5 g soli); jód 150 µg; selen 70 µg. U železa a zinku EFSA jedno univerzální
+      číslo pro všechny dospělé neuvádí – potřeba závisí na pohlaví, ztrátách a u zinku na fytátech.
+    exercises:
+      - id: vapnik
+        type: choice
+        prompt: "Jaký denní příjem vápníku pro dospělé uvádí podle EFSA kapitola o minerálních látkách?"
+        options:
+          - { text: "Přibližně 950 mg", correct: true }
+          - { text: "550 mg", why: "550 mg je adekvátní příjem fosforu." }
+          - { text: "350 mg", why: "350 mg je adekvátní příjem hořčíku u mužů." }
+          - { text: "3 500 mg", why: "3 500 mg je adekvátní příjem draslíku." }
+      - id: jod
+        type: choice
+        prompt: "Jaký je podle EFSA adekvátní denní příjem jódu pro dospělé?"
+        options:
+          - { text: "Přibližně 150 µg", correct: true }
+          - { text: "Přibližně 70 µg", why: "70 µg je adekvátní příjem selenu." }
+          - { text: "250 µg", why: "250 µg uvádějí skripta (WHO) pro těhotné a kojící." }
+          - { text: "Přibližně 3 mg", why: "3 mg je adekvátní příjem manganu." }
+      - id: prehled
+        type: reveal
+        prompt: "Kolik hořčíku, draslíku a selenu denně doporučuje EFSA dospělým?"
+        answer: "Hořčík 300 mg ženy / 350 mg muži; draslík 3 500 mg; selen asi 70 µg."

@@ -1,0 +1,230 @@
+topic:
+  id: uvod
+  title: Úvod do výživy
+  chapter: 1
+  pages: [6, 9]
+  order: 10
+  summary: >-
+    Dělení živin na makronutrienty, mikronutrienty, seminutrienty a nenutriční složky, pojem esenciální
+    živiny a témata, která má výživový poradce s klientem probrat.
+
+points:
+  - id: uv.deleni-zivin
+    title: Čtyři skupiny živin
+    kind: concept
+    tier: A
+    criteria: [1a]
+    source: { pages: [8], anchor: "Jednotlivé živiny dělíme podle jejich funkce a chemické struktury" }
+    explanation: >-
+      Podle funkce a chemické struktury skripta dělí složky potravy do čtyř skupin:
+      makronutrienty (zdroj energie – sacharidy, tuky, bílkoviny), mikronutrienty (biochemické
+      procesy, životaschopnost – vitaminy, minerální látky), seminutrienty (dlouhodobá kvalita
+      života – vláknina, fytochemikálie) a nenutriční složky (pozitivní vliv na zdraví – probiotika,
+      symbiotika).
+    exercises:
+      - id: ctyri-skupiny
+        type: reveal
+        prompt: "Vyjmenuj čtyři skupiny, do kterých skripta dělí živiny, a ke každé uveď příklad."
+        answer: >-
+          Makronutrienty (sacharidy, tuky, bílkoviny), mikronutrienty (vitaminy, minerální látky),
+          seminutrienty (vláknina, fytochemikálie), nenutriční složky (probiotika, symbiotika).
+      - id: priradit-vlaknina
+        type: choice
+        prompt: "Do které skupiny živin řadí skripta vlákninu?"
+        options:
+          - { text: "Seminutrienty", correct: true }
+          - { text: "Makronutrienty", why: "Ty jsou hlavním zdrojem energie – sacharidy, tuky, bílkoviny." }
+          - { text: "Mikronutrienty", why: "Sem patří vitaminy a minerální látky." }
+          - { text: "Nenutriční složky", why: "Sem skripta řadí probiotika a symbiotika." }
+      - id: vyznam
+        type: choice
+        prompt: "Jaký význam přisuzují skripta mikronutrientům?"
+        options:
+          - { text: "Biochemické procesy a životaschopnost", correct: true }
+          - { text: "Zdroj energie", why: "To je význam makronutrientů." }
+          - { text: "Dlouhodobá kvalita života", why: "To je význam seminutrientů." }
+          - { text: "Pozitivní vliv na zdraví bez nutriční funkce", why: "Tak skripta popisují nenutriční složky." }
+
+  - id: uv.makro-mikro
+    title: Makronutrienty vs. mikronutrienty
+    kind: comparison
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.deleni-zivin]
+    confusableWith: [uv.seminutrienty]
+    source: { pages: [8, 9], anchor: "Makronutrienty jsou zdrojem energie, ale ne všechny mají stejnou nutriční hodnotu" }
+    explanation: >-
+      Makronutrienty (sacharidy, tuky, bílkoviny) přijímáme ve velkém množství a jsou zdrojem
+      energie – nejvíc jí mají tuky, sacharidy a bílkoviny stejně. Mikronutrienty (vitaminy,
+      minerální látky) energii nedodávají; stačí jich málo a řídí biochemické procesy. Alkohol
+      sice energii dodává, ale skripta ho vedou jako „další nositel energie“, ne jako makroživinu.
+    exercises:
+      - id: ktere-makro
+        type: choice
+        multiple: true
+        prompt: "Které z látek patří podle skript mezi makronutrienty?"
+        options:
+          - { text: "Bílkoviny", correct: true }
+          - { text: "Tuky", correct: true }
+          - { text: "Sacharidy", correct: true }
+          - { text: "Minerální látky", why: "Minerální látky jsou mikronutrienty." }
+          - { text: "Alkohol", why: "Alkohol je ve skriptech „další nositel energie“, ne makroživina." }
+      - id: energie
+        type: choice
+        prompt: "Která skupina živin je zdrojem energie?"
+        options:
+          - { text: "Makronutrienty", correct: true }
+          - { text: "Mikronutrienty", why: "Vitaminy a minerální látky energii nedodávají." }
+          - { text: "Seminutrienty", why: "Ty slouží dlouhodobé kvalitě života (vláknina, fytochemikálie), energii nedodávají." }
+          - { text: "Nenutriční složky", why: "Probiotika a symbiotika mají pozitivní vliv na zdraví, zdrojem energie nejsou." }
+      - id: rozdil
+        type: reveal
+        prompt: "Čím se liší makronutrienty od mikronutrientů? Uveď zástupce obou skupin."
+        answer: >-
+          Makronutrienty (sacharidy, tuky, bílkoviny) jsou zdrojem energie, přijímáme je ve velkém
+          množství. Mikronutrienty (vitaminy, minerální látky) energii nedodávají, stačí v malém
+          množství a zajišťují biochemické procesy.
+
+  - id: uv.seminutrienty
+    title: Seminutrienty
+    kind: concept
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.deleni-zivin]
+    confusableWith: [uv.nenutricni-slozky, uv.makro-mikro]
+    source: { pages: [8], anchor: "Dlouhodobá kvalita života" }
+    explanation: >-
+      Seminutrienty jsou látky, které nejsou zdrojem energie ani klasickou esenciální živinou, ale
+      ovlivňují dlouhodobou kvalitu života a zdraví. Skripta sem řadí vlákninu a fytochemikálie
+      (sekundární rostlinné látky, např. polyfenoly).
+    exercises:
+      - id: zastupci
+        type: choice
+        prompt: "Které dvě skupiny látek řadí skripta mezi seminutrienty?"
+        options:
+          - { text: "Vlákninu a fytochemikálie", correct: true }
+          - { text: "Probiotika a symbiotika", why: "To jsou nenutriční složky." }
+          - { text: "Vitaminy a minerální látky", why: "To jsou mikronutrienty." }
+          - { text: "Alkohol a polyoly", why: "Alkohol je podle skript samostatný nositel energie; seminutrienty jsou vláknina a fytochemikálie." }
+      - id: vyznam
+        type: reveal
+        prompt: "Co jsou seminutrienty, jaký mají podle skript význam a kdo do nich patří?"
+        answer: "Látky pro dlouhodobou kvalitu života (ne zdroj energie): vláknina a fytochemikálie."
+
+  - id: uv.nenutricni-slozky
+    title: Nenutriční složky potravy
+    kind: concept
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.deleni-zivin]
+    confusableWith: [uv.seminutrienty]
+    source: { pages: [8, 136], anchor: "Pozitivní vliv na zdraví" }
+    explanation: >-
+      Nenutriční složky nejsou živinou v pravém smyslu, ale mají pozitivní vliv na zdraví. Skripta
+      sem řadí probiotika (živé prospěšné bakterie) a symbiotika (probiotika spojená s prebiotiky,
+      tedy s „potravou“ pro bakterie).
+    exercises:
+      - id: zastupci
+        type: choice
+        prompt: "Kam patří podle skript probiotika?"
+        options:
+          - { text: "Mezi nenutriční složky", correct: true }
+          - { text: "Mezi seminutrienty", why: "Seminutrienty jsou vláknina a fytochemikálie." }
+          - { text: "Mezi mikronutrienty", why: "Mikronutrienty jsou vitaminy a minerální látky." }
+          - { text: "Mezi makronutrienty", why: "Makronutrienty jsou zdrojem energie – sacharidy, tuky, bílkoviny." }
+      - id: symbiotika
+        type: reveal
+        prompt: "Co jsou symbiotika?"
+        answer: "Kombinace probiotik (živých bakterií) s prebiotiky, která jim slouží jako zdroj energie."
+
+  - id: uv.esencialni-zivina
+    title: Esenciální živina
+    kind: concept
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.deleni-zivin]
+    source: { pages: [6, 10, 23, 38, 46], anchor: "esenciálních živin (například mastné kyseliny, aminokyseliny, fosfor, vápník, vitamin D" }
+    explanation: >-
+      Esenciální živina je látka, kterou si tělo neumí vytvořit (nebo v dostatečném množství), a
+      musí ji proto přijímat stravou. Patří sem některé mastné kyseliny (linolová, alfa-linolenová),
+      esenciální aminokyseliny, vitaminy a minerální látky. Sacharidy esenciální nejsou (glukózu
+      tělo vyrobí glukoneogenezí) a alkohol také ne.
+    exercises:
+      - id: definice
+        type: reveal
+        prompt: "Co znamená, že je živina esenciální?"
+        answer: "Tělo si ji neumí samo vytvořit (dostatečně), takže ji musí přijímat ve stravě."
+      - id: ktere
+        type: choice
+        multiple: true
+        prompt: "Které z uvedených patří mezi esenciální živiny?"
+        options:
+          - { text: "Kyselina linolová", correct: true }
+          - { text: "Lysin", correct: true }
+          - { text: "Vápník", correct: true }
+          - { text: "Glukóza", why: "Sacharidy nejsou esenciální – tělo si glukózu vytvoří glukoneogenezí." }
+          - { text: "Kyselina palmitová", why: "Nasycené MK si tělo umí vytvořit samo." }
+      - id: neesencialni
+        type: choice
+        prompt: "Která z těchto látek NENÍ esenciální živinou?"
+        options:
+          - { text: "Alkohol", correct: true }
+          - { text: "Kyselina alfa-linolenová", why: "Je to esenciální n-3 mastná kyselina." }
+          - { text: "Vitamin C", why: "Vitaminy jsou esenciální." }
+          - { text: "Tryptofan", why: "Je to esenciální aminokyselina." }
+
+  - id: uv.poradce-temata
+    title: Co probrat s klientem kromě jídla
+    kind: concept
+    tier: B
+    criteria: [11a, 3c]
+    source: { pages: [7, 8], anchor: "Jaká témata bychom ve spolupráci s klientem měli zohlednit" }
+    explanation: >-
+      Dobrý poradce neřeší jen jídlo a kalorie. S klientem probírá: aktuální stravování (nejlepší
+      základ pro nastavení příjmu), zdravotní potíže (složité případy předat zkušenějšímu kolegovi
+      či nutričnímu terapeutovi), pitný režim, denní režim, spánek, vztah k jídlu (strach z jídla
+      = varovný signál), psychiku a stres a suplementaci.
+    exercises:
+      - id: temata
+        type: explain
+        prompt: "Která témata kromě samotného jídelníčku bys měla s klientem probrat a proč?"
+        keyPoints:
+          - "Aktuální stravování – základ pro nastavení příjmu"
+          - "Zdravotní potíže – nehubnout na úkor zdraví, složité případy předat dál"
+          - "Pitný režim a denní režim (jídelníček musí odpovídat režimu)"
+          - "Spánek, psychika a stres"
+          - "Vztah k jídlu a suplementace"
+        modelAnswer: >-
+          Začínám analýzou dosavadního stravování, protože z ní nejlépe nastavím energetický příjem.
+          Ptám se na zdravotní potíže – klient nesmí hubnout na úkor zdraví a složitější případy
+          předám nutričnímu terapeutovi. Řeším pitný režim, denní režim, spánek, stres a psychiku,
+          vztah k jídlu, abych nepřispěla k poruše příjmu potravy, a případně vhodnou suplementaci.
+      - id: predani
+        version: 2
+        type: choice
+        prompt: "Klient má složité zdravotní komplikace, kterým nerozumíš. Co skripta doporučují?"
+        options:
+          - { text: "Zvážit předání kolegovi nebo nutričnímu terapeutovi", correct: true }
+          - { text: "Sestavit běžný redukční jídelníček a sledovat, co se stane", why: "Klient nesmí hubnout na úkor zdraví." }
+          - { text: "Doporučit doplňky stravy podle příznaků, které popisuje", why: "Neznámé zdravotní potíže nelze řešit doplňky – nejdřív jim porozumět, případně klienta předat." }
+          - { text: "Ukončit spolupráci bez dalšího doporučení", why: "Klienta nenecháš bez pomoci – doporučíš mu odborníka, který jeho potíže zvládne." }
+
+  - id: uv.mozek-energie
+    title: Mozek a energie
+    kind: fact
+    tier: C
+    criteria: [2d]
+    source: { pages: [7], anchor: "Mozek je energeticky nejnáročnější orgán" }
+    explanation: >-
+      Mozek je energeticky nejnáročnější orgán – spotřebuje asi 20 % přijaté energie. Preferuje
+      glukózu, v extrémních situacích umí využít i jiné zdroje (ketolátky). Při hladu a nízké
+      glykémii se objevuje nepozornost a podrážděnost.
+    exercises:
+      - id: podil
+        type: choice
+        prompt: "Kolik přijaté energie spotřebuje podle skript mozek?"
+        options:
+          - { text: "Asi 20 %", correct: true }
+          - { text: "Asi 5 %", why: "Mozek je energeticky nejnáročnější orgán – spotřebuje asi 20 %." }
+          - { text: "Asi 40 %", why: "Tolik ne – skripta uvádějí přibližně 20 %." }
+          - { text: "Asi 60 %", why: "Tolik ne – skripta uvádějí přibližně 20 %." }

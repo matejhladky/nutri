@@ -1,0 +1,1150 @@
+topic:
+  id: telo
+  title: Lidské tělo
+  chapter: 10
+  pages: [68, 80]
+  order: 100
+  summary: >-
+    Buňka (membrána, organely, mitochondrie, transport), krev, oběh, lymfa a imunita, trávicí soustava
+    po úsecích (enzymy, žluč, vstřebávání), vylučování, voda a homeostáza, pohybová soustava a žlázy
+    s vnitřní sekrecí včetně hormonů řídících trávení a metabolismus.
+
+points:
+  - id: telo.membrana
+    title: Plazmatická membrána
+    kind: concept
+    tier: A
+    criteria: [2b]
+    source: { pages: [68], anchor: "model fluidní (tekuté mozaiky)" }
+    explanation: >-
+      Plazmatická (cytoplazmatická) membrána ohraničuje buňku a drží její celistvost. Popisuje se
+      modelem tekuté mozaiky. Základem je dvojvrstva lipidů, hlavně fosfolipidů: jejich hydrofilní
+      části míří k vodě, hydrofobní části k sobě dovnitř vrstvy. Vlastnosti membrány ovlivňuje
+      cholesterol. Bílkoviny v membráně zajišťují transport látek, buněčnou komunikaci (receptory)
+      a imunitní reakce.
+    exercises:
+      - id: zaklad
+        type: choice
+        prompt: "Co tvoří chemický základ plazmatické membrány?"
+        options:
+          - { text: "Dvojvrstva fosfolipidů", correct: true }
+          - { text: "Vrstva glykogenu", why: "Glykogen je zásobní sacharid uložený v játrech a svalech." }
+          - { text: "Dvojvrstva triacylglycerolů", why: "Triacylglyceroly nemají hydrofilní část – jsou zásobní formou tuku." }
+          - { text: "Síť kolagenu a elastinu", why: "To je vláknitá složka mezibuněčné hmoty pojiva." }
+      - id: cholesterol
+        type: choice
+        prompt: "Která látka je podle skript důležitou součástí membrány a ovlivňuje její fyzikálně-chemické vlastnosti?"
+        options:
+          - { text: "Cholesterol", correct: true }
+          - { text: "Hemoglobin", why: "Hemoglobin je bílkovina červených krvinek, která váže kyslík." }
+          - { text: "Inzulin", why: "Inzulin se na membránu jen váže přes receptor, její stavební složkou není." }
+          - { text: "Mucin", why: "Mucin je hlen chránící sliznice (např. žaludku)." }
+
+  - id: telo.organely
+    title: Buněčné organely a jejich funkce
+    kind: comparison
+    tier: A
+    criteria: [2b]
+    prereqs: [telo.membrana]
+    source: { pages: [68, 69], anchor: "Ribozomy jsou malé buněčné organely důležité pro proteosyntézu" }
+    explanation: >-
+      Jádro: většina genetické informace (DNA v chromozomech). Ribozomy: proteosyntéza – tvorba
+      bílkovin. Endoplazmatické retikulum a Golgiho aparát: soustava váčků pro vznik, úpravu
+      a rozklad bílkovin, část detoxikace. Lyzozomy: „buněčná popelnice“ – rozkládají látky v buňce.
+      Mikrotubuly a mikrofilamenta: opora, tvar buňky, vnitrobuněčný transport. Cytosol je tekutina,
+      v níž organely „plavou“ a probíhá v něm řada metabolických drah.
+    exercises:
+      - id: proteosynteza
+        type: choice
+        prompt: "Která organela je místem proteosyntézy?"
+        options:
+          - { text: "Ribozomy", correct: true }
+          - { text: "Lyzozomy", why: "Lyzozomy látky rozkládají – „buněčná popelnice“." }
+          - { text: "Mitochondrie", why: "Mitochondrie zajišťují energetický metabolismus (ATP)." }
+          - { text: "Jádro", why: "Jádro uchovává DNA s informací, samotná bílkovina se ale tvoří na ribozomech." }
+      - id: popelnice
+        type: choice
+        prompt: "Která organela plní v buňce funkci „buněčné popelnice“?"
+        options:
+          - { text: "Lyzozomy", correct: true }
+          - { text: "Ribozomy", why: "Ribozomy bílkoviny tvoří." }
+          - { text: "Mikrotubuly", why: "Mikrotubuly tvoří oporu a zajišťují vnitrobuněčný transport." }
+          - { text: "Mitochondrie", why: "Mitochondrie je „buněčná elektrárna“." }
+
+  - id: telo.mitochondrie
+    title: Mitochondrie – buněčná elektrárna
+    kind: fact
+    tier: A
+    criteria: [2b, 2d]
+    source: { pages: [69, 84, 87], anchor: "Ne nadarmo se mitochondrie nazývá buněčnou elektrárnou" }
+    explanation: >-
+      Mitochondrie je „buněčná elektrárna“. Má dvě membrány, vnitřní je zvrásněná, a tím má velký
+      povrch. Probíhá v ní energetický metabolismus: vzniká ATP a oxid uhličitý, který vydechujeme.
+      Patří sem Krebsův cyklus, dýchací řetězec a β-oxidace mastných kyselin – vše potřebuje kyslík.
+      Mitochondrie má také vlastní malou část genetické informace.
+    exercises:
+      - id: produkty
+        type: choice
+        prompt: "Co vzniká v mitochondriích při energetickém metabolismu?"
+        options:
+          - { text: "ATP a oxid uhličitý", correct: true }
+          - { text: "Kyselina mléčná a 2 ATP", why: "To je výsledek anaerobní glykolýzy – bez kyslíku a bez zapojení mitochondrií." }
+          - { text: "Bílkoviny podle DNA", why: "Bílkoviny vznikají na ribozomech." }
+          - { text: "Žlučové kyseliny", why: "Žlučové kyseliny vznikají v játrech z cholesterolu." }
+      - id: drahy
+        type: reveal
+        prompt: "Čím je zvláštní vnitřní membrána mitochondrie a k čemu to je?"
+        answer: "Je zvrásněná do záhybů, takže má velký povrch pro děje energetického metabolismu (vznik ATP)."
+
+  - id: telo.transport
+    title: Buněčný transport – difuze, osmóza, aktivní transport
+    kind: comparison
+    tier: B
+    criteria: [2b, 2d]
+    prereqs: [telo.membrana]
+    source: { pages: [70], anchor: "Pasivní transport nevyžaduje žádný energetický výdej" }
+    explanation: >-
+      Pasivní transport energii nepotřebuje. Typická je difuze: látka se přesouvá z místa s vyšší
+      koncentrací do místa s nižší (např. kyslík z plic do krve). Osmóza je přestup vody přes
+      polopropustnou membránu ke koncentrovanějšímu roztoku; vzniká osmotický tlak. Aktivní transport
+      spotřebovává energii – přes transportní bílkoviny, nebo obalením látky kouskem membrány
+      (endocytóza, opačným směrem exocytóza).
+    exercises:
+      - id: osmoza
+        type: choice
+        prompt: "Co je osmóza?"
+        options:
+          - { text: "Přestup vody přes polopropustnou membránu ke koncentrovanějšímu roztoku", correct: true }
+          - { text: "Přesun rozpuštěné látky z místa s vyšší koncentrací do místa s nižší", why: "To je difuze." }
+          - { text: "Pohlcení látky obalené kouskem membrány do buňky", why: "To je endocytóza (aktivní transport)." }
+          - { text: "Přenos látky přes membránu za spotřeby energie", why: "To je aktivní transport." }
+      - id: bez-energie
+        type: choice
+        prompt: "Který děj nevyžaduje energii?"
+        options:
+          - { text: "Difuze", correct: true }
+          - { text: "Endocytóza", why: "Endocytóza je aktivní transport – spotřebovává energii." }
+          - { text: "Exocytóza", why: "Exocytóza je aktivní transport – spotřebovává energii." }
+
+  - id: telo.dna-rna
+    title: Centrální dogma – DNA, RNA, bílkovina
+    kind: concept
+    tier: B
+    criteria: [2b, 2g]
+    source: { pages: [68, 69], anchor: "Z DNA se informace přepisuje do RNA (transkripce)" }
+    explanation: >-
+      Platí centrální dogma DNA → RNA → bílkovina. Informace z DNA se přepíše do RNA (transkripce)
+      a podle RNA se „přeloží“ do pořadí aminokyselin v nové bílkovině (translace). Lidské buňky
+      mají 46 chromozomů (žena 46 XX, muž 46 XY), pohlavní buňky polovinu. DNA obsahuje přibližně
+      25 000 genů.
+    exercises:
+      - id: transkripce
+        type: choice
+        prompt: "Jak se nazývá přepis informace z DNA do RNA?"
+        options:
+          - { text: "Transkripce", correct: true }
+          - { text: "Translace", why: "Translace je překlad informace z RNA do pořadí aminokyselin." }
+          - { text: "Replikace", why: "Replikace je zdvojení DNA před dělením buňky." }
+          - { text: "Proteolýza", why: "Proteolýza je rozklad bílkovin." }
+      - id: dogma
+        type: reveal
+        prompt: "Popiš centrální dogma buněčné biologie a pojmenuj oba kroky."
+        answer: "DNA → RNA (transkripce) → bílkovina (translace – pořadí aminokyselin podle RNA)."
+
+  - id: telo.tkane
+    title: Základní typy tkání
+    kind: fact
+    tier: C
+    criteria: [2b]
+    source: { pages: [70, 71], anchor: "Lidské tělo je složeno z pěti základních typů tkání" }
+    explanation: >-
+      Tkáň je populace buněk, které společně plní funkci. Pět základních typů: epitelová (kryje tělo,
+      vystýlá dutiny), svalová (pohyb), pojivová (opora – vazivo, chrupavka, kost), nervová (přenos
+      informace) a tekutá – krev. Buňky tvoří tkáně, tkáně orgány a orgány orgánové soustavy.
+    exercises:
+      - id: krev
+        type: choice
+        prompt: "Kam skripta řadí krev?"
+        options:
+          - { text: "Tekutá tkáň", correct: true }
+          - { text: "Pojivová tkáň", why: "Pojivo skripta popisují jako vazivo, chrupavku a kost; krev uvádějí zvlášť." }
+          - { text: "Epitelová tkáň", why: "Epitel kryje tělo a vystýlá dutiny." }
+          - { text: "Svalová tkáň", why: "Svalová tkáň zajišťuje pohyb." }
+      - id: vyjmenuj
+        type: reveal
+        prompt: "Vyjmenuj pět základních typů tkání."
+        answer: "Epitelová, svalová, pojivová, nervová a tekutá (krev)."
+
+  - id: telo.krev
+    title: Složení krve
+    kind: fact
+    tier: B
+    criteria: [2a]
+    source: { pages: [71], anchor: "Krev tvoří cca 7 % tělesné hmotnosti, průměrný obsah je 5 l" }
+    explanation: >-
+      Krev je tekutá tkáň – suspenze krevních elementů v plazmě (převážně voda s rozpuštěnými látkami).
+      Tvoří asi 7 % hmotnosti těla, průměrně 5 l. Elementy vznikají v červené kostní dřeni: červené
+      krvinky (přenos kyslíku hemoglobinem s železem), bílé krvinky (obrana) a krevní destičky.
+      Červené krvinky potřebují železo, vitamin B9 a B12; opotřebované se vychytávají ve slezině.
+    exercises:
+      - id: krvinky-ziviny
+        type: choice
+        multiple: true
+        prompt: "Co je podle skript potřebné pro správnou funkci červených krvinek? (vyber všechny)"
+        options:
+          - { text: "Železo", correct: true }
+          - { text: "Kyselina listová (B9)", correct: true }
+          - { text: "Vitamin B12", correct: true }
+          - { text: "Vitamin K", why: "Vitamin K souvisí se srážením krve." }
+          - { text: "Vitamin D", why: "Vitamin D souvisí se vstřebáváním vápníku a kostí." }
+      - id: vznik
+        type: choice
+        prompt: "Kde vznikají krevní elementy?"
+        options:
+          - { text: "V červené kostní dřeni", correct: true }
+          - { text: "Ve slezině", why: "Slezina opotřebované červené krvinky naopak vychytává." }
+          - { text: "V játrech", why: "Játra tvoří většinu krevních bílkovin, ne krvinky." }
+          - { text: "V lymfatických uzlinách", why: "Uzliny fungují jako filtr lymfy." }
+
+  - id: telo.obeh
+    title: Srdce, cévy a krevní tlak
+    kind: fact
+    tier: C
+    criteria: [2a, 3b]
+    source: { pages: [71, 72], anchor: "za fyziologickou hodnotu je považován krevní tlak 120/80" }
+    explanation: >-
+      Srdce (2 síně, 2 komory) pracuje jako čerpadlo. Systola = stah a vypuzení krve, diastola =
+      klidová fáze, kdy se srdce plní. Krevní tlak má horní (systolickou) a dolní (diastolickou)
+      hodnotu, fyziologicky 120/80; tep 60–90/min. Tepny vedou krev od srdce, žíly k srdci, v kapilárách
+      probíhá výměna látek. Malý oběh: srdce–plíce, velký oběh: srdce–zbytek těla.
+    exercises:
+      - id: systola
+        type: choice
+        prompt: "Co je systola?"
+        options:
+          - { text: "Fáze, kdy se srdce stahuje a vypuzuje krev", correct: true }
+          - { text: "Klidová fáze, kdy se srdce plní krví", why: "To je diastola." }
+          - { text: "Dolní hodnota krevního tlaku", why: "Dolní hodnota je tlak diastolický." }
+          - { text: "Výměna látek v kapilárách", why: "To je mikrocirkulace." }
+      - id: tepny
+        type: choice
+        prompt: "Které cévy vedou krev od srdce?"
+        options:
+          - { text: "Tepny", correct: true }
+          - { text: "Žíly", why: "Žíly vedou krev zpět k srdci." }
+          - { text: "Kapiláry", why: "Kapiláry jsou místem výměny látek mezi tepnami a žílami." }
+
+  - id: telo.lymfa
+    title: Lymfatický systém
+    kind: fact
+    tier: B
+    criteria: [2a, 2e]
+    confusableWith: [telo.vstrebavani]
+    source: { pages: [72], anchor: "tuky z potravy se primárně vstřebávají do lymfatického systému" }
+    explanation: >-
+      Lymfatický (mízní) systém tvoří lymfatické cévy, uzliny a orgány (brzlík, slezina, kostní dřeň).
+      Vrací tekutinu z mezibuněčného prostoru zpět do krve a je součástí imunity; uzliny slouží jako
+      biologický filtr. Lymfa se podobá plazmě, má však méně bílkovin. Tuky z potravy se vstřebávají
+      primárně do lymfy – po tučném jídle je lymfa mléčně zakalená. Proudění lymfy podporuje pohyb
+      (svalová pumpa) a dýchání.
+    exercises:
+      - id: zakal
+        type: choice
+        prompt: "Proč je lymfa po tučném jídle mléčně zakalená?"
+        options:
+          - { text: "Tuky z potravy se vstřebávají primárně do lymfy", correct: true }
+          - { text: "Lymfa obsahuje víc bílkovin než plazma", why: "Lymfa má naopak bílkovin méně." }
+          - { text: "Do lymfy odtéká žluč", why: "Žluč teče žlučovodem do dvanáctníku." }
+          - { text: "V lymfě po jídle přibude bílých krvinek", why: "Zákal způsobují vstřebané tuky." }
+      - id: funkce
+        type: reveal
+        prompt: "Jaké dvě hlavní funkce má lymfatický systém?"
+        answer: "Vrací tekutinu z mezibuněčného prostoru zpět do krve a je součástí imunitního systému (uzliny jako filtr)."
+
+  - id: telo.imunita
+    title: Vrozená a získaná imunita
+    kind: comparison
+    tier: B
+    criteria: [2a]
+    source: { pages: [73], anchor: "Rozlišujeme dva typy imunity: vrozená a získaná" }
+    explanation: >-
+      Vrozená imunita je nespecifická – nemíří na konkrétní patogen: kyselé pH v žaludku, kožní
+      bariéra, výstelka dýchacích cest. Získaná (specifická) imunita stojí na protilátkách namířených
+      proti konkrétnímu patogenu. Antigen (nejčastěji bílkovina) vyvolá tvorbu protilátek, které se
+      na něj navážou. Protilátky proti vlastním buňkám jsou podkladem autoimunitních onemocnění.
+    exercises:
+      - id: nespecificka
+        type: choice
+        prompt: "Co patří k nespecifické (vrozené) imunitě?"
+        options:
+          - { text: "Kyselé pH v žaludku", correct: true }
+          - { text: "Protilátky proti konkrétnímu viru", why: "Protilátky jsou základem specifické imunity." }
+          - { text: "Vazba protilátky na antigen", why: "To je podstata specifické imunity." }
+      - id: antigen
+        type: choice
+        prompt: "Co je antigen?"
+        options:
+          - { text: "Látka vyvolávající tvorbu protilátek", correct: true }
+          - { text: "Bílkovina, kterou imunitní buňky míří na patogen", why: "To je protilátka." }
+          - { text: "Bílá krvinka v lymfatické uzlině", why: "Antigen není buňka imunitního systému." }
+          - { text: "Enzym ničící bakterie v žaludku", why: "Antigen je obvykle cizí bílkovina, která imunitní reakci vyvolá." }
+
+  - id: telo.travici-trubice
+    title: Úseky trávicí trubice
+    kind: fact
+    tier: B
+    criteria: [2b]
+    source: { pages: [73], anchor: "tenkým střevem (dvanáctník, lačník a kyčelník)" }
+    explanation: >-
+      Dutina ústní → hltan → jícen → žaludek → tenké střevo (dvanáctník, lačník, kyčelník) → tlusté
+      střevo (slepé střevo, tračník, esovitá klička) → konečník. V ústech ústí slinné žlázy, do
+      dvanáctníku společný vývod slinivky a žlučovodu. Trávicí trubice měří až 8 m a obsah posouvá
+      a promíchává peristaltikou.
+    exercises:
+      - id: vyvod
+        type: choice
+        prompt: "Do kterého úseku ústí společný vývod slinivky a žlučovodu?"
+        options:
+          - { text: "Dvanáctník", correct: true }
+          - { text: "Žaludek", why: "Šťáva slinivky a žluč přitékají až za žaludek, do dvanáctníku." }
+          - { text: "Lačník", why: "Lačník je střední úsek tenkého střeva." }
+          - { text: "Kyčelník", why: "Kyčelník je koncový úsek tenkého střeva." }
+      - id: poradi
+        type: reveal
+        prompt: "Vyjmenuj popořadě úseky tenkého střeva."
+        answer: "Dvanáctník, lačník, kyčelník."
+
+  - id: telo.traveni-sacharidu
+    title: Trávení sacharidů – kde a kterými enzymy
+    kind: procedure
+    tier: A
+    status: course-disputed
+    criteria: [2a, 2b]
+    prereqs: [telo.travici-trubice]
+    confusableWith: [telo.traveni-bilkovin, telo.zluc]
+    source: { pages: [73, 74], anchor: "Sliny obsahují slinnou amylázu (ptyalin)" }
+    note: >-
+      Na s. 74 skripta píší, že pankreatická amyláza štěpí škrob „na glukózu“; na s. 14 a 73 přesněji
+      na menší jednotky (dextriny), které až enzymy kartáčového lemu rozloží na monosacharidy.
+      U zkoušky: amyláza (slinná i pankreatická) štěpí škrob; konečné štěpení na monosacharidy
+      zajišťují disacharidázy tenkého střeva.
+    explanation: >-
+      Trávení sacharidů začíná v ústech: slinná amyláza (ptyalin) štěpí škrob na menší jednotky.
+      Žaludek enzymy na sacharidy netvoří. Ve dvanáctníku pokračuje amyláza ze slinivky. Disacharidy
+      pak štěpí enzymy kartáčového lemu tenkého střeva – maltáza, sacharáza, laktáza (a trehaláza) –
+      na monosacharidy, které se vstřebávají do krve.
+    exercises:
+      - id: zacatek
+        type: choice
+        prompt: "Kde začíná trávení škrobu a kterým enzymem?"
+        options:
+          - { text: "V ústech – slinnou amylázou (ptyalinem)", correct: true }
+          - { text: "V žaludku – pepsinem", why: "Pepsin štěpí bílkoviny; žaludek enzymy na sacharidy netvoří." }
+          - { text: "Ve dvanáctníku – lipázou", why: "Lipáza štěpí tuky." }
+          - { text: "V tlustém střevě – bakteriemi", why: "Bakterie fermentují vlákninu; škrob se začíná trávit už v ústech." }
+      - id: zaludek
+        type: choice
+        prompt: "Který orgán NEtvoří enzymy na trávení sacharidů?"
+        options:
+          - { text: "Žaludek", correct: true }
+          - { text: "Slinné žlázy", why: "Tvoří slinnou amylázu (ptyalin)." }
+          - { text: "Slinivka břišní", why: "Tvoří pankreatickou amylázu." }
+          - { text: "Tenké střevo", why: "V kartáčovém lemu má disacharidázy (maltáza, sacharáza, laktáza)." }
+
+  - id: telo.traveni-bilkovin
+    title: Trávení bílkovin – pepsin, HCl, trypsin
+    kind: procedure
+    tier: A
+    criteria: [2a, 2b]
+    prereqs: [telo.travici-trubice]
+    confusableWith: [telo.traveni-sacharidu, telo.zluc]
+    source: { pages: [74], anchor: "Funkce pepsinu je závislá na přítomnosti kyseliny chlorovodíkové" }
+    explanation: >-
+      Bílkoviny se začínají trávit v žaludku. Kyselina chlorovodíková je denaturuje (rozruší jejich
+      prostorovou strukturu) a zpřístupní je pepsinu, který bez kyseliny nefunguje a štěpí je na
+      menší molekuly. Ve dvanáctníku pokračují enzymy slinivky – trypsin, chymotrypsin a elastáza – na
+      malé peptidy a aminokyseliny; zbylé peptidy rozloží peptidázy kartáčového lemu. Aminokyseliny se
+      vstřebávají do krve.
+    exercises:
+      - id: zaludek
+        type: choice
+        prompt: "Který enzym tráví bílkoviny v žaludku?"
+        options:
+          - { text: "Pepsin", correct: true }
+          - { text: "Trypsin", why: "Trypsin tvoří slinivka a působí ve dvanáctníku." }
+          - { text: "Ptyalin", why: "Ptyalin je slinná amyláza – štěpí škrob." }
+          - { text: "Lipáza", why: "Lipáza štěpí tuky." }
+      - id: hcl
+        type: choice
+        prompt: "Jakou roli má při trávení bílkovin kyselina chlorovodíková?"
+        options:
+          - { text: "Denaturuje je a umožní činnost pepsinu", correct: true }
+          - { text: "Sama je rozštěpí na aminokyseliny", why: "Štěpení zajišťují enzymy; kyselina bílkoviny jen zpřístupní." }
+          - { text: "Rozptýlí je do drobných micel", why: "Micely tvoří žluč s tuky." }
+          - { text: "Chrání před nimi žaludeční sliznici", why: "Sliznici chrání vrstva mucinu." }
+      - id: slinivka
+        type: choice
+        multiple: true
+        prompt: "Které enzymy slinivky štěpí bílkoviny? (vyber všechny)"
+        options:
+          - { text: "Trypsin", correct: true }
+          - { text: "Chymotrypsin", correct: true }
+          - { text: "Elastáza", correct: true }
+          - { text: "Amyláza", why: "Amyláza štěpí škrob." }
+          - { text: "Lipáza", why: "Lipáza štěpí tuky." }
+
+  - id: telo.zluc
+    title: Žluč a trávení tuků
+    kind: procedure
+    tier: A
+    criteria: [2a, 2e]
+    prereqs: [telo.travici-trubice]
+    confusableWith: [telo.traveni-sacharidu, telo.traveni-bilkovin]
+    source: { pages: [74, 75], anchor: "díky žluči se ve vodě nerozpustné tuky rozptýlí" }
+    explanation: >-
+      Žaludek tvoří jen málo žaludeční lipázy; tuky se tráví hlavně ve dvanáctníku. Žluč vzniká
+      v játrech, skladuje se v koncentrované podobě ve žlučníku a žlučovodem přitéká do dvanáctníku.
+      Obsahuje cholesterol, žlučové kyseliny a fosfolipidy. Rozptýlí tuky do drobných částic (micel),
+      na které pak působí pankreatická lipáza. Bez žluči se tuky nestráví ani nevstřebají – a s nimi
+      ani vitaminy A, D, E, K; následkem může být průjem.
+    exercises:
+      - id: uloha
+        type: choice
+        prompt: "Jaká je hlavní úloha žluči při trávení?"
+        options:
+          - { text: "Rozptýlí tuky do micel dostupných pro lipázu", correct: true }
+          - { text: "Sama štěpí tuky na mastné kyseliny", why: "Štěpení zajišťuje lipáza; žluč tuky jen rozptýlí." }
+          - { text: "Štěpí bílkoviny ve dvanáctníku", why: "To dělají trypsin, chymotrypsin a elastáza." }
+          - { text: "Vstřebává vodu v tlustém střevě", why: "Vodu vstřebává sliznice tlustého střeva." }
+      - id: kde
+        type: choice
+        prompt: "Kde se žluč tvoří a kde se skladuje?"
+        options:
+          - { text: "Tvoří ji játra, skladuje žlučník", correct: true }
+          - { text: "Tvoří ji žlučník, skladují játra", why: "Je to obráceně." }
+          - { text: "Tvoří ji slinivka, skladuje dvanáctník", why: "Slinivka tvoří trávicí šťávu s enzymy, ne žluč." }
+          - { text: "Tvoří ji žaludek, skladuje žlučník", why: "Žaludek tvoří kyselinu chlorovodíkovou a pepsin." }
+      - id: vitaminy
+        type: reveal
+        prompt: "Proč může porucha tvorby nebo odtoku žluči vést k nedostatku vitaminu D?"
+        answer: "Bez žluči se nestráví a nevstřebají tuky – a s nimi ani vitaminy rozpustné v tucích (A, D, E, K)."
+
+  - id: telo.zaludek
+    title: Žaludek – co tvoří
+    kind: fact
+    tier: A
+    criteria: [2b, 2a]
+    prereqs: [telo.travici-trubice]
+    source: { pages: [74], anchor: "slouží k vazbě a následnému vstřebávání vitaminu B12 (tzv. vnitřní faktor)" }
+    explanation: >-
+      Žaludek je vakovitý svalový orgán. Nahoře ho od jícnu odděluje svěrač kardie, dole od
+      dvanáctníku pylorus. Tvoří kyselinu chlorovodíkovou a pepsin (trávení bílkovin), malé množství
+      žaludeční lipázy a u dětí chymosin (trávení mléka). Enzymy na sacharidy netvoří. Sliznici chrání
+      vrstva hlenu (mucinu). Žaludek tvoří i vnitřní faktor nutný pro vstřebání vitaminu B12.
+    exercises:
+      - id: b12
+        type: choice
+        prompt: "Kterou látku tvoří žaludek kvůli vstřebání vitaminu B12?"
+        options:
+          - { text: "Vnitřní faktor", correct: true }
+          - { text: "Chymosin", why: "Chymosin usnadňuje trávení mléka u dětí." }
+          - { text: "Mucin", why: "Mucin chrání sliznici před kyselinou." }
+          - { text: "Pepsin", why: "Pepsin štěpí bílkoviny." }
+      - id: produkty
+        type: choice
+        multiple: true
+        prompt: "Co tvoří žaludek? (vyber všechny)"
+        options:
+          - { text: "Kyselinu chlorovodíkovou", correct: true }
+          - { text: "Pepsin", correct: true }
+          - { text: "Vnitřní faktor", correct: true }
+          - { text: "Amylázu", why: "Žaludek enzymy na sacharidy netvoří." }
+          - { text: "Trypsin", why: "Trypsin tvoří slinivka." }
+
+  - id: telo.reflux
+    title: Svěrače žaludku a reflux
+    kind: concept
+    tier: B
+    criteria: [2b]
+    prereqs: [telo.zaludek]
+    source: { pages: [74], anchor: "Tento jev je známý jako pálení žáhy, gastroezofageální reflux" }
+    explanation: >-
+      Svěrače brání návratu tráveniny: kardie mezi jícnem a žaludkem, pylorus mezi žaludkem
+      a dvanáctníkem. Při poruše horního svěrače se kyselý obsah žaludku vrací do jícnu a dráždí ho –
+      pálení žáhy, gastroezofageální reflux.
+    exercises:
+      - id: sverac
+        type: choice
+        prompt: "Porucha kterého svěrače vede k pálení žáhy (refluxu)?"
+        options:
+          - { text: "Kardie", correct: true }
+          - { text: "Pylorus", why: "Pylorus odděluje žaludek od dvanáctníku." }
+          - { text: "Svěrač konečníku", why: "Ten s refluxem do jícnu nesouvisí." }
+
+  - id: telo.tenke-strevo
+    title: Tenké střevo – hlavní místo trávení a vstřebávání
+    kind: fact
+    tier: A
+    criteria: [2b, 2a]
+    prereqs: [telo.travici-trubice]
+    source: { pages: [74], anchor: "Tenké střevo je hlavním místem, kde se makroživiny chemicky rozkládají" }
+    explanation: >-
+      V tenkém střevě se makroživiny rozkládají na stavební bloky a vstřebávají se do oběhu spolu
+      s vitaminy a minerály. Sliznice je zvrásněná do klků s kartáčovým lemem, což mnohonásobně
+      zvětšuje vstřebávací plochu. V kartáčovém lemu jsou ukotveny enzymy: disacharidázy (maltáza,
+      sacharáza, laktáza, trehaláza), peptidázy a nukleázy. Nutná je i šťáva slinivky a žluč.
+    exercises:
+      - id: plocha
+        type: choice
+        prompt: "Co výrazně zvětšuje vstřebávací plochu tenkého střeva?"
+        options:
+          - { text: "Klky s kartáčovým lemem", correct: true }
+          - { text: "Vrstva mucinu", why: "Mucin chrání sliznici (např. žaludku)." }
+          - { text: "Střevní mikroflóra", why: "Mikroflóra osídluje hlavně tlusté střevo." }
+          - { text: "Peristaltika", why: "Peristaltika obsah posouvá a promíchává." }
+      - id: kde
+        type: choice
+        prompt: "Ve kterém úseku se vstřebává nejvíce živin?"
+        options:
+          - { text: "V tenkém střevě", correct: true }
+          - { text: "V žaludku", why: "V žaludku se vstřebává např. alkohol, ne hlavní podíl živin." }
+          - { text: "V tlustém střevě", why: "V tlustém střevě se vstřebává hlavně voda." }
+          - { text: "V dutině ústní", why: "V ústech se vstřebávají jen některé léky a toxické látky." }
+
+  - id: telo.tluste-strevo
+    title: Tlusté střevo a střevní mikroflóra
+    kind: fact
+    tier: A
+    criteria: [2b, 2a]
+    prereqs: [telo.travici-trubice]
+    source: { pages: [75], anchor: "V tlustém střevě již neprobíhají vlastní trávicí procesy" }
+    explanation: >-
+      V tlustém střevě už trávení neprobíhá. Vstřebává se voda, obsah se zahušťuje a vzniká stolice.
+      Nerozpustná vláknina zvětšuje objem stolice a urychluje její průchod. Střevo je bohatě osídleno
+      bakteriemi: zdravá mikroflóra drží patogenní kmeny pod kontrolou, zpracovává rozpustnou
+      vlákninu na látky chránící střevní stěnu a tvoří některé vitaminy (B1, B2, K, B12) – ale ne
+      v množství, které by pokrylo potřebu.
+    exercises:
+      - id: funkce
+        type: choice
+        prompt: "Co je hlavní funkcí tlustého střeva?"
+        options:
+          - { text: "Vstřebávání vody a tvorba stolice", correct: true }
+          - { text: "Štěpení bílkovin trypsinem", why: "Trypsin působí v tenkém střevě (dvanáctníku)." }
+          - { text: "Vstřebávání vitaminu B12 s vnitřním faktorem", why: "B12 se vstřebává v koncovém úseku tenkého střeva." }
+          - { text: "Rozptylování tuků žlučí", why: "Žluč působí v tenkém střevě." }
+      - id: vitaminy
+        type: choice
+        prompt: "Co platí o vitaminech tvořených bakteriemi tlustého střeva?"
+        options:
+          - { text: "Tvoří např. vitamin K a B12, potřebu ale nepokryjí", correct: true }
+          - { text: "Pokryjí celou potřebu vitaminu K i B12", why: "Produkce bakterií nedosahuje potřebného množství." }
+          - { text: "Tvoří hlavně vitamin C a D", why: "Skripta uvádějí B1, B2, K a B12." }
+
+  - id: telo.zlucove-kameny
+    title: Žlučové kameny
+    kind: fact
+    tier: B
+    criteria: [2b, 7h]
+    prereqs: [telo.zluc]
+    source: { pages: [75, 238], anchor: "Důležitou prevencí žlučových kamenů je pitný režim" }
+    explanation: >-
+      Žluč je tekutá díky vyváženému poměru cholesterolu, žlučových kyselin a fosfolipidů. Změna
+      koncentrace některé složky může vést k vysrážení – vznikají žlučové kameny. Rizikovým faktorem
+      je obezita a ženské pohlaví, podle kap. 22 i nedostatečný pitný režim a zácpa. Prevencí je
+      dostatečný pitný režim.
+    exercises:
+      - id: rizika
+        type: choice
+        multiple: true
+        prompt: "Které rizikové faktory žlučových kamenů skripta uvádějí? (vyber všechny)"
+        options:
+          - { text: "Obezita", correct: true }
+          - { text: "Ženské pohlaví", correct: true }
+          - { text: "Nedostatečný pitný režim", correct: true }
+          - { text: "Mužské pohlaví", why: "Rizikovější je ženské pohlaví." }
+          - { text: "Vysoký příjem vlákniny", why: "Vlákninu skripta jako riziko neuvádějí; rizikem je spíš zácpa." }
+
+  - id: telo.vstrebavani
+    title: Kam se vstřebávají živiny
+    kind: comparison
+    tier: A
+    criteria: [2d, 2a]
+    prereqs: [telo.tenke-strevo]
+    confusableWith: [telo.lymfa]
+    source: { pages: [73, 75], anchor: "se sbírá do vrátnicové žíly (vena portae), která vede do jater" }
+    explanation: >-
+      Vstřebávání je přesun živin do buněk střeva a odtud do oběhu. Jednoduché cukry a aminokyseliny
+      jdou do krve: vrátnicovou žílou (vena portae) nejprve do jater a teprve potom do dalších tkání.
+      Tuky – a s nimi vitaminy A, D, E, K – se vstřebávají do lymfy. Minerální látky a vitaminy
+      rozpustné ve vodě vstřebávají speciální transportéry.
+    exercises:
+      - id: portalni
+        type: choice
+        prompt: "Kam se po vstřebání nejdříve dostanou glukóza a aminokyseliny?"
+        options:
+          - { text: "Vrátnicovou žílou do jater", correct: true }
+          - { text: "Do lymfy a pak do žil", why: "To je cesta tuků." }
+          - { text: "Tepnami přímo do svalů", why: "Krev ze střeva jde nejprve do jater." }
+          - { text: "Do ledvin k filtraci", why: "Krev ze střeva míří vrátnicovou žílou do jater." }
+      - id: lymfa
+        type: choice
+        multiple: true
+        prompt: "Co se vstřebává primárně do lymfy? (vyber všechny)"
+        options:
+          - { text: "Tuky", correct: true }
+          - { text: "Vitaminy A, D, E, K", correct: true, why: "Vstřebávají se společně s tuky." }
+          - { text: "Glukóza", why: "Jednoduché cukry jdou do krve." }
+          - { text: "Aminokyseliny", why: "Aminokyseliny jdou do krve." }
+          - { text: "Vitamin C", why: "Vitaminy rozpustné ve vodě vstřebávají transportéry do krve." }
+
+  - id: telo.vstrebavani-mikroziviny
+    title: Vstřebávání B12, železa a vápníku
+    kind: fact
+    tier: B
+    criteria: [2a, 1e]
+    prereqs: [telo.vstrebavani, telo.zaludek]
+    source: { pages: [75], anchor: "Vitamin B12 se vstřebává v komplexu s vnitřním faktorem" }
+    explanation: >-
+      Vitamin B12 se vstřebává navázaný na vnitřní faktor ze žaludku, v koncovém úseku tenkého střeva.
+      Železo se nejlépe vstřebává v hemové formě; vstřebávání zvyšuje vitamin C a žaludeční kyselina.
+      Vápník se vstřebává v tenkém střevě pod vlivem vitaminu D. Vitaminy A, D, E, K se vstřebávají
+      s tuky, takže při velmi nízkém příjmu tuků se jich vstřebá méně. Ústa, žaludek i tenké střevo
+      vstřebávají také alkohol, nikotin a léky.
+    exercises:
+      - id: zelezo
+        type: choice
+        prompt: "Co zvyšuje vstřebávání železa?"
+        options:
+          - { text: "Vitamin C a žaludeční kyselina", correct: true }
+          - { text: "Vitamin D a žluč ze žlučníku", why: "Vitamin D podporuje vstřebávání vápníku." }
+          - { text: "Vnitřní faktor ze žaludeční sliznice", why: "Vnitřní faktor potřebuje vitamin B12." }
+          - { text: "Fytáty z celozrnných obilovin", why: "Fytáty vstřebávání železa naopak snižují." }
+      - id: b12
+        type: choice
+        prompt: "Kde a s čím se vstřebává vitamin B12?"
+        options:
+          - { text: "Na konci tenkého střeva s vnitřním faktorem", correct: true }
+          - { text: "V žaludku za pomoci kyseliny chlorovodíkové", why: "Žaludek tvoří vnitřní faktor, vstřebání ale probíhá až na konci tenkého střeva." }
+          - { text: "V tlustém střevě s pomocí střevních bakterií", why: "Bakterie trochu B12 tvoří, potřebu ale nepokryjí." }
+          - { text: "Ve dvanáctníku spolu s tuky", why: "S tuky se vstřebávají vitaminy A, D, E, K." }
+
+  - id: telo.zlazy-exo-endo
+    title: Žlázy s vnější a vnitřní sekrecí
+    kind: comparison
+    tier: A
+    criteria: [2a, 2c]
+    source: { pages: [74, 78], anchor: "Slinivka břišní má dvě základní funkce" }
+    explanation: >-
+      Žlázy s vnější sekrecí (exokrinní) vylučují produkty vývodem do dutiny nebo na povrch – např.
+      slinné žlázy (sliny) nebo slinivka (trávicí šťáva do dvanáctníku). Žlázy s vnitřní sekrecí
+      (endokrinní) uvolňují hormony do krve, která je roznáší k cílovým tkáním: hypotalamus s hypofýzou,
+      štítná žláza, příštítná tělíska, nadledviny, pohlavní žlázy, šišinka a endokrinní část slinivky.
+      Slinivka je tedy žláza smíšená.
+    exercises:
+      - id: slinivka
+        type: choice
+        prompt: "Která funkce slinivky je exokrinní?"
+        options:
+          - { text: "Tvorba trávicích enzymů do dvanáctníku", correct: true }
+          - { text: "Tvorba inzulinu β-buňkami", why: "Hormony do krve = endokrinní funkce." }
+          - { text: "Tvorba glukagonu α-buňkami", why: "Hormony do krve = endokrinní funkce." }
+      - id: endokrinni
+        type: choice
+        prompt: "Která žláza patří mezi žlázy s vnitřní sekrecí?"
+        options:
+          - { text: "Štítná žláza", correct: true }
+          - { text: "Slinné žlázy", why: "Sliny odcházejí vývodem do úst – vnější sekrece." }
+          - { text: "Potní žlázy", why: "Pot odchází na povrch kůže – vnější sekrece." }
+      - id: rozdil
+        type: reveal
+        prompt: "Čím se liší žláza s vnitřní a s vnější sekrecí? Uveď příklad smíšené žlázy."
+        answer: "Vnitřní sekrece: hormony přímo do krve. Vnější sekrece: produkt vývodem do dutiny/na povrch. Smíšená: slinivka (enzymy × inzulin, glukagon)."
+
+  - id: telo.homeostaza
+    title: Homeostáza – stálost vnitřního prostředí
+    kind: concept
+    tier: A
+    criteria: [2a]
+    source: { pages: [76], anchor: "Mezi základní principy homeostázy tak patří udržení stabilního pH" }
+    explanation: >-
+      Homeostáza je stálost vnitřního prostředí. Tělo udržuje stabilní pH, koncentraci iontů, objem
+      cirkulujících tekutin a osmotický tlak. Podílí se na tom hlavně krev, játra, ledviny, plíce
+      a kost. K homeostatickým mechanismům patří i srážení krve a imunitní systém.
+    exercises:
+      - id: definice
+        type: choice
+        prompt: "Co znamená homeostáza?"
+        options:
+          - { text: "Udržování stálosti vnitřního prostředí", correct: true }
+          - { text: "Rovnováha příjmu a výdeje energie", why: "To je energetická bilance." }
+          - { text: "Stálá tělesná hmotnost", why: "Homeostáza se týká vnitřního prostředí (pH, ionty, tekutiny)." }
+          - { text: "Rovnováha anabolismu a katabolismu", why: "To je metabolický obrat." }
+      - id: parametry
+        type: reveal
+        prompt: "Které veličiny tělo v rámci homeostázy udržuje stabilní a které orgány se na tom hlavně podílejí?"
+        answer: "pH, koncentrace iontů, objem cirkulujících tekutin, osmotický tlak; krev, játra, ledviny, plíce a kost."
+
+  - id: telo.acidobaze
+    title: Acidobazická rovnováha
+    kind: concept
+    tier: B
+    criteria: [2a]
+    prereqs: [telo.homeostaza]
+    source: { pages: [77], anchor: "proto je moč „masožravců“ více kyselá" }
+    explanation: >-
+      Při metabolismu vzniká mnoho vodíkových iontů (kyselá nálož). Ledviny je odstraňují kyselou močí,
+      plíce vydýchávají oxid uhličitý (kyselinotvorný plyn) a kost funguje jako nárazník – ale za cenu
+      ztráty kostního minerálu. Strava bohatá na živočišné bílkoviny moč okyseluje, převaha rostlinné
+      stravy pH moči zvyšuje.
+    exercises:
+      - id: rostlinna
+        type: choice
+        prompt: "Jak ovlivňuje pH moči strava s převahou rostlinných potravin?"
+        options:
+          - { text: "pH moči zvyšuje", correct: true }
+          - { text: "pH moči snižuje", why: "Kyselejší moč způsobuje vyšší příjem živočišných bílkovin." }
+          - { text: "pH moči neovlivňuje", why: "Složení stravy pH moči ovlivňuje." }
+      - id: plice
+        type: choice
+        prompt: "Čím se na acidobazické rovnováze podílejí plíce?"
+        options:
+          - { text: "Vydýcháváním oxidu uhličitého", correct: true }
+          - { text: "Vylučováním kyselé moči", why: "To je role ledvin." }
+          - { text: "Uvolňováním minerálů", why: "To je nárazníková role kosti." }
+
+  - id: telo.jatra-detox
+    title: Játra a detoxikace
+    kind: fact
+    tier: B
+    criteria: [2a]
+    source: { pages: [77], anchor: "detoxikační reakce probíhají neustále" }
+    explanation: >-
+      Játra jsou centrem metabolismu: probíhají v nich klíčové dráhy sacharidů, tuků i bílkovin, tvoří
+      většinu krevních bílkovin a metabolizují cholesterol, žlučové kyseliny a vitaminy. Detoxikace
+      stojí na speciálních enzymech, které pracují nepřetržitě, a odstraňuje toxické látky, léčiva
+      i hormony.
+    exercises:
+      - id: zaklad
+        type: choice
+        prompt: "Na čem je založena detoxikační funkce jater?"
+        options:
+          - { text: "Na nepřetržitě aktivních enzymech", correct: true }
+          - { text: "Na filtraci krve v glomerulech", why: "Glomerulární filtrace probíhá v ledvinách." }
+          - { text: "Na vydýchávání oxidu uhličitého", why: "To je role plic." }
+          - { text: "Na nárazníkové funkci kostí", why: "Kost se podílí na acidobazické rovnováze." }
+
+  - id: telo.ledviny
+    title: Ledviny a vylučování
+    kind: fact
+    tier: B
+    criteria: [2a]
+    source: { pages: [75], anchor: "Základní stavební a funkční jednotkou ledviny je nefron" }
+    explanation: >-
+      Hlavním vylučovacím orgánem jsou ledviny (v širším smyslu vylučují i plíce, kůže, játra a trávicí
+      trakt). Stavební jednotkou je nefron: glomerulus (filtrační tělísko) a kanálky (tubuly), kde se
+      látky vylučují a zpětně vstřebávají (glukóza, ionty, v koncových částech voda). Do moči odchází
+      močovina, kreatinin a kyselina močová. Ledviny tvoří i erytropoetin (krvetvorba) a probíhá v nich
+      metabolismus vitaminu D.
+    exercises:
+      - id: moc
+        type: choice
+        multiple: true
+        prompt: "Které produkty metabolismu se vylučují močí? (vyber všechny)"
+        options:
+          - { text: "Močovina", correct: true }
+          - { text: "Kreatinin", correct: true }
+          - { text: "Kyselina močová", correct: true }
+          - { text: "Glukóza", why: "Zdravé ledviny glukózu zpětně vstřebají." }
+          - { text: "Žlučové kyseliny", why: "Žlučové kyseliny odcházejí žlučí do střeva." }
+      - id: nefron
+        type: choice
+        prompt: "Jak se nazývá základní stavební a funkční jednotka ledviny?"
+        options:
+          - { text: "Nefron", correct: true }
+          - { text: "Glomerulus", why: "Glomerulus je jen filtrační část nefronu." }
+          - { text: "Neuron", why: "Neuron je nervová buňka." }
+
+  - id: telo.voda
+    title: Voda v těle a její bilance
+    kind: fact
+    tier: B
+    criteria: [2a, 7e]
+    source: { pages: [76, 174], anchor: "Zhruba 0,4 l vody se produkuje v průběhu metabolizmu" }
+    explanation: >-
+      Voda tvoří průměrně 60 % hmotnosti těla (u žen 50–55 %, se stářím klesá): 40 % uvnitř buněk, 20 % mimo buňky (15 % mezi buňkami,
+      5 % v krevním oběhu). Denně orientačně přijmeme asi 3 l vody: 1,6 l v nápojích, 1 l ve stravě
+      a 0,4 l vzniká při metabolismu (metabolická voda). Nejvíc vody ztrácíme močí (asi 1,4 l), dále
+      kůží, potem, dechem a stolicí.
+    exercises:
+      - id: procento
+        type: choice
+        prompt: "Kolik procent tělesné hmotnosti tvoří podle skript voda?"
+        options:
+          - { text: "60 %", correct: true }
+          - { text: "40 %", why: "Tolik tvoří voda uvnitř buněk." }
+          - { text: "20 %", why: "Tolik tvoří voda mimo buňky." }
+          - { text: "80 %", why: "To je příliš mnoho; průměr je 60 %." }
+      - id: metabolicka
+        type: choice
+        prompt: "Co je metabolická voda?"
+        options:
+          - { text: "Voda vznikající při metabolismu (asi 0,4 l denně)", correct: true }
+          - { text: "Voda přijatá ve stravě (asi 1 l denně)", why: "To je voda z potravy." }
+          - { text: "Voda uvnitř buněk", why: "To je intracelulární voda." }
+          - { text: "Voda vydechovaná plícemi", why: "To je jedna ze ztrát vody." }
+
+  - id: telo.adh-aldosteron
+    title: Hormonální řízení vody, sodík a draslík
+    kind: fact
+    tier: B
+    criteria: [2a, 2c]
+    prereqs: [telo.voda]
+    source: { pages: [76, 47], anchor: "antidiuretický hormon, který zabraňuje ztrátám vody" }
+    explanation: >-
+      Množství vody v těle řídí hormony. Antidiuretický hormon (ADH) brání ztrátám vody – snižuje objem
+      moči a je klíčový při dehydrataci; alkohol jeho uvolňování tlumí, proto zvyšuje močení. Aldosteron
+      z kůry nadledvin reguluje sodík a draslík. Sodík je hlavní iont krevní plazmy a „táhne“ s sebou
+      vodu (vliv na krevní tlak), draslík je hlavní iont uvnitř buněk.
+    exercises:
+      - id: adh
+        type: choice
+        prompt: "Který hormon snižuje objem moči a brání ztrátám vody?"
+        options:
+          - { text: "ADH", correct: true }
+          - { text: "Aldosteron", why: "Aldosteron řídí hlavně hospodaření se sodíkem a draslíkem." }
+          - { text: "Glukagon", why: "Glukagon zvyšuje glykémii." }
+          - { text: "Melatonin", why: "Melatonin řídí spánek a bdění." }
+      - id: draslik
+        type: choice
+        prompt: "Který iont je hlavním iontem uvnitř buněk?"
+        options:
+          - { text: "Draselný", correct: true }
+          - { text: "Sodný", why: "Sodný iont převládá v krevní plazmě." }
+          - { text: "Vápenatý", why: "Vápník je uložen hlavně v kosti." }
+
+  - id: telo.svaly-pojivo
+    title: Typy svalů a pojivo
+    kind: fact
+    tier: B
+    criteria: [3a, 2a]
+    source: { pages: [77, 78], anchor: "Existují tři typy svalů: kosterní, srdeční a hladký sval" }
+    explanation: >-
+      Kosterní (příčně pruhovaný) sval je ovladatelný vůlí – pohyb, mimika, držení těla. Srdeční
+      svalovina vůlí ovladatelná není a má vysoké energetické nároky. Hladký sval tvoří stěnu vnitřních
+      orgánů a vůlí ovladatelný není. Pojivo má vlákna kolagenu (pevnost; k jeho tvorbě je nutný
+      vitamin C) a elastinu (pružnost). Typy pojiva: vazivo (šlachy, vazy), chrupavka (klouby) a kost
+      (mineralizovaná vápníkem).
+    exercises:
+      - id: vule
+        type: choice
+        prompt: "Který sval je ovladatelný vůlí?"
+        options:
+          - { text: "Kosterní", correct: true }
+          - { text: "Srdeční", why: "Srdeční svalovina není vůlí ovladatelná." }
+          - { text: "Hladký", why: "Hladký sval vnitřních orgánů není vůlí ovladatelný." }
+      - id: kolagen
+        type: choice
+        prompt: "Který vitamin je nezbytný pro tvorbu kolagenu?"
+        options:
+          - { text: "Vitamin C", correct: true }
+          - { text: "Vitamin D", why: "Vitamin D souvisí se vstřebáváním vápníku." }
+          - { text: "Vitamin K", why: "Vitamin K souvisí se srážením krve." }
+          - { text: "Vitamin B12", why: "B12 je potřebný pro červené krvinky." }
+
+  - id: telo.hypotalamus-hypofyza
+    title: Hypotalamus a hypofýza
+    kind: concept
+    tier: B
+    criteria: [2a, 2c]
+    prereqs: [telo.zlazy-exo-endo]
+    source: { pages: [78, 79], anchor: "Centrální roli v regulaci žláz s vnitřní sekrecí hraje hypotalamo-hypofyzární systém" }
+    explanation: >-
+      Hypotalamus (část mozku) řídí příjem potravy, žízeň, termoregulaci, biologické rytmy a tvorbu
+      hormonů; liberiny hypofýzu stimulují, statiny tlumí. Hypofýza tvoří TSH (→ štítná žláza), ACTH
+      (→ nadledviny), FSH a LH (→ pohlavní žlázy) a STH, růstový hormon (→ kosti a svaly). Platí
+      negativní zpětná vazba: stoupne-li hladina hormonu v krvi, jeho tvorba se sníží.
+    exercises:
+      - id: acth
+        type: choice
+        prompt: "Na kterou žlázu působí ACTH?"
+        options:
+          - { text: "Nadledviny", correct: true }
+          - { text: "Štítná žláza", why: "Štítnou žlázu řídí TSH." }
+          - { text: "Pohlavní žlázy", why: "Pohlavní žlázy řídí FSH a LH." }
+      - id: zpetna-vazba
+        type: choice
+        prompt: "Co je negativní zpětná vazba v endokrinním systému?"
+        options:
+          - { text: "Vyšší hladina hormonu v krvi sníží jeho tvorbu", correct: true }
+          - { text: "Vyšší hladina hormonu jeho tvorbu dál zvyšuje", why: "To by byla kladná zpětná vazba." }
+          - { text: "Hormon působí jen na buňku, která ho vytvořila", why: "To je autokrinní komunikace." }
+      - id: hlad
+        type: choice
+        prompt: "Která část mozku řídí příjem potravy a žízeň?"
+        options:
+          - { text: "Hypotalamus", correct: true }
+          - { text: "Hypofýza", why: "Hypofýza tvoří řídicí hormony pro další žlázy." }
+          - { text: "Šišinka", why: "Šišinka tvoří melatonin." }
+
+  - id: telo.stitna-zlaza
+    title: Štítná žláza – T3 a T4
+    kind: fact
+    tier: A
+    criteria: [2a, 2d]
+    prereqs: [telo.hypotalamus-hypofyza]
+    source: { pages: [79, 60], anchor: "hormony štítné žlázy zvyšují využití kyslíku tkáněmi" }
+    explanation: >-
+      Štítnou žlázu řídí TSH z hypofýzy; ten ji aktivuje k tvorbě hormonů T3 (trijodtyronin) a T4
+      (tyroxin). Jejich nezbytnou součástí je jód. Hormony štítné žlázy zvyšují využití kyslíku tkáněmi,
+      a tím bazální metabolismus a tvorbu tepla; ovlivňují také vývoj a růst.
+    exercises:
+      - id: bmr
+        type: choice
+        prompt: "Jak působí hormony štítné žlázy na bazální metabolismus?"
+        options:
+          - { text: "Zvyšují ho", correct: true }
+          - { text: "Snižují ho", why: "Zvyšují využití kyslíku tkáněmi, a tím metabolismus." }
+          - { text: "Neovlivňují ho, působí jen na růst", why: "Působí na růst i na bazální metabolismus." }
+      - id: tsh
+        type: choice
+        prompt: "Který hormon hypofýzy řídí štítnou žlázu?"
+        options:
+          - { text: "TSH", correct: true }
+          - { text: "ACTH", why: "ACTH řídí nadledviny." }
+          - { text: "STH", why: "STH (růstový hormon) působí na kosti a svaly." }
+          - { text: "LH", why: "LH řídí pohlavní žlázy." }
+
+  - id: telo.pristitna-telisky
+    title: Příštítná tělíska a vápník
+    kind: fact
+    tier: B
+    status: course-disputed
+    criteria: [2a, 1f]
+    source: { pages: [78, 79], anchor: "Mají důležité postavení v regulaci metabolizmu vápníku" }
+    note: >-
+      Skripta (s. 79) uvádějí, že příštítná tělíska tvoří parathormon a kalcitonin. Ve skutečnosti
+      kalcitonin tvoří C-buňky štítné žlázy; příštítná tělíska tvoří parathormon. U zkoušky:
+      parathormon = příštítná tělíska; ptá-li se otázka výslovně „podle skript“, počítej s tím, že tam
+      je uveden i kalcitonin.
+    explanation: >-
+      Příštítná tělíska leží na zadní straně štítné žlázy a tvoří parathormon, který se podílí na
+      regulaci metabolismu vápníku (skripta k nim řadí i kalcitonin – viz poznámka). S vápníkem
+      a kostí souvisí i vitamin D: jeho tvorba začíná v kůži, pokračuje v játrech a končí v ledvinách.
+    exercises:
+      - id: pth
+        type: choice
+        prompt: "Který hormon tvoří příštítná tělíska?"
+        options:
+          - { text: "Parathormon", correct: true }
+          - { text: "Tyroxin", why: "Tyroxin (T4) tvoří štítná žláza." }
+          - { text: "Aldosteron", why: "Aldosteron tvoří kůra nadledvin." }
+          - { text: "Melatonin", why: "Melatonin tvoří šišinka." }
+      - id: vitamin-d
+        type: reveal
+        prompt: "Kterými orgány postupně prochází tvorba vitaminu D?"
+        answer: "Kůže → játra → ledviny."
+
+  - id: telo.nadledviny
+    title: Kůra a dřeň nadledvin
+    kind: comparison
+    tier: B
+    criteria: [2a, 2d]
+    prereqs: [telo.hypotalamus-hypofyza]
+    source: { pages: [79], anchor: "Dřeň nadledvin je místem vzniku tzv. katecholaminů" }
+    explanation: >-
+      Kůra nadledvin tvoří steroidní hormony: mineralokortikoidy (aldosteron – sodík a draslík),
+      glukokortikoidy (hlavně kortizol – mobilizují zásoby sacharidů, tuků a bílkovin a působí
+      protizánětlivě) a v menší míře pohlavní hormony. Dřeň nadledvin tvoří katecholaminy – adrenalin
+      a noradrenalin – pro stresovou reakci: zrychlí tep, zvýší tlak a přívod krve do svalů, rozšíří
+      zornice, vyvolá pocení.
+    exercises:
+      - id: adrenalin
+        type: choice
+        prompt: "Kde vzniká adrenalin?"
+        options:
+          - { text: "V dřeni nadledvin", correct: true }
+          - { text: "V kůře nadledvin", why: "Kůra tvoří steroidy – aldosteron, glukokortikoidy, pohlavní hormony." }
+          - { text: "Ve štítné žláze", why: "Štítná žláza tvoří T3 a T4." }
+          - { text: "V hypofýze", why: "Hypofýza tvoří řídicí hormony (TSH, ACTH, …)." }
+      - id: glukokortikoidy
+        type: choice
+        prompt: "Jaký účinek mají glukokortikoidy?"
+        options:
+          - { text: "Mobilizují energetické zásoby a tlumí zánět", correct: true }
+          - { text: "Ukládají glukózu do glykogenu a tvoří tuky", why: "To je účinek inzulinu." }
+          - { text: "Řídí hospodaření se sodíkem a draslíkem", why: "To dělá aldosteron (mineralokortikoid)." }
+          - { text: "Řídí spánek a bdění", why: "To dělá melatonin." }
+
+  - id: telo.langerhans
+    title: Langerhansovy ostrůvky – inzulin a glukagon
+    kind: fact
+    tier: A
+    criteria: [2c, 2d]
+    prereqs: [telo.zlazy-exo-endo]
+    source: { pages: [80, 69], anchor: "Inzulin je typický anabolický hormon" }
+    explanation: >-
+      Endokrinní část slinivky tvoří Langerhansovy ostrůvky: β-buňky tvoří inzulin, α-buňky glukagon.
+      Inzulin je typický anabolický hormon – podporuje ukládání glukózy do glykogenu a tvorbu tuků
+      a bílkovin; naváže se na receptor na povrchu buňky a umožní glukóze vstoupit dovnitř. Glukagon
+      působí opačně: vyvolá rozklad glykogenu a tuků a podporuje glukoneogenezi.
+    exercises:
+      - id: beta
+        type: choice
+        prompt: "Které buňky slinivky tvoří inzulin?"
+        options:
+          - { text: "β-buňky Langerhansových ostrůvků", correct: true }
+          - { text: "α-buňky Langerhansových ostrůvků", why: "α-buňky tvoří glukagon." }
+          - { text: "Buňky exokrinní části slinivky", why: "Exokrinní část tvoří trávicí enzymy." }
+      - id: alfa
+        type: choice
+        prompt: "Které buňky tvoří glukagon?"
+        options:
+          - { text: "α-buňky Langerhansových ostrůvků", correct: true }
+          - { text: "β-buňky Langerhansových ostrůvků", why: "β-buňky tvoří inzulin." }
+          - { text: "Buňky kůry nadledvin", why: "Kůra nadledvin tvoří steroidní hormony (kortizol, aldosteron)." }
+
+  - id: telo.gastrin
+    title: Gastrin
+    kind: fact
+    tier: A
+    status: supplementary
+    criteria: [2c]
+    prereqs: [telo.zaludek]
+    confusableWith: [telo.ghrelin-leptin, telo.sekretin]
+    source: { pages: [74, 78], anchor: "dále trávicí trakt a tuková tkáň" }
+    note: >-
+      Trávicí hormony (gastrin, sekretin, cholecystokinin, ghrelin) skripta nejmenují – jen uvádějí,
+      že endokrinní funkci má i trávicí trakt (s. 78). Doplněno podle standardní fyziologie, protože
+      kritérium 2c se na hormonální řízení trávení výslovně ptá.
+    explanation: >-
+      Gastrin je hormon, který tvoří buňky žaludeční sliznice po jídle – podnětem je roztažení žaludku
+      a bílkoviny v potravě. Stimuluje tvorbu kyseliny chlorovodíkové (a pepsinu) a pohyby žaludku.
+      Neplést s ghrelinem: ten se v žaludku tvoří naopak při lačnění a vyvolává hlad.
+    exercises:
+      - id: hcl
+        type: choice
+        prompt: "Který hormon stimuluje tvorbu žaludeční kyseliny chlorovodíkové?"
+        options:
+          - { text: "Gastrin", correct: true }
+          - { text: "Sekretin", why: "Sekretin stimuluje slinivku k tvorbě bikarbonátu a žaludeční kyselinu spíš tlumí." }
+          - { text: "Ghrelin", why: "Ghrelin je hormon hladu." }
+          - { text: "Cholecystokinin", why: "CCK vyvolá stah žlučníku a tvorbu enzymů slinivky." }
+      - id: kde
+        type: choice
+        prompt: "Kde se tvoří gastrin?"
+        options:
+          - { text: "Ve sliznici žaludku", correct: true }
+          - { text: "Ve slinivce břišní", why: "Slinivka tvoří trávicí enzymy, inzulin a glukagon – gastrin ne." }
+          - { text: "V tukové tkáni", why: "Tuková tkáň tvoří leptin." }
+          - { text: "V Langerhansových ostrůvcích", why: "Ty tvoří inzulin a glukagon." }
+
+  - id: telo.sekretin
+    title: Sekretin
+    kind: fact
+    tier: A
+    status: supplementary
+    criteria: [2c]
+    prereqs: [telo.zlazy-exo-endo]
+    confusableWith: [telo.cck, telo.gastrin]
+    source: { pages: [74], anchor: "Ze slinivky se po příjmu potravy začíná vylučovat trávicí šťáva" }
+    note: >-
+      Sekretin skripta nezmiňují (popisují jen, že slinivka po jídle vylučuje trávicí šťávu, s. 74).
+      Doplněno podle standardní fyziologie kvůli kritériu 2c.
+    explanation: >-
+      Sekretin tvoří sliznice dvanáctníku, když do něj ze žaludku přijde kyselá trávenina. Stimuluje
+      slinivku k vylučování šťávy bohaté na hydrogenuhličitan (bikarbonát), který kyselinu neutralizuje
+      – enzymy slinivky potřebují zhruba neutrální prostředí. Zároveň tlumí tvorbu žaludeční kyseliny.
+    exercises:
+      - id: podnet
+        type: choice
+        prompt: "Na jaký podnět se uvolňuje sekretin?"
+        options:
+          - { text: "Kyselá trávenina vstupující do dvanáctníku", correct: true }
+          - { text: "Tuky a bílkoviny ve dvanáctníku", why: "To je podnět pro cholecystokinin." }
+          - { text: "Roztažení žaludku po jídle", why: "To je podnět pro gastrin." }
+          - { text: "Prázdný žaludek při lačnění", why: "Při lačnění stoupá ghrelin." }
+      - id: ucinek
+        type: choice
+        prompt: "Jaký je hlavní účinek sekretinu?"
+        options:
+          - { text: "Slinivka vyloučí šťávu bohatou na bikarbonát", correct: true }
+          - { text: "Žlučník se stáhne a vypudí žluč do dvanáctníku", why: "To je účinek cholecystokininu." }
+          - { text: "Žaludek začne tvořit víc kyseliny chlorovodíkové", why: "To dělá gastrin; sekretin ji naopak tlumí." }
+          - { text: "Vznikne pocit hladu", why: "To dělá ghrelin." }
+
+  - id: telo.cck
+    title: Cholecystokinin (CCK)
+    kind: fact
+    tier: A
+    status: supplementary
+    criteria: [2c]
+    prereqs: [telo.zluc]
+    confusableWith: [telo.sekretin]
+    source: { pages: [74], anchor: "Spolu s trávicí šťávou ze slinivky přitéká do tenkého střeva žlučovodem žluč" }
+    note: >-
+      Cholecystokinin skripta nezmiňují (popisují jen přítok žluči a šťávy slinivky do dvanáctníku,
+      s. 74). Doplněno podle standardní fyziologie kvůli kritériu 2c.
+    explanation: >-
+      Cholecystokinin (CCK) tvoří sliznice dvanáctníku, když do něj přijdou tuky a bílkoviny. Vyvolá
+      stah žlučníku (vypuzení žluči) a vylučování enzymů slinivky (lipáza, trypsin, amyláza). Zpomaluje
+      vyprazdňování žaludku a přispívá k pocitu sytosti. Pomůcka: chole = žluč, cysto = měchýř –
+      CCK „hýbe žlučníkem“.
+    exercises:
+      - id: zlucnik
+        type: choice
+        prompt: "Který hormon vyvolá po tučném jídle stah žlučníku?"
+        options:
+          - { text: "Cholecystokinin", correct: true }
+          - { text: "Sekretin", why: "Sekretin vyvolá vylučování bikarbonátu ze slinivky." }
+          - { text: "Gastrin", why: "Gastrin stimuluje žaludeční kyselinu." }
+          - { text: "Inzulin", why: "Inzulin řídí ukládání glukózy." }
+      - id: podnet
+        type: choice
+        prompt: "Co spouští uvolnění cholecystokininu?"
+        options:
+          - { text: "Tuky a bílkoviny ve dvanáctníku", correct: true }
+          - { text: "Kyselá trávenina ve dvanáctníku", why: "To je podnět pro sekretin." }
+          - { text: "Lačnění", why: "Při lačnění stoupá ghrelin." }
+          - { text: "Vzestup glykémie", why: "Na vzestup glykémie reaguje inzulin." }
+      - id: rozdil
+        type: reveal
+        prompt: "Čím se liší sekretin a cholecystokinin (podnět a účinek)?"
+        answer: >-
+          Sekretin: podnětem je kyselá trávenina ve dvanáctníku → slinivka vylučuje bikarbonát. CCK:
+          podnětem jsou tuky a bílkoviny → stah žlučníku a enzymy slinivky, sytost.
+
+  - id: telo.ghrelin-leptin
+    title: Ghrelin a leptin – hlad a sytost
+    kind: comparison
+    tier: A
+    status: supplementary
+    criteria: [2c]
+    confusableWith: [telo.gastrin]
+    source: { pages: [78], anchor: "dále trávicí trakt a tuková tkáň" }
+    note: >-
+      Ghrelin skripta nezmiňují; leptin jen okrajově jako „hormon sytosti“ (s. 201, 220). Skripta
+      uvádějí, že endokrinní funkci má trávicí trakt i tuková tkáň (s. 78). Doplněno podle standardní
+      fyziologie kvůli kritériu 2c.
+    explanation: >-
+      Ghrelin je „hormon hladu“: tvoří ho hlavně žaludek při lačnění, hladina stoupá před jídlem a po
+      jídle klesá; působí na hypotalamus a vyvolá chuť k jídlu. Leptin je „hormon sytosti“: tvoří ho
+      tuková tkáň úměrně zásobám tuku a dlouhodobě tlumí hlad. Při obezitě bývá leptinu hodně, mozek
+      na něj ale špatně reaguje (leptinová rezistence).
+    exercises:
+      - id: hlad
+        type: choice
+        prompt: "Který hormon vyvolává pocit hladu a tvoří se hlavně v žaludku?"
+        options:
+          - { text: "Ghrelin", correct: true }
+          - { text: "Leptin", why: "Leptin je hormon sytosti z tukové tkáně." }
+          - { text: "Gastrin", why: "Gastrin se také tvoří v žaludku, ale stimuluje kyselinu, ne hlad." }
+          - { text: "Cholecystokinin", why: "CCK naopak přispívá k sytosti." }
+      - id: leptin
+        type: choice
+        prompt: "Kde se tvoří leptin?"
+        options:
+          - { text: "V tukové tkáni", correct: true }
+          - { text: "V žaludku", why: "V žaludku se tvoří ghrelin a gastrin." }
+          - { text: "Ve dvanáctníku", why: "Ve dvanáctníku vznikají sekretin a CCK." }
+          - { text: "V hypofýze", why: "Hypofýza tvoří TSH, ACTH, STH, LH a FSH." }

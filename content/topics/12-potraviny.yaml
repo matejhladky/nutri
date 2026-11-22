@@ -1,0 +1,2622 @@
+topic:
+  id: potraviny
+  title: Potraviny – zpracování, aditiva, značení
+  chapter: 12
+  pages: [92, 119]
+  order: 120
+  summary: >-
+    Technologie zpracování a jejich vliv na živiny, trvanlivost a data na obalu, aditiva („éčka“),
+    etikety a výživová tvrzení, dozorové orgány a kontaminanty, biopotraviny a GMO, vybrané
+    skupiny potravin.
+
+points:
+  # ---------- 4a Technologie zpracování ----------
+
+  - id: pot.prodlouzeni-trvanlivosti
+    title: Principy prodloužení trvanlivosti
+    kind: concept
+    tier: A
+    criteria: [4a, 9b]
+    confusableWith: [pot.tepelne-osetreni]
+    source: { pages: [97], anchor: "Omezení množení mikroorganizmů - vytvořením nehostinných podmínek" }
+    explanation: >-
+      Prodloužení trvanlivosti znamená hlavně zabránit kažení mikroorganismy. Jejich množení omezí
+      nehostinné podmínky: méně vody (solení, sušení, lyofilizace) nebo nižší pH (nakládání do octa,
+      kyselina mléčná, citronová, octová). Mikroorganismy zničí teplo (pasterace, UHT, sterilizace)
+      nebo vysoký tlak (paskalizace). Rafinace a blanšírování odstraňují „nečistoty“, fermentace
+      vytváří ochranné látky. Chlad mikroorganismy nezabíjí – při zmrazení jen „hibernují“.
+    exercises:
+      - id: princip-voda
+        type: choice
+        prompt: "Na jakém principu prodlužuje trvanlivost solení nebo sušení?"
+        options:
+          - text: "Snižuje obsah vody, kterou mikroorganismy potřebují"
+            correct: true
+          - text: "Snižuje pH potraviny"
+            why: "To dělá nakládání do octa nebo přídavek kyselin."
+          - text: "Usmrcuje mikroorganismy vysokou teplotou"
+            why: "To je pasterace, UHT nebo sterilizace."
+          - text: "Vytváří v potravině ochranné látky"
+            why: "To je princip fermentace."
+      - id: mrazeni
+        type: choice
+        prompt: "Klientka si myslí, že mrazák bakterie v potravině zničí. Co platí podle skript?"
+        options:
+          - text: "Mikroorganismy při zmrazení jen „hibernují“, nezničí se."
+            correct: true
+          - text: "Teplota pod −18 °C zničí všechny bakterie."
+            why: "Skripta to výslovně označují za mylnou představu."
+          - text: "Mráz zničí bakterie, přežijí jen plísně."
+            why: "Chlad nezabíjí ani bakterie."
+          - text: "Zmrazení působí na mikroorganismy stejně jako pasterace."
+            why: "Pasterace mikroorganismy usmrcuje teplem, mráz je jen utlumí."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli, jakými způsoby lze prodloužit trvanlivost potravin."
+        keyPoints:
+          - "Snížení obsahu vody: solení, sušení, lyofilizace"
+          - "Snížení pH: ocet, kyseliny"
+          - "Usmrcení mikroorganismů teplem nebo tlakem (pasterace, UHT, sterilizace, paskalizace)"
+          - "Fermentace – vznik ochranných látek"
+          - "Chlad mikroorganismy nezabíjí, jen je utlumí"
+        modelAnswer: >-
+          Cílem je hlavně zabránit kažení mikroorganismy. Můžeme jim vzít vodu solením, sušením nebo
+          lyofilizací, případně snížit pH octem či kyselinami. Mikroorganismy můžeme také zničit
+          teplem – pasterací, UHT nebo sterilizací – nebo vysokým tlakem. Fermentací vznikají ochranné
+          látky. Mražení mikroorganismy nezabíjí, jen je utlumí.
+
+  - id: pot.tepelne-osetreni
+    title: Pasterace, UHT, sterilizace
+    kind: comparison
+    tier: A
+    criteria: [4a, 9a]
+    prereqs: [pot.prodlouzeni-trvanlivosti]
+    confusableWith: [pot.prodlouzeni-trvanlivosti, pot.mleko-osetreni]
+    source: { pages: [97, 117], anchor: "krátkodobé zahřátí na teplotu minimálně 71,7 °C po dobu 15 sekund" }
+    explanation: >-
+      Pasterace = krátké zahřátí na nejméně 71,7 °C po dobu 15 s. Vysoká pasterace = nejméně 85 °C.
+      UHT = krátkodobé ošetření odpovídající nejméně 135 °C po dobu alespoň 1 s. Sterilizace =
+      nepřímý ohřev v hermeticky uzavřeném obalu (zavařování), u nekyselých potravin nad 100 °C;
+      usmrtí všechny mikroorganismy, proto sterilované výrobky nepotřebují konzervanty.
+      Paskalizace = ošetření vysokým tlakem.
+    exercises:
+      - id: uht
+        type: choice
+        prompt: "Které ošetření odpovídá působení nejméně 135 °C po dobu alespoň 1 sekundy?"
+        options:
+          - text: "UHT"
+            correct: true
+          - text: "Pasterace"
+            why: "Pasterace je nejméně 71,7 °C po dobu 15 s."
+          - text: "Vysoká pasterace"
+            why: "Vysoká pasterace je zahřátí na nejméně 85 °C."
+          - text: "Paskalizace"
+            why: "Paskalizace pracuje s vysokým tlakem, ne s teplotou."
+      - id: pasterace
+        type: choice
+        prompt: "Jaké parametry má podle skript pasterace?"
+        options:
+          - text: "Nejméně 71,7 °C po dobu 15 s"
+            correct: true
+          - text: "Nejméně 85 °C"
+            why: "To je vysoká pasterace."
+          - text: "Nejméně 135 °C po dobu 1 s"
+            why: "To je UHT."
+          - text: "Nad 100 °C v hermeticky uzavřeném obalu"
+            why: "To je sterilizace."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli rozdíl mezi pasterací, UHT a sterilizací."
+        keyPoints:
+          - "Pasterace: min. 71,7 °C / 15 s"
+          - "UHT: min. 135 °C / alespoň 1 s"
+          - "Sterilizace: nepřímý ohřev v hermeticky uzavřeném obalu, nekyselé potraviny nad 100 °C"
+          - "Sterilizace usmrtí všechny mikroorganismy – výrobek nepotřebuje konzervanty"
+        modelAnswer: >-
+          Pasterace je krátké zahřátí na nejméně 71,7 °C po dobu 15 sekund, vysoká pasterace na
+          nejméně 85 °C. UHT znamená krátkodobé ošetření nejméně 135 °C po dobu alespoň 1 sekundy.
+          Sterilizace probíhá nepřímým ohřevem v hermeticky uzavřeném obalu, u nekyselých potravin
+          nad 100 °C, a usmrtí všechny mikroorganismy, takže výrobek už nepotřebuje konzervanty.
+
+  - id: pot.fermentace
+    title: Fermentace (kvašení)
+    kind: concept
+    tier: A
+    criteria: [4a]
+    source: { pages: [97], anchor: "Příkladem kvašení s přístupem kyslíku je octové kvašení" }
+    explanation: >-
+      Fermentace (kvašení) je přeměna organických látek mikroorganismy a jejich enzymy. Bez přístupu
+      kyslíku probíhá kvašení alkoholové a mléčné, s přístupem kyslíku octové. Cíle: získat určitou
+      látku (ethanol, kyselinu octovou či mléčnou), změnit chuť, vůni a konzistenci, vytvořit plyn
+      (CO₂ při kynutí), zvýšit nutriční hodnotu (vitaminy skupiny B), zlepšit stravitelnost bílkovin
+      (sója) a prodloužit trvanlivost (nižší pH, alkohol, bakteriociny).
+    exercises:
+      - id: kyslik
+        type: choice
+        prompt: "Které kvašení probíhá s přístupem kyslíku?"
+        options:
+          - text: "Octové"
+            correct: true
+          - text: "Mléčné"
+            why: "Mléčné kvašení probíhá bez přístupu kyslíku."
+          - text: "Alkoholové"
+            why: "Alkoholové kvašení probíhá bez přístupu kyslíku."
+      - id: cile
+        type: choice
+        multiple: true
+        prompt: "Co může být podle skript cílem fermentace?"
+        options:
+          - text: "Prodloužení trvanlivosti snížením pH"
+            correct: true
+          - text: "Lepší stravitelnost bílkovin (např. u sóji)"
+            correct: true
+          - text: "Vývoj CO₂ při kynutí těsta"
+            correct: true
+          - text: "Usmrcení všech mikroorganismů v potravině"
+            why: "To je cíl sterilizace – při fermentaci naopak mikroorganismy pracují."
+
+  - id: pot.nova-uzpp
+    title: Klasifikace NOVA a ultrazpracované potraviny
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Výčet „základních nebo minimálně zpracovaných potravin“ na s. 101 neodpovídá přesně skupinám
+      NOVA: uvádí např. za studena lisované oleje (v tab. 12.1 jsou rostlinné oleje ve skupině 2)
+      a kváskové pečivo (pečivo je podle NOVA zpracovaná potravina). Na otázku po skupině NOVA
+      odpovídej podle tabulky 12.1; na otázku po výčtu ze skript podle výčtu.
+    criteria: [4a, 9d]
+    source: { pages: [101], anchor: "Podle stupně zpracování potraviny dělíme do 4 skupin dle NOVA" }
+    explanation: >-
+      Klasifikace NOVA dělí potraviny podle stupně zpracování do 4 skupin: 1 – nezpracované
+      a minimálně zpracované (vejce, chlazené maso, mražené ovoce, jogurt); 2 – zpracované kulinářské
+      ingredience (oleje, sůl, cukerné sirupy); 3 – zpracované potraviny (sterilovaná zelenina, sýr);
+      4 – vysoce zpracované, UZPP (chipsy, slazené nápoje, instantní výrobky, cukrovinky). UZPP
+      mívají hodně cukru, škrobu, tuku a soli a aditiva zvýrazňující chuť.
+    exercises:
+      - id: skupina
+        type: choice
+        prompt: "Do které skupiny NOVA řadí skripta sterilovanou zeleninu?"
+        options:
+          - text: "3 – zpracované potraviny"
+            correct: true
+          - text: "1 – nezpracované a minimálně zpracované"
+            why: "Sem patří např. vejce, chlazené maso, mražené ovoce."
+          - text: "2 – zpracované kulinářské ingredience"
+            why: "Sem patří oleje, sůl, cukerné sirupy."
+          - text: "4 – vysoce zpracované"
+            why: "Sem patří chipsy, slazené nápoje, instantní výrobky."
+      - id: uzpp
+        type: choice
+        multiple: true
+        prompt: "Které z těchto potravin řadí skripta mezi ultrazpracované (UZPP)?"
+        options:
+          - text: "Müsli tyčinka"
+            correct: true
+          - text: "Ochucené mléčné výrobky"
+            correct: true
+          - text: "Rostlinné alternativy masa"
+            correct: true
+          - text: "Kváskové pečivo"
+            why: "Skripta ho řadí mezi minimálně zpracované potraviny."
+          - text: "Ovesné vločky"
+            why: "Skripta je řadí mezi minimálně zpracované potraviny."
+          - text: "Za studena lisovaný olej"
+            why: "Skripta ho řadí mezi minimálně zpracované potraviny."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka slyšela o „ultrazpracovaných potravinách“. Vysvětli jí klasifikaci NOVA."
+        keyPoints:
+          - "4 skupiny podle stupně zpracování"
+          - "1 nezpracované/minimálně zpracované, 2 kulinářské ingredience, 3 zpracované, 4 vysoce zpracované"
+          - "Příklady UZPP: chipsy, slazené nápoje, instantní výrobky, cukrovinky"
+          - "UZPP: hodně cukru, škrobu, tuku, soli a aditiv zvýrazňujících chuť"
+        modelAnswer: >-
+          NOVA dělí potraviny podle stupně zpracování do čtyř skupin: nezpracované a minimálně
+          zpracované (vejce, maso, jogurt), kulinářské ingredience (olej, sůl), zpracované potraviny
+          (sýr, sterilovaná zelenina) a vysoce zpracované. Ultrazpracované výrobky jako chipsy, slazené
+          nápoje nebo instantní jídla obvykle obsahují hodně cukru, škrobu, tuku a soli a aditiva,
+          která zvýrazňují chuť.
+
+  - id: pot.akrylamid
+    title: Akrylamid a furan
+    kind: fact
+    tier: A
+    criteria: [4a, 9b]
+    source: { pages: [100, 106], anchor: "Vzniká již při teplotě 120 °C a za nízké vlhkosti" }
+    explanation: >-
+      Akrylamid vzniká při pečení a smažení potravin s obsahem sacharidů (škrobu), a to už od 120 °C
+      a za nízké vlhkosti, při Maillardově reakci (neenzymové hnědnutí – potravina zhnědne). Furan
+      vzniká i při šetrném vaření a jeho množství roste s délkou tepelné úpravy. Je těkavý, takže
+      když hotové jídlo po otevření chvíli odstojí, jeho obsah klesne (o 15–30 %).
+    exercises:
+      - id: reakce
+        type: choice
+        prompt: "Při jaké reakci vzniká akrylamid?"
+        options:
+          - text: "Maillardova reakce"
+            correct: true
+          - text: "Karamelizace"
+            why: "Karamelizací vznikají heterocyklické sloučeniny jako furfural a furany."
+          - text: "Mazovatění škrobu"
+            why: "To je změna škrobu s vodou, skripta ji řadí mezi pozitivní změny."
+          - text: "Oxidace tuků"
+            why: "Z tuků vznikají peroxidy, epoxidy, akrolein."
+      - id: teplota
+        type: choice
+        prompt: "Od jaké teploty vzniká podle skript akrylamid?"
+        options:
+          - text: "Od 120 °C"
+            correct: true
+          - text: "Od 71,7 °C"
+            why: "To je teplota pasterace."
+          - text: "Od 200 °C"
+            why: "Nad 200 °C vznikají rizikové látky z bílkovin (např. PAU)."
+          - text: "Od 250 °C"
+            why: "Akrylamid vzniká už při mnohem nižší teplotě."
+      - id: vyklad
+        type: explain
+        prompt: "Jak bys klientce vysvětlila, proč nepřipalovat pečivo, brambory a hranolky?"
+        keyPoints:
+          - "Vzniká akrylamid – zdraví nebezpečná látka"
+          - "Z potravin se škrobem při pečení a smažení"
+          - "Už od 120 °C a za nízké vlhkosti"
+          - "Maillardova reakce – hnědnutí"
+        modelAnswer: >-
+          Při pečení a smažení potravin se škrobem vzniká Maillardovou reakcí akrylamid, a to už od
+          120 °C a za nízké vlhkosti. Navenek se to projevuje hnědnutím. Čím víc potravinu
+          připálíme, tím víc těchto zdraví nebezpečných látek může vzniknout.
+
+  - id: pot.hydrogenace
+    title: Hydrogenace (ztužování) tuků
+    kind: comparison
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 12 (s. 98) uvádí, že plně ztužené tuky mají minimum trans MK „od roku 2014“, kap. 3
+      (s. 28) klade změnu výroby na přelom tisíciletí a dodává, že trans MK vznikají i při
+      deodoraci (součást rafinace). S. 250 řadí ztužené tuky obecně mezi nevhodné potraviny u
+      diabetu. Na zkoušku: částečně ztužené = vysoký obsah trans MK, plně ztužené = minimum.
+    criteria: [4a, 1b]
+    source: { pages: [98, 111], anchor: "Částečně hydrogenované tuky obsahují vysoký obsah transmastných kyselin" }
+    explanation: >-
+      Hydrogenace je ztužování tuku – tak se vyrábějí pevné rostlinné tuky a margaríny. Částečně
+      hydrogenované (ztužené) tuky obsahují hodně transmastných kyselin, proto je nelze doporučit.
+      Plně hydrogenované tuky se dnes vyrábějí tak, že obsahují trans MK minimálně – na etiketě jsou
+      tedy lepší volbou. Trans MK ale mohou vzniknout i z kvalitního tuku při nevhodném skladování
+      a kulinářské úpravě.
+    exercises:
+      - id: nejvic-trans
+        type: choice
+        prompt: "Který tuk obsahuje podle skript nejvíce transmastných kyselin?"
+        options:
+          - text: "Částečně ztužený tuk"
+            correct: true
+          - text: "Plně ztužený tuk"
+            why: "Plně ztužené tuky dnes obsahují trans MK minimálně."
+          - text: "Za studena lisovaný olej"
+            why: "Neprochází hydrogenací."
+          - text: "Máslo"
+            why: "Mléčný tuk obsahuje jen malé množství přirozených trans MK."
+      - id: proc
+        type: reveal
+        prompt: "Proč je plně ztužený tuk ve složení paradoxně lepší než částečně ztužený?"
+        answer: >-
+          Částečně ztužené tuky obsahují hodně transmastných kyselin, plně ztužené se dnes vyrábějí
+          tak, že jich obsahují minimum.
+
+  - id: pot.kulinarni-upravy
+    title: Kulinární úpravy a ztráty živin
+    kind: comparison
+    tier: A
+    criteria: [4a]
+    source: { pages: [98, 99], anchor: "Části ztrát je možné zamezit například vynecháním loupání" }
+    explanation: >-
+      Při vaření ve větším množství vody přecházejí do vody vitaminy rozpustné ve vodě a termolabilní
+      látky; ztráty sníží vkládání do vroucí vody a neloupání. Dušení (málo tekutiny, zavřená nádoba)
+      má ztráty nižší. Blanšírování (krátce pára či vroucí voda) inaktivuje enzymy včetně oxidáz
+      kyseliny askorbové. Tuk je nejlepší rychle zahřát na cca 180 °C a teplotu udržovat – pomalé
+      zahřívání zvyšuje ztráty vitaminů. Nad 200 °C vznikají z bílkovin karcinogeny.
+    exercises:
+      - id: zelenina
+        type: choice
+        prompt: "Jak podle skript snížit ztráty vitaminů při vaření zeleniny?"
+        options:
+          - text: "Vložit ji do už vroucí vody a nejlépe neloupat"
+            correct: true
+          - text: "Vložit ji do studené vody a pomalu přivést k varu"
+            why: "Delší pobyt ve vodě znamená větší vyluhování."
+          - text: "Vařit déle při nižší teplotě ve větším objemu vody"
+            why: "Více vody a delší čas zvyšují ztráty."
+          - text: "Předem ji oloupat a nakrájet nadrobno"
+            why: "Neloupání naopak ztráty snižuje."
+      - id: tuk
+        type: choice
+        prompt: "Jak podle skript správně zahřívat tuk na smažení?"
+        options:
+          - text: "Rychle na cca 180 °C a teplotu udržovat"
+            correct: true
+          - text: "Pomalu a postupně zvyšovat teplotu"
+            why: "Pomalé zvedání teploty znamená vyšší ztráty vitaminů."
+          - text: "Zahřát co nejvíce, aby se potravina rychle zatáhla"
+            why: "Přehřátím vzniká akrolein, PAU a další škodliviny."
+          - text: "Zahřívat, dokud se z tuku nezačne kouřit"
+            why: "Kouř znamená přepalování tuku a vznik škodlivin."
+      - id: blansirovani
+        type: reveal
+        prompt: "Co je blanšírování a co při něm v potravině nastane?"
+        answer: >-
+          Rychlé ošetření párou nebo krátké ponoření do vroucí vody; inaktivují se enzymy (i oxidázy
+          kyseliny askorbové).
+
+  - id: pot.vitaminy-stabilita
+    title: Stabilní a labilní vitaminy při zpracování
+    kind: comparison
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 4 (s. 49) uvádí, že vitaminy rozpustné v tucích (A, D, E, K) jsou poměrně stabilní vůči
+      vzduchu i teplu, kap. 12 však řadí vitamin K mezi labilní. S. 99 zároveň popisuje výrazné
+      ztráty vitaminu E při zahřívání olejů a s. 98 jeho ztráty při deodoraci. Na otázku ke
+      zpracování potravin odpovídej podle seznamu z kap. 12.
+    criteria: [4a, 1e]
+    source: { pages: [100], anchor: "Mezi stabilní vitaminy patří vitaminy D, E, biotin" }
+    explanation: >-
+      Ztráty vitaminů závisí na zpracování a skladování a mohou dosáhnout 80 % i více. Podle kap. 12
+      jsou stabilní vitaminy D, E, biotin (B7), pyridoxin (B6), niacin (B3) a riboflavin (B2);
+      labilní jsou B12, kyselina listová (B9), kyselina pantotenová (B5), thiamin (B1), vitamin C
+      a vitamin K. Sušení ničí hlavně vitamin C (asi 80 %) a betakaroten (asi 50 %). V mraženém mase
+      jsou vitaminy stabilní, ztráty vznikají nevhodným rozmrazováním.
+    exercises:
+      - id: labilni
+        type: choice
+        prompt: "Který z těchto vitaminů řadí skripta (kap. 12) mezi labilní?"
+        options:
+          - text: "Thiamin (B1)"
+            correct: true
+          - text: "Niacin (B3)"
+            why: "Skripta ho řadí mezi stabilní."
+          - text: "Vitamin D"
+            why: "Skripta ho řadí mezi stabilní."
+          - text: "Riboflavin (B2)"
+            why: "Skripta ho řadí mezi stabilní."
+      - id: suseni
+        type: choice
+        prompt: "Které látky se podle skript nejvíce ztrácejí při sušení?"
+        options:
+          - text: "Vitamin C a betakaroten"
+            correct: true
+          - text: "Vitamin D a E"
+            why: "Skripta je řadí mezi stabilní."
+          - text: "Bílkoviny a tuky"
+            why: "Sušením se makroživiny neztrácejí, jen se koncentrují."
+          - text: "Biotin a niacin"
+            why: "Skripta je řadí mezi stabilní vitaminy."
+
+  - id: pot.pridana-voda
+    title: Přidaná voda – křehčení a glazování
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta si odporují: s. 100 uvádí, že přidanou vodu do 10 % výrobce nemusí uvádět, s. 109
+      že přidaná voda se uvádí nad 5 %. Hranice 5 % odpovídá i nařízení (EU) č. 1169/2011 – tu
+      považuj za správnou odpověď. Glazování popisuje s. 100 jako fosforečnou glazuru zadržující
+      vodu, s. 112 jako nástřik pitné vody, který chrání filety před vymrzáním. U glazovaných ryb
+      se čistá hmotnost podle EU uvádí bez glazury.
+    criteria: [4c, 4a]
+    source: { pages: [100, 109], anchor: "Příkladem je křehčení masa, kdy se do masa přidává voda" }
+    explanation: >-
+      Některé postupy „chrání“ potravinu před ztrátou vody, pro spotřebitele ale znamenají nižší
+      nutriční hodnotu. Křehčení masa = do masa se přidává voda, takže spotřebitel platí i za ni.
+      Glazování (hlavně u ryb, typicky Double Frozen) = povrchová vrstva vody či fosforečné
+      glazury, která chrání filety před vymrzáním a drží vodu v mase. Přidaná voda se ve složení
+      uvádí, pokud tvoří více než 5 %.
+    exercises:
+      - id: hranice
+        type: choice
+        prompt: "Nad jaký podíl musí být přidaná voda uvedena ve složení (podle platné legislativy)?"
+        options:
+          - text: "Nad 5 %"
+            correct: true
+          - text: "Nad 2 %"
+            why: "2 % je hranice, pod kterou nezáleží na pořadí složek."
+          - text: "Nad 0,9 %"
+            why: "To je hranice pro označení GMO."
+          - text: "Nad 10 %"
+            why: "Tak to uvádí s. 100, ale v rozporu s kapitolou o složení i s legislativou."
+      - id: glazovani
+        type: reveal
+        version: 2
+        prompt: "Co je glazování ryb a co pro spotřebitele znamená?"
+        answer: >-
+          Na povrch mražené ryby se nanáší voda či fosforečná glazura – chrání filety před
+          vymrzáním a drží vodu v mase. Podle skript tím klesá nutriční hodnota (čistá hmotnost se
+          ale uvádí bez glazury).
+
+  - id: pot.sterilovane
+    title: Sterilované potraviny
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      S. 97 definuje sterilizaci jako ohřev „nad 100 °C“, s. 117 uvádí pro kyselé potraviny
+      sterilační teploty do 100 °C. Obecná definice ze s. 97 platí pro nekyselé potraviny, u kyselých
+      stačí teplota do 100 °C.
+    criteria: [4a]
+    prereqs: [pot.tepelne-osetreni]
+    source: { pages: [117], anchor: "Tyto potraviny již nepotřebují konzervanty" }
+    explanation: >-
+      Sterilace probíhá nepřímým ohřevem v hermeticky uzavřených obalech (zavařování), nebo
+      v průtokových výměnících s aseptickým plněním. Kyselé potraviny (ovoce, zelenina v kyselém
+      nálevu) se sterilují do 100 °C, nekyselé (zelenina, maso, mléko) nad 100 °C. Bílkoviny,
+      sacharidy, tuky, většina minerálů a vitaminů rozpustných v tucích zůstávají; ztrácejí se
+      vitaminy citlivé na teplo a vzduch (skupina B, C). Konzervanty nejsou potřeba, ale bývá v nich
+      víc cukru a soli.
+    exercises:
+      - id: konzervanty
+        type: choice
+        prompt: "Proč sterilované konzervy podle skript nepotřebují konzervanty?"
+        options:
+          - text: "Sterilací byly usmrceny všechny mikroorganismy"
+            correct: true
+          - text: "Obsahují vždy velké množství soli"
+            why: "Více soli v nich bývá, ale není to důvod."
+          - text: "Byly krátce zahřáty na 71,7 °C"
+            why: "To je pasterace, která všechny mikroorganismy nezničí."
+          - text: "Obal obsahuje bisfenol A, který brání růstu bakterií"
+            why: "BPA je složka některých plastů, ne konzervant potraviny."
+      - id: ztraty
+        type: choice
+        prompt: "Které živiny se při sterilaci ztrácejí nejvíce?"
+        options:
+          - text: "Vitaminy skupiny B a vitamin C"
+            correct: true
+          - text: "Bílkoviny"
+            why: "Množství bílkovin sterilace neovlivní."
+          - text: "Vitaminy rozpustné v tucích"
+            why: "Ty se podle skript většinou zachovají."
+          - text: "Minerální látky"
+            why: "Většina minerálních látek se zachová."
+
+  - id: pot.fortifikace
+    title: Fortifikace – přímá a nepřímá
+    kind: comparison
+    tier: B
+    criteria: [4a, 9d]
+    source: { pages: [93, 97, 98], anchor: "Fortifikace může být přímá a nepřímá" }
+    explanation: >-
+      Fortifikace = obohacení potraviny o živiny, které v ní chybějí, je jich málo nebo se ztratily
+      zpracováním. Cílem je prevence deficitu (vitaminy B do mouky, jodidovaná sůl, vápník,
+      vitamin D a B12 do rostlinných nápojů). Přímá fortifikace obohatí přímo konzumovanou potravinu
+      (margaríny, snídaňové cereálie, nápoje). Nepřímá dodá živiny krmením zvířete – omega vejce
+      od slepic krmených lněným semínkem či rybím olejem, omega kapr.
+    exercises:
+      - id: omega-vejce
+        type: choice
+        prompt: "Omega vejce od slepic krmených lněným semínkem jsou příkladem…"
+        options:
+          - text: "nepřímé fortifikace"
+            correct: true
+          - text: "přímé fortifikace"
+            why: "Přímá fortifikace obohacuje přímo konzumovanou potravinu (např. cereálie)."
+          - text: "genetické modifikace"
+            why: "Žádná genetická úprava neprobíhá, mění se jen krmivo."
+          - text: "potraviny nového typu"
+            why: "Vejce mají dlouhou historii spotřeby."
+      - id: priklady
+        type: reveal
+        prompt: "Uveď dva příklady fortifikovaných potravin a k čemu fortifikace slouží."
+        answer: >-
+          Např. mouka obohacená o vitaminy B, jodidovaná sůl, rostlinné nápoje s vápníkem, vitaminy D
+          a B12. Slouží k prevenci deficitu u některých skupin populace.
+
+  - id: pot.rafinace
+    title: Rafinace olejů
+    kind: procedure
+    tier: C
+    criteria: [4a, 1b]
+    source: { pages: [98], anchor: "Rafinace navíc zvyšuje tepelnou odolnost tuku" }
+    explanation: >-
+      Rafinace = lisování za vysokých tlaků a teplot a chemická úprava. Odstraní zbytky, které by se
+      přepalovaly, neutralizuje chuť a vůni a zvýší tepelnou odolnost tuku. Kroky: hydratace
+      (odsliznění, fosfolipidy), alkalická rafinace (neutralizace, volné MK), bělení (barviva),
+      deodorace (vodní pára 180–260 °C; odstraní i část tokoferolů a sterolů). Rafinované oleje
+      obsahují kontaminant 3-MCPD – nejméně řepkový, nejvíce palmový.
+    exercises:
+      - id: mcpd
+        type: choice
+        prompt: "Ve kterém oleji je podle skript nejvíce 3-MCPD?"
+        options:
+          - text: "V palmovém"
+            correct: true
+          - text: "V řepkovém"
+            why: "Řepkový olej ho má podle skript nejméně."
+          - text: "V extra panenském olivovém"
+            why: "MCPD se týká rafinovaných olejů."
+      - id: deodorace
+        type: reveal
+        prompt: "Co se kromě pachových látek ztrácí při deodoraci oleje?"
+        answer: "Volné mastné kyseliny a část tokoferolů (vitaminu E) a sterolů."
+
+  # ---------- 4b Aditiva ----------
+
+  - id: pot.aditiva-podminky
+    title: Kdy se smějí použít aditiva
+    kind: concept
+    tier: A
+    criteria: [4b]
+    source: { pages: [107], anchor: "pokud je to potřebné z technologického hlediska a nelze toho dosáhnout jinak" }
+    explanation: >-
+      Přídatné látky (aditiva, „éčka“) nejsou samostatné potraviny – přidávají se, aby zlepšily
+      vlastnosti potraviny. Smějí se použít jen tehdy, když jsou technologicky potřebné a účelu nelze
+      dosáhnout jinak; nesmějí být nadměrným rizikem pro spotřebitele a nesmějí ho uvádět v omyl.
+      Zákon určuje, do kterých potravin a v jakém množství se dané „E“ smí přidat, a existují
+      základní potraviny, do kterých se nesmí přidat žádné.
+    exercises:
+      - id: podminky
+        type: choice
+        multiple: true
+        prompt: "Které podmínky musí podle skript splnit použití přídatné látky?"
+        options:
+          - text: "Je potřebné z technologického hlediska"
+            correct: true
+          - text: "Účelu nelze dosáhnout jinak"
+            correct: true
+          - text: "Neuvádí spotřebitele v omyl"
+            correct: true
+          - text: "Je přírodního původu"
+            why: "Aditiva mohou být přírodní, přírodně identická i syntetická."
+          - text: "Zvyšuje výživovou hodnotu potraviny"
+            why: "Látky přidané kvůli výživové hodnotě (fortifikace) mezi „E“ naopak nepatří."
+      - id: zakladni
+        type: reveal
+        prompt: "Smí se „éčka“ přidávat do jakékoli potraviny v libovolném množství?"
+        answer: >-
+          Ne. Zákon stanoví, do kterých potravin a v jakém množství (případně v jakých kombinacích)
+          lze dané aditivum použít; do některých základních potravin nesmí žádné.
+
+  - id: pot.aditiva-legislativa
+    title: Kdo o aditivech rozhoduje a potraviny pro děti
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      S. 107 píše, že o povolení aditiv v Evropě „rozhoduje EFSA“, s. 105 ale EFSA popisuje jen
+      jako úřad, který dává podklady pro změny legislativy (formálně o povolení rozhoduje Evropská
+      komise na základě hodnocení EFSA). Na zkoušku jmenuj EFSA jako evropskou instituci.
+    criteria: [4b]
+    confusableWith: [pot.dozor-mezinarodni]
+    source: { pages: [107], anchor: "Pro Evropu o tomto rozhoduje EFSA a pro USA FDA" }
+    explanation: >-
+      O povolení přídatných látek rozhoduje podle skript pro Evropu EFSA (formálně je schvaluje
+      Evropská komise na základě posudku EFSA), pro USA FDA; ČR se řídí pravidly EU.
+      Pravidla se průběžně přehodnocují. Přísnější omezení druhů i množství „E“ platí pro potraviny
+      označené pro děti (např. „od X měsíců“, do 3 let) a pro potraviny k léčebným účelům. Pozor:
+      samotné slovo „dětský“ legislativně nic neznamená – může jít o běžnou konvenční potravinu.
+    exercises:
+      - id: detsky
+        type: choice
+        prompt: "Jogurt nese nápis „dětský“, ale žádný údaj o věku. Co to podle skript znamená?"
+        options:
+          - text: "Legislativně nic – může jít o běžný výrobek"
+            correct: true
+          - text: "Smí obsahovat jen přírodní aditiva"
+            why: "Slovo „dětský“ žádná zvláštní pravidla nepřináší."
+          - text: "Platí pro něj přísné limity jako pro výživu dětí do 3 let"
+            why: "Přísnější limity platí jen pro potraviny označené pro děti od určitého věku / do 3 let."
+          - text: "Nesmí obsahovat žádná „éčka“"
+            why: "Takové pravidlo pro slovo „dětský“ neexistuje."
+      - id: efsa
+        type: choice
+        prompt: "Která instituce podle skript rozhoduje o přídatných látkách pro Evropu?"
+        options:
+          - text: "EFSA"
+            correct: true
+          - text: "FDA"
+            why: "FDA rozhoduje pro USA."
+          - text: "SZPI"
+            why: "SZPI kontroluje potraviny v obchodní síti, o povolení aditiv nerozhoduje."
+          - text: "RASFF"
+            why: "RASFF je systém rychlého varování."
+
+  - id: pot.aditiva-kategorie
+    title: Funkční skupiny aditiv
+    kind: concept
+    tier: A
+    criteria: [4b]
+    source: { pages: [107], anchor: "konzervanty, antioxidanty, látky určené k tvoření textury, konzistence a zajištění stability" }
+    explanation: >-
+      Podle funkce se aditiva dělí na: konzervanty, antioxidanty, látky upravující texturu
+      a konzistenci a zajišťující stabilitu (želírující, zahušťovací, stabilizační), emulgátory,
+      ochucovadla a zvýrazňovače chuti, potravinářská barviva a náhrady cukru (sladidla). Funkci musí
+      etiketa vždy uvést, např. „regulátor kyselosti: E330“, „sladidlo: aspartam“.
+    exercises:
+      - id: kategorie
+        type: choice
+        multiple: true
+        prompt: "Které z následujících jsou podle skript skupiny přídatných látek?"
+        options:
+          - text: "Konzervanty"
+            correct: true
+          - text: "Emulgátory"
+            correct: true
+          - text: "Zvýrazňovače chuti"
+            correct: true
+          - text: "Barviva"
+            correct: true
+          - text: "Aromata"
+            why: "Aromata mají vlastní legislativu a mezi „E“ nepatří."
+          - text: "Vitaminy přidané k fortifikaci"
+            why: "Látky k úpravě výživové hodnoty nejsou „E“."
+      - id: vyjmenuj
+        type: reveal
+        prompt: "Vyjmenuj alespoň pět funkčních skupin přídatných látek."
+        answer: >-
+          Konzervanty, antioxidanty, zahušťovadla/želírující látky/stabilizátory, emulgátory,
+          ochucovadla a zvýrazňovače chuti, barviva, sladidla.
+
+  - id: pot.aditiva-puvod
+    title: Přírodní, přírodně identická a syntetická aditiva
+    kind: comparison
+    tier: A
+    criteria: [4b]
+    confusableWith: [pot.aromata]
+    source: { pages: [107], anchor: "přírodně identická (mají stejnou strukturu jako přírodní ale jsou vyrobeny synteticky" }
+    explanation: >-
+      Podle původu jsou „éčka“ přírodní (např. pektin, karamel), přírodně identická – mají stejnou
+      strukturu jako přírodní látka, ale vyrábějí se synteticky (např. kyselina askorbová) –
+      a syntetická (např. cyklamáty). V každé funkční skupině jsou látky různého původu, takže „E“
+      samo o sobě neznamená „umělá chemie“.
+    exercises:
+      - id: askorbova
+        type: choice
+        prompt: "Synteticky vyrobená kyselina askorbová se stejnou strukturou jako v přírodě je aditivum…"
+        options:
+          - text: "přírodně identické"
+            correct: true
+          - text: "přírodní"
+            why: "Přírodní aditivum se získává z přírody (např. pektin), nevyrábí se synteticky."
+          - text: "syntetické"
+            why: "Syntetické látky (např. cyklamáty) nemají přírodní vzor se stejnou strukturou."
+          - text: "nepatří mezi aditiva"
+            why: "Kyselina askorbová se jako aditivum používá."
+      - id: synteticke
+        type: choice
+        prompt: "Které z těchto aditiv uvádějí skripta jako příklad syntetického?"
+        options:
+          - text: "Cyklamáty"
+            correct: true
+          - text: "Pektin"
+            why: "Pektin je přírodní aditivum."
+          - text: "Karamel"
+            why: "Karamel je přírodní aditivum."
+          - text: "Kyselina askorbová"
+            why: "Kyselina askorbová je přírodně identická."
+
+  - id: pot.aditiva-co-neni-e
+    title: Co mezi „éčka“ nepatří
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta řadí modifikované škroby mezi technologicky upravené látky, které nejsou „E“. Podle
+      platné legislativy EU ale modifikované škroby E-kódy mají (řada E 14xx); želatina mezi aditiva
+      skutečně nepatří. U zkoušky drž výklad skript, ale nenech se zaskočit, objeví-li se
+      modifikovaný škrob jako „éčko“.
+    criteria: [4b]
+    prereqs: [pot.aditiva-kategorie]
+    source: { pages: [107], anchor: "látky, které jsou samy potravinami (ocet, sůl)" }
+    explanation: >-
+      Mezi „éčka“ nepatří: látky, které jsou samy potravinou (ocet, sůl), látky v potravinách
+      přirozeně obsažené (sacharidy), podle skript ani technologicky upravené látky (škroby,
+      želatina), aromatické látky (např. chinin, kofein) a látky přidané kvůli výživové hodnotě
+      (fortifikace). Aromata mají vlastní legislativu.
+    exercises:
+      - id: nepatri
+        type: choice
+        multiple: true
+        prompt: "Které z těchto látek podle skript NEPATŘÍ mezi aditiva („E“)?"
+        options:
+          - text: "Kuchyňská sůl"
+            correct: true
+          - text: "Kofein použitý jako aromatická látka"
+            correct: true
+          - text: "Vitamin přidaný k fortifikaci"
+            correct: true
+          - text: "Pektin"
+            why: "Pektin je přírodní aditivum (zahušťovadlo)."
+          - text: "Aspartam"
+            why: "Aspartam je sladidlo – aditivum."
+      - id: proc
+        type: reveal
+        prompt: "Uveď čtyři skupiny látek, které podle skript nejsou „éčky“."
+        answer: >-
+          Látky, které jsou samy potravinou (ocet, sůl); přirozeně obsažené látky (sacharidy);
+          aromatické látky (chinin, kofein); látky přidané k fortifikaci. Skripta sem řadí i
+          technologicky upravené škroby a želatinu.
+
+  - id: pot.aditiva-zdravi
+    title: Aditiva a zdraví – mýty a fakta
+    kind: concept
+    tier: A
+    criteria: [4b, 9c]
+    prereqs: [pot.aditiva-puvod]
+    source: { pages: [95, 107], anchor: "Za růžovou barvu mohou právě dusitany" }
+    explanation: >-
+      Aditiva nejsou automaticky škodlivá – jejich použití je legislativně omezené a v každé skupině
+      jsou látky přírodní i syntetické. Skripta přesto doporučují, aby se syntetickým „éčkům“ spíše
+      vyhýbaly děti, senioři a lidé s některými nemocemi. Typický rozpor: lidé nechtějí dusitany
+      v uzeninách, ale chtějí růžovou, ne šedou šunku – růžovou barvu způsobují právě dusitany
+      (obr. 12.7 je přesto řadí mezi éčka, kterým je lepší se vyhnout). Pozor i na mýtus, že BIO je
+      bez „éček“.
+    exercises:
+      - id: dusitany
+        type: choice
+        prompt: "Čím je podle skript způsobena růžová barva uzenin?"
+        options:
+          - text: "Dusitany"
+            correct: true
+          - text: "Azobarvivy"
+            why: "Azobarviva by musela být uvedena i s upozorněním na hyperaktivitu dětí."
+          - text: "Karamelem"
+            why: "Karamel je hnědé barvivo."
+          - text: "Červenou řepou"
+            why: "Barvu uzenin dávají dusitany."
+      - id: kdo
+        type: choice
+        prompt: "Komu skripta doporučují se syntetickým „E“ spíše vyhýbat?"
+        options:
+          - text: "Dětem, seniorům a některým nemocným"
+            correct: true
+          - text: "Pouze lidem s celiakií"
+            why: "Doporučení je širší a s lepkem nesouvisí."
+          - text: "Všem bez výjimky – jsou vždy škodlivá"
+            why: "Aditiva jsou povolena jen tehdy, když nepředstavují nadměrné riziko."
+          - text: "Nikomu – syntetická E jsou bezpečnější než přírodní"
+            why: "Skripta naopak doporučují citlivým skupinám se jim vyhýbat."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Klientka říká, že „éčka“ jsou jed a chce je úplně vyřadit. Jak jí odpovíš?"
+        keyPoints:
+          - "Aditiva se smějí použít jen když jsou technologicky nutná a nepředstavují nadměrné riziko"
+          - "Existují přírodní, přírodně identická i syntetická (E ≠ automaticky chemie)"
+          - "Syntetickým E se spíše vyhnout u dětí, seniorů a nemocných"
+          - "Dusitany: chceme růžovou uzeninu, barvu dávají právě ony (skripta je přesto řadí k éčkům „raději se vyhněte“)"
+          - "I BIO potraviny mohou E obsahovat"
+        modelAnswer: >-
+          Aditiva smějí být použita jen tehdy, když jsou technologicky potřebná a nepředstavují
+          nadměrné riziko, a jejich množství určuje zákon. Mnohá jsou přírodní nebo přírodně
+          identická, takže „E“ neznamená automaticky chemii. Dětem, seniorům a nemocným je ale
+          vhodné syntetická éčka omezovat. Často jde o rozpor očekávání – lidé nechtějí dusitany,
+          ale chtějí růžovou šunku, kterou dělají právě dusitany; i tak je skripta řadí mezi éčka,
+          kterým je lepší se spíše vyhnout.
+
+  - id: pot.e-ciselne-rady
+    title: Číselné řady E-kódů
+    kind: fact
+    tier: B
+    status: supplementary
+    note: >-
+      Skripta číselné řady neuvádějí; obr. 12.7 na s. 108 je jen seznam éček „raději se vyhněte /
+      nemusíte se bát“ (viz pot.aditiva-pomucka). Řady doplněny podle běžného číslování přídatných
+      látek v EU, protože pomáhají číst etikety.
+    criteria: [4b, 9c]
+    prereqs: [pot.aditiva-kategorie]
+    source: { pages: [108], anchor: "Pomůcka pro snadnou orientaci v" }
+    explanation: >-
+      Podle čísla E-kódu se dá odhadnout skupina: E100–199 barviva, E200–299 konzervanty,
+      E300–399 antioxidanty a regulátory kyselosti, E400–499 zahušťovadla, želírující látky,
+      stabilizátory a emulgátory, E500–599 regulátory kyselosti a protispékavé látky, E600–699
+      zvýrazňovače chuti (např. glutamát E621), E900–999 mimo jiné sladidla a lešticí látky. Řady
+      jsou orientační – funkci musí uvádět etiketa.
+    exercises:
+      - id: e200
+        type: choice
+        prompt: "Do které skupiny orientačně patří aditiva s čísly E200–E299?"
+        options:
+          - text: "Konzervanty"
+            correct: true
+          - text: "Barviva"
+            why: "Barviva jsou E100–E199."
+          - text: "Antioxidanty"
+            why: "Antioxidanty jsou E300–E399."
+          - text: "Zahušťovadla a emulgátory"
+            why: "Ty jsou E400–E499."
+      - id: e621
+        type: choice
+        prompt: "Do které skupiny patří glutamát (E621)?"
+        options:
+          - text: "Zvýrazňovače chuti"
+            correct: true
+          - text: "Konzervanty"
+            why: "Konzervanty jsou E200–E299."
+          - text: "Sladidla"
+            why: "Sladidla jsou hlavně v řadě E900–E999."
+          - text: "Barviva"
+            why: "Barviva jsou E100–E199."
+
+  - id: pot.aditiva-pomucka
+    title: Pomůcka – kterým éčkům se spíše vyhnout
+    kind: fact
+    tier: B
+    criteria: [4b, 9c]
+    prereqs: [pot.aditiva-kategorie]
+    source: { pages: [108], anchor: "Pomůcka pro snadnou orientaci v" }
+    explanation: >-
+      Skripta přebírají orientační pomůcku (obr. 12.7, zdroj ferpotravina.cz). Raději se vyhnout:
+      některým barvivům (např. E102, E110, E129), konzervantům – sorbanům (E200–E203), benzoanům
+      (E210–E213), siřičitanům (E220–E228) a dusitanům/dusičnanům (E250–E252) –, sladidlům (E420–E421,
+      E950–E952, E954) a glutamátům (E620–E625). Bát se nemusíš např. kyseliny octové (E260),
+      mléčné (E270), askorbové (E300) či pektinu (E440); plyny ochranné atmosféry po otevření
+      vyprchají. Mléčné a masné výrobky se škroby, želatinou či gumami jsou méně kvalitní.
+    exercises:
+      - id: vyhnout
+        type: choice
+        multiple: true
+        prompt: "Která éčka řadí pomůcka ve skriptech (obr. 12.7) mezi ta, kterým je lepší se vyhnout?"
+        options:
+          - text: "Dusitany a dusičnany (E250–E252)"
+            correct: true
+          - text: "Glutamáty (E620–E625)"
+            correct: true
+          - text: "Aspartam (E951)"
+            correct: true
+          - text: "Kyselina askorbová (E300)"
+            why: "Pomůcka ji řadí mezi éčka, kterých se nemusíš bát."
+          - text: "Pektin (E440)"
+            why: "Pomůcka ho řadí mezi éčka, kterých se nemusíš bát."
+          - text: "Dusík jako ochranná atmosféra (E941)"
+            why: "Plyny ochranné atmosféry po otevření obalu vyprchají."
+      - id: kvalita
+        type: reveal
+        prompt: "Čemu se podle pomůcky ve skriptech vyhnout u mléčných a masných výrobků z pohledu kvality?"
+        answer: "Výrobkům s přídavkem škrobů, želatiny, agaru či jiných gum."
+
+  # ---------- 9c Aditiva na etiketách ----------
+
+  - id: pot.aditiva-oznaceni
+    title: Jak se aditiva uvádějí ve složení
+    kind: procedure
+    tier: A
+    criteria: [9c, 4c]
+    source: { pages: [107, 109], anchor: "Aditiva (slovně nebo Ekód) je třeba uvádět vždy" }
+    explanation: >-
+      Aditiva se ve složení uvádějí vždy – buď E-kódem, nebo názvem, a vždy spolu s funkcí, kterou
+      v potravině plní, např. „regulátor kyselosti: E330“ nebo „sladidlo: aspartam“. U aromat se
+      uvádí jejich původ (přírodní, nebo syntetické). U některých aditiv je navíc povinné
+      upozornění (alergeny, azobarviva, sladidla, aspartam).
+    exercises:
+      - id: jak
+        type: choice
+        prompt: "Jak musí být podle skript aditivum uvedeno ve složení?"
+        options:
+          - text: "E-kódem nebo názvem, vždy s uvedením funkce"
+            correct: true
+          - text: "Pouze E-kódem"
+            why: "Stejně dobře lze použít název."
+          - text: "Pouze názvem, E-kódy se už nepoužívají"
+            why: "Obě formy jsou přípustné."
+          - text: "Stačí souhrnně „přídatné látky“"
+            why: "Každé aditivum se musí uvést jednotlivě i s funkcí."
+      - id: spravne
+        type: choice
+        prompt: "Který zápis ve složení odpovídá pravidlům?"
+        options:
+          - text: "regulátor kyselosti: E330"
+            correct: true
+          - text: "E330"
+            why: "Chybí funkce aditiva."
+          - text: "přídatné látky (E)"
+            why: "Aditivum musí být uvedeno kódem nebo názvem a funkcí."
+          - text: "kyselina"
+            why: "Chybí konkrétní látka i její funkce."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka nerozumí „éčkům“ ve složení. Vysvětli jí, jak se aditiva na etiketě uvádějí."
+        keyPoints:
+          - "Aditiva musí být ve složení uvedena vždy"
+          - "E-kódem nebo názvem – obojí je rovnocenné"
+          - "Vždy s funkcí (např. regulátor kyselosti: E330)"
+          - "U některých povinné upozornění (azobarviva, sladidla, aspartam, siřičitany)"
+          - "Aromata nejsou E – uvádí se jejich původ"
+        modelAnswer: >-
+          Každé aditivum musí být ve složení uvedeno, buď E-kódem, nebo názvem, a vždy s funkcí,
+          kterou plní – třeba „regulátor kyselosti: E330“. Některá aditiva mají navíc povinné
+          upozornění, například azobarviva nebo aspartam. Aromata mezi éčka nepatří, u nich se
+          uvádí, zda jsou přírodní.
+
+  - id: pot.aditiva-upozorneni
+    title: Povinná upozornění u některých aditiv
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta píší o projímavém účinku „umělých sladidel“ obecně. Podle legislativy se toto
+      upozornění týká potravin s více než 10 % polyolů (sorbitol, xylitol, maltitol…) – srov. kap. 2
+      (s. 21), kde se projímavý účinek uvádí právě u polyolů. Upozornění na hyperaktivitu se váže na
+      šest konkrétních barviv (většinou azobarviva). Fenylalanin je problém pro lidi
+      s fenylketonurií. U sladidel je navíc povinný údaj „se sladidlem/sladidly“. U zkoušky uveď
+      výklad skript, případně upřesni, že projímavý účinek se týká polyolů.
+    criteria: [9c, 4b]
+    prereqs: [pot.aditiva-oznaceni]
+    source: { pages: [107], anchor: "U azobarviv musí být upozornění, že mohou způsobovat hyperaktivitu dětí" }
+    explanation: >-
+      U některých aditiv musí být na obalu doplňující upozornění: oxid siřičitý a siřičitany a sójový
+      lecitin se značí jako alergeny; u azobarviv, že mohou způsobovat hyperaktivitu dětí;
+      u sladidel, že mají projímavé účinky; u aspartamu, že je zdrojem fenylalaninu.
+    exercises:
+      - id: aspartam
+        type: choice
+        prompt: "U kterého aditiva musí být upozornění, že je zdrojem fenylalaninu?"
+        options:
+          - text: "Aspartam"
+            correct: true
+          - text: "Sacharin"
+            why: "Fenylalanin obsahuje aspartam."
+          - text: "Glutamát"
+            why: "Glutamát je zvýrazňovač chuti, toto upozornění se ho netýká."
+          - text: "Kyselina askorbová"
+            why: "Toto upozornění se jí netýká."
+      - id: azobarviva
+        type: choice
+        prompt: "Jaké upozornění musí být u azobarviv?"
+        options:
+          - text: "Mohou způsobovat hyperaktivitu dětí"
+            correct: true
+          - text: "Mají projímavé účinky"
+            why: "To se uvádí u sladidel."
+          - text: "Jsou zdrojem fenylalaninu"
+            why: "To se uvádí u aspartamu."
+          - text: "Obsahují lepek"
+            why: "Takové upozornění se u barviv nevyžaduje."
+      - id: vyklad
+        type: explain
+        prompt: "Která aditiva musí mít na obalu zvláštní upozornění a jaké?"
+        keyPoints:
+          - "Oxid siřičitý a siřičitany – jako alergen"
+          - "Sójový lecitin – jako alergen"
+          - "Azobarviva – mohou způsobovat hyperaktivitu dětí"
+          - "Sladidla – projímavé účinky"
+          - "Aspartam – zdroj fenylalaninu"
+        modelAnswer: >-
+          Oxid siřičitý, siřičitany a sójový lecitin se musí označit jako alergeny. U azobarviv musí
+          být upozornění, že mohou způsobovat hyperaktivitu dětí, u sladidel, že mohou působit
+          projímavě, a u aspartamu, že je zdrojem fenylalaninu.
+
+  - id: pot.aromata
+    title: Aromata na etiketě
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta dělí aromata jen na přírodní a syntetická, takže samotné „aroma“ bez přívlastku
+      vychází jako syntetické. Nařízení EU o aromatech (č. 1334/2008) ale rozlišuje jen, zda aroma
+      smí nést slovo „přírodní“ (za přísných podmínek); „aroma“ bez přívlastku tedy nemusí být
+      nutně syntetické. Biopotraviny smějí obsahovat jen přírodní aromata. U zkoušky drž výklad
+      skript.
+    criteria: [9c, 4b]
+    confusableWith: [pot.aditiva-puvod]
+    source: { pages: [107, 109], anchor: "Aromata mají vlastní legislativu" }
+    explanation: >-
+      Aromata nejsou přídatné látky „E“ – mají vlastní legislativu. Na rozdíl od „éček“ u nich chybí
+      mezistupeň „přírodně identické“: jsou buď přírodní, nebo syntetická. Je-li použito přírodní
+      aroma, musí být označeno slovem „přírodní“; samotné „aroma“ tedy podle skript znamená
+      syntetické. Aromata smějí obsahovat i biopotraviny (podle EU jen přírodní).
+    exercises:
+      - id: aroma
+        type: choice
+        version: 2
+        prompt: "Ve složení čteš jen „aroma“. Co to podle skript znamená?"
+        options:
+          - text: "Není označeno jako přírodní – podle skript jde o syntetické"
+            correct: true
+          - text: "Jde o přírodní aroma, syntetické by mělo E-kód"
+            why: "Aromata E-kódy nemají; přírodní musí být označeno slovem „přírodní“."
+          - text: "Jde o přírodně identické aroma"
+            why: "U aromat tento mezistupeň neexistuje."
+          - text: "Jde o „éčko“ ze skupiny ochucovadel"
+            why: "Aromata mezi „E“ nepatří."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Jak bys klientce vysvětlila rozdíl mezi „aroma“ a „přírodní aroma“ ve složení?"
+        keyPoints:
+          - "Aromata nejsou „E“, mají vlastní legislativu"
+          - "Jen dvě kategorie: přírodní a syntetická (bez mezistupně)"
+          - "Přírodní aroma musí být výslovně označeno slovem „přírodní“"
+          - "Aromata smějí obsahovat i biopotraviny (podle EU jen přírodní)"
+        modelAnswer: >-
+          Aromata nepatří mezi éčka, mají vlastní legislativu a podle skript jsou buď přírodní,
+          nebo syntetická. Přírodní aroma musí být označeno slovem „přírodní“, takže samotné „aroma“
+          podle skript znamená syntetické. Aromata mohou obsahovat i biopotraviny, a to jen přírodní.
+
+  - id: pot.aditiva-e-cislovani
+    title: Co znamená „E“ a proč se aditiva číslují
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta tvrdí, že značení E platí pro celý svět. Mezinárodně se používají stejná čísla
+      (systém INS Codexu Alimentarius), předpona E je ale evropská. U zkoušky stačí: E = Evropa.
+    criteria: [9c, 4b]
+    source: { pages: [107], anchor: "Zvolení písmene E symbolizuje Evropu a nikoliv emulgátory" }
+    explanation: >-
+      Číselné kódy vznikly, protože při převozu potravin do jiných zemí nebylo kvůli jazyku jasné,
+      jaké látky byly použity. Písmeno E znamená Evropa (ne „emulgátory“); stejná čísla se
+      používají i mezinárodně. Na etiketě smí být aditivum uvedeno E-kódem, nebo názvem – E-kód o původu látky
+      (přírodní/syntetická) nic neříká.
+    exercises:
+      - id: pismeno
+        type: choice
+        prompt: "Co znamená písmeno E u přídatných látek?"
+        options:
+          - text: "Evropa"
+            correct: true
+          - text: "Emulgátor"
+            why: "Častý omyl – emulgátory jsou jen jednou ze skupin."
+          - text: "Esenciální"
+            why: "Aditiva nejsou esenciální živiny."
+          - text: "Extrakt"
+            why: "E znamená Evropa."
+      - id: proc
+        type: choice
+        prompt: "Proč vznikl systém číselného označování aditiv?"
+        options:
+          - text: "Aby bylo i v cizím jazyce jasné, jaká látka byla použita"
+            correct: true
+          - text: "Aby šlo odlišit přírodní a syntetické látky"
+            why: "E-kód o původu látky nic neříká."
+          - text: "Aby se aditiva na obalu dala méně nápadně uvést"
+            why: "Důvodem byla srozumitelnost při mezinárodním obchodu."
+          - text: "Kvůli výpočtu energetické hodnoty"
+            why: "S energetickou hodnotou kódy nesouvisejí."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka tvrdí, že „E“ znamená emulgátor a že každé éčko je umělá chemie. Uveď to na pravou míru."
+        keyPoints:
+          - "E = Evropa, ne emulgátor"
+          - "Číslování kvůli srozumitelnosti v mezinárodním obchodě"
+          - "Aditivum může být uvedeno kódem nebo názvem (vždy s funkcí)"
+          - "E mohou být přírodní (pektin), přírodně identická (kys. askorbová) i syntetická"
+        modelAnswer: >-
+          Písmeno E znamená Evropa. Číselné kódy vznikly, aby bylo při mezinárodním obchodu jasné,
+          jaká látka byla použita, bez ohledu na jazyk. Na obalu může být kód i název, vždy s funkcí.
+          Éčko nemusí být „chemie“ – existují přírodní látky jako pektin, přírodně identické jako
+          kyselina askorbová i syntetické jako cyklamáty.
+
+  # ---------- 4c Značení a etikety ----------
+
+  - id: pot.vyzivove-udaje
+    title: Povinné výživové údaje
+    kind: fact
+    tier: A
+    criteria: [4c, 9a]
+    source: { pages: [94, 109], anchor: "Obsah těchto živin musí být přepočten na 100 g nebo 100 ml" }
+    explanation: >-
+      Povinné výživové údaje: energetická hodnota (kJ/kcal), tuky, z toho nasycené mastné kyseliny,
+      sacharidy, z toho cukry, bílkoviny a sůl. Vláknina je dobrovolná. Vše se přepočítává na 100 g
+      nebo 100 ml, případně navíc na porci. Vitaminy a minerální látky jsou povinné jen tehdy, když
+      je na obalu tvrzení nebo jde o fortifikovanou potravinu – pak s množstvím i % referenční
+      hodnoty příjmu (dříve DDD).
+    exercises:
+      - id: povinne
+        type: choice
+        multiple: true
+        prompt: "Které údaje jsou v tabulce výživových údajů povinné?"
+        options:
+          - text: "Nasycené mastné kyseliny"
+            correct: true
+          - text: "Cukry"
+            correct: true
+          - text: "Sůl"
+            correct: true
+          - text: "Vláknina"
+            why: "Vláknina je volitelný údaj."
+          - text: "Cholesterol"
+            why: "Mezi povinné údaje nepatří."
+          - text: "Vitamin C u nefortifikované potraviny bez tvrzení"
+            why: "Vitaminy jsou povinné jen při tvrzení nebo fortifikaci."
+      - id: na-co
+        type: choice
+        prompt: "Na jaké množství se výživové údaje povinně přepočítávají?"
+        options:
+          - text: "Na 100 g nebo 100 ml"
+            correct: true
+          - text: "Na jednu porci"
+            why: "Přepočet na porci může být uveden navíc."
+          - text: "Na celé balení"
+            why: "Povinný základ je 100 g / 100 ml."
+          - text: "Na 1 000 kJ"
+            why: "Takový přepočet se nepoužívá."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli klientce, co najde v tabulce výživových údajů a jak ji číst."
+        keyPoints:
+          - "Energie, tuky, z toho nasycené MK, sacharidy, z toho cukry, bílkoviny, sůl"
+          - "Vláknina je dobrovolná"
+          - "Přepočet na 100 g / 100 ml (dobře se srovnávají výrobky), případně i na porci"
+          - "Vitaminy a minerály jen při tvrzení nebo fortifikaci – s % referenční hodnoty"
+        modelAnswer: >-
+          V tabulce je vždy energetická hodnota, tuky a z nich nasycené mastné kyseliny, sacharidy
+          a z nich cukry, bílkoviny a sůl, vláknina jen dobrovolně. Hodnoty jsou na 100 g nebo 100 ml,
+          takže se dají srovnávat výrobky mezi sebou; někdy je uveden i přepočet na porci. Vitaminy
+          a minerální látky najdeš jen u fortifikovaných potravin nebo u potravin s tvrzením, a to
+          i v procentech referenční hodnoty příjmu.
+
+  - id: pot.slozeni-poradi
+    title: Pořadí složek ve složení
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Hranici pro uvádění alkoholu uvádí s. 109 jako 1,2 %, s. 108 jako 2 %. Správně je 1,2 % obj.
+      (nařízení EU č. 1169/2011) – u nápojů se uvádí skutečný obsah alkoholu, ne ve výčtu složek.
+    criteria: [4c, 9a]
+    source: { pages: [109], anchor: "řazeny sestupně podle jejich použitého množství" }
+    explanation: >-
+      Ve složení jsou suroviny seřazeny sestupně podle použitého množství – první je té nejvíce.
+      Složky pod 2 % mohou být v libovolném pořadí a u směsí (např. koření) se pod 2 % nemusejí
+      rozepisovat. Ve složení se dále uvádějí aditiva s funkcí, původ aromat, zvýrazněné alergeny,
+      a GMO nad 0,9 %; u nápojů nad 1,2 % alkoholu se uvádí jeho obsah.
+    exercises:
+      - id: musli
+        type: choice
+        prompt: "Složení müsli: ovesné vločky, cukr, rozinky (8 %), lískové ořechy (3 %)… Co z toho plyne?"
+        options:
+          - text: "Cukru je ve výrobku víc než rozinek"
+            correct: true
+          - text: "Ovesných vloček je méně než cukru"
+            why: "Vločky jsou první, je jich nejvíce."
+          - text: "Cukru je méně než 8 %"
+            why: "Cukr je před rozinkami (8 %), takže ho je víc."
+          - text: "Pořadí o množství nic neříká"
+            why: "Složky se řadí sestupně podle množství."
+      - id: hranice
+        type: choice
+        prompt: "U složek pod jakým podílem nezáleží na pořadí?"
+        options:
+          - text: "Pod 2 %"
+            correct: true
+          - text: "Pod 5 %"
+            why: "5 % je hranice pro uvádění přidané vody."
+          - text: "Pod 0,9 %"
+            why: "0,9 % je hranice pro označení GMO."
+          - text: "Pod 10 %"
+            why: "Taková hranice pro pořadí neplatí."
+      - id: vyklad
+        type: explain
+        prompt: "Jak bys klientce vysvětlila, co jí řekne pořadí složek na obalu?"
+        keyPoints:
+          - "Složky jsou seřazené sestupně podle množství"
+          - "Co je na prvním místě, toho je nejvíc"
+          - "Pod 2 % na pořadí nezáleží"
+          - "Podle pořadí odhadne např. podíl cukru"
+        modelAnswer: >-
+          Složky jsou seřazené od té, které je ve výrobku nejvíc, po tu, které je nejméně. Když je
+          cukr na druhém místě, je ho ve výrobku hodně. Jen u složek pod 2 % na pořadí nezáleží.
+
+  - id: pot.alergeny
+    title: Značení alergenů
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta připouštějí i výpis alergenů pod složením a „může obsahovat…“ popisují jako povinné.
+      Podle nařízení (EU) č. 1169/2011 musí být alergeny zvýrazněny přímo v seznamu složek
+      (samostatný výpis pod složením nestačí) a „může obsahovat…“ je dobrovolné preventivní
+      upozornění. U zkoušky uveď hlavně zvýraznění ve složení.
+    criteria: [4c, 9a]
+    source: { pages: [109], anchor: "Informace o alergenech musí být uvedena buď vytučněně v textu složení" }
+    explanation: >-
+      Alergeny musí být ve složení zvýrazněny – typicky tučně přímo v textu složení (např.
+      „kroupy“); skripta připouštějí i výpis pod složením jako skupinu alergenů (např. „obiloviny
+      obsahující lepek“). Riziko stopového množství se uvádí upozorněním „může obsahovat…“. Jako alergeny se
+      značí i některá aditiva: oxid siřičitý a siřičitany a sójový lecitin.
+    exercises:
+      - id: jak
+        type: choice
+        version: 2
+        prompt: "Jak musí být alergeny uvedeny na balené potravině?"
+        options:
+          - text: "Zvýrazněně přímo v seznamu složek (např. tučně)"
+            correct: true
+          - text: "Jen symbolem na přední straně obalu"
+            why: "Alergeny se zvýrazňují přímo ve složení."
+          - text: "Stačí je uvést na webu výrobce"
+            why: "Musí být přímo na obalu."
+          - text: "Uvádějí se jen u potravin určených alergikům"
+            why: "Povinnost platí pro všechny balené potraviny."
+      - id: stopy
+        type: reveal
+        prompt: "Co znamená na obalu „může obsahovat…“?"
+        answer: >-
+          Upozornění na riziko alergenu ve stopovém množství (např. kontaminace ve výrobě), i když
+          ho složení přímo neobsahuje.
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Klientka s celiakií se ptá, jak na etiketě pozná lepek. Co jí poradíš?"
+        keyPoints:
+          - "Alergeny jsou ve složení zvýrazněné (tučně), skripta uvádějí i výpis pod složením"
+          - "„Může obsahovat…“ = riziko stopového množství"
+          - "Lepek: pšenice (i špalda), žito, ječmen, oves"
+          - "Logo „bez lepku“ je regulované"
+        modelAnswer: >-
+          Alergeny musí být ve složení zvýrazněné, nejčastěji tučně; skripta zmiňují i výpis pod
+          složením jako „obiloviny obsahující lepek“. Pozor i na upozornění „může obsahovat“, které
+          znamená riziko stop. Lepek obsahuje pšenice včetně špaldy, žito, ječmen a oves. Spolehlivé je také
+          regulované logo „bez lepku“.
+
+  - id: pot.alergeny-14
+    title: Seznam 14 povinně značených alergenů
+    kind: fact
+    tier: B
+    status: supplementary
+    note: >-
+      Skripta seznam alergenů neuvádějí (zmiňují jen princip zvýraznění a příklady: obiloviny
+      s lepkem, siřičitany, sója). Doplněno podle nařízení (EU) č. 1169/2011, příloha II.
+    criteria: [4c, 9a]
+    prereqs: [pot.alergeny]
+    source: { pages: [109], anchor: "V případě alergenů ve stopovém množství musí být toto riziko rovněž uvedeno" }
+    explanation: >-
+      Legislativa EU určuje 14 skupin alergenů, které se na obalu musí zvýraznit: obiloviny
+      obsahující lepek, korýši, vejce, ryby, arašídy (podzemnice olejná), sója, mléko (včetně
+      laktózy), skořápkové plody (ořechy), celer, hořčice, sezam, oxid siřičitý a siřičitany, vlčí
+      bob (lupina) a měkkýši.
+    exercises:
+      - id: ktere
+        type: choice
+        multiple: true
+        prompt: "Které z těchto patří mezi 14 povinně značených alergenů?"
+        options:
+          - text: "Celer"
+            correct: true
+          - text: "Hořčice"
+            correct: true
+          - text: "Vlčí bob"
+            correct: true
+          - text: "Rajčata"
+            why: "Rajčata mezi 14 alergenů nepatří."
+          - text: "Kakao"
+            why: "Kakao mezi 14 alergenů nepatří."
+          - text: "Jahody"
+            why: "Jahody mezi 14 alergenů nepatří."
+      - id: vyjmenuj
+        type: reveal
+        prompt: "Vyjmenuj alespoň 10 ze 14 povinně značených alergenů."
+        answer: >-
+          Obiloviny s lepkem, korýši, vejce, ryby, arašídy, sója, mléko, skořápkové plody, celer,
+          hořčice, sezam, oxid siřičitý a siřičitany, vlčí bob, měkkýši.
+
+  - id: pot.tvrzeni-cukry
+    title: „Bez cukrů“ vs. „bez přídavku cukrů“
+    kind: comparison
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta popisují „bez cukrů“ jako potravinu zcela bez mono- a disacharidů. Podle nařízení
+      (ES) č. 1924/2006 smí taková potravina obsahovat nejvýše 0,5 g cukrů na 100 g (100 ml). Pro
+      zkoušku je podstatné: bez cukrů ≠ bez přídavku cukrů.
+    criteria: [4c]
+    confusableWith: [pot.tvrzeni-limity]
+    source: { pages: [110], anchor: "Potravina BEZ PŘÍDAVKU CUKRŮ může obsahovat přirozeně se vyskytující cukry" }
+    explanation: >-
+      Výživová tvrzení jsou dobrovolná, ale mají legislativně přesné znění i podmínky. „Neslazeno“
+      není výživové tvrzení. „Bez cukrů“ = potravina bez monosacharidů a disacharidů; sladkost mohou
+      dodat sladidla. „Bez přídavku cukrů“ = cukry nebyly přidány, ale potravina může obsahovat cukry
+      přirozeně přítomné (např. z ovoce). Totéž platí pro sůl.
+    exercises:
+      - id: dzus
+        type: choice
+        version: 2
+        prompt: "Ovocná přesnídávka nese tvrzení „bez přídavku cukrů“. Co z toho plyne?"
+        options:
+          - text: "Může obsahovat cukry přirozeně přítomné v ovoci"
+            correct: true
+          - text: "Neobsahuje žádné mono- ani disacharidy"
+            why: "To by odpovídalo tvrzení „bez cukrů“."
+          - text: "Je určitě slazený sladidly"
+            why: "Tvrzení o sladidlech nic neříká."
+          - text: "Nejde o výživové tvrzení"
+            why: "Výživovým tvrzením není „neslazeno“, „bez přídavku cukrů“ ano."
+      - id: neni-tvrzeni
+        type: choice
+        prompt: "Které z těchto označení podle skript NENÍ výživovým tvrzením?"
+        options:
+          - text: "Neslazeno"
+            correct: true
+          - text: "Bez cukrů"
+            why: "Je to výživové tvrzení."
+          - text: "Bez přídavku cukrů"
+            why: "Je to výživové tvrzení."
+          - text: "Se sníženým obsahem cukrů"
+            why: "Je to výživové tvrzení."
+
+  - id: pot.tvrzeni-limity
+    title: Podmínky výživových tvrzení
+    kind: fact
+    tier: A
+    criteria: [4c]
+    confusableWith: [pot.tvrzeni-cukry]
+    source: { pages: [110], anchor: "Vysoký zdroj vlákniny nebo bohatý na vlákninu jsou označení" }
+    explanation: >-
+      Zdroj vlákniny – alespoň 3 g na 100 g; vysoký obsah vlákniny – alespoň 6 g na 100 g. Zdroj
+      bílkovin – alespoň 12 % energie z bílkovin; vysoký obsah bílkovin – alespoň 20 % energie.
+      Zdroj vitaminu či minerální látky – alespoň 15 % referenční dávky. Snížený/zvýšený obsah –
+      rozdíl alespoň 30 % oproti obdobnému výrobku; o absolutním množství to nic neříká.
+    exercises:
+      - id: vlaknina
+        type: choice
+        prompt: "Kolik vlákniny musí potravina obsahovat pro tvrzení „vysoký obsah vlákniny“?"
+        options:
+          - text: "Alespoň 6 g na 100 g"
+            correct: true
+          - text: "Alespoň 3 g na 100 g"
+            why: "To stačí pro tvrzení „zdroj vlákniny“."
+          - text: "Alespoň 12 g na 100 g"
+            why: "Taková hranice se nepoužívá."
+          - text: "O 30 % více než obdobný výrobek"
+            why: "To je podmínka pro „zvýšený obsah“."
+      - id: bilkoviny
+        type: choice
+        prompt: "Co podle skript znamená tvrzení „zdroj bílkovin“?"
+        options:
+          - text: "Bílkoviny dodávají alespoň 12 % energie"
+            correct: true
+          - text: "Bílkoviny dodávají alespoň 20 % energie"
+            why: "To je podmínka pro „vysoký obsah bílkovin“."
+          - text: "Alespoň 12 g bílkovin na 100 g"
+            why: "Podmínka se vztahuje k podílu energie, ne ke gramům."
+          - text: "Alespoň 15 % referenční dávky bílkovin"
+            why: "15 % referenční dávky platí pro vitaminy a minerální látky."
+      - id: snizeny
+        type: choice
+        prompt: "Sušenky nesou tvrzení „se sníženým obsahem tuku“. Co platí?"
+        options:
+          - text: "Mají aspoň o 30 % méně tuku než obdobný výrobek"
+            correct: true
+          - text: "Obsahují méně než 3 g tuku na 100 g"
+            why: "Tvrzení je relativní, absolutní množství neurčuje."
+          - text: "Jsou nízkoenergetické"
+            why: "O energii tvrzení nic neříká."
+          - text: "Mají aspoň o 10 % méně tuku než obdobný výrobek"
+            why: "Rozdíl musí být alespoň 30 %."
+
+  - id: pot.zdravotni-tvrzeni
+    title: Podmínky zdravotních tvrzení
+    kind: concept
+    tier: B
+    criteria: [4c, 8c]
+    prereqs: [pot.tvrzeni-limity]
+    source: { pages: [110], anchor: "Tvrzení, že EPA a DHA přispívají k normální činnosti srdce" }
+    explanation: >-
+      Zdravotní tvrzení jsou přesně daná legislativou. Smí se použít jen tehdy, když potravina
+      obsahuje danou živinu v množství potřebném pro příslušné výživové tvrzení, a množství musí být
+      uvedeno v tabulce výživových údajů (u živin s referenční hodnotou i jako % referenční dávky). Příklad: tvrzení o EPA a DHA
+      a činnosti srdce smí nést jen „zdroj omega-3 MK“ a obal musí uvádět, že účinku se dosáhne
+      při 250 mg EPA a DHA denně.
+    exercises:
+      - id: podminka
+        type: choice
+        prompt: "Za jaké podmínky smí potravina nést zdravotní tvrzení o určité živině?"
+        options:
+          - text: "Obsahuje jí aspoň tolik, kolik vyžaduje výživové tvrzení, a uvádí množství v tabulce"
+            correct: true
+          - text: "Stačí, když výrobce živinu přidá v jakémkoli množství"
+            why: "Množství musí splnit podmínky výživového tvrzení."
+          - text: "Zdravotní tvrzení si výrobce formuluje volně"
+            why: "Znění i podmínky jsou dané legislativou."
+          - text: "Stačí, když je výrobek v BIO kvalitě"
+            why: "BIO s tvrzeními nesouvisí."
+      - id: epa-dha
+        type: reveal
+        prompt: "Jaký denní příjem EPA a DHA musí obal uvádět u tvrzení o normální činnosti srdce?"
+        answer: "250 mg EPA a DHA denně."
+
+  - id: pot.logo-ceska-potravina
+    title: Regulovaná loga a logo Česká potravina
+    kind: fact
+    tier: A
+    criteria: [4c, 9d]
+    confusableWith: [pot.farmarske-neregulovane]
+    source: { pages: [110], anchor: "U vícesložkových potravin musí z ČR pocházet minimálně 75 % hmotnosti" }
+    explanation: >-
+      Některá loga reguluje stát a mají přesný význam (Česká potravina, regionální potraviny, bez
+      lepku, bez laktózy, BIO). Logo Česká potravina: u jednosložkových potravin (nezpracované
+      potraviny, mléko, vinařské produkty) musí vše pocházet z ČR; u vícesložkových musí z ČR
+      pocházet alespoň 75 % hmotnosti všech složek (bez vody) a výroba musí proběhnout v ČR.
+      Profesní loga (Klasa, České cechovní normy) garantují určitý stupeň kvality.
+    exercises:
+      - id: procenta
+        type: choice
+        prompt: "Kolik složek musí u vícesložkové potraviny s logem Česká potravina pocházet z ČR?"
+        options:
+          - text: "Alespoň 75 % hmotnosti složek (bez vody)"
+            correct: true
+          - text: "100 % složek"
+            why: "To platí pro jednosložkové potraviny."
+          - text: "Alespoň 50 % hmotnosti složek"
+            why: "Hranice je vyšší – 75 %."
+          - text: "Stačí, když je výrobek v ČR vyroben"
+            why: "Výroba v ČR je nutná, ale nestačí – rozhoduje i původ složek."
+      - id: regulovana
+        type: choice
+        multiple: true
+        prompt: "Která označení jsou podle skript regulovaná státem a mají přesný význam?"
+        options:
+          - text: "Česká potravina"
+            correct: true
+          - text: "BIO (evropské logo)"
+            correct: true
+          - text: "Bez lepku"
+            correct: true
+          - text: "Farmářský"
+            why: "Tento pojem legislativa nezná."
+          - text: "Natural / organic bez certifikačního loga"
+            why: "Taková označení nezaručují biopotravinu."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka chce nakupovat české potraviny. Vysvětli jí, co znamená logo Česká potravina."
+        keyPoints:
+          - "Logo je regulované státem"
+          - "Jednosložkové: vše z ČR"
+          - "Vícesložkové: alespoň 75 % hmotnosti složek (bez vody) z ČR"
+          - "Výroba musí proběhnout v ČR"
+          - "Jiná loga (Klasa, ČCN) jsou profesní – garantují kvalitu, ne původ"
+        modelAnswer: >-
+          Logo Česká potravina je regulované státem. U jednosložkových potravin musí vše pocházet
+          z ČR, u vícesložkových alespoň 75 % hmotnosti složek bez vody, a výroba musí probíhat
+          v ČR. Profesní loga jako Klasa nebo České cechovní normy garantují spíše určitou kvalitu.
+
+  - id: pot.nutriscore
+    title: Nutri-Score
+    kind: concept
+    tier: C
+    criteria: [4c]
+    source: { pages: [94, 95], anchor: "Základním principem je udělování kladných a záporných bodů" }
+    explanation: >-
+      Nutri-Score je zatím nepovinné hodnocení potravin. Záporné body dává za vysokou energii,
+      nasycené MK, sůl a jednoduché cukry, kladné za vlákninu, ovoce, zeleninu, ořechy a luštěniny
+      (vše na 100 g). Je nedokonalé: olej má kvůli tuku vždy horší skóre než třeba zmrzlina. Smysl má
+      hlavně pro srovnání výrobků v rámci jedné kategorie.
+    exercises:
+      - id: k-cemu
+        type: choice
+        prompt: "K čemu je Nutri-Score podle skript vhodné?"
+        options:
+          - text: "Ke srovnání výrobků ve stejné kategorii"
+            correct: true
+          - text: "Ke srovnání olejů se sladkostmi"
+            why: "Olej by vždy vyšel hůř kvůli tuku, což je zavádějící."
+          - text: "Je to povinný údaj na všech potravinách"
+            why: "Nutri-Score zatím povinné není."
+          - text: "Jednoznačně určí, zda je potravina zdravá"
+            why: "Skripta upozorňují na jeho nedokonalost."
+
+  # ---------- 9a Značení včetně technologie zpracování ----------
+
+  - id: pot.datum-spotreby-dmt
+    title: „Spotřebujte do“ vs. „minimální trvanlivost“
+    kind: comparison
+    tier: A
+    criteria: [9a, 4c, 9b]
+    source: { pages: [96], anchor: "Po uplynutí tohoto data nesmí být výrobky nadále prodávány" }
+    explanation: >-
+      „Spotřebujte do“ (datum spotřeby) se uvádí u potravin mikrobiologicky snadno podléhajících
+      zkáze; po jeho uplynutí se potravina nesmí prodávat ani nabízet zdarma. Datum minimální
+      trvanlivosti je doba, po kterou si potravina při správném skladování drží své vlastnosti; po
+      jejím uplynutí se smí prodávat dál, ale odděleně, se zřetelným upozorněním a za kvalitu ručí
+      prodejce. DMT se nemusí uvádět např. u čerstvého ovoce, zeleniny, brambor, čerstvého pečiva,
+      vín a lihovin.
+    exercises:
+      - id: spotrebujte
+        type: choice
+        prompt: "Jogurtu včera uplynulo datum „spotřebujte do“. Co platí pro obchod?"
+        options:
+          - text: "Nesmí ho prodávat ani nabízet zdarma"
+            correct: true
+          - text: "Smí ho prodávat odděleně a se zřetelným upozorněním"
+            why: "To platí po uplynutí data minimální trvanlivosti."
+          - text: "Smí ho prodávat, pokud za kvalitu ručí prodejce"
+            why: "To platí jen po datu minimální trvanlivosti."
+          - text: "Smí ho prodávat se slevou ještě tři dny"
+            why: "Po datu spotřeby je prodej zakázán."
+      - id: po-dmt
+        type: choice
+        multiple: true
+        prompt: "Co platí pro prodej potraviny po datu minimální trvanlivosti?"
+        options:
+          - text: "Musí být nabízena odděleně"
+            correct: true
+          - text: "Tato skutečnost musí být zřetelně uvedena"
+            correct: true
+          - text: "Za kvalitu ručí prodejce"
+            correct: true
+          - text: "Za kvalitu dál ručí výrobce"
+            why: "Po datu minimální trvanlivosti ručí prodejce."
+          - text: "Prodej je zakázán"
+            why: "Zakázán je prodej po datu „spotřebujte do“."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli klientce rozdíl mezi „spotřebujte do“ a „minimální trvanlivost do“."
+        keyPoints:
+          - "„Spotřebujte do“ – potraviny mikrobiologicky rychle podléhající zkáze"
+          - "Po datu spotřeby se nesmí prodávat ani darovat"
+          - "DMT – doba, po kterou potravina drží své vlastnosti při správném skladování"
+          - "Po DMT lze prodávat odděleně, s upozorněním, za kvalitu ručí prodejce"
+          - "Obojí platí jen při dodržení skladovacích podmínek"
+        modelAnswer: >-
+          „Spotřebujte do“ najdeš u potravin, které se rychle kazí; po tomto datu se nesmějí prodávat
+          ani darovat a je lepší je nejíst. Minimální trvanlivost říká, do kdy si potravina při
+          správném skladování zachová své vlastnosti; po ní se smí prodávat odděleně a s upozorněním
+          a za kvalitu ručí prodejce. Obě data platí jen při dodržení skladovacích podmínek.
+
+  - id: pot.etiketa-povinne
+    title: Povinné údaje na obalu
+    kind: concept
+    tier: A
+    note: >-
+      Čisté množství a podmínky skladování skripta výslovně neuvádějí; povinné jsou podle nařízení
+      (EU) č. 1169/2011. Zemi původu je třeba uvádět jen u některých potravin (např. maso, med,
+      ovoce a zelenina) nebo tam, kde by její absence klamala.
+    criteria: [9a, 4c]
+    source: { pages: [95, 108], anchor: "Ten, kdo je uveden na obale potraviny jako PPP, ručí za potravinu" }
+    explanation: >-
+      Na balené potravině najdeš: zákonný název, složení se zvýrazněnými alergeny, množství hlavní
+      složky v %, čisté množství, provozovatele potravinářského podniku (PPP – výrobce, dovozce či
+      balírna; ručí za potravinu), datum spotřeby nebo minimální trvanlivosti, podmínky skladování,
+      energetickou a výživovou hodnotu a u některých potravin zemi původu. Potraviny živočišného původu mají identifikační razítko. U některých se uvádí třída
+      jakosti (vejce, ovoce, zelenina, brambory) nebo čerstvost (pečivo, mléko, vejce), u složitější
+      přípravy návod.
+    exercises:
+      - id: rucitel
+        type: choice
+        prompt: "Kdo podle skript ručí za balenou potravinu?"
+        options:
+          - text: "PPP uvedený na obalu"
+            correct: true
+          - text: "Obchod, kde jsi ji koupila"
+            why: "Prodejce ručí za kvalitu až po uplynutí data minimální trvanlivosti."
+          - text: "SZPI, která ji kontroluje"
+            why: "SZPI je dozorový orgán, za potravinu neručí."
+          - text: "Vždy pěstitel nebo chovatel suroviny"
+            why: "Ručí ten, kdo je uveden na obalu jako PPP."
+      - id: jakost
+        type: choice
+        multiple: true
+        prompt: "U kterých potravin se podle skript uvádí třída jakosti?"
+        options:
+          - text: "Vejce"
+            correct: true
+          - text: "Ovoce a zelenina"
+            correct: true
+          - text: "Brambory"
+            correct: true
+          - text: "Pečivo"
+            why: "U pečiva se uvádí čerstvost (čerstvé, dopékané, rozmrazené)."
+          - text: "Mléko"
+            why: "U mléka se uvádí údaj o čerstvosti."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Popiš, jaké povinné informace najdeš na obalu balené potraviny."
+        keyPoints:
+          - "Název, složení se zvýrazněnými alergeny, množství hlavní složky, čisté množství"
+          - "PPP (výrobce/dovozce/balírna) – ručí za potravinu"
+          - "Datum spotřeby / minimální trvanlivosti, podmínky skladování, u některých země původu"
+          - "Energetická a výživová hodnota na 100 g / 100 ml"
+          - "Živočišné potraviny: razítko; u některých třída jakosti, čerstvost, návod"
+        modelAnswer: >-
+          Na obalu musí být název potraviny a složení se zvýrazněnými alergeny, množství hlavní
+          složky a čisté množství, údaje o provozovateli potravinářského podniku, který za potravinu
+          ručí, datum spotřeby nebo minimální trvanlivosti, podmínky skladování a u některých
+          potravin země původu. Dále energetická a výživová hodnota na 100 g.
+          Potraviny živočišného původu mají razítko, u vajec, ovoce, zeleniny a brambor se uvádí
+          třída jakosti a u složitější přípravy návod.
+
+  - id: pot.vejce-kod
+    title: Kód na vejcích
+    kind: fact
+    tier: A
+    criteria: [9a, 4c]
+    source: { pages: [114], anchor: "Číslo 0 označuje chov v podmínkách odpovídající BIO kvalitě" }
+    explanation: >-
+      Kód na vejci začíná číslicí způsobu chovu: 0 – BIO (ekologický chov), 1 – volný výběh,
+      2 – halový chov (na podestýlce), 3 – klecový chov. Následuje kód státu (např. CZ)
+      a čtyřmístné registrační číslo hospodářství. Velikost se značí písmeny: S do 53 g,
+      M 53–63 g, L 63–73 g, XL nad 73 g. Vejce se dělí do dvou tříd: první pro spotřebitele, druhá pro
+      průmysl.
+    exercises:
+      - id: kod-3
+        type: choice
+        prompt: "Vejce má kód 3CZ1234. Z jakého chovu pochází?"
+        options:
+          - text: "Z klecového chovu"
+            correct: true
+          - text: "Z volného výběhu"
+            why: "Volný výběh má číslici 1."
+          - text: "Z halového chovu"
+            why: "Halový chov (na podestýlce) má číslici 2."
+          - text: "Z ekologického (BIO) chovu"
+            why: "BIO chov má číslici 0."
+      - id: velikost
+        type: choice
+        prompt: "Jakou hmotnost má podle skript vejce velikosti M?"
+        options:
+          - text: "53–63 g"
+            correct: true
+          - text: "Do 53 g"
+            why: "To je velikost S."
+          - text: "63–73 g"
+            why: "To je velikost L."
+          - text: "Nad 73 g"
+            why: "To je velikost XL."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka se ptá, jak z kódu na vejci pozná, odkud je a jak byla slepice chovaná."
+        keyPoints:
+          - "První číslice = způsob chovu: 0 BIO, 1 volný výběh, 2 hala, 3 klec"
+          - "Pak kód země (CZ)"
+          - "Pak registrační číslo hospodářství (dohledatelné)"
+          - "Velikost S, M, L, XL podle hmotnosti"
+        modelAnswer: >-
+          První číslice říká způsob chovu: nula je BIO chov, jednička volný výběh, dvojka halový
+          chov na podestýlce a trojka klecový chov. Za ní je kód země, třeba CZ, a registrační číslo
+          hospodářství, které se dá dohledat. Velikost se značí S, M, L a XL podle hmotnosti.
+
+  - id: pot.mleko-osetreni
+    title: Čerstvé, trvanlivé a „automatové“ mléko
+    kind: comparison
+    tier: A
+    criteria: [9a, 4a, 9b]
+    prereqs: [pot.tepelne-osetreni]
+    confusableWith: [pot.tepelne-osetreni]
+    status: course-disputed
+    note: >-
+      Skripta píší, že čerstvé (pasterované) mléko může obsahovat prospěšné bakterie mléčného
+      kvašení. Pasterace ale většinu těchto bakterií zničí, takže pasterované mléko jejich
+      významným zdrojem není. Výdrž „asi 3 dny“ je údaj skript; skutečnou trvanlivost určuje
+      datum na obalu.
+    source: { pages: [113], anchor: "Mléko čerstvé je takové, které bylo ošetřeno pasterací" }
+    explanation: >-
+      Mléko prodávané v obchodě musí být tepelně ošetřené. Čerstvé mléko je pasterované a podle
+      skript vydrží asi 3 dny. Mléko s prodlouženou trvanlivostí je
+      ošetřené vyšší teplotou než při pasteraci, ale nižší než UHT. Trvanlivé UHT mléko vydrží
+      3–6 měsíců a je zcela bez mikroorganismů, i prospěšných. Mléko z mléčného automatu tepelně
+      ošetřené není – doma se musí převařit.
+    exercises:
+      - id: prevarit
+        type: choice
+        prompt: "Které mléko je podle skript nutné doma převařit?"
+        options:
+          - text: "Mléko z mléčného automatu"
+            correct: true
+          - text: "Čerstvé pasterované mléko"
+            why: "Je už tepelně ošetřené pasterací."
+          - text: "Trvanlivé UHT mléko"
+            why: "Je ošetřené vysokou teplotou a bez mikroorganismů."
+          - text: "Mléko s prodlouženou trvanlivostí"
+            why: "Je ošetřené teplotou vyšší než při pasteraci."
+      - id: uht-vs-cerstve
+        type: choice
+        prompt: "Čím se liší trvanlivé UHT mléko od čerstvého pasterovaného?"
+        options:
+          - text: "Vydrží 3–6 měsíců a neobsahuje žádné mikroorganismy"
+            correct: true
+          - text: "Je ošetřené nižší teplotou než čerstvé"
+            why: "UHT je naopak intenzivnější tepelné ošetření."
+          - text: "Trvanlivost mu zajišťují konzervanty"
+            why: "Trvanlivost zajišťuje tepelné ošetření."
+          - text: "Obsahuje víc prospěšných bakterií"
+            why: "UHT mléko je zcela bez mikroorganismů, tedy i bez prospěšných."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Vysvětli klientce rozdíl mezi čerstvým, trvanlivým a „automatovým“ mlékem."
+        keyPoints:
+          - "Čerstvé: pasterované, vydrží asi 3 dny"
+          - "Prodloužená trvanlivost: teplota mezi pasterací a UHT"
+          - "UHT: 3–6 měsíců, bez mikroorganismů včetně prospěšných"
+          - "Automat: tepelně neošetřené – převařit"
+        modelAnswer: >-
+          Čerstvé mléko je pasterované a vydrží asi tři dny. Mléko s prodlouženou trvanlivostí prošlo vyšší teplotou než pasterace,
+          ale nižší než UHT. Trvanlivé UHT mléko vydrží 3–6 měsíců a nejsou v něm žádné
+          mikroorganismy. Mléko z automatu tepelně ošetřené není, proto je nutné ho doma převařit.
+
+  - id: pot.ryby-oznaceni
+    title: Značení ryb – Seafrozen, Double Frozen, Land Frozen
+    kind: comparison
+    tier: B
+    criteria: [9a, 4a]
+    source: { pages: [112], anchor: "Double Frozen znamená, že ryby nebyly opracované" }
+    explanation: >-
+      U ryb se uvádí, zda jsou z chovu, nebo volně žijící (ovlivňuje složení), a u mořských ryb
+      oblast lovu (FAO + číslo). Seafrozen = zpracovány a zmrazeny hned na lodi. Double Frozen = na
+      lodi zmrazeny neopracované, na pevnině rozmraženy, opracovány a znovu zmrazeny; bývají
+      glazované a pro spotřebitele jsou nejméně výhodné. Land Frozen = na lodi jen na ledu,
+      opracovány a zmrazeny až na pevnině.
+    exercises:
+      - id: double
+        type: choice
+        prompt: "Co znamená označení Double Frozen?"
+        options:
+          - text: "Zmrazeny na lodi, na pevnině rozmraženy, opracovány a znovu zmrazeny"
+            correct: true
+          - text: "Opracovány a zmrazeny hned na lodi"
+            why: "To je Seafrozen."
+          - text: "Na lodi uloženy na led, zmrazeny až na pevnině"
+            why: "To je Land Frozen."
+          - text: "Zmrazeny dvakrát rychleji než běžně"
+            why: "Jde o dvojí zmrazení s rozmrazením mezi tím."
+      - id: udaje
+        type: reveal
+        prompt: "Které údaje o původu se uvádějí u ryb?"
+        answer: >-
+          Země výroby/původu (razítko), způsob produkce (chov, nebo volně žijící) a u mořských ryb
+          oblast lovu (FAO + číslo).
+
+  - id: pot.razitko-puvod-masa
+    title: Razítko a původ masa
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Razítko u potravin živočišného původu je na s. 108 popsáno jako „kulaté“, na s. 112 jako
+      „oválné“. Správně jde o oválnou identifikační značku. S. 108 navíc píše, že razítko uvádí
+      zemi původu vstupní suroviny – ve skutečnosti obsahuje kód země, schvalovací číslo podniku
+      a zkratku ES, původ suroviny z něj nevyčteš. Lhůta 24 hodin pro chlazené mleté maso je údaj
+      skript; u baleného mletého masa platí datum spotřeby, které stanoví výrobce.
+    criteria: [9a, 4c]
+    source: { pages: [108, 111, 112], anchor: "musí být vepřové, skopové, kozí a drůbeží maso označeno zemí" }
+    explanation: >-
+      Potraviny živočišného původu (maso, ryby, mléčné výrobky…) nesou oválné razítko se zemí, kde
+      byly zpracovány, a číslem podniku. Vepřové, skopové, kozí a drůbeží maso musí mít navíc „chov v“ (země chovu)
+      a „porážka v“ (země porážky); jsou-li obě stejné, stačí „původ“. U mletého masa najdeš druhy
+      masa, maximální obsah tuku a datum mletí; podle skript se chlazené mleté maso má spotřebovat
+      do 24 hodin.
+    exercises:
+      - id: chov-porazka
+        type: choice
+        prompt: "Na vepřovém mase je „chov v: DE, porážka v: CZ“. Co to znamená?"
+        options:
+          - text: "Prase bylo chováno v Německu a poraženo v Česku"
+            correct: true
+          - text: "Maso bylo vyrobeno v Německu a zabaleno v Česku"
+            why: "Údaje se týkají chovu a porážky."
+          - text: "Prase bylo chováno v Česku a poraženo v Německu"
+            why: "Pořadí je obráceně."
+          - text: "Maso je české, protože bylo poraženo v ČR"
+            why: "Údaj „původ“ lze použít jen tehdy, když jsou obě země stejné."
+      - id: mlete
+        type: choice
+        prompt: "Do kdy se podle skript má spotřebovat chlazené mleté maso?"
+        options:
+          - text: "Do 24 hodin"
+            correct: true
+          - text: "Do 12 hodin"
+            why: "Skripta uvádějí 24 hodin."
+          - text: "Do 3 dnů"
+            why: "Skripta uvádějí 24 hodin."
+          - text: "Do 7 dnů"
+            why: "Skripta uvádějí 24 hodin."
+
+  - id: pot.nebalene
+    title: Nebalené a v prodejně zabalené potraviny
+    kind: fact
+    tier: C
+    criteria: [9a]
+    source: { pages: [108, 116], anchor: "V těsné blízkosti takových potravin se musí nacházet štítek" }
+    explanation: >-
+      U nebalených potravin (ovoce, zelenina, pečivo) nedostaneš etiketu, ale v jejich těsné blízkosti
+      musí být štítek s názvem potraviny, údaji o PPP, množstvím hlavní složky, třídou jakosti
+      a zemí původu; k dispozici mají být i údaje o alergenech, trvanlivosti a složkách. U potravin
+      zabalených přímo v prodejně máš nárok na stejné informace. U pečiva musí být uvedeno, zda je
+      čerstvé, dopékané, nebo rozmrazené.
+    exercises:
+      - id: kde
+        type: choice
+        prompt: "Kde najdeš povinné informace u nebaleného pečiva?"
+        options:
+          - text: "Na štítku v těsné blízkosti potraviny"
+            correct: true
+          - text: "Nikde, u nebalených potravin nejsou povinné"
+            why: "Informace musí být na štítku u potraviny."
+          - text: "Jen na vyžádání u výrobce"
+            why: "Štítek musí být přímo u potraviny."
+          - text: "Na účtence"
+            why: "Údaje musí být u potraviny ještě před nákupem."
+
+  - id: pot.sunka-jakost
+    title: Jakostní třídy šunky
+    kind: fact
+    tier: C
+    criteria: [9a]
+    source: { pages: [111], anchor: "s obsahem ČSB pod 10 % už nesmí být označovány jako šunka" }
+    explanation: >-
+      Šunka se třídí podle čistých svalových bílkovin (ČSB) a podílu masa: nejvyšší jakosti – min.
+      16 % ČSB a 90 % masa; výběrová – 13 % ČSB a 80 % masa; standardní – 10 % ČSB a 60 % masa.
+      Pod 10 % ČSB se výrobek nesmí jmenovat šunka a šunka nesmí obsahovat strojně oddělené maso.
+    exercises:
+      - id: nejvyssi
+        type: choice
+        prompt: "Kolik ČSB musí podle skript obsahovat šunka nejvyšší jakosti?"
+        options:
+          - text: "Alespoň 16 %"
+            correct: true
+          - text: "Alespoň 13 %"
+            why: "To je výběrová šunka."
+          - text: "Alespoň 10 %"
+            why: "To je standardní šunka."
+          - text: "Alespoň 20 %"
+            why: "Skripta uvádějí 16 %."
+
+  - id: pot.chranene-nazvy
+    title: Chráněné názvy – mléko, jogurt, máslo, chléb
+    kind: fact
+    tier: C
+    criteria: [9a, 9d]
+    source: { pages: [113, 115, 116], anchor: "Tedy ani žádné rostlinné nápoje nemohou nést název mléko" }
+    explanation: >-
+      Název „mléko“ smí nést jen produkt mléčné žlázy savců – rostlinné nápoje ne (výjimkou je
+      kokosové mléko). Bílý jogurt smí obsahovat jen mléko a prospěšné bakterie. Máslo musí mít
+      80–90 % mléčného tuku a nesmí obsahovat žádná „E“. Celozrnný chléb musí obsahovat alespoň 80 %
+      celozrnných mouk; „vícezrnný“ či „cereální“ takové požadavky nemá.
+    exercises:
+      - id: celozrnny
+        type: choice
+        prompt: "Co musí podle skript splňovat celozrnný chléb?"
+        options:
+          - text: "Alespoň 80 % celozrnných mouk"
+            correct: true
+          - text: "Alespoň 50 % celozrnných mouk"
+            why: "Skripta uvádějí 80 %."
+          - text: "Alespoň 5 % jiných obilovin než pšenice a ječmene"
+            why: "To je požadavek na vícezrnný chléb."
+          - text: "Alespoň 90 % jedné obiloviny"
+            why: "To je požadavek na jednodruhový chléb."
+      - id: mleko
+        type: choice
+        prompt: "Proč se ovesný nápoj nesmí prodávat jako „ovesné mléko“?"
+        options:
+          - text: "Název mléko patří jen produktu mléčné žlázy savců"
+            correct: true
+          - text: "Protože obsahuje málo vápníku"
+            why: "To je nutriční problém, ne důvod zákazu názvu."
+          - text: "Protože obsahuje lepek"
+            why: "Důvodem je ochrana názvu mléko."
+          - text: "Protože není tepelně ošetřený"
+            why: "Důvodem je ochrana názvu mléko."
+
+  # ---------- 9b Kontrola a bezpečnost potravin ----------
+
+  - id: pot.dozor-cr
+    title: České dozorové orgány – SZPI a SVS
+    kind: comparison
+    tier: A
+    criteria: [9b]
+    confusableWith: [pot.dozor-mezinarodni]
+    source: { pages: [105], anchor: "SZPI kontroluje potraviny v obchodní síti a ve stravovacích zařízení" }
+    explanation: >-
+      Bezpečnost potravin, pravdivost údajů na obalu a to, zda není spotřebitel klamán, kontrolují
+      v ČR: Státní zemědělská a potravinářská inspekce (SZPI) – potraviny v obchodní síti a ve
+      stravovacích zařízeních; Státní veterinární správa (SVS) – potraviny od původu (chovy, pole)
+      až po konzumaci; dále Česká obchodní inspekce (ČOI) a krajské hygienické stanice (KHS).
+      Nekvalitní a nebezpečné potraviny se zveřejňují na webu potravinynapranyri.cz.
+    exercises:
+      - id: szpi
+        type: choice
+        prompt: "Který orgán podle skript kontroluje potraviny v obchodní síti a ve stravovacích zařízeních?"
+        options:
+          - text: "SZPI"
+            correct: true
+          - text: "SVS"
+            why: "SVS podle skript sleduje potraviny od původu (chovů, polí) až po konzumaci."
+          - text: "EFSA"
+            why: "EFSA je evropský úřad, který dává podklady pro legislativu."
+          - text: "RASFF"
+            why: "RASFF je systém rychlého varování mezi státy."
+      - id: ceske
+        type: choice
+        multiple: true
+        prompt: "Které z těchto institucí jsou české dozorové orgány nad potravinami?"
+        options:
+          - text: "SZPI"
+            correct: true
+          - text: "SVS"
+            correct: true
+          - text: "Krajské hygienické stanice"
+            correct: true
+          - text: "ČOI"
+            correct: true
+          - text: "EFSA"
+            why: "EFSA je mezinárodní (evropský) úřad."
+          - text: "RASFF"
+            why: "RASFF je mezinárodní systém rychlého varování."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli, kdo v ČR kontroluje potraviny a co který orgán dělá."
+        keyPoints:
+          - "Kontroluje se bezpečnost, pravdivost údajů, klamání spotřebitele"
+          - "SZPI – obchodní síť a stravovací zařízení"
+          - "SVS – od původu (chovy, pole) až po konzumaci"
+          - "Dále ČOI a krajské hygienické stanice"
+          - "Web potravinynapranyri.cz – zveřejněné problémové potraviny"
+        modelAnswer: >-
+          Dozorové orgány kontrolují hygienickou bezpečnost potravin, pravdivost údajů na obalu
+          a to, zda není spotřebitel klamán. SZPI kontroluje potraviny v obchodech a ve stravovacích
+          zařízeních, Státní veterinární správa sleduje potraviny od chovu až po konzumaci. Dalšími
+          orgány jsou Česká obchodní inspekce a krajské hygienické stanice. Problémové potraviny se
+          zveřejňují na webu Potraviny na pranýři.
+
+  - id: pot.dozor-khs-coi
+    title: Dělba dozoru v praxi (SVS, KHS, ČOI)
+    kind: fact
+    tier: B
+    status: supplementary
+    note: >-
+      Skripta u KHS a ČOI neuvádějí, co kontrolují, a u SVS píší obecně „od původu až po
+      konzumaci“. Doplněno podle obvyklého rozdělení kompetencí v ČR. Rozdělení je zjednodušené
+      (kompetence se částečně překrývají a mohou se měnit), proto stačí znát hlavní zaměření.
+    criteria: [9b]
+    prereqs: [pot.dozor-cr]
+    source: { pages: [105], anchor: "Česká obchodní inspekce (ČOI) a krajské hygienické stanice" }
+    explanation: >-
+      Zjednodušeně: SVS dozoruje hlavně výrobu a zpracování potravin živočišného původu (maso,
+      mléko, vejce, ryby); SZPI ostatní potraviny a obchodní síť; krajské hygienické stanice
+      (spadají pod ministerstvo zdravotnictví) stravovací služby (restaurace, jídelny) a pitnou
+      vodu; ČOI hlavně nepotravinářské výrobky.
+    exercises:
+      - id: svs
+        type: choice
+        prompt: "Který orgán v praxi dozoruje hlavně výrobu a zpracování potravin živočišného původu?"
+        options:
+          - text: "SVS"
+            correct: true
+          - text: "KHS"
+            why: "KHS kontrolují hlavně stravovací služby a pitnou vodu."
+          - text: "ČOI"
+            why: "ČOI se zaměřuje hlavně na nepotravinářské výrobky."
+          - text: "RASFF"
+            why: "RASFF je systém rychlého varování, ne kontrolní orgán."
+      - id: khs
+        type: reveal
+        prompt: "Co v praxi kontrolují krajské hygienické stanice?"
+        answer: "Hlavně stravovací služby (restaurace, jídelny) a pitnou vodu."
+
+  - id: pot.dozor-mezinarodni
+    title: RASFF a EFSA
+    kind: comparison
+    tier: A
+    criteria: [9b]
+    confusableWith: [pot.dozor-cr, pot.aditiva-legislativa]
+    source: { pages: [105], anchor: "systém rychlého varování pro potraviny a krmiva" }
+    explanation: >-
+      Mezinárodně působí RASFF – systém rychlého varování pro potraviny a krmiva: při záchytu
+      nebezpečné potraviny nebo krmiva neprodleně informuje ostatní státy. EFSA (Evropský úřad pro
+      bezpečnost potravin) řeší obecné požadavky na bezpečnost potravin, vyhodnocuje dostupné
+      informace a dává podklady pro změny legislativy.
+    exercises:
+      - id: rasff
+        type: choice
+        prompt: "Co je RASFF?"
+        options:
+          - text: "Evropský systém rychlého varování pro potraviny a krmiva"
+            correct: true
+          - text: "Evropský úřad pro bezpečnost potravin"
+            why: "To je EFSA."
+          - text: "Americký úřad pro potraviny a léčiva"
+            why: "To je FDA."
+          - text: "Systém kritických kontrolních bodů ve výrobě"
+            why: "To je HACCP."
+      - id: efsa
+        type: choice
+        prompt: "Jakou roli má podle skript EFSA?"
+        options:
+          - text: "Vyhodnocuje informace o bezpečnosti a dává podklady pro legislativu"
+            correct: true
+          - text: "Kontroluje potraviny v českých obchodech"
+            why: "To dělá SZPI."
+          - text: "Při záchytu nebezpečné potraviny varuje ostatní státy"
+            why: "To je úloha systému RASFF."
+          - text: "Uděluje certifikáty biopotravinám"
+            why: "Biopotraviny certifikují kontrolní organizace."
+      - id: vyklad
+        type: explain
+        prompt: "Jak funguje kontrola bezpečnosti potravin na evropské úrovni?"
+        keyPoints:
+          - "RASFF – systém rychlého varování pro potraviny a krmiva"
+          - "Při záchytu nebezpečí neprodleně informuje ostatní státy"
+          - "EFSA – Evropský úřad pro bezpečnost potravin"
+          - "EFSA vyhodnocuje informace a dává podklady pro legislativu"
+        modelAnswer: >-
+          Na evropské úrovni funguje RASFF, systém rychlého varování pro potraviny a krmiva: když
+          některý stát zachytí nebezpečnou potravinu, okamžitě informuje ostatní. EFSA, Evropský úřad
+          pro bezpečnost potravin, vyhodnocuje dostupné informace o bezpečnosti a dává podklady pro
+          změny legislativy.
+
+  - id: pot.haccp-codex
+    title: HACCP a Codex Alimentarius
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta uvádějí jako tvůrce Codexu Alimentarius WHO, FAO a WTO. Komisi Codex Alimentarius
+      ve skutečnosti zřizují FAO a WHO; WTO se na normy Codexu jen odkazuje. U zkoušky jmenuj WHO
+      a FAO (případně dodej, že skripta zmiňují i WTO).
+    criteria: [9b]
+    source: { pages: [105, 106], anchor: "analýza kritických kontrolních bodů" }
+    explanation: >-
+      Bezpečnost se řeší už při výrobě: výrobci se řídí správnou výrobní praxí, normami ISO
+      a povinným systémem HACCP – analýzou rizik a kritických kontrolních bodů, tedy míst ve
+      výrobě, kde hrozí riziko, a jak jim předcházet. Dodržuje se také Codex Alimentarius – potravinářský
+      kodex obecných i specifických norem bezpečnosti potravin od WHO a FAO. Bezpečná potravina ale
+      nemusí být nutričně vyvážená.
+    exercises:
+      - id: haccp
+        type: choice
+        prompt: "Co je HACCP?"
+        options:
+          - text: "Systém analýzy rizik a kritických kontrolních bodů ve výrobě"
+            correct: true
+          - text: "Evropský systém rychlého varování"
+            why: "To je RASFF."
+          - text: "Evropský úřad pro bezpečnost potravin"
+            why: "To je EFSA."
+          - text: "Certifikace biopotravin"
+            why: "HACCP se týká bezpečnosti každé výroby potravin."
+      - id: codex
+        type: choice
+        prompt: "Co je Codex Alimentarius?"
+        options:
+          - text: "Mezinárodní potravinářský kodex norem bezpečnosti potravin"
+            correct: true
+          - text: "Česká vyhláška o označování potravin"
+            why: "Codex je mezinárodní soubor norem (WHO, FAO)."
+          - text: "Seznam schválených zdravotních tvrzení"
+            why: "Tvrzení upravuje nařízení EU, ne Codex."
+          - text: "Evropský systém varování před nebezpečnými potravinami"
+            why: "To je RASFF."
+      - id: vyklad
+        type: explain
+        prompt: "Jak se zajišťuje bezpečnost potravin už při jejich výrobě?"
+        keyPoints:
+          - "Správná výrobní praxe a normy ISO"
+          - "HACCP – analýza kritických kontrolních bodů a jak jim předcházet"
+          - "Codex Alimentarius – mezinárodní normy (WHO, FAO)"
+          - "Bezpečná potravina nemusí být nutričně vyvážená"
+        modelAnswer: >-
+          Výrobci se řídí správnou výrobní praxí a normami ISO a musí mít systém HACCP, tedy
+          analýzu kritických kontrolních bodů, kde ve výrobě hrozí riziko, a opatření, jak mu
+          předejít. Dodržuje se také Codex Alimentarius, mezinárodní soubor norem bezpečnosti
+          potravin od WHO a FAO. Bezpečná potravina ovšem nemusí být nutričně vyvážená.
+
+  - id: pot.kontaminanty
+    title: Kontaminanty v potravinách
+    kind: fact
+    tier: A
+    criteria: [9b, 4a]
+    source: { pages: [96, 106], anchor: "Polycyklické aromatické uhlovodíky jsou v 65 % případů v potravě jako kontaminanty" }
+    explanation: >-
+      PAU (polycyklické aromatické uhlovodíky) se do potravin dostávají asi z 65 % z ovzduší
+      (obiloviny, oleje, listová zelenina, ovoce), z 35 % vznikají uzením a grilováním. PCB a dioxiny
+      vznikají nedokonalým spalováním (lesní požáry, fosilní paliva) a přes půdu a krmivo se dostanou
+      do živočišných produktů. Těžké kovy (rtuť, olovo, arsen, kadmium) pocházejí ze znečištěné vody
+      a půdy. Mykotoxiny jsou produkty plísní. Pro cizorodé látky platí limity.
+    exercises:
+      - id: pau
+        type: choice
+        prompt: "Při jakých technologických úpravách vznikají v potravinách PAU?"
+        options:
+          - text: "Při uzení a grilování"
+            correct: true
+          - text: "Při pasteraci"
+            why: "Pasterace probíhá při nízkých teplotách."
+          - text: "Při fermentaci"
+            why: "Fermentace PAU nevytváří."
+          - text: "Při mražení"
+            why: "Mražení PAU nevytváří."
+      - id: kovy
+        type: choice
+        multiple: true
+        prompt: "Které těžké kovy uvádějí skripta jako nejčastější kontaminanty?"
+        options:
+          - text: "Rtuť (Hg)"
+            correct: true
+          - text: "Olovo (Pb)"
+            correct: true
+          - text: "Arsen (As)"
+            correct: true
+          - text: "Kadmium (Cd)"
+            correct: true
+          - text: "Železo (Fe)"
+            why: "Železo je esenciální minerální látka, ne kontaminant."
+          - text: "Zinek (Zn)"
+            why: "Zinek je esenciální minerální látka, ne kontaminant."
+      - id: vyklad
+        type: explain
+        prompt: "Jaké kontaminanty se mohou vyskytovat v potravinách a odkud se tam berou?"
+        keyPoints:
+          - "PAU – hlavně z ovzduší, část z uzení a grilování"
+          - "PCB a dioxiny – nedokonalé spalování, přes půdu a krmivo do živočišných produktů"
+          - "Těžké kovy (Hg, Pb, As, Cd) – znečištěná voda a půda"
+          - "Mykotoxiny – plísně"
+          - "Látky vznikající při tepelné úpravě (akrylamid, PAU z přepáleného tuku)"
+        modelAnswer: >-
+          Polycyklické aromatické uhlovodíky se do potravin dostávají většinou z ovzduší, asi
+          třetina vzniká při uzení a grilování. PCB a dioxiny vznikají nedokonalým spalováním
+          a přes půdu a krmivo se dostávají do živočišných produktů. Těžké kovy jako rtuť, olovo,
+          arsen a kadmium pocházejí ze znečištěné vody a půdy. Dále jsou to mykotoxiny z plísní
+          a látky vznikající při tepelné úpravě, například akrylamid.
+
+  - id: pot.mykotoxiny
+    title: Mykotoxiny
+    kind: fact
+    tier: C
+    criteria: [9b]
+    prereqs: [pot.kontaminanty]
+    source: { pages: [106], anchor: "Aflatoxin M1, který se vyskytuje v mléce a mase" }
+    explanation: >-
+      Mykotoxiny jsou sekundární metabolity plísní. Aflatoxiny B1, B2, G1, G2 (Aspergillus flavus)
+      – obiloviny, semena, koření; aflatoxin M1 – mléko a maso zvířat krmených plesnivým krmivem.
+      Ochratoxin A – obiloviny, luštěniny, hrozny, víno, káva. Patulin – nahnilá jablka a jiné
+      ovoce. Citrinin – hnijící zelenina, zejména rajčata.
+    exercises:
+      - id: m1
+        type: choice
+        prompt: "Kde se podle skript vyskytuje aflatoxin M1?"
+        options:
+          - text: "V mléce a mase"
+            correct: true
+          - text: "V nahnilých jablkách"
+            why: "Tam se vyskytuje patulin."
+          - text: "V hnijících rajčatech"
+            why: "Tam se vyskytuje citrinin."
+          - text: "Ve víně a kávě"
+            why: "Tam se vyskytuje ochratoxin A."
+
+  - id: pot.ryby-cerstvost
+    title: Trvanlivost a čerstvost ryb
+    kind: fact
+    tier: C
+    criteria: [9b]
+    source: { pages: [112, 113], anchor: "Nekuchané ryby chlazené ledem vydrží 5–7 dní" }
+    explanation: >-
+      Rybí maso má hodně vody a psychrofilních mikroorganismů, proto se rychle kazí. Podle skript
+      nekuchané ryby chlazené ledem vydrží 5–7 dní, kuchané až 14 dní, zmrazené (−18 až −20 °C) až
+      6 měsíců. Do čerstvých a chlazených ryb se nesmějí přidávat přídatné látky. Čerstvá ryba má
+      jasné oči, červené žábry, lesklý vlhký povrch, mírně pruží a voní jen rybinou.
+    exercises:
+      - id: cerstva
+        type: reveal
+        prompt: "Podle čeho poznáš čerstvou rybu?"
+        answer: >-
+          Jasné oči, červené žábry, lesklý a vlhký povrch, maso při tlaku mírně pruží, voní jen
+          rybinou.
+
+  # ---------- 9d Biopotraviny, GMO, farmářské a zdravé potraviny ----------
+
+  - id: pot.bio-co-je
+    title: Co je (a není) biopotravina
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta píší, že v BIO jsou zakázána jen některá syntetická éčka a ostatní E i aromata se
+      smějí použít. Nařízení EU o ekologické produkci funguje opačně: biopotraviny smějí obsahovat
+      jen přídatné látky z uzavřeného seznamu (zhruba 50 látek) a jen přírodní aromata; zakázané je
+      např. ozařování. Zákaz bělení, hydrogenace a mikrovlnného ohřevu je tvrzení skript. U zkoušky
+      uveď výklad skript (BIO ≠ bez éček), případně dodej, že povolená éčka omezuje seznam.
+    criteria: [9d]
+    confusableWith: [pot.farmarske-neregulovane]
+    source: { pages: [102, 103], anchor: "Ne vždy platí, že BIO potravina je zdravější nebo kvalitnější" }
+    explanation: >-
+      Biopotravina je vyrobená ze surovin z ekologického zemědělství a má osvědčení o původu
+      (bioprodukt = surovina z ekologického zemědělství). BIO vychází ze šetrnosti k přírodě –
+      neznamená automaticky zdravější ani kvalitnější. Není pravda, že je bez „éček“: zakázána jsou
+      jen některá syntetická (konzervanty, barviva, stabilizátory), ostatní E i aromata se smějí
+      použít. Zakázané jsou některé procesy: bělení, hydrogenace, ozařování, mikrovlnný ohřev.
+      Největší smysl má BIO lokální a sezónní; vyšší obsah vitaminů a minerálů nebyl potvrzen.
+    exercises:
+      - id: ecka
+        type: choice
+        prompt: "Co platí podle skript o „éčkách“ v biopotravinách?"
+        options:
+          - text: "Zakázána jsou jen některá syntetická, ostatní E i aromata se smějí použít"
+            correct: true
+          - text: "Biopotraviny nesmějí obsahovat žádná „E“"
+            why: "Častý mýtus – zakázána jsou jen některá syntetická aditiva."
+          - text: "Smějí obsahovat jen přírodní E, aromata jsou zakázána"
+            why: "Aromata v biopotravinách povolena jsou."
+          - text: "Platí pro ně stejná pravidla jako pro konvenční potraviny"
+            why: "Některá syntetická aditiva a procesy jsou v BIO zakázány."
+      - id: procesy
+        type: choice
+        multiple: true
+        prompt: "Které procesy jsou podle skript u biopotravin zakázané?"
+        options:
+          - text: "Hydrogenace"
+            correct: true
+          - text: "Ozařování"
+            correct: true
+          - text: "Mikrovlnný ohřev"
+            correct: true
+          - text: "Bělení"
+            correct: true
+          - text: "Pasterace"
+            why: "Skripta ji mezi zakázané procesy neřadí."
+          - text: "Fermentace"
+            why: "Skripta ji mezi zakázané procesy neřadí."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Klientka tvrdí, že BIO je vždy zdravější a bez éček. Co jí odpovíš?"
+        keyPoints:
+          - "Biopotravina = suroviny z ekologického zemědělství + osvědčení"
+          - "Princip je šetrnost k přírodě, ne automaticky vyšší nutriční kvalita"
+          - "Zakázána jen některá syntetická E (konzervanty, barviva, stabilizátory), aromata povolena"
+          - "Zakázané procesy: bělení, hydrogenace, ozařování, mikrovlnný ohřev"
+          - "Smysl má hlavně lokální a sezónní BIO; vyšší obsah vitaminů a minerálů nebyl potvrzen"
+        modelAnswer: >-
+          Biopotravina pochází z ekologického zemědělství a má osvědčení, její podstatou je ale
+          šetrnost k přírodě, ne automaticky lepší nutriční hodnota – vyšší obsah vitaminů či
+          minerálů nebyl potvrzen. Největší smysl má, je-li lokální a sezónní. Éčka obsahovat může –
+          podle skript jsou zakázána jen některá syntetická konzervanty, barviva a stabilizátory,
+          aromata jsou povolena. Zakázané jsou některé procesy jako bělení, hydrogenace, ozařování
+          nebo mikrovlnný ohřev.
+
+  - id: pot.bio-logo
+    title: Jak poznat pravou biopotravinu
+    kind: fact
+    tier: A
+    criteria: [9d, 4c]
+    prereqs: [pot.bio-co-je]
+    source: { pages: [103], anchor: "musí mít evropské logo, CZ zebru s místem, kde byla surovina vyprodukována" }
+    explanation: >-
+      Certifikovaný BIO produkt nese evropské logo ekologického zemědělství, údaj o místě, kde byla
+      surovina vyprodukována, a kód kontrolní organizace; často i českou „biozebru“. Označení jako
+      „organic“, „natural“ nebo „100% bio“ bez těchto náležitostí nezaručují, že jde o biopotravinu
+      podle zákona.
+    exercises:
+      - id: nalezitosti
+        type: choice
+        multiple: true
+        prompt: "Co musí být podle skript na obalu certifikované biopotraviny?"
+        options:
+          - text: "Evropské logo BIO"
+            correct: true
+          - text: "Kód kontrolní organizace"
+            correct: true
+          - text: "Místo, kde byla surovina vyprodukována"
+            correct: true
+          - text: "Nápis „100% natural“"
+            why: "Takové označení biopotravinu nezaručuje."
+          - text: "Logo Klasa"
+            why: "Klasa je profesní logo kvality, ne BIO."
+      - id: vyklad
+        type: explain
+        version: 2
+        prompt: "Jak klientka v obchodě pozná pravou biopotravinu?"
+        keyPoints:
+          - "Evropské logo pro ekologické zemědělství"
+          - "Často i česká „biozebra“"
+          - "Místo původu suroviny a kód kontrolní organizace"
+          - "Organic, natural, 100% bio bez loga nic nezaručují"
+        modelAnswer: >-
+          Pravá biopotravina má na obalu evropské logo ekologického zemědělství, údaj o tom, kde byla
+          surovina vyprodukována, a kód kontrolní organizace, často i českou biozebru. Nápisy jako
+          organic, natural nebo 100% bio bez těchto náležitostí nezaručují, že jde o biopotravinu.
+
+  - id: pot.bio-rizika
+    title: Smysl a rizika BIO
+    kind: concept
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta tvrdí, že (jarní) BIO zelenina může kvůli dusíkatým hnojivům obsahovat více dusičnanů
+      a dusitanů. Srovnávací studie spíše ukazují, že bio zelenina mívá dusičnanů stejně nebo méně
+      (syntetická dusíkatá hnojiva jsou v ekologickém zemědělství zakázána); vyšší obsah dusičnanů
+      hrozí hlavně u rané listové zeleniny obecně. U zkoušky uveď výklad skript.
+    criteria: [9d]
+    prereqs: [pot.bio-co-je]
+    source: { pages: [103], anchor: "Bio má smysl zejména v tom případě, je-li lokální a sezónní" }
+    explanation: >-
+      Podle skript má BIO největší smysl, je-li lokální a sezónní. Nebylo potvrzeno, že by BIO
+      zelenina obsahovala více vitaminů či minerálních látek než konvenční. Může mít i rizika:
+      zejména jarní BIO zelenina může kvůli dusíkatým hnojivům obsahovat více dusičnanů a dusitanů,
+      což je nebezpečné pro malé děti – přitom rodiče volí BIO často právě kvůli dětem.
+    exercises:
+      - id: riziko
+        type: choice
+        prompt: "Jaké riziko jarní BIO zeleniny pro malé děti uvádějí skripta?"
+        options:
+          - text: "Vyšší obsah dusičnanů a dusitanů"
+            correct: true
+          - text: "Vyšší obsah reziduí pesticidů"
+            why: "Skripta uvádějí riziko dusičnanů z hnojiv."
+          - text: "Možná příměs GMO"
+            why: "GMO s BIO nesouvisí."
+          - text: "Výrazně nižší obsah vitaminů"
+            why: "Skripta uvádějí, že rozdíl ve vitaminech nebyl potvrzen."
+      - id: smysl
+        type: choice
+        prompt: "Kdy má BIO podle skript největší smysl?"
+        options:
+          - text: "Když je lokální a sezónní"
+            correct: true
+          - text: "U dovážených exotických potravin"
+            why: "Skripta zdůrazňují lokálnost a sezónnost."
+          - text: "U vysoce zpracovaných výrobků"
+            why: "I BIO výrobky mohou obsahovat „vycpávky“ a éčka."
+          - text: "Vždy u jarní zeleniny pro malé děti"
+            why: "Právě tam skripta upozorňují na riziko dusičnanů."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka chce svému dítěti kupovat jen BIO zeleninu, protože je zdravější. Co jí řekneš?"
+        keyPoints:
+          - "BIO má smysl hlavně lokální a sezónní"
+          - "Vyšší obsah vitaminů a minerálů nebyl potvrzen"
+          - "Jarní BIO zelenina může mít podle skript více dusičnanů a dusitanů"
+          - "Dusičnany/dusitany jsou rizikové pro malé děti"
+        modelAnswer: >-
+          BIO má smysl hlavně tehdy, když je lokální a sezónní, ale nebylo potvrzeno, že by bio
+          zelenina měla víc vitaminů nebo minerálních látek. Skripta navíc upozorňují, že zejména
+          jarní bio zelenina může kvůli dusíkatým hnojivům obsahovat víc dusičnanů a dusitanů, které
+          jsou pro malé děti rizikové.
+
+  - id: pot.gmo-eu
+    title: GMO v EU a jejich označování
+    kind: fact
+    tier: A
+    criteria: [9d, 4c]
+    confusableWith: [pot.gmo-modifikovany-skrob]
+    status: course-disputed
+    note: >-
+      Skripta uvádějí hranici 0,9 % obecně. Podle legislativy EU platí 0,9 % pro každou složku
+      zvlášť a jen pro náhodnou, technicky nevyhnutelnou příměs GMO; záměrně použité GMO se
+      označuje vždy, bez ohledu na množství. U zkoušky uveď 0,9 %.
+    source: { pages: [104, 105, 109], anchor: "Potravina s použitím GMO navíc musí obsahovat na etiketách informaci" }
+    explanation: >-
+      V EU je uvádění GMO na trh přísně regulované; pro výživu lidí jsou omezeně povoleny jen
+      rostlinné GMO produkty (v USA, Jižní Americe či Asii jsou běžné i živočišné). Potravina musí
+      mít informaci o GMO na etiketě, pokud jejich obsah překročí 0,9 %. V běžných obchodech se
+      takové výrobky téměř nevyskytují. Neoznačuje se maso či mléko zvířat krmených GMO krmivem ani
+      složky vyrobené pomocí GMO mikroorganismů.
+    exercises:
+      - id: prah
+        type: choice
+        prompt: "Od jakého podílu GMO musí být potravina v EU označena?"
+        options:
+          - text: "Nad 0,9 %"
+            correct: true
+          - text: "Nad 0,1 %"
+            why: "Hranice je 0,9 %."
+          - text: "Nad 2 %"
+            why: "2 % je hranice pro pořadí složek."
+          - text: "Nad 5 %"
+            why: "5 % je hranice pro uvádění přidané vody."
+      - id: krmivo
+        type: choice
+        prompt: "Musí být označeno maso zvířete krmeného GMO sójou?"
+        options:
+          - text: "Ne, GMO se potravním řetězcem dál nepřenáší"
+            correct: true
+          - text: "Ano, vždy"
+            why: "Povinnost se na produkty zvířat krmených GMO nevztahuje."
+          - text: "Ano, pokud krmivo obsahovalo nad 0,9 % GMO"
+            why: "Hranice 0,9 % se týká složení samotné potraviny."
+          - text: "Jen pokud je maso v BIO kvalitě"
+            why: "Taková podmínka neexistuje."
+      - id: vyklad
+        type: explain
+        prompt: "Vysvětli klientce, jak je to s GMO potravinami v EU a jak je pozná."
+        keyPoints:
+          - "V EU přísně regulované, omezeně povolené jen rostlinné GMO"
+          - "Označení na etiketě nad 0,9 % GMO"
+          - "V běžném obchodě se téměř nevyskytují"
+          - "Produkty zvířat krmených GMO se neoznačují"
+          - "GMO ≠ modifikovaný škrob"
+        modelAnswer: >-
+          V EU jsou GMO potraviny přísně regulované a pro lidi jsou omezeně povolené jen rostlinné.
+          Pokud potravina obsahuje víc než 0,9 % GMO, musí to být na etiketě, ale v běžných
+          obchodech se takové výrobky téměř nevyskytují. Maso nebo mléko zvířat krmených GMO
+          krmivem se neoznačuje. A pozor, modifikovaný škrob není GMO.
+
+  - id: pot.gmo-prinosy-rizika
+    title: Přínosy a rizika GMO
+    kind: comparison
+    tier: A
+    criteria: [9d]
+    prereqs: [pot.gmo-eu]
+    source: { pages: [104, 105], anchor: "S novými typy bílkovin mohou vznikat i nové alergie" }
+    explanation: >-
+      Přínosy GMO: ochrana proti chorobám, škůdcům a plevelům; odolnost vůči suchu, chladu či
+      zasolení; vyšší nutriční hodnota (rýže s betakarotenem); ekologičtější plodiny (náhrada
+      fosilních paliv); zdravotní přínos (levnější GMO inzulin). Rizika: nové bílkoviny → nové
+      alergie; při použití bakteriálních genů otázka rezistence na antibiotika; změna ekosystému.
+      Obavu z „hromadění GMO v těle“ skripta označují za nesmyslnou – cizí DNA jíme běžně.
+    exercises:
+      - id: riziko
+        type: choice
+        prompt: "Které riziko GMO uvádějí skripta?"
+        options:
+          - text: "Vznik nových alergií na nové typy bílkovin"
+            correct: true
+          - text: "Hromadění GMO v lidském těle"
+            why: "Tuto obavu skripta označují za nesmyslnou."
+          - text: "Mutace u lidí, kteří GMO jedí"
+            why: "Žádný případ mutace nebyl zaznamenán."
+          - text: "Přenos GMO do masa zvířat krmených GMO"
+            why: "Podle skript GMO potravním řetězcem dál neprostupují."
+      - id: prinosy
+        type: choice
+        multiple: true
+        prompt: "Co skripta uvádějí jako přínos GMO?"
+        options:
+          - text: "Odolnost vůči suchu a zasolení"
+            correct: true
+          - text: "Rýže s betakarotenem"
+            correct: true
+          - text: "Levnější výroba inzulinu"
+            correct: true
+          - text: "Odstranění všech alergenů z potravin"
+            why: "Naopak – nové bílkoviny mohou vyvolat nové alergie."
+          - text: "Vyšší obsah vlákniny v mase"
+            why: "Takový přínos skripta neuvádějí."
+      - id: vyklad
+        type: explain
+        prompt: "Klientka se bojí GMO. Jak jí vysvětlíš přínosy a rizika?"
+        keyPoints:
+          - "Přínosy: odolnost proti škůdcům, chorobám, suchu, zasolení"
+          - "Vyšší nutriční hodnota (rýže s betakarotenem), GMO inzulin"
+          - "Rizika: nové alergie, rezistence na antibiotika, změna ekosystému"
+          - "Hromadění GMO v těle je nepodložená obava – cizí DNA jíme běžně"
+        modelAnswer: >-
+          Genetická modifikace umožňuje pěstovat plodiny odolné vůči škůdcům, chorobám, suchu nebo
+          zasolení, zvýšit nutriční hodnotu jako u rýže s betakarotenem nebo levněji vyrábět
+          inzulin. Rizikem jsou možné nové alergie, otázka rezistence na antibiotika a změny
+          ekosystému. Strach, že se GMO hromadí v těle, je nepodložený – cizí DNA jíme běžně.
+
+  - id: pot.gmo-modifikovany-skrob
+    title: GMO vs. modifikovaný škrob
+    kind: comparison
+    tier: B
+    criteria: [9d, 4c]
+    confusableWith: [pot.gmo-eu]
+    source: { pages: [104], anchor: "neplést si GMO například s modifikovaným škrobem" }
+    explanation: >-
+      Geneticky modifikované potraviny nejsou totéž co „modifikované“ potraviny. Modifikovaný škrob
+      je škrob upravený technologicky – vysokým tlakem, teplotou nebo reakcí s nějakým činidlem.
+      S genetickou úpravou nemá nic společného.
+    exercises:
+      - id: co-je
+        type: choice
+        prompt: "Modifikovaný škrob ve složení znamená…"
+        options:
+          - text: "škrob technologicky upravený tlakem, teplotou či činidlem"
+            correct: true
+          - text: "škrob z geneticky modifikované kukuřice"
+            why: "Modifikovaný škrob s genetickou úpravou nesouvisí."
+          - text: "škrob obohacený o vitaminy"
+            why: "To by byla fortifikace."
+          - text: "škrob z ekologického zemědělství"
+            why: "To by byla BIO surovina."
+
+  - id: pot.farmarske-neregulovane
+    title: „Farmářské“ a další neregulovaná označení
+    kind: concept
+    tier: B
+    criteria: [9d, 4c]
+    confusableWith: [pot.logo-ceska-potravina, pot.bio-co-je]
+    source: { pages: [103, 107, 110, 115], anchor: "Nicméně tento pojem legislativa nezná" }
+    explanation: >-
+      Ne každé lákavé označení má legislativní obsah. „Farmářské máslo“ legislativa nezná a o kvalitě
+      nic neříká; ani „selské máslo“ není přesně definováno. Slovo „dětský“ bez údaje o věku
+      legislativně nic neznamená. „Organic“, „natural“ či „100% bio“ bez evropského loga nezaručují
+      biopotravinu. Naopak profesní loga (Klasa, České cechovní normy) garantují určitou kvalitu
+      a logo Česká potravina má přesná pravidla původu.
+    exercises:
+      - id: farmarske
+        type: choice
+        prompt: "Co podle skript znamená na másle označení „farmářské“?"
+        options:
+          - text: "Nic konkrétního – legislativa tento pojem nezná"
+            correct: true
+          - text: "Máslo z certifikované malé farmy"
+            why: "Žádná taková certifikace s tímto pojmem nesouvisí."
+          - text: "Máslo s vyšším obsahem tuku"
+            why: "Pojem žádné složení nestanoví."
+          - text: "Máslo v BIO kvalitě"
+            why: "BIO musí nést evropské logo."
+      - id: rozliseni
+        type: reveal
+        prompt: "Uveď dvě označení, která legislativně nic nezaručují, a dvě, která něco zaručují."
+        answer: >-
+          Nic nezaručují: „farmářské“, „dětský“ (bez věku), „natural/organic“ bez loga. Zaručují:
+          evropské BIO logo, Česká potravina, bez lepku, profesní loga Klasa či ČCN.
+
+  - id: pot.nahrazky
+    title: Rostlinné náhražky masa a mléka
+    kind: concept
+    tier: B
+    status: course-disputed
+    note: >-
+      S. 114 uvádí jako hlavní problém rostlinných nápojů absenci vápníku, s. 93 ale zmiňuje
+      obohacování rostlinných nápojů o vápník, vitamin D a B12. Chybějící vápník tedy platí pro
+      neobohacené nápoje.
+    criteria: [9d]
+    source: { pages: [114], anchor: "Mléčné alternativy tedy mohou mléko spolehlivě nahradit při vaření" }
+    explanation: >-
+      Náhražky masa (tofu a tempeh ze sóji, šmakoun z bílku, seitan z lepku) nejsou vždy plnohodnotné:
+      mívají méně biologicky dostupné železo, zinek, hořčík a vápník, často víc soli, mohou nést
+      mikrobiologické riziko, mykotoxiny, antinutriční látky a v sóje fytoestrogeny. Rostlinné nápoje
+      jsou vysoce zpracované a mléku nutričně neodpovídají – mají méně bílkovin (ovesný 2,5 g vs.
+      mléko 8,3 g na 250 ml) a často jim chybí vápník (pokud nejsou obohacené). Při vaření mléko
+      nahradí.
+    exercises:
+      - id: napoje
+        type: choice
+        prompt: "Co je podle skript hlavní nutriční slabina rostlinných nápojů oproti mléku?"
+        options:
+          - text: "Méně bílkovin a často chybějící vápník (u neobohacených)"
+            correct: true
+          - text: "Vysoký obsah laktózy"
+            why: "Rostlinné nápoje laktózu neobsahují."
+          - text: "Více cholesterolu"
+            why: "Rostlinné nápoje cholesterol neobsahují."
+          - text: "Žádná – jsou nutričně rovnocenné"
+            why: "Skripta zdůrazňují, že rovnocenné nejsou."
+      - id: seitan
+        type: choice
+        prompt: "Z čeho se vyrábí seitan?"
+        options:
+          - text: "Z lepku"
+            correct: true
+          - text: "Ze sóji"
+            why: "Ze sóji se vyrábí tofu a tempeh."
+          - text: "Z vaječného bílku"
+            why: "Z bílku se vyrábí šmakoun."
+          - text: "Z hrachové bílkoviny"
+            why: "Seitan se vyrábí z pšeničného lepku."
+
+  - id: pot.zakladni-pojmy
+    title: Funkční potravina, novel food, doplněk stravy
+    kind: concept
+    tier: C
+    criteria: [9d, 8c]
+    source: { pages: [93], anchor: "nebyla doložena historie spotřeby před 15. 5. 1997" }
+    explanation: >-
+      Funkční potravina má významnější nutriční hodnotu a pozitivní vliv na zdraví, výkon či psychiku –
+      přirozeně (podmáslí – probiotika, mořské ryby – n-3 MK, kysané zelí – vitaminy K2 a C, tvaroh –
+      vápník), nebo díky fortifikaci. Potravina nového typu nemá v Evropě doloženou historii
+      spotřeby před 15. 5. 1997; povoluje se podle vědeckých důkazů. Doplněk stravy je potravina
+      s vysokým obsahem živin k doplnění stravy; jeho uvedení na trh má jen oznamovací povinnost.
+    exercises:
+      - id: novel
+        type: choice
+        prompt: "Co je potravina nového typu (novel food)?"
+        options:
+          - text: "Potravina bez doložené historie spotřeby v Evropě před 15. 5. 1997"
+            correct: true
+          - text: "Každá fortifikovaná potravina"
+            why: "Fortifikace z potraviny novel food nedělá."
+          - text: "Každá GMO potravina"
+            why: "GMO mají vlastní regulaci."
+          - text: "Potravina pro zvláštní lékařské účely"
+            why: "To je kategorie potravin pro zvláštní výživu."
+      - id: funkcni
+        type: choice
+        multiple: true
+        prompt: "Které potraviny uvádějí skripta jako příklad funkční potraviny?"
+        options:
+          - text: "Podmáslí"
+            correct: true
+          - text: "Kysané zelí"
+            correct: true
+          - text: "Mořské ryby"
+            correct: true
+          - text: "Chipsy"
+            why: "Nemají významnější nutriční hodnotu."
+          - text: "Bílé pečivo"
+            why: "Skripta ho jako funkční potravinu neuvádějí."

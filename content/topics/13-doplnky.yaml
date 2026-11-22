@@ -1,0 +1,1380 @@
+topic:
+  id: doplnky
+  title: Doplňky stravy
+  chapter: 13
+  pages: [120, 145]
+  order: 130
+  summary: >-
+    Doplněk stravy jako potravina (ne lék), notifikace a tvrzení, dělení, kvalita a čtení etikety,
+    rizika, rozhodovací rámec a red flags, nejčastější doplňky, sportovní doplňky (protein, kreatin,
+    kofein, beta-alanin), speciální skupiny, probiotika a doplňky na hubnutí.
+
+points:
+  # ---------- 8c Legislativa a uvádění na trh ----------
+
+  - id: dpl.definice
+    title: Doplněk stravy je potravina, ne lék
+    kind: concept
+    tier: A
+    criteria: [8c, 8b]
+    source: { pages: [120], anchor: "Doplňky stravy jsou typem potravin, jejichž účelem je doplňovat běžnou stravu" }
+    explanation: >-
+      Doplněk stravy je potravina: koncentrovaný zdroj vitaminů, minerálních látek nebo jiných látek
+      s nutričním či fyziologickým účinkem, určený k užití v malých odměřených dávkách. Má doplňovat
+      běžnou stravu, ne ji nahrazovat. Od léku se liší legislativou výroby a uvádění na trh a hlavně tím,
+      že nemá prokázané léčivé účinky – není určen k léčbě ani prevenci nemocí. Někdy je dělí jen
+      množství látky: vitamin D smí být doplňkem jen do denní dávky 1000 IU, vyšší dávka už je lék.
+    exercises:
+      - id: lek-vs-doplnek
+        type: explain
+        prompt: "Klientka se ptá, jaký je rozdíl mezi doplňkem stravy a lékem. Vysvětli jí to."
+        keyPoints:
+          - "Doplněk stravy je potravina (koncentrovaný zdroj živin/látek v odměřených dávkách)"
+          - "Má doplňovat stravu, ne ji nahrazovat"
+          - "Lék má prokázané léčivé účinky, doplněk ne – není k léčbě ani prevenci"
+          - "Liší se legislativou výroby a uvádění na trh"
+          - "Někdy rozhoduje jen dávka (vitamin D: doplněk do 1000 IU/den, výš lék)"
+        modelAnswer: >-
+          Doplněk stravy je z pohledu zákona potravina – koncentrovaný zdroj vitaminů, minerálů nebo
+          jiných látek v malých odměřených dávkách, který má doplnit běžnou stravu. Lék musí mít
+          prokázaný léčivý účinek na konkrétní zdravotní problém, doplněk ne a k léčbě ani prevenci
+          nemocí určen není. Liší se i pravidla výroby a uvedení na trh. Někdy je dělí jen dávka:
+          vitamin D se jako doplněk smí prodávat do 1000 IU denně, vyšší dávka už je lék.
+      - id: vitamin-d-hranice
+        type: choice
+        prompt: "Do jaké denní dávky lze podle skript prodávat vitamin D jako doplněk stravy?"
+        options:
+          - { text: "1000 IU", correct: true }
+          - { text: "400 IU", why: "Hranice uvedená ve skriptech je 1000 IU." }
+          - { text: "2000 IU", why: "2000 IU skripta uvádějí jako preventivní dávku v praxi, ne jako hranici pro doplněk." }
+          - { text: "10 000 IU", why: "10 000 IU je horní hranice retinolu (vitamin A) v těhotenství." }
+      - id: urceni
+        type: choice
+        prompt: "Které tvrzení o doplňcích stravy odpovídá skriptům?"
+        options:
+          - text: "Jsou to potraviny, které mohou příznivě ovlivnit zdraví, ale nejsou určeny k léčbě."
+            correct: true
+          - text: "Jsou to volně prodejné léky s nižší dávkou účinné látky."
+            why: "Doplňky jsou potraviny, nikoli léky."
+          - text: "Jsou určeny k prevenci nemocí, nikoli k jejich léčbě."
+            why: "Nejsou určeny ani k léčbě, ani k prevenci."
+          - text: "Mohou nahradit nevhodnou stravu, pokud jsou kvalitní."
+            why: "Nevhodnou stravu nezachrání ani nejlepší doplněk."
+
+  - id: dpl.notifikace
+    title: Uvedení doplňku na trh – notifikace
+    kind: procedure
+    tier: A
+    criteria: [8c]
+    prereqs: [dpl.definice, pot.dozor-cr]
+    source: { pages: [120, 121, 105], anchor: "stačí pouze to, aby vytvořila notifikaci" }
+    explanation: >-
+      K uvedení doplňku na trh stačí notifikace (oznamovací povinnost) v systému Ministerstva
+      zemědělství, nejpozději v den uvedení na trh. Za správnost údajů odpovídá provozovatel – při
+      uvádění na trh je nikdo nekontroluje (žádné schvalování jako u léků). Při každé změně výrobku
+      (složení, název…) je nutná nová notifikace. Obsahuje mj. údaje o podniku, původ, název, složení,
+      účinné látky, hmotnost balení, případně text etikety. Na trhu pak doplňky jako potraviny
+      kontrolují dozorové orgány (hlavně SZPI, dále krajské hygienické stanice, ČOI).
+    exercises:
+      - id: postup
+        type: explain
+        version: 2
+        prompt: "Jak se doplněk stravy dostane legálně na trh a kdo kontroluje jeho údaje?"
+        keyPoints:
+          - "Stačí notifikace (oznamovací povinnost)"
+          - "U Ministerstva zemědělství"
+          - "Nejpozději v den uvedení na trh"
+          - "Za údaje odpovídá provozovatel, při uvádění na trh je nikdo nekontroluje"
+          - "Při každé změně (složení, název) nová notifikace"
+          - "Na trhu dozorové orgány (hlavně SZPI, KHS, ČOI)"
+        modelAnswer: >-
+          Výrobce nemusí doplněk nechat schválit, stačí splnit oznamovací povinnost – notifikaci
+          v systému Ministerstva zemědělství, nejpozději v den, kdy výrobek uvádí na trh. Za správnost
+          údajů odpovídá sám provozovatel, při uvedení na trh je nikdo neověřuje. Při každé změně
+          výrobku, třeba složení nebo názvu, musí podat notifikaci novou. Na trhu pak doplněk jako
+          každou potravinu kontrolují dozorové orgány, hlavně SZPI, dále hygienické stanice a ČOI.
+      - id: kdy
+        type: choice
+        prompt: "Kdy nejpozději musí firma splnit oznamovací povinnost k doplňku stravy?"
+        options:
+          - { text: "Nejpozději v den uvedení výrobku na trh", correct: true }
+          - { text: "Rok před uvedením na trh", why: "Žádná taková lhůta neexistuje." }
+          - { text: "Až po schválení klinické studie", why: "Doplněk se neschvaluje a klinickou studii nepotřebuje." }
+          - { text: "Do 30 dnů po uvedení na trh", why: "Notifikace musí být nejpozději v den uvedení na trh." }
+      - id: kde
+        type: choice
+        prompt: "U kterého úřadu se podává notifikace doplňku stravy?"
+        options:
+          - { text: "Ministerstvo zemědělství", correct: true }
+          - { text: "Státní ústav pro kontrolu léčiv", why: "Ten se týká léčiv, doplněk je potravina." }
+          - { text: "Ministerstvo zdravotnictví", why: "Podle skript se notifikace podává v systému Ministerstva zemědělství." }
+          - { text: "Žádnému – doplněk se nijak neoznamuje", why: "Oznamovací povinnost existuje." }
+
+  - id: dpl.tvrzeni-typy
+    title: Čtyři typy tvrzení na doplňcích
+    kind: concept
+    tier: A
+    criteria: [8c]
+    prereqs: [dpl.definice]
+    confusableWith: [dpl.tvrzeni-formulace]
+    source: { pages: [121, 123], anchor: "Rozlišují se 4 typy tvrzení" }
+    explanation: >-
+      Smějí se jen povolená tvrzení (seznam SZPI), nesmí klamat. Typy: zdravotní (složka a zdraví,
+      např. „jód přispívá k normální činnosti nervové soustavy“), výživová (obsah energie či živiny,
+      „s vysokým obsahem vlákniny“), léčebná (potravina nemoc léčí, zmírní či jí zabrání – u potravin
+      zcela zakázána, i obrázkem či názvem) a jiná (dobrovolné údaje: BIO, bez lepku, pro vegany).
+      Povolená jsou i zdravotní tvrzení o snížení rizika onemocnění (beta-glukan a cholesterol) –
+      to není zakázané „léčí/prevence“.
+    exercises:
+      - id: vyjmenuj
+        type: explain
+        prompt: "Jaká tvrzení se mohou objevit na obalu doplňku stravy a která jsou zakázaná?"
+        keyPoints:
+          - "Zdravotní tvrzení (souvislost složky a zdraví)"
+          - "Výživová tvrzení (obsah energie/živiny)"
+          - "Léčebná tvrzení – u potravin zcela zakázána (i obrázkem, názvem)"
+          - "Jiná (dobrovolná) tvrzení – BIO, bez lepku, pro vegany…"
+          - "Jen povolená tvrzení (seznam SZPI); nesmí být klamavá"
+        modelAnswer: >-
+          Rozlišujeme čtyři typy: zdravotní tvrzení, která spojují složku se zdravím (např. jód přispívá
+          k normální činnosti nervové soustavy), výživová tvrzení o obsahu energie nebo živin (např.
+          s vysokým obsahem vlákniny), léčebná tvrzení a jiná dobrovolná tvrzení jako BIO nebo bez
+          lepku. Léčebná tvrzení jsou u potravin úplně zakázaná – nesmí se objevit názvy nemocí,
+          symptomů ani obrázek lékaře. Výrobce smí použít jen schválená tvrzení a ta nesmí klamat.
+      - id: lecebne
+        type: choice
+        multiple: true
+        prompt: "Která označení by na doplňku stravy byla zakázaným léčebným tvrzením?"
+        options:
+          - { text: "Název výrobku „Čaj proti nachlazení“", correct: true }
+          - { text: "Obrázek zaníceného kloubu na obalu", correct: true }
+          - { text: "„Prevence chřipky“", correct: true }
+          - { text: "„Vitamin C přispívá k normální funkci imunitního systému“", why: "Jde o povolené zdravotní tvrzení." }
+          - { text: "„Bez laktózy“", why: "Jiné (dobrovolné) tvrzení, není léčebné." }
+      - id: typ-vlaknina
+        type: choice
+        prompt: "O jaký typ tvrzení jde u nápisu „S vysokým obsahem vlákniny“?"
+        options:
+          - { text: "Výživové tvrzení", correct: true }
+          - { text: "Zdravotní tvrzení", why: "Zdravotní tvrzení spojuje složku se zdravím; tady jde jen o obsah živiny." }
+          - { text: "Léčebné tvrzení", why: "Nepřipisuje výrobku léčebný účinek." }
+          - { text: "Jiné tvrzení", why: "Obsah živiny je typicky výživové tvrzení." }
+
+  - id: dpl.tvrzeni-formulace
+    title: Jak smí znít zdravotní tvrzení
+    kind: procedure
+    tier: A
+    criteria: [8c]
+    prereqs: [dpl.tvrzeni-typy]
+    confusableWith: [dpl.tvrzeni-typy]
+    source: { pages: [122], anchor: "Zdravotní tvrzení musí mít stejný význam jako tvrzení schválené" }
+    explanation: >-
+      Upravené tvrzení musí mít stejný význam jako schválené a být srozumitelné. Pravidla: účinek se
+      přisuzuje složce, ne výrobku („obsahuje X, který přispívá…“); nesmí být silnější než schválené –
+      lze „přispívá, podílí se, udržuje“, nelze „zlepšuje, posiluje, léčí, nezbytný, klíčový“; u směsi
+      musí být jasné, ke které složce patří, a nesmí se tvrdit synergie. Zakázáno je také uvádět
+      konkrétní úbytek hmotnosti nebo doporučení jednotlivých lékařů.
+    exercises:
+      - id: povolene
+        type: choice
+        prompt: "Která formulace je na doplňku s hořčíkem přípustná?"
+        options:
+          - text: "„Obsahuje hořčík, který přispívá ke snížení únavy.“"
+            correct: true
+          - text: "„Výrobek zlepšuje činnost svalů.“"
+            why: "Účinek přisuzuje výrobku a je silnější než schválené („zlepšuje“)."
+          - text: "„Hořčík je klíčový pro zdravé svaly.“"
+            why: "„Klíčový“ naznačuje, že jde o jediný či hlavní faktor – nepřípustné."
+          - text: "„Hořčík a draslík se navzájem posilují a chrání kosti.“"
+            why: "Nesmí se tvrdit synergie a draslík nemá schválené tvrzení ke kostem."
+      - id: pravidla
+        type: explain
+        prompt: "Výrobce chce na obal napsat vlastní verzi schváleného zdravotního tvrzení. Na co si musí dát pozor?"
+        keyPoints:
+          - "Stejný význam jako schválené tvrzení, srozumitelné"
+          - "Účinek se přisuzuje složce, ne výrobku"
+          - "Nesmí být silnější: ano přispívá/udržuje, ne zlepšuje/posiluje/léčí"
+          - "Ne „nezbytný/klíčový“ (jediný faktor), ne synergie složek"
+          - "Žádný konkrétní úbytek hmotnosti ani doporučení konkrétních lékařů"
+        modelAnswer: >-
+          Upravené tvrzení musí znamenat totéž co schválené a být pochopitelné pro běžného
+          spotřebitele. Účinek se připisuje složce, ne celému výrobku, a nesmí být přehnaný – smí se
+          psát „přispívá“ nebo „udržuje“, ne „zlepšuje“, „posiluje“ či „léčí“, a ani „klíčový“. U směsi
+          musí být jasné, ke které složce tvrzení patří, a nesmí se slibovat synergie. Nelze uvádět
+          konkrétní počet zhubnutých kil ani se odvolávat na doporučení jednotlivých lékařů.
+
+  - id: dpl.on-hold-vyzivova
+    title: On Hold tvrzení a příklad výživového tvrzení
+    kind: fact
+    tier: B
+    criteria: [8c]
+    prereqs: [dpl.tvrzeni-typy]
+    source: { pages: [123, 124], anchor: "Tato tvrzení je možné používat, ale v případě jejich zamítnutí" }
+    explanation: >-
+      „On Hold“ seznam obsahuje tvrzení, o jejichž schválení či zamítnutí zatím nebylo rozhodnuto
+      (např. kurkuma – normální stav pokožky). Smějí se používat, ale po zamítnutí je nutné je
+      z obalů odstranit. Výživová tvrzení mají přesné podmínky:
+      např. „s vysokým obsahem vlákniny“ jen při alespoň 6 g vlákniny na 100 g nebo 3 g na 100 kcal.
+    exercises:
+      - id: on-hold
+        type: reveal
+        prompt: "Co jsou „On Hold“ tvrzení a smí je výrobce používat?"
+        answer: >-
+          Tvrzení, o jejichž schválení či zamítnutí se ještě nerozhodlo. Používat se smějí, ale po
+          zamítnutí je musí výrobce z obalu odstranit.
+      - id: vlaknina
+        type: choice
+        prompt: "Kdy smí výrobek nést tvrzení „s vysokým obsahem vlákniny“?"
+        options:
+          - { text: "Alespoň 6 g vlákniny na 100 g nebo 3 g na 100 kcal", correct: true }
+          - { text: "Alespoň 3 g vlákniny na 100 g nebo 1,5 g na 100 kcal", why: "To jsou nižší hodnoty – podmínka pro „vysoký obsah“ je 6 g / 3 g." }
+          - { text: "Alespoň 10 g vlákniny na porci", why: "Podmínka se vztahuje na 100 g nebo 100 kcal." }
+          - { text: "Kdykoli obsahuje přidanou vlákninu", why: "Výživová tvrzení mají přesné kvantitativní podmínky." }
+
+  - id: dpl.zakazane-latky
+    title: Limity a zakázané látky v doplňcích
+    kind: fact
+    tier: C
+    status: course-disputed
+    note: >-
+      Melatonin skripta uvádějí mezi látkami zakázanými ve výrobě potravin (s. 130), ale s nejasnou
+      výhradou (léčivý přípravek – zvláštní režim); zároveň ho řadí do dělení doplňků (Hormony –
+      melatonin, s. 125) a popisují jako běžný doplněk na spánek (s. 135). U zkoušky uváděj jako
+      jednoznačné příklady zakázaných látek DHEA, 5-HTP a koloidní stříbro, melatonin raději ne.
+    criteria: [8c, 8b]
+    source: { pages: [128, 129, 130], anchor: "Mezi další zakázané látky patří také" }
+    explanation: >-
+      U rostlinných extraktů i dalších látek platí podmínky použití – omezená část rostliny
+      a nejvyšší přípustné množství v denní dávce (např. taurin 2000 mg, koenzym Q10 200 mg,
+      acetylkarnitin 500 mg). Některé látky jsou v potravinách zcela zakázány: řada jedovatých rostlin
+      (např. oměj, rulík) a také DHEA, 5-hydroxytryptofan (5-HTP), koloidní stříbro či N-acetylcystein.
+    exercises:
+      - id: zakazane
+        type: choice
+        multiple: true
+        prompt: "Které látky jsou podle skript v potravinách (a tedy v doplňcích) zakázané?"
+        options:
+          - { text: "DHEA (dehydroepiandrosteron)", correct: true }
+          - { text: "5-HTP (5-hydroxytryptofan)", correct: true }
+          - { text: "Koloidní stříbro", correct: true }
+          - { text: "Taurin", why: "Je povolen, s limitem 2000 mg v denní dávce." }
+          - { text: "Koenzym Q10", why: "Je povolen, s limitem 200 mg v denní dávce." }
+      - id: limity
+        type: reveal
+        prompt: "Jakými dvěma způsoby se omezuje použití rostlinných extraktů v doplňcích?"
+        answer: "Omezením použité části rostliny a nejvyšším přípustným množstvím v denní dávce."
+
+  # ---------- 8b Druhy, zásady a rizika ----------
+
+  - id: dpl.deleni
+    title: Dělení doplňků stravy
+    kind: concept
+    tier: A
+    criteria: [8b, 8a]
+    source: { pages: [125], anchor: "Dělení doplňků stravy není nijak definováno" }
+    explanation: >-
+      Závazné dělení neexistuje. Doplňky lze třídit podle účinku, formy, funkční skupiny, chemického
+      charakteru nebo soustavy, na kterou působí. Příklad skupin: vitaminy, minerální látky,
+      polovitaminy (koenzym Q10), antioxidanty, rostlinné extrakty, doplňky na hubnutí (karnitin,
+      kofein), na klouby (glukosamin, chondroitin), s mastnými kyselinami (omega-3), probiotika,
+      enzymy, hormony (melatonin) a sportovní výživa. Skupiny se prolínají (vitamin E = vitamin
+      i antioxidant).
+    exercises:
+      - id: deleni
+        type: explain
+        prompt: "Jak můžeš rozdělit doplňky stravy? Uveď hlediska a několik skupin s příklady."
+        keyPoints:
+          - "Jednotné dělení není definováno"
+          - "Hlediska: účinek, forma, funkční skupina, chemický charakter, soustava"
+          - "Skupiny např. vitaminy, minerály, omega-3, probiotika, kloubní, na hubnutí, sportovní"
+          - "Skupiny se prolínají (vitamin E – vitamin i antioxidant)"
+        modelAnswer: >-
+          Závazné dělení doplňků neexistuje, třídit je lze podle účinku, formy, funkční skupiny,
+          chemického charakteru nebo podle soustavy, na kterou působí. Podle funkční skupiny máme
+          například vitaminy, minerální látky, antioxidanty, rostlinné extrakty, omega-3 mastné
+          kyseliny, probiotika, doplňky na klouby (glukosamin, chondroitin), na hubnutí (karnitin,
+          kofein), hormony (melatonin) a sportovní výživu. Skupiny se překrývají – vitamin E je
+          vitamin i antioxidant.
+      - id: kloubni
+        type: choice
+        prompt: "Které látky skripta uvádějí jako příklad doplňků na kloubní potíže?"
+        options:
+          - { text: "Chondroitin a glukosamin", correct: true }
+          - { text: "Karnitin a kofein", why: "Příklad doplňků podporujících hubnutí." }
+          - { text: "Koenzym Q10 a selen", why: "Příklad antioxidantů." }
+          - { text: "Laktobacily", why: "Příklad probiotik." }
+
+  - id: dpl.kvalita
+    title: Kvalita a biologická dostupnost
+    kind: concept
+    tier: A
+    criteria: [8b, 8a]
+    source: { pages: [120], anchor: "Ideální biologická dostupnost je hodnota 1" }
+    explanation: >-
+      Kvalitu doplňku posuzujeme podle složení, obsahu a podílu aktivních látek a podle biologické
+      dostupnosti (využitelnosti) – kolik účinné látky se skutečně vstřebá do krevního oběhu. Ověřuje
+      se nárůstem koncentrace látky v krevní plazmě. Ideální hodnota je 1 (= 100 % látky přešlo do
+      oběhu). Záleží na formě a technologii (kapsle vs. tableta, forma soli); lépe vstřebatelné
+      přípravky bývají dražší.
+    exercises:
+      - id: biodostupnost
+        type: explain
+        prompt: "Co je biologická dostupnost doplňku a proč na ní záleží?"
+        keyPoints:
+          - "Podíl účinné látky, který se vstřebá do krevního oběhu"
+          - "Měří se nárůstem koncentrace v krevní plazmě"
+          - "Ideál = 1, tedy 100 %"
+          - "Závisí na formě a technologii (kapsle/tableta, forma soli)"
+          - "Lépe vstřebatelné přípravky bývají dražší"
+        modelAnswer: >-
+          Biologická dostupnost říká, kolik účinné látky z doplňku se skutečně dostane do krevního
+          oběhu; ověřuje se podle nárůstu její koncentrace v plazmě. Ideální hodnota je 1, tedy 100 %.
+          Ovlivňuje ji forma a výrobní technologie – třeba kapsle vs. tableta nebo citrát vs. oxid
+          hořečnatý. Lépe vstřebatelné doplňky jsou obvykle dražší, protože vyžadují dražší technologii.
+      - id: hodnota
+        type: choice
+        prompt: "Jaká je ideální hodnota biologické dostupnosti doplňku?"
+        options:
+          - { text: "1 (100 % účinné látky se dostane do oběhu)", correct: true }
+          - { text: "0,5 (polovina látky se vstřebá)", why: "Ideál je úplné vstřebání, tedy 1." }
+          - { text: "0 (látka zůstává ve střevě)", why: "To by byla nulová dostupnost." }
+          - { text: "Hodnota se nevyjadřuje, posuzuje se jen podle ceny", why: "Vyjadřuje se jako podíl 0–1." }
+
+  - id: dpl.etiketa
+    title: Jak číst etiketu doplňku
+    kind: procedure
+    tier: A
+    criteria: [8b, 8d]
+    prereqs: [dpl.kvalita]
+    source: { pages: [127], anchor: "Čtení etikety je dovednost, kterou poradce použije u každé kategorie doplňků" }
+    explanation: >-
+      Na etiketě kontroluj: formu účinné látky, nejen název (bisglycinát/citrát hořčíku se vstřebá lépe
+      než oxid); skutečnou dávku na porci oproti dávce ze studií; „proprietary blend“ bez dávek
+      jednotlivých složek – účinnost nelze ověřit; plniva a barviva (děti, alergici); certifikaci třetí
+      stranou (u sportovců kvůli dopingu); zdroj suroviny a riziko kontaminace; šarži, expiraci
+      a skladování (hlavně probiotika a rybí oleje).
+    exercises:
+      - id: co-kontrolovat
+        type: explain
+        prompt: "Klientka ti ukáže etiketu doplňku. Na co se podíváš?"
+        keyPoints:
+          - "Forma účinné látky (např. citrát/bisglycinát vs. oxid)"
+          - "Dávka na porci vs. dávka ve studiích"
+          - "Proprietary blend bez dávek = nelze ověřit účinnost"
+          - "Plniva, barviva (děti, alergici)"
+          - "Certifikace třetí stranou; expirace, šarže, skladování"
+        modelAnswer: >-
+          Nejdřív forma účinné látky, protože rozhoduje o vstřebání – bisglycinát hořčíku je lepší než
+          levný oxid. Pak skutečná dávka na porci a jestli odpovídá dávkám ze studií. Pokud je tam
+          „proprietary blend“ bez dávek jednotlivých složek, účinnost ověřit nejde. Hlídám i plniva
+          a barviva, hlavně u dětí a alergiků, certifikaci třetí stranou (u sportovců kvůli dopingu),
+          a nakonec šarži, expiraci a skladování, zvlášť u probiotik a rybích olejů.
+      - id: blend
+        type: choice
+        prompt: "Co je hlavní problém doplňku, který uvádí „energy směs 500 mg“ bez dávek jednotlivých složek?"
+        options:
+          - { text: "Nelze ověřit, zda obsahuje účinné množství kterékoli složky", correct: true }
+          - { text: "Takové značení je zakázané a výrobek nesmí být v prodeji", why: "Skripta to označují za problém pro posouzení účinnosti, ne za zákaz." }
+          - { text: "Směsi mají vždy nižší biologickou dostupnost", why: "Problém je v neznámých dávkách, ne v dostupnosti." }
+          - { text: "Celková dávka 500 mg je vždy předávkování", why: "O předávkování nelze bez jednotlivých dávek nic říct." }
+
+  - id: dpl.rizika
+    title: Rizika užívání doplňků
+    kind: concept
+    tier: A
+    criteria: [8b, 8d]
+    source: { pages: [120, 128, 133, 134], anchor: "přírodní složení nemusí znamenat, že je látka bezpečná" }
+    explanation: >-
+      „Jed od léku odlišuje pouze dávka“ (Paracelsus) – platí i pro doplňky. Přírodní neznamená
+      bezpečné. Hlavní rizika: kumulace dávek (multivitamin + další doplňky → překročení horní hranice
+      vitaminů rozpustných v tucích; dlouhodobě vysoké B6 → možná neuropatie), interakce s léky,
+      nekvalitní nebo kontaminované výrobky a klamavé reklamy (zneužívání známých osobností,
+      nepovolená tvrzení, nereálné sliby, neprůkazné studie). A v neposlední řadě falešný pocit,
+      že doplněk vyřeší špatnou stravu.
+    exercises:
+      - id: rizika
+        type: explain
+        prompt: "Jaká rizika přináší užívání doplňků stravy?"
+        keyPoints:
+          - "Dávka dělá jed (Paracelsus); přírodní ≠ bezpečné"
+          - "Kumulace z více doplňků (multivitamin + další, vitaminy rozpustné v tucích, B6)"
+          - "Interakce s léky"
+          - "Kvalita a kontaminace, klamavé reklamy a neprůkazné studie"
+          - "Falešná představa, že doplněk nahradí stravu"
+        modelAnswer: >-
+          Platí, že jed od léku odlišuje jen dávka, a přírodní původ nezaručuje bezpečnost. Častým
+          rizikem je kumulace – multivitamin s dalšími doplňky snadno překročí horní hranici vitaminů
+          rozpustných v tucích a dlouhodobě vysoké dávky B6 mohou poškodit nervy. Doplňky mohou
+          interagovat s léky, mohou být nekvalitní nebo kontaminované a trh je plný klamavých reklam
+          a neprůkazných studií. A klient může nabýt dojmu, že doplněk vyřeší špatnou stravu.
+      - id: multivitamin
+        type: choice
+        prompt: "V čem vidí skripta hlavní riziko multivitaminu?"
+        options:
+          - text: "V kombinaci s dalšími doplňky – snadno se překročí horní hranice vitaminů rozpustných v tucích"
+            correct: true
+          - text: "Multivitamin sám o sobě obsahuje toxické dávky vitaminů"
+            why: "Riziko je podle skript v souběhu s dalšími doplňky, ne v samotném multivitaminu."
+          - text: "Vitaminy rozpustné ve vodě se v těle hromadí"
+            why: "Hromadí se spíše vitaminy rozpustné v tucích."
+          - text: "Multivitamin blokuje vstřebávání vitaminů ze stravy"
+            why: "To skripta neuvádějí."
+
+  - id: dpl.novinka-filtr
+    title: Jak posoudit novinku na trhu
+    kind: procedure
+    tier: B
+    criteria: [8b, 8d]
+    source: { pages: [127], anchor: "Existuje klinická studie na lidech, ne jen in vitro" }
+    explanation: >-
+      Univerzální filtr na nový produkt: 1) existuje klinická studie na lidech (ne jen in vitro či na
+      zvířatech)? 2) odpovídá dávka v produktu dávce ve studii? 3) kdo studii financoval? 4) je efekt
+      klinicky významný, nebo jen statisticky? 5) co říkají nezávislé zdroje (PubMed, EFSA), ne web
+      výrobce?
+    exercises:
+      - id: filtr
+        type: reveal
+        prompt: "Klientka přinese nový „zázračný“ doplněk ze sociálních sítí. Jakých 5 otázek si položíš?"
+        answer: >-
+          Je studie na lidech? Odpovídá dávka dávce ve studii? Kdo studii financoval? Je efekt klinicky,
+          nebo jen statisticky významný? Co říkají nezávislé databáze místo webu výrobce?
+
+  # ---------- 8d Zařazení doplňků do režimu klienta ----------
+
+  - id: dpl.rozhodovaci-ramec
+    title: Rozhodovací rámec před doporučením doplňku
+    kind: procedure
+    tier: A
+    criteria: [8d, 8b]
+    source: { pages: [125, 126], anchor: "doplněk je až poslední krok, ne první reflex" }
+    explanation: >-
+      Doplněk má doplňovat, ne nahrazovat. Před doporučením projdi 4 kroky v tomto pořadí: 1) strava –
+      je pestrá a kryje energii i mikroživiny? 2) životní styl – spánek, pohyb, stres, alkohol,
+      kouření; 3) zdravotní kontext – léky, chronické nemoci, laboratorní výsledky; 4) cílená
+      suplementace – teprve když mezera přetrvává. Příklad: unavený klient chce hořčík – nejdřív se
+      ptej na spánek, stravu, stres a pohyb a mysli i na štítnou žlázu, anémii či vedlejší účinek léku.
+    exercises:
+      - id: unava-horcik
+        type: explain
+        prompt: "Přijde klient: „Jsem pořád unavený, četl jsem, že mám brát hořčík. Jaký mi doporučíte?“ Jak postupuješ?"
+        keyPoints:
+          - "Doplněk doplňuje, nenahrazuje – je až poslední krok"
+          - "1) Strava (pestrost, zdroje hořčíku – zelenina, celozrnné, luštěniny)"
+          - "2) Životní styl: spánek, stres, pohyb, alkohol, kofein"
+          - "3) Zdravotní kontext: léky, nemoci, laboratoř (štítná žláza, anémie)"
+          - "4) Teprve pak cílený doplněk; přetrvávající únava → lékař"
+        modelAnswer: >-
+          Hořčík mu hned neprodám – doplněk je až poslední krok. Nejdřív projdu stravu: jestli jí dost
+          zeleniny, ovoce, celozrnných obilovin a luštěnin. Pak životní styl: kolik a jak spí, jak je na
+          tom se stresem, pohybem, alkoholem a kofeinem. Zeptám se na léky a nemoci, protože únavu
+          může vysvětlit štítná žláza, anémie nebo vedlejší účinek léku. Teprve když je tohle
+          v pořádku a únava trvá, má smysl cílený doplněk, případně vyšetření u lékaře.
+      - id: poradi
+        type: reveal
+        prompt: "Vyjmenuj v pořadí čtyři kroky rozhodovacího rámce před doporučením doplňku."
+        answer: "1) Strava, 2) životní styl, 3) zdravotní kontext (léky, nemoci, laboratoř), 4) cílená suplementace."
+
+  - id: dpl.red-flags
+    title: Red flags – klient patří k lékaři
+    kind: procedure
+    tier: A
+    criteria: [8d]
+    prereqs: [dpl.rozhodovaci-ramec]
+    source: { pages: [126], anchor: "Kdy patří klient k lékaři, ne k doplňku" }
+    explanation: >-
+      Doplněk počká a klienta pošli k lékaři při: neúmyslném hubnutí, nočním pocení či horečkách bez
+      příčiny; krvi ve stolici či moči nebo černé stolici; bolesti na hrudi, dušnosti, otocích nohou,
+      bušení srdce; neurologických příznacích (necitlivost, slabost jedné strany, porucha řeči či
+      vidění); příznaku, který se týdny nelepší i po úpravě životního stylu; podezření na nežádoucí
+      účinek nebo interakci. U těhotných, kojících, dětí a chronicky nemocných je práh nižší.
+      V nejistotě doporuč lékaře navíc – doplněk a odeslání k lékaři se nevylučují; doporučení si
+      poznamenej.
+    exercises:
+      - id: vyjmenuj
+        type: explain
+        prompt: "Které signály u klienta znamenají, že místo doplňku patří k lékaři?"
+        keyPoints:
+          - "Neúmyslný úbytek hmotnosti, noční pocení, horečky"
+          - "Krev ve stolici/moči, černá stolice"
+          - "Bolest na hrudi, dušnost, otoky nohou, bušení srdce"
+          - "Neurologické příznaky (necitlivost, slabost jedné strany, řeč, zrak)"
+          - "Přetrvávající příznak, podezření na interakci; nižší práh u těhotných, dětí, chronicky nemocných"
+        modelAnswer: >-
+          K lékaři posílám klienta, který nechtěně hubne, má noční pocení nebo horečky bez příčiny,
+          krev ve stolici či moči nebo černou stolici, bolest na hrudi, dušnost, otoky nohou či bušení
+          srdce, nebo neurologické příznaky jako necitlivost, slabost jedné strany těla či poruchy
+          řeči. Také když příznak trvá týdny i po úpravě životního stylu nebo je podezření na
+          nežádoucí účinek či interakci s lékem. U těhotných, kojících, dětí a chronicky nemocných
+          posílám k lékaři dřív. Při red flags doplněk počká; v nejistotě doporučím lékaře navíc,
+          doplněk a odeslání se nevylučují. Doporučení si poznamenám.
+      - id: red-flag
+        type: choice
+        multiple: true
+        prompt: "Které z těchto situací jsou podle skript red flags pro odeslání k lékaři?"
+        options:
+          - { text: "Černá, dehtovitá stolice", correct: true }
+          - { text: "Neúmyslný úbytek hmotnosti s nočním pocením", correct: true }
+          - { text: "Slabost jedné poloviny těla", correct: true }
+          - { text: "Únava po týdnu špatného spánku", why: "Nejdřív se řeší životní styl; red flag je až přetrvávání týdny i po jeho úpravě." }
+          - { text: "Svalová horečka po tréninku", why: "Běžná reakce na zátěž." }
+
+  - id: dpl.interakce
+    title: Interakce doplňků s léky
+    kind: concept
+    tier: A
+    criteria: [8d, 8b]
+    prereqs: [dpl.rozhodovaci-ramec]
+    source: { pages: [125], anchor: "Mezi nejznámější interakce patří vitamin K a warfarin" }
+    explanation: >-
+      Doplňky mohou s léky vzájemně působit – účinek léku zesílit, oslabit, ve vážných případech až
+      poškodit zdraví. Nejznámější: vitamin K a warfarin (vitamin K ovlivňuje jeho účinek) a vláknina
+      užívaná současně s léky či jinými doplňky (zhorší jejich vstřebání). Vždy zjisti, jaké léky
+      klient bere (u seniorů kompletní seznam – polyfarmacie), spolupracuj s ošetřujícím lékařem
+      a pro svou ochranu měj jeho souhlas.
+    exercises:
+      - id: priklady
+        type: explain
+        prompt: "Proč musíš před doporučením doplňku znát léky klienta? Uveď příklady interakcí."
+        keyPoints:
+          - "Doplněk může zesílit nebo oslabit účinek léku, až poškodit zdraví"
+          - "Vitamin K × warfarin"
+          - "Vláknina současně s léky/doplňky"
+          - "Spolupráce s lékařem, ideálně jeho souhlas"
+          - "U seniorů polyfarmacie – kompletní seznam léků"
+        modelAnswer: >-
+          Doplňky mohou ovlivnit účinek léků – zesílit ho, oslabit, v horším případě poškodit zdraví.
+          Nejznámějším příkladem je vitamin K, který ovlivňuje účinek warfarinu, a vláknina užitá
+          spolu s léky nebo jinými doplňky. Proto se vždy ptám na všechny užívané léky, u seniorů
+          chci kompletní seznam, a spolupracuji s ošetřujícím lékařem – pro svou ochranu je nejlepší
+          mít jeho souhlas.
+      - id: warfarin
+        type: choice
+        prompt: "U klienta užívajícího warfarin je potřeba opatrnost hlavně u kterého doplňku?"
+        options:
+          - { text: "Vitamin K", correct: true }
+          - { text: "Vitamin B12", why: "Interakce s warfarinem se týká vitaminu K." }
+          - { text: "Kreatin", why: "Interakce s warfarinem se týká vitaminu K." }
+          - { text: "Zinek", why: "Interakce s warfarinem se týká vitaminu K." }
+
+  - id: dpl.tehotenstvi
+    title: Doplňky v těhotenství a při kojení
+    kind: procedure
+    tier: A
+    criteria: [8d, 8a]
+    source: { pages: [135, 141], anchor: "prenatální doplněk obsahuje jód a kyselinu listovou" }
+    explanation: >-
+      V těhotenství a při kojení stoupá potřeba kyseliny listové (prevence rozštěpu neurální trubice,
+      ideálně už před početím), jódu (až 220–250 µg/den oproti běžným 150 µg), DHA (vývoj mozku
+      plodu) a železa (rostoucí objem krve). Nevhodný je vitamin A ve formě retinolu ve vysokých dávkách –
+      bezpečná horní hranice je 10 000 IU/den, výš roste riziko vrozených vad; volí se beta-karoten.
+      V nejasných případech rozhoduje lékař/gynekolog, ne poradce.
+    exercises:
+      - id: tehotna
+        type: explain
+        prompt: "Těhotná klientka se ptá, jaké doplňky má zvážit a na co si dát pozor. Co jí řekneš?"
+        keyPoints:
+          - "Kyselina listová (rozštěp neurální trubice, ideálně už před početím)"
+          - "Jód (220–250 µg/den) a DHA – vývoj mozku a štítné žlázy plodu"
+          - "Železo – rostoucí objem krve (podle vyšetření)"
+          - "Ne vysoké dávky retinolu (nad 10 000 IU/den) → beta-karoten"
+          - "Rozhodnutí v nejasných případech patří lékaři/gynekologovi"
+        modelAnswer: >-
+          Prenatální doplněk by měl obsahovat kyselinu listovou, ideálně už od doby plánování, kvůli
+          prevenci rozštěpu neurální trubice, a jód, jehož potřeba stoupá na 220–250 µg denně. Důležitá
+          je i DHA pro vývoj mozku a železo kvůli rostoucímu objemu krve. Naopak se vyhýbej vysokým
+          dávkám vitaminu A ve formě retinolu – nad 10 000 IU denně roste riziko vrozených vad, lepší je
+          beta-karoten. Konkrétní dávky a nejasné situace má rozhodnout lékař nebo gynekolog.
+      - id: vitamin-a
+        type: choice
+        prompt: "Kterou formu vitaminu A je v těhotenství vhodné preferovat v doplňcích?"
+        options:
+          - { text: "Beta-karoten", correct: true }
+          - { text: "Retinol ve vysoké dávce", why: "Vysoké dávky retinolu zvyšují riziko vrozených vad." }
+          - { text: "Játra jako přirozený zdroj retinolu", why: "Doporučení NICE radí těhotným vyhýbat se i játrům." }
+          - { text: "Na formě nezáleží", why: "U těhotných je to podle skript zásadní rozdíl." }
+
+  - id: dpl.predpoklady
+    title: Předpoklady pro doporučování a prodej
+    kind: procedure
+    tier: B
+    criteria: [8d]
+    source: { pages: [125], anchor: "Doporučování doplňků stravy by měl být promyšlený krok" }
+    explanation: >-
+      Poradce by měl mít s doplňkem vlastní zkušenost (aspoň z okolí), umět určit, kdy ho zařadit
+      vzhledem k cíli klienta, a znát dávkování: denní dávku, velikost balení, jak dlouho vydrží a jak
+      dlouho užívat. Musí znát kontraindikace s léky, stravou a stavy (těhotenství, kojení, hypofunkce
+      štítné žlázy). Při prodeji kontroluje expiraci a balení (poškození, úplnost, návod) a vystaví
+      doklad. Doplňky lze zařadit do jídelníčku nebo do samostatného suplementačního plánu.
+    exercises:
+      - id: co-znat
+        type: reveal
+        prompt: "Co všechno musíš o doplňku vědět, než ho klientce doporučíš?"
+        answer: >-
+          Kdy ho zařadit vzhledem k cíli, dávkování (denní dávka, balení, jak dlouho vydrží a jak dlouho
+          užívat) a kontraindikace (léky, strava, těhotenství, kojení, nemoci) – ideálně i z vlastní
+          zkušenosti.
+      - id: prodej
+        type: choice
+        multiple: true
+        prompt: "Co musíš zkontrolovat nebo udělat, když doplněk klientovi přímo prodáváš?"
+        options:
+          - { text: "Expiraci výrobku", correct: true }
+          - { text: "Neporušenost a úplnost balení včetně návodu", correct: true }
+          - { text: "Vystavit doklad o koupi", correct: true }
+          - { text: "Nechat klienta podepsat informovaný souhlas lékaře", why: "Souhlas lékaře je vhodný při interakcích s léky, ne podmínka každého prodeje." }
+
+  - id: dpl.biotin-testy
+    title: Biotin a krevní testy
+    kind: fact
+    tier: B
+    criteria: [8d, 8a]
+    source: { pages: [136], anchor: "vysadit biotin 48-72 h před odběrem krve" }
+    explanation: >-
+      Biotin (B7) je nedostatkový jen vzácně, pestrá strava potřebu (30 µg/den) pokryje. Kosmetické
+      doplňky „na vlasy a nehty“ ale obsahují 5000–10 000 µg, a průkazný efekt bez nedostatku chybí.
+      Vysoké dávky zkreslují krevní testy (štítná žláza, těhotenský test, troponin při podezření na
+      infarkt). Klient má biotin vysadit 48–72 h před odběrem a informovat lékaře.
+    exercises:
+      - id: odber
+        type: choice
+        prompt: "Klientka bere biotin na vlasy a jde na odběr krve. Co jí poradíš?"
+        options:
+          - { text: "Vysadit ho 48–72 hodin před odběrem a říct o něm lékaři", correct: true }
+          - { text: "Vzít si ho ráno před odběrem, aby byla hladina stabilní", why: "Vysoké dávky biotinu zkreslují výsledky testů." }
+          - { text: "Nic řešit nemusí, biotin je rozpustný ve vodě", why: "I tak může ovlivnit laboratorní vyšetření." }
+          - { text: "Vysadit ho měsíc předem", why: "Skripta uvádějí 48–72 hodin." }
+      - id: proc
+        type: reveal
+        prompt: "Které krevní testy mohou vysoké dávky biotinu zkreslit?"
+        answer: "Hormony štítné žlázy, těhotenský test a troponin (podezření na infarkt)."
+
+  - id: dpl.deti
+    title: Doplňky u dětí
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 13 (s. 141) uvádí plošnou suplementaci vitaminu D u kojenců i batolat, kapitola o dětech
+      (s. 221) podle ČPS 400–500 IU/den od 2. týdne do konce 1. roku a po 1. roce už jen individuálně
+      u rizikových dětí. U zkoušky: kojenci 400–500 IU/den plošně, po 1. roce jen rizikové děti.
+    criteria: [8d, 8a]
+    source: { pages: [141, 221], anchor: "se u dětí nikdy nemá podávat paušálně" }
+    explanation: >-
+      U dětí se dávky řídí věkem a hmotností. Vitamin D dostávají plošně kojenci (400–500 IU/den do
+      konce 1. roku), starší děti jen individuálně při riziku; DHA se řeší u dětí s nízkým příjmem ryb. Děti jsou citlivější na předávkování vitaminů rozpustných v tucích –
+      hlídej souběh multivitaminu s obohacenými potravinami. Železo nikdy paušálně, jen na základě
+      laboratoře a doporučení pediatra. U probiotik platí „kmen, ne rod“; nápis „dětský“ nezaručuje
+      ověřené složení.
+    exercises:
+      - id: zelezo-deti
+        type: choice
+        prompt: "Kdy je podle skript vhodné podat dítěti železo jako doplněk?"
+        options:
+          - { text: "Jen na základě laboratorního vyšetření a doporučení pediatra", correct: true }
+          - { text: "Preventivně v zimních měsících", why: "Železo se dětem nikdy nepodává paušálně." }
+          - { text: "Vždy, když je dítě unavené", why: "Bez vyšetření nikdy – nadbytek je pro dítě rizikový." }
+          - { text: "Každému kojenci jako vitamin D", why: "Plošně se u kojenců podává vitamin D, ne železo." }
+      - id: tuky
+        type: reveal
+        prompt: "Na jaký souběh si musíš dát pozor u dětí kvůli vitaminům rozpustným v tucích?"
+        answer: "Multivitamin + obohacené potraviny (dětské mléčné nápoje, cereálie) – riziko předávkování."
+
+  - id: dpl.seniori
+    title: Doplňky u seniorů – B12 a léky
+    kind: fact
+    tier: B
+    criteria: [8d, 8a]
+    confusableWith: [obd.senior-bilkoviny]
+    source: { pages: [142], anchor: "i senioři s dostatečným příjmem masa a mléčných výrobků" }
+    explanation: >-
+      S věkem klesá tvorba žaludeční kyseliny (atrofická gastritida), a tím vstřebávání B12 ze stravy –
+      nedostatek proto hrozí i seniorům, kteří jedí dost masa a mléčných výrobků. Senioři navíc často
+      užívají více léků současně (polyfarmacie), takže roste riziko interakcí. Než seniorovi doporučíš
+      jakýkoli doplněk, vždy zjisti kompletní seznam jeho léků. (Bílkoviny seniorů viz období života.)
+    exercises:
+      - id: leky
+        type: reveal
+        prompt: "Co musíš u seniora zjistit dřív, než mu doporučíš jakýkoli doplněk, a proč?"
+        answer: "Kompletní seznam užívaných léků – kvůli polyfarmacii roste riziko interakcí s doplňky."
+      - id: proc-b12
+        type: reveal
+        prompt: "Proč mohou mít senioři nedostatek B12, i když jedí maso a mléčné výrobky?"
+        answer: "S věkem klesá tvorba žaludeční kyseliny (atrofická gastritida), a tím vstřebávání B12 ze stravy."
+
+  # ---------- 8a Charakteristika jednotlivých doplňků ----------
+
+  - id: dpl.omega3
+    title: Omega-3 (EPA a DHA) jako doplněk
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta uvádějí dvě horní hranice: podle amerických doporučení nepřekračovat 3000 mg denně
+      (s. 130), podmínky zdravotních tvrzení EU pak doplňkový přívod 5 g EPA+DHA denně (s. 131).
+      „Pro praxi“ (1–2 g pro protizánětlivý efekt, lepší vstřebání triglyceridové formy) je bez opory
+      v hlavním textu. Sportovní kapitola je opatrnější: AIS řadí rybí olej do skupiny B (vznikající,
+      nejednoznačné důkazy) a základem jsou 2 porce tučných ryb týdně (s. 209, 213). U zkoušky:
+      sportovci 500–1000 mg/den, nepřekračovat 3 g/den (US), doplňkově max. 5 g/den (podmínka tvrzení
+      EU); u sportovců nejdřív ryby ve stravě.
+    criteria: [8a]
+    source: { pages: [130, 131], anchor: "Sportovcům je doporučeno užívat 500–1000 mg/den" }
+    explanation: >-
+      EPA a DHA jsou dlouhé omega-3 mastné kyseliny, které si tělo samo dostatečně nevytvoří; zdrojem
+      jsou tučné ryby (losos, sleď, makrela) a rybí nebo řasový olej. Rostlinná ALA (vlašské ořechy,
+      lněný olej) je třetí omega-3. Podle metaanalýzy z roku 2024 snižuje doplnění riziko závažných
+      kardiovaskulárních příhod, nejvíc samotná EPA. U doplňku
+      sleduj množství EPA a DHA v denní dávce, jejich zdroj a poměr. Sportovcům se doporučuje
+      500–1000 mg/den, horní hranice podle amerických doporučení je 3000 mg/den. Tvrzení o mozku
+      a zraku vyžaduje přívod 250 mg DHA denně.
+    exercises:
+      - id: charakteristika
+        type: explain
+        prompt: "Charakterizuj omega-3 mastné kyseliny jako doplněk stravy."
+        keyPoints:
+          - "EPA a DHA – tělo je netvoří v dostatečném množství"
+          - "Zdroje: tučné ryby, rybí/řasový olej; ALA z ořechů a lněného oleje"
+          - "Přínos podle metaanalýzy: nižší riziko kardiovaskulárních příhod (hlavně EPA)"
+          - "Sledovat množství EPA/DHA v dávce, zdroj a poměr"
+          - "Sportovci 500–1000 mg/den, nepřekračovat 3000 mg/den"
+        modelAnswer: >-
+          Omega-3 v doplňcích jsou hlavně EPA a DHA, které si tělo samo dostatečně nevytvoří a které
+          získáváme z tučných ryb nebo z rybího či řasového oleje; rostlinná ALA z ořechů a lněného
+          oleje je třetí omega-3. Podle velké metaanalýzy suplementace snižuje riziko závažných
+          kardiovaskulárních příhod, nejvýrazněji samotná EPA. Při
+          výběru sleduji obsah EPA a DHA v denní dávce, jejich zdroj a poměr. Sportovcům se doporučuje
+          500–1000 mg denně a podle amerických doporučení by se nemělo překročit 3000 mg denně.
+      - id: sportovci
+        type: choice
+        prompt: "Jaký denní příjem EPA+DHA doporučují skripta sportovcům?"
+        options:
+          - { text: "500–1000 mg/den", correct: true }
+          - { text: "50–100 mg/den", why: "Příliš nízké – skripta uvádějí 500–1000 mg." }
+          - { text: "3000–5000 mg/den", why: "To jsou horní hranice, ne doporučení." }
+          - { text: "250 mg/den", why: "250 mg DHA je podmínka zdravotního tvrzení o mozku a zraku." }
+      - id: ala
+        type: choice
+        prompt: "Která omega-3 mastná kyselina pochází hlavně z rostlinných zdrojů (ořechy, lněný olej)?"
+        options:
+          - { text: "ALA", correct: true }
+          - { text: "EPA", why: "EPA je hlavně z ryb a rybího/řasového oleje." }
+          - { text: "DHA", why: "DHA je hlavně z ryb a rybího/řasového oleje." }
+          - { text: "Kyselina linolová", why: "Ta je omega-6." }
+
+  - id: dpl.vitamin-d
+    title: Vitamin D jako doplněk
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta uvádějí tři různá čísla: doporučený příjem 15–20 µg (600–800 IU) v kap. o vitaminech
+      (s. 50), hranici 1000 IU v denní dávce pro doplněk stravy (vyšší = lék, s. 120) a „bezpečnou
+      preventivní dávku“ kolem 2000 IU/den v rámečku Pro praxi (s. 131). U zkoušky: doporučený příjem
+      600–800 IU, doplněk stravy do 1000 IU/den, preventivně v praxi až kolem 2000 IU – ideálně podle
+      hladiny 25-OH-D v krvi a po domluvě s lékařem. U dětí (s. 221): kojenci 400–500 IU/den od
+      2. týdne do konce 1. roku, po 1. roce jen rizikové děti (kap. 13, s. 141, uvádí plošně i batolata).
+    criteria: [8a, 8d]
+    prereqs: [dpl.definice]
+    source: { pages: [131, 50, 221], anchor: "mezi říjnem a březnem prakticky vůbec" }
+    explanation: >-
+      Vitamin D si tělo tvoří v kůži působením slunce, v našich šířkách ale od října do března
+      prakticky vůbec; nedostatek (pod 50 nmol/l) je u velké části Čechů celoroční. Doporučený příjem
+      je 600–800 IU (15–20 µg) denně. Kojenci ho dostávají plošně (400–500 IU/den do 1 roku). Skripta
+      uvádějí jako bezpečnou preventivní dávku pro dospělé kolem 2000 IU/den; přesné dávkování by se
+      mělo řídit hladinou 25-OH-D v krvi. Jako doplněk stravy smí mít nejvýš 1000 IU v denní dávce.
+    exercises:
+      - id: proc
+        type: explain
+        prompt: "Proč a jak doporučíš klientce vitamin D?"
+        keyPoints:
+          - "Kůže ho tvoří ze slunce, ale od října do března u nás prakticky ne"
+          - "Nedostatek je častý a celoroční (pod 50 nmol/l)"
+          - "Preventivně kolem 2000 IU/den (skripta), doporučený příjem 600–800 IU"
+          - "Ideálně dávkovat podle hladiny 25-OH-D v krvi"
+          - "Doplněk stravy do 1000 IU/den, vyšší dávka je lék"
+        modelAnswer: >-
+          V našich zeměpisných šířkách si kůže od října do března vitamin D prakticky netvoří,
+          a nedostatek má velká část populace po celý rok. Doporučený příjem je 600–800 IU, skripta
+          v praxi uvádějí jako bezpečnou preventivní dávku pro dospělé kolem 2000 IU denně. Nejlepší
+          je dávku nastavit podle hladiny 25-OH-D v krvi. Doplněk stravy smí obsahovat do 1000 IU
+          v denní dávce, vyšší dávky už jsou léky.
+      - id: obdobi
+        type: choice
+        prompt: "Kdy si v našich zeměpisných šířkách kůže vitamin D prakticky netvoří?"
+        options:
+          - { text: "Zhruba od října do března", correct: true }
+          - { text: "Jen v prosinci a lednu", why: "Skripta uvádějí období říjen–březen." }
+          - { text: "Od května do srpna", why: "V létě je syntéza nejvyšší." }
+          - { text: "Tvoří si ho celoročně stejně", why: "Syntéza závisí na slunečním záření a ročním období." }
+
+  - id: dpl.horcik
+    title: Hořčík – formy a vstřebatelnost
+    kind: comparison
+    tier: A
+    criteria: [8a, 8b]
+    prereqs: [dpl.kvalita]
+    source: { pages: [132], anchor: "levný oxid má smysl spíše jako projímadlo" }
+    explanation: >-
+      Hořčík se účastní více než 300 enzymatických reakcí (tvorba energie, nervosvalový přenos).
+      Nedostatek se projeví únavou, křečemi, podrážděností; stres jeho spotřebu zvyšuje. O vstřebání
+      rozhoduje forma soli: citrát, glycinát (bisglycinát) či malát jsou dobře rozpustné a vstřebatelné,
+      oxid hořečnatý je ve vodě prakticky nerozpustný, vstřebá se málo a působí spíš jako projímadlo.
+    exercises:
+      - id: formy
+        type: explain
+        prompt: "Klient si chce koupit hořčík. Jak mu vysvětlíš, kterou formu vybrat?"
+        keyPoints:
+          - "Hořčík: přes 300 enzymatických reakcí, nedostatek = únava, křeče, podrážděnost"
+          - "Rozhoduje forma soli, ne jen název"
+          - "Citrát, glycinát, malát – dobře vstřebatelné"
+          - "Oxid – levný, špatně rozpustný, spíš projímadlo"
+        modelAnswer: >-
+          Hořčík se účastní více než 300 enzymatických reakcí a jeho nedostatek se projeví únavou,
+          křečemi nebo podrážděností. U doplňku je klíčová forma soli uvedená v závorce za názvem: citrát,
+          glycinát nebo malát se dobře rozpouštějí a vstřebávají. Levný oxid hořečnatý je ve vodě
+          prakticky nerozpustný a funguje spíš jako projímadlo než jako zdroj hořčíku.
+      - id: nejhorsi
+        type: choice
+        prompt: "Která forma hořčíku se podle skript vstřebává nejhůř?"
+        options:
+          - { text: "Oxid hořečnatý", correct: true }
+          - { text: "Citrát hořečnatý", why: "Citrát je dobře rozpustný a vstřebatelný." }
+          - { text: "Bisglycinát hořečnatý", why: "Glycinát patří mezi dobře vstřebatelné formy." }
+          - { text: "Malát hořečnatý", why: "Malát skripta doporučují k doplnění při nedostatku." }
+
+  - id: dpl.zelezo
+    title: Železo – jen při potvrzeném nedostatku
+    kind: procedure
+    tier: A
+    criteria: [8a, 8d]
+    source: { pages: [134, 135], anchor: "Suplementaci železa vždy vázejte na potvrzený nedostatek z krevního obrazu" }
+    explanation: >-
+      Železo je součástí hemoglobinu; jeho nedostatek je nejčastější příčinou anémie. Ohrožené jsou
+      menstruující ženy, těhotné a dospívající dívky. Mimo těhotenství se paušálně („preventivně“)
+      nedoplňuje – nadbytek je rizikový a mužům a ženám po menopauze hrozí přetížení železem.
+      Suplementace patří jen k potvrzenému nedostatku (krevní obraz, feritin). Užívání ob den může
+      zlepšit vstřebávání (klesne hepcidin). V těhotenství se uvádí 30 mg elementárního železa denně.
+    exercises:
+      - id: unava-zelezo
+        type: explain
+        prompt: "Klientka: „Jsem unavená, dám si železo, ne?“ Co jí odpovíš?"
+        keyPoints:
+          - "Železo ne paušálně – jen při potvrzeném nedostatku (krevní obraz, feritin)"
+          - "Nadbytek je rizikový (přetížení železem, hlavně muži a ženy po menopauze)"
+          - "Rizikové skupiny: menstruující ženy, těhotné, dospívající dívky"
+          - "Únava má mnoho příčin → vyšetření u lékaře"
+          - "Užívání ob den může zlepšit vstřebání"
+        modelAnswer: >-
+          Železo bych bez vyšetření nebrala – mimo těhotenství se preventivně nedoplňuje, protože
+          nadbytek je škodlivý a hrozí přetížení organismu. Patří jen k potvrzenému nedostatku z krevního
+          obrazu a feritinu. Menstruující ženy sice patří k rizikovým skupinám, ale únava má mnoho
+          příčin, proto ať si nechá udělat krevní testy. Pokud lékař nedostatek potvrdí, užívání ob den
+          může zlepšit vstřebávání.
+      - id: ob-den
+        type: choice
+        prompt: "Proč může být užívání železa ob den výhodnější než každý den?"
+        options:
+          - { text: "Mezitím klesne hladina hepcidinu, který vstřebávání železa blokuje", correct: true }
+          - { text: "Železo se ukládá do jater a denní dávka by je poškodila", why: "Skripta to vysvětlují hepcidinem." }
+          - { text: "Ob den se lépe snáší vitamin C", why: "Nesouvisí s vitaminem C." }
+          - { text: "Denní užívání způsobuje předávkování už v běžné dávce", why: "Důvodem je hepcidin, ne předávkování." }
+
+  - id: dpl.probiotika
+    title: Probiotika – kmen, dávka, kdy nasadit
+    kind: concept
+    tier: A
+    criteria: [8a, 8d]
+    source: { pages: [136, 142], anchor: "alespoň 10 mld KTJ/CFU" }
+    explanation: >-
+      Probiotika jsou živé mikroorganismy s prokázaným přínosem pro zdraví (nenutriční složka výživy).
+      Účinek je vázán na konkrétní kmen, ne rod („kmen, ne rod“ – např. Lactobacillus rhamnosus GG,
+      Saccharomyces boulardii). Kvalitní přípravek má alespoň 10 mld KTJ (CFU) v dávce v životaschopné
+      formě až do konce expirace. Prebiotika jsou „potrava“ pro bakterie; probiotikum + prebiotikum =
+      symbiotikum. Smysl mají hlavně při antibiotikách (od prvního dne, odstup aspoň 2 h), u IBS
+      a po střevní infekci.
+    exercises:
+      - id: charakteristika
+        type: explain
+        prompt: "Co jsou probiotika, jak vybrat kvalitní a kdy je doporučit?"
+        keyPoints:
+          - "Živé mikroorganismy s prokázaným přínosem; účinek závisí na kmeni („kmen, ne rod“)"
+          - "Alespoň 10 mld KTJ/CFU v dávce, životaschopné do konce expirace"
+          - "Prebiotika = potrava bakterií; obojí dohromady = symbiotikum"
+          - "Indikace: antibiotika (od 1. dne, odstup ≥ 2 h), IBS, po střevní infekci"
+        modelAnswer: >-
+          Probiotika jsou živé mikroorganismy s prokázaným přínosem pro zdraví a jejich účinek je vázaný
+          na konkrétní kmen, proto na etiketě hledám rod, druh i označení kmene. Kvalitní přípravek
+          obsahuje alespoň 10 miliard KTJ v dávce a bakterie musí přežít až do konce expirace. Pomáhá
+          i dostatek prebiotik, která bakterie živí; jejich kombinace v jednom výrobku je symbiotikum.
+          Doporučím je hlavně k antibiotikům – od prvního dne s odstupem aspoň dvou hodin –, u dráždivého
+          tračníku nebo po střevní infekci.
+      - id: odstup
+        type: choice
+        prompt: "Jak podle skript užívat probiotika při léčbě antibiotiky?"
+        options:
+          - { text: "Od prvního dne léčby, s odstupem alespoň 2 hodiny od antibiotika", correct: true }
+          - { text: "Až po dobrání antibiotik, aby je nezničila", why: "Skripta doporučují začít ideálně od prvního dne." }
+          - { text: "Současně s antibiotikem, aby se účinky sčítaly", why: "Je potřeba odstup aspoň 2 hodiny." }
+          - { text: "Při antibiotikách probiotika nemají smysl", why: "Průjem spojený s antibiotiky je jedna z nejlépe podložených indikací." }
+      - id: symbiotikum
+        type: choice
+        prompt: "Jak se nazývá doplněk, který obsahuje probiotika i prebiotika?"
+        options:
+          - { text: "Symbiotikum", correct: true }
+          - { text: "Postbiotikum", why: "Kombinace probiotik a prebiotik se podle skript nazývá symbiotikum (s. 136)." }
+          - { text: "Synergikum", why: "Správný termín je symbiotikum." }
+          - { text: "Enzymový přípravek", why: "Enzymy jsou samostatná skupina doplňků." }
+
+  - id: dpl.b12
+    title: Vitamin B12 – kdo ho potřebuje doplňovat
+    kind: fact
+    tier: B
+    criteria: [8a]
+    source: { pages: [132], anchor: "suplementace u veganů prakticky povinná" }
+    explanation: >-
+      B12 je nutný pro tvorbu červených krvinek a nervovou soustavu. Je téměř jen v živočišných
+      potravinách, proto je u veganů suplementace prakticky povinná a u vegetariánů často vhodná. Ukládá
+      se v játrech, zásoby vydrží roky – nedostatek přichází nenápadně. Po 50. roce klesá vstřebávání
+      (méně žaludeční kyseliny). Metylkobalamin a kyanokobalamin jsou v běžných dávkách srovnatelné;
+      závažný nedostatek patří lékaři.
+    exercises:
+      - id: kdo
+        type: choice
+        multiple: true
+        prompt: "U kterých skupin je podle skript namístě doplňovat vitamin B12?"
+        options:
+          - { text: "Vegani", correct: true }
+          - { text: "Vegetariáni", correct: true }
+          - { text: "Všežravci nad 50 let", correct: true }
+          - { text: "Mladí sportovci se smíšenou stravou", why: "Skripta je mezi rizikové skupiny neřadí." }
+      - id: nenapadne
+        type: reveal
+        prompt: "Proč se nedostatek B12 projeví až pozdě?"
+        answer: "B12 se ukládá v játrech a zásoby se při nedostatečném příjmu vyčerpávají řádově roky."
+
+  - id: dpl.vitc-zinek
+    title: Vitamin C a zinek při nachlazení
+    kind: fact
+    tier: B
+    criteria: [8a]
+    source: { pages: [131, 132], anchor: "zahájení až po objevení příznaků účinek na délku nachlazení nemá" }
+    explanation: >-
+      Vitamin C (≥ 200 mg/den) užívaný pravidelně předem nesnižuje riziko nachlazení, ale zkracuje jeho
+      trvání; zahájení až při příznacích nepomáhá. Zinkové pastilky (≥ 75 mg/den, do 24 h od prvních
+      příznaků) zkracují nachlazení asi o třetinu – vysoké dávky jen krátkodobě, dlouhodobě narušují
+      vstřebávání mědi. Pro běžnou imunitu stačí zinek v dávce RDA (8–11 mg/den).
+    exercises:
+      - id: vitamin-c
+        type: choice
+        prompt: "Co podle skript platí o vitaminu C a nachlazení?"
+        options:
+          - { text: "Pravidelné užívání předem zkracuje trvání nachlazení, nástup až při příznacích nepomáhá", correct: true }
+          - { text: "Pravidelné užívání spolehlivě brání tomu, aby člověk nachlazení dostal", why: "Riziko onemocnění u běžné populace nesnižuje." }
+          - { text: "Nejúčinnější je začít ve vysoké dávce až při prvních příznacích", why: "Zahájení po objevení příznaků na délku nachlazení vliv nemá." }
+          - { text: "Na nachlazení nemá žádný vliv", why: "Zkracuje jeho trvání (dospělí ~8 %, děti ~14 %)." }
+      - id: zinek
+        type: reveal
+        prompt: "Proč nebrat vysoké dávky zinku dlouhodobě?"
+        answer: "Narušují vstřebávání mědi a mohou vést k jejímu nedostatku; vysoké dávky jen krátce při akutním nachlazení."
+
+  - id: dpl.vitamin-k2
+    title: Vitamin K2 v „kostních“ formulích
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Tvrzení, že K2 „směruje vápník do kostí a mimo cévní stěny“, je marketingový mechanismus –
+      skripta sama přiznávají smíšené klinické výsledky a čerpají z průzkumu ConsumerLab. Příjem
+      90 µg (ženy) / 120 µg (muži) je americké číslo; kap. o vitaminech (s. 50) uvádí podle EFSA
+      přibližně 70 µg. U zkoušky: hlavní funkce vitaminu K je srážení krve (a metabolismus kostí),
+      důkazy pro K2 v doplňcích jsou smíšené, pozor na warfarin.
+    criteria: [8a, 8d]
+    prereqs: [dpl.interakce]
+    source: { pages: [133], anchor: "K2 pomáhá směrovat vápník do kostí" }
+    explanation: >-
+      K1 se podílí na srážení krve, K2 se podle skript uplatňuje v metabolismu vápníku a kostí, proto
+      se přidává do „kostních“ formulí s vitaminem D a vápníkem. Klinické studie (hustota kostí,
+      zlomeniny, srdce) jsou ale smíšené. Opatrnost u lidí užívajících warfarin – vitamin K ovlivňuje
+      jeho účinek.
+    exercises:
+      - id: k1-k2
+        type: choice
+        prompt: "Co je hlavní praktické riziko doplňku s vitaminem K?"
+        options:
+          - { text: "Ovlivnění účinku warfarinu", correct: true }
+          - { text: "Ukládání vápníku do cév", why: "Marketing tvrdí opak; hlavní praktické riziko je interakce s warfarinem." }
+          - { text: "Rozvoj neuropatie", why: "Neuropatie se uvádí u dlouhodobě vysokých dávek B6." }
+          - { text: "Zkreslení krevních testů štítné žlázy", why: "To se týká vysokých dávek biotinu." }
+      - id: dukazy
+        type: reveal
+        prompt: "Jaké jsou podle skript důkazy pro K2 na kosti a srdce?"
+        answer: "Smíšené – studie na hustotu kostí, zlomeniny i srdečně-cévní přínos nejsou jednoznačné."
+
+  - id: dpl.kloubni
+    title: Doplňky na klouby
+    kind: comparison
+    tier: B
+    criteria: [8a]
+    source: { pages: [139, 140], anchor: "Účinná dávka bývá 10-15 g denně" }
+    explanation: >-
+      Hydrolyzovaný kolagen má nejlepší data: u artrózy kolene zlepšuje pohyblivost a bolest, zlepšuje
+      i hydrataci a pružnost kůže; účinná dávka 10–15 g/den, s vitaminem C (kofaktor syntézy
+      kolagenu). Glukosamin a chondroitin (stavební složky chrupavky) mají smíšené výsledky, efekt
+      nastupuje po týdnech až měsících. MSM a perorální kyselina hyaluronová mají zatím slabší
+      a omezená data.
+    exercises:
+      - id: kolagen
+        type: choice
+        prompt: "Jakou dávku hydrolyzovaného kolagenu skripta uvádějí jako účinnou a s čím se kombinuje?"
+        options:
+          - { text: "10–15 g denně, s vitaminem C", correct: true }
+          - { text: "1–2 g denně, s vitaminem D", why: "Skripta uvádějí 10–15 g a kofaktorem je vitamin C." }
+          - { text: "50 g denně, s vápníkem", why: "Účinná dávka je 10–15 g." }
+          - { text: "10–15 g denně, s železem", why: "Kofaktorem syntézy kolagenu je vitamin C." }
+      - id: ocekavani
+        type: reveal
+        prompt: "Co řekneš klientovi, který začne brát glukosamin s chondroitinem, o očekávání?"
+        answer: "Výsledky studií jsou smíšené; pokud efekt přijde, tak až po týdnech až měsících pravidelného užívání."
+
+  - id: dpl.glukomanan
+    title: Glukomanan – vláknina na hubnutí
+    kind: fact
+    tier: B
+    criteria: [8a, 8c]
+    confusableWith: [dpl.spalovace]
+    source: { pages: [142, 143], anchor: "Účinná dávka je 2-4 g denně před jídlem se sklenicí vody" }
+    explanation: >-
+      Glukomanan je rozpustná vláknina z hlízy konjaku; naváže 10–15násobek své hmotnosti vody
+      a vytvoří gel, který zasytí. Patří k doplňkům na hubnutí s nejlepší evidencí. Užívá se 2–4 g
+      denně před jídlem s vodou. Schválené zdravotní tvrzení: přispívá ke snížení hmotnosti v rámci
+      nízkoenergetické diety při 3 g denně ve třech dávkách po 1 g, zapitých 1–2 sklenicemi vody před
+      jídlem.
+    exercises:
+      - id: davka
+        type: choice
+        prompt: "Za jakých podmínek smí výrobce uvést, že glukomanan přispívá ke snížení hmotnosti?"
+        options:
+          - { text: "3 g denně ve třech dávkách po 1 g, s vodou před jídlem, v rámci nízkoenergetické diety", correct: true }
+          - { text: "1 g denně kdykoli během dne, bez ohledu na dietu", why: "Tvrzení vyžaduje 3 × 1 g a nízkoenergetickou dietu." }
+          - { text: "10 g večer před spaním", why: "Podmínky jsou 3 × 1 g před jídlem." }
+          - { text: "Toto tvrzení není u glukomananu povoleno", why: "Je to příklad schváleného zdravotního tvrzení." }
+      - id: princip
+        type: reveal
+        prompt: "Jak glukomanan podporuje hubnutí?"
+        answer: "Naváže mnoho vody (10–15× svou hmotnost), vytvoří ve střevě objemný gel a navodí pocit sytosti."
+
+  - id: dpl.spalovace
+    title: Spalovače tuků a detox – realistická očekávání
+    kind: concept
+    tier: B
+    criteria: [8a, 8b]
+    confusableWith: [dpl.glukomanan, met.karnitin-doplnek]
+    source: { pages: [128, 129, 139, 143], anchor: "žádná z těchto látek nenahradí kalorický deficit" }
+    explanation: >-
+      Zelený čaj (EGCG), CLA a garcinie (kyselina hydroxycitronová, max. 2000 mg v dávce) mají
+      teoretický mechanismus, ale efekt u lidí je malý (stovky gramů až nízké kilogramy za měsíce) –
+      kalorický deficit nenahradí. Karnitin si zdraví lidé tvoří sami, efekt na hubnutí není prokázán.
+      „Detox“ čaje často obsahují senu (projímadlo → riziko hypokalémie), popsáno je i poškození jater;
+      tělo se detoxikuje samo (játra, ledviny) a rychlý úbytek je jen voda a obsah střev.
+    exercises:
+      - id: spalovac
+        type: explain
+        prompt: "Klientka chce „spalovač tuků“ a detoxikační čaj. Co jí řekneš?"
+        keyPoints:
+          - "Zelený čaj, CLA, garcinie: efekt malý, kalorický deficit nenahradí"
+          - "Karnitin – tělo ho tvoří samo, efekt na hubnutí neprokázán"
+          - "Detox: tělo se čistí samo (játra, ledviny); žádný čaj to neurychlí"
+          - "Detox čaje často obsahují senu – projímadlo (hypokalémie); popsáno i poškození jater"
+          - "Rychlý úbytek po detoxu = voda a obsah střev, ne tuk"
+        modelAnswer: >-
+          Spalovače jako zelený čaj, CLA nebo garcinie mají teoretický mechanismus, ale ve studiích
+          přinášejí jen malý efekt, řádově stovky gramů za měsíce – kalorický deficit nenahradí. Karnitin
+          si tělo vytváří samo a jeho vliv na hubnutí prokázán není. Detoxikaci zajišťují játra a ledviny
+          a žádný čaj ji neurychlí; detox čaje navíc často obsahují senu, projímadlo, které může způsobit
+          vážný pokles draslíku, a po detox čaji bylo popsáno i poškození jater. Kila, která po nich
+          zmizí, jsou voda a obsah střev.
+      - id: detox
+        type: choice
+        prompt: "Co je skutečnou příčinou rychlého úbytku hmotnosti po „detox“ čaji?"
+        options:
+          - { text: "Ztráta vody a obsahu střev (projímavý účinek)", correct: true }
+          - { text: "Zrychlené spalování tuku v játrech", why: "Detox čaje spalování tuku nezrychlují." }
+          - { text: "Vyplavení toxinů z tukové tkáně", why: "To je marketingové tvrzení bez opory." }
+          - { text: "Zvýšení bazálního metabolismu", why: "Skripta uvádějí, že jde o vodu a obsah střev." }
+
+  # ---------- 8e Doplňky a růst svalové hmoty ----------
+
+  - id: dpl.protein-davka
+    title: Kolik bílkovin pro růst svalů
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta uvádějí několik rozmezí: kap. 13 (s. 137) – přínos pro sílu a svaly se zpomaluje nad
+      ~1,6 g/kg (metaanalýza 2018, na s. 137 jako Morton, na s. 204 jako Norton); sportovní kapitola – ISSN 1,4–2,0 g/kg (s. 204), nabírání 1,6–2,2 g/kg
+      a redukce tuku 1,6–2,4 g/kg (s. 205, 207), ale také „do 1,8 g/kg“ jako horní mez včetně stravy
+      (s. 209). U zkoušky: pro trénující obecně 1,4–2,0 g/kg (ISSN), při nabírání 1,6–2,2 g/kg,
+      při redukci až 2,4 g/kg; nad ~1,6 g/kg už další přínos pro svaly výrazně neroste a protein
+      z doplňku je pak hlavně pohodlí. Pokud se ptají na horní mez denní dávky bílkovin podle
+      kap. 19.7 (zátěž srdce a ledvin), odpověz „do 1,8 g/kg včetně stravy“.
+    criteria: [8e]
+    confusableWith: [spo.bilkoviny]
+    source: { pages: [137, 204, 205, 207], anchor: "se zpomaluje nad příjmem cca 1,6 g bílkovin na kg" }
+    explanation: >-
+      Proteinový doplněk řeší hlavně praktičnost – nedodá nic, co by nešlo získat z jídla. Podle
+      metaanalýzy z roku 2018 se přínos bílkovin pro sílu a svalovou hmotu zpomaluje nad zhruba 1,6 g/kg/den;
+      vyšší příjem už měřitelně nepřidává. Sportovní kapitola uvádí pro trénující 1,4–2,0 g/kg (ISSN),
+      pro nabírání svalů 1,6–2,2 g/kg a při redukci tuku až 2,4 g/kg. Rozhoduje celkový denní příjem
+      ze stravy i doplňků.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: per-kg
+        prompt: "Klient váží {weight} kg a trénuje na svalový růst. Kolik gramů bílkovin denně odpovídá {perKg} g/kg?"
+        params:
+          weight: { min: 55, max: 110, step: 1 }
+          perKg:
+            choices:
+              - { value: 1.6, label: "1,6" }
+              - { value: 2.0, label: "2,0" }
+              - { value: 2.2, label: "2,2" }
+        unit: g
+        tolerance: { rel: 0.02 }
+        hint: "Hmotnost × dávka na kg."
+      - id: plato
+        type: choice
+        prompt: "Nad jakým denním příjmem bílkovin se podle kap. 13 přínos pro sílu a svaly výrazně zpomaluje?"
+        options:
+          - { text: "Asi 1,6 g/kg", correct: true }
+          - { text: "Asi 0,8 g/kg", why: "To je běžná VDD pro nesportující dospělé." }
+          - { text: "Asi 3,0 g/kg", why: "Skripta uvádějí plató kolem 1,6 g/kg." }
+          - { text: "Asi 1,0 g/kg", why: "Skripta uvádějí plató kolem 1,6 g/kg." }
+      - id: vysvetli
+        type: explain
+        prompt: "Klient chce pít tři proteinové nápoje denně, aby rychleji nabral svaly. Co mu řekneš?"
+        keyPoints:
+          - "Rozhoduje celkový denní příjem bílkovin ze stravy i doplňků"
+          - "Pro nabírání obvykle 1,6–2,2 g/kg/den (ISSN pro trénující 1,4–2,0)"
+          - "Nad ~1,6 g/kg přínos pro svaly výrazně neroste"
+          - "Protein z doplňku = praktičnost, ne nic, co by nedalo jídlo"
+        modelAnswer: >-
+          Nejdřív spočítám, kolik bílkovin už sní ve stravě – rozhoduje celkový denní příjem. Pro
+          nabírání svalů se obvykle doporučuje 1,6–2,2 g na kilogram hmotnosti denně a výzkumy ukazují,
+          že nad zhruba 1,6 g/kg už další bílkoviny svalům výrazně nepřidávají. Proteinový nápoj je
+          praktický doplněk, ale nedá nic, co by nešlo získat z jídla; tři nápoje navíc jsou spíš
+          zbytečný výdaj.
+
+  - id: dpl.kreatin
+    title: Kreatin monohydrát
+    kind: fact
+    tier: A
+    criteria: [8e, 8a]
+    confusableWith: [dpl.beta-alanin]
+    source: { pages: [137, 210], anchor: "Standardní dávka je 3-5 g denně dlouhodobě" }
+    explanation: >-
+      Kreatin monohydrát je jedna z nejlépe podložených látek ve sportovní výživě. Zvyšuje zásobu
+      fosfokreatinu ve svalech a zlepšuje výkon při krátkých intenzivních zátěžích; s odporovým
+      tréninkem mírně zvyšuje sílu a beztukovou hmotu. Dávka 3–5 g denně dlouhodobě, čas během dne
+      není zásadní. Nasycovací fáze (cca 20 g/den 5–7 dní) není nutná, efekt jen nastoupí pomaleji.
+      Jiné formy nemají prokázanou převahu. Může zvýšit kreatinin bez poškození ledvin; při nemoci
+      ledvin, těhotenství, kojení nebo lécích konzultace s lékařem.
+    exercises:
+      - id: charakteristika
+        type: explain
+        prompt: "Klient se ptá na kreatin. Jak funguje, jak ho dávkovat a je bezpečný?"
+        keyPoints:
+          - "Zvyšuje zásobu fosfokreatinu – krátké intenzivní výkony, síla, beztuková hmota"
+          - "3–5 g denně dlouhodobě, na čase nezáleží"
+          - "Nasycovací fáze (~20 g/den 5–7 dní) volitelná, není nutná"
+          - "Monohydrát – jiné formy nejsou lepší"
+          - "Zvýší kreatinin bez poškození ledvin; nemoc ledvin, těhotenství → lékař"
+        modelAnswer: >-
+          Kreatin zvyšuje zásoby fosfokreatinu ve svalech, takže pomáhá při opakovaných krátkých
+          intenzivních výkonech a spolu se silovým tréninkem mírně zvyšuje sílu a beztukovou hmotu.
+          Bere se 3–5 g monohydrátu denně dlouhodobě, na denní době nezáleží; nasycovací fáze kolem
+          20 g denně po 5–7 dní není nutná, bez ní jen efekt nastoupí pomaleji. U zdravých lidí je
+          bezpečný – může zvýšit kreatinin v krvi, aniž by poškozoval ledviny. Při onemocnění ledvin,
+          v těhotenství, při kojení nebo s léky má rozhodnout lékař.
+      - id: davka
+        type: choice
+        prompt: "Jaké je standardní dávkování kreatin monohydrátu podle skript?"
+        options:
+          - { text: "3–5 g denně dlouhodobě", correct: true }
+          - { text: "20 g denně dlouhodobě", why: "20 g/den je jen volitelná nasycovací fáze na 5–7 dní." }
+          - { text: "0,5 g denně", why: "Příliš nízká dávka." }
+          - { text: "3–5 g jen v tréninkové dny těsně po tréninku", why: "Užívá se denně a na čase nezáleží." }
+      - id: nasyceni
+        type: choice
+        prompt: "Je u kreatinu nutná nasycovací fáze?"
+        options:
+          - { text: "Ne, je volitelná – bez ní efekt jen nastupuje pomaleji", correct: true }
+          - { text: "Ano, bez ní kreatin nefunguje", why: "Skripta ji označují za volitelnou." }
+          - { text: "Ano, jinak hrozí poškození ledvin", why: "Nasycovací fáze s ledvinami nesouvisí." }
+          - { text: "Ne, protože kreatin účinkuje okamžitě po první dávce", why: "Efekt není okamžitý." }
+
+  - id: dpl.kofein
+    title: Kofein ve sportu
+    kind: fact
+    tier: A
+    criteria: [8e, 8a]
+    confusableWith: [spo.kofein]
+    source: { pages: [138, 212, 177, 226], anchor: "Kofein blokuje adenozinové receptory v mozku" }
+    explanation: >-
+      Kofein blokuje adenozinové receptory v mozku – snižuje vnímanou únavu, zlepšuje pozornost
+      a výkon; evidence je velmi silná. Účinná dávka je 3–6 mg/kg zhruba 30–60 minut před výkonem
+      (začíná se na 1–3 mg/kg). Vyšší dávka přínos nezvyšuje, jen riziko neklidu a horšího spánku.
+      Hlídej součet ze všech zdrojů (káva, pre-workout, energy drink) i denní maximum 400 mg (EFSA) –
+      u těžšího sportovce ho 6 mg/kg překročí. Reakce je individuální (genetika). Dětem se
+      nedoporučuje (kap. o dětech: pod 12 let).
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: per-kg
+        prompt: "Sportovkyně váží {weight} kg. Kolik mg kofeinu odpovídá dávce {perKg} mg/kg před výkonem?"
+        params:
+          weight: { min: 50, max: 100, step: 1 }
+          perKg:
+            choices:
+              - { value: 3, label: "3" }
+              - { value: 6, label: "6" }
+        unit: mg
+        tolerance: { rel: 0.02 }
+        hint: "Hmotnost × dávka na kg; účinné rozmezí je 3–6 mg/kg. Pozor na denní maximum 400 mg (EFSA)."
+      - id: davka
+        type: choice
+        prompt: "Jaká dávka kofeinu je podle skript účinná pro sportovní výkon?"
+        options:
+          - { text: "3–6 mg/kg asi 30–60 minut před výkonem", correct: true }
+          - { text: "10–15 mg/kg těsně před výkonem", why: "Nad 3–6 mg/kg přínos neroste, jen vedlejší účinky." }
+          - { text: "0,3–0,6 mg/kg ráno", why: "Příliš nízká dávka." }
+          - { text: "3–6 g denně po dobu 4 týdnů", why: "To připomíná dávkování beta-alaninu (3,2–6,4 g)." }
+      - id: rizika
+        type: explain
+        version: 2
+        prompt: "Klient chce před tréninkem kofein. Jak ho poučíš o dávce a rizicích?"
+        keyPoints:
+          - "Blokuje adenozinové receptory → méně vnímané únavy, lepší výkon"
+          - "3–6 mg/kg cca 30–60 min předem, vyšší dávka nepřidává"
+          - "Riziko neklidu, horšího spánku; pozdní příjem"
+          - "Kumulace z více zdrojů (káva, pre-workout, energy drink); denně max. 400 mg (EFSA)"
+          - "Individuální reakce (genetika)"
+        modelAnswer: >-
+          Kofein blokuje v mozku adenozinové receptory, takže snižuje vnímanou únavu a zlepšuje výkon.
+          Účinná dávka je 3–6 mg na kilogram zhruba 30–60 minut před tréninkem; víc nepomůže, jen přidá
+          neklid a horší spánek. Je třeba sečíst kofein ze všech zdrojů – kávy, pre-workoutu i
+          energetických nápojů – a hlídat denní maximum 400 mg podle EFSA; pozdě večer ho nebrat.
+          Každý na něj navíc reaguje jinak.
+
+  - id: dpl.beta-alanin
+    title: Beta-alanin
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 13 (s. 138) uvádí největší efekt u zátěže trvající 1–4 minuty, sportovní kapitola (s. 212)
+      u vysoké intenzity zhruba 30 sekund až 10 minut. U zkoušky: přínos u opakované/souvislé
+      vysoké intenzity v řádu desítek sekund až minut (typicky 1–4 min), ne u čisté vytrvalosti ani
+      jednorázové krátké síly.
+    criteria: [8e, 8a]
+    confusableWith: [dpl.kreatin]
+    source: { pages: [138, 212], anchor: "zvyšuje hladinu karnosinu ve svalech" }
+    explanation: >-
+      Beta-alanin zvyšuje ve svalech karnosin, který tlumí okyselení svalu (pufr) při intenzivní
+      zátěži. Pomáhá hlavně u výkonů trvajících zhruba 1–4 minuty (opakované sprinty, veslování,
+      plavání 200–400 m), ne u čisté vytrvalosti ani velmi krátké síly. Dávkuje se 3,2–6,4 g denně
+      aspoň 4 týdny, rozděleně – není to akutní „nakopávač“. Neškodný vedlejší účinek je mravenčení
+      kůže (parestezie); předejde se mu menšími dávkami.
+    exercises:
+      - id: princip
+        type: explain
+        prompt: "Jak funguje beta-alanin, komu pomůže a jak se dávkuje?"
+        keyPoints:
+          - "Zvyšuje svalový karnosin – pufr proti okyselení svalu"
+          - "Největší efekt u zátěže cca 1–4 min (sprinty, veslování, 200–400 m plavání)"
+          - "3,2–6,4 g/den aspoň 4 týdny, rozděleně"
+          - "Mravenčení kůže (parestezie) – neškodné, menší dávky"
+        modelAnswer: >-
+          Beta-alanin zvyšuje ve svalech hladinu karnosinu, který tlumí jejich okyselení při intenzivní
+          zátěži. Nejvíc pomůže při výkonech zhruba na 1–4 minuty, jako jsou opakované sprinty,
+          veslování nebo plavání na 200–400 m; u čisté vytrvalosti nebo krátké síly efekt mizí. Užívá
+          se 3,2–6,4 g denně aspoň čtyři týdny, rozděleně do menších dávek. Častým, ale neškodným
+          vedlejším účinkem je mravenčení kůže.
+      - id: parestezie
+        type: choice
+        prompt: "Klient po beta-alaninu cítí mravenčení kůže. Co mu poradíš?"
+        options:
+          - { text: "Jde o neškodnou parestezii – rozdělit dávku do menších porcí během dne", correct: true }
+          - { text: "Ihned vysadit, jde o alergickou reakci", why: "Mravenčení je typický neškodný účinek vyšší jednorázové dávky." }
+          - { text: "Zvýšit dávku, tělo si zvykne", why: "Pomáhá naopak menší dávka." }
+          - { text: "Kombinovat s kofeinem, který mravenčení ruší", why: "To skripta neuvádějí." }
+      - id: vykon
+        type: choice
+        version: 2
+        prompt: "U kterého výkonu pomůže beta-alanin podle kap. 13 nejvíc?"
+        options:
+          - { text: "Plavání na 200–400 m", correct: true }
+          - { text: "Maraton", why: "U čistě vytrvalostních výkonů se přínos ztrácí." }
+          - { text: "Jednorázový maximální dřep", why: "U velmi krátkých silových výkonů se přínos ztrácí." }
+          - { text: "Pomalá dvouhodinová procházka", why: "Nízká intenzita – okyselení svalu není problém." }
+
+  - id: dpl.bcaa
+    title: BCAA – kdy mají smysl
+    kind: fact
+    tier: B
+    criteria: [8e]
+    prereqs: [dpl.protein-davka]
+    source: { pages: [138, 210, 211], anchor: "přidání BCAA navíc nepřináší měřitelný benefit" }
+    explanation: >-
+      BCAA (leucin, izoleucin, valin) spouštějí svalovou proteosyntézu, ale samy sval nepostaví – chybí
+      ostatní (esenciální) aminokyseliny. Při dostatečném celkovém příjmu bílkovin nepřinášejí oproti
+      kompletnímu proteinu měřitelný benefit. Smysl mohou mít jen při jinak nedostatečné stravě nebo
+      tréninku nalačno; praktičtější je jídlo, protein nebo EAA.
+    exercises:
+      - id: smysl
+        type: choice
+        prompt: "Klient jí dost bílkovin a chce přidat BCAA. Co mu podle skript řekneš?"
+        options:
+          - { text: "Při dostatku bílkovin nepřinesou BCAA měřitelný benefit navíc", correct: true }
+          - { text: "BCAA jsou nutné, protože obsahují všechny esenciální aminokyseliny", why: "Jsou to jen 3 aminokyseliny (leucin, izoleucin, valin)." }
+          - { text: "BCAA nahradí proteinový nápoj i jídlo", why: "Samy sval nepostaví – chybí ostatní aminokyseliny." }
+          - { text: "BCAA jsou ve sportu zakázané", why: "Nejsou zakázané, jen často zbytečné." }
+      - id: ktere
+        type: reveal
+        prompt: "Které aminokyseliny patří mezi BCAA a proč samy nestačí?"
+        answer: "Leucin, izoleucin a valin; ke stavbě svalového proteinu jsou potřeba i ostatní (esenciální) aminokyseliny."
+
+  - id: dpl.protein-typy
+    title: Druhy proteinových nápojů a dávka na porci
+    kind: comparison
+    tier: B
+    criteria: [8e, 8a]
+    prereqs: [dpl.protein-davka]
+    source: { pages: [136, 210], anchor: "Nejpoužívanější jsou syrovátkové" }
+    explanation: >-
+      Syrovátkový protein je nejpoužívanější – kvalitní, rychle vstřebatelný, chutný (koncentrát WPC
+      levnější s více laktózou, izolát WPI s méně laktózy, hydrolyzát dražší a ne nutně účinnější).
+      Kasein se vstřebává pomaleji – vhodný jako svačina nebo před spánkem. Rostlinné proteiny mají
+      horší aminokyselinové spektrum (ideálně směs, např. hrachový + rýžový), kolagenový je méně
+      kvalitní. Dávka na porci obvykle 20–40 g, tj. 0,25–0,4 g/kg.
+    exercises:
+      - id: porce
+        type: numeric
+        formula: per-kg
+        prompt: "Klientka váží {weight} kg. Kolik gramů bílkovin by měla mít jedna porce při {perKg} g/kg?"
+        params:
+          weight: { min: 50, max: 100, step: 1 }
+          perKg:
+            choices:
+              - { value: 0.25, label: "0,25" }
+              - { value: 0.4, label: "0,4" }
+        unit: g
+        tolerance: { rel: 0.03 }
+        decimals: 1
+        hint: "Hmotnost × dávka na kg; běžná porce je 0,25–0,4 g/kg."
+      - id: kasein
+        type: choice
+        prompt: "Který protein je díky pomalejšímu vstřebávání vhodný jako svačina nebo před spaním?"
+        options:
+          - { text: "Kasein", correct: true }
+          - { text: "Syrovátkový hydrolyzát", why: "Ten je částečně naštěpený a vstřebává se rychle." }
+          - { text: "Syrovátkový izolát", why: "Syrovátka se vstřebává rychle." }
+          - { text: "Kolagenový protein", why: "Skripta ho řadí mezi méně kvalitní." }

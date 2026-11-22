@@ -1,0 +1,181 @@
+topic:
+  id: alkohol
+  title: Alkohol
+  chapter: 5
+  pages: [46, 48]
+  order: 50
+  summary: >-
+    Alkohol jako samostatný nositel energie, jeho vliv na metabolismus tuků, hospodaření s vodou
+    a vitaminy, tzv. tolerovatelná dávka a práce s klientem, který pije.
+
+points:
+  - id: alk.charakteristika
+    title: Alkohol jako nositel energie
+    kind: fact
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.makro-mikro]
+    source: { pages: [46, 9, 176], anchor: "Tvoří samostatnou skupinu a nepatří mezi sacharidy" }
+    explanation: >-
+      Alkohol je především zdrojem energie: 1 g dodá asi 29 kJ / 7 kcal – víc než sacharidy
+      a bílkoviny, méně než tuky. Tvoří samostatnou skupinu, nepatří mezi sacharidy. Není
+      esenciální a jeho nutriční význam je nulový až negativní. Látky jako resveratrol z červeného
+      vína jsou přeceňované – lze je získat z jiných potravin bez alkoholu.
+    exercises:
+      - id: zarazeni
+        type: choice
+        prompt: "Jak skripta zařazují alkohol z hlediska živin?"
+        options:
+          - { text: "Samostatný nositel energie, který není esenciální", correct: true }
+          - { text: "Jednoduchý sacharid, který tělo zpracuje jako cukr", why: "Alkohol mezi sacharidy nepatří – to je častý omyl." }
+          - { text: "Podmíněně esenciální živina potřebná v malém množství", why: "Alkohol esenciální není – tělo se bez něj obejde." }
+          - { text: "Seminutrient s přínosem pro dlouhodobé zdraví", why: "Nutriční význam alkoholu je nulový až negativní." }
+      - id: energie
+        version: 2
+        type: choice
+        prompt: "Kolik energie dodá 1 g alkoholu?"
+        options:
+          - { text: "Asi 29 kJ (7 kcal)", correct: true }
+          - { text: "Asi 38 kJ (9 kcal)", why: "To má 1 g tuku – alkohol má méně." }
+          - { text: "Asi 17 kJ (4 kcal)", why: "To mají sacharidy a bílkoviny – alkohol má víc." }
+          - { text: "Žádnou využitelnou energii", why: "Alkohol je především zdrojem energie." }
+      - id: resveratrol
+        type: reveal
+        prompt: "Klient tvrdí, že pije červené víno kvůli resveratrolu. Co mu odpovíš podle skript?"
+        answer: >-
+          Přínos resveratrolu je přeceňovaný a lze ho získat z jiných potravin bez alkoholu. Alkohol
+          není esenciální a čím méně ho člověk pije, tím nižší je zdravotní riziko.
+
+  - id: alk.metabolismus
+    title: Alkohol a metabolismus tuků
+    kind: concept
+    tier: A
+    criteria: [2e, 7a]
+    prereqs: [alk.charakteristika]
+    source: { pages: [47, 176], anchor: "Metabolismus alkoholu má v organismu přednost a dočasně tlumí oxidaci tuků" }
+    explanation: >-
+      Odbourávání alkoholu má v těle přednost před ostatními živinami a dočasně tlumí oxidaci
+      (spalování) tuků. Alkohol navíc výrazně zvyšuje celkový energetický příjem, takže podporuje
+      ukládání nadbytečné energie do tukových zásob. Při vyšším a dlouhodobém pití se může tuk
+      hromadit v játrech. Při odbourávání vzniká toxický acetaldehyd.
+    exercises:
+      - id: oxidace
+        type: choice
+        prompt: "Jak alkohol ovlivňuje metabolismus tuků?"
+        options:
+          - { text: "Jeho odbourávání má přednost a dočasně tlumí oxidaci tuků.", correct: true }
+          - { text: "Zrychluje oxidaci tuků, protože zvyšuje tepelné ztráty těla.", why: "Naopak – oxidaci tuků dočasně tlumí." }
+          - { text: "Mění se přímo na ketolátky, které tělo hned spálí jako tuk.", why: "Skripta popisují tlumení oxidace tuků, ne tvorbu ketolátek." }
+          - { text: "Metabolismus tuků neovlivňuje, pouze dodává energii navíc.", why: "Ovlivňuje – jeho odbourávání má přednost a spalování tuků brzdí." }
+      - id: hubnuti
+        type: explain
+        prompt: "Proč je pravidelné pití alkoholu problém pro klienta, který chce zhubnout?"
+        keyPoints:
+          - "Alkohol má 7 kcal/g (+ cukr v nápojích) – výrazně zvyšuje příjem"
+          - "Odbourávání alkoholu má přednost, dočasně tlumí oxidaci tuků"
+          - "Nadbytečná energie se ukládá do tukových zásob"
+          - "Dlouhodobě riziko ztučnění jater"
+        modelAnswer: >-
+          Alkohol dodává 7 kcal na gram a nápoje často ještě cukr, takže výrazně zvyšuje energetický
+          příjem. Tělo ho odbourává přednostně a po tu dobu tlumí spalování tuků, takže se
+          nadbytečná energie snáz ukládá do tukových zásob. Při dlouhodobém pití se tuk může
+          hromadit i v játrech.
+
+  - id: alk.voda-mineraly-b1
+    title: Alkohol, minerální látky a vitamin B1
+    kind: concept
+    tier: B
+    criteria: [1f, 1e]
+    prereqs: [alk.charakteristika, pit.alkohol-odvodnuje]
+    source: { pages: [47, 176], anchor: "například vápníku, hořčíku, manganu, fosforu, draslíku a zinku" }
+    explanation: >-
+      Alkohol zvyšuje tvorbu moči (tlumí ADH – viz pitný režim) a s močí se ztrácejí i minerální
+      látky: vápník, hořčík, mangan, fosfor, draslík a zinek. Při závislosti na alkoholu často
+      chybí vitamin B1 (thiamin) – kvůli nedostatečnému příjmu potravy, horšímu vstřebávání
+      a změnám metabolismu vitaminů. Nedostatek thiaminu může mít vážné neurologické následky.
+    exercises:
+      - id: mineraly
+        type: choice
+        multiple: true
+        prompt: "Které minerální látky se podle skript ztrácejí s močí při pití alkoholu?"
+        options:
+          - { text: "Hořčík", correct: true }
+          - { text: "Zinek", correct: true }
+          - { text: "Vápník", correct: true }
+          - { text: "Jód", why: "Ztráty jódu skripta u alkoholu neuvádějí." }
+          - { text: "Železo", why: "Železo skripta mezi ztrácenými látkami neuvádějí." }
+      - id: b1
+        type: choice
+        prompt: "Nedostatek kterého vitaminu je typický pro závislost na alkoholu?"
+        options:
+          - { text: "Vitamin B1 (thiamin)", correct: true }
+          - { text: "Vitamin B12 (kobalamin)", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
+          - { text: "Vitamin C", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
+          - { text: "Vitamin K", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
+      - id: b1-proc
+        type: reveal
+        prompt: "Proč lidem závislým na alkoholu často chybí vitamin B1 a čím to hrozí?"
+        answer: >-
+          Kvůli nedostatečnému příjmu potravy, poruše vstřebávání a změnám metabolismu vitaminů.
+          Nedostatek thiaminu může mít závažné neurologické následky.
+
+  - id: alk.tolerovatelna-davka
+    title: Tzv. tolerovatelná dávka alkoholu
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta k 20 g/30 g alkoholu přiřazují objemy (0,5 l piva 10°, 1,6 dcl vína, 5 cl destilátu),
+      které podle vlastní tab. 5.1 obsahují méně alkoholu (asi 14–16 g). Pro test si pamatuj
+      hlavně 20 g ženy / 30 g muži a že nejde o bezpečné množství.
+    criteria: [10d, 7a]
+    prereqs: [alk.charakteristika]
+    source: { pages: [46, 47], anchor: "Podle WHO nelze stanovit množství alkoholu bez zdravotního rizika" }
+    explanation: >-
+      Tzv. tolerovatelný příjem se uvádí jako max. 20 g alkoholu denně pro ženy a max. 30 g pro
+      muže. Nejde ale o bezpečné množství a dávky nelze „šetřit“ a vypít najednou jeden den
+      v týdnu. Podle WHO nelze stanovit množství alkoholu bez zdravotního rizika – čím méně, tím
+      nižší riziko.
+    exercises:
+      - id: zeny
+        type: choice
+        prompt: "Jaký tzv. tolerovatelný denní příjem alkoholu uvádějí skripta pro ženy?"
+        options:
+          - { text: "Maximálně 20 g", correct: true }
+          - { text: "Maximálně 30 g", why: "To je hodnota pro muže." }
+          - { text: "Maximálně 50 g", why: "To je víc než hodnota pro muže (30 g)." }
+          - { text: "Maximálně 5 g", why: "Skripta uvádějí 20 g pro ženy – ani to ale není bezpečné množství." }
+      - id: bezpecne
+        type: reveal
+        prompt: "Znamená tolerovatelná dávka, že je takové množství alkoholu bezpečné? Lze dávky sčítat na víkend?"
+        answer: >-
+          Ne. Podle WHO neexistuje množství alkoholu bez zdravotního rizika; riziko roste
+          s množstvím. Dávky nelze „ušetřit“ a vypít najednou.
+
+  - id: alk.klient
+    title: Klient, který pije alkohol
+    kind: procedure
+    tier: B
+    criteria: [3c, 7a]
+    prereqs: [alk.metabolismus]
+    source: { pages: [47, 48], anchor: "měl by respektovat hranice svých kompetencí" }
+    explanation: >-
+      Klienty edukujeme o rizicích alkoholu, hlavně při zdravotních potížích a redukci. U vyšší
+      konzumace zjistíme reálné množství – výrazně ovlivňuje energetický příjem a bilanci
+      (např. 8 velkých piv 12° jednou týdně ≈ 10 kg tuku za rok). Sledujeme průběh redukce,
+      hmotnost, tuk, stravu a pohyb. Při podezření na rizikové pití či závislost respektujeme
+      hranice kompetencí a doporučíme odbornou pomoc.
+    exercises:
+      - id: zavislost
+        type: explain
+        prompt: "Z rozhovoru s klientem máš podezření na závislost na alkoholu. Jak budeš postupovat?"
+        keyPoints:
+          - "Zjistit reálné množství a frekvenci pití"
+          - "Vysvětlit vliv alkoholu na energetický příjem a zdraví"
+          - "Respektovat hranice svých kompetencí – závislost neléčím"
+          - "Doporučit odbornou pomoc (lékař, adiktolog)"
+        modelAnswer: >-
+          Nejdřív se citlivě doptám, kolik a jak často skutečně pije, protože to výrazně mění
+          energetický příjem. Vysvětlím mu zdravotní rizika a vliv na hubnutí. Závislost ale
+          nespadá do mých kompetencí, proto mu doporučím odbornou pomoc – lékaře nebo
+          adiktologa – a ve spolupráci pokračuji jen v rozsahu výživy.

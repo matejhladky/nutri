@@ -1,0 +1,416 @@
+topic:
+  id: pitny-rezim
+  title: Pitný režim
+  chapter: 16
+  pages: [174, 178]
+  order: 160
+  summary: >-
+    Proč je voda nezbytná, kolik tekutin denně (30–40 ml/kg), jak hydrataci kontrolovat, co se do pitného
+    režimu počítá, alkohol a kofein a pitný režim v nestandardních situacích.
+
+points:
+  - id: pit.funkce-vody
+    title: Proč je pitný režim důležitý
+    kind: concept
+    tier: A
+    criteria: [7e]
+    source: { pages: [174, 175], anchor: "bez vody člověk vydrží přibližně 7 dní" }
+    explanation: >-
+      Pro vodu tělo nemá žádnou zásobu (bez vody přežije asi 7 dní, bez jídla kolem 60), proto je
+      pravidelnost pití stejně důležitá jako celkové množství. Voda je prostředím většiny chemických
+      reakcí, reguluje tělesnou teplotu a krevní tlak, přivádí živiny do buněk a odvádí odpad, pomáhá
+      trávení a vstřebávání (hlavně vitaminů rozpustných ve vodě) a vylučování. Už mírná dehydratace
+      zhoršuje náladu, soustředění, bdělost, zrak i motoriku.
+    exercises:
+      - id: proc
+        type: explain
+        prompt: "Klientka tvrdí, že pije, až když má žízeň. Vysvětli jí, proč je pitný režim důležitý."
+        keyPoints:
+          - "Pro vodu nemá tělo zásobu (bez vody cca 7 dní, bez jídla cca 60) → pít pravidelně"
+          - "Prostředí chemických reakcí, termoregulace, krevní tlak"
+          - "Transport živin a odpadních látek, trávení a vstřebávání, vylučování"
+          - "Už mírná dehydratace zhoršuje náladu, koncentraci, bdělost a výkon"
+        modelAnswer: >-
+          Na rozdíl od jídla si tělo vodu neumí uložit do zásoby – bez vody vydrží asi týden, bez jídla
+          kolem dvou měsíců. Proto je důležité pít pravidelně během celého dne. Voda je prostředím
+          téměř všech chemických reakcí, reguluje teplotu a krevní tlak, přenáší živiny a odpadní látky
+          a je nutná pro trávení a vylučování. Už mírná dehydratace zhorší náladu, soustředění a
+          výkon, takže nejde jen o pocit žízně.
+      - id: rezerva
+        type: choice
+        prompt: "Proč je u tekutin pravidelnost příjmu během dne stejně důležitá jako celkové množství?"
+        options:
+          - { text: "Protože tělo si pro vodu nedokáže vytvořit zásobu.", correct: true }
+          - { text: "Protože ledviny zpracují najednou nejvýš 0,5 l vody.", why: "To skripta neuvádějí." }
+          - { text: "Protože voda se ukládá v tukové tkáni a postupně uvolňuje.", why: "Tuková tkáň vodu téměř neobsahuje." }
+          - { text: "Protože žízeň se objevuje vždy včas a stačí ji poslouchat.", why: "Právě proto, že na žízeň nelze spoléhat, se pije průběžně." }
+      - id: mirna-dehydratace
+        type: choice
+        multiple: true
+        prompt: "Co podle skript může zhoršit už mírná dehydratace?"
+        options:
+          - { text: "Koncentraci a bdělost", correct: true }
+          - { text: "Náladu", correct: true }
+          - { text: "Zrak a motoriku", correct: true }
+          - { text: "Vstřebávání vitaminů rozpustných v tucích", why: "Voda pomáhá hlavně vstřebávání vitaminů rozpustných ve vodě." }
+
+  - id: pit.obsah-vody
+    title: Obsah vody v těle podle věku a pohlaví
+    kind: fact
+    tier: B
+    criteria: [7e]
+    source: { pages: [174], anchor: "kolem 60 % u dospělých mužů s normální váhou" }
+    explanation: >-
+      Podíl vody v těle s věkem klesá: novorozenci 70–80 %, dospělí muži s normální hmotností kolem
+      60 %, dospělé ženy 50–55 % (mají víc tukové tkáně, která vodu téměř neobsahuje), starší lidé
+      kolem 50 %.
+    exercises:
+      - id: zeny
+        type: choice
+        prompt: "Proč mají dospělé ženy nižší podíl vody v těle než muži?"
+        options:
+          - { text: "Mají vyšší podíl tukové tkáně, která vodu téměř neobsahuje.", correct: true }
+          - { text: "Méně pijí.", why: "Podíl vody v těle je dán složením těla, ne tím, kolik kdo pije." }
+          - { text: "Mají vyšší podíl svalové hmoty.", why: "Sval vodu obsahuje hodně – ženy mají naopak více tuku." }
+          - { text: "Mají vyšší bazální metabolismus.", why: "S podílem vody to nesouvisí – rozhoduje vyšší podíl tukové tkáně." }
+      - id: poradi
+        type: reveal
+        prompt: "Kolik procent tvoří voda u novorozence, dospělého muže, dospělé ženy a seniora?"
+        answer: "Novorozenec 70–80 %, muž kolem 60 %, žena 50–55 %, senior kolem 50 %."
+
+  - id: pit.potreba
+    title: Denní potřeba tekutin (30–40 ml/kg)
+    kind: procedure
+    tier: A
+    criteria: [7e, 6b]
+    source: { pages: [174], anchor: "počítáno při ideální (nikoli aktuální) hmotnosti klienta" }
+    explanation: >-
+      Tělo denně ztrácí asi 2–3 l vody (pot, moč, stolice, dech). Orientační potřeba je 30–40 ml na
+      1 kg hmotnosti a den, počítáno z ideální, ne aktuální hmotnosti. Pro ideální hmotnost 70 kg
+      tedy 2,1–2,8 l. Počítají se všechny přijaté tekutiny – voda, ostatní nápoje a v menší míře i
+      voda ze stravy.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: per-kg
+        prompt: "Klientka má ideální hmotnost {weight} kg. Kolik ml tekutin denně jí vychází při {perKg} ml/kg?"
+        params:
+          weight: { min: 50, max: 100, step: 5 }
+          perKg: { min: 30, max: 40, step: 5 }
+        unit: ml
+        tolerance: { abs: 1 }
+        hint: "Ideální hmotnost × 30–40 ml"
+      - id: jaka-hmotnost
+        type: choice
+        prompt: "Klient váží 110 kg, jeho ideální hmotnost je 80 kg. Z jaké hmotnosti počítáš potřebu tekutin?"
+        options:
+          - { text: "Z ideální hmotnosti (80 kg)", correct: true }
+          - { text: "Z aktuální hmotnosti (110 kg)", why: "Skripta výslovně uvádějí ideální, nikoli aktuální hmotnost." }
+          - { text: "Z průměru obou hodnot", why: "Takový postup skripta neuvádějí." }
+          - { text: "Z beztukové hmoty (FFM)", why: "FFM se používá u energetické dostupnosti, ne u tekutin." }
+      - id: rozsah
+        type: choice
+        prompt: "Jaké orientační rozmezí potřeby tekutin uvádějí skripta pro dospělého?"
+        options:
+          - { text: "30–40 ml/kg ideální hmotnosti za den", correct: true }
+          - { text: "15–20 ml/kg za den", why: "To je příliš málo – skripta uvádějí 30–40 ml/kg." }
+          - { text: "50–70 ml/kg za den", why: "Tolik uvádí tabulka např. pro 1. den života nebo děti 11–14 let; pro dospělého platí 30–40 ml/kg." }
+          - { text: "Paušálně 4 l denně pro každého", why: "Potřeba se počítá individuálně z ideální hmotnosti." }
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka se ptá, kolik má denně vypít. Jak jí potřebu tekutin spočítáš a vysvětlíš?"
+        keyPoints:
+          - "Tělo denně ztrácí asi 2–3 l vody (pot, moč, stolice, dech)"
+          - "Orientačně 30–40 ml na kg a den"
+          - "Z ideální, ne aktuální hmotnosti (70 kg → 2,1–2,8 l)"
+          - "Počítají se všechny tekutiny, v menší míře i voda ze stravy"
+        modelAnswer: >-
+          Tělo denně ztratí asi 2–3 litry vody potem, močí, stolicí a dechem, a to je potřeba průběžně
+          doplňovat. Orientačně počítám 30–40 ml na kilogram a den, a to z ideální, ne aktuální
+          hmotnosti – při ideální hmotnosti 70 kg tedy 2,1–2,8 litru. Do toho se počítá voda i ostatní
+          nápoje a v menší míře i voda z jídla.
+
+  - id: pit.kontrola
+    title: Kontrola hydratace bez počítání
+    kind: procedure
+    tier: A
+    criteria: [7e]
+    source: { pages: [174, 175], anchor: "Podle frekvence návštěv toalety" }
+    explanation: >-
+      Klient nemusí tekutiny počítat. Orientace podle barvy moči (škála 1–8): 1–3 světlá, slámová =
+      dobrá hydratace; 4–5 sytější žlutá = doplnit; 6–8 tmavě žlutá až jantarová = výraznější
+      dehydratace, pít hned – když tmavá barva přetrvává i po zvýšeném pití, patří klient k lékaři.
+      Dále toaleta alespoň 5× denně. Pomůcky: vlastní láhev stále po ruce, aplikace s připomínkami,
+      chytré hodinky.
+    exercises:
+      - id: bez-pocitani
+        type: explain
+        prompt: "Klient nechce tekutiny počítat. Jak mu poradíš kontrolovat pitný režim?"
+        keyPoints:
+          - "Barva moči: světlá = dobře, tmavší = doplnit, tmavá = dehydratace"
+          - "Tmavá moč i po zvýšeném pití → lékař"
+          - "Toaleta alespoň 5× denně"
+          - "Pomůcky: vlastní láhev po ruce, aplikace s připomínkami, chytré hodinky"
+        modelAnswer: >-
+          Nejjednodušší je sledovat barvu moči – světlá, slámová znamená dobrou hydrataci, sytě žlutá,
+          že je potřeba přidat, a tmavě žlutá až jantarová výraznou dehydrataci. Pokud tmavá zůstává
+          i po zvýšeném pití, má jít k lékaři. Dále by měl chodit na toaletu alespoň pětkrát denně.
+          Pomůže mít stále po ruce vlastní láhev, aplikaci s připomínkami nebo chytré hodinky.
+      - id: barva
+        type: choice
+        prompt: "Klientka má moč sytě žlutou (odstín 4–5 na osmistupňové škále). Jak to vyhodnotíš?"
+        options:
+          - { text: "Hydrataci je vhodné doplnit.", correct: true }
+          - { text: "Dobrá hydratace, nic není třeba měnit.", why: "To odpovídá odstínům 1–3 (světlá, slámová)." }
+          - { text: "Výrazná dehydratace, okamžitě k lékaři.", why: "Tmavě žlutá až jantarová je 6–8; k lékaři až když tmavá barva přetrvává i po pití." }
+          - { text: "Barva moči o hydrataci nic nevypovídá.", why: "Barva moči je podle skript základní orientační ukazatel hydratace." }
+      - id: toaleta
+        type: choice
+        prompt: "Kolikrát denně by měl klient podle skript alespoň navštívit toaletu?"
+        options:
+          - { text: "Alespoň 5×", correct: true }
+          - { text: "Alespoň 2×", why: "Skripta doporučují alespoň 5× denně." }
+          - { text: "Alespoň 10×", why: "Tolik skripta nevyžadují – uvádějí alespoň 5× denně." }
+          - { text: "Počet návštěv toalety se k hydrataci nevztahuje", why: "Frekvence toalety je jeden ze způsobů kontroly bez počítání." }
+
+  - id: pit.zdroje
+    title: Co se počítá do pitného režimu
+    kind: concept
+    tier: A
+    criteria: [7e]
+    source: { pages: [175, 176, 178], anchor: "se do pitného režimu počítají všechny nápoje obsahující vodu" }
+    explanation: >-
+      Podle EFSA a WHO se počítají všechny nápoje obsahující vodu, liší se ale vhodností. Vhodné: voda
+      (i perlivá a minerální), čaje, káva, mléko, proteinové a iontové nápoje, nealko pivo, polévky,
+      100% šťávy. Formálně se počítají, ale hlavním zdrojem být nemají: sirupy, slazené limonády,
+      „zero“ nápoje, ochucené vody, kokosová voda. Káva neodvodňuje, ale má být jen doplňkem.
+      Alkohol se nepočítá – odvodňuje.
+    exercises:
+      - id: nepocita
+        type: choice
+        prompt: "Který nápoj se do pitného režimu nepočítá?"
+        options:
+          - { text: "Víno", correct: true }
+          - { text: "Káva", why: "Káva neodvodňuje a do pitného režimu se počítá (jen by neměla být hlavním zdrojem)." }
+          - { text: "Nealkoholické pivo", why: "Patří mezi uvedené zdroje tekutin." }
+          - { text: "Polévka", why: "Polévky a vývary se počítají." }
+      - id: mene-vhodne
+        type: choice
+        multiple: true
+        prompt: "Které nápoje se do pitného režimu sice počítají, ale skripta je řadí mezi méně vhodné?"
+        options:
+          - { text: "Slazená limonáda ze sirupu", correct: true }
+          - { text: "„Zero“ nápoj se sladidly", correct: true }
+          - { text: "Kokosová voda", correct: true }
+          - { text: "Neslazený bylinkový čaj", why: "Čaje patří mezi vhodné zdroje." }
+          - { text: "Mléko", why: "Mléko patří mezi vhodné zdroje tekutin." }
+      - id: kava
+        type: choice
+        prompt: "Klientka se ptá, jestli ji káva odvodňuje. Co jí podle skript odpovíš?"
+        options:
+          - { text: "Neodvodňuje a počítá se, ale hlavním zdrojem tekutin by být neměla.", correct: true }
+          - { text: "Odvodňuje, za každou kávu musí vypít sklenici vody navíc.", why: "To je rozšířený mýtus." }
+          - { text: "Neodvodňuje a může klidně tvořit hlavní zdroj tekutin.", why: "Má zůstat doplňkem vedle vody." }
+          - { text: "Do pitného režimu se nepočítá vůbec.", why: "Káva neodvodňuje a do pitného režimu se počítá." }
+      - id: prehled
+        type: explain
+        prompt: "Co všechno se počítá do pitného režimu a co bys klientovi doporučila jako hlavní zdroj?"
+        keyPoints:
+          - "Počítají se všechny nápoje obsahující vodu (EFSA, WHO), liší se vhodností"
+          - "Hlavní zdroj: voda, čaje; dále mléko, polévky, 100% šťávy aj."
+          - "Méně vhodné: sirupy, slazené limonády, zero nápoje, ochucené vody"
+          - "Káva neodvodňuje, ale jen jako doplněk"
+          - "Alkohol se nepočítá – odvodňuje"
+        modelAnswer: >-
+          Podle odborných společností se počítají všechny nápoje, které obsahují vodu, nejsou ale stejně
+          vhodné. Základem má být voda a čaje, počítá se i mléko, polévky nebo 100% šťávy. Sirupy,
+          slazené limonády, zero nápoje či ochucené vody se formálně počítají, ale kvůli cukru a
+          sladidlům je klientovi spíše omezím. Káva neodvodňuje, ale zůstává doplňkem. Alkohol se
+          nepočítá, protože tělo odvodňuje.
+
+  - id: pit.alkohol-odvodnuje
+    title: Proč alkohol odvodňuje
+    kind: concept
+    tier: A
+    criteria: [7e]
+    prereqs: [pit.zdroje]
+    source: { pages: [176], anchor: "Snižuje produkci antidiuretického hormonu v mozku" }
+    explanation: >-
+      Alkohol tlumí tvorbu antidiuretického hormonu (ADH) v mozku. Ledviny pak vylučují víc moči a tělo
+      ztrácí vodu – proto je typickým příznakem kocoviny žízeň. Do pitného režimu
+      se alkoholické nápoje nepočítají. Alkohol navíc narušuje metabolismus živin, vitaminů a
+      minerálních látek i regulaci vody v těle a dodává energii bez nutričního přínosu (1 g = 7 kcal).
+    exercises:
+      - id: hormon
+        type: choice
+        prompt: "Tvorbu kterého hormonu alkohol tlumí, a tím zvyšuje ztráty vody močí?"
+        options:
+          - { text: "Antidiuretického hormonu (ADH)", correct: true }
+          - { text: "Inzulinu", why: "Odvodnění po alkoholu souvisí s ADH, ne s inzulinem." }
+          - { text: "Kortizolu", why: "Kortizol zvyšuje kofein, s odvodněním po alkoholu nesouvisí." }
+          - { text: "Leptinu", why: "Leptin souvisí se sytostí, ne s vylučováním vody." }
+      - id: klient-pivo
+        type: explain
+        prompt: "Klient tvrdí, že večer vypije tři piva, takže má pitný režim splněný. Co mu vysvětlíš?"
+        keyPoints:
+          - "Alkoholické nápoje se do pitného režimu nepočítají"
+          - "Alkohol tlumí ADH → víc moči → odvodnění"
+          - "Proto žízeň při kocovině"
+          - "Navíc energie bez nutričního přínosu (7 kcal/g)"
+        modelAnswer: >-
+          Pivo se do pitného režimu nepočítá. Alkohol tlumí v mozku tvorbu antidiuretického hormonu,
+          takže ledviny vyloučí víc vody – tělo se spíš odvodní, proto je druhý den žízeň. Navíc pivo
+          přináší energii z alkoholu bez nutričního přínosu. Pitný režim musí pokrýt vodou a dalšími
+          vhodnými nápoji.
+
+  - id: pit.alkohol-energie
+    title: Energie alkoholických nápojů
+    kind: comparison
+    tier: B
+    criteria: [7e, 7a]
+    prereqs: [alk.charakteristika]
+    source: { pages: [176, 177], anchor: "destiláty mají výrazně vyšší energetickou hodnotu na 100 ml" }
+    explanation: >-
+      Energie nápoje závisí na obsahu alkoholu (1 g = 29 kJ / 7 kcal) i zbytkového cukru. Na 100 ml
+      mají nejvíc energie destiláty a likéry (krémové a vaječné nejvíc). I malý panák (0,04 l) má
+      asi 340–540 kJ, tedy energeticky dost. Na celou porci má ale nejvíc velké pivo 12° (asi
+      990 kJ) – víc než dva panáky destilátu. Při rozboru jídelníčku se proto ptej na druh i množství.
+    exercises:
+      - id: na-100
+        type: choice
+        prompt: "Který nápoj má podle tabulky ve skriptech nejvyšší energetickou hodnotu na 100 ml?"
+        options:
+          - { text: "Smetanový likér", correct: true }
+          - { text: "Pivo 12°", why: "Pivo má na 100 ml nejméně energie (kolem 200 kJ)." }
+          - { text: "Bílé polosuché víno", why: "Víno má asi 280 kJ na 100 ml." }
+          - { text: "Rum", why: "Rum má hodně (asi 850 kJ/100 ml), ale méně než likéry." }
+      - id: porce
+        type: choice
+        prompt: "Co má na jednu obvyklou porci více energie?"
+        options:
+          - { text: "Velké pivo 12° (0,5 l)", correct: true }
+          - { text: "Panák whisky (0,04 l)", why: "Panák má asi 420 kJ, velké pivo 12° asi 990 kJ." }
+          - { text: "Obojí má přibližně stejně", why: "Velké pivo 12° (asi 990 kJ) má víc než dvojnásobek panáku whisky (asi 420 kJ)." }
+
+  - id: pit.kofein-ucinky
+    title: Účinky kofeinu a jeho vstřebávání
+    kind: fact
+    tier: B
+    criteria: [7e]
+    source: { pages: [177], anchor: "poslední kávu je proto vhodné vypít ideálně nejpozději 8 hodin" }
+    explanation: >-
+      Kofein stimuluje CNS: oddaluje (hlavně duševní) únavu, zlepšuje soustředění, bdělost, sportovní
+      výkon, zvyšuje kortizol a adrenalin, uvolňuje hladké svalstvo a rozšiřuje tepny. Účinek nastupuje
+      do 10–15 min, odbourání trvá až 12 h – poslední kávu ideálně 8 h před spaním. Z kávy se vstřebá
+      za pár minut, z čaje až za ~40 min (vazba na třísloviny). Při pravidelném pití vzniká tolerance.
+    exercises:
+      - id: spanek
+        type: choice
+        prompt: "Kdy nejpozději by měla klientka vypít poslední kávu, aby jí nenarušila spánek?"
+        options:
+          - { text: "Ideálně 8 hodin před spaním", correct: true }
+          - { text: "1 hodinu před spaním", why: "Odbourání kofeinu trvá až 12 hodin." }
+          - { text: "Na čase nezáleží, kofein spánek neovlivňuje", why: "Kofein spánek narušuje a odbourává se až 12 hodin." }
+          - { text: "Až 24 hodin před spaním", why: "Skripta uvádějí ideálně 8 hodin před spaním." }
+      - id: caj
+        type: choice
+        prompt: "Proč se kofein z čaje vstřebává pomaleji než z kávy?"
+        options:
+          - { text: "Váže se na třísloviny z čajových lístků.", correct: true }
+          - { text: "Čaj obsahuje víc kofeinu.", why: "Rychlost vstřebání s množstvím nesouvisí; vazba na třísloviny ho zpomaluje." }
+          - { text: "Čaj se pije teplejší.", why: "S teplotou to nesouvisí – zpomaluje ho vazba na třísloviny." }
+          - { text: "Kofein z čaje se vstřebává až v tlustém střevě.", why: "Vstřebává se v žaludku a tenkém střevě." }
+      - id: tolerance
+        type: reveal
+        prompt: "Jak rychle kofein začne působit, jak dlouho se odbourává a co se děje při pravidelném pití?"
+        answer: "Nástup do 10–15 minut, odbourání až 12 hodin; při pravidelném příjmu vzniká tolerance (stejná dávka působí slaběji)."
+
+  - id: pit.kofein-limity
+    title: Bezpečná dávka kofeinu a pro koho není vhodný
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      S. 177 uvádí jako maximální bezpečnou dávku podle EFSA 200–400 mg/den pro běžnou populaci; EFSA
+      pro zdravé dospělé ve skutečnosti uvádí až 400 mg/den (jednorázově do 200 mg); 200 mg/den
+      v těhotenství a při kojení uvádějí i s. 218 a 220. U dětí s. 178 kofein zcela vylučuje,
+      s. 226 ho nedoporučuje do 12 let. U zkoušky: běžná populace 200–400 mg/den (horní hranice 400),
+      těhotné max. 200 mg/den, děti kofein ne.
+    criteria: [7e, 7f]
+    source: { pages: [177, 178], anchor: "Maximální bezpečná dávka kofeinu pro běžnou populaci je dle EFSA" }
+    explanation: >-
+      Maximální bezpečná dávka kofeinu pro běžnou populaci je podle EFSA (dle skript) 200–400 mg denně.
+      Nevhodný je pro děti (v jídelníčku by neměl být), těhotné (max. 200 mg/den, sčítají se všechny
+      zdroje), přecitlivělé jedince (stres, nervozita, třes) a při lécích s interakcí – např. snižuje
+      účinek některých léků na epilepsii (doporučit konzultaci s lékařem). Orientačně: espresso
+      průměrně 80 mg.
+    exercises:
+      - id: bezna-populace
+        type: choice
+        prompt: "Jakou maximální bezpečnou denní dávku kofeinu uvádějí skripta (dle EFSA) pro běžnou dospělou populaci?"
+        options:
+          - { text: "200–400 mg", correct: true }
+          - { text: "50–100 mg", why: "To je méně než limit i pro těhotné (200 mg)." }
+          - { text: "600–800 mg", why: "To výrazně překračuje doporučenou horní hranici 400 mg." }
+          - { text: "1 000 mg", why: "Tak vysokou dávku skripta za bezpečnou nepovažují." }
+      - id: pro-koho
+        type: explain
+        prompt: "Pro koho není kofein vhodný a jaká je bezpečná denní dávka?"
+        keyPoints:
+          - "Běžná populace max. 200–400 mg/den (EFSA)"
+          - "Děti – kofein by v jídelníčku být neměl"
+          - "Těhotné max. 200 mg/den"
+          - "Přecitlivělí jedinci (nervozita, třes)"
+          - "Interakce s léky (např. antiepileptika) → lékař"
+        modelAnswer: >-
+          Pro běžnou dospělou populaci se podle EFSA uvádí maximálně 200–400 mg kofeinu denně. Děti by
+          kofein neměly přijímat vůbec, těhotné nejvýš 200 mg denně ze všech zdrojů dohromady.
+          Opatrní musí být přecitlivělí lidé, u kterých vyvolá nervozitu či třes, a lidé užívající léky,
+          s nimiž kofein interaguje – například snižuje účinek některých antiepileptik, proto je
+          vhodná konzultace s lékařem.
+      - id: leky
+        type: choice
+        prompt: "U klienta, který užívá které léky, by sis podle skript měla pohlídat interakci s kofeinem?"
+        options:
+          - { text: "Léky na epilepsii", correct: true }
+          - { text: "Vitamin D", why: "Interakci kofeinu s vitaminem D skripta neuvádějí." }
+          - { text: "Antihistaminika", why: "Skripta jako příklad interakce uvádějí léky na epilepsii." }
+          - { text: "Probiotika", why: "Interakci kofeinu s probiotiky skripta neuvádějí." }
+
+  - id: pit.nestandardni
+    title: Pitný režim v nestandardních situacích
+    kind: procedure
+    tier: A
+    criteria: [7e, 6c]
+    prereqs: [pit.potreba, spo.hydratace, obd.senior-pitny-rezim]
+    source: { pages: [188, 213, 222, 227], anchor: "nastavte pravidelný pitný režim podle hodin, ne podle pocitu žízně" }
+    explanation: >-
+      Ztráty vody rostou při sportu, v teple a při fyzické práci. Sport: před výkonem případně 5–10 ml/kg
+      2–4 h předem, během podle žízně a potivosti, po výkonu doplnit asi 125–150 % ztráty spolu se
+      sodíkem a jídlem. Senioři mají slabší žízeň – pít podle hodin, minimum asi 1,5 l tekutin. Na
+      dovolené all inclusive hlídat dehydrataci a alkohol. Děti: hlavně neperlivá voda, ne slazené a
+      kofeinové nápoje.
+    exercises:
+      - id: situace
+        type: explain
+        prompt: "Jak upravíš doporučení k pitnému režimu ve sportu, u seniora a na dovolené?"
+        keyPoints:
+          - "Teplo, sport, fyzická práce → vyšší ztráty vody"
+          - "Sport: před výkonem 5–10 ml/kg 2–4 h předem, během podle žízně a potivosti"
+          - "Po výkonu 125–150 % ztráty se sodíkem a jídlem"
+          - "Senior: slabší žízeň → pít podle hodin, min. cca 1,5 l"
+          - "Dovolená all inclusive: dehydratace + alkohol"
+        modelAnswer: >-
+          Ztráty vody se zvyšují při sportu, v horku i při fyzické práci. Sportovec může 2–4 hodiny
+          před výkonem vypít 5–10 ml/kg, během výkonu pije podle žízně a potivosti a po něm doplní
+          zhruba 125–150 % ztracených tekutin spolu se sodíkem a jídlem. Senior má slabší pocit žízně,
+          proto mu nastavím pití podle hodin, minimálně asi 1,5 litru tekutin. Na dovolené all
+          inclusive upozorním na riziko dehydratace a alkoholu.
+      - id: senior
+        type: choice
+        prompt: "Jak nastavíš pitný režim seniorovi se sníženým pocitem žízně?"
+        options:
+          - { text: "Pravidelně podle hodin, ne podle žízně.", correct: true }
+          - { text: "Pít jen při žízni, aby se nepřetěžovaly ledviny.", why: "Senior má žízeň oslabenou, na ni spoléhat nelze." }
+          - { text: "Hlavně kávou, protože povzbudí.", why: "Káva má být jen doplňkem." }
+          - { text: "Omezit tekutiny na 1 l denně kvůli častému močení.", why: "Klinické minimum je asi 1,5 l; omezovat tekutiny je u seniora rizikové." }

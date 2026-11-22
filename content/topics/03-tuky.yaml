@@ -1,0 +1,806 @@
+topic:
+  id: tuky
+  title: Tuky
+  chapter: 3
+  pages: [22, 35]
+  order: 30
+  summary: >-
+    Stavba tuků, dělení mastných kyselin (nasycené, MUFA, PUFA n-3 a n-6, trans), esenciální MK,
+    cholesterol a fosfolipidy, doporučený příjem a poměry, zdroje a tuky v kuchyni.
+
+points:
+  - id: tuk.funkce
+    title: Funkce tuků ve výživě a v těle
+    kind: concept
+    tier: A
+    criteria: [1b]
+    source: { pages: [22], anchor: "zásadní pro vstřebání vitaminů rozpustných v tucích" }
+    explanation: >-
+      Ve stravě: nejbohatší zdroj energie (38 kJ / 9 kcal na 1 g), zasytí (pomalé trávení), nesou
+      chuť a jsou nutné pro vstřebání vitaminů rozpustných v tucích – proto i v redukci přidat
+      k zelenině trochu oleje či semínek. V těle: tuková tkáň jako energetická zásoba, tepelná
+      a mechanická izolace; esenciální MK pro tvorbu hormonů a zdraví pokožky; MK jsou součástí
+      buněčných membrán.
+    exercises:
+      - id: vitaminy
+        type: choice
+        prompt: "Proč skripta doporučují přidat k zelenině trochu oleje i při přísné redukční dietě?"
+        options:
+          - { text: "Tuk je nutný pro vstřebání vitaminů rozpustných v tucích.", correct: true }
+          - { text: "Olej snižuje glykemický index zeleniny a zpomalí vstřebání cukrů.", why: "To není důvod, který skripta uvádějí." }
+          - { text: "Olej zvyšuje obsah vlákniny a tím i sytost celého jídla.", why: "Olej vlákninu neobsahuje." }
+          - { text: "Bez tuku tělo nedokáže strávit bílkoviny obsažené v zelenině.", why: "Bílkoviny se tráví i bez tuku; tuk je nutný pro vitaminy rozpustné v tucích." }
+      - id: funkce-telo
+        type: choice
+        multiple: true
+        prompt: "Které funkce plní tuky podle skript v lidském těle?"
+        options:
+          - { text: "Tepelná a mechanická izolace", correct: true }
+          - { text: "Dlouhodobá zásoba energie", correct: true }
+          - { text: "Součást buněčných membrán", correct: true }
+          - { text: "Přenos kyslíku krví", why: "To je funkce bílkoviny hemoglobinu." }
+          - { text: "Hlavní stavební látka vlasů a nehtů", why: "To je bílkovina keratin." }
+      - id: shrnuti
+        type: reveal
+        prompt: "Vyjmenuj funkce tuků ve výživě (ve stravě)."
+        answer: "Zdroj energie (9 kcal/g), sytost, nositel chuti, vstřebání vitaminů rozpustných v tucích."
+
+  - id: tuk.stavba
+    title: Stavba tuku – triacylglycerol
+    kind: fact
+    tier: A
+    criteria: [1b, 2e]
+    source: { pages: [22, 23], anchor: "trojsytným alkoholem glycerolem, na kterém jsou navázány" }
+    explanation: >-
+      Tuk (triacylglycerol, TAG) se skládá z trojsytného alkoholu glycerolu, na který jsou navázány
+      tři mastné kyseliny (MK). Z hlediska výživy jsou nejdůležitější právě MK – jejich druh určuje
+      kvalitu tuku. MK je řetězec uhlíků (obvykle sudý počet) s karboxylovou skupinou (-COOH),
+      kterou se váže na glycerol.
+    exercises:
+      - id: slozeni
+        type: choice
+        prompt: "Z čeho se skládá molekula triacylglycerolu?"
+        options:
+          - { text: "Z glycerolu a tří mastných kyselin", correct: true }
+          - { text: "Z glukózy a tří mastných kyselin", why: "Glukóza je sacharid; základem tuku je trojsytný alkohol glycerol." }
+          - { text: "Z cholesterolu a mastné kyseliny", why: "Cholesterol je steroidní látka, ne součást TAG." }
+          - { text: "Z glycerolu, fosfátu a dvou mastných kyselin", why: "To odpovídá fosfolipidu." }
+      - id: kvalita
+        type: reveal
+        prompt: "Která část tuku je z hlediska výživy nejdůležitější a proč?"
+        answer: "Mastné kyseliny – jejich druh (nasycenost, délka, typ vazby) určuje kvalitu tuku."
+
+  - id: tuk.deleni-mk
+    title: Dělení mastných kyselin podle dvojných vazeb
+    kind: concept
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.stavba]
+    source: { pages: [23, 24], anchor: "Čím má řetězec MK více dvojných vazeb a tím i ohybů" }
+    explanation: >-
+      Nasycené MK (SFA) nemají žádnou dvojnou vazbu. Nenasycené mají alespoň jednu: mononenasycené
+      (MUFA) právě jednu, polynenasycené (PUFA) více než jednu. Dvojné vazby řetězec ohýbají – čím
+      víc dvojných vazeb, tím je tuk kapalnější. Proto je sádlo (převaha SFA) při pokojové teplotě
+      tuhé a olivový olej (nenasycené MK) tekutý. MK se dále dělí podle délky řetězce, esenciality
+      a typu vazby (cis/trans).
+    exercises:
+      - id: mufa
+        type: choice
+        prompt: "Kolik dvojných vazeb má mononenasycená mastná kyselina?"
+        options:
+          - { text: "Právě jednu", correct: true }
+          - { text: "Žádnou", why: "To je nasycená MK." }
+          - { text: "Dvě a více", why: "To jsou polynenasycené MK." }
+          - { text: "Jednu trojnou vazbu", why: "MK se dělí podle počtu dvojných vazeb; MUFA má právě jednu dvojnou vazbu." }
+      - id: skupenstvi
+        version: 2
+        type: choice
+        prompt: "Proč je olivový olej při pokojové teplotě tekutý, zatímco sádlo tuhé?"
+        options:
+          - { text: "Převažují v něm nenasycené MK, jejichž dvojné vazby ohýbají řetězec.", correct: true }
+          - { text: "Převažují v něm nasycené MK, jejichž rovné řetězce se hůř skládají k sobě.", why: "Nasycené MK převažují v tuhém sádle; olivový olej je převážně nenasycený." }
+          - { text: "Neobsahuje glycerol, takže mastné kyseliny v něm zůstávají volné.", why: "Olej je stejně jako sádlo tvořen triacylglyceroly (glycerol + MK)." }
+          - { text: "Obsahuje víc cholesterolu, který tuk při pokojové teplotě ředí.", why: "Rostlinné oleje cholesterol neobsahují." }
+      - id: hlediska
+        type: reveal
+        prompt: "Podle jakých hledisek lze dělit mastné kyseliny?"
+        answer: >-
+          Délka řetězce, schopnost těla je syntetizovat (esenciální/neesenciální), přítomnost a počet
+          dvojných vazeb (SFA, MUFA, PUFA) a typ dvojné vazby (cis/trans).
+
+  - id: tuk.delka-retezce
+    title: Délka řetězce mastných kyselin
+    kind: fact
+    tier: C
+    criteria: [1b]
+    prereqs: [tuk.deleni-mk]
+    source: { pages: [23], anchor: "S rostoucím počtem uhlíků a délkou řetězce klesá rozpustnost ve vodě" }
+    explanation: >-
+      Podle počtu uhlíků: krátký řetězec 2–6, středně dlouhý 6–12, dlouhý 12–20 a velmi dlouhý
+      více než 20 atomů uhlíku. S délkou řetězce klesá rozpustnost ve vodě.
+    exercises:
+      - id: kratke
+        type: choice
+        prompt: "Kolik atomů uhlíku mají podle skript mastné kyseliny s krátkým řetězcem?"
+        options:
+          - { text: "2–6", correct: true }
+          - { text: "6–12", why: "To je středně dlouhý řetězec." }
+          - { text: "12–20", why: "To je dlouhý řetězec." }
+          - { text: "Více než 20", why: "To je velmi dlouhý řetězec." }
+
+  - id: tuk.esencialni-mk
+    title: Esenciální mastné kyseliny
+    kind: fact
+    tier: A
+    criteria: [1b, 1a]
+    prereqs: [tuk.deleni-mk]
+    confusableWith: [tuk.pufa-n3-n6]
+    source: { pages: [23, 24], anchor: "Mezi esenciální MK patří kyselina linolová a kyselina alfa-linolenová" }
+    explanation: >-
+      Esenciální jsou jen dvě MK: kyselina linolová (LA, řada n-6) a kyselina alfa-linolenová (ALA,
+      řada n-3). Tělo si je neumí vyrobit, musí přijít stravou. Kyselina arachidonová je podmíněně
+      esenciální – vzniká z linolové. EPA a DHA tělo z ALA vytvoří, ale jen v malé míře, takže jich
+      obvykle není dost.
+    exercises:
+      - id: ktere
+        type: choice
+        multiple: true
+        prompt: "Které mastné kyseliny jsou podle skript esenciální?"
+        options:
+          - { text: "Kyselina linolová", correct: true }
+          - { text: "Kyselina alfa-linolenová", correct: true }
+          - { text: "Kyselina olejová", why: "Je to MUFA, tělo si ji umí vytvořit." }
+          - { text: "Kyselina arachidonová", why: "Je jen podmíněně esenciální – vzniká z kyseliny linolové." }
+          - { text: "Kyselina palmitová", why: "Nasycené MK si tělo vytvoří samo." }
+      - id: arachidonova
+        type: reveal
+        prompt: "Proč je kyselina arachidonová označována jako podmíněně esenciální?"
+        answer: "Tělo ji umí vytvořit, ale jen z kyseliny linolové – její syntéza závisí na příjmu LA."
+
+  - id: tuk.sfa
+    title: Nasycené mastné kyseliny (SFA)
+    kind: fact
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.deleni-mk]
+    confusableWith: [tuk.mufa]
+    source: { pages: [25], anchor: "Tělo si je dokáže vytvořit samo a není nutné je" }
+    explanation: >-
+      SFA mají jen jednoduché vazby, bývají tuhé. Tělo si je vytvoří samo, slouží hlavně jako zdroj
+      energie a lze je nahradit sacharidy. Zdroje: uzeniny, máslo, sádlo, tučné maso a tučné mléčné
+      výrobky, z rostlinných tropické tuky (kokosový, palmový olej, kakaové máslo). Nadbytek zvyšuje
+      cholesterol, riziko kardiovaskulárních nemocí a obezity. Zástupci: kyselina máselná, laurová,
+      myristová, palmitová, stearová.
+    exercises:
+      - id: zastupce
+        type: choice
+        prompt: "Která z těchto mastných kyselin je nasycená?"
+        options:
+          - { text: "Kyselina palmitová", correct: true }
+          - { text: "Kyselina olejová", why: "Je mononenasycená (MUFA)." }
+          - { text: "Kyselina linolová", why: "Je polynenasycená n-6." }
+          - { text: "Kyselina eikosapentaenová", why: "EPA je polynenasycená n-3." }
+      - id: zdroje
+        type: choice
+        multiple: true
+        prompt: "Které potraviny jsou významným zdrojem nasycených MK?"
+        options:
+          - { text: "Sádlo", correct: true }
+          - { text: "Kokosový tuk", correct: true }
+          - { text: "Uzeniny", correct: true }
+          - { text: "Řepkový olej", why: "V řepkovém oleji převažují MUFA, obsahuje i n-3 MK." }
+          - { text: "Losos", why: "Tučné mořské ryby jsou zdrojem PUFA (n-3)." }
+      - id: esencialita
+        type: reveal
+        prompt: "Jsou nasycené MK esenciální? K čemu primárně slouží?"
+        answer: "Ne – tělo si je vytvoří samo. Slouží hlavně jako zdroj energie a lze je nahradit sacharidy."
+
+  - id: tuk.mufa
+    title: Mononenasycené mastné kyseliny (MUFA)
+    kind: fact
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.deleni-mk]
+    confusableWith: [tuk.sfa, tuk.pufa-n3-n6]
+    source: { pages: [25], anchor: "MUFA pomáhají vyrovnávat hladiny LDL a HDL cholesterolu" }
+    explanation: >-
+      MUFA mají jednu dvojnou vazbu. Hlavním zástupcem je kyselina olejová (dále palmitoolejová).
+      Zdroje: olivový a řepkový olej, olivy, avokádo, arašídy, některé ořechy a semínka. Pomáhají
+      vyrovnávat hladiny LDL a HDL cholesterolu a jsou stabilní vůči vlivům okolí.
+    exercises:
+      - id: olejova
+        type: choice
+        prompt: "Kyselina olejová patří mezi…"
+        options:
+          - { text: "mononenasycené MK", correct: true }
+          - { text: "nasycené MK", why: "Nasycené jsou např. kyselina palmitová a stearová; olejová má jednu dvojnou vazbu." }
+          - { text: "polynenasycené n-3 MK", why: "Řadu n-3 tvoří ALA, EPA a DHA; olejová má jen jednu dvojnou vazbu." }
+          - { text: "esenciální MK", why: "Esenciální jsou jen linolová a alfa-linolenová." }
+      - id: zdroj
+        type: choice
+        prompt: "Který zdroj tuku je typický převahou MUFA?"
+        options:
+          - { text: "Olivový olej", correct: true }
+          - { text: "Slunečnicový olej", why: "V něm převažuje n-6 kyselina linolová (PUFA)." }
+          - { text: "Máslo", why: "V másle převažují SFA." }
+          - { text: "Lněný olej", why: "V něm převažuje n-3 kyselina alfa-linolenová." }
+
+  - id: tuk.pufa-n3-n6
+    title: Polynenasycené MK – řady n-3 a n-6
+    kind: comparison
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta (s. 23 a 25–26) řadí mezi PUFA i řadu omega-9. Hlavní n-9 kyselina (olejová) je ale
+      mononenasycená, jak uvádějí i skripta na s. 25. Pro test: nutričně významné PUFA jsou řady
+      n-3 a n-6; kyselina olejová je MUFA.
+    criteria: [1b]
+    prereqs: [tuk.deleni-mk]
+    confusableWith: [tuk.esencialni-mk, tuk.mufa]
+    source: { pages: [25, 26], anchor: "první dvojná vazba se vyskytuje na šestém atomu uhlíku" }
+    explanation: >-
+      Označení n-3 (starší omega-3) znamená, že první dvojná vazba je na 3. uhlíku od methylového
+      konce (-CH3); n-6 na 6. uhlíku. Řada n-6: kyselina linolová (LA) a arachidonová (AA).
+      Řada n-3: kyselina alfa-linolenová (ALA), eikosapentaenová (EPA) a dokosahexaenová (DHA).
+      PUFA najdeme v rostlinných i živočišných zdrojích.
+    exercises:
+      - id: n3
+        type: choice
+        multiple: true
+        prompt: "Které mastné kyseliny patří do řady n-3?"
+        options:
+          - { text: "Kyselina alfa-linolenová (ALA)", correct: true }
+          - { text: "Kyselina eikosapentaenová (EPA)", correct: true }
+          - { text: "Kyselina dokosahexaenová (DHA)", correct: true }
+          - { text: "Kyselina arachidonová (AA)", why: "Patří do řady n-6." }
+          - { text: "Kyselina linolová (LA)", why: "Patří do řady n-6." }
+      - id: oznaceni
+        type: choice
+        prompt: "Co vyjadřuje označení n-6 (omega-6)?"
+        options:
+          - { text: "První dvojná vazba je na 6. uhlíku od methylového konce.", correct: true }
+          - { text: "První dvojná vazba je na 6. uhlíku od karboxylové skupiny.", why: "Počítá se od methylového (-CH3) konce." }
+          - { text: "Mastná kyselina má celkem 6 dvojných vazeb.", why: "Číslo udává polohu první dvojné vazby, ne jejich počet." }
+          - { text: "Řetězec má 6 atomů uhlíku.", why: "Číslo neudává délku řetězce, ale polohu první dvojné vazby." }
+      - id: rady
+        type: reveal
+        prompt: "Rozděl do řad n-3 a n-6: kyselina linolová, ALA, EPA, DHA, kyselina arachidonová."
+        answer: "n-6: linolová, arachidonová. n-3: alfa-linolenová (ALA), EPA, DHA."
+
+  - id: tuk.zdroje-n3-n6
+    title: Zdroje ALA a kyseliny linolové
+    kind: fact
+    tier: B
+    criteria: [1b]
+    prereqs: [tuk.pufa-n3-n6]
+    source: { pages: [27, 30], anchor: "Mezi zdroje bohaté na kyselinu alfa-linolenovou patří" }
+    explanation: >-
+      Výběr olejů v kuchyni ovlivňuje poměr n-3 a n-6. Bohaté na n-3 kyselinu alfa-linolenovou:
+      lněný, řepkový a konopný olej. Bohaté na n-6 kyselinu linolovou: slunečnicový, sójový,
+      kukuřičný a arašídový olej. EPA a DHA dodávají hlavně tučné mořské ryby.
+    exercises:
+      - id: ala
+        type: choice
+        prompt: "Který olej je bohatým zdrojem n-3 kyseliny alfa-linolenové?"
+        options:
+          - { text: "Lněný olej", correct: true }
+          - { text: "Slunečnicový olej", why: "Je bohatý na n-6 kyselinu linolovou." }
+          - { text: "Kukuřičný olej", why: "Je bohatý na n-6 kyselinu linolovou." }
+          - { text: "Kokosový tuk", why: "Obsahuje hlavně nasycené MK." }
+      - id: la
+        type: reveal
+        prompt: "Vyjmenuj alespoň tři oleje bohaté na kyselinu linolovou (n-6)."
+        answer: "Slunečnicový, sójový, kukuřičný, arašídový."
+
+  - id: tuk.konverze-ala
+    title: Přeměna ALA na EPA a DHA
+    kind: concept
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta udávají míru přeměny ALA různě: s. 24 „jednotky až nízké desítky procent“, s. 26
+      „5–10 %“ (ALA → EPA). Pro test počítej s 5–10 % pro EPA a s ještě nižší přeměnou na DHA.
+    criteria: [2e, 1b]
+    prereqs: [tuk.esencialni-mk, tuk.pufa-n3-n6]
+    source: { pages: [24, 26], anchor: "míra přeměny z ALA na EPA je jen velmi omezená" }
+    explanation: >-
+      Z ALA tělo tvoří EPA a dál DHA, z kyseliny linolové GLA a dál arachidonovou kyselinu. Přeměna
+      ALA na EPA je jen asi 5–10 %, na DHA ještě nižší – problém hlavně v dětství a stáří. Obě
+      dráhy používají stejný enzym, kterého je omezeně. Při nadbytku n-6 ve stravě ho n-6 „obsadí“
+      a přeměna n-3 je ještě slabší.
+    exercises:
+      - id: mira
+        type: choice
+        prompt: "Jak velká je podle skript (kap. 3.2.1.3) přeměna ALA na EPA?"
+        options:
+          - { text: "Asi 5–10 %", correct: true }
+          - { text: "Asi 50 %", why: "Tak vysoká přeměna není – skripta uvádějí jen 5–10 %." }
+          - { text: "Téměř 100 %", why: "Přeměna je naopak velmi omezená (5–10 %)." }
+          - { text: "Nulová – EPA tělo nevytvoří vůbec", why: "Přeměna probíhá, jen je velmi omezená." }
+      - id: enzym
+        type: reveal
+        prompt: "Proč nadbytek n-6 MK ve stravě dál zhoršuje zásobení n-3 MK?"
+        answer: >-
+          Obě řady používají při přeměně stejný enzym s omezenou kapacitou. Při nadbytku n-6 je
+          enzym využit hlavně pro ně a přeměna ALA na EPA/DHA je ještě menší.
+
+  - id: tuk.eikosanoidy-pomer
+    title: "Eikosanoidy a poměr n-6 : n-3"
+    kind: comparison
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.pufa-n3-n6]
+    confusableWith: [tuk.pomer-sfa-mufa-pufa]
+    source: { pages: [26, 29], anchor: "Eikosanoidy odvozené od n-6 kyseliny arachidonové jsou spíše prozánětlivé" }
+    explanation: >-
+      Z koncových PUFA vznikají eikosanoidy – látky podobné hormonům. Eikosanoidy z n-6 kyseliny
+      arachidonové jsou spíše prozánětlivé a podporují srážení krve; z n-3 EPA spíše protizánětlivé
+      a krev ředí. Doporučený poměr n-6 : n-3 je 2–5 : 1 (tj. n-3 : n-6 = 1 : 2–5). V ČR se
+      poměr n-3 : n-6 odhaduje kolem 1 : 25 – n-6 výrazně převažují.
+    exercises:
+      - id: pomer
+        version: 2
+        type: choice
+        prompt: "Jaký poměr n-6 : n-3 mastných kyselin doporučují skripta?"
+        options:
+          - { text: "2–5 : 1", correct: true }
+          - { text: "25 : 1", why: "To je odhad skutečného stavu v ČR, ne doporučení." }
+          - { text: "1 : 2 : 1", why: "To je doporučený poměr SFA : MUFA : PUFA." }
+          - { text: "10 : 1", why: "Tak velká převaha n-6 je nevhodná; doporučení je 2–5 : 1." }
+      - id: ucinek
+        type: choice
+        prompt: "Jak působí eikosanoidy odvozené od n-3 kyseliny EPA?"
+        options:
+          - { text: "Spíše protizánětlivě a ředí krev", correct: true }
+          - { text: "Spíše prozánětlivě a podporují srážení krve", why: "Tak působí eikosanoidy z n-6 kyseliny arachidonové." }
+          - { text: "Zvyšují hladinu LDL cholesterolu", why: "Zvýšení LDL skripta spojují s trans a nasycenými MK, ne s eikosanoidy z EPA." }
+          - { text: "Nemají žádný vliv na zánět", why: "Eikosanoidy řídí právě zánětlivé reakce – ty z EPA zánět spíše tlumí." }
+      - id: proc
+        type: reveal
+        prompt: "Proč záleží na poměru n-3 a n-6 mastných kyselin?"
+        answer: >-
+          Vznikají z nich eikosanoidy s opačným účinkem: z n-6 (AA) spíše prozánětlivé a srážlivé,
+          z n-3 (EPA) protizánětlivé a ředící krev. V ČR n-6 výrazně převažují (n-3 : n-6 asi 1 : 25).
+
+  - id: tuk.n3-ucinky
+    title: Přínosy EPA a DHA
+    kind: fact
+    tier: B
+    criteria: [1b, 10d]
+    prereqs: [tuk.eikosanoidy-pomer]
+    source: { pages: [27], anchor: "Pozor by si měli dát zejména lidé užívající léky na ředění krve" }
+    explanation: >-
+      EPA a DHA mají silný protizánětlivý efekt. Prokazatelně podporují funkci buněk, mozku a zraku
+      (od vývoje plodu po stáří), imunitu, regulaci krevního tlaku a ředí krev. Chrání před
+      chronickými nemocemi (ateroskleróza, dyslipidemie, diabetes, obezita) a snižují riziko
+      infarktu. Pozor u klientů užívajících léky na ředění krve – suplementace může ovlivnit jejich
+      účinek.
+    exercises:
+      - id: leky
+        type: choice
+        prompt: "U kterého klienta je podle skript potřeba opatrnosti při suplementaci omega-3?"
+        options:
+          - { text: "U klienta užívajícího léky na ředění krve", correct: true }
+          - { text: "U sportovce v náročném přípravném období", why: "U sportovců skripta uvádějí naopak přínos (rychlejší reakční doba)." }
+          - { text: "U klientky s dlouhodobě nízkým příjmem tuků", why: "Té n-3 MK spíš chybějí; zvláštní opatrnost skripta neuvádějí." }
+          - { text: "U seniora s velmi nízkým příjmem ryb", why: "Senior, který málo jí ryby, z n-3 MK naopak spíš profituje." }
+      - id: prinosy
+        type: reveal
+        prompt: "Uveď alespoň čtyři prokázané přínosy EPA a DHA."
+        answer: >-
+          Protizánětlivý účinek, ochrana srdce a cév (nižší riziko infarktu), ředění krve, regulace
+          krevního tlaku, vývoj a činnost mozku, zrak, imunita, psychická pohoda.
+
+  - id: tuk.trans
+    title: Trans mastné kyseliny
+    kind: concept
+    tier: A
+    criteria: [1b, 10d]
+    prereqs: [tuk.deleni-mk]
+    source: { pages: [27, 28], anchor: "Denní dávka by neměla přesáhnout 1 % celkového energetického příjmu" }
+    explanation: >-
+      U cis vazby jsou vodíky na stejné straně (v přírodě převažuje), u trans na opačných.
+      Přirozeně jsou trans MK téměř jen v tuku přežvýkavců (bachorová biohydrogenace). Průmyslově
+      vznikají při částečném ztužování tuků a při dezodoraci olejů – sušenky, levné polevy.
+      Zvyšují LDL a snižují HDL cholesterol, zvyšují riziko kardiovaskulárních nemocí a diabetu
+      2. typu. Limit: max. 1 % energie (asi 2 g/den); v EU max. 2 g průmyslových trans MK na 100 g tuku.
+    exercises:
+      - id: ucinek
+        type: choice
+        prompt: "Jak ovlivňují trans mastné kyseliny hladinu cholesterolu?"
+        options:
+          - { text: "Zvyšují LDL a snižují HDL cholesterol.", correct: true }
+          - { text: "Snižují LDL a zvyšují HDL cholesterol.", why: "Je to přesně naopak." }
+          - { text: "Zvyšují LDL i HDL cholesterol stejnou měrou.", why: "HDL cholesterol trans MK naopak snižují." }
+          - { text: "Na cholesterol nemají vliv, působí jen na glykémii.", why: "Zvyšují LDL a snižují HDL; navíc mohou přispět k diabetu 2. typu." }
+      - id: limit
+        type: choice
+        prompt: "Kolik by podle skript neměl přesáhnout denní příjem trans MK?"
+        options:
+          - { text: "1 % celkového energetického příjmu", correct: true }
+          - { text: "10 % celkového energetického příjmu", why: "To je desetkrát víc – limit je 1 % energie (asi 2 g/den)." }
+          - { text: "2 g na 100 g tuku", why: "To je legislativní limit EU pro obsah v potravině, ne denní příjem." }
+          - { text: "300 mg denně", why: "To je doporučení pro cholesterol." }
+      - id: zdroje
+        type: reveal
+        prompt: "Kde se trans MK vyskytují přirozeně a jak vznikají průmyslově?"
+        answer: >-
+          Přirozeně v tuku přežvýkavců (mléčný a tkáňový tuk krav, ovcí, koz). Průmyslově při
+          částečném ztužování (hydrogenaci) tuků a při dezodoraci olejů za vysokých teplot.
+      - id: klient
+        type: explain
+        prompt: "Proč bys klientovi doporučila omezit trans mastné kyseliny a kde je hlavně najde?"
+        keyPoints:
+          - "Zvyšují LDL a snižují HDL cholesterol"
+          - "Zvyšují riziko kardiovaskulárních nemocí, přispívají k diabetu 2. typu"
+          - "Vznikají při částečném ztužování tuků – sušenky, levné polevy a náhražky čokolády"
+          - "Limit: max. 1 % energie (asi 2 g/den)"
+        modelAnswer: >-
+          Trans mastné kyseliny zvyšují LDL a zároveň snižují HDL cholesterol, takže zvyšují riziko
+          nemocí srdce a cév a mohou přispět i k diabetu 2. typu. Vznikají hlavně při částečném
+          ztužování tuků, najdeme je tedy v sušenkách, levných polevách a náhražkách čokolády.
+          Denně by neměly přesáhnout 1 % energie, tedy asi 2 g.
+
+  - id: tuk.puvod-vyjimky
+    title: Živočišné a rostlinné tuky – výjimky
+    kind: comparison
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.sfa]
+    source: { pages: [28, 29], anchor: "Tropické oleje i mořské ryby chladných vod představují výjimky" }
+    explanation: >-
+      Živočišné tuky jsou hlavně zdrojem nasycených MK (máslo, sádlo, tučné maso, uzeniny).
+      Výjimkou jsou tučné mořské ryby chladných vod – zdroj PUFA a nejvýznamnější přirozený zdroj
+      n-3 MK. Rostlinné tuky jsou většinou zdrojem nenasycených MK (oleje, ořechy, semínka).
+      Výjimkou jsou tropické oleje (kokosový, palmový) s převahou SFA.
+    exercises:
+      - id: vyjimka-rostlinna
+        type: choice
+        prompt: "Který rostlinný tuk je výjimkou, protože obsahuje převážně nasycené MK?"
+        options:
+          - { text: "Palmový olej", correct: true }
+          - { text: "Řepkový olej", why: "V řepkovém oleji převažují MUFA, obsahuje i n-3 MK." }
+          - { text: "Olivový olej", why: "V olivovém oleji převažují MUFA." }
+          - { text: "Lněný olej", why: "Lněný olej je bohatý na PUFA, hlavně n-3." }
+      - id: vyjimka-zivocisna
+        type: choice
+        prompt: "Který živočišný zdroj tuku je výjimkou, protože dodává hlavně polynenasycené MK?"
+        options:
+          - { text: "Tučné mořské ryby", correct: true }
+          - { text: "Vepřové sádlo", why: "Sádlo obsahuje převážně nasycené MK." }
+          - { text: "Máslo a smetana", why: "V mléčném tuku převažují nasycené MK." }
+          - { text: "Tučné hovězí maso", why: "Tučné maso je typický zdroj nasycených MK." }
+      - id: obe
+        type: reveal
+        prompt: "Jaké jsou dvě výjimky z pravidla „živočišné tuky = SFA, rostlinné = nenasycené MK“?"
+        answer: "Tučné mořské ryby chladných vod (PUFA, n-3) a tropické oleje – kokosový, palmový (SFA)."
+
+  - id: tuk.cholesterol
+    title: Cholesterol, LDL a HDL
+    kind: concept
+    tier: A
+    status: course-disputed
+    confusableWith: [met.lipoproteiny]
+    note: >-
+      Skripta uvádějí doporučení asi 300 mg cholesterolu denně a že cholesterol ze stravy zvyšuje
+      LDL. Novější doporučení číselný limit často neuvádějí, protože vliv cholesterolu ze stravy
+      na krevní LDL je u většiny lidí malý (víc působí SFA a trans MK). Na s. 40 skripta navíc
+      chybně řadí cholesterol mezi lipoproteiny. Pro test: 300 mg/den, LDL „škodí“, HDL „uklízí“.
+    criteria: [1b]
+    source: { pages: [29, 89], anchor: "Většinu cholesterolu si organizmus vyrábí sám (přibližně 1 g denně)" }
+    explanation: >-
+      Cholesterol je steroidní látka, součást každé buňky, nervů a některých hormonů. Většinu si
+      tělo vyrobí samo (asi 1 g denně), ze stravy přijmeme asi 0,3 g; najdeme ho jen v živočišných
+      potravinách. Doporučení: asi 300 mg denně (≈ 1,5 vejce). Nadbytek LDL cholesterolu vede
+      k ateroskleróze (riziko infarktu, mrtvice); HDL přebytečný LDL cholesterol „uklízí“.
+    exercises:
+      - id: prijem
+        type: choice
+        prompt: "Kolik cholesterolu denně doporučují skripta u nesportující populace?"
+        options:
+          - { text: "Asi 300 mg", correct: true }
+          - { text: "Asi 1 g", why: "Přibližně tolik si tělo denně vyrobí samo." }
+          - { text: "Asi 30 mg", why: "To je desetkrát méně, než skripta doporučují (asi 300 mg)." }
+          - { text: "Asi 3 g", why: "To je desetkrát víc; ze stravy přijímáme asi 0,3 g denně." }
+      - id: hdl
+        type: choice
+        prompt: "Jakou roli má podle skript HDL cholesterol?"
+        options:
+          - { text: "„Uklízí“ přebytečný LDL cholesterol.", correct: true }
+          - { text: "Ukládá cholesterol do stěn tepen.", why: "To je riziko nadbytku LDL." }
+          - { text: "Přenáší hlavně triacylglyceroly z jater.", why: "To dělají hlavně VLDL." }
+          - { text: "Je to rostlinná forma cholesterolu.", why: "Cholesterol je jen v živočišných potravinách; HDL je lipoprotein v krvi." }
+      - id: zdroje
+        type: reveal
+        prompt: "Odkud tělo získává cholesterol a v jakých potravinách se vyskytuje?"
+        answer: >-
+          Většinu si vyrobí samo (asi 1 g/den), ze stravy asi 0,3 g/den. Vyskytuje se jen
+          v živočišných potravinách (vejce, maso, mléčné výrobky).
+
+  - id: tuk.fosfolipidy
+    title: Fosfolipidy
+    kind: fact
+    tier: B
+    criteria: [1b]
+    prereqs: [tuk.stavba]
+    source: { pages: [29], anchor: "Fosfolipidy patří mezi složené lipidy obsahující fosfor" }
+    explanation: >-
+      Fosfolipidy jsou složené lipidy obsahující fosfor. Jsou hlavní součástí buněčných membrán
+      (spolu s glykolipidy, cholesterolem a bílkovinami), hojně jsou v nervové tkáni. Přirozeně
+      hlavně ve vaječném žloutku a sóji. Patří sem lecitin – běžný emulgátor v potravinách.
+    exercises:
+      - id: lecitin
+        type: choice
+        prompt: "Který známý emulgátor patří mezi fosfolipidy?"
+        options:
+          - { text: "Lecitin", correct: true }
+          - { text: "Cholesterol", why: "Cholesterol je steroidní látka." }
+          - { text: "Pektin", why: "Pektin je rozpustná vláknina (polysacharid)." }
+          - { text: "Glycerol", why: "Glycerol je trojsytný alkohol, ze kterého se skládají tuky – fosfolipid to není." }
+      - id: zdroje
+        type: reveal
+        prompt: "Co jsou fosfolipidy, kde v těle hrají hlavní roli a v jakých potravinách jsou?"
+        answer: "Složené lipidy s fosforem; hlavní součást buněčných membrán. Zdroje: vaječný žloutek, sója."
+
+  - id: tuk.prijem
+    title: Doporučený příjem tuků
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Příjem tuků se ve skriptech liší: kap. 3 (s. 29–30) 25–35 % energie, asi 1 g/kg (min. 0,5,
+      horní hranice 1,5 g/kg); kap. 17 (s. 181–182) „tuky 30 %“ a prakticky 0,5–1 g/kg; sportovní
+      kap. (s. 207) nejméně 20 % energie, (s. 205, 211) 20–35 %; senioři (s. 227) 30–35 %. Rozmezí
+      25–35 % ale opakuje i kap. 17 (s. 182). Na otázku o doporučeném příjmu tuků odpovídej podle kap. 3.
+    criteria: [1b, 5c]
+    source: { pages: [29, 30], anchor: "Minimální denní příjem by měl být 0,5 g na 1 kg" }
+    explanation: >-
+      Tuky by měly tvořit 25–35 % celkového denního energetického příjmu. V gramech orientačně
+      kolem 1 g na kg hmotnosti, minimum 0,5 g/kg, horní hranice pro běžné stravování 1,5 g/kg
+      (neplatí pro nízkosacharidovou či ketogenní stravu, kde jsou tuky hlavním zdrojem energie).
+      Záleží i na skladbě tuků a poměrech MK.
+    exercises:
+      - id: procenta
+        type: choice
+        prompt: "Kolik procent denního energetického příjmu by podle kapitoly o tucích měly tvořit tuky?"
+        options:
+          - { text: "25–35 %", correct: true }
+          - { text: "10–15 %", why: "To je obecné doporučení pro bílkoviny." }
+          - { text: "45–60 %", why: "To je obecné doporučení pro sacharidy." }
+          - { text: "Nejméně 50 %", why: "Tak vysoký podíl odpovídá spíše ketogenní stravě." }
+      - id: minimum
+        type: choice
+        prompt: "Jaký je podle skript minimální denní příjem tuků?"
+        options:
+          - { text: "0,5 g na kg hmotnosti", correct: true }
+          - { text: "1 g na kg hmotnosti", why: "To je orientační běžný příjem." }
+          - { text: "1,5 g na kg hmotnosti", why: "To je horní hranice pro běžné stravování." }
+          - { text: "0,2 g na kg hmotnosti", why: "To je pod minimem – skripta uvádějí nejméně 0,5 g/kg." }
+      - id: podil
+        type: numeric
+        formula: macro-percent
+        prompt: >-
+          Klientka sní za den {grams} g tuku a přijme celkem {energy} kcal. Kolik procent energie
+          tvoří tuky (1 g tuku = {kcalPerG} kcal)?
+        params:
+          grams: { min: 40, max: 110, step: 5 }
+          energy: { min: 1600, max: 2600, step: 100 }
+          kcalPerG: { choices: [{ value: 9, label: "9" }] }
+        unit: "%"
+        tolerance: { abs: 1 }
+        decimals: 1
+        hint: "Gramy × 9 = kcal z tuků; vyděl celkovou energií a vynásob 100. Doporučení je 25–35 %."
+      - id: nastaveni
+        type: explain
+        prompt: "Jak nastavíš klientce příjem tuků a na co si dáš pozor?"
+        keyPoints:
+          - "25–35 % celkového energetického příjmu"
+          - "Orientačně 1 g/kg, minimum 0,5 g/kg, horní hranice 1,5 g/kg (ne u keto/low-carb)"
+          - "Individuálně: pohlaví, dosavadní strava, hmotnost a cíl, zdravotní stav"
+          - "Nedostatek tuků ohrožuje hormony – u žen až ztráta menstruace"
+          - "Důležitá je i skladba tuků (poměry MK)"
+        modelAnswer: >-
+          Tuky nastavím na 25–35 % energie, v gramech kolem 1 g na kg, ne méně než 0,5 g/kg a u běžné
+          stravy ne víc než 1,5 g/kg. Zohledním pohlaví, dosavadní stravování, cíl a zdravotní stav.
+          U žen hlídám, aby tuků nebylo málo – nedostatek ohrožuje hormonální zdraví až ztrátou
+          menstruace. Sleduji i skladbu tuků, tedy poměry mastných kyselin.
+
+  - id: tuk.pomer-sfa-mufa-pufa
+    title: "Poměr SFA : MUFA : PUFA"
+    kind: fact
+    tier: A
+    criteria: [1b]
+    prereqs: [tuk.sfa, tuk.mufa]
+    confusableWith: [tuk.eikosanoidy-pomer]
+    source: { pages: [29], anchor: "Poměr mezi nasycenými mastnými kyselinami (SFA)" }
+    explanation: >-
+      Kromě celkového množství tuků je důležitá jejich skladba. Doporučený poměr nasycených,
+      mononenasycených a polynenasycených MK je SFA : MUFA : PUFA = 1 : 2 : 1 – tedy převaha
+      mononenasycených.
+    exercises:
+      - id: pomer
+        type: choice
+        prompt: "Jaký je doporučený poměr SFA : MUFA : PUFA?"
+        options:
+          - { text: "1 : 2 : 1", correct: true }
+          - { text: "1 : 1 : 1", why: "Skripta chtějí převahu MUFA – dvojnásobek oproti SFA i PUFA." }
+          - { text: "2 : 1 : 1", why: "Převaha nasycených MK je nežádoucí." }
+          - { text: "1 : 1 : 2", why: "Převažovat mají mononenasycené MK, ne polynenasycené." }
+
+  - id: tuk.prakticke
+    title: Tuky v praxi – nedostatek a skrytá energie
+    kind: concept
+    tier: B
+    criteria: [7a, 1b]
+    prereqs: [tuk.prijem]
+    source: { pages: [31, 34, 35], anchor: "Zejména rizikový je jejich nedostatek" }
+    explanation: >-
+      Nedostatek tuků ohrožuje hormonální zdraví – u žen se může projevit ztrátou menstruace.
+      Opačný problém: klienti zařadí hodně „zdravých“ tuků (ořechy, ořechové krémy, avokádo)
+      a energetický příjem výrazně stoupne. Z ořechového másla tělo využije víc energie než
+      z celých ořechů. Pozor i na porce másla (4–10 g na pečivo) a sýry jako zdroj skryté energie.
+      Tuk se ukládá při nadbytku jakékoli makroživiny.
+    exercises:
+      - id: klientka
+        type: explain
+        prompt: "Klientka hubne, „jí zdravě“ – denně ořechy, ořechový krém a avokádo – a nehubne. Co jí vysvětlíš?"
+        keyPoints:
+          - "Jde o kvalitní tuky, ale tuk má 9 kcal/g – nejvíc ze všech makroživin"
+          - "Velký objem „zdravých“ potravin výrazně zvyšuje energetický příjem"
+          - "Z ořechového másla tělo využije víc energie než z celých ořechů"
+          - "Řešením je hlídat porce, ne tuky vyřadit (nedostatek tuků → hormonální potíže)"
+        modelAnswer: >-
+          Ořechy i avokádo jsou zdroje kvalitních tuků, ale tuk má nejvíc energie ze všech živin,
+          takže při velkých porcích je energetický příjem vysoký a bilance není záporná. Z ořechového
+          krému navíc tělo získá víc energie než z celých ořechů. Tuky nevyřazujeme – jejich
+          nedostatek ohrožuje hormonální zdraví, u žen až ztrátou menstruace – jen upravíme porce.
+      - id: zeny
+        type: choice
+        prompt: "Čím se podle skript může u žen projevit dlouhodobý nedostatek tuků ve stravě?"
+        options:
+          - { text: "Ztrátou menstruace", correct: true }
+          - { text: "Zvýšením HDL cholesterolu", why: "Skripta u nedostatku tuků uvádějí hormonální potíže, ne změnu HDL." }
+          - { text: "Nadbytkem vitaminu D", why: "Bez tuku se vitaminy rozpustné v tucích naopak hůř vstřebávají." }
+          - { text: "Zrychlením bazálního metabolismu", why: "Nedostatek tuků metabolismus nezrychluje; ohrožuje hormonální zdraví." }
+
+  - id: tuk.kourovy-bod
+    title: Kouřový bod a volba tuku k tepelné úpravě
+    kind: concept
+    tier: B
+    criteria: [4a, 1b]
+    source: { pages: [32, 33, 34], anchor: "Rafinované oleje snášejí vyšší teploty než jejich panenské varianty" }
+    explanation: >-
+      Kouřový bod je teplota, kdy z oleje začne stoupat kouř a olej se znehodnocuje. Určuje ho
+      složení MK (nasycené snesou víc než nenasycené) a úprava oleje (rafinovaný snese víc než
+      panenský). Na vaření a dušení stačí kouřový bod aspoň 100 °C (např. extra panenský olivový),
+      na rychlé restování nad 160 °C, na prudké smažení a fritování nad 180 °C (avokádový olej,
+      ghí, kokosový, řepkový). Nejnižší mají lněný olej, panenský slunečnicový a máslo.
+    exercises:
+      - id: faktory
+        type: choice
+        multiple: true
+        prompt: "Co podle skript určuje kouřový bod oleje?"
+        options:
+          - { text: "Složení mastných kyselin", correct: true }
+          - { text: "Zda je olej rafinovaný, nebo panenský", correct: true }
+          - { text: "Barva lahve", why: "Ta ovlivňuje skladování, ne kouřový bod." }
+          - { text: "Obsah cholesterolu", why: "Rostlinné oleje cholesterol neobsahují." }
+      - id: lneny
+        type: choice
+        prompt: "Který tuk se nehodí k tepelné úpravě kvůli nejnižšímu kouřovému bodu?"
+        options:
+          - { text: "Lněný olej", correct: true }
+          - { text: "Přepuštěné máslo (ghí)", why: "Má jeden z nejvyšších kouřových bodů." }
+          - { text: "Rafinovaný avokádový olej", why: "Má nejvyšší kouřový bod v přehledu." }
+          - { text: "Rafinovaný olivový olej", why: "Rafinovaný olivový olej má vysoký kouřový bod (asi 242 °C)." }
+      - id: hranice
+        type: reveal
+        prompt: "Jaký kouřový bod by měl mít tuk, který použiješ na prudké smažení?"
+        answer: "Vyšší než 180 °C (např. avokádový olej, ghí, kokosový nebo řepkový olej)."
+      - id: duseni
+        type: choice
+        prompt: "Jaký kouřový bod by podle skript měl mít tuk na vaření nebo dušení?"
+        options:
+          - { text: "Aspoň 100 °C", correct: true }
+          - { text: "Nad 160 °C", why: "To skripta doporučují pro rychlé restování." }
+          - { text: "Nad 180 °C", why: "To skripta doporučují pro prudké smažení a fritování." }
+          - { text: "Nad 250 °C", why: "Tak vysoký kouřový bod nemá téměř žádný tuk; na vaření stačí aspoň 100 °C." }
+
+  - id: tuk.ryby-rtut
+    title: Mořské ryby – n-3 MK a rtuť
+    kind: fact
+    tier: B
+    criteria: [1b, 7f]
+    prereqs: [tuk.puvod-vyjimky]
+    source: { pages: [34], anchor: "Mezi ryby s největším obsahem patří ryby dravé" }
+    explanation: >-
+      Mořské ryby jsou nejvýznamnějším zdrojem n-3 MK; volně žijící jich mají víc než chované, ale
+      i chované jsou dobrou alternativou. Dravé ryby (žralok, mečoun, štika, candát) mohou
+      obsahovat více rtuti – pozor hlavně u těhotných. Méně rtuti mají treska, losos, sardinky,
+      pstruh či krevety.
+    exercises:
+      - id: tehotna
+        type: choice
+        prompt: "Kterou rybu by měla těhotná žena kvůli rtuti omezit?"
+        options:
+          - { text: "Mečouna", correct: true }
+          - { text: "Lososa", why: "Losos patří mezi ryby s nižším obsahem rtuti." }
+          - { text: "Sardinky", why: "Sardinky mají nižší obsah rtuti." }
+          - { text: "Pstruha", why: "Pstruh má nižší obsah rtuti." }
+
+  - id: tuk.oleje-typy
+    title: Panenský, rafinovaný a dezodorizovaný olej
+    kind: comparison
+    tier: C
+    criteria: [4a, 1b]
+    source: { pages: [32], anchor: "byl vyroben lisováním za studena" }
+    explanation: >-
+      Panenský olej se lisuje mechanicky za studena (do asi 40 °C), bez rozpouštědel. Extra panenský
+      olivový olej má kyselost max. 0,8 %, panenský max. 2 %. Rafinovaný olej je chemicky zbaven
+      netukových látek (vitaminů, antioxidantů…) – je to čistý tuk s vyšším kouřovým bodem.
+      Dezodorizovaný olej prošel vakuovou destilací s vodní párou: zbaví se vůně, nutriční profil
+      zůstává, ale už nesmí nést označení panenský.
+    exercises:
+      - id: panensky
+        type: choice
+        prompt: "Jak se vyrábí panenský olej?"
+        options:
+          - { text: "Mechanickým lisováním za studena bez rozpouštědel", correct: true }
+          - { text: "Lisováním za tepla a extrakcí organickými rozpouštědly", why: "Tak se získává surovina pro rafinovaný olej." }
+          - { text: "Vakuovou destilací s vodní párou", why: "To je dezodorizace." }
+          - { text: "Částečnou hydrogenací", why: "Tak se tuky ztužují." }
+
+  - id: tuk.skladovani
+    title: Skladování tuků
+    kind: fact
+    tier: C
+    criteria: [1b]
+    source: { pages: [34], anchor: "Bezpodmínečně to platí pro lněný olej" }
+    explanation: >-
+      Tuky skladujeme v suchu a čistotě, ideálně kolem 15 °C, oleje v temnu v dobře uzavřené lahvi
+      a odděleně od surovin s výraznou vůní. Oleje s n-3 MK patří po otevření do lednice – lněný
+      olej bezpodmínečně, jinak během pár týdnů oxiduje.
+    exercises:
+      - id: lednice
+        type: reveal
+        prompt: "Který olej musí být po otevření bezpodmínečně v lednici a proč?"
+        answer: "Lněný olej – obsahuje hodně n-3 MK a bez chlazení během několika týdnů oxiduje."
+
+  - id: tuk.kokos-repka
+    title: Kokosový a řepkový olej
+    kind: comparison
+    tier: C
+    criteria: [1b]
+    prereqs: [tuk.puvod-vyjimky]
+    source: { pages: [35], anchor: "Obsahuje přes 85 % SFA" }
+    explanation: >-
+      Kokosový olej je rostlinný, ale obsahuje přes 85 % nasycených MK (laurová, myristová,
+      palmitová) – skripta jeho složení hodnotí jako nevhodné; výhodou je vyšší kouřový bod
+      a nulový cholesterol. Řepkový olej kyselinu erukovou díky šlechtění od roku 1975
+      neobsahuje; má vysoký kouřový bod a příznivé zastoupení n-3 MK.
+    exercises:
+      - id: kokos
+        type: choice
+        prompt: "Proč skripta hodnotí složení kokosového oleje jako nevhodné?"
+        options:
+          - { text: "Obsahuje přes 85 % nasycených MK.", correct: true }
+          - { text: "Obsahuje hodně cholesterolu.", why: "Jako rostlinný tuk cholesterol neobsahuje." }
+          - { text: "Obsahuje kyselinu erukovou.", why: "To byla dřívější výtka vůči řepkovému oleji." }
+          - { text: "Má velmi nízký kouřový bod.", why: "Naopak – kouřový bod má vyšší." }
+
+  - id: tuk.syry
+    title: Tuk v sušině u sýrů
+    kind: fact
+    tier: B
+    criteria: [4c, 1b]
+    source: { pages: [35], anchor: "Podle tuku obsaženého v sušině" }
+    explanation: >-
+      Sýry jsou významným zdrojem skryté energie. Procento tuku na obalu se u sýrů vztahuje k sušině,
+      ne k celému výrobku: vysokotučné nad 60 %, plnotučné 45–50 %, polotučné 25–45 %,
+      nízkotučné 10–25 %, odtučněné pod 10 % tuku v sušině. Skutečný obsah tuku na 100 g najdeš
+      v tabulce nutričních hodnot.
+    exercises:
+      - id: susina
+        type: reveal
+        prompt: "K čemu se vztahuje údaj „30 %“ u sýra eidam 30 %?"
+        answer: "K obsahu tuku v sušině, ne v celém výrobku. Tuk na 100 g je v tabulce nutričních hodnot."

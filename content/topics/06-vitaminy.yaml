@@ -1,0 +1,695 @@
+topic:
+  id: vitaminy
+  title: Vitaminy
+  chapter: 6
+  pages: [49, 55]
+  order: 60
+  summary: >-
+    Definice a dělení vitaminů (rozpustné v tucích a ve vodě), funkce, zdroje, projevy nedostatku
+    a nadbytku jednotlivých vitaminů, avitaminózy, hypo- a hypervitaminóza.
+
+points:
+  - id: vit.definice-deleni
+    title: Co jsou vitaminy a jak se dělí
+    kind: concept
+    tier: A
+    criteria: [1e, 1a]
+    source: { pages: [49, 51], anchor: "U člověka rozlišujeme 13 vitaminů" }
+    explanation: >-
+      Vitaminy jsou nízkomolekulární organické látky, které tělo potřebuje v malém množství a musí je
+      získat potravou (jsou esenciální). U člověka rozlišujeme 13 vitaminů. Dělí se podle
+      rozpustnosti: v tucích jsou A, D, E, K (pomůcka „DEKA“), ve vodě je vitamin C a osm vitaminů
+      skupiny B (B1, B2, niacin, kyselina pantothenová, B6, biotin, kyselina listová, B12).
+    exercises:
+      - id: v-tucich
+        type: choice
+        multiple: true
+        prompt: "Které z těchto vitaminů jsou rozpustné v tucích?"
+        options:
+          - { text: "Vitamin A", correct: true }
+          - { text: "Vitamin D", correct: true }
+          - { text: "Vitamin K", correct: true }
+          - { text: "Vitamin C", why: "Vitamin C je rozpustný ve vodě." }
+          - { text: "Vitamin B12", why: "B12 je rozpustný ve vodě, i když se ukládá do zásob." }
+          - { text: "Kyselina listová", why: "Patří mezi vitaminy skupiny B, rozpustné ve vodě." }
+      - id: pocet
+        type: choice
+        prompt: "Kolik vitaminů u člověka rozlišujeme?"
+        options:
+          - { text: "13", correct: true }
+          - { text: "9", why: "Devět je jen počet vitaminů rozpustných ve vodě (C + osm B)." }
+          - { text: "4", why: "Čtyři jsou vitaminy rozpustné v tucích (A, D, E, K)." }
+          - { text: "21", why: "Skripta uvádějí 13 vitaminů – 4 rozpustné v tucích a 9 ve vodě." }
+      - id: vyjmenuj
+        type: reveal
+        prompt: "Vyjmenuj vitaminy rozpustné v tucích a ve vodě."
+        answer: >-
+          V tucích: A, D, E, K. Ve vodě: C a skupina B – B1 (thiamin), B2 (riboflavin), niacin (B3),
+          kyselina pantothenová (B5), B6, biotin (B7), kyselina listová (B9), B12.
+
+  - id: vit.rozpustnost-dusledky
+    title: Důsledky rozpustnosti – vstřebávání, zásoby, toxicita
+    kind: comparison
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 6 uvádí vitaminy rozpustné v tucích jako stabilní vůči vzduchu a teplu a vitaminy rozpustné
+      ve vodě jako obecně méně stabilní. Kap. 12 (s. 100) ale řadí vitamin K mezi labilní a B2, B6,
+      niacin a biotin mezi stabilní. U testu odpovídej obecným pravidlem z kap. 6.
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    source:
+      pages: [49, 51]
+      anchor: "tyto vitaminy ukládají do jater a do tukové tkáně"
+    explanation: >-
+      Vitaminy rozpustné v tucích se vstřebávají společně s tukem, proto je dobré je jíst s tukem.
+      Ukládají se v játrech a tukové tkáni, takže se jimi lze předávkovat. Jsou poměrně stabilní
+      vůči teplu a vzduchu. Vitaminy rozpustné ve vodě se ukládají méně (výjimka: B12, zásoby na
+      roky), přebytek se vylučuje močí. Vysoké dávky ze suplementů ale škodit mohou. Jsou méně stabilní
+      (teplo, světlo, kyslík, vyluhování do vody).
+    exercises:
+      - id: predavkovani
+        type: choice
+        prompt: "Proč je riziko předávkování vyšší u vitaminů rozpustných v tucích?"
+        options:
+          - text: "Ukládají se do jater a tukové tkáně."
+            correct: true
+          - text: "Vstřebávají se bez ohledu na tuk ve stravě."
+            why: "Naopak – vstřebávají se společně s tukem."
+          - text: "Hromadí se v krvi, protože je ledviny nedokážou vyloučit."
+            why: "Zásobárnou jsou játra a tuková tkáň, ne krev."
+          - text: "Jsou méně stabilní a rozpadají se na toxické látky."
+            why: "Vitaminy rozpustné v tucích jsou naopak poměrně stabilní."
+      - id: vyjimka
+        type: choice
+        prompt: "Který vitamin rozpustný ve vodě si tělo ukládá do zásob, které vydrží i několik let?"
+        options:
+          - { text: "Vitamin B12", correct: true }
+          - { text: "Vitamin C", why: "Vitamin C tělo neumí výrazněji skladovat, je potřeba pravidelný přísun." }
+          - { text: "Vitamin B1", why: "Thiamin se do významných zásob neukládá, potřebuje pravidelný přísun." }
+          - { text: "Kyselina listová", why: "Výjimkou s mnohaletými zásobami v játrech je jen B12." }
+      - id: rozdily
+        type: reveal
+        prompt: "Čím se liší vitaminy rozpustné v tucích a ve vodě z hlediska vstřebávání, zásob, vylučování a stability?"
+        answer: >-
+          V tucích: vstřebávání s tukem, ukládání v játrech a tukové tkáni → riziko předávkování,
+          poměrně stabilní. Ve vodě: malé zásoby (kromě B12), přebytek odchází močí, méně stabilní
+          (teplo, světlo, kyslík, vyluhování).
+
+  - id: vit.a
+    title: Vitamin A (retinol)
+    kind: fact
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    confusableWith: [vit.d]
+    source: { pages: [49, 50], anchor: "prekurzorem retinalu, který je součástí zrakového pigmentu" }
+    explanation: >-
+      Vitamin A (retinol) je nutný pro vidění (je prekurzorem retinalu ve zrakovém pigmentu), obnovu
+      sliznic, imunitu, diferenciaci buněk, reprodukci a vývoj kostí. Zdroje: rybí tuk a játra;
+      rostliny obsahují karotenoidy (mrkev, rajčata, listová zelenina), z nichž některé jsou
+      provitaminem A. Nedostatek: šeroslepost, vysychání očí, záněty rohovky, infekce, suchá kůže.
+      Nadbytek ze suplementů: bolest hlavy, nevolnost, poškození jater; v těhotenství je teratogenní.
+      Nadbytek karotenoidů → karotenémie (žlutooranžová kůže).
+    exercises:
+      - id: nedostatek
+        type: choice
+        prompt: "Šeroslepost je typickým projevem nedostatku…"
+        options:
+          - { text: "vitaminu A", correct: true }
+          - { text: "vitaminu D", why: "Nedostatek D vede ke křivici a osteomalácii." }
+          - { text: "vitaminu B2", why: "Nedostatek B2 se projevuje praskáním koutků a zánětem jazyka." }
+          - { text: "vitaminu K", why: "Nedostatek K se projevuje krvácivostí." }
+      - id: tehotenstvi
+        type: choice
+        prompt: "Proč je nadbytek vitaminu A nebezpečný hlavně v těhotenství?"
+        options:
+          - { text: "Může působit teratogenně (poškodit plod).", correct: true }
+          - { text: "Snižuje vstřebávání železa.", why: "To skripta u vitaminu A neuvádějí." }
+          - { text: "Způsobuje karotenémii u plodu.", why: "Karotenémie je zbarvení kůže z nadbytku karotenoidů." }
+          - { text: "Blokuje syntézu vitaminu D v kůži.", why: "To skripta neuvádějí; riziko je poškození plodu." }
+      - id: zdroje
+        type: reveal
+        prompt: "Jaké jsou živočišné a rostlinné zdroje vitaminu A?"
+        answer: >-
+          Živočišné: rybí tuk, játra (retinol). Rostlinné: potraviny s karotenoidy (mrkev, rajčata,
+          listová zelenina) – některé karotenoidy jsou provitaminem A.
+
+  - id: vit.d
+    title: Vitamin D (kalciferol)
+    kind: fact
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    confusableWith: [vit.a, vit.k]
+    source: { pages: [50, 78], anchor: "Primárním zdrojem je naše vlastní syntéza" }
+    explanation: >-
+      Vitamin D (kalciferol) je netypický vitamin – působí podobně jako hormon (prohormon). Řídí
+      metabolismus vápníku a fosforu, a tím mineralizaci kostí a zubů; podporuje imunitu. Hlavním
+      zdrojem je vlastní syntéza v kůži po UV záření (závisí na zeměpisné šířce, ročním období,
+      pigmentaci, věku). Ze stravy: tučné ryby, mléčné výrobky, vejce, houby. Nedostatek: únava,
+      infekce, u dospělých osteomalácie, u dětí křivice (rachitida). Nadbytek (suplementy):
+      hyperkalcémie, kalcifikace měkkých tkání, poškození ledvin.
+    exercises:
+      - id: zdroj
+        type: choice
+        prompt: "Co je podle skript primárním zdrojem vitaminu D?"
+        options:
+          - { text: "Syntéza v kůži působením UV záření", correct: true }
+          - { text: "Tučné ryby", why: "Jsou zdrojem, ale potřebu jen ze stravy pokrýt obtížně." }
+          - { text: "Mléko a mléčné výrobky", why: "Jsou doplňkovým zdrojem, ne primárním." }
+          - { text: "Tvorba střevními bakteriemi", why: "To platí částečně pro K2, biotin a B2, ne pro D." }
+      - id: kricice
+        type: choice
+        prompt: "Jak se nazývá onemocnění z nedostatku vitaminu D v dětském věku?"
+        options:
+          - { text: "Křivice (rachitida)", correct: true }
+          - { text: "Osteomalácie", why: "Osteomalácie je projev závažného nedostatku u dospělých." }
+          - { text: "Pelagra", why: "Pelagra je z nedostatku niacinu." }
+          - { text: "Skorbut", why: "Skorbut (kurděje) je z nedostatku vitaminu C." }
+      - id: vyklad
+        type: reveal
+        prompt: "Proč se o vitaminu D mluví jako o prohormonu a jaká je jeho hlavní funkce?"
+        answer: >-
+          Tělo si ho samo tvoří (kůže → játra → ledviny) a působí podobně jako hormon. Hlavní funkce:
+          řídí hospodaření s vápníkem a fosforem → mineralizace kostí a zubů; dále imunita.
+
+  - id: vit.d-prijem
+    title: Vitamin D – doporučený příjem a suplementace
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 6 uvádí 15–20 µg (600–800 IU) denně, kap. 21 (s. 218) 15 µg jako adekvátní příjem EFSA,
+      kap. 21 u seniorů (s. 227) „zvýšit na 10 µg“ (méně než u dospělých), kap. 13 (s. 131) preventivní
+      dávku kolem 2000 IU. U testu drž rozmezí z kap. 6 (15–20 µg) a pravidlo, že D je výjimka, kterou
+      je vhodné doplňovat.
+    criteria: [1e, 8d]
+    prereqs: [vit.d]
+    source: { pages: [50, 54, 131], anchor: "IU (International Unit) je mezinárodní jednotka" }
+    explanation: >-
+      Kap. 6 uvádí doporučený příjem asi 15–20 µg denně (600–800 IU; IU = mezinárodní jednotka,
+      1 µg = 40 IU). Pokrýt potřebu jen stravou je obtížné a v našich zeměpisných šířkách se mezi
+      říjnem a březnem v kůži skoro netvoří. Proto je vitamin D výjimkou z pravidla, že při pestré
+      stravě doplňky nejsou potřeba. Kojencům se podává preventivně (prevence křivice).
+    exercises:
+      - id: vyjimka
+        type: choice
+        prompt: "Který vitamin skripta uvádějí jako výjimku – je vhodné ho doplňovat i při pestré a vyvážené stravě?"
+        options:
+          - { text: "Vitamin D", correct: true }
+          - { text: "Vitamin C", why: "Vitamin C pestrá strava s ovocem a zeleninou pokryje." }
+          - { text: "Vitamin A", why: "U vitaminu A hrozí z doplňků spíše předávkování." }
+          - { text: "Vitamin B6", why: "Dlouhodobé vysoké dávky B6 mohou poškodit nervy." }
+      - id: davka
+        type: choice
+        prompt: "Jaký denní příjem vitaminu D uvádí kapitola o vitaminech?"
+        options:
+          - { text: "Přibližně 15–20 µg (600–800 IU)", correct: true }
+          - { text: "Přibližně 5 µg (200 IU)", why: "5 µg je hodnota 100 % RHP pro označování potravin, ne fyziologická potřeba." }
+          - { text: "Přibližně 1–2 mg", why: "Vitamin D se dávkuje v mikrogramech, ne miligramech." }
+          - { text: "Přibližně 150 µg", why: "150 µg je adekvátní příjem jódu." }
+
+  - id: vit.e
+    title: Vitamin E (tokoferol)
+    kind: fact
+    tier: B
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    source: { pages: [50], anchor: "Vitamin E je známý také pod názvem tokoferol" }
+    explanation: >-
+      Vitamin E (tokoferol) je významný antioxidant. Najdeš ho hlavně v semenech, rostlinných olejích
+      a ořeších, kde chrání nenasycené mastné kyseliny před oxidací. Podílí se i na imunitě.
+      Nedostatek je vzácný (svalová slabost, poruchy červených krvinek). Vysoké dávky ze suplementů
+      mohou zvyšovat riziko krvácení.
+    exercises:
+      - id: zdroje
+        type: choice
+        prompt: "Které potraviny jsou hlavním zdrojem vitaminu E?"
+        options:
+          - { text: "Rostlinné oleje, semena a ořechy", correct: true }
+          - { text: "Játra a rybí tuk", why: "To jsou typické zdroje vitaminu A." }
+          - { text: "Citrusy a paprika", why: "To jsou zdroje vitaminu C." }
+          - { text: "Mléko a vejce", why: "Typický zdroj B2 či B12, ne vitaminu E." }
+      - id: funkce
+        type: reveal
+        prompt: "Jakou hlavní roli má vitamin E a proč ho najdeme hlavně v olejích?"
+        answer: "Je to antioxidant – v olejích, semenech a ořeších chrání nenasycené mastné kyseliny před oxidací."
+
+  - id: vit.k
+    title: Vitamin K – srážení krve a warfarin
+    kind: fact
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    confusableWith: [vit.d]
+    source: { pages: [50], anchor: "Jeho hlavní funkcí je podíl na procesu srážení krve" }
+    explanation: >-
+      Vitamin K je skupina látek: K1 (fylochinon) a K2 (menachinony). Hlavní funkcí je srážení krve,
+      účastní se i metabolismu kostí. Zdroje: listová zelenina, kiwi, avokádo, ořechy; část K2 tvoří
+      střevní bakterie. Nedostatek: zvýšená krvácivost (i do orgánů, tmavá dehtovitá stolice).
+      Warfarin je antagonista vitaminu K – u lidí, kteří ho užívají, se vitamin K ze stravy
+      nevyřazuje, ale jeho příjem má být co nejstabilnější.
+    exercises:
+      - id: warfarin
+        type: choice
+        prompt: "Klient užívá warfarin. Co mu ohledně vitaminu K poradíš podle skript?"
+        options:
+          - text: "Udržovat příjem vitaminu K co nejstabilnější."
+            correct: true
+          - text: "Vyřadit listovou zeleninu úplně."
+            why: "Cílem není vitamin K vyřadit, ale nekolísat s jeho příjmem."
+          - text: "Doplňovat vitamin K vysokými dávkami."
+            why: "Vitamin K působí proti warfarinu – vysoké a kolísavé dávky jsou nežádoucí."
+          - text: "Vitamin K a warfarin spolu nesouvisejí."
+            why: "Warfarin je antagonista vitaminu K."
+      - id: funkce
+        type: choice
+        prompt: "Hlavní funkcí vitaminu K je…"
+        options:
+          - { text: "podíl na srážení krve", correct: true }
+          - { text: "mineralizace kostí přes vstřebávání vápníku", why: "To je hlavní role vitaminu D." }
+          - { text: "antioxidační ochrana mastných kyselin", why: "To je typická role vitaminu E." }
+          - { text: "tvorba zrakového pigmentu", why: "To je role vitaminu A." }
+      - id: formy
+        type: reveal
+        prompt: "Jaké formy vitaminu K znáš a odkud se berou?"
+        answer: >-
+          K1 – fylochinon (listová zelenina, kiwi, avokádo, ořechy); K2 – menachinony, některé formy
+          tvoří i střevní mikrobiota.
+
+  - id: vit.b-skupina
+    title: Vitaminy skupiny B – názvy a společná role
+    kind: concept
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    source: { pages: [51, 52, 53], anchor: "Vitaminy skupiny B často fungují jako koenzymy" }
+    explanation: >-
+      Vitaminy skupiny B často fungují jako koenzymy (nebo jejich součásti) a podílejí se hlavně na
+      energetickém metabolismu. Názvy: B1 thiamin, B2 riboflavin, B3 niacin, B5 kyselina
+      pantothenová, B6 pyridoxin, B7 biotin (vitamin H), B9 folát/kyselina listová, B12 kobalamin.
+      Mají podobné zdroje: maso, vnitřnosti, celozrnné obiloviny, luštěniny, ořechy, kvasnice.
+    exercises:
+      - id: priradit
+        type: reveal
+        prompt: "Přiřaď názvy: B1, B2, B3, B5, B6, B7, B9, B12."
+        answer: >-
+          B1 thiamin, B2 riboflavin, B3 niacin, B5 kyselina pantothenová, B6 pyridoxin, B7 biotin,
+          B9 folát (kyselina listová), B12 kobalamin.
+      - id: riboflavin
+        type: choice
+        prompt: "Jaký je chemický název vitaminu B2?"
+        options:
+          - { text: "Riboflavin", correct: true }
+          - { text: "Thiamin", why: "Thiamin je vitamin B1." }
+          - { text: "Pyridoxin", why: "Pyridoxin je forma vitaminu B6." }
+          - { text: "Kobalamin", why: "Kobalamin je vitamin B12." }
+      - id: role
+        type: choice
+        prompt: "Jakou společnou roli mají vitaminy skupiny B?"
+        options:
+          - { text: "Fungují jako koenzymy, hlavně v energetickém metabolismu.", correct: true }
+          - { text: "Jsou hlavními antioxidanty buněčných membrán.", why: "To se uvádí u vitaminu E." }
+          - { text: "Řídí hospodaření s vápníkem.", why: "To je role vitaminu D." }
+          - { text: "Slouží jako zdroj energie.", why: "Vitaminy energii nedodávají, pomáhají ji uvolňovat." }
+
+  - id: vit.b1
+    title: Vitamin B1 (thiamin)
+    kind: fact
+    tier: B
+    criteria: [1e]
+    prereqs: [vit.b-skupina]
+    confusableWith: [vit.niacin]
+    source: { pages: [51], anchor: "Vitamin B1 je běžně označován jako thiamin" }
+    explanation: >-
+      Thiamin se podílí na metabolismu sacharidů a energetickém metabolismu, na činnosti nervů a svalů
+      (včetně srdce) a peristaltice střev. Potřeba roste s energetickým příjmem. Zdroje: maso,
+      vnitřnosti, kvasnice, celozrnné obiloviny, ořechy, luštěniny. Nedostatek: únava, slabost,
+      otoky, neurologické potíže; těžký deficit = beri-beri (nervy a srdce). Riziko mají hlavně lidé
+      s nadměrným pitím alkoholu, malnutricí či poruchou vstřebávání.
+    exercises:
+      - id: riziko
+        type: choice
+        prompt: "Kdo je podle skript nejvíce ohrožen nedostatkem thiaminu?"
+        options:
+          - { text: "Lidé s chronickým nadměrným příjmem alkoholu", correct: true }
+          - { text: "Vegani", why: "U veganů je typickým rizikem vitamin B12." }
+          - { text: "Kuřáci", why: "Kuřáci mají vyšší potřebu vitaminu C." }
+          - { text: "Lidé s nízkým příjmem mléčných výrobků", why: "To se týká spíš vápníku a B2." }
+      - id: potreba
+        type: reveal
+        prompt: "S čím souvisí potřeba thiaminu a proč?"
+        answer: "S energetickým příjmem – thiamin se podílí na metabolismu sacharidů a uvolňování energie."
+
+  - id: vit.niacin
+    title: Niacin (B3) a pelagra
+    kind: fact
+    tier: B
+    criteria: [1e]
+    prereqs: [vit.b-skupina]
+    confusableWith: [vit.b1]
+    source: { pages: [52], anchor: "Organismus dokáže část niacinu vytvářet z aminokyseliny tryptofanu" }
+    explanation: >-
+      Niacin (B3; kyselina nikotinová a nikotinamid) je součástí koenzymů NAD a NADP, klíčových pro
+      energetický metabolismus. Tělo si ho část vytvoří z tryptofanu, proto se potřeba vyjadřuje
+      v niacinových ekvivalentech (NE). Těžký nedostatek způsobuje pelagru: dermatitida, průjem,
+      demence (neléčená až smrt). Vysoké dávky kyseliny nikotinové vyvolávají „flush“ (zčervenání,
+      horko, svědění), velmi vysoké i poškození jater.
+    exercises:
+      - id: tryptofan
+        type: choice
+        prompt: "Z které aminokyseliny si tělo umí částečně vytvořit niacin?"
+        options:
+          - { text: "Z tryptofanu", correct: true }
+          - { text: "Z methioninu", why: "Methionin je sirná aminokyselina." }
+          - { text: "Z leucinu", why: "Leucin je větvená aminokyselina; niacin vzniká z tryptofanu." }
+          - { text: "Z glycinu", why: "Niacin si tělo částečně tvoří z tryptofanu, ne z glycinu." }
+      - id: pelagra
+        type: reveal
+        prompt: "Jak se projevuje pelagra a nedostatek kterého vitaminu ji způsobuje?"
+        answer: "Nedostatek niacinu (B3). Projevy: dermatitida, průjem, demence (neléčená může vést ke smrti)."
+
+  - id: vit.b2-b5
+    title: Riboflavin (B2) a kyselina pantothenová (B5)
+    kind: fact
+    tier: C
+    criteria: [1e]
+    prereqs: [vit.b-skupina]
+    source: { pages: [51, 52], anchor: "Kyselina pantothenová se tradičně označuje jako vitamin B5" }
+    explanation: >-
+      Riboflavin (B2) je součástí koenzymů oxidačně-redukčních reakcí a podporuje metabolismus železa.
+      Zdroje: mléko a mléčné výrobky, vejce, listová zelenina. Nedostatek: praskliny v koutcích úst,
+      zánět jazyka a sliznice. Kyselina pantothenová (B5) je součástí koenzymu A; je téměř ve všech
+      potravinách („všudypřítomná“), takže nedostatek je vzácný.
+    exercises:
+      - id: koutky
+        type: choice
+        prompt: "Praskliny v koutcích úst a zánět jazyka jsou typické pro nedostatek…"
+        options:
+          - { text: "riboflavinu (B2)", correct: true }
+          - { text: "kyseliny pantothenové (B5)", why: "Ta je všudypřítomná, nedostatek je vzácný." }
+          - { text: "vitaminu A", why: "Nedostatek A postihuje hlavně oči (šeroslepost)." }
+          - { text: "vitaminu E", why: "Nedostatek E je vzácný a projevuje se spíš svalovou slabostí." }
+      - id: vsudyprimna
+        type: reveal
+        prompt: "Který vitamin se označuje jako „všudypřítomný“ a proč?"
+        answer: "Kyselina pantothenová (B5) – je široce zastoupena v potravinách, nedostatek je vzácný."
+
+  - id: vit.b6-biotin-davky
+    title: Rizika vysokých dávek B6 a biotinu
+    kind: fact
+    tier: B
+    criteria: [1e, 8b]
+    prereqs: [vit.rozpustnost-dusledky]
+    source: { pages: [52, 53, 55], anchor: "může vést k poškození periferních nervů" }
+    explanation: >-
+      I vitaminy rozpustné ve vodě mohou ve vysokých dávkách škodit. Dlouhodobé vysoké dávky B6 ze
+      suplementů mohou poškodit periferní nervy (periferní neuropatie) – pozor na součet B6 z více
+      doplňků. Vysoké dávky biotinu (B7, vitamin H) mohou zkreslit výsledky laboratorních vyšetření,
+      proto má klient před odběrem krve informovat zdravotníka.
+    exercises:
+      - id: b6
+        type: choice
+        prompt: "Čím hrozí dlouhodobé užívání vysokých dávek vitaminu B6?"
+        options:
+          - { text: "Periferní neuropatií (poškozením nervů)", correct: true }
+          - { text: "Ničím, přebytek se vždy vyloučí močí", why: "Skripta B6 uvádějí právě jako příklad vitaminu rozpustného ve vodě, který škodí." }
+          - { text: "Ukládáním v tukové tkáni", why: "B6 je rozpustný ve vodě." }
+          - { text: "Zkreslením krevních testů", why: "To je typické riziko vysokých dávek biotinu." }
+      - id: soucet
+        type: reveal
+        prompt: "Klient užívá multivitamin a k tomu „B-komplex“. Na co ho upozorníš u vitaminu B6?"
+        answer: >-
+          Sečíst B6 ze všech doplňků – dlouhodobě vysoké dávky mohou poškodit periferní nervy
+          (periferní neuropatie), i když jde o vitamin rozpustný ve vodě.
+
+  - id: vit.folat
+    title: Folát a kyselina listová (B9)
+    kind: fact
+    tier: A
+    criteria: [1e, 7f]
+    prereqs: [vit.b-skupina]
+    confusableWith: [vit.b12]
+    source: { pages: [53], anchor: "snižují riziko defektů neurální trubice" }
+    explanation: >-
+      Foláty jsou přirozené formy B9 v potravinách, kyselina listová je syntetická forma (doplňky,
+      fortifikace). Jsou nutné pro syntézu DNA a buněčné dělení. Zdroje: listová zelenina, luštěniny,
+      vnitřnosti. Dostatek před početím a v časném těhotenství snižuje riziko defektů neurální trubice
+      plodu – ženám plánujícím těhotenství se doporučuje suplementace už před početím. Nedostatek
+      vede k megaloblastové anémii. Vysoké dávky kyseliny listové mohou maskovat nedostatek B12.
+    exercises:
+      - id: tehotenstvi
+        type: choice
+        prompt: "Proč se ženám plánujícím těhotenství doporučuje kyselina listová už před početím?"
+        options:
+          - { text: "Snižuje riziko defektů neurální trubice plodu.", correct: true }
+          - { text: "Zabraňuje těhotenské anémii z nedostatku železa.", why: "Železo a folát jsou jiné živiny." }
+          - { text: "Chrání plod před teratogenním účinkem vitaminu A.", why: "Folát s vitaminem A nesouvisí; chrání před defekty neurální trubice." }
+          - { text: "Zlepšuje vstřebávání vápníku pro kosti plodu.", why: "To je role vitaminu D." }
+      - id: rozdil
+        type: choice
+        prompt: "Jaký je rozdíl mezi folátem a kyselinou listovou?"
+        options:
+          - { text: "Folát je přirozená forma v potravinách, kyselina listová syntetická.", correct: true }
+          - { text: "Kyselina listová je přirozená forma, folát syntetická.", why: "Je to obráceně." }
+          - { text: "Jde o dva různé vitaminy (B9 a B11).", why: "Obojí je vitamin B9, jen v jiné formě." }
+          - { text: "Neliší se, jsou to synonyma.", why: "Skripta zdůrazňují, že nejsou úplně totožné." }
+      - id: maskovani
+        type: reveal
+        prompt: "Proč mohou vysoké dávky kyseliny listové být problém u člověka s nedostatkem B12?"
+        answer: >-
+          Zamaskují krevní (hematologické) projevy nedostatku B12, ale neurologické poškození dál
+          postupuje.
+      - id: tehotenstvi-explain
+        type: explain
+        prompt: "Klientka plánuje těhotenství. Co jí řekneš o folátu a kyselině listové?"
+        keyPoints:
+          - "Folát = přirozená forma v potravinách, kyselina listová = syntetická (doplňky, fortifikace)"
+          - "Nutný pro syntézu DNA a buněčné dělení"
+          - "Snižuje riziko defektů neurální trubice plodu"
+          - "Suplementace kyselinou listovou už před početím"
+          - "Zdroje: listová zelenina, luštěniny, vnitřnosti"
+        modelAnswer: >-
+          Folát je potřebný pro tvorbu DNA a dělení buněk, proto je klíčový na začátku těhotenství.
+          Dostatečný příjem snižuje riziko defektů neurální trubice plodu, a proto se ženám plánujícím
+          těhotenství doporučuje užívat kyselinu listovou (syntetickou formu) už před početím. Ze
+          stravy ho dodá listová zelenina, luštěniny a vnitřnosti.
+
+  - id: vit.b12
+    title: Vitamin B12 (kobalamin) – vstřebávání a rizikové skupiny
+    kind: fact
+    tier: A
+    criteria: [1e, 6a]
+    prereqs: [vit.b-skupina]
+    confusableWith: [vit.folat]
+    source: { pages: [53, 54], anchor: "vnitřní faktor (intrinsic factor), bílkovina tvořená v žaludku" }
+    explanation: >-
+      B12 (kobalamin) obsahuje kobalt. K vstřebání potřebuje vnitřní faktor tvořený v žaludku; komplex
+      se vstřebává v koncové části tenkého střeva. Ukládá se v játrech, zásoby vydrží roky. Funkce:
+      DNA, krvetvorba, nervová soustava. Přirozeně jen v živočišných potravinách (maso, ryby, mléko,
+      vejce, vnitřnosti) – vegani ho musí doplňovat (fortifikace, suplementy). Riziko mají i starší
+      lidé a lidé s poruchou vstřebávání či po operaci žaludku. Nedostatek: megaloblastová anémie,
+      únava, brnění – neurologické poškození může být nevratné.
+    exercises:
+      - id: vegani
+        type: choice
+        prompt: "Který vitamin musí vegani zajistit fortifikovanými potravinami nebo suplementací?"
+        options:
+          - { text: "Vitamin B12", correct: true }
+          - { text: "Kyselinu listovou", why: "Folát je hojně v listové zelenině a luštěninách." }
+          - { text: "Vitamin C", why: "Vitamin C je hlavně v ovoci a zelenině." }
+          - { text: "Vitamin K", why: "Vitamin K je v listové zelenině." }
+      - id: vnitrni-faktor
+        type: choice
+        prompt: "Co je nezbytné pro běžné vstřebávání vitaminu B12?"
+        options:
+          - { text: "Vnitřní faktor – bílkovina tvořená v žaludku", correct: true }
+          - { text: "Současný příjem tuku", why: "Tuk potřebují vitaminy A, D, E, K." }
+          - { text: "Vitamin C ve stejném jídle", why: "Vitamin C zvyšuje vstřebávání nehemového železa." }
+          - { text: "Žlučové kyseliny v tlustém střevě", why: "B12 se vstřebává v koncové části tenkého střeva." }
+      - id: rizikove-skupiny
+        type: explain
+        prompt: "Kdo je ohrožen nedostatkem vitaminu B12 a čím se nedostatek projeví?"
+        keyPoints:
+          - "Přirozeně jen v živočišných potravinách → vegani musí suplementovat/fortifikace"
+          - "Poruchy vstřebávání: chybí vnitřní faktor, nemoci či operace žaludku/střeva"
+          - "Starší lidé"
+          - "Projevy: megaloblastová anémie, únava, neurologické příznaky (brnění, paměť)"
+          - "Zásoby v játrech na roky → nedostatek přichází pozvolna, poškození nervů může být nevratné"
+        modelAnswer: >-
+          B12 je přirozeně prakticky jen v živočišných potravinách, proto ho vegani musí přijímat
+          z fortifikovaných potravin nebo doplňků. Ohroženi jsou i starší lidé a lidé s poruchou
+          vstřebávání, například při nedostatku vnitřního faktoru nebo po operaci žaludku. Protože
+          zásoby v játrech vydrží roky, nedostatek přichází nenápadně – projeví se megaloblastovou
+          anémií, únavou a neurologickými potížemi, které mohou být nevratné.
+
+  - id: vit.c
+    title: Vitamin C (kyselina askorbová)
+    kind: fact
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    source: { pages: [54, 239], anchor: "Vitamin C je chemicky označován jako kyselina askorbová" }
+    explanation: >-
+      Vitamin C (kyselina askorbová, E300) si člověk na rozdíl od většiny savců neumí vytvořit.
+      Podporuje imunitu, nervovou soustavu, hojení ran a syntézu kolagenu, je silný antioxidant
+      a zvyšuje vstřebávání nehemového železa. Zdroje: ovoce a zelenina, hlavně šípky, černý rybíz,
+      paprika. Vyšší potřebu mají kuřáci. Nedostatek: únava, horší hojení, krvácení z dásní; těžký
+      deficit = kurděje (skorbut). Vysoké dávky: průjem, u predisponovaných riziko ledvinových kamenů.
+    exercises:
+      - id: zelezo
+        type: choice
+        prompt: "Vstřebávání čeho z potravy vitamin C zvyšuje?"
+        options:
+          - { text: "Nehemového železa", correct: true }
+          - { text: "Vápníku", why: "Vstřebávání vápníku závisí na vitaminu D." }
+          - { text: "Vitaminu B12", why: "B12 potřebuje vnitřní faktor." }
+          - { text: "Hemového železa", why: "Hemové železo se vstřebává dobře samo; C pomáhá nehemovému." }
+      - id: nedostatek
+        type: choice
+        prompt: "Krvácení z dásní, horší hojení ran a únava ukazují hlavně na nedostatek…"
+        options:
+          - { text: "vitaminu C", correct: true }
+          - { text: "vitaminu K", why: "Nedostatek K vede ke krvácivosti, ale kombinace s horším hojením ran je typická pro vitamin C." }
+          - { text: "vitaminu B12", why: "Nedostatek B12 vede k megaloblastové anémii a neurologickým potížím." }
+          - { text: "vitaminu D", why: "Nedostatek D se projevuje únavou, infekcemi a poruchou mineralizace kostí." }
+      - id: vyklad
+        type: reveal
+        prompt: "Jaké má vitamin C funkce a kdo má jeho vyšší potřebu?"
+        answer: >-
+          Imunita, nervová soustava, hojení ran, syntéza kolagenu, antioxidant, vstřebávání nehemového
+          železa. Vyšší potřebu mají kuřáci.
+
+  - id: vit.avitaminozy
+    title: Avitaminózy – který nedostatek způsobuje kterou nemoc
+    kind: comparison
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.definice-deleni]
+    source: { pages: [54], anchor: "závažný nedostatek vitaminu C způsobuje kurděje" }
+    explanation: >-
+      Typické nemoci z těžkého nedostatku: vitamin C → kurděje (skorbut, krvácení z dásní);
+      B1 (thiamin) → beri-beri (nervy, srdce); niacin (B3) → pelagra (dermatitida, průjem, demence);
+      vitamin D u dětí → křivice (rachitida), u dospělých osteomalácie; vitamin A → šeroslepost;
+      folát a B12 → megaloblastová anémie.
+    exercises:
+      - id: beri-beri
+        type: choice
+        prompt: "Beri-beri je onemocnění z nedostatku…"
+        options:
+          - { text: "vitaminu B1 (thiaminu)", correct: true }
+          - { text: "niacinu", why: "Nedostatek niacinu způsobuje pelagru." }
+          - { text: "vitaminu C", why: "Nedostatek vitaminu C způsobuje kurděje." }
+          - { text: "vitaminu B12", why: "Nedostatek B12 vede k megaloblastové anémii." }
+      - id: kurdeje
+        type: choice
+        prompt: "Kurděje (skorbut) vznikají při závažném nedostatku…"
+        options:
+          - { text: "vitaminu C", correct: true }
+          - { text: "vitaminu K", why: "Nedostatek K také vede ke krvácivosti, ale kurděje jsou z nedostatku C." }
+          - { text: "vitaminu D", why: "Nedostatek D vede ke křivici." }
+          - { text: "vitaminu B1", why: "Nedostatek B1 vede k beri-beri." }
+      - id: prirazeni
+        type: reveal
+        prompt: "Přiřaď vitaminy ke kurdějím, beri-beri, pelagře a křivici."
+        answer: "Kurděje – C; beri-beri – B1 (thiamin); pelagra – niacin (B3); křivice – D (u dětí)."
+
+  - id: vit.hypo-hyper
+    title: Hypovitaminóza, avitaminóza, hypervitaminóza
+    kind: concept
+    tier: A
+    criteria: [1e]
+    prereqs: [vit.rozpustnost-dusledky]
+    confusableWith: [vit.avitaminozy]
+    source: { pages: [54, 55], anchor: "Hypovitaminóza označuje stav nedostatečného zásobení organismu" }
+    explanation: >-
+      Hypovitaminóza = nedostatečné zásobení vitaminem různé závažnosti. Avitaminóza = závažný až úplný
+      nedostatek s typickým klinickým obrazem (kurděje, beri-beri…). Hypervitaminóza = nadměrný příjem
+      s nežádoucími až toxickými účinky; riziko je vyšší u vitaminů rozpustných v tucích, ale existuje
+      i u některých ve vodě (B6). Při pestré stravě je nepravděpodobná – vzniká hlavně z doplňků.
+      Nedostatkem jsou ohroženi lidé s nízkým příjmem jídla, s chronickým nadměrným pitím alkoholu
+      a s poruchou vstřebávání.
+    exercises:
+      - id: definice
+        type: choice
+        prompt: "Jak se nazývá závažný až úplný nedostatek vitaminu s typickým klinickým obrazem?"
+        options:
+          - { text: "Avitaminóza", correct: true }
+          - { text: "Hypovitaminóza", why: "Hypovitaminóza je obecně nedostatečné zásobení, různé závažnosti." }
+          - { text: "Hypervitaminóza", why: "Hypervitaminóza je nadbytek." }
+          - { text: "Antivitaminóza", why: "Tento pojem skripta nepoužívají; jde o avitaminózu." }
+      - id: pricina-hyper
+        type: choice
+        prompt: "Co je podle skript nejčastější příčinou hypervitaminózy?"
+        options:
+          - { text: "Nevhodné užívání vysokých dávek doplňků stravy", correct: true }
+          - { text: "Pestrá strava s hodně ovocem a zeleninou", why: "Z běžné pestré stravy je velmi nepravděpodobná." }
+          - { text: "Porucha vstřebávání v trávicím traktu", why: "Ta vede spíš k nedostatku." }
+          - { text: "Dlouhodobé pobývání na slunci", why: "Skripta jako příčinu uvádějí hlavně vysoké dávky doplňků." }
+      - id: pojmy
+        type: reveal
+        prompt: "Vysvětli rozdíl mezi hypovitaminózou, avitaminózou a hypervitaminózou."
+        answer: >-
+          Hypo- = nedostatečné zásobení (různá závažnost); a- = závažný až úplný nedostatek s typickou
+          nemocí; hyper- = nadbytek s nežádoucími až toxickými účinky (hlavně z doplňků, častěji
+          u vitaminů rozpustných v tucích).
+
+  - id: vit.rhp-efsa
+    title: Referenční hodnoty EFSA vs. RHP na etiketě
+    kind: concept
+    tier: B
+    criteria: [4c, 1e]
+    source: { pages: [49, 53], anchor: "mohou se od aktuálních doporučení EFSA pro fyziologickou potřebu lišit" }
+    explanation: >-
+      Doporučený příjem vitaminů ve skriptech vychází z hodnot EFSA (fyziologická potřeba). Na etiketách
+      potravin a doplňků se uvádí % RHP (referenční hodnota příjmu) podle nařízení EU 1169/2011. RHP je
+      legislativní hodnota pro označování, proto se může od EFSA lišit (např. vitamin D: RHP 5 µg,
+      doporučení 15–20 µg).
+    exercises:
+      - id: rhp
+        type: choice
+        prompt: "Proč se % RHP na etiketě může lišit od doporučení EFSA?"
+        options:
+          - { text: "RHP je legislativní hodnota pro označování výrobků, ne aktuální fyziologická potřeba.", correct: true }
+          - { text: "RHP se počítá zvlášť pro muže a ženy.", why: "Na etiketě je jedna hodnota pro všechny." }
+          - { text: "EFSA uvádí hodnoty pro děti, RHP pro dospělé.", why: "Obě hodnoty ve skriptech se týkají dospělých; RHP je legislativní hodnota pro etikety." }
+          - { text: "Liší se jen u minerálních látek, u vitaminů ne.", why: "Rozdíly jsou i u vitaminů (např. D, B12, C)." }
+
+  - id: vit.referencni-hodnoty
+    title: Doporučený příjem vitaminů – klíčová čísla
+    kind: fact
+    tier: B
+    criteria: [1e]
+    prereqs: [vit.rhp-efsa]
+    source:
+      pages: [49, 50, 53, 54]
+      anchor: "Referenční hodnoty příjmu uvedené v této kapitole vycházejí z doporučení EFSA"
+    explanation: >-
+      Denní doporučení EFSA pro dospělé (v závorce 100 % RHP na etiketě): vitamin A 650 µg ženy /
+      750 µg muži (800 µg); vitamin D 15–20 µg (5 µg); vitamin C 95 mg ženy / 110 mg muži (80 mg);
+      folát 330 µg DFE (200 µg); vitamin B12 asi 4 µg (2,5 µg); vitamin E 11 / 13 mg (12 mg);
+      vitamin K asi 70 µg (75 µg).
+    exercises:
+      - id: vitamin-c
+        type: choice
+        prompt: "Kolik vitaminu C denně doporučuje EFSA dospělé ženě?"
+        options:
+          - { text: "Přibližně 95 mg", correct: true }
+          - { text: "80 mg", why: "80 mg je 100 % RHP pro etikety, ne doporučení EFSA." }
+          - { text: "Přibližně 110 mg", why: "110 mg je doporučení pro muže." }
+          - { text: "Přibližně 1 g", why: "To je asi desetkrát víc, než je doporučený příjem (95–110 mg)." }
+      - id: b12
+        type: choice
+        prompt: "Jaký doporučený denní příjem vitaminu B12 uvádějí skripta podle EFSA?"
+        options:
+          - { text: "Přibližně 4 µg", correct: true }
+          - { text: "2,5 µg", why: "2,5 µg je 100 % RHP na etiketě." }
+          - { text: "330 µg", why: "330 µg DFE je doporučení pro folát." }
+          - { text: "40 µg", why: "40 µg je doporučení pro biotin." }
+      - id: prehled
+        type: reveal
+        prompt: "Kolik denně doporučuje EFSA vitaminu A, D, C, folátu a B12 (dospělí)?"
+        answer: >-
+          A 650 µg ženy / 750 µg muži; D 15–20 µg; C 95 mg ženy / 110 mg muži; folát 330 µg DFE;
+          B12 asi 4 µg.

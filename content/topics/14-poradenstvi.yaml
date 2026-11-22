@@ -1,0 +1,963 @@
+topic:
+  id: poradenstvi
+  title: Úvod do výživového poradenství
+  chapter: 14
+  pages: [146, 166]
+  order: 140
+  summary: >-
+    Slovník pojmů (well-being, body image, sebevědomí), somatotypy a jejich měření, svalová hmota,
+    analýza složení těla bioimpedancí (princip, kontraindikace, zásady, vliv hydratace), antropometrie
+    (WHR, obvod pasu, BMI, kaliper), interpretace tuku, vody a svalů a měření dětí.
+
+points:
+  # ---------- Slovník pojmů (10a) ----------
+
+  - id: por.well-being
+    title: Well-being podle WHO
+    kind: concept
+    tier: A
+    criteria: [10a]
+    source: { pages: [147], anchor: "představuje pojem well-being obraz celkového duševního zdraví" }
+    explanation: >-
+      Well-being je podle WHO obraz celkového duševního zdraví. Člověk v tomto stavu zná svůj
+      potenciál, zvládá běžný stres, dokáže produktivně pracovat a přispívat své komunitě. Nejde
+      tedy jen o nepřítomnost nemoci, ale o celkovou duševní pohodu a fungování v životě.
+    confusableWith: [por.wellness-fitness]
+    exercises:
+      - id: definice
+        type: explain
+        prompt: "Vysvětli pojem well-being a proč je důležitý ve výživovém poradenství."
+        keyPoints:
+          - "Definice WHO: obraz celkového duševního zdraví"
+          - "Člověk si uvědomuje svůj potenciál"
+          - "Zvládá běžný stres"
+          - "Produktivně pracuje a přispívá komunitě"
+          - "Cílem poradenství není jen číslo na váze, ale i duševní pohoda"
+        modelAnswer: >-
+          Podle WHO je well-being obraz celkového duševního zdraví: člověk si je vědom svého
+          potenciálu, zvládá běžné životní stresy, dokáže produktivně pracovat a přispívat své
+          komunitě. V poradenství to znamená, že úspěch neměřím jen kilogramy, ale i tím, jak se
+          klient cítí a jak zvládá svůj život.
+      - id: ktera-definice
+        type: choice
+        prompt: "Který popis odpovídá pojmu well-being podle WHO?"
+        options:
+          - { text: "Stav duševního zdraví, kdy člověk zvládá běžný stres a uplatňuje svůj potenciál", correct: true }
+          - { text: "Myšlenky a pocity spojené s vnímáním vlastního těla", why: "To je body image." }
+          - { text: "Vědomí vlastní ceny", why: "To je sebevědomí." }
+          - { text: "Sportovní aktivity a životní styl s cílem dobré kondice", why: "To je fitness." }
+
+  - id: por.body-image
+    title: Body image
+    kind: concept
+    tier: A
+    criteria: [10a]
+    source: { pages: [147, 231], anchor: "Jde o obraz vlastního těla, který si vytváříme" }
+    explanation: >-
+      Body image jsou myšlenky, pocity a celkové vnímání estetiky či sexuální přitažlivosti vlastního
+      těla – obraz těla, který si sami vytváříme. Nemusí odpovídat skutečnosti: člověk se může cítit
+      „tlustý“, i když okolí tvrdí opak. Zkreslený obraz těla patří mezi znaky poruch příjmu potravy.
+    prereqs: [por.well-being]
+    confusableWith: [por.sebevedomi-sebehodnoceni]
+    exercises:
+      - id: vysvetli
+        type: explain
+        prompt: "Co je body image a jak s ním souvisí práce výživové poradkyně?"
+        keyPoints:
+          - "Myšlenky, pocity a vnímání vlastního těla (estetika, přitažlivost)"
+          - "Je to obraz, který si sami vytváříme – nemusí odpovídat realitě"
+          - "Zkreslený obraz těla může být znakem PPP"
+          - "Poradkyně nekomentuje tělo hodnotícím způsobem, podporuje pozitivní vztah k tělu"
+        modelAnswer: >-
+          Body image je souhrn myšlenek, pocitů a vnímání vlastního těla – jak se nám líbí a jak
+          přitažlivé ho považujeme. Je to vnitřní obraz, který si vytváříme, a nemusí odpovídat
+          skutečnosti. Když klientka vnímá své tělo výrazně zkresleně, může jít o signál poruchy
+          příjmu potravy. Já se proto vyhýbám hodnocení postavy a pracuji i s jinými cíli než vzhledem.
+      - id: co-je
+        type: choice
+        prompt: "Co označuje pojem body image?"
+        options:
+          - { text: "Obraz vlastního těla, který si člověk sám vytváří", correct: true }
+          - { text: "Výsledek analýzy složení těla", why: "Body image je subjektivní vnímání, ne měření." }
+          - { text: "Somatotyp určený metodou Heath-Carter", why: "Somatotyp popisuje stavbu těla, ne jeho vnímání." }
+          - { text: "Stav celkového duševního zdraví", why: "To je well-being." }
+
+  - id: por.sebevedomi-sebehodnoceni
+    title: Sebevědomí vs. sebehodnocení
+    kind: comparison
+    tier: A
+    criteria: [10a]
+    source: { pages: [147], anchor: "Sebevědomí je vědomí vlastní ceny" }
+    explanation: >-
+      Sebevědomí = vědomí vlastní ceny; opírá se o přesvědčení, že jednám správně, účinně a
+      nepodceňuji se. Sebehodnocení = vědomé prožívání a posuzování sebe sama – svých vlastností,
+      chování, činností i postojů; vzniká i sociálním srovnáváním a pozorováním vlastních výsledků.
+      Sebevědomí je tedy „kolik si cením“, sebehodnocení „jak se posuzuji“.
+    confusableWith: [por.body-image]
+    exercises:
+      - id: rozdil
+        type: explain
+        prompt: "Vysvětli rozdíl mezi sebevědomím a sebehodnocením."
+        keyPoints:
+          - "Sebevědomí = vědomí vlastní ceny"
+          - "Opírá se o přesvědčení, že jednám správně a nepodceňuji se"
+          - "Sebehodnocení = vědomé prožívání a hodnocení vlastních vlastností, chování a postojů"
+          - "Sebehodnocení vzniká i sociálním srovnáváním"
+        modelAnswer: >-
+          Sebevědomí je vědomí vlastní ceny – přesvědčení, že jednám správně a účinně a nepodceňuji
+          se. Sebehodnocení je proces, kterým se posuzuji: vědomě hodnotím své vlastnosti, chování,
+          činnosti a postoje, často srovnáváním s ostatními a podle výsledků své činnosti. Nízké
+          sebehodnocení může sebevědomí oslabovat.
+      - id: srovnavani
+        type: choice
+        prompt: "Který pojem skripta popisují i jako výsledek sociálního srovnávání?"
+        options:
+          - { text: "Sebehodnocení", correct: true }
+          - { text: "Sebevědomí", why: "Sebevědomí je vědomí vlastní ceny." }
+          - { text: "Well-being", why: "Well-being je obraz celkového duševního zdraví." }
+          - { text: "Wellness", why: "Wellness je ucelený pohled na zdraví a spokojenost." }
+
+  - id: por.kvalita-zivota-praxe
+    title: Jak v poradně podporovat body image a sebevědomí
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [10a, 11b]
+    source: { pages: [147], anchor: "Sebehodnocení je vědomé prožívání a hodnocení sebe sama" }
+    note: >-
+      Skripta pojmy definují (s. 147) a doporučují propojit plán s hodnotami klienta, ne jen s váhou
+      (s. 256). Konkrétní postupy jsou běžná poradenská praxe nad rámec skript.
+    explanation: >-
+      Cíle nestav jen na váze: přidej energii, spánek, sílu, zdravotní ukazatele, vztah k jídlu.
+      Propoj plán s hodnotami klienta. Nehodnoť postavu, nesrovnávej s ostatními, nemoralizuj.
+      Chval úsilí a dílčí úspěchy, cíle drž realistické. Mluv o jídle neutrálně (ne „zakázané“).
+      Výrazně zkreslený obraz těla, sebenenávist nebo nutkavé cvičení jsou důvod doporučit psychologa.
+    prereqs: [por.body-image, por.sebevedomi-sebehodnoceni]
+    exercises:
+      - id: jak-podporit
+        type: explain
+        prompt: "Jak můžeš jako výživová poradkyně podpořit klientovo sebevědomí a pozitivní body image?"
+        keyPoints:
+          - "Cíle nejen na váhu (energie, spánek, síla, zdraví)"
+          - "Propojit plán s hodnotami a dlouhodobými cíli klienta"
+          - "Nehodnotit postavu, nesrovnávat, nemoralizovat jídlo"
+          - "Oceňovat úsilí a dílčí úspěchy, realistické cíle"
+          - "Při výrazně zkresleném vnímání těla doporučit psychologa"
+        modelAnswer: >-
+          Nestavím úspěch jen na číslech z váhy – sledujeme i energii, spánek, sílu nebo výsledky
+          vyšetření a plán propojuji s tím, na čem klientovi záleží. Postavu nehodnotím a jídla
+          nedělím na „zakázaná“. Oceňuji snahu a dílčí úspěchy a cíle nastavujeme realisticky. Když
+          vidím výrazně zkreslený obraz těla nebo sebenenávist, doporučím psychologa.
+      - id: nevhodne
+        type: choice
+        prompt: "Která reakce poradkyně klientčino sebevědomí spíše oslabí?"
+        options:
+          - { text: "„Podívejte se na fotky jiných klientek, ty to zvládly rychleji.“", correct: true }
+          - { text: "„Všimla jsem si, že jste tento týden zvládla pravidelné snídaně.“", why: "Ocenění konkrétního úsilí sebevědomí posiluje." }
+          - { text: "„Pojďme sledovat i to, jak se vám spí a kolik máte energie.“", why: "Cíle mimo váhu jsou vhodné." }
+          - { text: "„Co je pro vás na té změně nejdůležitější?“", why: "Propojení s hodnotami podporuje vnitřní motivaci." }
+
+  - id: por.wellness-fitness
+    title: Wellness a fitness
+    kind: comparison
+    tier: C
+    criteria: [10a]
+    source: { pages: [147], anchor: "Wellness (harmonie těla) je ucelený pohled na zdraví a spokojenost člověka" }
+    explanation: >-
+      Wellness („harmonie těla“) je ucelený pohled na zdraví a spokojenost – člověk pečuje o dobrou
+      mysl, rozvíjí tělo i duši a umí odpočívat (masáže, koupele, výživa…). Fitness označuje sportovní
+      aktivity a životní styl s cílem dobré kondice, zdatnosti, držení těla, síly a vzhledu postavy.
+    confusableWith: [por.well-being]
+    exercises:
+      - id: rozdil
+        type: reveal
+        prompt: "Čím se liší wellness a fitness?"
+        answer: >-
+          Wellness = celkový pohled na zdraví a spokojenost včetně odpočinku (vše, co dělá dobře).
+          Fitness = sport a životní styl zaměřený na kondici, sílu, držení těla a postavu.
+
+  # ---------- Somatotypy a svalová hmota (3a) ----------
+
+  - id: por.somatotypy-model
+    title: Somatotypy – Sheldonův model a jeho limity
+    kind: concept
+    tier: A
+    criteria: [3a]
+    source: { pages: [147], anchor: "Z velké části se somatotyp dědí po předcích" }
+    explanation: >-
+      Somatotypy jsou historický model postavy podle Sheldona (1940): ektomorf, mezomorf, endomorf.
+      Člověk má obvykle jeden hlavní typ a částečně zasahuje do dalších dvou. Somatotyp je z velké
+      části dědičný, ovlivňuje ho ale i pohyb a strava v dětství. Kritika: model spojuje postavu s
+      osobností a zjednodušuje (stereotypizuje); dnes slouží jen jako orientační pomůcka.
+    exercises:
+      - id: ovlivnitelnost
+        type: choice
+        prompt: "Co platí o ovlivnitelnosti somatotypu podle skript?"
+        options:
+          - { text: "Je z velké části dědičný, ale ovlivní ho i pohyb a strava v dětství.", correct: true }
+          - { text: "Je zcela dědičný a ničím ho nelze ovlivnit.", why: "Skripta zmiňují i vliv sportu a stravy v dětství." }
+          - { text: "Určuje ho hlavně strava v dospělosti.", why: "Hlavní roli hraje dědičnost." }
+          - { text: "Mění se během jednoho roku tréninku.", why: "Skripta zdůrazňují dědičnost a vliv pohybu a stravy v dětství, ne krátkodobý trénink." }
+      - id: kritika
+        type: choice
+        prompt: "Co je hlavním bodem kritiky Sheldonova modelu somatotypů?"
+        options:
+          - { text: "Zjednodušeně spojuje typ postavy s typem osobnosti.", correct: true }
+          - { text: "Vyžaduje drahý přístroj k měření.", why: "Somatotyp lze určit z obyčejných tělesných měr." }
+          - { text: "Popisuje jen ženy.", why: "Model se týká obou pohlaví." }
+          - { text: "Rozlišuje příliš mnoho typů.", why: "Rozlišuje jen tři základní typy." }
+      - id: kombinace
+        type: reveal
+        prompt: "Má člověk vždy jen jeden čistý somatotyp?"
+        answer: "Ne. Obvykle má jeden hlavní typ a více či méně zasahuje i do zbylých dvou."
+
+  - id: por.somatotypy-znaky
+    title: Znaky ektomorfa, mezomorfa a endomorfa
+    kind: comparison
+    tier: A
+    criteria: [3a]
+    prereqs: [por.somatotypy-model]
+    confusableWith: [por.skinny-fat]
+    source: { pages: [149], anchor: "Ektomorfové obvykle těžko nabírají svalovou hmotu a hmotnost vůbec" }
+    explanation: >-
+      Ektomorf: vyšší, štíhlý, dlouhé končetiny a krk, tenké kosti, úzká ramena, málo podkožního tuku;
+      těžko nabírá svaly i hmotnost. Mezomorf: svalnatý, široká ramena, trup do „V“, silné kosti;
+      snadno nabírá svaly bez tuku. Endomorf: střední výška, mohutné široké kosti, sklon k nadváze,
+      těžko se zbavuje tuku, ale dobře buduje svaly.
+    exercises:
+      - id: mezomorf
+        type: choice
+        prompt: "Který somatotyp má široká ramena, horní část těla do tvaru trojúhelníku a snadno nabírá svaly bez zbytečného tuku?"
+        options:
+          - { text: "Mezomorf", correct: true }
+          - { text: "Ektomorf", why: "Ektomorf je štíhlý s úzkými rameny a svaly nabírá těžko." }
+          - { text: "Endomorf", why: "Endomorf svaly nabírá dobře, ale snadno ukládá tuk." }
+          - { text: "Skinny fat", why: "Skinny fat má málo svalů a relativně hodně tuku." }
+      - id: endomorf
+        type: choice
+        prompt: "Klient má mohutné široké kosti, snadno přibírá tuk, ale svaly buduje dobře. O jaký somatotyp jde?"
+        options:
+          - { text: "Endomorf", correct: true }
+          - { text: "Ektomorf", why: "Ektomorf má tenké kosti a těžko přibírá." }
+          - { text: "Mezomorf", why: "Mezomorf nabírá svaly bez zbytečného tuku." }
+          - { text: "Skinny fat", why: "Skinny fat má tenké kosti a málo svalů." }
+      - id: tri-typy
+        type: reveal
+        prompt: "Popiš stručně hlavní znaky tří somatotypů."
+        answer: >-
+          Ektomorf – vysoký, štíhlý, tenké kosti, málo tuku, těžko nabírá. Mezomorf – svalnatý,
+          široká ramena, snadno nabírá svaly. Endomorf – mohutné kosti, sklon k tuku a nadváze,
+          dobře buduje svaly.
+
+  - id: por.somatotypy-trenink
+    title: Trénink podle somatotypu
+    kind: comparison
+    tier: C
+    criteria: [3a]
+    prereqs: [por.somatotypy-znaky]
+    source: { pages: [149], anchor: "Aerobní aktivita by měla být v tréninku omezena na minimum" }
+    explanation: >-
+      Ektomorf (chce-li nabrat): minimum aerobní aktivity, krátký intenzivní silový trénink s delšími
+      pauzami, hlavně komplexní cviky. Mezomorf: komplexní i izolované cviky, intenzivně do 60 minut,
+      dbát na regeneraci, ne moc aerobní aktivity. Endomorf: delší tréninky s kratšími pauzami,
+      silový trénink i kardio.
+    exercises:
+      - id: ektomorf
+        type: choice
+        prompt: "Jaký trénink skripta doporučují ektomorfovi, který chce nabrat svaly?"
+        options:
+          - { text: "Krátký intenzivní silový trénink s delšími pauzami a minimem aerobní aktivity", correct: true }
+          - { text: "Hodně kardia a dlouhé tréninky s krátkými pauzami", why: "To je spíše doporučení pro endomorfa." }
+          - { text: "Jen izolované cviky", why: "Ektomorfovi se doporučují hlavně komplexní cviky." }
+          - { text: "Žádný silový trénink", why: "Silový trénink je pro nabírání klíčový." }
+
+  - id: por.heath-carter
+    title: Měření somatotypu – metoda Heath-Carter
+    kind: procedure
+    tier: A
+    criteria: [3a]
+    prereqs: [por.somatotypy-model]
+    confusableWith: [por.kaliper]
+    source: { pages: [148], anchor: "Na určení somatotypů lze použít výpočet podle metody Heath-Carter" }
+    explanation: >-
+      Somatotyp se určuje výpočtem podle Heath-Cartera z 10 tělesných parametrů: hmotnost (nalačno,
+      bez oblečení), výška (dopoledne, bez bot), šířka lokte a kolene (epikondyl humeru, epifýza
+      femuru), obvod zatnuté paže a lýtka a 4 kožní řasy – nad tricepsem, pod lopatkou, nad kyčelní
+      kostí (supraspinální) a na lýtku. Hodnoty se dosadí do rovnic (kalkulačky).
+    exercises:
+      - id: pocet
+        type: choice
+        prompt: "Kolik tělesných parametrů potřebuješ k výpočtu somatotypu metodou Heath-Carter?"
+        options:
+          - { text: "10", correct: true }
+          - { text: "4", why: "Čtyři kožní řasy měří kaliperační metoda Durnin." }
+          - { text: "2 – hmotnost a výšku", why: "Z hmotnosti a výšky se počítá BMI." }
+          - { text: "5", why: "Pět vstupních údajů má index ABSI." }
+      - id: rasy
+        type: choice
+        prompt: "Která kožní řasa NEpatří mezi čtyři řasy měřené pro Heath-Carter?"
+        options:
+          - { text: "Řasa nad bicepsem", correct: true }
+          - { text: "Řasa nad tricepsem", why: "Ta se měří." }
+          - { text: "Subskapulární řasa (pod lopatkou)", why: "Ta se měří." }
+          - { text: "Řasa na lýtku", why: "Ta se měří." }
+      - id: parametry
+        type: reveal
+        prompt: "Vyjmenuj skupiny parametrů, které měříš pro Heath-Carter."
+        answer: >-
+          Hmotnost a výška; šířka lokte a kolene; obvod zatnuté paže a lýtka; 4 kožní řasy (triceps,
+          pod lopatkou, nad kyčelní kostí, lýtko).
+
+  - id: por.skinny-fat
+    title: Skinny fat postava
+    kind: concept
+    tier: A
+    criteria: [3a, 3b]
+    prereqs: [por.somatotypy-znaky]
+    confusableWith: [por.somatotypy-znaky]
+    source: { pages: [149], anchor: "spojuje rysy ektomorfního a endomorfního somatotypu" }
+    explanation: >-
+      Skinny fat spojuje rysy ektomorfa (štíhlá postava, málo svalů, nízké BMI) a endomorfa (vyšší
+      podíl tuku, často kolem břicha). Je to skryté riziko: inzulinová rezistence, horší metabolismus,
+      málo svalů, horší držení těla. Typicky u sedavého stylu a nevyvážené stravy. Řešení: silový
+      trénink a dostatek bílkovin.
+    exercises:
+      - id: reseni
+        type: choice
+        prompt: "Klientka má normální BMI, ale málo svalů a tuk na horní hranici normy. Co jí podle skript doporučíš?"
+        options:
+          - { text: "Silový trénink a dostatek bílkovin", correct: true }
+          - { text: "Snížit energetický příjem a přidat kardio", why: "Hubnutí by snížilo i tak malé množství svalů." }
+          - { text: "Nic, BMI je v normě", why: "Skinny fat je právě skryté riziko při normálním BMI." }
+          - { text: "Zvýšit příjem cukrů pro energii", why: "Strava s hodně cukry a tuky skinny fat podporuje." }
+      - id: rizika
+        type: choice
+        multiple: true
+        prompt: "Která rizika skripta uvádějí u skinny fat postavy?"
+        options:
+          - { text: "Vyšší riziko inzulinové rezistence", correct: true }
+          - { text: "Horší držení těla", correct: true }
+          - { text: "Menší podíl svalů", correct: true }
+          - { text: "Příliš vysoké BMI", why: "BMI bývá normální nebo nízké – proto je riziko skryté." }
+
+  - id: por.svalova-hmota
+    title: Svalová hmota – složení a doporučený podíl
+    kind: fact
+    tier: A
+    criteria: [3a, 3b]
+    source: { pages: [160], anchor: "pokud hovoříme o podílu kosterní svalové hmoty u průměrné dospělé populace" }
+    explanation: >-
+      Svalová hmota na bioimpedanci zahrnuje kosterní svaly, svalovinu orgánů (srdce, trávicí trakt)
+      a vodu v nich obsaženou. Svaly jsou „motor“ energetického výdeje. Zdravé optimum kosterní
+      svaloviny: ženy 25–35 %, muži 33–43 % hmotnosti. Čísla kolem 40–50 % v jiných zdrojích
+      znamenají celkovou svalovou hmotu včetně orgánů a vody.
+    exercises:
+      - id: zeny
+        type: choice
+        prompt: "Jaký je podle skript zdravý podíl kosterní svalové hmoty u dospělé ženy?"
+        options:
+          - { text: "25–35 %", correct: true }
+          - { text: "33–43 %", why: "To je rozmezí pro muže." }
+          - { text: "40–50 %", why: "Takto vysoká čísla se týkají celkové svalové hmoty včetně orgánů a vody." }
+          - { text: "10–20 %", why: "To je orientační podíl tuku u mužů." }
+      - id: slozeni
+        type: reveal
+        prompt: "Co všechno zahrnuje údaj „svalová hmota“ na bioimpedanční váze?"
+        answer: "Kosterní svalstvo, svalovinu orgánů (např. srdce, trávicí trakt) a vodu obsaženou ve svalech."
+
+  - id: por.svaly-vek
+    title: Úbytek svalů s věkem a dopad na výdej
+    kind: fact
+    tier: B
+    status: course-disputed
+    criteria: [3a, 5e]
+    prereqs: [por.svalova-hmota]
+    source: { pages: [161], anchor: "po třicítce ubyde v průměru 0,2 kg svalové hmoty ročně" }
+    note: >-
+      Kap. 14 (s. 161) uvádí, že 1 kg svalů netrénovaného člověka spotřebuje 11–12 kcal/den; kap. 15
+      (s. 172) uvádí 54,6 kJ/kg/den, tj. asi 13 kcal. Rozdíl je malý – u otázky na kcal odpovídej
+      11–12 kcal, u otázky v kJ 54,6 kJ.
+    explanation: >-
+      Hypertrofie = nárůst svalů, atrofie = úbytek. Po 30. roce ubývá průměrně 0,2 kg svalů ročně,
+      po 50. až 0,4 kg. Po 60. roce nízká svalová hmota zvyšuje riziko úrazů a nemocí. 1 kg svalů
+      netrénovaného člověka spálí 11–12 kcal denně, takže úbytek svalů zpomaluje bazální metabolismus.
+      Při příliš nízkém příjmu klient hubne i ze svalů.
+    exercises:
+      - id: po-30
+        type: choice
+        prompt: "Kolik svalové hmoty v průměru ubývá ročně po 30. roce života?"
+        options:
+          - { text: "Asi 0,2 kg", correct: true }
+          - { text: "Asi 0,4 kg", why: "Tolik ubývá až po 50. roce." }
+          - { text: "Asi 2 kg", why: "To je výrazně víc, než skripta uvádějí." }
+          - { text: "Svaly do 60 let neubývají", why: "Úbytek začíná po třicítce." }
+      - id: kcal
+        type: reveal
+        prompt: "Kolik kcal denně spotřebuje 1 kg svalů netrénovaného člověka a proč na tom záleží?"
+        answer: "Asi 11–12 kcal. Úbytek svalů proto zpomaluje bazální metabolismus a snižuje energetickou potřebu."
+
+  - id: por.narust-svalu
+    title: Tři faktory nárůstu svalové hmoty
+    kind: concept
+    tier: C
+    criteria: [3a]
+    prereqs: [por.svalova-hmota]
+    source: { pages: [160, 161], anchor: "Zvýšení podílu svalové hmoty ovlivňují tři faktory" }
+    explanation: >-
+      Nárůst svalů ovlivňují tři faktory: 1) tréninkový podnět, který spustí růst, 2) dostatek energie
+      a látek pro tvorbu bílkovin, 3) odpočinek, při kterém tělo superkompenzuje na vyšší úroveň.
+    exercises:
+      - id: tri
+        type: reveal
+        prompt: "Jaké tři faktory podle skript ovlivňují nárůst svalové hmoty?"
+        answer: "Tréninkový stimul, dostatek energie a živin (bílkovin) pro růst a regeneraci, odpočinek (superkompenzace)."
+
+  # ---------- Bioimpedance (3b) ----------
+
+  - id: por.bia-princip
+    title: Princip bioimpedance
+    kind: concept
+    tier: A
+    criteria: [3b]
+    prereqs: [en.bmr-metody]
+    source: { pages: [150], anchor: "Nevodivé tkáně, tedy tuková tkáň, zajišťují rezistenci k toku elektrického proudu" }
+    explanation: >-
+      Bioimpedance pouští tělem střídavý proud nízké intenzity přes dvě a více elektrod. Vodivá je
+      voda s ionty, tuková tkáň klade odpor (izolant). Přístroj změří odezvu (fázový úhel) a
+      regresními rovnicemi z ní dopočítá celkovou tělesnou vodu (TBW), procento tuku (% FM / % BF),
+      buněčnou hmotu (BCM) a další. Složení těla tedy neměří přímo, ale odhaduje.
+    confusableWith: [por.kaliper]
+    exercises:
+      - id: vodiva
+        type: choice
+        prompt: "Která složka těla je podle principu bioimpedance elektricky vodivá?"
+        options:
+          - { text: "Voda s ionty", correct: true }
+          - { text: "Tuková tkáň", why: "Tuk klade proudu odpor – funguje jako izolant." }
+          - { text: "Kosti", why: "Za vodivou složku se považuje voda." }
+          - { text: "Všechny tkáně stejně", why: "Metoda stojí právě na rozdílném odporu tkání." }
+      - id: odhad
+        type: choice
+        prompt: "Jak bioimpedanční váha získá procento tělesného tuku?"
+        options:
+          - { text: "Změří odezvu těla na proud a tuk dopočítá regresními rovnicemi.", correct: true }
+          - { text: "Přímo zváží tukovou tkáň.", why: "Tuk nelze zvážit přímo – výsledek je odhad." }
+          - { text: "Změří tloušťku kožních řas.", why: "To dělá kaliper." }
+          - { text: "Vypočítá ho z BMI.", why: "BMI složení těla nezohledňuje." }
+      - id: vystupy
+        type: reveal
+        prompt: "Na jakém principu funguje bioimpedance a jaké hodnoty z ní dostaneš?"
+        answer: >-
+          Tělem prochází slabý střídavý proud; voda vede, tuk klade odpor. Z naměřené odezvy (fázového
+          úhlu) přístroj dopočítá celkovou vodu (TBW), % tuku, buněčnou hmotu (BCM) aj.
+
+  - id: por.bia-pristroje
+    title: Profesionální vs. domácí bioimpedanční váhy
+    kind: comparison
+    tier: C
+    criteria: [3b]
+    prereqs: [por.bia-princip]
+    source: { pages: [150], anchor: "Pro profesionální použití je třeba vybírat mezi přístroji využívajícími více frekvencí" }
+    explanation: >-
+      Profesionální přístroje: více frekvencí, více elektrod, často samokalibrace; navíc ukážou poměr
+      extra- a intracelulární vody (otoky, záněty), orientačně kostní denzitu a viscerální tuk v cm².
+      Domácí: stačí i jedna frekvence, ale s elektrodami na ruce i nohy (8 elektrod); přesnost je
+      nižší, na sledování hmotnosti a tuku dobré.
+    exercises:
+      - id: ecw-icw
+        type: choice
+        prompt: "K čemu slouží sledování poměru extracelulární a intracelulární vody na profesionálním přístroji?"
+        options:
+          - { text: "K odhalení otoků, případně zánětů", correct: true }
+          - { text: "K určení somatotypu", why: "Somatotyp se určuje z tělesných měr (Heath-Carter)." }
+          - { text: "K výpočtu BMI", why: "BMI se počítá jen z hmotnosti a výšky." }
+          - { text: "K měření krevního tlaku", why: "Bioimpedance tlak neměří." }
+
+  - id: por.bia-kontraindikace
+    title: Komu bioimpedanci nedělat
+    kind: fact
+    tier: A
+    criteria: [3b]
+    prereqs: [por.bia-princip]
+    source: { pages: [150, 151], anchor: "lidé s kardiostimulátorem nebo ICD" }
+    explanation: >-
+      Bioimpedanci nedoporučujeme těhotným a lidem s kardiostimulátorem či defibrilátorem (ICD) –
+      jde o citlivé skupiny a bezpečnost nelze ověřit studiemi. U dětí záleží na věku, výšce a typu
+      váhy (např. od 5 let a 90 cm, jinde od 7 let a 100 cm). U kloubní náhrady mohou být výsledky
+      zkreslené – zeptej se předem. Tyto klienty jen klasicky zvážíš.
+    exercises:
+      - id: komu
+        type: choice
+        multiple: true
+        prompt: "U koho bioimpedanční měření podle skript nedoporučujeme?"
+        options:
+          - { text: "Těhotná žena", correct: true }
+          - { text: "Klient s kardiostimulátorem", correct: true }
+          - { text: "Klient s implantovaným defibrilátorem (ICD)", correct: true }
+          - { text: "Rekreační sportovec", why: "U sportovce jen zvolíš správný mód přístroje." }
+          - { text: "Klient s diabetem 2. typu", why: "Diabetes skripta jako důvod nevylučují." }
+      - id: tehotna
+        type: reveal
+        prompt: "Těhotná klientka chce změřit složení těla. Jak postupuješ?"
+        answer: "Bioimpedanci neprovádím (citlivá skupina, bezpečnost nelze ověřit); klientku jen klasicky zvážím."
+      - id: deti
+        type: choice
+        prompt: "Od kdy lze podle skript měřit bioimpedancí děti?"
+        options:
+          - { text: "Od 5 let a 90 cm, u jiných vah od 7 let a 100 cm", correct: true }
+          - { text: "Od 3 let a 80 cm u všech vah", why: "Limity se liší podle typu váhy a začínají až od 5 let a 90 cm." }
+          - { text: "Od 10 let bez ohledu na výšku", why: "Rozhoduje věk i výška a některé váhy měří už od 5 let." }
+          - { text: "Až od 18 let", why: "Některé váhy umožňují měření už od 5 let." }
+
+  - id: por.bia-zasady
+    title: Zásady vážení a bioimpedančního měření
+    kind: procedure
+    tier: A
+    criteria: [3b, 5b]
+    prereqs: [por.bia-princip]
+    source: { pages: [151], anchor: "2 hodiny před proměřením je doporučeno nepřijímat žádné tekutiny" }
+    explanation: >-
+      Stejné podmínky (20–25 °C, stejná denní doba, ideálně ráno nalačno), spodní prádlo nebo jedna
+      vrstva, naboso se suchými chodidly, ne při menstruaci. Před měřením: 2–4 h nejíst, 2 h nepít,
+      8–12 h bez alkoholu, 2 h nesportovat, 5 min klidu. Končetiny se nedotýkají, paže mírně od těla.
+      Zvol správný mód (dítě, běžný klient, atlet).
+    exercises:
+      - id: alkohol
+        type: choice
+        prompt: "Jak dlouho před bioimpedančním měřením by klient neměl pít alkohol?"
+        options:
+          - { text: "8–12 hodin", correct: true }
+          - { text: "2 hodiny", why: "2 hodiny platí pro tekutiny obecně a pro sport." }
+          - { text: "30 minut", why: "To je příliš krátce." }
+          - { text: "Alkohol měření neovlivňuje", why: "Alkohol mění hydrataci a tím výsledek." }
+      - id: tekutiny
+        type: choice
+        prompt: "Kolik času před měřením by klient už neměl přijímat žádné tekutiny?"
+        options:
+          - { text: "2 hodiny", correct: true }
+          - { text: "8–12 hodin", why: "To platí pro alkohol." }
+          - { text: "5 minut", why: "5 minut je doporučený klid těsně před měřením." }
+          - { text: "Pít má naopak co nejvíc", why: "Velké množství tekutin výsledek zkreslí." }
+      - id: instrukce
+        type: explain
+        prompt: "Klientka se objednala na první měření složení těla. Jaké instrukce jí předem dáš?"
+        keyPoints:
+          - "Ideálně ráno nalačno, aspoň 2–4 h bez jídla"
+          - "2 h nepít, 8–12 h bez alkoholu, 2 h nesportovat"
+          - "Ne v době menstruace"
+          - "Lehké oblečení, měření naboso se suchými chodidly"
+          - "Další měření za stejných podmínek a ve stejnou dobu"
+        modelAnswer: >-
+          Ať přijde ideálně ráno nalačno, nejméně 2–4 hodiny bez jídla, 2 hodiny před měřením už
+          nepije, 8–12 hodin nepije alkohol a 2 hodiny necvičí. Neměla by přijít během menstruace.
+          Bude stát naboso a ve spodním prádle nebo lehkém oblečení a před měřením chvíli odpočine.
+          Kontrolní měření pak děláme ve stejnou denní dobu a za stejných podmínek.
+
+  - id: por.bia-hydratace
+    title: Vliv hydratace a menstruace na bioimpedanci
+    kind: concept
+    tier: A
+    status: course-disputed
+    criteria: [3b]
+    prereqs: [por.bia-princip, por.bia-zasady]
+    source: { pages: [151], anchor: "přístroj naměří falešné hodnoty vyššího podílu tuku" }
+    note: >-
+      S. 151 si odporuje: nejdřív píše, že nevhodný stav hydratace % tuku podhodnotí, o kus dál, že
+      dehydratace ho nadhodnotí. U zkoušky: dehydratace = falešně vyšší % tuku. Skripta tvrdí totéž i
+      o otocích; podle běžné literatury nadbytek vody (otoky) spíše zvyšuje odhad beztukové hmoty a tuk
+      podhodnocuje. Kolísání hmotnosti v cyklu o 2–4 kg je vyšší než běžně uváděné (asi 0,5–2 kg);
+      u zkoušky odpovídej podle skript 2–4 kg.
+    explanation: >-
+      Bioimpedance stojí na vodě, takže hydratace výsledek silně ovlivní. Krátce po jídle nebo sportu
+      skripta uvádějí podhodnocení % tuku. U dehydratace přístroj ukáže falešně vyšší % tuku.
+      U dehydratovaných a lidí s otoky se metoda nepoužívá. Menstruace mění hydrataci, hmotnost kolísá
+      o 2–4 kg (z toho asi 1,5 kg vody). Výsledek ovlivní i diuretika a nemoci ledvin.
+    exercises:
+      - id: dehydratace
+        type: choice
+        prompt: "Klient přišel na měření dehydratovaný. Jak to podle skript ovlivní výsledek?"
+        options:
+          - { text: "Přístroj ukáže falešně vyšší podíl tuku.", correct: true }
+          - { text: "Přístroj ukáže falešně nižší podíl tuku.", why: "Méně vody = vyšší odpor = vyšší odhad tuku." }
+          - { text: "Hydratace výsledek neovlivňuje.", why: "Bioimpedance stojí právě na vodivosti vody." }
+          - { text: "Ovlivní jen hmotnost, ne procento tuku.", why: "Změní se i odhad složení těla." }
+      - id: menstruace
+        type: choice
+        prompt: "O kolik může podle skript kolísat hmotnost ženy během menstruačního cyklu?"
+        options:
+          - { text: "O 2–4 kg", correct: true }
+          - { text: "O 0,1–0,2 kg", why: "Kolísání je kvůli vodě mnohem větší." }
+          - { text: "O 8–10 kg", why: "To je výrazně víc, než skripta uvádějí." }
+          - { text: "Hmotnost se během cyklu nemění", why: "Mění se hydratace, a tím i hmotnost." }
+      - id: proc-ne
+        type: reveal
+        prompt: "Proč by žena neměla podstupovat bioimpedanci během menstruace?"
+        answer: >-
+          Hormonální výkyvy mění objem tělesné vody (a teplotu); hmotnost kolísá o 2–4 kg, z toho asi
+          1,5 kg vody, a výsledek složení těla by byl zkreslený.
+
+  # ---------- Antropometrie (3b) ----------
+
+  - id: por.metr
+    title: Krejčovský metr a úbytek obvodu bicepsu
+    kind: procedure
+    tier: B
+    criteria: [3b]
+    source: { pages: [152], anchor: "klient pravděpodobně hubne ze svalové hmoty" }
+    explanation: >-
+      Metrem lze měřit jakékoli místo, kde chce klient vidět výsledky (pas, boky, břicho, stehna,
+      biceps, lýtka); měří poradce nebo klient doma. Když ubývá obvod bicepsu, ale pas a boky se
+      nemění, klient pravděpodobně hubne ze svalů – je třeba zvýšit bílkoviny a zařadit silový trénink.
+    exercises:
+      - id: biceps
+        type: choice
+        prompt: "Klientovi ubývají centimetry na bicepsu, ale pas a boky se nemění. Co to pravděpodobně znamená?"
+        options:
+          - { text: "Hubne ze svalové hmoty – je třeba víc bílkovin a silový trénink.", correct: true }
+          - { text: "Hubne z tuku přesně podle plánu.", why: "Tuk by ubýval i z pasu a boků." }
+          - { text: "Zadržuje vodu.", why: "Zadržená voda obvody spíše zvětšuje." }
+          - { text: "Měří se špatně, výsledek ignoruj.", why: "Je to cenný signál úbytku svalů." }
+
+  - id: por.whr
+    title: WHR – poměr pasu a boků
+    kind: procedure
+    tier: A
+    status: course-disputed
+    criteria: [3b]
+    confusableWith: [por.obvod-pasu, por.bmi]
+    source: { pages: [152, 153], anchor: "hodnota WHR nad 0,90 u mužů a nad 0,85 u žen" }
+    note: >-
+      Kap. 14 (s. 152–153, WHO) uvádí riziko nad 0,90 u mužů a nad 0,85 u žen. Kap. o PPP (s. 230)
+      píše, že u ženy je typické 0,75 a riziko je spojeno až s hodnotou nad 1. U zkoušky odpovídej
+      hranicemi WHO: 0,90 (muži) a 0,85 (ženy).
+    explanation: >-
+      WHR = obvod pasu / obvod boků (cm). Pas měř v nejužším místě (pod posledním žebrem nebo asi
+      2 cm nad pupkem), ne přes pupek; boky v nejširším místě pánve. Riziko podle WHO: nad 0,90 u
+      mužů, nad 0,85 u žen. Androidní typ (jablko, centrální) ukládá tuk na břiše – rizikovější
+      (viscerální tuk). Gynoidní typ (hruška) ukládá tuk na hýždích a stehnech.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: whr
+        version: 2
+        prompt: "Měříš klienta (pohlaví: {sex}): obvod pasu {waist} cm, obvod boků {hip} cm. Vypočítej WHR a urči, zda je nad hranicí rizika."
+        params:
+          sex: { choices: [{ value: M, label: "muž" }, { value: F, label: "žena" }] }
+          waist: { min: 68, max: 108, step: 1 }
+          hip: { min: 90, max: 118, step: 1 }
+        unit: ""
+        tolerance: { abs: 0.01 }
+        decimals: 2
+        hint: "Pas děleno boky; riziko nad 0,90 (muži) / 0,85 (ženy)."
+      - id: hranice
+        type: choice
+        prompt: "Od jaké hodnoty WHR mluvíme podle WHO o zvýšeném zdravotním riziku u ženy?"
+        options:
+          - { text: "Nad 0,85", correct: true }
+          - { text: "Nad 0,90", why: "To je hranice pro muže." }
+          - { text: "Nad 1,0", why: "Tak to uvádí jiná kapitola skript, ke zkoušce platí hranice WHO." }
+          - { text: "Nad 0,75", why: "0,75 uvádějí skripta jako typickou hodnotu pro ženu, ne jako hranici rizika." }
+      - id: android
+        type: choice
+        prompt: "Který typ rozložení tuku je zdravotně rizikovější a proč?"
+        options:
+          - { text: "Androidní (jablko) – tuk na břiše, více viscerálního tuku", correct: true }
+          - { text: "Gynoidní (hruška) – tuk na hýždích a stehnech", why: "Ten souvisí spíše s lymfatickými potížemi." }
+          - { text: "Oba jsou stejně rizikové", why: "Centrální (androidní) typ je rizikovější." }
+          - { text: "Periferní – tuk na pažích", why: "Periferní typ je méně rizikový a tuk je hlavně na hýždích a stehnech." }
+
+  - id: por.obvod-pasu
+    title: Obvod pasu a zdravotní riziko
+    kind: fact
+    tier: B
+    status: course-disputed
+    criteria: [3b]
+    prereqs: [por.whr]
+    confusableWith: [por.whr]
+    source: { pages: [152], anchor: "Ideální místo je pod posledním žebrem, nebo cca 2 cm nad pupíkem" }
+    note: >-
+      Tabulka skript (ženy 81–85 cm zvýšené, nad 85 vysoké; muži 90–102 zvýšené, nad 102 vysoké) se
+      liší od běžně citovaných hranic WHO (ženy ≥ 80 / ≥ 88 cm, muži ≥ 94 / ≥ 102 cm). U zkoušky
+      odpovídej podle tabulky skript.
+    explanation: >-
+      Podle skript: ženy do 80 cm bez rizika, 81–85 cm zvýšené, nad 85 cm vysoké. Muži do 90 cm bez
+      rizika, 90–102 cm zvýšené, nad 102 cm vysoké. Měř nejužší místo (pod posledním žebrem nebo asi
+      2 cm nad pupkem). Silně obézní klient se může měřit sám doma – vždy na stejném místě.
+    exercises:
+      - id: zena
+        type: choice
+        prompt: "Klientka má obvod pasu 83 cm. Jaké zdravotní riziko podle tabulky skript?"
+        options:
+          - { text: "Zvýšené", correct: true }
+          - { text: "Žádné", why: "Bez rizika je u žen pas do 80 cm." }
+          - { text: "Vysoké", why: "Vysoké riziko je u žen nad 85 cm." }
+          - { text: "Nelze určit bez obvodu boků", why: "Obvod pasu se hodnotí i samostatně." }
+      - id: muz
+        type: choice
+        prompt: "Od jakého obvodu pasu má muž podle skript vysoké zdravotní riziko?"
+        options:
+          - { text: "Nad 102 cm", correct: true }
+          - { text: "Nad 90 cm", why: "Od 90 cm je riziko zvýšené." }
+          - { text: "Nad 85 cm", why: "To je hranice vysokého rizika u žen." }
+          - { text: "Nad 120 cm", why: "Vysoké riziko začíná už nad 102 cm." }
+
+  - id: por.bmi
+    title: BMI – výpočet, kategorie a limity
+    kind: procedure
+    tier: A
+    criteria: [3b]
+    confusableWith: [por.whr]
+    source: { pages: [153], anchor: "BMI nezohledňuje pohlaví a věk" }
+    explanation: >-
+      BMI = hmotnost (kg) / výška² (m). Kategorie (dospělí od 20 let, stejné pro muže i ženy):
+      podváha < 18,5; norma 18,5–24,9; nadváha 25–29,9; obezita ≥ 30. Limity: nezohlední pohlaví,
+      věk, poměr tuku a svalů ani rozložení tuku – sportovci ukáže falešnou nadváhu, člověk s málo
+      svaly může mít BMI v normě a přesto hodně tuku. Kombinuj s WHR.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: bmi
+        prompt: "Klientka váží {weight} kg a měří {height} cm. Vypočítej její BMI."
+        params:
+          weight: { min: 50, max: 115, step: 1 }
+          height: { min: 152, max: 188, step: 1 }
+        unit: kg/m²
+        tolerance: { abs: 0.2 }
+        decimals: 1
+        hint: "Výšku převeď na metry a umocni na druhou."
+      - id: kategorie
+        type: choice
+        prompt: "Do jaké kategorie patří dospělý s BMI 27,3?"
+        options:
+          - { text: "Nadváha", correct: true }
+          - { text: "Normální hmotnost", why: "Norma je 18,5–24,9." }
+          - { text: "Obezita", why: "Obezita začíná od BMI 30." }
+          - { text: "Záleží na pohlaví", why: "Současné hranice jsou pro muže i ženy stejné." }
+      - id: limity
+        type: choice
+        prompt: "Proč může BMI u silového sportovce klamat?"
+        options:
+          - { text: "Nerozliší svaly od tuku, takže ukáže falešnou nadváhu.", correct: true }
+          - { text: "U sportovců se BMI počítá z obvodu pasu.", why: "BMI se počítá vždy jen z hmotnosti a výšky." }
+          - { text: "Sportovci mají vždy BMI pod 18,5.", why: "Svalnatí sportovci mívají BMI spíše vyšší." }
+          - { text: "BMI u sportovců nadhodnocuje výšku.", why: "Výška je přesně změřená, problém je ve složení hmotnosti." }
+
+  - id: por.easo-obezita
+    title: Definice obezity podle EASO
+    kind: fact
+    tier: B
+    criteria: [3b]
+    prereqs: [por.bmi]
+    source: { pages: [153, 154], anchor: "Podle nové definice European Association for the Study of Obesity" }
+    explanation: >-
+      Podle EASO je obezita BMI ≥ 30, nebo BMI ≥ 25 a zároveň poměr pas/výška (WHtR) ≥ 0,5 a alespoň
+      jedna komplikace (např. hypertenze, diabetes, artróza, spánková apnoe, psychické potíže). U
+      klientů s BMI 25–30 tedy samotné BMI nestačí – doptej se na obvod pasu vůči výšce a na
+      zdravotní potíže.
+    exercises:
+      - id: kriteria
+        type: choice
+        prompt: "Klient má BMI 27, poměr pas/výška 0,55 a léčí se s hypertenzí. Jak ho hodnotí definice EASO?"
+        options:
+          - { text: "Jako obézního", correct: true }
+          - { text: "Jen jako klienta s nadváhou, protože BMI je pod 30", why: "EASO umožňuje obezitu i od BMI 25 při WHtR ≥ 0,5 a komplikaci." }
+          - { text: "Jako klienta s normální hmotností", why: "BMI 27 je nad hranicí normy." }
+          - { text: "Nelze hodnotit bez bioimpedance", why: "Definice EASO pracuje s BMI, WHtR a komplikacemi." }
+
+  - id: por.absi
+    title: ABSI – index tvaru těla
+    kind: fact
+    tier: C
+    criteria: [3b]
+    prereqs: [por.bmi]
+    source: { pages: [154, 155], anchor: "zatím není oficiálně doporučen WHO ani EFSA" }
+    explanation: >-
+      ABSI (A Body Shape Index) kombinuje věk, pohlaví, výšku, hmotnost a obvod pasu, takže zohledňuje
+      i rozložení tuku. Vyšší hodnoty souvisí s vyšším rizikem nemocí spojených s obezitou nezávisle
+      na BMI. Zatím ho oficiálně nedoporučuje WHO ani EFSA – je to doplněk k BMI.
+    exercises:
+      - id: navic
+        type: choice
+        prompt: "Co navíc oproti BMI zohledňuje index ABSI?"
+        options:
+          - { text: "Obvod pasu (a také věk a pohlaví)", correct: true }
+          - { text: "Obvod bicepsu", why: "Biceps se sleduje metrem kvůli úbytku svalů." }
+          - { text: "Kožní řasy", why: "Kožní řasy měří kaliper." }
+          - { text: "Nic, je to jen jiný název pro BMI", why: "ABSI přidává obvod pasu, věk a pohlaví." }
+
+  # ---------- Interpretace měření (3b) ----------
+
+  - id: por.tuk-normy
+    title: Tělesný tuk – orientační rozmezí a funkce
+    kind: fact
+    tier: B
+    criteria: [3b]
+    prereqs: [por.bia-princip]
+    confusableWith: [por.svalova-hmota]
+    source: { pages: [158], anchor: "Orientační rozmezí pro běžnou populaci" }
+    explanation: >-
+      Orientačně (ACE) mají ženy 20–30 % tuku, muži 10–20 %; rozmezí se mění s věkem a trénovaností.
+      Podkožní tuk ukládá energii, chrání svaly a kosti před nárazy, izoluje a pomáhá s termoregulací,
+      vedou jím nervy a cévy a připojuje kůži ke svalům a kostem. Ze znalosti % tuku dopočítáš
+      beztukovou hmotu (FFM).
+    exercises:
+      - id: rozmezi
+        type: choice
+        prompt: "Jaké je podle skript orientační rozmezí tělesného tuku pro běžnou dospělou ženu?"
+        options:
+          - { text: "20–30 %", correct: true }
+          - { text: "10–20 %", why: "To je rozmezí pro muže." }
+          - { text: "25–35 %", why: "To je zdravý podíl kosterní svaloviny u žen." }
+          - { text: "Alespoň 50 %", why: "To je optimální podíl vody u žen." }
+      - id: ffm
+        type: numeric
+        formula: ffm
+        prompt: "Klientka váží {weight} kg a bioimpedance ukázala {bodyFat} % tuku. Kolik kg má beztukové hmoty (FFM)?"
+        params:
+          weight: { min: 50, max: 110, step: 1 }
+          bodyFat: { min: 15, max: 42, step: 1 }
+        unit: kg
+        tolerance: { abs: 0.3 }
+        decimals: 1
+        hint: "Nejdřív spočítej kg tuku, pak je odečti od hmotnosti."
+
+  - id: por.podkozni-visceralni
+    title: Podkožní vs. viscerální tuk
+    kind: comparison
+    tier: B
+    criteria: [3b]
+    prereqs: [por.tuk-normy]
+    confusableWith: [por.whr]
+    source: { pages: [158, 159], anchor: "Viscerální tuk nelze odstranit ani liposukcí" }
+    explanation: >-
+      Podkožní tuk je pod kůží, viscerální v břišní dutině kolem orgánů. S věkem se tuk víc ukládá na
+      břiše, hlavně u žen v menopauze. Viscerální tuk nejde odstranit liposukcí, jen dietou a pohybem.
+      Rizika: inzulinová rezistence, metabolický syndrom, porucha lipidů, vysoký tlak, ateroskleróza,
+      infarkt, mrtvice, ztučnění jater, některé nádory. Klinická hranice: VFA < 100 cm².
+    exercises:
+      - id: liposukce
+        type: choice
+        prompt: "Jak lze podle skript snížit množství viscerálního tuku?"
+        options:
+          - { text: "Jen kombinací vhodné stravy a pohybu", correct: true }
+          - { text: "Liposukcí", why: "Liposukce viscerální tuk neodstraní." }
+          - { text: "Doplňky stravy – spalovači tuků", why: "Skripta uvádějí jen stravu a pohyb." }
+          - { text: "Nelze ho snížit vůbec", why: "Dietou a pohybem ho snížit lze." }
+      - id: rizika
+        type: choice
+        multiple: true
+        prompt: "Která rizika skripta spojují s nadbytkem viscerálního tuku?"
+        options:
+          - { text: "Inzulinová rezistence a metabolický syndrom", correct: true }
+          - { text: "Ztučnění jater", correct: true }
+          - { text: "Vysoký krevní tlak a ateroskleróza", correct: true }
+          - { text: "Problémy s lymfatickým systémem", why: "Ty skripta spojují s gynoidním (hruškovitým) ukládáním tuku." }
+
+  - id: por.visceralni-skaly
+    title: Hodnocení viscerálního tuku na různých přístrojích
+    kind: fact
+    tier: C
+    criteria: [3b]
+    prereqs: [por.podkozni-visceralni]
+    source: { pages: [159], anchor: "pracují s vlastními škálami, které mezi sebou nejsou přímo převoditelné" }
+    explanation: >-
+      Zlatý standard (CT, DXA): plocha viscerálního tuku VFA < 100 cm² je zdravé pásmo pro muže i ženy.
+      Bioimpedanční váhy různých výrobců mají vlastní bodové škály, které nelze mezi sebou převádět –
+      porovnávej proto jen měření ze stejného přístroje.
+    exercises:
+      - id: prevod
+        type: choice
+        prompt: "Klientka má viscerální tuk změřený na dvou různých značkách vah. Co platí?"
+        options:
+          - { text: "Škály se liší a nejsou převoditelné, porovnávej jen stejný přístroj.", correct: true }
+          - { text: "Hodnoty jsou vždy stejné, stačí je zprůměrovat.", why: "Každý výrobce má vlastní škálu." }
+          - { text: "Platí ta vyšší hodnota.", why: "Hodnoty z různých škál nelze přímo srovnávat." }
+          - { text: "Viscerální tuk váhy neměří, jen CT.", why: "Váhy ho odhadují, ale ve vlastních škálách." }
+
+  - id: por.telesna-voda
+    title: Tělesná voda (TBW, ICT, ECT)
+    kind: fact
+    tier: B
+    criteria: [3b]
+    prereqs: [por.bia-princip]
+    source: { pages: [161, 162], anchor: "Optimální množství vody je pro ženy alespoň 50 %" }
+    explanation: >-
+      TBW = veškerá voda v těle. Intracelulární tekutina (v buňkách) tvoří asi 2/3 vody (asi 40 %
+      hmotnosti), extracelulární asi 1/3 (tkáňový mok, krevní plazma, lymfa, mozkomíšní mok aj.).
+      Optimum: ženy alespoň 50 %, muži alespoň 60 % hmotnosti. Čím víc tuku, tím nižší procento vody;
+      po úbytku tuku se podíl vody zvedne. Voda kolísá během dne.
+    exercises:
+      - id: optimum
+        type: choice
+        prompt: "Jaký je podle skript optimální podíl tělesné vody u mužů?"
+        options:
+          - { text: "Alespoň 60 % hmotnosti", correct: true }
+          - { text: "Alespoň 50 % hmotnosti", why: "To platí pro ženy." }
+          - { text: "Asi 40 % hmotnosti", why: "Asi 40 % hmotnosti tvoří intracelulární tekutina." }
+          - { text: "10–20 % hmotnosti", why: "To je orientační podíl tuku u mužů." }
+      - id: ict-ect
+        type: reveal
+        prompt: "Jak se dělí celková tělesná voda a v jakém poměru?"
+        answer: "Intracelulární (v buňkách) asi 2/3, extracelulární (tkáňový mok, plazma, další tekutiny) asi 1/3."
+
+  - id: por.kaliper
+    title: Měření tuku kaliperem (metoda Durnin)
+    kind: procedure
+    tier: B
+    criteria: [3b]
+    confusableWith: [por.heath-carter, por.bia-princip]
+    source: { pages: [162], anchor: "Nejlépe na 4 místech: tricepsu, bicepsu, na ramenní lopatce a v pase" }
+    explanation: >-
+      Kaliper je levná alternativa, když nemáš bioimpedanci. Metoda Durnin (Durnin–Womersley) měří
+      4 kožní řasy: triceps a biceps (svisle, v polovině paže), pod lopatkou (1–2 cm pod dolní hranou,
+      pod úhlem 45°) a v pase nad kyčelní kostí (45°). Klíčové je správně vytáhnout řasu; každé místo
+      měř 3× a zprůměruj, výsledek odečti z tabulky nebo kalkulátoru.
+    exercises:
+      - id: mista
+        type: choice
+        prompt: "Která čtyři místa se měří kaliperem podle metody Durnin?"
+        options:
+          - { text: "Triceps, biceps, pod lopatkou, pas", correct: true }
+          - { text: "Triceps, pod lopatkou, nad kyčelní kostí, lýtko", why: "To jsou řasy pro somatotyp (Heath-Carter)." }
+          - { text: "Břicho, stehno, hrudník, lýtko", why: "To nejsou místa metody Durnin." }
+          - { text: "Pas, boky, biceps, lýtko", why: "To jsou spíše obvody pro krejčovský metr." }
+      - id: opakovani
+        type: reveal
+        prompt: "Kolikrát měříš každé místo kaliperem a co s výsledky uděláš?"
+        answer: "Každé místo 3× a výsledky zprůměruješ; hodnoty pak porovnáš s tabulkou nebo zadáš do kalkulátoru."
+
+  # ---------- Speciální skupiny ----------
+
+  - id: por.deti-percentily
+    title: Dětský klient a percentilové grafy
+    kind: concept
+    tier: B
+    criteria: [3b]
+    prereqs: [por.bmi]
+    status: course-disputed
+    source: { pages: [165, 166, 225], anchor: "místo pevných hranic BMI používají percentilové grafy" }
+    note: >-
+      S. 166 uvádí, že grafy v ČR vycházejí z referencí WHO, s. 225 naopak, že se v ČR používají
+      národní růstové grafy SZÚ (nikoli WHO). V praxi ČR platí grafy SZÚ – tak odpovídej i u zkoušky.
+    explanation: >-
+      U dětí a mladistvých do 20 let se BMI nehodnotí pevnými hranicemi, ale percentilovými grafy
+      (v ČR národní růstové grafy SZÚ, jsou v očkovacím průkazu). Dítě na 50. percentilu výšky je
+      průměrné, na 95. percentilu patří mezi 5 % nejvyšších dětí svého věku. Klíčové je pravidelně
+      měřit výšku a sledovat trend – varováním je přeskok o 2 a více percentilových pásem.
+    exercises:
+      - id: percentil
+        type: choice
+        prompt: "Dítě je na 95. percentilu výšky. Co to znamená?"
+        options:
+          - { text: "Patří mezi 5 % nejvyšších dětí svého věku.", correct: true }
+          - { text: "Je vyšší než 5 % dětí svého věku.", why: "Je vyšší než 95 % dětí." }
+          - { text: "Je přesně průměrné.", why: "Průměr odpovídá 50. percentilu." }
+          - { text: "Má 95 % tělesného tuku.", why: "Percentil vyjadřuje pořadí mezi vrstevníky." }
+      - id: hranice
+        type: choice
+        prompt: "Do jakého věku se BMI hodnotí percentilovými grafy místo pevných hranic?"
+        options:
+          - { text: "Do 20 let", correct: true }
+          - { text: "Do 10 let", why: "Percentily se používají až do 20 let." }
+          - { text: "Do 15 let", why: "Percentily se používají až do 20 let." }
+          - { text: "Pevné hranice platí od narození", why: "U dětí se používají percentilové grafy." }

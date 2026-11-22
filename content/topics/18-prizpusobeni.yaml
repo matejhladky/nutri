@@ -1,0 +1,321 @@
+topic:
+  id: prizpusobeni
+  title: Přizpůsobení stravovacího plánu
+  chapter: 18
+  pages: [183, 189]
+  order: 180
+  summary: >-
+    Jak upravit stravovací plán pro nestandardní situace: práce na směny, nedostatek času v práci,
+    cestování a jídlo s sebou, dovolená, restaurace, oslavy a večírky.
+
+points:
+  - id: pri.smeny
+    title: Strava při noční směně
+    kind: procedure
+    tier: A
+    criteria: [6c]
+    source: { pages: [183, 184, 185], anchor: "mezi půlnocí a 6:00 hodinou spíše nejíst" }
+    explanation: >-
+      Stejné jídlo snědené v noci vede k horší glykémii a inzulinové odpovědi než ráno. NIOSH a CDC proto
+      doporučují mezi půlnocí a 6:00 spíše nejíst a držet denní vzorec jídel. Hlavní jídla patří před
+      a po směně: před směnou větší komplexní jídlo (sacharidy, bílkoviny, tuky). V noci jen při hladu
+      nebo kvůli bezpečnosti malá svačina – bílkovina a vláknina, málo cukru a tuku (např. skyr
+      s ovocem, vejce s chlebem). Cílem je bdělost bez glykemických výkyvů.
+    exercises:
+      - id: strategie
+        type: explain
+        prompt: "Klientka pracuje na noční směny. Jak jí doporučíš rozložit jídlo?"
+        keyPoints:
+          - "Hlavní jídla v denní části – před směnou a po ní"
+          - "Před směnou větší komplexní jídlo (S + B + T)"
+          - "Mezi půlnocí a 6:00 spíše nejíst (NIOSH, CDC)"
+          - "Při hladu malá svačina: bílkovina + vláknina, málo cukru a tuku"
+          - "Důvod: noční jídlo → horší glykémie a inzulinová odpověď"
+        modelAnswer: >-
+          Hlavní jídla bych jí nechala v denní části – před směnou a po ní. Před směnou si dá větší
+          komplexní jídlo se sacharidy, bílkovinou i tukem, třeba rýži s kuřecím masem a salátem.
+          Mezi půlnocí a šestou ráno je lepší spíše nejíst, protože stejné jídlo v noci zhorší
+          glykémii a inzulinovou odpověď. Pokud má hlad, zvolí malou svačinu s bílkovinou a
+          vlákninou a s minimem cukru a tuku, například skyr s ovocem nebo vejce s krajícem chleba.
+      - id: nocni-svacina
+        type: choice
+        prompt: "Která noční svačina nejlépe odpovídá doporučení pro směnný provoz?"
+        options:
+          - { text: "Bílý jogurt nebo skyr s borůvkami", correct: true }
+          - { text: "Sladká bageta a energetický nápoj", why: "Hodně cukru → glykemický výkyv a následný pokles energie." }
+          - { text: "Smažený sýr s hranolky", why: "Velká a tučná porce v noci zatíží trávení." }
+          - { text: "Velký talíř těstovin, aby vydržela do rána", why: "V noci se volí jen malá porce." }
+      - id: proc
+        type: choice
+        prompt: "Proč se doporučuje v biologické noci spíše nejíst?"
+        options:
+          - { text: "Stejné jídlo vyvolá v noci horší glykémii a inzulinovou odpověď než ráno.", correct: true }
+          - { text: "Protože v noci se jídlo vůbec netráví.", why: "Tráví, jen je metabolická odpověď horší." }
+          - { text: "Protože noční jídlo nemá žádnou energii.", why: "Energie jídla je stejná, horší je metabolická odpověď." }
+          - { text: "Protože to výslovně nařizuje WHO.", why: "WHO specifická časová doporučení pro noční práci nemá; doporučení je od NIOSH a CDC." }
+
+  - id: pri.smeny-vyjimky
+    title: Kdo by v noci jídlo vynechávat neměl
+    kind: fact
+    tier: B
+    criteria: [6c]
+    prereqs: [pri.smeny]
+    source: { pages: [184], anchor: "diabetici na inzulinu nebo derivátech sulfonylurey" }
+    explanation: >-
+      Vynechat jídlo během noční směny není vhodné pro: lidi s výraznou nevolností při hladovění,
+      těhotné (vždy individuálně), lidi s velmi fyzicky náročnou noční prací a diabetiky na inzulinu
+      nebo derivátech sulfonylurey – hrozí jim hypoglykémie, režim se řídí bezpečností a nastavením
+      terapie.
+    exercises:
+      - id: vyjimky
+        type: choice
+        multiple: true
+        prompt: "Kdo by podle skript neměl během noční směny vynechávat jídlo?"
+        options:
+          - { text: "Diabetik na inzulinu", correct: true }
+          - { text: "Těhotná žena", correct: true }
+          - { text: "Skladník s velmi fyzicky náročnou noční prací", correct: true }
+          - { text: "Zdravý dospělý s převážně sedavou prací", why: "Pro něj platí obecné doporučení – v noci jíst minimálně." }
+      - id: diabetik
+        type: reveal
+        prompt: "Proč diabetik na inzulinu nebo derivátech SU nemá v noci hladovět?"
+        answer: "Hrozí hypoglykémie – režim se řídí bezpečností a nastavením terapie, ne obecnými doporučeními."
+
+  - id: pri.po-smene
+    title: Jídlo po noční směně
+    kind: procedure
+    tier: B
+    criteria: [6c]
+    prereqs: [pri.smeny]
+    source: { pages: [185], anchor: "čím blíže plánovanému spánku, tím lehčí by porce měla být" }
+    explanation: >-
+      Záleží na tom, kdy jde klient spát. Jde-li spát do 1–2 hodin po směně, dá si jen malou snídani
+      nebo svačinu (bílkovina + vláknina, ne tučné a sladké), a to jen při skutečném hladu – kvůli
+      glykémii před spánkem, refluxu a kvalitě spánku. Bez hladu stačí tekutiny a spánek. Pokud
+      spát nejde hned, může mít normálnější snídani. Platí: čím blíž spánku, tím lehčí porce.
+    exercises:
+      - id: spat-hned
+        type: choice
+        prompt: "Klient končí noční směnu v 6:00 a v 8:00 jde spát. Co mu doporučíš?"
+        options:
+          - { text: "Jen při hladu malou porci, např. skyr s vločkami.", correct: true }
+          - { text: "Vydatnou snídani, aby dobře spal.", why: "Velké jídlo před spánkem zvyšuje glykémii, riziko refluxu a zhoršuje spánek." }
+          - { text: "Sladké pečivo pro rychlou energii.", why: "Před spánkem se vyhýbáme sladkému i tučnému." }
+          - { text: "Nic nejíst ani nepít až do odpoledne.", why: "Tekutiny jsou v pořádku a při hladu je vhodná malá porce." }
+      - id: proc
+        type: reveal
+        prompt: "Ze kterých tří důvodů má být jídlo těsně před spaním po noční směně malé?"
+        answer: "Aby glykémie před spánkem nešla vysoko, aby nevznikl reflux či pocit plnosti a aby byl spánek kvalitnější."
+
+  - id: pri.nestiha
+    title: Když klient v práci nestíhá jíst
+    kind: procedure
+    tier: B
+    criteria: [6c]
+    source: { pages: [185, 186], anchor: "Není nikde dáno, že kvalitní jídlo musí být tepelně upravené" }
+    explanation: >-
+      Nejdřív zjistit příčinu: nechce, nebo nemůže? Často jde jen o to, že volný čas tráví jinak a na
+      jídlo zapomene. Pomohou rychlé varianty „do ruky“: ořechy, sušené ovoce, nakrájená zelenina,
+      hummus, sýr, šunka, kefír, kvalitní proteinová tyčinka. U závodního stravování zjistit nabídku
+      a učit vybírat (jako v restauraci). Kvalitní jídlo nemusí být teplé – saláty s bílkovinou,
+      luštěninové saláty, žitný chléb se šunkou a zeleninou.
+    exercises:
+      - id: prvni-krok
+        type: choice
+        prompt: "Klientka říká, že v práci nestíhá jíst. Co uděláš jako první?"
+        options:
+          - { text: "Zjistím, jestli jíst nechce, nebo nemůže.", correct: true }
+          - { text: "Rovnou jí doporučím proteinové tyčinky.", why: "Bez znalosti příčiny nevíš, co pomůže." }
+          - { text: "Doporučím jí jíst jen večer.", why: "Narušilo by to pravidelnost stravy." }
+          - { text: "Doporučím jí změnit zaměstnání.", why: "Úkolem poradce je najít cestu v rámci jejích možností." }
+      - id: teple
+        type: reveal
+        prompt: "Klient nemá v práci možnost ohřát jídlo. Co mu navrhneš?"
+        answer: "Kvalitní jídlo nemusí být teplé: salát s bílkovinou (vejce, šunka, sýr), luštěninový salát, žitný chléb se šunkou a zeleninou."
+
+  - id: pri.cestovani
+    title: Cestování autem a jídlo s sebou
+    kind: procedure
+    tier: A
+    criteria: [6c]
+    source: { pages: [186, 187], anchor: "stravu je třeba přizpůsobit reálným možnostem klienta, ne naopak" }
+    explanation: >-
+      Stravu přizpůsobujeme reálným možnostem klienta, ne naopak. Zjisti: jak často a dlouho jezdí, zda
+      může zastavit, zda je řízení přímo jeho prací, zda preferuje krabičku či kabelku a kdy stihne
+      jídlo připravit. Z benzínky: ořechy, sušené ovoce, pečivo se šunkou a sýrem, acidofilní mléko,
+      sušené maso, kvalitní proteinová tyčinka. Studené jídlo: sendvič, wrap, salát s bílkovinou,
+      večer připravená kaše přes noc.
+      V létě řešit výdrž jídla – nerezová krabička, chladicí taška, autolednice.
+    exercises:
+      - id: ridic
+        type: explain
+        prompt: "Klient je obchodní zástupce a tráví většinu dne v autě. Jak s ním nastavíš stravování?"
+        keyPoints:
+          - "Přizpůsobit plán jeho reálným možnostem, ne naopak"
+          - "Zjistit: délka jízd, přestávky, možnost zastavit, kdy stihne jídlo připravit"
+          - "Studená jídla do auta: sendvič, wrap, salát s bílkovinou, kaše přes noc"
+          - "Benzínka: ořechy, pečivo + šunka/sýr, acidofilní mléko, jerky, kvalitní tyčinka"
+          - "V létě výdrž jídla: nerezová krabička, chladicí taška, autolednice"
+        modelAnswer: >-
+          Plán musí odpovídat jeho realitě. Nejdřív zjistím, jak dlouho jezdí, jestli může zastavit,
+          kde a jak jí teď a jestli má čas připravit jídlo večer nebo ráno. Navrhnu studená jídla,
+          která se dobře jedí za jízdy – sendvič, wrap, salát s bílkovinou – a trvanlivé svačiny jako
+          ořechy nebo sušené maso. Na benzínce ho naučím vybrat pečivo se šunkou a sýrem či acidofilní
+          mléko. V létě musí řešit výdrž jídla, třeba chladicí taškou nebo autoledničkou.
+      - id: benzinka
+        type: choice
+        prompt: "Co je podle skript vhodnou volbou na benzínce?"
+        options:
+          - { text: "Acidofilní mléko a pečivo se šunkou a sýrem", correct: true }
+          - { text: "Párek v rohlíku s kečupem", why: "Mezi doporučenými volbami není – jde o tučné uzeniny." }
+          - { text: "Bageta a sladká limonáda", why: "Slazený nápoj není vhodný zdroj tekutin ani energie." }
+          - { text: "Čokoládová tyčinka a energetický nápoj", why: "Hodně cukru a kofeinu – mezi doporučenými volbami nejsou." }
+      - id: leto
+        type: choice
+        prompt: "Na co je potřeba u jídla s sebou myslet hlavně v létě?"
+        options:
+          - { text: "Na výdrž jídla a jeho chlazení", correct: true }
+          - { text: "Na vyšší příjem soli kvůli pocení", why: "To skripta u krabiček neuvádějí." }
+          - { text: "Na to, aby jídlo bylo vždy teplé", why: "Teplé jídlo nutné není; v létě jde o to, aby se nezkazilo." }
+          - { text: "Jídlo s sebou v létě vůbec nebrat", why: "Stačí řešit výdrž – nerezová krabička, chladicí taška, autolednice." }
+
+  - id: pri.dovolena
+    title: Dovolená – vaření a all inclusive
+    kind: procedure
+    tier: B
+    criteria: [6c]
+    source: { pages: [187, 188], anchor: "hlavní riziko v neomezené dostupnosti jídla a pití" }
+    explanation: >-
+      Když si klient vaří sám, použije stejné krabičky a svačiny jako doma, vozí trvanlivé potraviny
+      a hlídá komplexní talíř (sacharidy, bílkoviny, tuky). U all inclusive je riziko v neomezené
+      dostupnosti jídla a pití: hlídat pitný režim (dehydratace, alkohol), dostatek bílkovin kvůli
+      sytosti, komplexní talíř, sladké až po jídle, ne místo něj, a jíst jen při skutečném hladu.
+    exercises:
+      - id: all-inclusive
+        type: reveal
+        prompt: "Jaké zásady dáš klientce na dovolenou s all inclusive?"
+        answer: >-
+          Hlídat pitný režim a alkohol, volit dost bílkovin, mít komplexní talíř, sladké až po hlavním
+          jídle, jíst jen při skutečném hladu.
+      - id: sladke
+        type: choice
+        prompt: "Kdy si dát na all inclusive sladké, aby se omezilo přejídání?"
+        options:
+          - { text: "Až po komplexním jídle, ne místo něj", correct: true }
+          - { text: "Místo oběda, aby se ušetřily kalorie", why: "Sladké místo jídla vede k hladu a přejídání." }
+          - { text: "Vždy hned ráno", why: "Skripta doporučují sladké až po komplexním jídle." }
+          - { text: "Sladké na dovolené úplně zakázat", why: "Skripta zákazy nedoporučují, jde o pořadí a množství." }
+
+  - id: pri.restaurace
+    title: Výběr jídla v restauraci
+    kind: procedure
+    tier: A
+    criteria: [6c]
+    source: { pages: [188, 189], anchor: "Nejpraktičtější radou pro jídlo v restauraci tak je sledovat složení" }
+    explanation: >-
+      Nejpraktičtější je sledovat složení a tepelnou úpravu, ne počítat kalorie. Ptej se: smažené, nebo
+      šetrnější úprava? Je v jídle dost bílkoviny a komplexní příloha? Co pije („domácí“ limonády bývají
+      ze sirupu)? Vývar, nebo zahuštěná polévka? Saláty často nemají bílkovinu a nezasytí. Lepší je
+      minutka než hotovka – lze vybrat libové maso či rybu a místo tradiční přílohy víc zeleniny.
+    exercises:
+      - id: vyber
+        type: explain
+        prompt: "Klient chodí každý den na polední menu. Jak ho naučíš vybírat?"
+        keyPoints:
+          - "Sledovat složení a tepelnou úpravu, ne jen kalorie"
+          - "Dost bílkoviny + komplexní příloha, víc zeleniny místo tradičních příloh"
+          - "Minutka (libové maso, ryba) spíš než hotovka"
+          - "Pozor na nápoje (domácí limonáda = sirup) a zahuštěné polévky"
+          - "Saláty bez bílkoviny nezasytí"
+        modelAnswer: >-
+          Naučím ho dívat se hlavně na složení a způsob úpravy – vyhnout se smaženému a vybrat jídlo
+          s dostatkem bílkoviny a komplexní přílohou, ideálně s větším podílem zeleniny místo knedlíků.
+          Pokud má na výběr, je lepší minutka, kde najde libové maso nebo rybu. Upozorním ho na
+          „domácí“ limonády ze sirupu a na zahuštěné polévky; vývar je lepší. Samotný salát bez
+          bílkoviny ho nezasytí.
+      - id: minutka
+        type: choice
+        prompt: "Proč skripta doporučují v restauraci spíše minutková jídla než hotovky?"
+        options:
+          - { text: "Dá se vybrat kombinace, často s libovým masem či rybou.", correct: true }
+          - { text: "Mají vždy méně kalorií než jakákoli hotovka.", why: "Rozhoduje složení a úprava, ne samotný typ jídla." }
+          - { text: "Bývají levnější než hotová jídla z menu.", why: "Cenu skripta jako důvod neuvádějí." }
+          - { text: "Podávají se vždy bez přílohy, jen s masem.", why: "Minutka je typicky maso s přílohou." }
+      - id: salat
+        type: choice
+        prompt: "Klientka si v restauraci dává jen zeleninový salát. Na co ji upozorníš?"
+        options:
+          - { text: "Často nemá bílkovinu a má málo energie, takže nezasytí.", correct: true }
+          - { text: "Salát je ideální volba a na jídelníčku nemusí nic měnit.", why: "Bez bílkoviny nezasytí a hrozí pozdější přejídání." }
+          - { text: "Salát bývá kaloricky nejnáročnější jídlo z celého menu.", why: "Saláty mívají naopak nízkou energetickou hodnotu." }
+          - { text: "Zeleninu v restauraci nejíst kvůli hygieně a pesticidům.", why: "Nic takového skripta neuvádějí; víc zeleniny místo příloh naopak doporučují." }
+
+  - id: pri.restaurace-kontext
+    title: Restaurace – večeře, pivo k obědu, konkrétní tipy
+    kind: procedure
+    tier: B
+    criteria: [6c]
+    prereqs: [pri.restaurace]
+    source: { pages: [188, 189], anchor: "Pozor na jedno pivo k obědu" }
+    explanation: >-
+      Před večeří v restauraci nehladovět a nevynechávat oběd – dostaví se „vlčí hlad“, klient nevydrží
+      plán (víc chodů, dezert) a naruší pravidelnost. Pivo k obědu „aby vytrávilo“ brzdí hubnutí a
+      klienti ho často za alkohol nepovažují – je třeba se ptát. Pomůže doporučit konkrétní restauraci
+      a pokrm u práce a vysvětlit základy makroživin, aby klient uměl vybrat sám.
+    exercises:
+      - id: setrit
+        type: choice
+        prompt: "Klientka jde večer do restaurace a chce „ušetřit kalorie“ vynecháním oběda. Co jí řekneš?"
+        options:
+          - { text: "Nevyplácí se – večer přijde vlčí hlad a přejídání.", correct: true }
+          - { text: "Je to dobrý nápad, ušetřené kalorie si večer vybere.", why: "Výsledkem bývá přejídání a víc chodů." }
+          - { text: "Ať vynechá i snídani, aby měla večer větší rezervu.", why: "Hlad by byl ještě větší a pravidelnost stravy by utrpěla." }
+      - id: pivo
+        type: reveal
+        prompt: "Proč se klienta výslovně ptát na pivo k obědu?"
+        answer: "Alkohol narušuje hubnutí a klienti pivo často za alkohol nepovažují, takže ho sami nezmíní."
+
+  - id: pri.oslavy
+    title: Oslavy a večírky
+    kind: procedure
+    tier: A
+    criteria: [6c]
+    source: { pages: [189], anchor: "Hladovět kvůli oslavě celý den se nevyplácí" }
+    explanation: >-
+      Přístup závisí na četnosti. Jednorázová oslava: nic zásadního neřešit, užít si ji; kdo chce,
+      může použít pravidlo 80/20, lehčí oběd nebo dort místo svačiny. Celodenní hladovění se nevyplácí
+      (vlčí hlad, přejedení); pomáhá vědomé jedení; alkohol oslabuje vůli. Časté akce: hlavním rizikem
+      je alkohol (při pravidelném pití se prakticky nehubne) a opakované „dojedení“ deficitu – hlavní
+      jídlo komplexní, dezert jen malý, řešit i spánek a pohyb.
+    exercises:
+      - id: oslava
+        type: explain
+        prompt: "Klientka v redukci jde v sobotu na narozeninovou oslavu. Co jí poradíš? A co kdyby měla akce několikrát týdně?"
+        keyPoints:
+          - "Jednorázově: neřešit, užít si; tělo nefunguje podle jedné oslavy"
+          - "Nehladovět celý den (vlčí hlad), lehčí oběd / dort místo svačiny, 80/20"
+          - "Vědomé jedení, pozor na alkohol (oslabuje vůli)"
+          - "Časté akce: alkohol hlavní riziko, dojídání deficitu"
+          - "Hlavní jídlo komplexní, dezert malý; řešit i spánek a pohyb"
+        modelAnswer: >-
+          Pokud je oslava výjimečná, nemusí nic zásadně řešit – tělo nefunguje podle jedné akce, má si
+          ji užít. Určitě nemá celý den hladovět, protože by večer přišel vlčí hlad; může si dát lehčí
+          oběd nebo dort místo svačiny a jíst vědomě. Pozor na alkohol, který oslabuje vůli. Kdyby
+          akce byly několikrát týdně, je hlavním rizikem alkohol a opakované dojídání deficitu – pak
+          doporučím komplexní hlavní jídlo, dezert jen jako malou porci a řešit i spánek a pohyb.
+      - id: hladoveni
+        type: choice
+        prompt: "Proč skripta nedoporučují kvůli oslavě celý den hladovět?"
+        options:
+          - { text: "Výsledkem bývá vlčí hlad a přejídání.", correct: true }
+          - { text: "Protože hladovění zpomalí metabolismus na několik týdnů.", why: "Takové tvrzení skripta neuvádějí." }
+          - { text: "Protože se na oslavě nesmí jíst sladké.", why: "Skripta sladké nezakazují – dort může nahradit svačinu." }
+          - { text: "Hladovění před oslavou skripta naopak doporučují.", why: "Skripta výslovně uvádějí, že se celodenní hladovění nevyplácí." }
+      - id: caste-akce
+        type: choice
+        prompt: "Co je podle skript hlavním rizikem, když má klient oslavy a večírky často?"
+        options:
+          - { text: "Alkohol", correct: true }
+          - { text: "Nedostatek bílkovin", why: "Skripta ho jako hlavní riziko neuvádějí." }
+          - { text: "Příliš mnoho zeleniny", why: "Zelenina riziko nepředstavuje." }
+          - { text: "Pozdní hodina jídla", why: "Skripta jako hlavní riziko uvádějí alkohol a dojídání deficitu." }

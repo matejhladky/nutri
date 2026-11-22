@@ -1,0 +1,540 @@
+topic:
+  id: bilkoviny
+  title: Bílkoviny
+  chapter: 4
+  pages: [36, 45]
+  order: 40
+  summary: >-
+    Stavba a funkce bílkovin, denaturace, esenciální a limitující aminokyseliny, plnohodnotné
+    a neplnohodnotné bílkoviny, hodnocení kvality (BV, PDCAAS, DIAAS), doporučený příjem a zdroje.
+
+points:
+  - id: bil.charakteristika
+    title: Bílkoviny – stavba a postavení mezi živinami
+    kind: concept
+    tier: A
+    criteria: [1d]
+    source: { pages: [36, 37], anchor: "jejich primární funkce je spíše stavební" }
+    explanation: >-
+      Bílkoviny jsou esenciální makroživina. Dodávají energii (17 kJ / 4 kcal na 1 g), ale jejich
+      hlavní funkce je stavební. Mají největší sytící efekt ze všech makroživin a jejich zpracování
+      stojí tělo víc energie než u tuků. Chemicky jde o polymery aminokyselin (běžně přes 100)
+      spojených peptidovou vazbou (-CO-NH-). Bílkoviny se staví z 20 aminokyselin (někdy se uvádí
+      21–22: selenocystein, pyrrolyzin).
+    exercises:
+      - id: vazba
+        type: choice
+        prompt: "Jakou vazbou jsou spojeny aminokyseliny v bílkovině?"
+        options:
+          - { text: "Peptidovou (-CO-NH-)", correct: true }
+          - { text: "Glykosidovou", why: "Ta spojuje cukerné jednotky v sacharidech." }
+          - { text: "Esterovou", why: "Ta váže mastné kyseliny na glycerol v tucích." }
+          - { text: "Vodíkovým můstkem", why: "Vodíkové můstky stabilizují tvar, nespojují AK do řetězce." }
+      - id: hlavni-funkce
+        type: choice
+        prompt: "Která funkce bílkovin je podle skript primární?"
+        options:
+          - { text: "Stavební", correct: true }
+          - { text: "Energetická", why: "Energii dodávají, ale primárně jsou stavební látkou." }
+          - { text: "Zásobní", why: "Zásobní funkci mají jen některé bílkoviny (např. ferritin); hlavní je podle skript stavební." }
+          - { text: "Izolační", why: "Tepelnou izolaci zajišťuje tuková tkáň." }
+      - id: sytost
+        type: reveal
+        prompt: "Proč jsou bílkoviny oblíbené u lidí v redukci? Uveď dva důvody ze skript."
+        answer: "Mají největší sytící efekt ze všech makroživin a jejich zpracování stojí tělo víc energie."
+
+  - id: bil.denaturace
+    title: Denaturace bílkovin
+    kind: concept
+    tier: A
+    criteria: [1d, 4a]
+    prereqs: [bil.charakteristika]
+    source: { pages: [36, 40], anchor: "nevratný proces, při kterém vlivem okolních podmínek dochází ke změně prostorové struktury" }
+    explanation: >-
+      Denaturace je nevratná změna prostorové struktury bílkoviny a s ní i některých vlastností.
+      Vyvolávají ji fyzikální vlivy (teplo, UV záření) a chemické vlivy (kyseliny, hydroxidy,
+      soli těžkých kovů). Tepelně denaturované bílkoviny jsou lépe stravitelné – enzymy se snáz
+      dostanou k peptidovým vazbám –, ale ztrácejí biologické funkce (např. vliv na imunitu).
+      Typický příklad: vaření vajec.
+    exercises:
+      - id: dusledek
+        version: 2
+        type: choice
+        prompt: "Co se děje s bílkovinou při tepelné denaturaci?"
+        options:
+          - { text: "Mění se prostorová struktura a bílkovina je lépe stravitelná.", correct: true }
+          - { text: "Rozpadá se na jednotlivé aminokyseliny, které tělo hned vstřebá.", why: "Peptidové vazby zůstávají, mění se tvar." }
+          - { text: "Změna je vratná – po vychladnutí se struktura obnoví.", why: "Denaturace je nevratná." }
+          - { text: "Struktura se zpevní a bílkovina je hůře stravitelná.", why: "Naopak – enzymy se k denaturované bílkovině dostanou snáz." }
+      - id: priciny
+        version: 2
+        type: choice
+        multiple: true
+        prompt: "Co může podle skript způsobit denaturaci bílkovin?"
+        options:
+          - { text: "Zvýšení teploty", correct: true }
+          - { text: "UV záření", correct: true }
+          - { text: "Kyseliny", correct: true }
+          - { text: "Rozpuštění ve vodě", why: "Rozpuštění strukturu nemění; denaturaci způsobí teplo, UV záření, kyseliny, hydroxidy a soli těžkých kovů." }
+
+  - id: bil.funkce
+    title: Funkce bílkovin v organismu
+    kind: concept
+    tier: A
+    criteria: [1d]
+    prereqs: [bil.charakteristika]
+    source: { pages: [37], anchor: "Obecná funkce bílkovin v organizmu je velmi různorodá" }
+    explanation: >-
+      Stavební (tvorba a obnova struktur – kolagen, keratin), regulační (hormony, enzymy,
+      receptory), obranná (protilátky, imunoglobuliny; fibrinogen a fibrin při srážení krve),
+      katalytická (urychlování reakcí), transportní (hemoglobin přenáší kyslík a CO2), senzorická
+      (rhodopsin v sítnici) a zásobní (ferritin skladuje železo). Aminokyseliny slouží i k tvorbě
+      nebílkovinných dusíkatých látek (nukleové kyseliny) a při nedostatku sacharidů a tuků jako
+      zdroj energie.
+    exercises:
+      - id: ferritin
+        type: choice
+        prompt: "Ferritin je příkladem bílkoviny s funkcí…"
+        options:
+          - { text: "zásobní", correct: true }
+          - { text: "transportní", why: "Transportní je např. hemoglobin." }
+          - { text: "senzorickou", why: "Senzorický je rhodopsin." }
+          - { text: "stavební", why: "Stavební jsou kolagen a keratin." }
+      - id: hemoglobin
+        type: choice
+        prompt: "Hemoglobin je příkladem bílkoviny s funkcí…"
+        options:
+          - { text: "transportní", correct: true }
+          - { text: "obrannou", why: "Obranné jsou protilátky a imunoglobuliny." }
+          - { text: "zásobní", why: "Zásobní je ferritin." }
+          - { text: "regulační", why: "Regulační jsou hormony, enzymy, receptory." }
+      - id: vycet
+        type: reveal
+        prompt: "Vyjmenuj funkce bílkovin v organismu a ke každé dej příklad."
+        answer: >-
+          Stavební (kolagen, keratin), regulační (hormony, enzymy), obranná (protilátky, fibrinogen),
+          katalytická (enzymy), transportní (hemoglobin), senzorická (rhodopsin), zásobní (ferritin).
+
+  - id: bil.esencialni-ak
+    title: Esenciální aminokyseliny
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 4 (tab. 4.1, s. 38–39) uvádí 8 esenciálních AK a histidin s argininem jako podmíněně
+      esenciální. Kap. 11 (s. 90) řadí histidin mezi esenciální „v období růstu“ a sportovní kap. 20
+      (s. 211) mluví o 9 esenciálních AK – to odpovídá současnému pojetí (histidin je esenciální
+      i pro dospělé). V testu odpovídej podle kap. 4: 8 esenciálních AK, arginin a histidin
+      podmíněně esenciální.
+    criteria: [1d, 1a]
+    prereqs: [bil.charakteristika]
+    confusableWith: [bil.limitujici-ak]
+    source: { pages: [38, 39], anchor: "Specifické jsou dvě podmíněně esenciální kyseliny" }
+    explanation: >-
+      Esenciální AK si tělo neumí vytvořit. Podle skript jich je 8: valin, leucin, isoleucin,
+      threonin, methionin, lysin, fenylalanin a tryptofan. Podmíněně esenciální jsou arginin
+      a histidin – v dětství je vlastní syntéza nedostatečná, v dospělosti už stačí. Neesenciální
+      jsou např. glycin, alanin, serin, cystein, kyselina asparagová a glutamová, tyrosin, prolin.
+    exercises:
+      - id: ktere
+        type: choice
+        multiple: true
+        prompt: "Které z těchto aminokyselin jsou podle skript esenciální?"
+        options:
+          - { text: "Leucin", correct: true }
+          - { text: "Lysin", correct: true }
+          - { text: "Tryptofan", correct: true }
+          - { text: "Glycin", why: "Glycin je neesenciální." }
+          - { text: "Arginin", why: "Arginin je podle skript podmíněně esenciální." }
+      - id: podminene
+        version: 2
+        type: choice
+        prompt: "Které dvě aminokyseliny jsou podle skript podmíněně esenciální?"
+        options:
+          - { text: "Arginin a histidin", correct: true }
+          - { text: "Leucin a valin", why: "Ty jsou esenciální (BCAA)." }
+          - { text: "Glycin a alanin", why: "Ty jsou neesenciální." }
+          - { text: "Serin a prolin", why: "Ty jsou podle skript neesenciální." }
+      - id: proc-podminene
+        type: reveal
+        prompt: "Proč se některé aminokyseliny označují jako podmíněně esenciální?"
+        answer: "V dětství si je tělo neumí vytvořit v dostatečném množství, v dospělosti už vlastní syntéza stačí."
+
+  - id: bil.limitujici-ak
+    title: Limitující aminokyselina a kombinace zdrojů
+    kind: concept
+    tier: A
+    criteria: [1d, 6a]
+    prereqs: [bil.esencialni-ak]
+    confusableWith: [bil.esencialni-ak]
+    source: { pages: [39], anchor: "Pojmem limitující aminokyselina označujeme takovou aminokyselinu" }
+    explanation: >-
+      Limitující aminokyselina je ta, které je v potravině vzhledem k potřebě relativně nejméně –
+      jako nejkratší prkno sudu omezuje využití celé bílkoviny pro proteosyntézu. U obilovin
+      (pšenice, rýže, kukuřice) bývá limitující lysin, u luštěnin methionin či cystein. Kombinací
+      obilovin a luštěnin (např. těstoviny + luštěniny) získáme plnohodnotnou bílkovinu – důležité
+      u rostlinné stravy.
+    exercises:
+      - id: obiloviny
+        type: choice
+        prompt: "Která aminokyselina bývá limitující u obilovin?"
+        options:
+          - { text: "Lysin", correct: true }
+          - { text: "Methionin", why: "Methionin (či cystein) bývá limitující u luštěnin." }
+          - { text: "Leucin", why: "Leucinu mají obiloviny dost; limitující je u nich lysin." }
+          - { text: "Glycin", why: "Glycin je neesenciální, limitující nebývá." }
+      - id: lusteniny
+        type: choice
+        prompt: "Která aminokyselina bývá limitující u luštěnin?"
+        options:
+          - { text: "Methionin nebo cystein", correct: true }
+          - { text: "Lysin", why: "Lysin je limitující u obilovin." }
+          - { text: "Tryptofan", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
+          - { text: "Arginin", why: "Skripta jako limitující u luštěnin uvádějí methionin nebo cystein." }
+      - id: definice
+        type: reveal
+        prompt: "Co je limitující aminokyselina a jak se u rostlinné stravy řeší?"
+        answer: >-
+          AK, které je v potravině vzhledem k potřebě relativně nejméně, a tím omezuje využití
+          bílkoviny. Řeší se kombinací zdrojů – obiloviny (chybí lysin) + luštěniny (chybí methionin).
+      - id: veganka
+        type: explain
+        prompt: "Klientka jí čistě rostlinně. Jak jí vysvětlíš, jak zajistit plnohodnotné bílkoviny?"
+        keyPoints:
+          - "Rostlinné bílkoviny mají většinou limitující AK (neplnohodnotné)"
+          - "Obiloviny: limitující lysin; luštěniny: methionin/cystein"
+          - "Kombinovat obiloviny s luštěninami (např. těstoviny + luštěniny)"
+          - "Nejhodnotnější rostlinný zdroj je sója a výrobky z ní"
+        modelAnswer: >-
+          Rostlinné zdroje mají obvykle nějakou limitující aminokyselinu, která omezuje využití celé
+          bílkoviny. Obilovinám chybí lysin, luštěninám methionin nebo cystein, proto je kombinujeme,
+          třeba těstoviny s luštěninami, a doplní se navzájem. Za nejhodnotnější rostlinný zdroj
+          skripta považují sóju a výrobky z ní.
+
+  - id: bil.plnohodnotne
+    title: Plnohodnotné a neplnohodnotné bílkoviny
+    kind: comparison
+    tier: A
+    criteria: [1d]
+    prereqs: [bil.limitujici-ak]
+    source: { pages: [39, 40], anchor: "Živočišné bílkoviny mají komplexnější spektrum aminokyselin" }
+    explanation: >-
+      Podle původu dělíme bílkoviny na živočišné a rostlinné. Živočišné (maso, ryby, vejce, mléko
+      a mléčné výrobky) mají komplexní spektrum AK, bez limitující AK, podobají se bílkovinám
+      lidského těla – jsou plnohodnotné. Rostlinné (luštěniny, obiloviny) mají většinou alespoň
+      jednu limitující AK – jsou neplnohodnotné, jejich hodnotu ale zvýší vhodná kombinace.
+      Ideální je vyvážený poměr obou.
+    exercises:
+      - id: plnohodnotny
+        type: choice
+        prompt: "Který z těchto zdrojů obsahuje plnohodnotnou bílkovinu?"
+        options:
+          - { text: "Tvaroh", correct: true }
+          - { text: "Rýže", why: "Obiloviny mají limitující lysin." }
+          - { text: "Čočka", why: "Luštěniny mají limitující methionin/cystein." }
+          - { text: "Ovesné vločky", why: "Obiloviny jsou neplnohodnotný zdroj." }
+      - id: proc
+        type: reveal
+        prompt: "Proč se rostlinné bílkoviny označují jako neplnohodnotné a jak se jejich hodnota dá zvýšit?"
+        answer: >-
+          Většinou mají alespoň jednu limitující aminokyselinu a jejich skladba se liší od bílkovin
+          těla. Hodnotu zvýšíme kombinací zdrojů (obiloviny + luštěniny).
+
+  - id: bil.deleni-skladba
+    title: Jednoduché a složené bílkoviny
+    kind: comparison
+    tier: B
+    criteria: [1d]
+    prereqs: [bil.charakteristika]
+    source: { pages: [39, 40], anchor: "Bílkoviny tedy v první řadě dělíme na jednoduché a složené" }
+    explanation: >-
+      Jednoduché bílkoviny jsou jen z aminokyselin: fibrilární (vláknité, nerozpustné ve vodě,
+      strukturní – kolagen, keratin, aktin, myosin) a globulární (klubíčka, bývají rozpustné –
+      albumin). Složené mají navíc nebílkovinnou část: glykoproteiny (sacharid), lipoproteiny
+      (lipid) a metaloproteiny (kovový iont, např. hemoproteiny se železem).
+    exercises:
+      - id: slozene
+        type: choice
+        prompt: "Bílkovina s navázaným kovovým iontem (např. železem) je…"
+        options:
+          - { text: "metaloprotein", correct: true }
+          - { text: "glykoprotein", why: "Glykoprotein má navázaný sacharid." }
+          - { text: "lipoprotein", why: "Lipoprotein má navázaný lipid." }
+          - { text: "fibrilární bílkovina", why: "Ta je jednoduchá, bez nebílkovinné části." }
+      - id: fibrilarni
+        type: choice
+        prompt: "Která bílkovina patří mezi fibrilární?"
+        options:
+          - { text: "Kolagen", correct: true }
+          - { text: "Albumin", why: "Albumin je globulární." }
+          - { text: "Hemoglobin", why: "Hemoglobin je složená bílkovina (hemoprotein)." }
+          - { text: "Ferritin", why: "Ferritin je zásobní bílkovina skladující železo, ne vláknitá strukturní." }
+
+  - id: bil.vyuzitelnost
+    title: Využitelnost bílkovin
+    kind: fact
+    tier: B
+    criteria: [1d]
+    prereqs: [bil.plnohodnotne]
+    source: { pages: [41], anchor: "Živočišné bílkoviny mají vyšší využitelnost než rostlinné" }
+    explanation: >-
+      Využitelnost vyjadřuje v procentech, kolik přijaté bílkoviny tělo skutečně využije. Maso,
+      vejce a mléčné výrobky asi 91–98 %, syrovátkový protein až 100 %. Luštěniny a obiloviny
+      55–60 %; při vhodné kombinaci zdrojů až 80 %.
+    exercises:
+      - id: rostlinne
+        type: choice
+        prompt: "Jakou využitelnost mají podle skript běžné rostlinné zdroje bílkovin (bez kombinování)?"
+        options:
+          - { text: "55–60 %", correct: true }
+          - { text: "91–98 %", why: "To platí pro živočišné zdroje." }
+          - { text: "Až 80 %", why: "Tolik lze dosáhnout jen vhodnou kombinací zdrojů." }
+          - { text: "Až 100 %", why: "To uvádějí skripta pro syrovátkový protein." }
+
+  - id: bil.bv
+    title: Biologická hodnota bílkovin (BV)
+    kind: concept
+    tier: A
+    criteria: [1d]
+    prereqs: [bil.plnohodnotne]
+    confusableWith: [bil.pdcaas-diaas]
+    source: { pages: [42], anchor: "Ideální hodnotu 100 má bílkovina vaječného bílku" }
+    explanation: >-
+      Biologická hodnota (BV) udává, kolik gramů tělesných bílkovin vznikne ze 100 g bílkovin
+      přijatých stravou. Posuzuje zastoupení esenciálních AK ve správném poměru k neesenciálním.
+      Nabývá hodnot 0–100; ideální hodnotu 100 má bílkovina vaječného bílku. Bílkoviny s nízkou BV
+      tělo využije spíš jako zdroj energie. Nevýhoda: sleduje jen vstup a výstup, ne další osud
+      bílkovin v těle.
+    exercises:
+      - id: vejce
+        type: choice
+        prompt: "Která bílkovina má podle skript ideální biologickou hodnotu 100?"
+        options:
+          - { text: "Bílkovina vaječného bílku", correct: true }
+          - { text: "Syrovátkový protein", why: "U syrovátky skripta uvádějí využitelnost až 100 %, ne BV." }
+          - { text: "Sójová bílkovina", why: "Sója je rostlinný zdroj; hodnotu 100 má podle skript vaječný bílek." }
+          - { text: "Kolagen", why: "Kolagen má nejnižší hodnocení (DIAAS 0)." }
+      - id: definice
+        type: reveal
+        prompt: "Co vyjadřuje biologická hodnota bílkovin a v jakém rozmezí se pohybuje?"
+        answer: "Kolik g tělesných bílkovin vznikne ze 100 g bílkovin ze stravy; rozmezí 0–100."
+
+  - id: bil.pdcaas-diaas
+    title: AAS, PDCAAS a DIAAS
+    kind: comparison
+    tier: B
+    criteria: [1d]
+    prereqs: [bil.limitujici-ak]
+    confusableWith: [bil.bv]
+    source: { pages: [41, 42, 43], anchor: "Vznikla v roce 2013 v reakci na nedostatky PDCAAS" }
+    explanation: >-
+      AAS (aminokyselinové skóre) porovnává AK v potravině s referenční „ideální“ bílkovinou (WHO),
+      hodnoty 0–1. PDCAAS = AAS korigované stravitelností měřenou ve stolici, 0–1, nejpoužívanější
+      metoda. DIAAS (2013) počítá stravitelnost jen v tenkém střevě, kde se AK vstřebávají, a nemá
+      horní hranici – nejvýš je mléčný protein (1,18), nejníž kolagen (0).
+    exercises:
+      - id: diaas
+        type: choice
+        prompt: "Čím se DIAAS liší od PDCAAS?"
+        options:
+          - { text: "Stravitelnost hodnotí jen v tenkém střevě a nemá horní hranici.", correct: true }
+          - { text: "Stravitelnost nezohledňuje, porovnává jen zastoupení AK.", why: "To platí pro samotné AAS." }
+          - { text: "Stravitelnost měří až ve stolici a nabývá hodnot nejvýš 1.", why: "To popisuje PDCAAS." }
+          - { text: "Udává, kolik gramů tělesných bílkovin vznikne ze 100 g bílkovin.", why: "To je biologická hodnota." }
+      - id: nejpouzivanejsi
+        type: choice
+        prompt: "Která metoda hodnocení kvality bílkovin je podle skript aktuálně nejpoužívanější?"
+        options:
+          - { text: "PDCAAS", correct: true }
+          - { text: "DIAAS", why: "DIAAS je nejnovější, ne nejpoužívanější." }
+          - { text: "Biologická hodnota", why: "BV je starší ukazatel; nejpoužívanější je podle skript PDCAAS." }
+          - { text: "Dusíková bilance", why: "Ta sleduje metabolismus bílkovin v těle, kvalitu potraviny nehodnotí." }
+
+  - id: bil.prijem-zakladni
+    title: Doporučený příjem bílkovin – základ
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Pro seniory kap. 4 (s. 43) uvádí DACH 1 g/kg (65+), kap. 13 (s. 142) a kap. 21 (s. 227)
+      1,0–1,2 g/kg pro zdravé seniory (1,2–1,5 g/kg při nemoci). Kap. 17
+      (s. 182) shrnuje minimum pro zdravého dospělého jako 0,8–1 g/kg. Na otázku o doporučeních
+      EFSA/WHO/DACH odpovídej podle kap. 4.
+    criteria: [1d]
+    source: { pages: [43], anchor: "Obecná výživová doporučení uvádějí, že by bílkoviny měly" }
+    explanation: >-
+      Obecná doporučení: bílkoviny 10–15 % denního energetického příjmu – pro řadu klientů je to
+      ale málo. Dostačující příjem podle EFSA i WHO je 0,83 g/kg. DACH: 19–64 let 0,8 g/kg,
+      65+ let 1 g/kg. Potřeba je individuální – podle cíle, hmotnosti, fyzické aktivity a jejího
+      typu, volnočasových aktivit a věku.
+    exercises:
+      - id: efsa
+        type: choice
+        prompt: "Jaký dostačující příjem bílkovin uvádějí EFSA a WHO?"
+        options:
+          - { text: "0,83 g/kg hmotnosti", correct: true }
+          - { text: "1,2–2 g/kg", why: "To je rozmezí pro zvýšenou potřebu." }
+          - { text: "1 g/kg", why: "To doporučuje DACH pro lidi 65+." }
+          - { text: "0,5 g/kg", why: "To je minimální příjem tuků." }
+      - id: procenta
+        type: choice
+        prompt: "Kolik procent energie by podle obecných doporučení měly tvořit bílkoviny?"
+        options:
+          - { text: "10–15 %", correct: true }
+          - { text: "25–35 %", why: "To je doporučení pro tuky." }
+          - { text: "45–60 %", why: "To je doporučení pro sacharidy." }
+          - { text: "30 %", why: "30 % uvádějí skripta (kap. 17) pro tuky." }
+      - id: dach
+        type: reveal
+        prompt: "Kolik bílkovin doporučuje DACH pro dospělé 19–64 let a pro lidi nad 65 let?"
+        answer: "19–64 let: 0,8 g/kg; 65+: 1 g/kg."
+
+  - id: bil.prijem-zvyseny
+    title: Zvýšená potřeba bílkovin
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta se liší: kap. 4 (s. 43) 1,2–2 g/kg pro skupiny se zvýšenou potřebou; sportovní kap.
+      (s. 204, 211) 1,4–2,0 g/kg, (s. 207) 1,6–2,2 g/kg, v redukci (s. 205) 1,6–2,4 g/kg; kap. o
+      doplňcích (s. 137) uvádí, že přínos se nad asi 1,6 g/kg zpomaluje; s. 209 do 1,8 g/kg. Kap. 21
+      (s. 225) uvádí pro sportovce 1,2–2,0 g/kg, shodně s kap. 4. Obecně odpovídej 1,2–2 g/kg (kap. 4);
+      u otázek ze sportovní výživy použij hodnoty sportovní kapitoly.
+    criteria: [1d, 7d]
+    prereqs: [bil.prijem-zakladni]
+    source: { pages: [43], anchor: "Vyšší potřeba bílkovin obvykle dosahuje rozmezí 1,2–2 g bílkovin" }
+    explanation: >-
+      Vyšší potřebu mají těhotné a kojící ženy, sportovci, lidé v redukci hmotnosti a lidé po
+      úrazech. Obvykle jde o 1,2–2 g bílkovin na kg. Ještě víc přijímají spíš kulturisté – pro
+      běžné lidi to není nutné. Nižší hodnoty volíme u lidí nezvyklých na vyšší příjem, s nízkým
+      energetickým příjmem nebo málo aktivních.
+    exercises:
+      - id: rozmezi
+        type: choice
+        prompt: "Jakého rozmezí obvykle dosahuje zvýšená potřeba bílkovin podle kapitoly o bílkovinách?"
+        options:
+          - { text: "1,2–2 g/kg", correct: true }
+          - { text: "0,8–1 g/kg", why: "To je základní doporučení pro běžnou populaci." }
+          - { text: "2,5–3,5 g/kg", why: "Tak vysoký příjem pro běžné lidi potřeba není; obvyklé rozmezí je 1,2–2 g/kg." }
+          - { text: "0,4–0,6 g/kg", why: "Takové dávky se ve skriptech uvádějí na jedno jídlo." }
+      - id: skupiny
+        type: choice
+        multiple: true
+        prompt: "Kdo má podle skript zvýšenou potřebu bílkovin?"
+        options:
+          - { text: "Kojící žena", correct: true }
+          - { text: "Člověk v redukci hmotnosti", correct: true }
+          - { text: "Člověk po úrazu", correct: true }
+          - { text: "Sedavý člověk bez snahy o redukci", why: "Tomu stačí spíš nižší příjem." }
+      - id: vypocet
+        type: numeric
+        formula: per-kg
+        prompt: "Klientka váží {weight} kg, je v redukci a cvičí. Zvolíš {perKg} g bílkovin na kg. Kolik gramů bílkovin denně to je?"
+        params:
+          weight: { min: 50, max: 100, step: 1 }
+          perKg: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.5, label: "1,5" }, { value: 1.8, label: "1,8" }, { value: 2, label: "2" }] }
+        unit: g
+        tolerance: { abs: 1 }
+        hint: "Hmotnost × dávka na kg."
+      - id: klientka
+        type: explain
+        prompt: "Kolik bílkovin doporučíš sportující klientce v redukci a podle čeho rozhodneš?"
+        keyPoints:
+          - "Zvýšená potřeba (sportovci, redukce): obvykle 1,2–2 g/kg"
+          - "Nižší hodnoty u nezvyklých na vyšší příjem, s nízkým energetickým příjmem nebo málo aktivních"
+          - "Bílkoviny zasytí a pomáhají udržet svalovou hmotu v redukci"
+          - "Navyšovat postupně kvůli trávení"
+        modelAnswer: >-
+          Sportovci i lidé v redukci mají zvýšenou potřebu, obvykle 1,2–2 g bílkovin na kg. Kde
+          v rozmezí začnu, záleží na tom, na jaký příjem je zvyklá, kolik energie přijímá a jak je
+          aktivní. Bílkoviny ji zasytí a pomohou udržet svaly. Pokud zatím jedla bílkovin málo,
+          navyšuji postupně, aby neměla trávicí potíže.
+
+  - id: bil.porce
+    title: Bílkoviny v jedné porci
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 4 uvádí 20–50 g bílkovin na porci. Sportovní kap. 20 (s. 208, 210) uvádí 20–40 g
+      (0,25–0,4 g/kg) na dávku, s. 207 pro maximální růst 0,4–0,5 g/kg; kap. 21 (s. 226)
+      0,25–0,3 g/kg po tréninku. Obecně odpovídej 20–50 g (kap. 4); u otázek ze sportovní výživy
+      20–40 g.
+    criteria: [1d, 7d]
+    prereqs: [bil.prijem-zvyseny]
+    source: { pages: [44], anchor: "Obecně se jako optimální dávka udává 20–50 g bílkovin v jedné porci" }
+    explanation: >-
+      Jako optimální dávka pro proteosyntézu se uvádí 20–50 g bílkovin v jedné porci, při
+      dostatečném energetickém příjmu a rovnoměrném rozložení během dne. Dřívější obavy, že víc
+      tělo nezpracuje a zatíží ledviny, nové výzkumy nepotvrzují – záleží na zvyku a trénovanosti.
+      Náhlé zvýšení příjmu může způsobit trávicí potíže. Při nedostatku sacharidů a tuků tělo
+      bílkoviny využije jako energii (přemění AK na glukózu).
+    exercises:
+      - id: davka
+        type: choice
+        prompt: "Jaké množství bílkovin v jedné porci uvádějí skripta jako optimální?"
+        options:
+          - { text: "20–50 g", correct: true }
+          - { text: "5–10 g", why: "To je na efektivní proteosyntézu málo." }
+          - { text: "Maximálně 15 g, víc tělo nezpracuje", why: "Dřívější představa o nižším limitu se nepotvrdila – záleží na zvyku a trénovanosti." }
+          - { text: "80–100 g", why: "Tolik se jako optimální porce neuvádí; optimum je 20–50 g." }
+
+  - id: bil.nedostatek
+    title: Proč přijímat bílkoviny pravidelně a co hrozí při nedostatku
+    kind: concept
+    tier: B
+    criteria: [1d, 7a]
+    prereqs: [bil.funkce]
+    source: { pages: [43], anchor: "Bílkoviny je nutné přijímat pravidelně" }
+    explanation: >-
+      Bílkoviny tělo neumí uložit do pohotovostní zásoby a neustále je obnovuje a odbourává, proto
+      je nutné je přijímat pravidelně. Spolu s pohybem chrání před sarkopenií (úbytkem svalové
+      hmoty). Při nedostatku hrozí úbytek svalů, častější hlad, horší hojení ran, únava, otoky
+      a kožní potíže.
+    exercises:
+      - id: projevy
+        type: reveal
+        prompt: "Jaké projevy může mít nedostatečný příjem bílkovin?"
+        answer: "Úbytek svalové hmoty, častější hlad, horší hojení ran, únava, otoky, kožní potíže."
+      - id: zasoba
+        type: choice
+        prompt: "Proč je nutné přijímat bílkoviny pravidelně?"
+        options:
+          - { text: "Tělo si je neumí uložit do pohotovostní zásoby.", correct: true }
+          - { text: "Bez nich tělo nedokáže vytvořit glukózu.", why: "Glukózu tělo vytvoří i z jiných látek (glycerol, laktát)." }
+          - { text: "Jsou hlavním zdrojem energie pro mozek.", why: "Mozek preferuje glukózu." }
+          - { text: "Bez nich se nevstřebávají vitaminy rozpustné v tucích.", why: "K tomu je potřeba tuk." }
+
+  - id: bil.zdroje
+    title: Zdroje bílkovin
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Na s. 44 skripta píší „Z živočišných zdrojů se za nejhodnotnější … považují sója, ostatní
+      luštěniny“ – jde zjevně o překlep, má být „z rostlinných zdrojů“.
+    criteria: [1d]
+    prereqs: [bil.plnohodnotne]
+    source: { pages: [44, 45], anchor: "Mezi nejbohatší zdroje plnohodnotných" }
+    explanation: >-
+      Nejbohatší zdroje plnohodnotných bílkovin: maso, ryby, vejce, mléko a mléčné výrobky.
+      Z rostlinných zdrojů jsou nejhodnotnější sója, další luštěniny a výrobky z nich (tofu,
+      tempeh); méně bílkovin mají ořechy a semínka. Orientačně: kuřecí prsa asi 23 g/100 g,
+      1 vejce asi 7 g, sója asi 35 g/100 g. Při výběru sleduj i ostatní makroživiny a reálnou porci.
+    exercises:
+      - id: rostlinny
+        type: choice
+        prompt: "Který rostlinný zdroj považují skripta za nejhodnotnější zdroj bílkovin?"
+        options:
+          - { text: "Sóju", correct: true }
+          - { text: "Rýži", why: "Obiloviny mají méně bílkovin a limitující lysin." }
+          - { text: "Vlašské ořechy", why: "Ořechy obsahují bílkovin méně." }
+          - { text: "Brambory", why: "Brambory jsou zdrojem hlavně sacharidů, ne bílkovin." }
+      - id: vejce
+        type: choice
+        prompt: "Kolik bílkovin obsahuje přibližně jedno slepičí vejce (55 g)?"
+        options:
+          - { text: "Asi 7 g", correct: true }
+          - { text: "Asi 2 g", why: "Málo – vejce má asi 12 g bílkovin na 100 g, jeden kus tedy asi 7 g." }
+          - { text: "Asi 15 g", why: "Tolik nemá ani 100 g vajec (asi 12 g)." }
+          - { text: "Asi 25 g", why: "Tolik má spíš porce masa nebo tvarohu." }

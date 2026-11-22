@@ -1,0 +1,544 @@
+topic:
+  id: sport
+  title: Sportovní výživa
+  chapter: 20
+  pages: [203, 213]
+  order: 200
+  summary: >-
+    Pořadí priorit (strava → trénink a regenerace → doplňky), bílkoviny u sportovců, makroživiny podle
+    fáze, trénink nalačno, načasování živin a „anabolické okno“, jídlo před a po tréninku, vytrvalostní
+    sporty a palivo během výkonu, RED-S, doplňky podle síly důkazů, kofein a hydratace.
+
+points:
+  - id: spo.pyramida
+    title: Pořadí priorit ve sportovní výživě
+    kind: concept
+    tier: A
+    criteria: [7d, 8b]
+    source: { pages: [204], anchor: "Cílené doplňky jen podle cíle" }
+    explanation: >-
+      Než poradce začne řešit doplňky, projde s klientem tři navazující úrovně; každá vyšší má výrazně
+      menší dopad než ta pod ní. 1) Dostatek energie a kvalitní, vyvážená strava. 2) Trénink, spánek,
+      regenerace a zvládnutý stres. 3) Až na vrcholu cílené doplňky — jen tam, kde mají pro daný cíl
+      oporu v datech. Doplňky trénink ani stravu nenahrazují, jen je doplňují.
+    exercises:
+      - id: poradi
+        type: explain
+        prompt: "Sportovec se tě ptá, jaké doplňky má začít brát. Jak budeš postupovat a proč?"
+        keyPoints:
+          - "Nejdřív dostatek energie a kvalitní strava s vhodným poměrem makroživin"
+          - "Pak trénink, spánek, regenerace, stres"
+          - "Doplňky až nakonec, cíleně a s oporou v datech"
+          - "Každá vyšší úroveň má menší dopad; doplněk nenahradí trénink ani stravu"
+        modelAnswer: >-
+          Nejdřív zkontroluji základ: zda přijímá dost energie a má vyváženou stravu. Pak trénink,
+          spánek, regeneraci a stres — bez nich se výživa neprojeví. Doplňky řeším až na vrcholu
+          pyramidy a jen cíleně, pokud mají pro jeho konkrétní cíl oporu v datech; každá vyšší úroveň
+          má menší vliv než ta předchozí.
+      - id: zaklad
+        type: choice
+        prompt: "Co tvoří podle skript základ (nejdůležitější úroveň) pyramidy sportovní výživy?"
+        options:
+          - { text: "Dostatek energie a kvalitní strava", correct: true }
+          - { text: "Kreatin a kofein", why: "Doplňky jsou až na vrcholu, s nejmenším dopadem." }
+          - { text: "Načasování bílkovin do 30 minut po tréninku", why: "Načasování je méně důležité než celkový příjem." }
+          - { text: "Spánek a regenerace", why: "Ty tvoří druhou úroveň, až po energii a stravě." }
+
+  - id: spo.bilkoviny
+    title: Příjem bílkovin u sportovců
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta uvádějí pro sportovce více čísel podle situace: většina sportujících 1,4–2,0 g/kg (ISSN),
+      nabírání a obecně 1,6–2,2 g/kg, redukce 1,6–2,4 g/kg, soutěžní příprava 2,3–3,1 g/kg beztukové
+      hmoty (s. 204–207); na s. 209 ale tatáž kapitola doporučuje denní dávku „do 1,8 g/kg“. Jinde:
+      zdravý dospělý min. 0,8–1 g/kg (s. 182), zvýšená potřeba 1,2–2 g/kg (s. 43), sportující děti
+      1,2–2,0 g/kg (s. 225), senioři 1,0–1,2 / 1,2–1,5 g/kg (s. 142, 227). U zkoušky vždy přiřaď číslo
+      k situaci; pro „běžného sportovce“ odpovídej 1,4–2,0 g/kg.
+    criteria: [7d, 1d]
+    confusableWith: [spo.faze, obd.senior-bilkoviny, dpl.protein-davka]
+    source: { pages: [204], anchor: "trénují průměrně 4× týdně, je 1,4–2,0 g/kg tělesné hmotnosti/den" }
+    explanation: >-
+      Bílkoviny podporují regeneraci a růst svalů, nejvíc sytí a mají nejvyšší termický efekt — proto
+      pomáhají i při redukci. Přínos se projevuje hlavně nad 1 g/kg/den. Pro většinu sportujících
+      (průměrně 4 tréninky týdně) doporučuje ISSN 1,4–2,0 g/kg tělesné hmotnosti denně. Nad zhruba
+      1,6 g/kg už se další nárůst svalů výrazně nezlepšuje. Vysokobílkovinová dieta = bílkoviny ≥ 25 %
+      celkového energetického příjmu.
+    exercises:
+      - id: rozmezi
+        type: choice
+        prompt: "Jaký příjem bílkovin doporučuje podle skript ISSN pro většinu sportujících (trénink asi 4× týdně)?"
+        options:
+          - { text: "1,4–2,0 g/kg tělesné hmotnosti/den", correct: true }
+          - { text: "0,8–1 g/kg/den", why: "To je základní minimum pro zdravého dospělého nesportovce." }
+          - { text: "2,3–3,1 g/kg beztukové hmoty/den", why: "To platí pro závěrečnou fázi soutěžní přípravy kulturistů." }
+          - { text: "1,0–1,2 g/kg/den", why: "To je doporučení pro zdravé seniory." }
+      - id: vypocet
+        type: numeric
+        formula: per-kg
+        prompt: >-
+          Rekreační sportovkyně trénuje 4× týdně a váží {weight} kg. Kolik gramů bílkovin denně
+          odpovídá SPODNÍ hranici doporučení ISSN pro většinu sportujících?
+        params:
+          weight: { min: 50, max: 90, step: 1 }
+          perKg: { choices: [{ value: 1.4, label: "1,4" }] }
+        unit: g
+        tolerance: { abs: 2 }
+        hint: "Spodní hranice rozmezí 1,4–2,0 g/kg."
+      - id: proc
+        type: explain
+        prompt: "Proč mají bílkoviny u sportovců a v redukci tak důležitou roli a kolik jich doporučíš?"
+        keyPoints:
+          - "Regenerace a růst svalové hmoty"
+          - "Nejvyšší sytivost ze všech makroživin"
+          - "Nejvyšší termický efekt potravy"
+          - "Přínos hlavně nad 1 g/kg; většina sportujících 1,4–2,0 g/kg"
+        modelAnswer: >-
+          Bílkoviny podporují regeneraci a růst svalů, ze všech makroživin nejvíc zasytí a mají nejvyšší
+          termický efekt, takže pomáhají i při hubnutí. Jejich přínos se projeví hlavně nad 1 g/kg denně;
+          pro většinu sportujících doporučuji 1,4–2,0 g na kg tělesné hmotnosti.
+
+  - id: spo.faze
+    title: Makroživiny podle fáze přípravy
+    kind: comparison
+    tier: A
+    criteria: [7d, 7a]
+    prereqs: [spo.bilkoviny]
+    confusableWith: [spo.bilkoviny, spo.vytrvalost-makra]
+    source: { pages: [205], anchor: "Doporučené rozmezí makroživin podle fáze přípravy" }
+    explanation: >-
+      Stejné procento makroživin nesedí na všechno. Nabírání svalů: bílkoviny 1,6–2,2 g/kg, sacharidy
+      často 3–7 g/kg podle tréninku, tuky 20–35 % energie; mírný nadbytek energie a kvalitní silový
+      stimul. Redukce tuku: bílkoviny 1,6–2,4 g/kg, sacharidy periodizovat podle zátěže (soustředit kolem
+      klíčových tréninků), tuky dlouhodobě ne na minimum; mírný až střední deficit, udržet silový trénink. Soutěžní
+      příprava: žádná univerzální čísla, riziko nízké energetické dostupnosti, nutný odborný dohled.
+    exercises:
+      - id: redukce
+        type: choice
+        prompt: "Jaký příjem bílkovin uvádějí skripta pro sportovce ve fázi redukce tuku?"
+        options:
+          - { text: "1,6–2,4 g/kg/den", correct: true }
+          - { text: "1,6–2,2 g/kg/den", why: "To je rozmezí pro fázi nabírání svalů." }
+          - { text: "0,8–1 g/kg/den", why: "To je minimum pro běžného zdravého dospělého." }
+          - { text: "3–7 g/kg/den", why: "To je orientační příjem sacharidů při nabírání." }
+      - id: porovnani
+        type: explain
+        prompt: "Jak se liší nastavení makroživin u sportovce při nabírání svalů a při redukci tuku?"
+        keyPoints:
+          - "Nabírání: bílkoviny 1,6–2,2 g/kg, mírný energetický nadbytek"
+          - "Nabírání: sacharidy často 3–7 g/kg, tuky 20–35 % energie"
+          - "Redukce: bílkoviny vyšší 1,6–2,4 g/kg, mírný až střední deficit, udržet silový trénink"
+          - "Redukce: sacharidy periodizovat kolem tréninku, tuky ne na minimum"
+          - "Soutěžní příprava bez univerzálních čísel, pod odborným dohledem"
+        modelAnswer: >-
+          Při nabírání volím mírný energetický nadbytek, bílkoviny 1,6–2,2 g/kg, sacharidy podle tréninku
+          často 3–7 g/kg a tuky 20–35 % energie. Při redukci držím mírný až střední deficit, bílkoviny o něco výš,
+          1,6–2,4 g/kg, aby se chránily svaly, sacharidy periodizuji kolem klíčových tréninků a tuky
+          dlouhodobě nesnižuji na minimum. Soutěžní příprava je specifický krátkodobý režim bez
+          univerzálních čísel a patří pod odborný dohled.
+      - id: tuky
+        type: choice
+        prompt: "Jak podle skript zacházet s tuky u sportovce v redukci?"
+        options:
+          - { text: "Dlouhodobě je nesnižovat na nezbytné minimum", correct: true }
+          - { text: "Snížit je co nejvíc, protože mají nejvíc energie", why: "Skripta výslovně varují před dlouhodobým snížením na minimum." }
+          - { text: "Nahradit je úplně bílkovinami", why: "Tuky jsou nezbytné (hormony, esenciální mastné kyseliny); bílkoviny je nenahradí." }
+          - { text: "Zvýšit je nad 50 % energie", why: "Skripta uvádějí obvykle 20–35 % energie z tuků." }
+
+  - id: spo.nalacno
+    title: Aerobní trénink nalačno
+    kind: concept
+    tier: A
+    criteria: [7d, 7a]
+    source: { pages: [206], anchor: "je čistě otázkou jeho preferencí" }
+    explanation: >-
+      Při aerobním tréninku nalačno tělo během cvičení využije víc tuků, ale celkový výdej energie je
+      stejný a studie ani metaanalýza nezjistily lepší změnu tělesného složení než při tréninku po jídle.
+      Pro hubnutí je klíčový dlouhodobý energetický deficit; jestli klient trénuje nalačno, je jen
+      otázka jeho preference.
+    exercises:
+      - id: hubnuti
+        type: choice
+        prompt: "Klientka chce zhubnout a ptá se, jestli má běhat nalačno. Co odpovíš podle skript?"
+        options:
+          - { text: "Je to věc preference, rozhoduje dlouhodobý deficit.", correct: true }
+          - { text: "Ano, nalačno spálí výrazně víc tuku, a proto zhubne prokazatelně rychleji.", why: "Vyšší oxidace tuků při tréninku se v tělesném složení neprojevila." }
+          - { text: "Ne, při tréninku nalačno tělo odbourává hlavně svalovou hmotu.", why: "Skripta nic takového neuvádějí; výsledky skupin byly srovnatelné." }
+          - { text: "Ano, ale jen když potom celý den vynechá všechny sacharidy.", why: "Skripta nic takového nedoporučují; rozhoduje dlouhodobý energetický deficit." }
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli klientovi, jak je to s tréninkem nalačno a hubnutím."
+        keyPoints:
+          - "Nalačno se během tréninku víc využívají tuky"
+          - "Celkový výdej energie je stejný"
+          - "Na změně tělesného složení se rozdíl neprokázal"
+          - "Rozhoduje dlouhodobý deficit, nalačno je věc preference"
+        modelAnswer: >-
+          Při tréninku nalačno tělo během cvičení spaluje relativně víc tuků, ale celkový výdej je stejný
+          a studie neukázaly lepší úbytek tuku než při tréninku po jídle. O hubnutí rozhoduje dlouhodobý
+          energetický deficit, takže jestli budeš trénovat nalačno, je čistě na tom, jak ti to vyhovuje.
+
+  - id: spo.anabolicke-okno
+    title: Načasování bílkovin a „anabolické okno“
+    kind: concept
+    tier: A
+    criteria: [7d, 8e]
+    prereqs: [spo.bilkoviny]
+    source: { pages: [207], anchor: "není nutné s proteinem spěchat hned do šatny" }
+    explanation: >-
+      Představa, že bílkoviny musí přijít do 30–60 minut po tréninku, je mýtus. Svalová proteosyntéza
+      zůstává zvýšená dlouho (24–72 h); „okno“ je spíš doba mezi jídlem před a po tréninku, ideálně do
+      4–6 h (kap. 13 uvádí až 5–6 h). Přednost má celkový denní příjem bílkovin (1,6–2,2 g/kg) rozdělený do dávek 0,25–0,4 g/kg
+      každé 3–4 hodiny. Rychlé doplnění sacharidů je důležité hlavně při krátké pauze do další zátěže.
+    exercises:
+      - id: mytus
+        version: 2
+        type: choice
+        prompt: "Co je podle skript pro svalový růst důležitější než načasování bílkovin po tréninku?"
+        options:
+          - { text: "Celkový denní příjem bílkovin", correct: true }
+          - { text: "Vypít proteinový nápoj nejpozději do 30 minut po tréninku", why: "Anabolické okno trvá déle, nejde o minuty." }
+          - { text: "Přijmout hned po tréninku co nejvíc rychlých sacharidů", why: "Sacharidy po tréninku MPS nezvyšují, pokud je bílkovin dost." }
+          - { text: "Užívat BCAA před každým tréninkem i po něm", why: "Při dostatku bílkovin ve stravě nepřinášejí BCAA přesvědčivý efekt." }
+      - id: davka
+        version: 2
+        type: numeric
+        formula: per-kg
+        prompt: >-
+          Sportovec váží {weight} kg a chce bílkoviny rozložit do dávek každé 3–4 hodiny. Kolik gramů
+          bílkovin odpovídá HORNÍ hranici jednotlivé dávky podle souhrnného aktuálního doporučení ve
+          skriptech (dávky každé 3–4 h)?
+        params:
+          weight: { min: 55, max: 100, step: 1 }
+          perKg: { choices: [{ value: 0.4, label: "0,4" }] }
+        unit: g
+        tolerance: { abs: 1 }
+        hint: "Jednotlivá dávka 0,25–0,4 g/kg."
+      - id: vysvetli
+        type: explain
+        prompt: "Klient po tréninku spěchá s proteinovým nápojem, aby „nepropásl anabolické okno“. Co mu řekneš?"
+        keyPoints:
+          - "30–60min okno je mýtus, proteosyntéza je zvýšená mnohem déle"
+          - "Okno = doba mezi jídlem před a po tréninku (asi do 4–6 h)"
+          - "Rozhoduje celkový denní příjem bílkovin (1,6–2,2 g/kg)"
+          - "Rozložit do dávek 0,25–0,4 g/kg každé 3–4 h"
+        modelAnswer: >-
+          Nemusí spěchat: svalová proteosyntéza zůstává po tréninku zvýšená mnohem déle než půl hodiny
+          a pokud jedl před tréninkem, stačí se najíst v rozumné době, zhruba do 4–6 hodin od jídla před
+          tréninkem. Mnohem důležitější je celkový denní příjem bílkovin kolem 1,6–2,2 g/kg rozdělený do
+          dávek 0,25–0,4 g/kg každé 3–4 hodiny.
+
+  - id: spo.pred-treninkem
+    title: Jídlo před tréninkem
+    kind: procedure
+    tier: B
+    criteria: [7d, 7c]
+    confusableWith: [spo.po-treninku]
+    source: { pages: [208], anchor: "Doporučuje se 1–4 hodiny před delším nebo intenzivním výkonem" }
+    explanation: >-
+      Jídlo 1–4 hodiny před delším nebo intenzivním výkonem: sacharidy obvykle 1–4 g/kg podle cíle
+      a tolerance, k tomu 0,25–0,4 g/kg bílkovin. Tuk a vlákninu omezit hlavně při citlivém trávení nebo
+      krátkém odstupu. Příklad: rýže s kuřecím masem nebo tofu a ovocem; těsně před výkonem spíš banán,
+      pečivo s medem, jogurt nebo sportovní nápoj. Jednoduché sacharidy nejsou při sportu automaticky horší.
+    exercises:
+      - id: kdy
+        type: choice
+        prompt: "Kolik sacharidů doporučují skripta v jídle 1–4 hodiny před delším výkonem?"
+        options:
+          - { text: "Obvykle 1–4 g/kg", correct: true }
+          - { text: "10–12 g/kg", why: "To je denní příjem při carb-loadingu." }
+          - { text: "30–60 g/kg", why: "30–60 g (ne g/kg) se uvádí za hodinu během výkonu delšího než 60 minut." }
+          - { text: "Sacharidy před výkonem vynechat", why: "Sacharidy jsou před delším výkonem hlavním palivem; volí se podle tolerance." }
+      - id: tesne
+        type: reveal
+        prompt: "Co doporučíš sníst těsně před výkonem a čeho se vyvarovat?"
+        answer: >-
+          Dobře tolerované, snadno stravitelné sacharidy (banán, pečivo s medem, jogurt, sportovní nápoj);
+          omezit tuk a vlákninu, hlavně při citlivém trávení nebo krátkém odstupu.
+
+  - id: spo.po-treninku
+    title: Jídlo po tréninku
+    kind: comparison
+    tier: A
+    criteria: [7d, 7c]
+    prereqs: [spo.anabolicke-okno]
+    status: course-disputed
+    note: >-
+      Skripta jsou nejednotná: s. 208 uvádí po tréninku obecně 1–1,2 g sacharidů/kg, s. 212 pro rychlou
+      obnovu 1,0–1,2 g/kg za hodinu (to odpovídá i mainstreamovým doporučením). Samotná fruktóza je pro
+      obnovu svalového glykogenu horší, směs glukózy a fruktózy je ale vhodná (s. 212 ji doporučuje během
+      výkonu). Ke zkoušce: obecně 1–1,2 g/kg, rychlá obnova 75–90 g glukózy/sacharózy do 2 h, ne samotná
+      fruktóza.
+    confusableWith: [spo.pred-treninkem]
+    source: { pages: [208, 212], anchor: "fruktóza není vhodná" }
+    explanation: >-
+      Silový sportovec potřebuje po tréninku hlavně dost plnohodnotných bílkovin: 20–40 g (0,25–0,4 g/kg)
+      v jedné dávce. Vytrvalec chce rychle doplnit glykogen: rychle vstřebatelné sacharidy a menší dávka
+      bílkovin. Obecně sacharidy asi 1–1,2 g/kg; pro rychlou obnovu glykogenu 75–90 g glukózy nebo
+      sacharózy během prvních 2 h — samotná fruktóza vhodná není, vyšší dávka obnovu nezrychlí. Velké množství
+      tuku po tréninku zpomaluje trávení a regeneraci.
+    exercises:
+      - id: silovy-vytrvalec
+        type: explain
+        prompt: "Jak se liší jídlo po tréninku u silového a u vytrvalostního sportovce?"
+        keyPoints:
+          - "Silový: prioritou plnohodnotné bílkoviny, 20–40 g (0,25–0,4 g/kg)"
+          - "Vytrvalec: rychle vstřebatelné sacharidy + menší dávka bílkovin"
+          - "Sacharidy obecně asi 1–1,2 g/kg; rychlá obnova 75–90 g do 2 h"
+          - "Glukóza/sacharóza, ne samotná fruktóza; tuky po tréninku omezit"
+        modelAnswer: >-
+          Silový sportovec potřebuje hlavně dostatek kvalitních bílkovin, asi 20–40 g neboli 0,25–0,4 g/kg.
+          Vytrvalec potřebuje rychle doplnit glykogen, takže dá rychle vstřebatelné sacharidy s menší
+          dávkou bílkovin; obecně kolem 1–1,2 g sacharidů na kg, pro rychlou obnovu 75–90 g glukózy nebo
+          sacharózy během prvních dvou hodin. Samotná fruktóza se nehodí a velké množství tuku regeneraci zpomalí.
+      - id: fruktoza
+        version: 2
+        type: choice
+        prompt: "Který sacharid se podle skript NEHODÍ pro rychlou obnovu glykogenu po tréninku?"
+        options:
+          - { text: "Samotná fruktóza", correct: true }
+          - { text: "Glukóza", why: "Glukóza je pro rychlou obnovu glykogenu vhodná." }
+          - { text: "Sacharóza", why: "Sacharóza je podle skript vhodná." }
+      - id: davka-bilkovin
+        type: choice
+        prompt: "Jaká dávka bílkovin po tréninku je podle skript dostatečným stimulem svalové proteosyntézy?"
+        options:
+          - { text: "20–40 g (0,25–0,4 g/kg) v jedné dávce", correct: true }
+          - { text: "5–10 g", why: "To je málo; za dostatečný stimul se uvádí 20–40 g." }
+          - { text: "1,6–2,2 g/kg v jedné dávce", why: "To je celkový denní příjem, ne jedna dávka." }
+          - { text: "80–100 g najednou", why: "Za dostatečný stimul se uvádí 20–40 g v jedné dávce." }
+
+  - id: spo.vytrvalost-makra
+    title: Makroživiny ve vytrvalostních sportech
+    kind: fact
+    tier: A
+    criteria: [7d]
+    confusableWith: [spo.faze]
+    source: { pages: [211], anchor: "zejména potřeba sacharidů bývá výrazně vyšší" }
+    explanation: >-
+      Vytrvalci potřebují výrazně víc sacharidů než silové sporty: 3–12 g/kg/den podle objemu, intenzity
+      a cíle, před velmi náročným výkonem 7–12 g/kg. Sacharidy se periodizují — nemají být vysoko každý
+      den bez ohledu na zátěž. Bílkoviny obvykle 1,4–2,0 g/kg (dávky 0,25–0,4 g/kg každé 3–4 h), tuky
+      20–35 % energie; extrémní omezení tuků hrozí nedostatkem energie a esenciálních mastných kyselin.
+    exercises:
+      - id: sacharidy
+        type: choice
+        prompt: "Jaký denní příjem sacharidů uvádějí skripta pro vytrvalostní sportovce?"
+        options:
+          - { text: "3–12 g/kg/den podle objemu a intenzity tréninku", correct: true }
+          - { text: "1–2 g/kg/den", why: "Málo; vytrvalci potřebují výrazně víc sacharidů (3–12 g/kg/den)." }
+          - { text: "Vždy 10–12 g/kg/den", why: "10–12 g/kg je jen krátkodobý carb-loading; jinak se sacharidy periodizují." }
+          - { text: "Pod 50 g/den, aby tělo spalovalo tuky", why: "Skripta naopak zdůrazňují vysokou potřebu sacharidů u vytrvalců." }
+      - id: vysvetli
+        type: explain
+        prompt: "Jak se liší výživa vytrvalostního sportovce od silového a co znamená periodizace sacharidů?"
+        keyPoints:
+          - "Výrazně vyšší potřeba sacharidů: 3–12 g/kg/den"
+          - "Před velmi náročným výkonem 7–12 g/kg"
+          - "Periodizace = sacharidy podle zátěže daného dne, ne vysoko každý den"
+          - "Bílkoviny 1,4–2,0 g/kg, tuky 20–35 % energie, ne extrémně nízko"
+        modelAnswer: >-
+          Vytrvalec potřebuje mnohem víc sacharidů, podle objemu a intenzity 3–12 g/kg denně, před velmi
+          náročným výkonem 7–12 g/kg. Periodizace znamená, že příjem sacharidů přizpůsobuji zátěži daného
+          dne, ne že jsou vysoko každý den. Bílkoviny držím obvykle na 1,4–2,0 g/kg a tuky na 20–35 %
+          energie, protože jejich extrémní omezení vede k nedostatku energie a esenciálních mastných kyselin.
+
+  - id: spo.behem-vykonu
+    title: Sacharidy během výkonu a carb-loading
+    kind: fact
+    tier: B
+    criteria: [7d]
+    prereqs: [spo.vytrvalost-makra]
+    source: { pages: [212], anchor: "díky odlišným transportním cestám ve střevě lze takto vstřebat" }
+    explanation: >-
+      Výkon delší než 60 minut: 30–60 g sacharidů za hodinu; delší než 2,5 h až 90 g/h, ideálně směs
+      glukózy a fruktózy (využívají jiné transportéry ve střevě, vstřebá se víc). Carb-loading = 10–12 g
+      sacharidů/kg/den po 36–48 h, má smysl jen před vhodným dlouhým výkonem. Závodní strategii vždy
+      nacvičit v tréninku („gut training“), nic nového poprvé v závodě.
+    exercises:
+      - id: g-za-hodinu
+        type: choice
+        prompt: "Kolik sacharidů za hodinu doporučují skripta při výkonu delším než 60 minut (do 2,5 h)?"
+        options:
+          - { text: "30–60 g/h", correct: true }
+          - { text: "Až 90 g/h", why: "To platí pro výkony delší než 2,5 hodiny." }
+          - { text: "10–12 g/h", why: "10–12 g/kg/den je carb-loading, ne příjem za hodinu." }
+          - { text: "Během výkonu se sacharidy nepřijímají", why: "Při výkonu nad 60 minut se doporučuje 30–60 g/h." }
+      - id: smes
+        type: reveal
+        prompt: "Proč se při velmi dlouhém výkonu doporučuje směs glukózy a fruktózy?"
+        answer: "Vstřebávají se odlišnými transportními cestami ve střevě, takže lze najednou vstřebat víc sacharidů (až 90 g/h)."
+      - id: novinka
+        type: choice
+        prompt: "Běžec chce v maratonu poprvé vyzkoušet nový gel a dávku 90 g/h. Co mu poradíš?"
+        options:
+          - { text: "Nejdřív to vyzkoušet v tréninku", correct: true }
+          - { text: "Klidně, v závodě se trávení díky adrenalinu přizpůsobí samo", why: "Nový gel nebo dávku 90 g/h poprvé v závodě skripta označují za zbytečné riziko." }
+          - { text: "Sacharidy během závodu raději úplně vynechat a pít jen vodu", why: "U maratonu se sacharidy během výkonu doporučují; jen je třeba je nacvičit." }
+
+  - id: spo.red-s
+    title: RED-S a nízká energetická dostupnost
+    kind: concept
+    tier: B
+    criteria: [7d, 10c]
+    confusableWith: [en.energeticka-dostupnost]
+    source: { pages: [211], anchor: "nemusí být spojen s podváhou ani s poruchou příjmu potravy" }
+    explanation: >-
+      RED-S (relativní energetický deficit ve sportu) vzniká, když sportovci po odečtení energie na trénink
+      dlouhodobě nezbývá dost energie pro hormony, kosti, imunitu či reprodukci (nízká energetická
+      dostupnost). Týká se žen i mužů, nemusí jít o podváhu ani PPP. Varovné signály: poruchy menstruace,
+      pokles libida, opakovaná zranění a stresové zlomeniny, únava, častá nemocnost, pokles výkonu.
+      Poradce problém zachytí a předá lékaři či nutričnímu terapeutovi, sám nediagnostikuje.
+    exercises:
+      - id: signaly
+        type: choice
+        multiple: true
+        prompt: "Které projevy jsou podle skript varovnými signály RED-S?"
+        options:
+          - { text: "Poruchy menstruačního cyklu", correct: true }
+          - { text: "Opakované stresové zlomeniny", correct: true }
+          - { text: "Nevysvětlitelný pokles výkonnosti", correct: true }
+          - { text: "Rychlý nárůst svalové hmoty", why: "To není projev nedostatku energie." }
+      - id: role
+        type: explain
+        prompt: "Trenér ti pošle běžkyni, která má výpadky menstruace a opakovaná zranění. Co uděláš?"
+        keyPoints:
+          - "Podezření na RED-S / nízkou energetickou dostupnost"
+          - "Zmapuji příjem energie a tréninkovou zátěž"
+          - "Odkážu na lékaře / nutričního terapeuta, sama nediagnostikuji"
+          - "Cíl: obnovit dostatečnou energetickou dostupnost, ne jen „přidat kalorie“"
+        modelAnswer: >-
+          Jde o varovné signály RED-S, tedy dlouhodobě nízké energetické dostupnosti. Zmapuji její příjem
+          energie a tréninkovou zátěž, ale diagnostika patří lékaři nebo nutričnímu terapeutovi, kam ji
+          odkážu. Ve spolupráci pak pomáhám obnovit dostatečnou energetickou dostupnost a vhodné rozložení
+          jídla během dne a kolem tréninku.
+
+  - id: spo.ais-abcd
+    title: Doplňky podle síly důkazů (AIS)
+    kind: concept
+    tier: B
+    criteria: [7d, 8b]
+    prereqs: [spo.pyramida]
+    source: { pages: [209], anchor: "ABCD Sports Supplement Framework" }
+    explanation: >-
+      Australský institut sportu dělí doplňky do čtyř skupin. A — silné důkazy pro konkrétní použití
+      (sportovní potraviny, gely, izotonické nápoje, kofein, kreatin, beta-alanin, nitrát, bikarbonát).
+      B — slibné, zatím nejednoznačné (rybí olej). C — bez přesvědčivého sportovního přínosu (hořčík,
+      BCAA při dostatku bílkovin). D — zakázané nebo rizikové (stimulanty, prohormony, SARMs). Doplněk
+      není automaticky bezpečný; za užitou látku odpovídá sportovec.
+    exercises:
+      - id: skupina-a
+        type: choice
+        multiple: true
+        prompt: "Které doplňky řadí AIS do skupiny A (silně podložené)?"
+        options:
+          - { text: "Kreatin", correct: true }
+          - { text: "Kofein", correct: true }
+          - { text: "Beta-alanin", correct: true }
+          - { text: "BCAA", why: "BCAA jsou ve skupině C (při dostatečném příjmu bílkovin)." }
+          - { text: "Hořčík", why: "Hořčík je ve skupině C." }
+      - id: d
+        type: reveal
+        prompt: "Co patří do skupiny D podle AIS a jak riziko u klienta snížíš?"
+        answer: >-
+          Zakázané či rizikové látky (stimulanty, prohormony, SARMs, „testosterone boosters“). Ověřit
+          skutečnou potřebu, vyhnout se nejasným směsím, volit nezávisle testované šarže, schovat obal
+          a číslo šarže.
+
+  - id: spo.kofein
+    title: Kofein jako ergogenní látka
+    kind: fact
+    tier: B
+    criteria: [7d, 8a]
+    confusableWith: [dpl.kofein]
+    source: { pages: [212], anchor: "nejčastěji účinné bývá rozmezí 3–6 mg/kg" }
+    explanation: >-
+      Kofein nejspolehlivěji zlepšuje vytrvalostní výkon, menší efekt může mít na sílu, rychlost a
+      vnímanou námahu. Začíná se na 1–3 mg/kg, nejčastěji účinné je 3–6 mg/kg 30–60 minut před výkonem.
+      Vyšší dávka neznamená lepší efekt. Je třeba sčítat kofein z kávy, gelů, nápojů i předtréninkovek
+      a kvalitní spánek má přednost.
+    exercises:
+      - id: kdy
+        type: choice
+        prompt: "Kdy se podle skript kofein obvykle přijímá před výkonem?"
+        options:
+          - { text: "30–60 minut před výkonem", correct: true }
+          - { text: "2–3 hodiny před výkonem", why: "Tak se dávkuje bikarbonát nebo nitrát." }
+          - { text: "Až po výkonu", why: "Kofein má působit během výkonu, bere se 30–60 minut předem." }
+          - { text: "Denně po dobu 4 týdnů bez ohledu na výkon", why: "Tak se dávkuje beta-alanin." }
+
+  - id: spo.hydratace
+    title: Hydratace před, během a po výkonu
+    kind: procedure
+    tier: A
+    criteria: [7d, 7e]
+    source: { pages: [213], anchor: "přibližně 125–150 % ztráty tekutin" }
+    explanation: >-
+      Před výkonem podle potřeby 5–10 ml tekutin na kg, 2–4 hodiny předem. Během výkonu pít podle plánu
+      odvozeného od žízně, podmínek a změřené potivosti; 400–800 ml/h je jen orientační výchozí bod. Po
+      výkonu při potřebě rychlé regenerace doplnit asi 125–150 % ztracených tekutin, postupně spolu se
+      sodíkem a jídlem. Sodík je hlavní elektrolyt ztrácený potem; při přepíjení nezabrání hyponatremii
+      ani iontový nápoj.
+    exercises:
+      - id: pred
+        type: numeric
+        formula: per-kg
+        prompt: >-
+          Sportovec váží {weight} kg. Kolik ml tekutin odpovídá HORNÍ hranici doporučeného příjmu
+          2–4 hodiny před výkonem?
+        params:
+          weight: { min: 50, max: 100, step: 1 }
+          perKg: { choices: [{ value: 10, label: "10" }] }
+        unit: ml
+        tolerance: { abs: 5 }
+        hint: "Před výkonem 5–10 ml/kg."
+      - id: po
+        type: choice
+        prompt: "Kolik tekutin doplnit po výkonu, když je potřeba rychlá regenerace?"
+        options:
+          - { text: "Asi 125–150 % ztracených tekutin", correct: true }
+          - { text: "Přesně 100 % ztráty, víc ne", why: "Část tekutin se dál ztrácí močí a potem, proto se doplňuje víc než ztráta." }
+          - { text: "Asi 50 % ztráty, zbytek tělo dorovná samo", why: "Při potřebě rychlé regenerace by to nestačilo; doporučuje se 125–150 %." }
+          - { text: "Pevně 400–800 ml bez ohledu na ztrátu", why: "400–800 ml/h je orientační rozmezí během výkonu." }
+      - id: plan
+        type: explain
+        prompt: "Jak poradíš sportovci s pitím před, během a po výkonu?"
+        keyPoints:
+          - "Před: 5–10 ml/kg 2–4 h předem, pokud je potřeba"
+          - "Během: podle žízně, podmínek a potivosti; 400–800 ml/h jen orientačně"
+          - "Po: 125–150 % ztráty tekutin postupně se sodíkem a jídlem"
+          - "Pozor na přepíjení — hyponatremie"
+        modelAnswer: >-
+          Před výkonem podle potřeby vypije 5–10 ml na kilogram dvě až čtyři hodiny předem. Během výkonu
+          pije podle žízně, podmínek a své potivosti, rozmezí 400–800 ml za hodinu je jen orientační. Po
+          výkonu, pokud potřebuje rychle regenerovat, doplní asi 125–150 % ztracených tekutin postupně
+          spolu se sodíkem a jídlem. Přepíjení je nebezpečné, protože hrozí hyponatremie.
+
+  - id: spo.napoje-osmolalita
+    title: Sportovní nápoje podle osmolality
+    kind: comparison
+    tier: B
+    criteria: [7d, 7e]
+    prereqs: [spo.hydratace]
+    source: { pages: [213], anchor: "Sportovní nápoje se dělí podle osmolality na hypotonické" }
+    explanation: >-
+      Hypotonické nápoje mají nižší osmolalitu než krev — hodí se, když je prioritou rychlé dodání
+      tekutin. Izotonické mají osmolalitu podobnou krvi, dodají tekutiny i sacharidy a jsou
+      nejuniverzálnější. Hypertonické mají vyšší osmolalitu, jsou koncentrovaným zdrojem energie a hodí
+      se spíš po výkonu. Rozhoduje skutečná osmolalita a složení, ne nápis „iontový“.
+    exercises:
+      - id: typy
+        type: choice
+        prompt: "Který typ sportovního nápoje je podle skript nejuniverzálnější (tekutiny i sacharidy současně)?"
+        options:
+          - { text: "Izotonický", correct: true }
+          - { text: "Hypotonický", why: "Hypotonický je vhodný hlavně pro rychlé dodání tekutin." }
+          - { text: "Hypertonický", why: "Hypertonický je koncentrovaný zdroj energie, spíš po výkonu." }
+      - id: tri
+        type: reveal
+        prompt: "Popiš hypotonický, izotonický a hypertonický nápoj a kdy se který hodí."
+        answer: >-
+          Hypotonický: nižší osmolalita než krev, rychlé dodání tekutin. Izotonický: podobná osmolalita
+          jako krev, tekutiny i sacharidy, nejuniverzálnější. Hypertonický: vyšší osmolalita,
+          koncentrovaná energie, spíš po výkonu.

@@ -36,15 +36,15 @@ points:
         prompt: "Co je podle skript úplně první informace, kterou při tvorbě jídelníčku potřebuješ?"
         options:
           - { text: "Cíl klienta", correct: true }
-          - { text: "Poměr makroživin" }
-          - { text: "Počet jídel denně" }
-          - { text: "Seznam oblíbených receptů" }
+          - { text: "Poměr makroživin", why: "Makroživiny nastavuješ až podle cíle a energetického příjmu." }
+          - { text: "Počet jídel denně", why: "Počet jídel řešíš až později – a pro hmotnost navíc není rozhodující." }
+          - { text: "Seznam oblíbených receptů", why: "Preference se hodí, ale jídelníček se liší hlavně podle cíle – ten je první." }
 
   - id: jid.analyza
     title: Analýza stravovacích návyků
     kind: procedure
     tier: A
-    criteria: [3b, 5b]
+    criteria: [3b, 5b, 5d]
     source: { pages: [179], anchor: "Záznam by měl vycházet alespoň z týdenního záznamu" }
     explanation: >-
       Záznam stravy alespoň za týden: všechno jídlo včetně svačin a ujídání, nápoje, ideálně časy,
@@ -69,15 +69,15 @@ points:
         prompt: "Jak dlouhý má být podle skript minimálně záznam pro analýzu stravovacích návyků?"
         options:
           - { text: "Alespoň týden", correct: true }
-          - { text: "Jeden den" }
-          - { text: "Tři měsíce" }
-          - { text: "Stačí víkend" }
+          - { text: "Jeden den", why: "Jeden den nezachytí rozdíly mezi dny (např. pracovní a sváteční)." }
+          - { text: "Tři měsíce", why: "Skripta požadují alespoň týden; tři měsíce jsou zbytečně dlouhá doba." }
+          - { text: "Stačí víkend", why: "Víkend se často liší od pracovních dnů – potřebuješ alespoň týden." }
 
   - id: jid.redukce-prijem
     title: Nastavení příjmu při redukci
     kind: procedure
     tier: A
-    criteria: [7a, 7b, 6b]
+    criteria: [7a, 7b, 6b, 5a]
     prereqs: [en.bilance]
     confusableWith: [jid.nabirani]
     source: { pages: [180], anchor: "Orientačně lze pracovat s kalorickým deficitem přibližně 5–25 %" }
@@ -90,10 +90,10 @@ points:
         type: choice
         prompt: "Jaký deficit a jaké maximální snížení příjmu uvádějí skripta pro redukci?"
         options:
-          - { text: "Deficit asi 5–25 %, snížení nejvýš o ~500 kcal oproti současnému příjmu", correct: true }
-          - { text: "Deficit 40–50 %, pak postupně přidávat" }
-          - { text: "Vždy rovnou na hodnotu BMR" }
-          - { text: "Deficit přesně 1000 kcal u každého klienta" }
+          - { text: "Deficit 5–25 %, snížení nejvýš o ~500 kcal", correct: true }
+          - { text: "Deficit 40–50 %, později postupně přidávat", why: "Tak velký deficit skripta neuvádějí – orientačně 5–25 %." }
+          - { text: "Rovnou na hodnotu BMR, ať je deficit jistý", why: "Takový skok by byl obtížně udržitelný; snižuje se nejvýš asi o 500 kcal." }
+          - { text: "Deficit přesně 1000 kcal u každého klienta", why: "Deficit je individuální (5–25 %) a skokové snížení nemá přesáhnout ~500 kcal." }
       - id: skok
         type: explain
         prompt: "Klient jí 3200 kcal a přibírá, vypočítaný výdej je 2400 kcal. Na kolik mu příjem nastavíš a proč?"
@@ -114,7 +114,7 @@ points:
     note: >-
       Navýšení podle somatotypu je orientační pomůcka kurzu bez silné vědecké opory — skripta sama
       zdůrazňují, že rozhoduje skutečná reakce klienta.
-    criteria: [7a, 6b, 3a]
+    criteria: [7a, 6b, 3a, 5a]
     prereqs: [en.bilance]
     confusableWith: [jid.redukce-prijem]
     source: { pages: [180, 181], anchor: "u mezomorfního typu například o 250–350 kcal" }
@@ -130,11 +130,24 @@ points:
           - { text: "Endomorfovi", correct: true }
           - { text: "Ektomorfovi", why: "Ektomorf může navýšit nejvíc, až o 500 kcal." }
           - { text: "Mezomorfovi", why: "Mezomorf orientačně o 250–350 kcal." }
-          - { text: "Všem stejně" }
+          - { text: "Všem stejně", why: "Skripta navýšení orientačně odstupňovávají podle somatotypu." }
       - id: hodnoty
         type: reveal
         prompt: "O kolik kcal orientačně navýšit příjem při nabírání u ektomorfa, mezomorfa a endomorfa?"
         answer: "Ektomorf až o 500 kcal, mezomorf o 250–350 kcal, endomorf o 100–150 kcal."
+      - id: vysvetli
+        type: explain
+        prompt: "Hubený klient (ektomorf) chce nabrat hmotnost. Jak mu nastavíš energetický příjem?"
+        keyPoints:
+          - "Potřebuje kladnou energetickou bilanci (příjem > výdej)"
+          - "Navýšit asi o 5–25 %, nejvýš o ~500 kcal oproti současnému příjmu"
+          - "Orientačně podle somatotypu: ektomorf až +500, mezomorf +250–350, endomorf +100–150 kcal"
+          - "Nastavení ověřit podle skutečné reakce klienta"
+        modelAnswer: >-
+          Pro nabírání potřebuje kladnou bilanci, takže příjem zvýším asi o 5–25 %, nejvýše o 500 kcal
+          oproti tomu, co jí teď. Jako ektomorf může jít k horní hranici, tedy až o 500 kcal; mezomorfovi
+          bych přidala 250–350 kcal a endomorfovi jen 100–150 kcal. Somatotyp je ale jen vodítko –
+          nastavení ověřím podle toho, jak bude klient skutečně reagovat.
 
   - id: jid.rozpor
     title: Když údaje nedávají smysl
@@ -176,6 +189,18 @@ points:
         type: reveal
         prompt: "Jaké orientační rozložení energie do pěti jídel uvádějí skripta?"
         answer: "Snídaně 25 %, svačina 10 %, oběd 35 %, svačina 10 %, večeře 20 %."
+      - id: vysvetli
+        type: explain
+        prompt: "Klientka se ptá, kolikrát denně má jíst a jak si rozložit energii. Co jí poradíš?"
+        keyPoints:
+          - "Počet jídel sám o sobě není pro hmotnost rozhodující"
+          - "Vyvážený jídelníček jde sestavit z 2 i 6 porcí, prakticky je lepší držet se středu"
+          - "Ukázka: snídaně 25 %, svačina 10 %, oběd 35 %, svačina 10 %, večeře 20 %"
+        modelAnswer: >-
+          Na počtu jídel pro hmotnost až tak nezáleží – vyvážený jídelníček jde sestavit ze dvou i ze
+          šesti porcí, prakticky se ale osvědčuje držet se někde uprostřed. Jako výchozí ukázku můžeme
+          použít snídani 25 %, dopolední svačinu 10 %, oběd 35 %, odpolední svačinu 10 % a večeři 20 %
+          denní energie.
       - id: obed
         type: choice
         prompt: "Kolik procent denní energie připadá podle ukázkového rozložení na oběd?"
@@ -183,7 +208,7 @@ points:
           - { text: "35 %", correct: true }
           - { text: "25 %", why: "25 % připadá na snídani." }
           - { text: "20 %", why: "20 % připadá na večeři." }
-          - { text: "50 %" }
+          - { text: "50 %", why: "Tolik ukázkové rozložení nikomu nedává; na oběd připadá 35 %." }
 
   - id: jid.makra-postup
     title: Nastavení makroživin v praxi
@@ -205,9 +230,9 @@ points:
         prompt: "V jakém pořadí se podle skript nastavují makroživiny?"
         options:
           - { text: "Bílkoviny → tuky → sacharidy jako zbytek", correct: true }
-          - { text: "Sacharidy → bílkoviny → tuky" }
-          - { text: "Tuky → sacharidy → bílkoviny" }
-          - { text: "Všechny podle pevných procent 50/20/30" }
+          - { text: "Sacharidy → bílkoviny → tuky", why: "Sacharidy se dopočítávají až nakonec jako zbytek energie." }
+          - { text: "Tuky → sacharidy → bílkoviny", why: "Začíná se bílkovinami – jejich dostatek je základ." }
+          - { text: "Všechny podle pevných procent 50/20/30", why: "V praxi se poměr striktně nedodržuje; bílkoviny se stanoví v g/kg." }
       - id: vypocet
         type: numeric
         formula: macro-carbs
@@ -226,6 +251,18 @@ points:
         type: reveal
         prompt: "Klient přijímá málo bílkovin. Jak rychle mu příjem navyšovat a proč?"
         answer: "Postupně, asi o 0,3–0,4 g/kg/den v jednom kroku – aby si zvykl a neměl trávicí obtíže."
+      - id: vysvetli
+        type: explain
+        prompt: "Popiš, jak klientovi v praxi nastavíš makroživiny, když už znáš jeho energetický příjem."
+        keyPoints:
+          - "Začnu bílkovinami v g/kg (minimum 0,8–1 g/kg, většina klientů víc)"
+          - "Nízký příjem bílkovin navyšuji postupně, asi o 0,3–0,4 g/kg v kroku"
+          - "Pak tuky: 25–35 % energie (asi 0,5–1 g/kg)"
+          - "Sacharidy doplní zbývající energii"
+        modelAnswer: >-
+          Nejdřív stanovím bílkoviny v gramech na kilogram – minimum je 0,8–1 g/kg, většina klientů ale
+          potřebuje víc; když jich jí málo, přidávám postupně po 0,3–0,4 g/kg. Potom nastavím tuky na
+          25–35 % energie, prakticky asi 0,5–1 g/kg. Sacharidy nakonec doplní energii, která zbude.
 
   - id: jid.zmeny-prijmu
     title: Kdy příjem zvýšit nebo snížit

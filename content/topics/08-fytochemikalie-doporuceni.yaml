@@ -1,0 +1,362 @@
+topic:
+  id: fyto-doporuceni
+  title: Fytochemikálie a výživová doporučení
+  chapter: 8
+  pages: [64, 67]
+  order: 80
+  summary: >-
+    Fytochemikálie (definice, skupiny, hlavní zástupci a zdroje) a výživová doporučení pro populaci:
+    Zdravá 13, potravinová pyramida a výživový talíř.
+
+points:
+  - id: dop.fytochemikalie
+    title: Fytochemikálie – co to je a jak se dělí
+    kind: concept
+    tier: A
+    criteria: [1a]
+    prereqs: [uv.seminutrienty]
+    source: { pages: [8, 64], anchor: "Jde o sekundární metabolity rostlin" }
+    explanation: >-
+      Fytochemikálie jsou sekundární metabolity rostlin – přirozeně se vyskytují v rostlinných
+      potravinách. Rostlinu chrání (stres, mikroby, škůdci) a dávají jí chuť, barvu a vůni. U člověka
+      působí jako antioxidanty, antikarcinogeny a fytoncidy (rostlinná antibiotika) a mohou přispět
+      k prevenci nemocí srdce či rakoviny. Ve třídění živin patří s vlákninou mezi seminutrienty.
+      Podle zastoupení ve stravě: fenolické látky, karotenoidy, fytosteroly, sirné sloučeniny;
+      zvlášť stojí imunomodulační polysacharidy.
+    exercises:
+      - id: seminutrienty
+        type: choice
+        prompt: "Do které skupiny živin řadí skripta fytochemikálie?"
+        options:
+          - { text: "Seminutrienty (spolu s vlákninou)", correct: true }
+          - { text: "Mikronutrienty (spolu s vitaminy)", why: "Mikronutrienty jsou vitaminy a minerální látky." }
+          - { text: "Nenutriční složky (spolu s probiotiky)", why: "Nenutriční složky jsou probiotika a symbiotika." }
+          - { text: "Makronutrienty", why: "Makronutrienty jsou zdrojem energie – sacharidy, tuky, bílkoviny." }
+      - id: skupiny
+        type: choice
+        multiple: true
+        prompt: "Které skupiny patří podle zastoupení ve stravě mezi fytochemikálie?"
+        options:
+          - { text: "Fenolické látky", correct: true }
+          - { text: "Karotenoidy", correct: true }
+          - { text: "Fytosteroly", correct: true }
+          - { text: "Sirné sloučeniny", correct: true }
+          - { text: "Tokoferoly", why: "Tokoferol je vitamin E." }
+          - { text: "Polyoly", why: "Polyoly jsou cukerné alkoholy (sladidla)." }
+      - id: definice
+        type: reveal
+        prompt: "Co jsou fytochemikálie a jaký mají význam pro rostlinu a pro člověka?"
+        answer: >-
+          Sekundární metabolity rostlin. Rostlinu chrání (stres, mikroby, škůdci) a dávají jí chuť,
+          barvu, vůni. Pro člověka: antioxidanty, antikarcinogeny, fytoncidy – možná prevence
+          civilizačních nemocí.
+
+  - id: dop.fenolicke-latky
+    title: Fenolické látky – zástupci a zdroje
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Kap. 8 uvádí resveratrol z červeného vína jako vysvětlení „francouzského paradoxu“. Kap. 5
+      (s. 46) a kap. 13 (s. 144) ale zdůrazňují, že jeho význam je přeceňován (nízká biologická
+      dostupnost) a že ho lze získat bez alkoholu. Víno jako zdroj „zdravých“ látek nedoporučuj.
+    criteria: [1a]
+    prereqs: [dop.fytochemikalie]
+    source: { pages: [64, 46, 144], anchor: "isoflavonoidy, kterým se také říká fytoestrogeny" }
+    explanation: >-
+      Fenolické látky mají ve struktuře fenolické jádro. Zástupci: katechiny (čaj), flavanony
+      (citrusy), isoflavonoidy = fytoestrogeny (hlavně sója), anthokyany (fialové a růžové zbarvení
+      plodů), třísloviny se svíravou chutí (víno, obiloviny), lignany – také fytoestrogeny (lněné
+      semínko), stilbenoidy jako resveratrol (červené víno). Kvercetin působí jako přírodní
+      antihistaminikum.
+    exercises:
+      - id: fytoestrogeny
+        type: choice
+        version: 2
+        multiple: true
+        prompt: "Které z těchto fenolických látek patří mezi fytoestrogeny?"
+        options:
+          - { text: "Isoflavonoidy – hlavně v sóje", correct: true }
+          - { text: "Lignany – hlavně ve lněném semínku", correct: true }
+          - { text: "Katechiny – hlavně v čaji", why: "Katechiny nejsou fytoestrogeny." }
+          - { text: "Anthokyany – hlavně v borůvkách", why: "Anthokyany dávají plodům fialovou barvu." }
+          - { text: "Flavanony – hlavně v citrusech", why: "Flavanony nejsou fytoestrogeny." }
+      - id: priradit
+        type: reveal
+        prompt: "Kde najdeš katechiny, flavanony, anthokyany a lignany?"
+        answer: "Katechiny – čaj; flavanony – citrusy; anthokyany – fialové a růžové plody; lignany – lněné semínko."
+
+  - id: dop.karotenoidy
+    title: Karotenoidy – beta-karoten, lykopen, lutein
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Tvrzení „lykopen snižuje riziko nádoru prostaty“ a „lutein brání šedému zákalu“ vycházejí
+      převážně z pozorovacích studií; jako jistý účinek je klientům neprezentuj. Zvýšené riziko
+      rakoviny plic u kuřáků při vysokých dávkách beta-karotenu z doplňků je dobře doloženo.
+      U testu odpovídej podle skript: lykopen – nižší riziko nádoru prostaty, lutein – prevence
+      šedého zákalu.
+    criteria: [1a, 1e]
+    prereqs: [dop.fytochemikalie]
+    confusableWith: [vit.a]
+    source: { pages: [64, 65], anchor: "Některé mají roli provitaminu" }
+    explanation: >-
+      Karotenoidy jsou červené, oranžové a žluté pigmenty (karoteny a xanthofyly) s antioxidačním
+      účinkem; některé jsou provitaminem A – hlavně beta-karoten. Lykopen je hlavně v rajčatech,
+      lépe se využije po tepelné úpravě; podle skript snižuje riziko nádoru prostaty. Lutein působí
+      v oční sítnici a podle skript brání šedému zákalu. Vysoké dávky v doplňcích škodí – u kuřáků
+      zvyšují riziko rakoviny plic. Hladina karotenoidů v séru ukazuje příjem ovoce a zeleniny.
+    exercises:
+      - id: provitamin
+        type: choice
+        prompt: "Který karotenoid je nejvýznamnějším provitaminem A?"
+        options:
+          - { text: "Beta-karoten", correct: true }
+          - { text: "Lykopen", why: "Lykopen je karotenoid z rajčat bez role provitaminu A." }
+          - { text: "Lutein", why: "Lutein působí v oční sítnici." }
+          - { text: "Kvercetin", why: "Kvercetin je fenolická látka, ne karotenoid." }
+      - id: kuraci
+        type: choice
+        prompt: "Proč skripta varují před vysokými dávkami karotenoidů v doplňcích?"
+        options:
+          - { text: "U kuřáků zvyšují riziko rakoviny plic.", correct: true }
+          - { text: "Způsobují šeroslepost.", why: "Šeroslepost je z nedostatku vitaminu A." }
+          - { text: "Blokují vstřebávání cholesterolu.", why: "To dělají fytosteroly." }
+          - { text: "Snižují vstřebávání železa.", why: "To dělají fytáty a polyfenoly." }
+      - id: lykopen
+        type: reveal
+        prompt: "Kde je hodně lykopenu a jak ho nejlépe využít?"
+        answer: "V rajčatech; lépe se využije z tepelně upravených rajčat."
+
+  - id: dop.fytosteroly
+    title: Fytosteroly a cholesterol
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta uvádějí jako „nejznámějšího zástupce“ fytosterolů ergosterol a nazývají ho rostlinným
+      prekurzorem vitaminu D2. Ergosterol je ale sterol hub (ne rostlin) a mezi fytosteroly snižující
+      cholesterol se běžně neřadí. Zapamatuj si: ergosterol – houby – prekurzor vitaminu D2. Na
+      otázku „nejznámější zástupce fytosterolů podle skript“ odpověz ergosterol.
+    criteria: [1a, 7h]
+    prereqs: [dop.fytochemikalie]
+    source: { pages: [65], anchor: "Fytosteroly mají strukturu podobnou cholesterolu" }
+    explanation: >-
+      Fytosteroly mají strukturu podobnou cholesterolu. Blokují vstřebávání cholesterolu z potravy
+      i jeho zpětné vstřebávání ze žlučových kyselin a LDL nezvyšují. Patří sem sitosterol,
+      stigmasterol, kampesterol. Využívají se jako funkční složka v rostlinných margarínech. Výjimkou
+      je vzácná sitosterolemie, kdy naopak LDL zvyšují. Ergosterol (houby) je prekurzorem vitaminu D2.
+    exercises:
+      - id: ucinek
+        type: choice
+        prompt: "Jak působí fytosteroly na cholesterol?"
+        options:
+          - { text: "Blokují vstřebávání cholesterolu z potravy i ze žlučových kyselin.", correct: true }
+          - { text: "Zvyšují tvorbu HDL v játrech.", why: "Skripta uvádějí blokádu vstřebávání cholesterolu, ne vliv na HDL." }
+          - { text: "Přeměňují se v těle na vitamin D3.", why: "Ergosterol je prekurzor vitaminu D2, ne D3, a jde o houbový sterol." }
+          - { text: "Zvyšují LDL cholesterol u všech lidí.", why: "LDL zvyšují jen u vzácné sitosterolemie." }
+      - id: vyuziti
+        type: reveal
+        prompt: "Kde se fytosteroly prakticky využívají a u koho jsou nevhodné?"
+        answer: "Jako funkční složka rostlinných margarínů; nevhodné při vzácné sitosterolemii (zvyšují LDL)."
+
+  - id: dop.sirne-betaglukany
+    title: Sirné sloučeniny a beta-glukany
+    kind: fact
+    tier: C
+    criteria: [1a]
+    prereqs: [dop.fytochemikalie]
+    source: { pages: [65], anchor: "Nutričně významné jsou zejména beta-glukany" }
+    explanation: >-
+      Sirné sloučeniny mají štiplavou chuť: sulfidy a alicin v cibuli a česneku (alicin je silně
+      antimikrobiální), glukosinoláty v brukvovité zelenině (křen, hořčice, růžičková kapusta) –
+      pravděpodobně působí proti nádorům. Imunomodulační polysacharidy jsou druh vlákniny, nejčastěji
+      glukany z glukózy. Beta-glukany (ovesné otruby, houby; pleuran z hlívy ústřičné) podporují
+      imunitu. Imunomodulační polysacharidy obsahuje i echinacea (třapatka).
+    exercises:
+      - id: betaglukan
+        type: choice
+        prompt: "Kde najdeš nutričně významné beta-glukany?"
+        options:
+          - { text: "V ovesných otrubách a houbách", correct: true }
+          - { text: "V česneku a cibuli", why: "Tam jsou sirné sloučeniny (sulfidy, alicin)." }
+          - { text: "V rajčatech", why: "Rajčata jsou zdrojem lykopenu." }
+          - { text: "V sóje", why: "Sója je zdrojem isoflavonoidů." }
+      - id: glukosinolaty
+        type: choice
+        prompt: "Glukosinoláty jsou typické pro…"
+        options:
+          - { text: "brukvovitou zeleninu (křen, hořčice, růžičková kapusta)", correct: true }
+          - { text: "citrusy", why: "V citrusech jsou flavanony." }
+          - { text: "červené víno", why: "Ve víně jsou třísloviny a resveratrol." }
+          - { text: "ovesné otruby", why: "V ovesných otrubách jsou beta-glukany." }
+
+  - id: dop.doporuceni-kdo
+    title: Kdo tvoří výživová doporučení v ČR
+    kind: fact
+    tier: B
+    criteria: [10d, 7c]
+    source: { pages: [66, 67], anchor: "výživová doporučení navrhuje Společnost pro výživu" }
+    explanation: >-
+      Výživová doporučení jsou součástí strategie státu a organizací pro zdraví obyvatel. V ČR je
+      navrhuje Společnost pro výživu, zabývá se jimi i Státní zdravotní ústav a zohledňují se
+      doporučení WHO. Aktuálně jsou shrnuta do Zdravé 13 (Zdravé třináctky). Pomůckami jsou
+      i potravinové pyramidy a výživové talíře. Doporučení platí pro celou populaci – u klienta je
+      vždy nutné postupovat individuálně.
+    exercises:
+      - id: kdo
+        type: choice
+        prompt: "Kdo v ČR navrhuje výživová doporučení shrnutá do Zdravé 13?"
+        options:
+          - { text: "Společnost pro výživu", correct: true }
+          - { text: "Ministerstvo zemědělství", why: "Doporučení navrhuje Společnost pro výživu; zabývá se jimi i SZÚ." }
+          - { text: "EFSA", why: "EFSA stanovuje referenční hodnoty příjmu živin pro EU, ne Zdravou 13." }
+          - { text: "Česká obchodní inspekce", why: "ČOI kontroluje trh, výživová doporučení netvoří." }
+      - id: individualne
+        type: reveal
+        prompt: "Jaké je omezení obecných výživových doporučení při práci s klientem?"
+        answer: "Platí pro celou populaci; s klientem je vždy třeba postupovat individuálně."
+
+  - id: dop.zdrava13
+    title: Zdravá 13 – co a kolik jíst
+    kind: fact
+    tier: A
+    criteria: [7c, 10d]
+    prereqs: [dop.doporuceni-kdo]
+    source: { pages: [66], anchor: "výživová doporučení shrnutá do tzv. Zdravé 13" }
+    explanation: >-
+      Zdravá 13 (Společnost pro výživu, obr. 9.1) – potraviny: pestrá strava v 3–5 jídlech denně,
+      nevynechávat snídani; zelenina a ovoce aspoň 400 g denně (zeleniny 2× víc než ovoce), v menším
+      množství ořechy; přednost celozrnným výrobkům, luštěniny aspoň 1× týdně; ryby aspoň 2× týdně;
+      denně mléčné výrobky, hlavně zakysané, spíše polotučné; vypít aspoň 1,5 l tekutin denně
+      (voda, slabý čaj, ředěné šťávy).
+    exercises:
+      - id: zelenina
+        type: choice
+        prompt: "Kolik zeleniny a ovoce denně doporučuje Zdravá 13?"
+        options:
+          - { text: "Aspoň 400 g, zeleniny dvakrát víc než ovoce", correct: true }
+          - { text: "Aspoň 400 g, ovoce dvakrát víc než zeleniny", why: "Poměr je opačný – víc zeleniny." }
+          - { text: "Aspoň 200 g v jakémkoli poměru", why: "Minimum je 400 g a zeleniny má být víc." }
+          - { text: "Aspoň 1 kg, hlavně ovoce", why: "Zdravá 13 uvádí aspoň 400 g a víc zeleniny než ovoce." }
+      - id: frekvence
+        type: choice
+        prompt: "Jak často doporučuje Zdravá 13 jíst ryby a luštěniny?"
+        options:
+          - { text: "Ryby aspoň 2× týdně, luštěniny aspoň 1× týdně", correct: true }
+          - { text: "Ryby aspoň 1× týdně, luštěniny aspoň 2× týdně", why: "Je to obráceně." }
+          - { text: "Ryby i luštěniny denně", why: "Zdravá 13 uvádí týdenní minimum: ryby 2×, luštěniny 1×." }
+          - { text: "Ryby aspoň 1× měsíčně, luštěniny podle chuti", why: "Ryby aspoň 2× týdně, luštěniny aspoň 1× týdně." }
+      - id: zasady
+        type: explain
+        prompt: "Klient chce jednoduchá pravidla zdravého jídelníčku. Shrň mu potravinová doporučení Zdravé 13."
+        keyPoints:
+          - "Pestrá strava v 3–5 jídlech denně, nevynechávat snídani"
+          - "Zelenina a ovoce aspoň 400 g denně, zeleniny 2× víc než ovoce; ořechy v menším množství"
+          - "Celozrnné obiloviny; luštěniny aspoň 1× týdně"
+          - "Ryby aspoň 2× týdně; denně mléčné (hlavně zakysané) výrobky"
+          - "Aspoň 1,5 l tekutin denně, ideálně neslazených"
+        modelAnswer: >-
+          Jez pestře, rozděl jídlo do tří až pěti porcí denně a nevynechávej snídani. Denně sněz aspoň
+          400 g zeleniny a ovoce, přičemž zeleniny má být dvakrát víc, a přidej trochu ořechů.
+          Z obilovin vybírej celozrnné, luštěniny zařaď aspoň jednou a ryby aspoň dvakrát týdně, denně
+          mléčné výrobky – nejlépe zakysané. Vypij aspoň 1,5 litru tekutin, nejlépe neslazených. A
+          pamatuj, že u konkrétního klienta se pravidla vždy přizpůsobují.
+
+  - id: dop.zdrava13-limity
+    title: Zdravá 13 – hmotnost, pohyb a co omezit
+    kind: fact
+    tier: B
+    status: course-disputed
+    note: >-
+      Alkohol: Zdravá 13 (obr. 9.1) uvádí muži nejvýše 20 g, ženy polovinu (10 g); kap. 5 (s. 47) uvádí
+      tzv. tolerovatelný příjem ženy 20 g, muži 30 g. Obvod pasu: Zdravá 13 má muži 94 / ženy 80 cm,
+      tabulka v kap. 13 (s. 152) má u mužů hranici 90 cm (90–102 zvýšené, nad 102 vysoké riziko).
+      Odpovídej podle toho, na co se otázka ptá – u Zdravé 13 platí 20 g / polovina a 94 / 80 cm.
+      Žádné z čísel o alkoholu není bezpečné množství.
+    criteria: [10d, 7c]
+    prereqs: [dop.zdrava13]
+    confusableWith: [alk.tolerovatelna-davka, por.obvod-pasu]
+    source: { pages: [66], anchor: "výživová doporučení shrnutá do tzv. Zdravé 13" }
+    explanation: >-
+      Zdravá 13 dále radí: udržovat BMI 18,5–25 a obvod pasu nejvýše 94 cm u mužů a 80 cm u žen;
+      denně se hýbat aspoň 30 minut; sledovat tuky (skryté tuky, preferovat tuky s nízkým obsahem
+      nasycených MK); omezit cukr a sůl; předcházet otravám a upřednostnit šetrnou tepelnou úpravu
+      místo smažení a grilování. Alkohol: muži nejvýše 20 g denně (200 ml vína, 0,5 l piva nebo
+      50 ml lihoviny), ženy poloviční množství.
+    exercises:
+      - id: alkohol
+        type: choice
+        version: 2
+        prompt: "Jaký denní limit alkoholu pro muže uvádí Zdravá 13 (obr. 9.1)?"
+        options:
+          - { text: "20 g (např. 0,5 l piva), ženy polovinu", correct: true }
+          - { text: "30 g, ženy 20 g", why: "To je tzv. tolerovatelný příjem z kap. 5, ne Zdravá 13." }
+          - { text: "10 g pro muže i ženy stejně", why: "Ženy mají poloviční limit než muži." }
+          - { text: "Žádný limit neuvádí", why: "Bod 13 limit uvádí – pro muže 20 g denně." }
+      - id: pas
+        type: choice
+        prompt: "Jaký maximální obvod pasu uvádí Zdravá 13?"
+        options:
+          - { text: "Muži 94 cm, ženy 80 cm", correct: true }
+          - { text: "Muži 102 cm, ženy 88 cm", why: "To jsou běžné hranice vysokého rizika, ne hodnoty Zdravé 13." }
+          - { text: "Muži 80 cm, ženy 94 cm", why: "Hodnoty jsou prohozené." }
+          - { text: "Muži i ženy 90 cm", why: "90 cm je hranice pro muže z tabulky v kap. 13; Zdravá 13 má 94 / 80 cm." }
+      - id: pohyb
+        type: reveal
+        prompt: "Kolik pohybu denně a jaké BMI doporučuje Zdravá 13?"
+        answer: "Aspoň 30 minut pohybu denně (např. rychlá chůze); BMI 18,5–25."
+
+  - id: dop.pyramida-talir
+    title: Potravinová pyramida a výživový talíř
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Výživový talíř ve skriptech (M. Slimáková) radí margaríny nejíst, zatímco kap. 8 (s. 65) uvádí
+      margaríny s fytosteroly jako funkční potravinu. Talíř je názor jedné autorky; pro pyramidu
+      a Zdravou 13 platí oficiální doporučení (MZ ČR, Společnost pro výživu). Pyramida (definice
+      porce) počítá půl talíře brambor jako porci zeleniny, talíř řadí brambory k polysacharidům –
+      odpovídej podle obrázku, na který se otázka ptá. Talíř dává ovoci celou čtvrtinu; poměr
+      zelenina : ovoce 2 : 1 je ze Zdravé 13.
+    criteria: [7c, 1a]
+    prereqs: [dop.doporuceni-kdo]
+    source: { pages: [66, 67], anchor: "Potravinová pyramida Ministerstva zdravotnictví ČR" }
+    explanation: >-
+      Pyramida MZ ČR (obr. 9.2) ukazuje porce denně odspodu: obiloviny, rýže, těstoviny, pečivo 3–6;
+      zelenina 3–5; ovoce 2–4; mléko a mléčné výrobky 2–3; ryby, maso, drůbež, vejce, luštěniny
+      1–2; na vrcholu sůl, tuky, cukry 0–2. Výživový talíř (obr. 9.3) ukazuje složení jídla: zelenina
+      aspoň čtvrtina (brambory a hranolky se nepočítají), ovoce čtvrtina, zbytek polysacharidy
+      v přirozené podobě a bílkoviny; tuky hlavně z ořechů, avokáda, ryb a za studena lisovaných olejů.
+    exercises:
+      - id: zaklad
+        type: choice
+        prompt: "Co tvoří základnu potravinové pyramidy MZ ČR (nejvíce porcí denně)?"
+        options:
+          - { text: "Obiloviny, rýže, těstoviny, pečivo (3–6 porcí)", correct: true }
+          - { text: "Zelenina (3–5 porcí)", why: "Zelenina je ve druhém patře." }
+          - { text: "Mléko a mléčné výrobky (2–3 porce)", why: "Mléčné výrobky jsou ve třetím patře." }
+          - { text: "Ryby, maso, vejce, luštěniny (1–2 porce)", why: "Jsou ve třetím patře (1–2 porce); základnu tvoří obiloviny." }
+      - id: brambory
+        type: choice
+        prompt: "Kam řadí výživový talíř ve skriptech brambory a hranolky?"
+        options:
+          - { text: "K polysacharidům, ne k zelenině", correct: true }
+          - { text: "K zelenině", why: "Talíř výslovně říká, že se k zelenině nepočítají." }
+          - { text: "K tukům", why: "Tuky talíř hledá v ořeších, avokádu, rybách a kvalitních olejích." }
+          - { text: "K bílkovinám", why: "Bílkoviny jsou ryby, luštěniny, ořechy, mléčné výrobky, vejce, maso." }
+      - id: porce
+        type: explain
+        prompt: "Vysvětli klientovi potravinovou pyramidu – kolik porcí kterých potravin denně?"
+        keyPoints:
+          - "Základ: obiloviny, rýže, těstoviny, pečivo 3–6 porcí"
+          - "Zelenina 3–5 porcí, ovoce 2–4 porce"
+          - "Mléko a mléčné výrobky 2–3 porce"
+          - "Ryby, maso, drůbež, vejce, luštěniny 1–2 porce"
+          - "Vrchol: sůl, tuky, cukry 0–2 porce"
+        modelAnswer: >-
+          Pyramida ukazuje, čeho jíst nejvíc a čeho nejméně. Základem jsou obiloviny, rýže, těstoviny
+          a pečivo, 3–6 porcí denně. Následuje zelenina 3–5 porcí a ovoce 2–4 porce. Výš jsou mléčné
+          výrobky 2–3 porce a ryby, maso, drůbež, vejce či luštěniny 1–2 porce. Na vrcholu jsou sůl,
+          tuky a cukry – nejvýše 2 porce, klidně žádná.

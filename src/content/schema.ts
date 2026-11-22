@@ -79,11 +79,61 @@ export const ExplainExercise = z.object({
   modelAnswer: z.string().min(10),
 });
 
+// ---------- Client cases (practical exam) ----------
+
+/** Numeric step of a case: formula inputs come from the client params or from earlier numeric steps (by step id). */
+export const CaseNumericStep = z.object({
+  type: z.literal("numeric"),
+  /** Step id — later prompts may show its CORRECT result as {id}, so one slip doesn't spoil the rest. */
+  id: Slug,
+  prompt: z.string().min(5),
+  formula: z.string(),
+  /** formula input → client param / earlier step id, or a constant. Default: same name. */
+  inputs: z.record(z.string(), z.union([z.string(), z.number()])).default({}),
+  unit: z.string(),
+  tolerance: z.object({ abs: z.number().nonnegative().optional(), rel: z.number().nonnegative().optional() }),
+  decimals: z.number().int().min(0).max(3).default(0),
+  hint: z.string().optional(),
+});
+export const CaseChoiceStep = z.object({
+  type: z.literal("choice"),
+  prompt: z.string().min(5),
+  multiple: z.boolean().default(false),
+  options: z.array(ChoiceOption).min(2).max(6),
+  explanation: z.string().optional(),
+});
+export const CaseExplainStep = z.object({
+  type: z.literal("explain"),
+  prompt: z.string().min(5),
+  keyPoints: z.array(z.string().min(2)).min(2).max(7),
+  modelAnswer: z.string().min(10),
+});
+export const CaseRevealStep = z.object({
+  type: z.literal("reveal"),
+  prompt: z.string().min(5),
+  answer: z.string().min(1),
+});
+export const CaseStep = z.discriminatedUnion("type", [CaseNumericStep, CaseChoiceStep, CaseExplainStep, CaseRevealStep]);
+
+/**
+ * Model client case: a generated client (seeded params, like numeric exercises) worked through step by step —
+ * calculation, judgement, explanation. Graded as a whole from the step outcomes.
+ */
+export const CaseExercise = z.object({
+  ...ExerciseBase,
+  type: z.literal("case"),
+  /** Client description shown throughout; may reference {param}. */
+  prompt: z.string().min(5),
+  params: z.record(z.string(), NumericParam).default({}),
+  steps: z.array(CaseStep).min(2).max(8),
+});
+
 export const Exercise = z.discriminatedUnion("type", [
   RevealExercise,
   ChoiceExercise,
   NumericExercise,
   ExplainExercise,
+  CaseExercise,
 ]);
 
 // ---------- Knowledge points & topics ----------
@@ -122,8 +172,9 @@ export const Point = z.object({
 export const Topic = z.object({
   id: Slug,
   title: z.string(),
-  /** Chapter number as in the script (for her orientation; numbering in the script is inconsistent). */
-  chapter: z.number().int().positive(),
+  /** Chapter number as in the script (for her orientation; numbering in the script is inconsistent). Absent for
+   *  cross-chapter topics such as model client cases. */
+  chapter: z.number().int().positive().optional(),
   pages: z.tuple([z.number().int().positive(), z.number().int().positive()]),
   summary: z.string().min(10),
   /** Order in the library. */
@@ -143,6 +194,9 @@ export type RevealExercise = z.infer<typeof RevealExercise>;
 export type ChoiceExercise = z.infer<typeof ChoiceExercise>;
 export type NumericExercise = z.infer<typeof NumericExercise>;
 export type ExplainExercise = z.infer<typeof ExplainExercise>;
+export type CaseExercise = z.infer<typeof CaseExercise>;
+export type CaseStep = z.infer<typeof CaseStep>;
+export type CaseNumericStep = z.infer<typeof CaseNumericStep>;
 export type NumericParam = z.infer<typeof NumericParam>;
 export type Point = z.infer<typeof Point>;
 export type Topic = z.infer<typeof Topic>;

@@ -1,76 +1,32 @@
 "use client";
 import { useMemo, useState } from "react";
-import type { ChoiceExercise, Exercise, ExplainExercise, NumericExercise, PointWithTopic, RevealExercise } from "@/content/schema";
+import type { ChoiceExercise, ExplainExercise, NumericExercise, RevealExercise } from "@/content/schema";
 import { fmt, instantiate, rng } from "@/content/formulas";
 import { evaluate } from "@/engine/evaluate";
-import type { Evaluation, Response } from "@/engine/types";
+import type { Evaluation } from "@/engine/types";
 import { topicsById } from "@/lib/content";
 import { Button, Eyebrow, Kbd } from "../ui";
 import { FeedbackFooter, ReportLink, useKeys, VerdictBadge } from "./shared";
+import { HintButton, Prompt, useRecorder, type ExerciseProps as Props } from "./parts";
+import { CaseView } from "./CaseView";
 
-export type AnswerRecord = {
-  exerciseId: string;
-  exerciseVersion: number;
-  evaluation: Evaluation;
-  response: Response;
-  hintUsed: boolean;
-  durationMs: number;
-};
-
-type Props = {
-  point: PointWithTopic;
-  exercise: Exercise;
-  seed: number;
-  reason: string;
-  onRecord: (a: AnswerRecord) => void;
-  onNext: () => void;
-};
+export type { AnswerRecord } from "./parts";
 
 export function ExerciseCard(props: Props) {
   const { point, exercise, reason } = props;
-  const label = reason === "review" ? "Opakování" : reason === "practice" ? "Procvičení" : "Ověření";
+  const label =
+    exercise.type === "case" ? "Modelový případ" : reason === "review" ? "Opakování" : reason === "practice" ? "Procvičení" : "Ověření";
   return (
     <div className="flex flex-col gap-5 animate-rise" key={`${point.id}/${exercise.id}/${props.seed}`}>
       <Eyebrow>
-        {label} · {topicsById.get(point.topicId)?.title}
+        {exercise.type === "case" ? `${label} · ${point.title}` : `${label} · ${topicsById.get(point.topicId)?.title}`}
       </Eyebrow>
       {exercise.type === "reveal" && <RevealView {...props} exercise={exercise} />}
       {exercise.type === "choice" && <ChoiceView {...props} exercise={exercise} />}
       {exercise.type === "numeric" && <NumericView {...props} exercise={exercise} />}
       {exercise.type === "explain" && <ExplainView {...props} exercise={exercise} />}
+      {exercise.type === "case" && <CaseView {...props} exercise={exercise} />}
     </div>
-  );
-}
-
-function useRecorder(props: Props) {
-  const [started] = useState(() => Date.now());
-  const [hintUsed, setHintUsed] = useState(false);
-  const record = (response: Response, evaluation?: Evaluation) => {
-    const ev = evaluation ?? evaluate(props.exercise, response, { hintUsed });
-    props.onRecord({
-      exerciseId: props.exercise.id,
-      exerciseVersion: props.exercise.version,
-      evaluation: ev,
-      response,
-      hintUsed,
-      durationMs: Math.min(Date.now() - started, 3_600_000),
-    });
-    return ev;
-  };
-  return { record, hintUsed, setHintUsed };
-}
-
-function Prompt({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-xl font-semibold leading-snug whitespace-pre-line">{children}</h2>;
-}
-
-function HintButton({ hint, shown, onShow }: { hint?: string; shown: boolean; onShow: () => void }) {
-  if (!hint) return null;
-  if (shown) return <div className="rounded-2xl bg-sage-50 px-4 py-3 text-[15px] text-sage-700">💡 {hint}</div>;
-  return (
-    <button type="button" onClick={onShow} className="self-start text-sm text-sage-700 underline-offset-4 hover:underline">
-      Nápověda
-    </button>
   );
 }
 

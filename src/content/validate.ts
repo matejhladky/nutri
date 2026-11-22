@@ -12,8 +12,9 @@ import {
   type PointWithTopic,
   type TopicFile as TopicFileT,
   type CriteriaFile as CriteriaFileT,
+  type CaseExercise,
 } from "./schema";
-import { formulas, instantiate } from "./formulas";
+import { formulas, instantiate, instantiateCase } from "./formulas";
 
 export type Issue = { level: "error" | "warn"; where: string; message: string };
 
@@ -82,7 +83,8 @@ export function validateContent(criteria: CriteriaFileT, topics: { file: string;
       if (wordCount(p.explanation) > 90) warn(where, `explanation has ${wordCount(p.explanation)} words (aim ≤ 80)`);
       if (p.source.anchor && wordCount(p.source.anchor) > 12) warn(where, `anchor has ${wordCount(p.source.anchor)} words (max 12)`);
       const oralOrPractical = p.criteria.some((c) => criterionMethods.get(c)?.some((m) => m === "U" || m === "PR"));
-      if (p.tier === "A" && oralOrPractical && !p.exercises.some((e) => e.type === "explain")) {
+      const hasExplain = p.exercises.some((e) => e.type === "explain" || (e.type === "case" && e.steps.some((st) => st.type === "explain")));
+      if (p.tier === "A" && oralOrPractical && !hasExplain) {
         warn(where, "tier-A point with an oral/practical criterion has no explain exercise");
       }
       const p0 = data.topic.pages[0] - 1;
@@ -105,6 +107,7 @@ export function validateContent(criteria: CriteriaFileT, topics: { file: string;
           const noWhy = ex.options.filter((o) => !o.correct && !o.why).length;
           if (noWhy) warn(ew, `${noWhy} wrong option(s) without "why"`);
         }
+        if (ex.type === "case") issues.push(...validateCase(ex, ew));
         if (ex.type === "numeric") {
           const f = formulas[ex.formula];
           if (!f) {
@@ -164,6 +167,55 @@ export function normalizeForMatch(s: string): string {
 }
 
 /** Verify that every anchor phrase appears on (one of) its cited pages. Requires source/pages. */
+function validateCase(ex: CaseExercise, ew: string): Issue[] {
+  const out: Issue[] = [];
+  const err = (m: string) => out.push({ level: "error", where: ew, message: m });
+  const warn = (m: string) => out.push({ level: "warn", where: ew, message: m });
+  const known = new Set(Object.keys(ex.params));
+  const placeholders = (t: string, at: string) => {
+    for (const m of t.matchAll(/\{(\w+)\}/g)) if (!known.has(m[1])) err(`${at}: placeholder {${m[1]}} is neither a client param nor an earlier step`);
+  };
+  placeholders(ex.prompt, "case prompt");
+  ex.steps.forEach((st, i) => {
+    const at = `step ${i + 1}`;
+    placeholders(st.prompt, at);
+    if (st.type === "numeric") {
+      if (known.has(st.id)) err(`${at}: step id ${st.id} clashes with a param or earlier step`);
+      const f = formulas[st.formula];
+      if (!f) err(`${at}: unknown formula ${st.formula}`);
+      else
+        for (const input of f.inputs) {
+          const src = st.inputs[input] ?? input;
+          if (typeof src === "string" && !known.has(src)) err(`${at}: formula input ${input} → ${src} not available`);
+        }
+      if (st.tolerance.abs === undefined && st.tolerance.rel === undefined) err(`${at}: numeric step needs a tolerance`);
+      known.add(st.id);
+    }
+    if (st.type === "choice") {
+      const correct = st.options.filter((o) => o.correct).length;
+      if (!st.multiple && correct !== 1) err(`${at}: single-choice must have exactly 1 correct option (has ${correct})`);
+      if (st.multiple && correct < 1) err(`${at}: multiple-choice needs at least 1 correct option`);
+      const noWhy = st.options.filter((o) => !o.correct && !o.why).length;
+      if (noWhy) warn(`${at}: ${noWhy} wrong option(s) without "why"`);
+    }
+  });
+  if (out.some((i) => i.level === "error")) return out;
+  for (let seed = 1; seed <= 25; seed++) {
+    try {
+      const inst = instantiateCase(ex, seed);
+      const bad = inst.steps.find((s) => s.type === "numeric" && (!Number.isFinite(s.answer) || s.answer <= 0));
+      if (bad) {
+        err(`seed ${seed}: a numeric step gives a non-positive/invalid answer`);
+        break;
+      }
+    } catch (e) {
+      err(`seed ${seed}: ${(e as Error).message}`);
+      break;
+    }
+  }
+  return out;
+}
+
 export function checkAnchors(topics: { file: string; data: TopicFileT }[], pagesDir = "source/pages"): Issue[] {
   const issues: Issue[] = [];
   if (!existsSync(pagesDir)) {

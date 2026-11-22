@@ -1,0 +1,1047 @@
+topic:
+  id: pripady
+  title: Modelové případy
+  pages: [146, 257]
+  order: 250
+  summary: >-
+    Praktická část zkoušky jako souvislý postup s modelovým klientem: vstupní měření a diagnostický
+    závěr, BMR různými metodami, celkový výdej, cílový příjem a makroživiny, rozvržení dne, varovné
+    signály pro lékaře a komunikace s náročnými klienty. Každé opakování = nový klient.
+
+points:
+  # ---------- Energie a makroživiny (5e, 5c, 6b) ----------
+
+  - id: kaz.redukce-sedava
+    title: Klientka se sedavou prací chce zhubnout
+    kind: procedure
+    tier: A
+    criteria: [5e, 6b, 7b]
+    prereqs: [en.bmr-mifflin, en.neat, en.eat, en.tef, en.tdee-vypocet, jid.redukce-prijem]
+    source: { pages: [169, 170, 171, 172, 180], anchor: "nesnižovat příjem skokově o více než přibližně 500 kcal" }
+    explanation: >-
+      Postup u redukce: 1) BMR podle Mifflin-St Jeor (složení těla neznáš), 2) NEAT = BMR × koeficient
+      podle běžné aktivity (sedavá práce 0,1), 3) EAT = kg × MET × hodiny, 4) TEF = 10 % z BMR + NEAT
+      + EAT, 5) TDEE = součet, 6) cílový příjem = TDEE minus 5–25 %. Nakonec porovnej cíl se současným
+      příjmem: skokově nesnižuj o víc než asi 500 kcal a nastavení ověřuj podle vývoje hmotnosti.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {age} let, výška {height} cm, hmotnost {weight} kg. Pracuje v kanceláři, do práce
+          jezdí autem a večer většinou odpočívá u televize. Každý den ale chodí {minutes} min na nordic
+          walking (počítej {met} MET). Chce zhubnout; složení těla neznáš.
+        params:
+          sex: { choices: [{ value: F, label: žena }] }
+          age: { min: 25, max: 55, step: 1 }
+          height: { min: 158, max: 170, step: 1 }
+          weight: { min: 74, max: 88, step: 1 }
+          minutes: { choices: [{ value: 30, label: "30" }, { value: 45, label: "45" }, { value: 60, label: "60" }] }
+          met: { choices: [{ value: 4, label: "4" }, { value: 5, label: "5" }] }
+          pct: { choices: [{ value: -10, label: "10" }, { value: -15, label: "15" }, { value: -20, label: "20" }] }
+        steps:
+          - type: numeric
+            id: bmr
+            prompt: "Spočítej její bazální metabolismus (BMR) podle Mifflin-St Jeor."
+            formula: bmr-mifflin
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
+          - type: numeric
+            id: neat
+            prompt: "BMR = {bmr} kcal. Zvol koeficient NEAT podle její běžné denní aktivity. Kolik kcal je NEAT?"
+            formula: neat
+            inputs: { bmr: bmr, coef: 0.1 }
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "Sedavá práce, auto, večer odpočinek → nízká aktivita, koeficient 0,1."
+          - type: numeric
+            id: eat
+            prompt: "NEAT = {neat} kcal. Kolik kcal denně vydá na nordic walkingu (EAT)?"
+            formula: eat
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "EAT = kg × MET × čas v hodinách."
+          - type: numeric
+            id: tef
+            prompt: "EAT = {eat} kcal. Kolik je termický efekt potravy (TEF) podle zjednodušeného výpočtu ze skript?"
+            formula: tef
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "TEF = 10 % ze součtu BMR + NEAT + EAT."
+          - type: numeric
+            id: tdee
+            prompt: "TEF = {tef} kcal. Jaký je její celkový denní výdej (TDEE)?"
+            formula: tdee-sum
+            unit: kcal
+            tolerance: { abs: 10 }
+          - type: numeric
+            id: cil
+            prompt: "TDEE = {tdee} kcal. Domluvily jste se na deficitu {pct} %. Jaký cílový příjem nastavíš?"
+            formula: energy-goal
+            unit: kcal
+            tolerance: { rel: 0.02 }
+            hint: "Cíl = TDEE × (1 − deficit)."
+          - type: choice
+            prompt: >-
+              Cíl vyšel {cil} kcal. Ze záznamu stravy ale vychází, že teď jí zhruba o 900 kcal víc, než je
+              tento cíl, a pomalu přibírá. Jak příjem nastavíš?
+            options:
+              - text: "Snížím ho nejdřív asi o 500 kcal a pak upravím podle vývoje hmotnosti."
+                correct: true
+                why: "Skripta doporučují nesnižovat příjem skokově o víc než asi 500 kcal oproti současnému stravování a dál se řídit vývojem hmotnosti."
+              - text: "Nastavím rovnou vypočítaný cíl, protože výpočet je přesný a zhubne tak rychleji."
+                why: "Skok o 900 kcal by zvýšil hlad a chutě a těžko by se dodržel; skripta doporučují snižovat nejvýš asi o 500 kcal."
+              - text: "Příjem zatím neměním a doporučím jí jen přidat každý den další pohyb."
+                why: "Při současném příjmu přibírá, takže pro redukci je potřeba příjem snížit."
+              - text: "Snížím příjem až na hodnotu BMR, aby byl deficit opravdu jistý."
+                why: "Jíst pod BMR obecně nedává smysl a patří jen pod lékařský dohled; snižuje se postupně."
+      - id: vysvetli
+        type: explain
+        prompt: "Zkoušející chce, abys vysvětlila, jak jsi u této klientky došla k cílovému příjmu."
+        keyPoints:
+          - "BMR podle Mifflin-St Jeor, protože složení těla neznám"
+          - "NEAT = BMR × 0,1 (sedavá práce); EAT = kg × MET × hodiny"
+          - "TEF = 10 % ze součtu BMR + NEAT + EAT; TDEE = součet všech složek"
+          - "Cíl = TDEE minus 5–25 %, ale skokově nejvýš o ~500 kcal oproti současnému příjmu"
+          - "Výsledek je odhad – ověřuji podle vývoje hmotnosti"
+        modelAnswer: >-
+          Složení těla neznám, proto jsem BMR spočítala rovnicí Mifflin-St Jeor. Má sedavou práci, takže
+          NEAT je BMR × 0,1. Nordic walking jsem započítala jako EAT: hmotnost × MET × čas v hodinách.
+          TEF je 10 % ze součtu BMR, NEAT a EAT a sečtením všech složek mám TDEE. Od něj jsem odečetla
+          domluvený deficit v rozmezí 5–25 %. Protože teď jí mnohem víc, snížím příjem nejdřív nejvýš
+          o 500 kcal a další úpravy udělám podle vývoje hmotnosti.
+
+  - id: kaz.pal-vs-slozky
+    title: TDEE po složkách a pomocí PAL
+    kind: procedure
+    tier: A
+    criteria: [6b, 5e]
+    prereqs: [en.tdee-vypocet, en.tdee-pal]
+    source: { pages: [172], anchor: "vhodná zejména pro nesportující klienty nebo naopak profesionální sportovce" }
+    explanation: >-
+      Skripta uvádějí dva výpočty TDEE. Po složkách (BMR + NEAT + EAT + TEF) – vhodný hlavně pro
+      nesportující klienty a profesionální sportovce; kdo nesportuje, má EAT 0. BMR × PAL – vhodný hlavně
+      pro klienty sportující asi 3–5× týdně (PAL 1,2 sedavý … 1,9 extrémně vysoká aktivita). Koeficient
+      NEAT pokrývá jen běžnou aktivitu a přičítá se; PAL už zahrnuje celý výdej, nic dalšího se
+      nepřičítá. Oba výsledky jsou odhad.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klient, {age} let, výška {height} cm, hmotnost {weight} kg. Pracuje jako účetní, celý den sedí
+          u počítače, do práce jezdí autem a nesportuje.
+        params:
+          sex: { choices: [{ value: M, label: muž }] }
+          age: { min: 25, max: 60, step: 1 }
+          height: { min: 168, max: 190, step: 1 }
+          weight: { min: 68, max: 105, step: 1 }
+        steps:
+          - type: numeric
+            id: bmr
+            prompt: "Spočítej jeho BMR podle Mifflin-St Jeor."
+            formula: bmr-mifflin
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+          - type: numeric
+            id: neat
+            prompt: "BMR = {bmr} kcal. Zvol koeficient NEAT podle jeho běžné aktivity. Kolik kcal je NEAT?"
+            formula: neat
+            inputs: { bmr: bmr, coef: 0.1 }
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "Sedavá práce, auto → nízká aktivita, koeficient 0,1."
+          - type: numeric
+            id: tef
+            prompt: "NEAT = {neat} kcal. Klient nesportuje, EAT je tedy 0. Kolik je TEF?"
+            formula: tef
+            inputs: { bmr: bmr, neat: neat, eat: 0 }
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "TEF = 10 % ze součtu BMR + NEAT + EAT."
+          - type: numeric
+            id: slozky
+            prompt: "TEF = {tef} kcal. Jaký je jeho TDEE po složkách?"
+            formula: tdee-sum
+            inputs: { bmr: bmr, neat: neat, eat: 0, tef: tef }
+            unit: kcal
+            tolerance: { abs: 10 }
+          - type: numeric
+            id: tdeepal
+            prompt: "TDEE po složkách = {slozky} kcal. Pro srovnání: jaký TDEE vyjde pomocí PAL pro sedavý způsob života?"
+            formula: tdee-pal
+            inputs: { bmr: bmr, pal: 1.2 }
+            unit: kcal
+            tolerance: { abs: 10 }
+            hint: "Sedavý způsob života = PAL 1,2; TDEE = BMR × PAL."
+          - type: choice
+            prompt: "Po složkách {slozky} kcal, pomocí PAL {tdeepal} kcal. Který výpočet je podle skript pro tohoto klienta vhodnější?"
+            options:
+              - text: "Po složkách – hodí se hlavně pro nesportující klienty."
+                correct: true
+                why: "Výpočet po složkách skripta doporučují hlavně pro nesportující klienty a profesionální sportovce."
+              - text: "BMR × PAL – zahrnuje celý výdej, takže je u každého klienta přesnější."
+                why: "PAL skripta doporučují hlavně pro klienty, kteří sportují asi 3–5× týdně."
+              - text: "Součet obou výsledků, aby se započítal veškerý výdej."
+                why: "PAL už zahrnuje celý výdej; sečtením bys výdej započítala dvakrát."
+              - text: "Je to jedno – oba výpočty dají vždy stejné číslo, liší se jen postupem."
+                why: "Výsledky se mohou lišit; oba jsou jen odhad a vhodnost závisí na typu klienta."
+          - type: choice
+            prompt: "Kterému z dalších klientů bys naopak spočítala TDEE pomocí PAL?"
+            options:
+              - text: "Klientce, která 4× týdně chodí na skupinové lekce"
+                correct: true
+                why: "Pro klienty sportující asi 3–5× týdně skripta doporučují BMR × PAL."
+              - text: "Profesionální cyklistce, která trénuje dvakrát denně"
+                why: "Profesionálním sportovcům skripta doporučují výpočet po složkách."
+              - text: "Seniorovi, který nesportuje a většinu dne odpočívá doma"
+                why: "Nesportujícím klientům se podle skript hodí výpočet po složkách."
+              - text: "Klientovi, u kterého znáš přesně změřenou beztukovou hmotu"
+                why: "Znalost FFM rozhoduje o volbě rovnice pro BMR, ne o tom, zda použít PAL."
+      - id: vysvetli
+        type: explain
+        prompt: "Zkoušející se ptá: Jakými dvěma způsoby spočítáš celkový denní výdej a kdy který použiješ?"
+        keyPoints:
+          - "Po složkách: TDEE = BMR + NEAT + EAT + TEF"
+          - "Po složkách hlavně u nesportujících klientů a profesionálních sportovců"
+          - "TDEE = BMR × PAL hlavně u klientů sportujících asi 3–5× týdně"
+          - "PAL zahrnuje celý výdej – nic dalšího se nepřičítá (na rozdíl od koeficientu NEAT)"
+          - "Oba výsledky jsou odhad, ověřuji je vývojem hmotnosti"
+        modelAnswer: >-
+          První způsob je výpočet po složkách: k BMR přičtu NEAT jako násobek BMR podle běžné aktivity,
+          EAT podle MET a TEF jako 10 % ze součtu. Hodí se hlavně pro nesportující klienty a pro
+          profesionální sportovce. Druhý způsob je BMR × PAL, vhodný hlavně pro klienty, kteří sportují
+          zhruba 3–5× týdně; PAL už zahrnuje celý výdej, takže nic dalšího nepřičítám. Oba výsledky jsou
+          jen odhad, který ověřím podle vývoje hmotnosti klienta.
+
+  - id: kaz.dve-metody
+    title: BMR dvěma rovnicemi u klientky se známým složením těla
+    kind: procedure
+    tier: A
+    criteria: [5e, 3b]
+    prereqs: [en.bmr-mifflin, en.bmr-katch, en.bmr-rovnice-volba, en.bmr-metody, por.bia-zasady]
+    source: { pages: [169, 151], anchor: "Pokud je k dispozici dostatečně spolehlivý údaj o beztukové hmotě" }
+    explanation: >-
+      Se spolehlivě změřeným složením těla počítej BMR rovnicí Katch-McArdle: FFM = hmotnost × (1 − % tuku
+      / 100), BMR = 21,6 × FFM + 370. Mifflin-St Jeor (hmotnost, výška, věk, pohlaví) je volba, když
+      složení těla neznáš. Spolehlivé je jen měření za standardních podmínek (nalačno, bez sportu
+      a pití před měřením). U zkoušky umět říct rozdíly: měření (kalorimetrie, DLW, DEXA, bioimpedance)
+      vs. predikční rovnice.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {age} let, výška {height} cm, hmotnost {weight} kg. Na bioimpedanční váze (ráno,
+          nalačno, za standardních podmínek) jí naměříš {bodyFat} % tuku.
+        params:
+          sex: { choices: [{ value: F, label: žena }] }
+          age: { min: 25, max: 55, step: 1 }
+          height: { min: 160, max: 174, step: 1 }
+          weight: { min: 64, max: 86, step: 1 }
+          bodyFat: { min: 28, max: 38, step: 1 }
+        steps:
+          - type: numeric
+            id: mifflin
+            prompt: "Spočítej její BMR podle Mifflin-St Jeor."
+            formula: bmr-mifflin
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
+          - type: numeric
+            id: ffm
+            prompt: "Mifflin-St Jeor = {mifflin} kcal. Kolik kg má beztukové hmoty (FFM)?"
+            formula: ffm
+            unit: kg
+            decimals: 1
+            tolerance: { abs: 0.5 }
+            hint: "FFM = hmotnost − hmotnost × % tuku / 100."
+          - type: numeric
+            id: katch
+            prompt: "FFM = {ffm} kg. Spočítej BMR podle Katch-McArdle."
+            formula: bmr-katch
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "BMR = 21,6 × FFM + 370."
+          - type: choice
+            prompt: "Mifflin-St Jeor dal {mifflin} kcal, Katch-McArdle {katch} kcal. S kterou hodnotou budeš dál pracovat?"
+            options:
+              - text: "S Katch-McArdle – máme spolehlivě změřenou beztukovou hmotu."
+                correct: true
+                why: "Se spolehlivým údajem o FFM skripta uvádějí Katch-McArdle; Mifflin-St Jeor je pro situaci, kdy složení těla neznáš."
+              - text: "S Mifflin-St Jeor – je novější a složení těla k výpočtu nepotřebuje."
+                why: "Mifflin-St Jeor skripta uvádějí pro situaci, kdy složení těla neznáme; tady ho změřené máme."
+              - text: "S průměrem obou hodnot – tím se chyby obou rovnic navzájem vyruší."
+                why: "Průměrování skripta neuvádějí; o volbě rovnice rozhoduje spolehlivý údaj o FFM."
+              - text: "S tou vyšší z obou hodnot, aby klientka určitě nejedla příliš málo."
+                why: "Rovnici nevybíráš podle výsledku, ale podle dostupných údajů – se známou FFM Katch-McArdle."
+          - type: choice
+            prompt: "Na kontrolu přijde klientka hodinu po tréninku a krátce po obědě. Co uděláš s naměřeným procentem tuku?"
+            options:
+              - text: "Nepoužiji ho a měření zopakuji za stejných podmínek jako poprvé."
+                correct: true
+                why: "Jídlo, pití i sport před měřením výsledek bioimpedance zkreslí; srovnávat lze jen měření za stejných podmínek."
+              - text: "Použiji ho, bioimpedance je nejpřesnější metoda měření složení těla."
+                why: "Nejpřesnější je DEXA; bioimpedanci navíc výrazně ovlivní jídlo, pití i sport před měřením."
+              - text: "Odečtu od něj asi 5 % tuku jako korekci na jídlo a trénink před měřením."
+                why: "Žádnou takovou korekci skripta neuvádějí – správné je změřit znovu za stejných podmínek."
+              - text: "Porovnám ho se vstupním měřením a vyhodnotím z toho trend v úbytku tuku."
+                why: "Trend lze hodnotit jen z měření za stejných podmínek; toto měření srovnatelné není."
+          - type: explain
+            prompt: "Zkoušející se ptá: Jakými metodami lze stanovit BMR a čím se liší?"
+            keyPoints:
+              - "Přímá kalorimetrie nejpřesnější, ale v praxi nereálná; DLW přesná, drahá, měří celkový výdej"
+              - "Ze složení těla: DEXA nejpřesnější, bioimpedance nejběžnější – BMR dopočítají"
+              - "Rovnice: Katch-McArdle s FFM; Mifflin-St Jeor, když složení neznám; Harris-Benedict nejstarší"
+              - "Rovnice bez složení těla u obézních nadhodnocují, u sportovců podhodnocují"
+              - "Každý výsledek je odhad – ověřit podle vývoje klienta"
+            modelAnswer: >-
+              Nejpřesnější je přímá kalorimetrie, v praxi je ale nereálná; dvojitě značená voda je přesná,
+              ale drahá a měří celkový výdej. DEXA a bioimpedance změří složení těla a BMR z něj dopočítají –
+              bioimpedance je nejběžnější, ale citlivá na podmínky měření. Bez přístroje použiji rovnici:
+              se spolehlivou FFM Katch-McArdle, bez ní Mifflin-St Jeor; Harris-Benedict je nejstarší.
+              Rovnice bez složení těla u obézních BMR nadhodnocují a u sportovců podhodnocují, takže
+              výsledek vždy ověřuji podle vývoje klienta.
+
+  - id: kaz.harris-mifflin
+    title: Harris-Benedict vs. Mifflin-St Jeor u obézního klienta
+    kind: procedure
+    tier: A
+    criteria: [5e]
+    prereqs: [en.bmr-harris, en.bmr-mifflin, en.bmr-rovnice-volba, en.pod-bmr, por.bmi]
+    source: { pages: [169, 170, 172], anchor: "Nejstarším výpočtem je Harris-Benedictova rovnice" }
+    explanation: >-
+      Když složení těla neznáš, skripta uvádějí pro BMR rovnici Mifflin-St Jeor; Harris-Benedict je
+      nejstarší rovnice se složitějšími koeficienty. Obě počítají jen s hmotností, výškou, věkem
+      a pohlavím – nerozliší tuk a svaly. Proto u obézních klientů BMR nadhodnocují (tuk spotřebuje méně
+      energie než svaly), u sportovců podhodnocují. Příjem neodvozuj jen z rovnice: porovnej ho se
+      současným stravováním a ověřuj podle vývoje hmotnosti.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klient, {age} let, výška {height} cm, hmotnost {weight} kg. Chce zhubnout. Bioimpedanci mu
+          změřit nemůžeš (má kardiostimulátor), složení těla tedy neznáš.
+        params:
+          sex: { choices: [{ value: M, label: muž }] }
+          age: { min: 30, max: 60, step: 1 }
+          height: { min: 170, max: 184, step: 1 }
+          weight: { min: 104, max: 120, step: 1 }
+        steps:
+          - type: numeric
+            id: bmi
+            prompt: "Spočítej jeho BMI."
+            formula: bmi
+            unit: kg/m²
+            decimals: 1
+            tolerance: { abs: 0.2 }
+            hint: "BMI = kg / (výška v m)²"
+          - type: numeric
+            id: harris
+            prompt: "BMI = {bmi}. Spočítej BMR podle Harris-Benedicta."
+            formula: bmr-harris
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5."
+          - type: numeric
+            id: mifflin
+            prompt: "Harris-Benedict = {harris} kcal. Teď spočítej BMR podle Mifflin-St Jeor."
+            formula: bmr-mifflin
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+          - type: choice
+            prompt: "Harris-Benedict {harris} kcal, Mifflin-St Jeor {mifflin} kcal. Kterou rovnici skripta uvádějí pro klienta, jehož složení těla neznáme?"
+            options:
+              - text: "Mifflin-St Jeor"
+                correct: true
+              - text: "Harris-Benedict, protože je nejstarší"
+                why: "Skripta ji uvádějí jen jako nejstarší výpočet; bez znalosti složení těla uvádějí Mifflin-St Jeor."
+              - text: "Katch-McArdle"
+                why: "Ta potřebuje beztukovou hmotu (FFM), kterou neznáš."
+              - text: "Žádnou – bez měření BMR odhadnout nelze"
+                why: "Právě pro tuto situaci slouží predikční rovnice bez složení těla."
+          - type: choice
+            prompt: "Jak se u tohoto klienta pravděpodobně chová výsledek rovnice bez složení těla?"
+            options:
+              - text: "Spíše BMR nadhodnocuje – velkou část hmotnosti tvoří tuk."
+                correct: true
+                why: "Tuk spotřebuje méně energie než svaly; rovnice bez složení těla proto u obézních BMR nadhodnocují."
+              - text: "Spíše BMR podhodnocuje – vyšší hmotnost znamená i víc svalů, než rovnice čeká."
+                why: "Podhodnocení skripta uvádějí u sportovců; u obézních klientů bývá výpočet nadhodnocený."
+              - text: "Je přesný, protože rovnice počítá s jeho skutečnou hmotností."
+                why: "Rovnice nerozliší tuk a svaly, proto je u obézních klientů zkreslená."
+              - text: "Odchylka závisí jen na věku, hmotnost na přesnost vliv nemá."
+                why: "Skripta zkreslení spojují právě se složením těla – u obézních nadhodnocení."
+          - type: explain
+            prompt: "Vysvětli zkoušející, proč se výsledky rovnic liší a jak s nimi u tohoto klienta naložíš."
+            keyPoints:
+              - "Rovnice jsou jen odhad; Harris-Benedict je nejstarší, bez složení těla skripta uvádějí Mifflin-St Jeor"
+              - "Bez složení těla u obézních BMR nadhodnocují (tuk spotřebuje méně energie než svaly)"
+              - "Příjem neodvodím jen z rovnice – porovnám se současným stravováním a vývojem hmotnosti"
+              - "Snižuji postupně (nejvýš asi o 500 kcal) a průběžně vyhodnocuji"
+            modelAnswer: >-
+              Obě rovnice jsou jen odhad z hmotnosti, výšky, věku a pohlaví; Harris-Benedict je nejstarší
+              a bez znalosti složení těla skripta uvádějí Mifflin-St Jeor. Žádná z nich nerozliší tuk
+              a svaly, takže u obézního klienta BMR spíš nadhodnotí – tuk spotřebuje méně energie než
+              svaly. Příjem proto neodvodím jen z rovnice: porovnám ho s tím, co teď jí a jak se mu vyvíjí
+              hmotnost, snižuji postupně nejvýš asi o 500 kcal a nastavení průběžně vyhodnocuji.
+
+  - id: kaz.nabirani-sportovec
+    title: Rekreační sportovec chce nabrat svaly
+    kind: procedure
+    tier: A
+    criteria: [5c, 5e, 7d]
+    prereqs: [en.tdee-pal, jid.nabirani, jid.makra-postup, spo.faze]
+    note: >-
+      Bílkoviny pro sportovce uvádějí skripta v několika rozmezích podle situace (viz spo.bilkoviny):
+      obecně pro sportující asi 4× týdně 1,4–2,0 g/kg (ISSN, s. 204), v tabulce fází přípravy pro
+      nabírání svalů 1,6–2,2 g/kg (s. 205). Případ výslovně pracuje s tabulkou fází přípravy.
+    source: { pages: [172, 180, 182, 205], anchor: "Pokud se hmotnost nemění nebo klesá, je naopak vhodné energetický příjem zvýšit" }
+    explanation: >-
+      Klient sportující 3–5× týdně: TDEE = BMR (Mifflin-St Jeor) × PAL. Pro nabírání přidej 5–25 %
+      (nejvýš asi 500 kcal oproti současnému příjmu). Makroživiny: bílkoviny podle tabulky fází
+      přípravy pro nabírání svalů 1,6–2,2 g/kg (obecné rozmezí pro sportovce 1,4–2,0 g/kg), tuky
+      obvykle 20–35 % energie (kcal : 9), sacharidy doplní zbytek (kcal : 4).
+      Nastavení ověřuj podle vývoje hmotnosti: když stojí nebo klesá, příjem postupně zvyš.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klient, {age} let, výška {height} cm, hmotnost {weight} kg. Čtyřikrát týdně posiluje; podle
+          tréninku, práce a běžného pohybu odpovídá jeho celkové aktivitě PAL {pal}. Chce nabrat
+          svalovou hmotu, hmotnost mu teď stojí.
+        params:
+          sex: { choices: [{ value: M, label: muž }] }
+          age: { min: 20, max: 40, step: 1 }
+          height: { min: 172, max: 188, step: 1 }
+          weight: { min: 66, max: 90, step: 1 }
+          pal: { choices: [{ value: 1.55, label: "1,55" }, { value: 1.725, label: "1,725" }] }
+          pct: { choices: [{ value: 5, label: "5" }, { value: 10, label: "10" }] }
+          fatPct: { choices: [{ value: 25, label: "25" }, { value: 30, label: "30" }] }
+        steps:
+          - type: numeric
+            id: bmr
+            prompt: "Spočítej jeho BMR podle Mifflin-St Jeor."
+            formula: bmr-mifflin
+            unit: kcal
+            tolerance: { abs: 15 }
+            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+          - type: numeric
+            id: tdee
+            prompt: "BMR = {bmr} kcal. Sportuje 4× týdně, proto použiješ PAL. Jaký je jeho celkový denní výdej (TDEE)?"
+            formula: tdee-pal
+            unit: kcal
+            tolerance: { rel: 0.02 }
+            hint: "TDEE = BMR × PAL."
+          - type: numeric
+            id: cil
+            prompt: "TDEE = {tdee} kcal. Domluvili jste se na navýšení o {pct} %. Jaký příjem nastavíš?"
+            formula: energy-goal
+            unit: kcal
+            tolerance: { rel: 0.02 }
+          - type: numeric
+            id: bilkoviny
+            prompt: "Cílový příjem = {cil} kcal. Bílkoviny nastavíš na SPODNÍ hranici rozmezí, které skripta v tabulce fází přípravy uvádějí pro nabírání svalů. Kolik gramů denně to je?"
+            formula: per-kg
+            inputs: { weight: weight, perKg: 1.6 }
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "Nabírání svalů: 1,6–2,2 g/kg/den."
+          - type: numeric
+            id: tuky
+            prompt: "Bílkoviny = {bilkoviny} g. Tuky nastavíš na {fatPct} % energie. Kolik je to gramů?"
+            formula: macro-fat
+            inputs: { energy: cil, fatPct: fatPct }
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "kcal z tuků = % × příjem; gramy = kcal : 9."
+          - type: numeric
+            id: sacharidy
+            prompt: "Tuky = {tuky} g. Kolik gramů sacharidů doplní zbytek energie?"
+            formula: macro-carbs
+            inputs: { energy: cil, weight: weight, proteinPerKg: 1.6, fatPct: fatPct }
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
+          - type: choice
+            prompt: "Po čtyřech týdnech se hmotnost nezměnila, trénink i jídelníček dodržuje. Co uděláš?"
+            options:
+              - text: "Příjem navýším o další menší dávku a vývoj znovu vyhodnotím."
+                correct: true
+                why: "Když hmotnost při nabírání stojí, skripta doporučují příjem zvýšit – postupně, po menších dávkách."
+              - text: "Nechám vše beze změny – výpočet TDEE byl správně, jen to chce víc času."
+                why: "Výpočet je jen odhad; když hmotnost při nabírání stojí, je vhodné příjem zvýšit."
+              - text: "Navýším příjem najednou o 1000 kcal, ať nabírá rychleji."
+                why: "Skripta doporučují vyhnout se velkým skokům – navyšovat nejvýš asi o 500 kcal."
+              - text: "Zvýším bílkoviny na 3 g/kg a celkovou energii nechám stejnou."
+                why: "Pro nabírání rozhoduje kladná energetická bilance; samotné bílkoviny nad rozmezí ji nezajistí."
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli zkoušející, jak sportovci při nabírání nastavíš energii a makroživiny."
+        keyPoints:
+          - "Sportuje 3–5× týdně → TDEE = BMR × PAL"
+          - "Kladná bilance: navýšení o 5–25 %, nejvýš asi o 500 kcal"
+          - "Bílkoviny první: pro nabírání svalů 1,6–2,2 g/kg"
+          - "Tuky obvykle 20–35 % energie, sacharidy doplní zbytek"
+          - "Ověřuji vývojem hmotnosti – když stojí, příjem postupně zvýším"
+        modelAnswer: >-
+          Protože sportuje čtyřikrát týdně, spočítám TDEE jako BMR × PAL. Pro nabírání potřebuje kladnou
+          bilanci, proto příjem zvýším o 5–25 %, nejvýš asi o 500 kcal. Makroživiny začnu bílkovinami,
+          pro nabírání svalů 1,6–2,2 g na kilogram, pak tuky obvykle na 20–35 % energie a sacharidy
+          doplní zbytek. Podle vývoje hmotnosti nastavení upravuji – když hmotnost stojí, příjem
+          postupně navýším.
+
+  # ---------- Vstupní diagnostika a jídelníček (5b, 5d) ----------
+
+  - id: kaz.diagnosticky-zaver
+    title: Vstupní měření a diagnostický závěr
+    kind: procedure
+    tier: A
+    criteria: [5e, 5b, 3b]
+    prereqs: [por.bmi, por.whr, por.obvod-pasu, por.tuk-normy, por.easo-obezita, prx.vstupni-mereni]
+    source: { pages: [152, 153, 158, 254], anchor: "Výsledek slouží pouze k orientačním účelům, nelze jej považovat za zdravotně závazný" }
+    explanation: >-
+      Spočítej BMI a WHR, zhodnoť pas a % tuku. BMI: pod 18,5 podváha, 18,5–24,9 norma, 25–29,9
+      nadváha, od 30 obezita. WHR nad 0,85 (ženy) / 0,90 (muži) = centrální typ, zvýšené riziko. Pas
+      nad 85 cm (ženy) / 102 cm (muži) = vysoké riziko. Tuk orientačně ženy 20–30 %, muži 10–20 %.
+      BMI nerozliší svaly a tuk – u svalnatých ukáže falešnou nadváhu. EASO: obezita i při BMI ≥ 25,
+      pokud pas/výška ≥ 0,5 a je aspoň jedna komplikace. Závěr popisuje riziko, není to diagnóza.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {age} let, chce zhubnout. Zdravotně je bez potíží a léky nebere. Vstupní měření
+          (ráno nalačno): výška {height} cm, hmotnost {weight} kg, obvod pasu {waist} cm, obvod boků
+          {hip} cm, bioimpedance {bodyFat} % tuku.
+        params:
+          sex: { choices: [{ value: F, label: žena }] }
+          age: { min: 30, max: 55, step: 1 }
+          height: { min: 162, max: 168, step: 1 }
+          weight: { min: 72, max: 78, step: 1 }
+          waist: { min: 90, max: 96, step: 1 }
+          hip: { min: 98, max: 104, step: 1 }
+          bodyFat: { min: 33, max: 38, step: 1 }
+        steps:
+          - type: numeric
+            id: bmi
+            prompt: "Spočítej její BMI."
+            formula: bmi
+            unit: kg/m²
+            decimals: 1
+            tolerance: { abs: 0.2 }
+            hint: "BMI = kg / (výška v m)²"
+          - type: numeric
+            id: whr
+            prompt: "BMI = {bmi}. Spočítej WHR."
+            formula: whr
+            unit: ""
+            decimals: 2
+            tolerance: { abs: 0.01 }
+            hint: "WHR = obvod pasu / obvod boků."
+          - type: choice
+            prompt: "BMI = {bmi}, WHR = {whr}. Jaký diagnostický závěr z měření vyplývá?"
+            options:
+              - text: "Nadváha s centrálním (androidním) typem; pas, WHR i podíl tuku nad hranicí"
+                correct: true
+                why: "BMI 25–29,9 = nadváha; pas nad 85 cm a WHR nad 0,85 = centrální typ se zvýšeným rizikem; tuk nad orientačními 20–30 %."
+              - text: "Normální hmotnost, protože BMI je pod 30; pas, WHR ani podíl tuku nejsou důvod ke znepokojení"
+                why: "BMI 25–29,9 je nadváha; pas nad 85 cm a WHR nad 0,85 navíc ukazují zvýšené riziko."
+              - text: "Obezita podle EASO, protože poměr pasu k výšce je nad 0,5 a BMI je vyšší než 25"
+                why: "EASO navíc vyžaduje alespoň jednu zdravotní komplikaci – klientka žádnou nemá."
+              - text: "Nadváha s periferním (gynoidním) typem, kdy se tuk ukládá hlavně na hýždích a stehnech"
+                why: "WHR nad 0,85 ukazuje u ženy na centrální, rizikovější (androidní) typ."
+          - type: choice
+            prompt: "Její manžel posiluje pětkrát týdně: BMI 28,6, tuk 14 %, WHR 0,86. Jak jeho výsledky vyhodnotíš?"
+            options:
+              - text: "BMI tu klame kvůli svalům; podíl tuku i WHR má v pořádku."
+                correct: true
+                why: "BMI nerozliší svaly a tuk; 14 % tuku je v rozmezí 10–20 % pro muže a WHR 0,86 je pod mužskou hranicí 0,90."
+              - text: "Má nadváhu podle BMI, proto mu sestavím redukční jídelníček."
+                why: "BMI nerozliší svaly od tuku; 14 % tuku je u mužů v orientačním rozmezí 10–20 %."
+              - text: "Má centrální typ se zvýšeným rizikem, protože WHR je nad 0,85."
+                why: "Hranice 0,85 platí pro ženy; u mužů je zvýšené riziko až nad 0,90."
+              - text: "Bez výsledků krevních testů nemůžu o jeho postavě nic říct."
+                why: "Složení těla a WHR stačí k tomu, abys poznala, že BMI je zkreslené svaly."
+          - type: explain
+            prompt: "Jak formuluješ diagnostický závěr klientky a co z měření zapíšeš do její karty?"
+            keyPoints:
+              - "Naměřené hodnoty s datem, denní dobou a podmínkami měření (nalačno, přístroj)"
+              - "Vypočtené ukazatele a jejich kategorie: BMI, WHR, obvod pasu, % tuku"
+              - "Závěr popisuje stav a zdravotní riziko, není to lékařská diagnóza"
+              - "Vstupní měření je výchozí bod – kontroly za stejných podmínek, hodnotit trend"
+            modelAnswer: >-
+              Zapíšu datum, čas a podmínky měření – ráno nalačno, na jakém přístroji – a naměřené hodnoty.
+              Dopočítám BMI a WHR a ke každému ukazateli připíšu kategorii: BMI mezi 25 a 29,9 je nadváha,
+              WHR nad 0,85 a pas nad 85 cm ukazují centrální ukládání tuku se zvýšeným rizikem a podíl tuku
+              je nad orientačním rozmezím 20–30 %. Závěr formuluji jako popis stavu a rizika, ne jako diagnózu.
+              Měření je výchozí bod, kontroly uděláme za stejných podmínek a budeme hodnotit trend.
+
+  - id: kaz.jidelnicek-den
+    title: Makroživiny a rozvržení jednoho dne
+    kind: procedure
+    tier: A
+    criteria: [5d, 5c, 7c]
+    prereqs: [jid.makra-postup, jid.rozlozeni-energie, prx.druha-konzultace]
+    source: { pages: [181, 182, 254], anchor: "je dobré vycházet z dosavadního stravování klienta a myslet na pravidelnost" }
+    explanation: >-
+      Se známým cílovým příjmem: 1) bílkoviny v g/kg (× 4 kcal), 2) tuky 25–35 % energie (: 9),
+      3) sacharidy doplní zbytek (: 4). Energii rozlož do jídel – ukázka: snídaně 25 %, svačina 10 %,
+      oběd 35 %, svačina 10 %, večeře 20 %; počet jídel ale není pro hmotnost rozhodující. Plán vychází
+      z dosavadního stravování, denního režimu, možností a chutí klienta, myslí na pravidelnost
+      a předává se s vysvětlením a záměnami.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {weight} kg, učitelka. Cílový příjem jste nastavily na {energy} kcal, bílkoviny na
+          {proteinPerKg} g/kg a tuky na {fatPct} % energie. Snídá doma, obědvá ve školní jídelně kolem
+          půl jedné a večeří s rodinou.
+        params:
+          weight: { min: 58, max: 85, step: 1 }
+          energy: { min: 1700, max: 2200, step: 50 }
+          proteinPerKg: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.4, label: "1,4" }, { value: 1.6, label: "1,6" }] }
+          fatPct: { choices: [{ value: 25, label: "25" }, { value: 30, label: "30" }, { value: 35, label: "35" }] }
+        steps:
+          - type: numeric
+            id: bilkoviny
+            prompt: "Kolik gramů bílkovin denně jí vychází?"
+            formula: per-kg
+            inputs: { weight: weight, perKg: proteinPerKg }
+            unit: g
+            tolerance: { abs: 3 }
+          - type: numeric
+            id: tuky
+            prompt: "Bílkoviny = {bilkoviny} g. Kolik gramů tuků?"
+            formula: macro-fat
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "kcal z tuků = % × příjem; gramy = kcal : 9."
+          - type: numeric
+            id: sacharidy
+            prompt: "Tuky = {tuky} g. Kolik gramů sacharidů doplní zbytek energie?"
+            formula: macro-carbs
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
+          - type: choice
+            prompt: "Dopolední svačinu mezi hodinami nestihne. Jak naložíš s ukázkovým rozložením 25/10/35/10/20 %?"
+            options:
+              - text: "Svačinu vynechám a její energii rozdělím do ostatních jídel."
+                correct: true
+                why: "Rozložení 25/10/35/10/20 % je jen ukázka; plán se řídí jejím denním režimem a počet jídel není pro hmotnost rozhodující."
+              - text: "Trvám na pěti jídlech denně, jinak by se jí zpomalil metabolismus."
+                why: "Počet jídel podle skript není pro hmotnost rozhodující – plán se přizpůsobí jejímu režimu."
+              - text: "Doporučím jí jíst jen dvakrát denně, ať to má co nejjednodušší."
+                why: "Dvě jídla znamenají obrovské porce, které je těžké sníst; praktičtější je držet se kolem středu."
+              - text: "Nechám pět jídel a svačinu jí naplánuji přímo do doby výuky."
+                why: "Plán musí respektovat její časové možnosti – svačina, kterou nestihne, v plánu nemá smysl."
+          - type: explain
+            prompt: "Popiš zkoušející, jak by vypadal její jídelníček na jeden den – stačí struktura a zásady, ne recepty."
+            keyPoints:
+              - "Vycházím z jejího dosavadního stravování, denního režimu a chutí; myslím na pravidelnost"
+              - "Energii rozložím do jídel podle jejího dne (ukázka 25/10/35/10/20 %), větší díl spíš v první polovině dne"
+              - "Součet jídel odpovídá cílové energii a gramům bílkovin, tuků a sacharidů"
+              - "Respektuji reálné možnosti – školní oběd zařadím a upravím porci či výběr"
+              - "Jídelníček jí vysvětlím včetně záměn a jídla mimo domov"
+            modelAnswer: >-
+              Vyjdu z toho, jak dosud jí, a z jejího dne: vydatnější snídaně doma, oběd ve školní jídelně,
+              odpolední svačina a večeře s rodinou, tedy čtyři jídla místo ukázkových pěti. Energii rozdělím
+              tak, aby větší díl připadl na první polovinu dne, a hlídám, aby součet odpovídal cílovému
+              příjmu i gramům bílkovin, tuků a sacharidů. Školní oběd nevyřazuji, jen doporučím výběr
+              a porci. Jídelníček jí vysvětlím včetně záměn a toho, co dělat, když jí mimo domov.
+
+  # ---------- Speciální skupiny (7d, 7f) ----------
+
+  - id: kaz.energeticka-dostupnost
+    title: Energetická dostupnost u běžkyně
+    kind: procedure
+    tier: A
+    criteria: [7d, 3c, 5e]
+    prereqs: [en.energeticka-dostupnost, en.eat, spo.red-s, por.tuk-normy]
+    source: { pages: [173, 171, 211], anchor: "varovné signály RED-S patří vždy do rukou lékaře nebo nutričního terapeuta" }
+    explanation: >-
+      Energetická dostupnost (ED) = (denní příjem − energie vydaná na pohyb) / FFM. Postup: FFM =
+      hmotnost × (1 − % tuku / 100), výdej na trénink = kg × MET × hodiny, pak ED. Optimum asi
+      45 kcal/kg FFM u žen a 40 u mužů. Dlouhodobě nízká ED souvisí s RED-S (poruchy menstruace,
+      zranění, únava, pokles výkonu). Varovné signály patří lékaři či nutričnímu terapeutovi;
+      poradkyně je zachytí a spolupracuje na řešení.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {weight} kg, {bodyFat} % tuku, běhá půlmaratony. Trénuje každý den, typicky
+          {minutes} min běhu tempem kolem 10 km/h (10 MET). Ze záznamu stravy vychází v průměru
+          {intake} kcal denně.
+        params:
+          weight: { min: 52, max: 64, step: 1 }
+          bodyFat: { min: 18, max: 26, step: 1 }
+          minutes: { choices: [{ value: 60, label: "60" }, { value: 75, label: "75" }, { value: 90, label: "90" }] }
+          intake: { min: 1600, max: 2000, step: 50 }
+        steps:
+          - type: numeric
+            id: ffm
+            prompt: "Kolik kg má beztukové hmoty (FFM)?"
+            formula: ffm
+            unit: kg
+            decimals: 1
+            tolerance: { abs: 0.5 }
+            hint: "FFM = hmotnost − hmotnost × % tuku / 100."
+          - type: numeric
+            id: eat
+            prompt: "FFM = {ffm} kg. Kolik kcal vydá jedním tréninkem (EAT)?"
+            formula: eat
+            inputs: { weight: weight, met: 10, minutes: minutes }
+            unit: kcal
+            tolerance: { abs: 5 }
+            hint: "EAT = kg × MET × čas v hodinách."
+          - type: numeric
+            id: ed
+            prompt: "Výdej na trénink = {eat} kcal. Jaká je její energetická dostupnost?"
+            formula: energy-availability
+            inputs: { intake: intake, exercise: eat, ffm: ffm }
+            unit: kcal/kg FFM
+            decimals: 1
+            tolerance: { abs: 1 }
+            hint: "ED = (příjem − výdej na pohyb) / FFM."
+          - type: choice
+            prompt: "ED = {ed} kcal/kg FFM. Jak výsledek vyhodnotíš?"
+            options:
+              - text: "Je nízká – pod optimem asi 45 kcal/kg FFM pro ženy, hrozí RED-S."
+                correct: true
+                why: "Optimum je asi 45 kcal/kg FFM u žen; dlouhodobě nízká energetická dostupnost souvisí s RED-S."
+              - text: "Je v pořádku – hranice 40 kcal/kg FFM platí stejně pro všechny sportovce."
+                why: "40 kcal/kg FFM je optimum pro muže; u žen je to asi 45."
+              - text: "Je zbytečně vysoká – pro výkon by měla příjem mírně snížit."
+                why: "ED je pod optimem; další snížení příjmu by riziko RED-S ještě zvýšilo."
+              - text: "Nelze ji hodnotit, ED se správně počítá z celkové hmotnosti."
+                why: "ED se vztahuje právě k beztukové hmotě (FFM)."
+          - type: choice
+            prompt: "V rozhovoru zmíní, že tři měsíce nemenstruuje a letos měla dvě únavové zlomeniny. Co uděláš?"
+            options:
+              - text: "Pošlu ji k lékaři, zmapuji příjem i trénink a budu spolupracovat."
+                correct: true
+                why: "Varovné signály RED-S patří lékaři či nutričnímu terapeutovi; poradkyně je zachytí a spolupracuje na řešení."
+              - text: "Je to u vytrvalkyň běžné – stačí jí doporučit vápník a vitamin D navíc."
+                why: "Poruchy menstruace a opakovaná zranění jsou varovné signály RED-S – patří lékaři."
+              - text: "Podle příznaků sama stanovím RED-S a navýším jí příjem o 1000 kcal."
+                why: "Diagnostika patří lékaři; cílem není jen „přidat kalorie“, ale obnovit dostupnost energie."
+              - text: "Nastavím jí mírný deficit, lehčí běžkyně má méně zranění."
+                why: "Deficit by energetickou dostupnost dál snížil a varovné signály zhoršil."
+          - type: explain
+            prompt: "Jak klientce výsledek vysvětlíš a co bude dál?"
+            keyPoints:
+              - "ED = energie, která tělu zbude po odečtení tréninku, na kg FFM; optimum u žen asi 45"
+              - "Dlouhodobě nízká ED → RED-S: hormony, kosti, imunita, regenerace, menstruace"
+              - "Varovné signály (výpadek menstruace, zlomeniny) patří lékaři či nutričnímu terapeutovi; nediagnostikuji"
+              - "Cíl: obnovit dostupnost energie, rozložit jídlo během dne a kolem tréninku"
+            modelAnswer: >-
+              Vysvětlím jí, že po odečtení energie na trénink jí na každý kilogram beztukové hmoty zbývá
+              méně, než je optimum asi 45 kcal. Když to trvá dlouho, tělu chybí energie na hormony, kosti,
+              imunitu a regeneraci – to je RED-S. Výpadek menstruace a zlomeniny jsou varovné signály, proto
+              ji pošlu k lékaři; diagnózu nestanovuji. Ve spolupráci s ním pak pomůžu energii navýšit
+              a rozložit jídlo během dne a kolem tréninku.
+
+  - id: kaz.senior
+    title: Seniorka – bílkoviny a pitný režim
+    kind: procedure
+    tier: A
+    criteria: [7f, 5c, 7e]
+    prereqs: [obd.senior-zmeny, obd.senior-bilkoviny, obd.senior-pitny-rezim, pit.potreba]
+    source: { pages: [227, 228, 174], anchor: "rozložte cílový příjem bílkovin rovnoměrně do všech denních jídel" }
+    explanation: >-
+      Ve stáří klesá energetická potřeba, ale potřeba bílkovin roste: zdravý senior 1,0–1,2 g/kg/den,
+      při akutní nebo chronické nemoci 1,2–1,5 g/kg/den, rozložené rovnoměrně do všech jídel. Tekutiny
+      orientačně 30–40 ml na kg ideální hmotnosti; klinické minimum asi 1,5 l. Pít podle hodin, ne podle
+      žízně, která s věkem slábne. Myslet na léky, chrup, chuť k jídlu, zácpu a na to, kdo nakupuje a vaří.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, {age} let, váží {weight} kg, její ideální hmotnost odhaduješ na {ideal} kg. {stav}
+          Bydlí sama, vaří si většinou jen polévky a k nim pečivo. Pije, když má žízeň – asi čtyři hrnky
+          čaje denně.
+        params:
+          age: { min: 68, max: 82, step: 1 }
+          weight: { min: 62, max: 78, step: 1 }
+          ideal: { min: 55, max: 62, step: 1 }
+          stav: { choices: [{ value: 1.2, label: "Je zdravá a soběstačná." }, { value: 1.5, label: "Léčí se s revmatoidní artritidou." }] }
+        steps:
+          - type: numeric
+            id: bilkoviny
+            prompt: "Kolik gramů bílkovin denně odpovídá HORNÍ hranici doporučení pro seniory v jejím zdravotním stavu? Počítej z aktuální hmotnosti."
+            formula: per-kg
+            inputs: { weight: weight, perKg: stav }
+            unit: g
+            tolerance: { abs: 3 }
+            hint: "Zdraví senioři 1,0–1,2 g/kg, při akutní či chronické nemoci 1,2–1,5 g/kg."
+          - type: choice
+            prompt: "Bílkoviny = {bilkoviny} g. Jak je během dne rozložíš?"
+            options:
+              - text: "Rovnoměrně do všech jídel dne – lépe se využijí pro svaly."
+                correct: true
+              - text: "Většinu k večeři, protože svaly regenerují v noci."
+                why: "Skripta doporučují rozložit bílkoviny rovnoměrně do všech jídel."
+              - text: "Do jedné velké porce k obědu, aby jí vaření zabralo méně času."
+                why: "Rozložení do všech jídel zlepšuje využití bílkovin pro svalovou syntézu."
+              - text: "Hlavně jako smažené maso, které jí chutná a zasytí."
+                why: "Smažená jídla jsou pro seniory nejhůř stravitelná – vhodná je šetrná úprava."
+          - type: numeric
+            id: tekutiny
+            prompt: "Kolik ml tekutin denně jí vychází při spodní hranici 30 ml na kg ideální hmotnosti?"
+            formula: per-kg
+            inputs: { weight: ideal, perKg: 30 }
+            unit: ml
+            tolerance: { abs: 20 }
+            hint: "Tekutiny = ideální hmotnost × 30 ml."
+          - type: choice
+            prompt: "Tekutiny = {tekutiny} ml. Co jí poradíš k tomu, že pije, jen když má žízeň?"
+            options:
+              - text: "Pít pravidelně podle hodin – pocit žízně s věkem slábne."
+                correct: true
+              - text: "Dál pít podle žízně – tělo si samo řekne, kolik potřebuje."
+                why: "U seniorů je žízeň oslabená a hrozí dehydratace."
+              - text: "Spíš méně pít, aby nemusela tak často na záchod."
+                why: "Dehydratace hrozí zmateností, zácpou, infekcemi močových cest i trombózou."
+              - text: "Vypít celou denní dávku ráno, ať to má hned splněné."
+                why: "Pravidelnost je u pitného režimu stejně důležitá jako celkové množství."
+          - type: explain
+            prompt: "Na co dalšího budeš při sestavování jejího jídelníčku myslet?"
+            keyPoints:
+              - "Léky a jejich možné interakce"
+              - "Chrup, chuť k jídlu, méně slin a trávicích šťáv"
+              - "Kdo nakupuje a vaří, rozpočet, pohyblivost"
+              - "Prevence zácpy: vlákninu přidávat postupně, dost tekutin"
+              - "Kvalitní zdroje bílkovin v každém jídle, ne jen polévky a pečivo"
+            modelAnswer: >-
+              Zjistím, jaké bere léky, kvůli možným interakcím. Ve stáří ubývá slin a trávicích šťáv, klesá
+              chuť k jídlu a může vadit chrup, proto volím jídla, která zvládne sníst. Musím vědět, kdo jí
+              nakupuje a vaří a kolik může utratit. Kvůli zácpě přidávám vlákninu postupně a hlídám tekutiny.
+              A místo samotných polévek s pečivem doplním do každého jídla kvalitní zdroj bílkovin.
+
+  # ---------- Varovné signály a komunikace (3c, 11b) ----------
+
+  - id: kaz.red-flags
+    title: Varovné příznaky ve vstupním dotazníku
+    kind: procedure
+    tier: A
+    criteria: [3c]
+    prereqs: [prx.hranice-kompetenci, prx.red-flags-lekar, nem.dm-akutni-stavy]
+    source: { pages: [250, 205, 206], anchor: "V tomto případě je nutná okamžitá hospitalizace" }
+    explanation: >-
+      Ve vstupním rozhovoru hledej příznaky, které patří lékaři. Žízeň, časté močení, rozmazané vidění,
+      nevolnost nebo bolest břicha mohou ukazovat na vysoký krevní cukr. Poradkyně nediagnostikuje:
+      doporučí lékaře a redukci začne až po vyšetření. Akutní stav s těmito příznaky (zvracení, bolest
+      břicha, dehydratace, bušení srdce) podle skript vyžaduje okamžitou hospitalizaci – volej 155
+      a zůstaň s klientem do příjezdu záchranky.
+      Klientovi vše vysvětli klidně a doporučení zapiš do karty.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Pan Karel, 54 let, BMI 31, obvod pasu 110 cm, chce zhubnout. V dotazníku uvádí, že poslední dva
+          měsíce má pořád žízeň, v noci chodí několikrát močit a občas se mu rozmazává vidění. Večer mívá
+          chuť na sladké. Léky nebere, u lékaře nebyl tři roky.
+        steps:
+          - type: choice
+            multiple: true
+            prompt: "Které údaje z dotazníku jsou důvodem doporučit lékaře ještě před redukcí?"
+            options:
+              - text: "Stálá žízeň"
+                correct: true
+              - text: "Časté noční močení"
+                correct: true
+              - text: "Rozmazané vidění"
+                correct: true
+              - text: "Přání zhubnout"
+                why: "To je běžná zakázka výživového poradce."
+              - text: "Večerní chuť na sladké"
+                why: "Chuť na sladké sama o sobě není varovný příznak – řeší se úpravou režimu."
+          - type: choice
+            prompt: "Co mu doporučíš?"
+            options:
+              - text: "Brzy jít k praktickému lékaři; s redukcí počkáme na vyšetření."
+                correct: true
+                why: "Příznaky může posoudit jen lékař; plán pak přizpůsobíš jeho doporučení."
+              - text: "Nízkosacharidovou stravu, protože podle příznaků jde zřejmě o cukrovku."
+                why: "Diagnóza patří lékaři; léčbu diabetu vede lékař s nutričním terapeutem."
+              - text: "Pít víc vody a omezit sůl – žízeň je nejspíš od slaného jídla."
+                why: "Žízeň s častým močením a rozmazaným viděním nebagatelizuješ – patří lékaři."
+              - text: "Začít s redukcí hned, protože zhubnutí tyto potíže samo vyřeší."
+                why: "Nejdřív je třeba vyšetření; plán bez něj může klientovi uškodit."
+          - type: explain
+            prompt: "Jak klientovi vysvětlíš, proč ho posíláš k lékaři?"
+            keyPoints:
+              - "Klidně, bez strašení řeknu, čeho jsem si všimla (žízeň, močení, vidění)"
+              - "Vysvětlím, že posoudit to může jen lékař – já nediagnostikuji"
+              - "Doporučím praktického lékaře co nejdřív"
+              - "S redukcí počkáme na výsledek, plán pak přizpůsobím doporučení lékaře"
+              - "Doporučení zapíšu do karty"
+            modelAnswer: >-
+              Klidně mu řeknu, že žízeň, časté močení a rozmazané vidění jsou příznaky, které nemůžu posoudit
+              já, ale lékař, a že je důležité je nepodcenit. Doporučím mu co nejdřív praktického lékaře.
+              S redukcí počkáme na výsledek vyšetření a plán pak přizpůsobím tomu, co lékař doporučí.
+              Do karty si zapíšu, co jsem doporučila.
+          - type: choice
+            prompt: "K lékaři se nedostal. Na další konzultaci je mu na zvracení, bolí ho břicho, má velkou žízeň a buší mu srdce. Co uděláš?"
+            options:
+              - text: "Hned volám 155 a zůstanu s ním do příjezdu záchranky."
+                correct: true
+                why: "Žízeň, nevolnost, bolest břicha a bušení srdce odpovídají hyperglykémii – podle skript je nutná okamžitá hospitalizace."
+              - text: "Dám mu sladký džus, protože by mohl mít nízký krevní cukr."
+                why: "Příznaky odpovídají vysokému cukru (hyperglykémii), cukr se podává při hypoglykémii – a hlavně jde o akutní stav pro záchranku."
+              - text: "Doporučím mu zajít zítra ráno k praktickému lékaři."
+                why: "Podle skript tento akutní stav vyžaduje okamžitou hospitalizaci, ne odklad."
+              - text: "Necháme ho chvíli odpočinout a pak v konzultaci pokračujeme."
+                why: "Jde o akutní stav, který podle skript vyžaduje okamžitou hospitalizaci."
+
+  - id: kaz.ppp
+    title: Podezření na poruchu příjmu potravy při redukci
+    kind: procedure
+    tier: A
+    criteria: [3c, 10c]
+    prereqs: [obd.ppp-znaky, obd.ppp-role-poradce, prx.ppp-podezreni]
+    source: { pages: [230, 231, 232], anchor: "U podezření na PPP je vždy na místě doporučit vyšetření u psychiatra" }
+    explanation: >-
+      Varovné znaky PPP posuzuj v kombinaci: hubnutí a skrývání postavy, vynechávání společných jídel,
+      vaření pro jiné bez vlastního jídla, nadměrný pohyb, hodně kávy a dietních nápojů, zvracení,
+      projímadla, pocit „jsem tlustá“ navzdory okolí, pocity viny. Poradkyně jen vysloví podezření:
+      redukční plán nesestaví, citlivě řekne, čeho si všímá, a doporučí psychiatra či psychologa se
+      specializací na PPP. Kontakt má připravený předem; čím dřív léčba začne, tím lépe.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: >-
+          Klientka, 19 let, BMI 18,9, chce do léta zhubnout ještě 4 kg, protože se cítí tlustá. V rozhovoru
+          zmíní, že běhá dvakrát denně a když trénink vynechá, má výčitky. Doma vaří pro rodinu, ale sama
+          jí „až potom“. Denně vypije několik káv a dietní kolu, k tomu asi 2 litry vody. Po jídle si občas
+          vezme projímadlo „na detox“. O víkendu chodí s kamarádkami do kina.
+        steps:
+          - type: choice
+            multiple: true
+            prompt: "Které z jejích údajů patří mezi varovné znaky poruchy příjmu potravy?"
+            options:
+              - text: "Běhá dvakrát denně a při vynechání má výčitky"
+                correct: true
+              - text: "Vaří pro rodinu, ale sama nejí"
+                correct: true
+              - text: "Projímadlo po jídle „na detox“"
+                correct: true
+              - text: "Hodně kávy a dietní kola"
+                correct: true
+              - text: "Vypije asi 2 litry vody denně"
+                why: "Dostatečný pitný režim není varovný znak."
+              - text: "O víkendu chodí s kamarádkami do kina"
+                why: "Varovným znakem by bylo naopak uzavírání se a stahování od přátel."
+          - type: choice
+            prompt: "Klientka trvá na jídelníčku na zhubnutí. Jak zareaguješ?"
+            options:
+              - text: "Plán nesestavím, citlivě řeknu, čeho si všímám, a doporučím specialistu."
+                correct: true
+                why: "Při podezření na PPP poradkyně hubnutí nepodporuje, jen vysloví podezření a předá klientku specialistovi."
+              - text: "Sestavím mírný deficit, ať hubne aspoň bezpečně a pod mou kontrolou."
+                why: "Při podezření na PPP hubnutí nepodporuješ."
+              - text: "Řeknu jí na rovinu, že má anorexii, a konzultaci raději ukončím."
+                why: "Diagnózu poradkyně nestanovuje – vysloví jen podezření a pomůže najít pomoc."
+              - text: "Sestavím jídelníček jen na udržení hmotnosti a o podezření raději mlčím."
+                why: "Podezření je třeba citlivě pojmenovat a doporučit odbornou pomoc; jídelníček PPP neléčí."
+          - type: choice
+            prompt: "Komu ji doporučíš?"
+            options:
+              - text: "Psychiatrovi či psychologovi se specializací na PPP"
+                correct: true
+                why: "U podezření na PPP skripta vždy doporučují vyšetření u psychiatra nebo psychologa se specializací na PPP."
+              - text: "Trenérovi, který jí upraví tréninkový plán a zátěž"
+                why: "Úprava tréninku psychickou příčinu nevyřeší; PPP patří specialistovi."
+              - text: "Lékárníkovi, který jí doporučí šetrnější projímadlo"
+                why: "Projímadla jsou varovný znak PPP, ne problém k optimalizaci."
+              - text: "Nikomu – stačí, když ji budu častěji vážit a hlídat"
+                why: "Při podezření na PPP je vždy na místě doporučit vyšetření u specialisty."
+          - type: explain
+            prompt: "Jak s ní o svém podezření mluvíš?"
+            keyPoints:
+              - "Citlivě a bez odsuzování, vyjádřím obavu o ni"
+              - "Pojmenuji konkrétní pozorování, ne diagnózu"
+              - "Doporučím psychiatra/psychologa se specializací na PPP a předám připravený kontakt"
+              - "Čím dřív pomoc vyhledá, tím větší šance na uzdravení; léčba = psychoterapie + nutriční péče"
+              - "Redukční plán nesestavím; doporučení zapíšu do karty"
+            modelAnswer: >-
+              V klidu jí řeknu, že se o ni bojím, a pojmenuji, čeho jsem si všimla: nutkavé běhání s výčitkami,
+              vaření bez vlastního jídla a projímadla. Neříkám jí diagnózu. Vysvětlím, že tohle patří
+              specialistovi, a doporučím psychiatra nebo psychologa se zaměřením na poruchy příjmu potravy;
+              kontakt na specializované centrum jí rovnou předám. Řeknu, že čím dřív pomoc vyhledá, tím
+              lépe, a že léčba spojuje psychoterapii s nutriční péčí. Jídelníček na hubnutí nesestavím
+              a doporučení zapíšu do karty.
+
+  - id: kaz.narocny-klient
+    title: Ostýchavý, agresivní a přecitlivělý klient
+    kind: procedure
+    tier: A
+    status: supplementary
+    criteria: [11b]
+    prereqs: [prx.ostychavy, prx.agresivni, prx.precitliveny]
+    note: >-
+      Skripta typy klientů nerozebírají; uvádějí jen význam neverbální komunikace (s. 257), motivačního
+      rozhovoru (s. 256) a hledání praktických překážek místo mravního apelu (s. 255). Postupy jsou
+      běžná poradenská praxe, shodně s body prx.ostychavy, prx.agresivni a prx.precitliveny.
+    source: { pages: [255, 256, 257], anchor: "Všímavý poradce dokáže tyto signály využít" }
+    explanation: >-
+      Ostýchavý: klidné tempo, bezpečí a diskrétnost, nejdřív lehčí témata, otevřené otázky, čas na
+      odpověď, měření jen se souhlasem. Agresivní: zůstaň klidná, nech ho domluvit, pojmenuj emoci, přejdi
+      k faktům a řešení, nastav hranice. Přecitlivělý: hodnoť plán a chování, ne osobu, začni tím, co se
+      povedlo, bez mravních apelů. Vždy sleduj řeč těla a konzultaci přizpůsob rozpoložení klienta;
+      klient odchází s konkrétním krokem.
+    exercises:
+      - id: pripad
+        type: case
+        prompt: "Tři klienti, tři konzultace. U každého vyber nejvhodnější reakci."
+        steps:
+          - type: choice
+            prompt: "Klientka na první konzultaci odpovídá jednoslovně, dívá se do země a při zmínce o vážení zčervená. Jak začneš?"
+            options:
+              - text: "Vysvětlím průběh, začnu lehčím tématem a vážit budu jen s jejím souhlasem."
+                correct: true
+                why: "Ostýchavé klientce pomůže bezpečí a klidné tempo: vědět, co přijde, začít lehčími tématy, měřit jen se souhlasem."
+              - text: "Hned ji zvážím a změřím, ať máme výchozí čísla, a pak se doptám na jídelníček."
+                why: "Vážení hned na začátku ostýchavou klientku zablokuje; měř jen s jejím souhlasem."
+              - text: "Položím rychle řadu uzavřených otázek z dotazníku, ať to má co nejdřív za sebou."
+                why: "Otevřené otázky a čas na odpověď jí pomohou víc než výslech."
+              - text: "Zeptám se jí přímo, proč to s hmotností nechala dojít až sem."
+                why: "Hodnoticí otázka ji zahanbí a uzavře; pomůže bezpečné prostředí bez odsuzování."
+          - type: choice
+            prompt: "Klient na kontrole zvýší hlas: „Za měsíc ani kilo dolů, vaše rady jsou k ničemu!“ Jak zareaguješ?"
+            options:
+              - text: "Nechám ho domluvit, uznám jeho zklamání a navrhnu projít, co se dařilo."
+                correct: true
+                why: "Klid, nechat domluvit a pojmenovat emoci, pak přejít k faktům a řešení – tak se konflikt zklidní."
+              - text: "Klidně, ale rázně mu vysvětlím, že chyba bude určitě v tom, že plán nedodržuje."
+                why: "Obviňování konflikt vyhrotí; nejdřív uznat emoci, pak fakta."
+              - text: "Nekomentuji to, zvážím ho a rovnou mu dám přísnější jídelníček."
+                why: "Emoci je třeba uznat a hledat příčinu; přísnější plán bez vysvětlení nic neřeší."
+              - text: "Zvýším hlas taky, aby pochopil, že takhle se se mnou mluvit nebude."
+                why: "Agrese plodí agresi; hranice se nastavují klidně."
+          - type: choice
+            prompt: "Klientka se při kontrolním vážení rozpláče: „Jsem úplně neschopná.“ Co jí řekneš?"
+            options:
+              - text: "„Chápu, že je to těžké. Podívejme se, co se povedlo a co překáží.“"
+                correct: true
+                why: "Uznáš emoci, hodnotíš plán, ne ji, začneš tím, co se povedlo, a hledáš praktické překážky."
+              - text: "„Neplačte, prosím. Jiné klientky tenhle plán zvládají úplně bez problémů.“"
+                why: "Srovnávání s ostatními zraňuje a emoci neuzná."
+              - text: "„Musíte se prostě víc snažit a dodržovat plán, jinak to celé nemá smysl.“"
+                why: "Mravní apel a hodnocení osoby; skripta doporučují hledat praktické překážky."
+              - text: "„Dnes to raději ukončíme a ozvěte se mi, až na to budete připravená.“"
+                why: "Chybí uznání emoce i konkrétní krok, se kterým by odcházela."
+          - type: explain
+            prompt: "Zkoušející se ptá: Jak přizpůsobuješ komunikaci různým typům klientů?"
+            keyPoints:
+              - "Sleduji řeč těla a mimiku a konzultaci přizpůsobím rozpoložení klienta"
+              - "Ostýchavý: bezpečí, diskrétnost, klidné tempo, otevřené otázky, měření se souhlasem"
+              - "Agresivní: klid, nechat domluvit, pojmenovat emoci, fakta a řešení, hranice"
+              - "Přecitlivělý: hodnotit plán, ne osobu, začít úspěchy, bez mravních apelů"
+              - "Klient vždy odchází s konkrétním krokem do příště"
+            modelAnswer: >-
+              Sleduji řeč těla a podle rozpoložení klienta upravím průběh konzultace. Ostýchavému dám
+              bezpečí a čas: vysvětlím průběh, začnu lehčími tématy, ptám se otevřeně a měřím jen s jeho
+              souhlasem. Agresivního nechám domluvit, pojmenuji jeho emoci, přejdu k faktům a řešení
+              a klidně nastavím hranice. U přecitlivělého hodnotím plán, ne jeho, začínám tím, co se
+              povedlo, a vyhýbám se mravním apelům. Každý odchází s jedním konkrétním krokem do příště.

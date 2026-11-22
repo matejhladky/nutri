@@ -25,7 +25,7 @@ export default function TopicsPage() {
                 <Panel className="flex flex-col gap-3 p-5 hover:border-line-strong">
                   <div className="flex items-baseline justify-between gap-3">
                     <h2 className="font-semibold">
-                      <span className="mr-2 text-faint tabular-nums">{t.chapter}.</span>
+                      {t.chapter && <span className="mr-2 text-faint tabular-nums">{t.chapter}.</span>}
                       {t.title}
                     </h2>
                     <span className="shrink-0 text-sm text-muted tabular-nums">

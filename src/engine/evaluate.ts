@@ -8,10 +8,11 @@
  *  - partially correct → Hard
  *  - correct → Good
  *  - explain: all key points → Good, ≥ half → Hard, otherwise Again
+ *  - case: each step scored (correct 1, partial ½); all correct → Good, ≥ half → Hard, otherwise Again
  */
-import type { Exercise } from "@/content/schema";
-import { instantiate, parseNumber, withinTolerance } from "@/content/formulas";
-import { Grade, type Evaluation, type Outcome, type Response } from "./types";
+import type { CaseStep, Exercise } from "@/content/schema";
+import { instantiate, instantiateCase, parseNumber, withinTolerance, type CaseStepInstance } from "@/content/formulas";
+import { Grade, type CaseStepResponse, type Evaluation, type Outcome, type Response } from "./types";
 
 const gradeFor: Record<Outcome, Grade> = {
   correct: Grade.Good,
@@ -56,9 +57,47 @@ function evaluateRaw(ex: Exercise, res: Response): Omit<Evaluation, "grade"> {
     }
     case "explain": {
       const r = res as Extract<Response, { type: "explain" }>;
-      const covered = new Set(r.covered.filter((i) => i >= 0 && i < ex.keyPoints.length)).size;
-      const frac = covered / ex.keyPoints.length;
-      return { outcome: frac === 1 ? "correct" : frac >= 0.5 ? "partial" : "wrong" };
+      return { outcome: explainOutcome(r.covered, ex.keyPoints.length) };
+    }
+    case "case": {
+      const r = res as Extract<Response, { type: "case" }>;
+      const inst = instantiateCase(ex, r.seed);
+      const stepOutcomes = ex.steps.map((step, i) => evaluateCaseStep(step, inst.steps[i], r.steps[i] ?? { type: "dontKnow" }));
+      if (stepOutcomes.every((o) => o === "unknown")) return { outcome: "unknown", stepOutcomes };
+      const score = stepOutcomes.reduce((a, o) => a + (o === "correct" ? 1 : o === "partial" ? 0.5 : 0), 0) / stepOutcomes.length;
+      return { outcome: score === 1 ? "correct" : score >= 0.5 ? "partial" : "wrong", stepOutcomes };
+    }
+  }
+}
+
+const explainOutcome = (coveredIdx: number[], total: number): Outcome => {
+  const frac = new Set(coveredIdx.filter((i) => i >= 0 && i < total)).size / total;
+  return frac === 1 ? "correct" : frac >= 0.5 ? "partial" : "wrong";
+};
+
+/** Outcome of one case step. A guessed correct choice counts as partial. */
+export function evaluateCaseStep(step: CaseStep, inst: CaseStepInstance, res: CaseStepResponse): Outcome {
+  if (res.type === "dontKnow") return "unknown";
+  if (res.type !== step.type) return "wrong";
+  switch (step.type) {
+    case "numeric": {
+      const value = parseNumber((res as Extract<CaseStepResponse, { type: "numeric" }>).value);
+      const expected = inst.type === "numeric" ? inst.answer : NaN;
+      return value !== null && withinTolerance(value, expected, step.tolerance) ? "correct" : "wrong";
+    }
+    case "choice": {
+      const r = res as Extract<CaseStepResponse, { type: "choice" }>;
+      const correct = new Set(step.options.flatMap((o, i) => (o.correct ? [i] : [])));
+      const wrongPicked = r.selected.some((i) => !correct.has(i));
+      const missed = [...correct].some((i) => !r.selected.includes(i));
+      if (!wrongPicked && !missed) return r.guessed ? "partial" : "correct";
+      return step.multiple && !wrongPicked && r.selected.length ? "partial" : "wrong";
+    }
+    case "explain":
+      return explainOutcome((res as Extract<CaseStepResponse, { type: "explain" }>).covered, step.keyPoints.length);
+    case "reveal": {
+      const g = (res as Extract<CaseStepResponse, { type: "reveal" }>).selfGrade;
+      return g === "good" ? "correct" : g === "hard" ? "partial" : "wrong";
     }
   }
 }

@@ -11,7 +11,16 @@ export type Response =
   /** `selected` are indices into the exercise's ORIGINAL option order (shuffling is a UI concern). */
   | { type: "choice"; selected: number[]; guessed: boolean }
   | { type: "numeric"; value: string; seed: number }
-  | { type: "explain"; covered: number[]; text?: string };
+  | { type: "explain"; covered: number[]; text?: string }
+  | { type: "case"; seed: number; steps: CaseStepResponse[] };
+
+/** Response to one step of a client case (choice indices refer to the ORIGINAL option order). */
+export type CaseStepResponse =
+  | { type: "dontKnow" }
+  | { type: "numeric"; value: string }
+  | { type: "choice"; selected: number[]; guessed: boolean }
+  | { type: "explain"; covered: number[] }
+  | { type: "reveal"; selfGrade: "again" | "hard" | "good" };
 
 export type Evaluation = {
   outcome: Outcome;
@@ -20,6 +29,8 @@ export type Evaluation = {
   expected?: number;
   steps?: string[];
   prompt?: string;
+  /** case only: outcome per step */
+  stepOutcomes?: Outcome[];
 };
 
 /** Serialised ts-fsrs card (dates as ISO strings) — what we persist. */

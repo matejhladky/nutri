@@ -3,7 +3,7 @@
  * Every formula follows the COURSE method (skripta ch. 2, 15, 17) — not generic textbook variants.
  * Each returns the result plus a worked solution (Czech) shown as feedback.
  */
-import type { NumericExercise, NumericParam } from "./schema";
+import type { CaseExercise, NumericExercise, NumericParam } from "./schema";
 
 export type ParamValues = Record<string, number | string>;
 export type FormulaResult = { value: number; steps: string[] };
@@ -249,6 +249,42 @@ function macroPercent(p: ParamValues): FormulaResult {
   };
 }
 
+/** TEF = 10 % of (BMR + NEAT + EAT) — course method. */
+function tef(p: ParamValues): FormulaResult {
+  const [b, n, e] = [num(p, "bmr"), num(p, "neat"), num(p, "eat")];
+  const sum = b + n + e;
+  const value = sum * 0.1;
+  return { value, steps: [`TEF = 10 % z (BMR + NEAT + EAT) = 0,1 × (${fmt(b)} + ${fmt(n)} + ${fmt(e)}) = 0,1 × ${fmt(sum)} = ${fmt(value)} kcal`] };
+}
+
+function tdeeSum(p: ParamValues): FormulaResult {
+  const [b, n, e, t] = [num(p, "bmr"), num(p, "neat"), num(p, "eat"), num(p, "tef")];
+  const value = b + n + e + t;
+  return { value, steps: [`TDEE = BMR + NEAT + EAT + TEF = ${fmt(b)} + ${fmt(n)} + ${fmt(e)} + ${fmt(t)} = ${fmt(value)} kcal`] };
+}
+
+/** Energy target from TDEE and a % change: reduction −5 to −25 %, gain +5 to +25 % (course, ch. 17). */
+function energyGoal(p: ParamValues): FormulaResult {
+  const [t, pct] = [num(p, "tdee"), num(p, "pct")];
+  const value = t * (1 + pct / 100);
+  const sign = pct < 0 ? "−" : "+";
+  return {
+    value,
+    steps: [
+      `Cílový příjem = TDEE ${sign} ${fmt(Math.abs(pct))} % = ${fmt(t)} × ${fmt(1 + pct / 100, 2)} = ${fmt(value)} kcal`,
+      `Kontrola: změna o ${fmt(Math.abs(value - t))} kcal${Math.abs(value - t) > 500 ? " – víc než ~500 kcal, skripta doporučují postupovat pozvolna" : ""}.`,
+    ],
+  };
+}
+
+/** Fat in grams from energy and fat % of energy. */
+function macroFat(p: ParamValues): FormulaResult {
+  const [e, pct] = [num(p, "energy"), num(p, "fatPct")];
+  const kcal = (e * pct) / 100;
+  const value = kcal / 9;
+  return { value, steps: [`Tuky: ${fmt(pct)} % z ${fmt(e)} kcal = ${fmt(kcal)} kcal`, `${fmt(kcal)} : 9 = ${fmt(value)} g tuků`] };
+}
+
 export const formulas: Record<string, Formula> = {
   "bmr-mifflin": { label: "BMR Mifflin-St Jeor", inputs: ["sex", "weight", "height", "age"], compute: mifflin },
   "bmr-harris": { label: "BMR Harris-Benedict", inputs: ["sex", "weight", "height", "age"], compute: harris },
@@ -271,6 +307,10 @@ export const formulas: Record<string, Formula> = {
   whr: { label: "WHR (pas/boky)", inputs: ["waist", "hip"], compute: whr },
   "per-kg": { label: "Dávka na kg hmotnosti", inputs: ["weight", "perKg"], compute: perKg },
   ffm: { label: "Beztuková hmota (FFM)", inputs: ["weight", "bodyFat"], compute: ffm },
+  tef: { label: "TEF (10 %)", inputs: ["bmr", "neat", "eat"], compute: tef },
+  "tdee-sum": { label: "TDEE součtem složek", inputs: ["bmr", "neat", "eat", "tef"], compute: tdeeSum },
+  "energy-goal": { label: "Cílový příjem z TDEE", inputs: ["tdee", "pct"], compute: energyGoal },
+  "macro-fat": { label: "Tuky v gramech", inputs: ["energy", "fatPct"], compute: macroFat },
   "macro-percent": { label: "Podíl energie z makroživiny", inputs: ["grams", "kcalPerG", "energy"], compute: macroPercent },
 };
 
@@ -322,6 +362,52 @@ export function instantiate(ex: NumericExercise, seed: number): NumericInstance 
   const prompt = ex.prompt.replace(/\{(\w+)\}/g, (m, k: string) => labels[k] ?? m);
   const { value, steps } = formula.compute(params);
   return { seed, params, prompt, answer: value, steps };
+}
+
+export type CaseStepInstance =
+  | { type: "numeric"; prompt: string; answer: number; steps: string[] }
+  | { type: "choice" | "explain" | "reveal"; prompt: string };
+export type CaseInstance = { seed: number; prompt: string; params: ParamValues; steps: CaseStepInstance[] };
+
+/**
+ * Instantiate a client case: generate the client, then run the numeric steps in order. A step's formula inputs come
+ * from the client params or from EARLIER numeric steps (their correct results), so prompts can carry correct values
+ * forward ("BMR = {bmr} kcal") and one slip doesn't spoil the rest of the case.
+ */
+export function instantiateCase(ex: CaseExercise, seed: number): CaseInstance {
+  const rand = rng(seed);
+  const scope: ParamValues = {};
+  const labels: Record<string, string> = {};
+  for (const [name, spec] of Object.entries(ex.params)) {
+    const { value, label } = pick(spec, rand);
+    scope[name] = value;
+    labels[name] = label;
+  }
+  const render = (t: string) => t.replace(/\{(\w+)\}/g, (m, k: string) => labels[k] ?? m);
+  const steps: CaseStepInstance[] = [];
+  for (const step of ex.steps) {
+    if (step.type !== "numeric") {
+      steps.push({ type: step.type, prompt: render(step.prompt) });
+      continue;
+    }
+    const f = formulas[step.formula];
+    if (!f) throw new Error(`Unknown formula ${step.formula}`);
+    const args: ParamValues = {};
+    for (const input of f.inputs) {
+      const src = step.inputs[input] ?? input;
+      const v = typeof src === "number" ? src : scope[src];
+      if (v === undefined) throw new Error(`Step ${step.id}: input ${input} → ${String(src)} not available`);
+      args[input] = v;
+    }
+    if ("sex" in scope && !("sex" in args)) args.sex = scope.sex; // optional for some formulas (WHR risk comment)
+    const prompt = render(step.prompt);
+    const { value, steps: solution } = f.compute(args);
+    steps.push({ type: "numeric", prompt, answer: value, steps: solution });
+    // Carry the value forward ROUNDED as displayed, so "BMR = {bmr}" in the next prompt is exactly what gets used.
+    scope[step.id] = Number(value.toFixed(step.decimals));
+    labels[step.id] = fmt(value, step.decimals);
+  }
+  return { seed, prompt: render(ex.prompt), params: scope, steps };
 }
 
 /** Parse a learner-typed number: accepts decimal comma, spaces, trailing units. */

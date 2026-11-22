@@ -14,6 +14,21 @@ const ResponseSchema = z.union([
   z.object({ type: z.literal("choice"), selected: z.array(z.number().int()), guessed: z.boolean() }),
   z.object({ type: z.literal("numeric"), value: z.string().max(50), seed: z.number().int() }),
   z.object({ type: z.literal("explain"), covered: z.array(z.number().int()), text: z.string().max(5000).optional() }),
+  z.object({
+    type: z.literal("case"),
+    seed: z.number().int(),
+    steps: z
+      .array(
+        z.union([
+          z.object({ type: z.literal("dontKnow") }),
+          z.object({ type: z.literal("numeric"), value: z.string().max(50) }),
+          z.object({ type: z.literal("choice"), selected: z.array(z.number().int()), guessed: z.boolean() }),
+          z.object({ type: z.literal("explain"), covered: z.array(z.number().int()) }),
+          z.object({ type: z.literal("reveal"), selfGrade: z.enum(["again", "hard", "good"]) }),
+        ]),
+      )
+      .max(12),
+  }),
 ]);
 
 export const EventSchema = z.object({

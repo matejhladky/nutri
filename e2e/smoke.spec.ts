@@ -13,12 +13,40 @@ async function login(page: Page) {
 /** "Začít" / "Pokračovat", or "Pokračovat s novými poznatky" once the daily goal is met (tests share one database). */
 const startButton = (page: Page) => page.getByRole("button", { name: /^(Začít|Pokračovat)/ }).first();
 
+/** Work through a client case step by step (case steps continue with "Pokračovat"), then leave via "Další". */
+async function answerCase(page: Page) {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  for (let i = 0; i < 10 && (await page.getByText(/^Krok \d+ z \d+$/).isVisible()); i++) {
+    if (await btn("Zkontrolovat").isVisible()) {
+      await page.getByLabel("Výsledek").fill("1500");
+      await btn("Zkontrolovat").click();
+      await btn("Pokračovat").click();
+    } else if (await btn("Potvrdit").isVisible()) {
+      await page.locator('[role="radio"],[role="checkbox"]').first().click();
+      await btn("Potvrdit").click();
+      await btn("Pokračovat").click();
+    } else if (await btn("Mám hotovo — porovnat").isVisible()) {
+      await btn("Mám hotovo — porovnat").click();
+      await page.getByRole("checkbox").first().click();
+      await btn("Pokračovat").click();
+    } else if (await btn("Ukázat odpověď").isVisible()) {
+      await btn("Ukázat odpověď").click();
+      await btn("Věděla").click();
+    }
+  }
+  await btn("Další").click();
+}
+
 /** Answer whatever card is on screen. Returns a label of what was done, or null at the end of the session. */
 async function answerCard(page: Page): Promise<string | null> {
   const btn = (name: string) => page.getByRole("button", { name, exact: true });
   await expect(
     btn("Rozumím").or(btn("Ukázat odpověď")).or(btn("Potvrdit")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat")).or(page.getByText(/plán je splněný|Pro dnešek je hotovo/)),
   ).toBeVisible();
+  if (await page.getByText(/^Krok \d+ z \d+$/).isVisible()) {
+    await answerCase(page);
+    return "case";
+  }
   if (await btn("Rozumím").isVisible()) {
     await btn("Rozumím").click();
     return "intro";
@@ -117,4 +145,24 @@ test("answers given offline are kept and sent when the connection returns", asyn
   await expect(page.getByText(/Jsi offline/)).toBeVisible({ timeout: 10_000 });
   await context.setOffline(false);
   await expect.poll(answered, { timeout: 30_000 }).toBeGreaterThanOrEqual(before + answers);
+});
+
+test("a model client case is worked through step by step and recorded as one answer", async ({ page }) => {
+  await login(page);
+  await page.goto("/studium?tema=pripady");
+  const skip = page.getByRole("button", { name: "Tohle už znám — rovnou se zeptej" });
+  await expect(skip.or(page.getByText(/^Krok 1 z \d+$/))).toBeVisible();
+  if (await skip.isVisible()) await skip.click();
+  await expect(page.getByText("Modelový případ", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText(/^Krok 1 z \d+$/)).toBeVisible();
+  const caseAnswers = async () => {
+    const res = await page.request.get("/api/state");
+    const data = (await res.json()) as { states: Record<string, { answers: number }> };
+    return Object.entries(data.states)
+      .filter(([id]) => id.startsWith("kaz."))
+      .reduce((n, [, st]) => n + st.answers, 0);
+  };
+  const before = await caseAnswers();
+  await answerCase(page);
+  await expect.poll(caseAnswers, { timeout: 20_000 }).toBe(before + 1);
 });

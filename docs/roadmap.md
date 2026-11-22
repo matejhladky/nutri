@@ -75,6 +75,24 @@ Known limits / open:
 - Content is AI-authored and AI-verified only (no human review, by decision); she can report items in-app.
 - Image-only content (figures) is covered only where a verifier rendered the page (ch. 9, Obr. 12.7).
 
-## M3 — Témata, Pokrok, client cases · M4 — Refinement & pre-exam sweep
+## M3 — Model client cases ✅ (2026-11-22)
 
-See `docs/architecture.md` and the plan in the initial review.
+Done:
+- New exercise type `case`: generated client + 2–8 steps (numeric / choice / explain / reveal) with feedback after each
+  step; numeric steps chain on earlier steps' correct, displayed results; graded as a whole; new client per repetition.
+  Engine (`instantiateCase`, `evaluateCaseStep`), server schema, validation (inputs/placeholders/25 seeds), UI
+  (`CaseView.tsx`), formulas `tef`, `tdee-sum`, `energy-goal`, `macro-fat`.
+- Topic "Modelové případy" (`25-modelove-pripady.yaml`): 12 tier-A cases — reduction (components), PAL vs components,
+  Mifflin vs Katch, Harris vs Mifflin in obesity, muscle gain with macros, diagnostic conclusion (BMI/WHR), one-day
+  plan, energy availability/RED-S, senior protein + fluids, red flags (hyperglycaemia → 155), suspected eating disorder,
+  difficult clients (supplementary).
+- Verified by an independent reviewer (generated 200 seeds per case: fixed-answer choices hold for every client; one
+  ambiguous protein step and systematic length cues fixed).
+
+Verified: `pnpm validate` (52 unit tests incl. case chaining/grading/validation), `pnpm test:e2e` 8/8 (new: a case is
+worked through and recorded as one answer), screenshots of a case at 390 px.
+
+## M4 — Pre-exam sweep & polish (next)
+
+See the plan; proposed: final-days sweep of points with the lowest predicted recall on exam day, "practise in person"
+page, UX pass on the study screen, then deployment (needs approval).

@@ -290,7 +290,7 @@ function exercise(p: PointWithTopic, st: PointState, reason: "learning" | "revie
 export function pickExercise(exercises: Exercise[], st: PointState | undefined): Exercise {
   if (exercises.length === 1) return exercises[0];
   const early = !st || st.answers < 2;
-  const pref = early ? ["choice", "reveal", "numeric", "explain"] : ["explain", "numeric", "reveal", "choice"];
+  const pref = early ? ["choice", "reveal", "numeric", "case", "explain"] : ["case", "explain", "numeric", "reveal", "choice"];
   const candidates = exercises.filter((e) => e.id !== st?.lastExerciseId);
   return [...candidates].sort(
     (a, b) =>

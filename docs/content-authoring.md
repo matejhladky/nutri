@@ -88,3 +88,49 @@ Do not edit any file other than your own topic files. Do not run git commands th
 - Every `course-disputed` / `supplementary` point with a one-line reason.
 - Contradictions you found elsewhere in the script that affect other chapters (with pages).
 - Things in your chapters you deliberately left out and why. Formulas you would need.
+
+## Client cases (`type: case`) — practical exam
+
+A case is one exercise: a generated client (`params`, same syntax as numeric exercises) shown in `prompt`, then 2–8
+`steps` worked through one at a time with immediate feedback. Graded as a whole (each step correct 1 / partial ½;
+all → Good, ≥ ½ → Hard). Each repetition gets a new seed = a new client with the same procedure.
+
+```yaml
+- id: pripad
+  type: case
+  prompt: "Klientka, {age} let, {height} cm, {weight} kg, kancelářská práce, 3× týdně {minutes} min jógy ({met} MET)…"
+  params:
+    sex: { choices: [{ value: F, label: žena }] }
+    age: { min: 25, max: 55, step: 1 }
+    # …
+  steps:
+    - type: numeric           # id = name of the result; later prompts may show it as {bmr} (CORRECT value, rounded)
+      id: bmr
+      prompt: "Spočítej BMR podle Mifflin-St Jeor."
+      formula: bmr-mifflin    # inputs default to same-named params/earlier steps
+      unit: kcal
+      tolerance: { abs: 15 }
+    - type: numeric
+      id: neat
+      prompt: "BMR = {bmr} kcal. Spočítej NEAT (koeficient {coef})."
+      formula: neat           # inputs bmr, coef → found in scope
+      unit: kcal
+      tolerance: { abs: 10 }
+    - type: numeric
+      id: cil
+      prompt: "TDEE = {tdee} kcal. Jaký příjem nastavíš pro redukci s deficitem {pct} %?"
+      formula: energy-goal
+      inputs: { tdee: tdee, pct: pct }   # explicit mapping or constants, e.g. { coef: 0.2 }
+      unit: kcal
+      tolerance: { rel: 0.02 }
+    - type: choice            # options/why like a choice exercise (no id)
+    - type: explain           # keyPoints + modelAnswer
+    - type: reveal            # answer
+```
+
+Formulas for chains: `bmr-mifflin`, `bmr-harris`, `bmr-katch`, `ffm`, `neat`, `eat`, `tef` (bmr, neat, eat),
+`tdee-sum` (bmr, neat, eat, tef), `tdee-pal` (bmr, pal), `energy-goal` (tdee, pct), `per-kg` (weight, perKg),
+`macro-fat` (energy, fatPct), `macro-carbs` (energy, weight, proteinPerKg, fatPct), `bmi`, `whr`,
+`energy-availability`, `macro-percent`. Choose param ranges so every seed gives a realistic client.
+Keep the **course method** (ch. 15/17). The case's point `explanation` (Výklad) summarises the procedure; `prereqs`
+list the component points (e.g. `en.bmr-mifflin`, `en.neat`, `jid.makra-postup`).

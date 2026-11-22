@@ -22,7 +22,7 @@ export default function TopicPage() {
       </Link>
       <header>
         <div className="text-sm text-faint">
-          Kapitola {topic.chapter} · skripta s. {topic.pages[0]}–{topic.pages[1]}
+          {topic.chapter ? `Kapitola ${topic.chapter} · ` : ""}skripta s. {topic.pages[0]}–{topic.pages[1]}
         </div>
         <h1 className="mt-1 text-2xl font-semibold tracking-tight">{topic.title}</h1>
         <p className="mt-2 text-muted">{topic.summary}</p>

@@ -52,6 +52,11 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
 | `choice` | single or multiple selection, optional *Tipuji* | auto; guessed or hint → Hard; multi partial (no wrong picks) → Hard |
 | `numeric` | typed number; parameters generated from a seed | `src/content/formulas.ts` computes answer + worked solution; tolerance |
 | `explain` | answer aloud (typing optional) → tick key points covered | all → Good, ≥ ½ → Hard, else Again |
+| `case` | generated client → 2–8 steps (numeric / choice / explain / reveal), feedback after each step | step score (correct 1, partial ½): all → Good, ≥ ½ → Hard, else Again |
+
+**Client cases** (`CaseView.tsx`, `instantiateCase`): numeric steps take formula inputs from the client params or from
+earlier steps' *correct, displayed* results, so one slip doesn't spoil the rest and later prompts can say "BMR = {bmr}".
+The case is recorded as one answer; each repetition is a new seed = a new client with the same procedure.
 
 *Nevím* → Again everywhere. A hint caps the grade at Hard. No Easy grade (14-day horizon). Comparison, misconception and
 scenario questions are written in these four forms; client cases will be sequences of them.
@@ -110,3 +115,5 @@ until reviewed.
 | 2026-11-22 | Exam date hard-coded (2026-12-04), setting removed | confirmed by the user; one less thing to get wrong |
 | 2026-11-22 | Tier-A budget ≈ 210–230 points | simulation with 11 study days at 45 min/day |
 | 2026-11-22 | Confusables: symmetric, contrast bonus ×1.2 in pickNew, "Nezaměň s" in feedback | discrimination between look-alike facts |
+| 2026-11-22 | Planner: all prerequisite-ready points compete; prerequisites inherit dependants' priority | simulation: whole criteria were never reached |
+| 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

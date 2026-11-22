@@ -12,7 +12,9 @@ Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · 
 - `pnpm content:check` — build + verify every anchor phrase exists on its cited page
 - `pnpm validate` — content:check, typecheck, lint, unit tests. **Run before every commit.**
 - `pnpm simulate [points] [days] [minutes]` — planner workload simulation
-- `pnpm dev` — local app
+- `pnpm dev` — local app (needs `.env.local` with `APP_PASSPHRASE`, `SESSION_SECRET`; see `.env.example`;
+  without `DATABASE_URL` data lives in embedded PGlite `.pglite/`)
+- `pnpm test:e2e` — Playwright smoke tests; builds and serves on :3100 with an isolated `.pglite-e2e/` DB
 
 ## Hard constraints
 
@@ -36,6 +38,8 @@ Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · 
 ## Code map
 
 - `src/content/` — schema (zod), formulas (course calculation methods, seeded params), validation
+- `src/server/` — DB adapter, event store, auth · `src/client/` — store (optimistic state), outbox, session
+- `src/components/study/` — study screen & cards · `src/app/(app)/` — pages · `src/app/api/` — route handlers
 - `src/engine/` — pure, shared client/server: `evaluate` (answer → grade), `scheduler` (ts-fsrs wrapper),
   `state` (event-log reducer), `planner` (what next), `time` (study-day boundaries, Europe/Prague 04:00)
 - Engine code must stay pure and deterministic (no Date.now() inside; pass `now`).

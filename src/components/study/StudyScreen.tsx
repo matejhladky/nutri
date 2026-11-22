@@ -1,0 +1,208 @@
+"use client";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { useStudy } from "@/client/store";
+import { loadSession, newSeed, saveSession, uuid, type StoredSession, type StudyMode } from "@/client/session";
+import { dailyPlan, nextCard, pickExercise, type NextCard, type SessionItem } from "@/engine/planner";
+import { topicsById } from "@/lib/content";
+import { plural } from "@/lib/format";
+import { Button, Spinner } from "../ui";
+import { ExerciseCard, type AnswerRecord } from "./ExerciseCard";
+import { IntroCard } from "./IntroCard";
+
+type Done = Extract<NextCard, { kind: "done" }>["reason"];
+
+type ScreenState = { session: StoredSession; done: Done | null };
+
+export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal: boolean }) {
+  const { getStates, settings, points, record, retrievability, todayCards, syncError, states } = useStudy();
+  const exitHref = mode.kind === "topic" ? `/temata/${mode.topicId}` : "/";
+  const pointsById = useMemo(() => new Map(points.map((p) => [p.id, p])), [points]);
+
+  /** Pure transition: fill `current` with the planner's next card, or mark the session done. */
+  const fill = (session: StoredSession): ScreenState => {
+    const cur = session.current;
+    if (cur) {
+      const p = pointsById.get(cur.next.pointId);
+      const stillThere = p && (cur.next.kind === "intro" || p.exercises.some((e) => e.id === (cur.next as { exerciseId: string }).exerciseId));
+      if (stillThere) return { session, done: null };
+    }
+    const now = new Date();
+    const n = nextCard({
+      now,
+      examDate: settings.examDate,
+      points,
+      states: getStates(),
+      session: session.history,
+      mode,
+      beyondGoal: session.beyondGoal,
+      dailyMinutes: settings.dailyMinutes,
+      retrievability,
+    });
+    if (n.kind === "done") return { session: { ...session, current: null }, done: n.reason };
+    return { session: { ...session, current: { next: n, seed: newSeed(), shownAt: now.toISOString() } }, done: null };
+  };
+
+  // Mounted only once the store is ready (AppFrame shows a spinner before), so localStorage is available.
+  const [screen, setScreen] = useState<ScreenState>(() => {
+    const s = loadSession(mode);
+    if (beyondGoal) s.beyondGoal = true;
+    return fill(s);
+  });
+  const { session, done } = screen;
+
+  // Persist the session (external system sync).
+  useEffect(() => saveSession(session), [session]);
+
+  const advance = (item: SessionItem) => setScreen(fill({ ...session, current: null, history: [...session.history, item] }));
+
+  const current = session.current;
+  const point = current ? pointsById.get(current.next.pointId) : undefined;
+
+  const plan = useMemo(
+    () => dailyPlan({ now: new Date(), examDate: settings.examDate, points, states, dailyMinutes: settings.dailyMinutes }),
+    [settings, points, states],
+  );
+
+  const onIntroDone = (skipped: boolean) => {
+    if (!point) return;
+    record({ id: uuid(), pointId: point.id, at: new Date().toISOString(), kind: "intro", skippedIntro: skipped || undefined });
+    if (skipped) {
+      // Ask right away instead of after the usual gap.
+      const ex = pickExercise(point.exercises, undefined);
+      setScreen({
+        done: null,
+        session: {
+          ...session,
+          history: [...session.history, { pointId: point.id, kind: "intro", isNew: true }],
+          current: { next: { kind: "exercise", pointId: point.id, exerciseId: ex.id, reason: "learning" }, seed: newSeed(), shownAt: new Date().toISOString() },
+        },
+      });
+    } else advance({ pointId: point.id, kind: "intro", isNew: true });
+  };
+
+  const onRecord = (a: AnswerRecord) => {
+    if (!point) return;
+    record({
+      id: uuid(),
+      pointId: point.id,
+      at: new Date().toISOString(),
+      kind: "answer",
+      exerciseId: a.exerciseId,
+      exerciseVersion: a.exerciseVersion,
+      outcome: a.evaluation.outcome,
+      grade: a.evaluation.grade,
+      hintUsed: a.hintUsed || undefined,
+      response: a.response,
+      durationMs: a.durationMs,
+    });
+  };
+
+  const total = todayCards + plan.dueReviews + plan.learningDue + Math.max(0, plan.newTarget - plan.newToday) * 2;
+  const progress = mode.kind === "daily" && total > 0 ? Math.min(1, todayCards / total) : null;
+
+  return (
+    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5">
+      <header className="sticky top-0 z-10 -mx-5 flex items-center gap-4 bg-paper/90 px-5 py-3 backdrop-blur">
+        <Link href={exitHref} className="-ml-2 rounded-full p-2 text-muted hover:bg-black/[0.04] hover:text-ink" aria-label="Ukončit studium">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </Link>
+        <div className="flex-1">
+          {progress !== null ? (
+            <div className="h-1.5 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)} aria-label="Dnešní plán">
+              <div className="h-full rounded-full bg-sage-500 transition-[width] duration-500" style={{ width: `${progress * 100}%` }} />
+            </div>
+          ) : (
+            <div className="truncate text-sm font-medium text-muted">{mode.kind === "topic" ? topicsById.get(mode.topicId)?.title : ""}</div>
+          )}
+        </div>
+        <div className="text-xs tabular-nums text-faint" title="Karet dnes">
+          {todayCards}
+        </div>
+      </header>
+
+      <main className="flex flex-1 flex-col justify-center py-6">
+        {done ? (
+          <DoneView
+            reason={done}
+            mode={mode}
+            todayCards={todayCards}
+            exitHref={exitHref}
+            canContinue={plan.remainingNew > 0 && mode.kind === "daily"}
+            onContinue={() => setScreen(fill({ ...session, beyondGoal: true, current: null }))}
+          />
+        ) : !current || !point ? (
+          <Spinner label="" />
+        ) : current.next.kind === "intro" ? (
+          <IntroCard key={`intro-${point.id}`} point={point} onDone={onIntroDone} />
+        ) : (
+          (() => {
+            const exId = current.next.exerciseId;
+            const exercise = point.exercises.find((e) => e.id === exId);
+            if (!exercise) return <Spinner label="" />;
+            return (
+              <ExerciseCard
+                key={`${point.id}/${exercise.id}/${current.seed}`}
+                point={point}
+                exercise={exercise}
+                seed={current.seed}
+                reason={current.next.reason}
+                onRecord={onRecord}
+                onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: false })}
+              />
+            );
+          })()
+        )}
+      </main>
+      {syncError && <p className="pb-4 text-center text-xs text-faint">Jsi offline — odpovědi se ukládají v zařízení.</p>}
+    </div>
+  );
+}
+
+function DoneView({
+  reason,
+  mode,
+  todayCards,
+  exitHref,
+  canContinue,
+  onContinue,
+}: {
+  reason: Done;
+  mode: StudyMode;
+  todayCards: number;
+  exitHref: string;
+  canContinue: boolean;
+  onContinue: () => void;
+}) {
+  const topicDone = mode.kind === "topic";
+  return (
+    <div className="flex flex-col items-center gap-5 text-center animate-rise">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-50 text-2xl text-sage-600" aria-hidden>
+        ✓
+      </div>
+      <div>
+        <h2 className="text-xl font-semibold">
+          {topicDone ? "Téma je pro teď procvičené" : reason === "goal-reached" ? "Dnešní plán je splněný" : "Pro dnešek je hotovo"}
+        </h2>
+        <p className="mt-2 text-muted">
+          {todayCards > 0 && <>Dnes {plural(todayCards, "karta", "karty", "karet")}. </>}
+          {topicDone
+            ? "Ostatní opakování naplánuji na další dny."
+            : "Teď je nejlepší dát mozku pauzu — opakování s odstupem funguje líp než dlouhé biflování."}
+        </p>
+      </div>
+      <div className="flex w-full max-w-xs flex-col gap-2">
+        <Link href={exitHref} className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-sage-600 px-5 font-medium text-white hover:bg-sage-700">
+          {topicDone ? "Zpět na téma" : "Zpět na přehled"}
+        </Link>
+        {canContinue && reason === "goal-reached" && (
+          <Button variant="secondary" onClick={onContinue}>
+            Přidat ještě pár nových
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}

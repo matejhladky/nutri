@@ -36,6 +36,8 @@ export type NextCard =
 export type DailyPlan = {
   daysLeft: number | null;
   dueReviews: number;
+  /** First retrievals still owed + learning steps due today. */
+  learningDue: number;
   newTarget: number;
   newToday: number;
   remainingNew: number;
@@ -60,6 +62,7 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   const { now, examDate, points, states, dailyMinutes } = input;
   const today = dayKey(now);
   let dueReviews = 0;
+  let learningDue = 0;
   let reviewedToday = 0;
   let newToday = 0;
   let remainingA = 0;
@@ -74,8 +77,13 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
       else remainingB++;
       continue;
     }
+    const shortStep = st?.card && (st.card.scheduleStatus === "learning" || st.card.scheduleStatus === "relearning");
+    if (!st?.card || (shortStep && dayKey(st.card.dueAt) <= today)) {
+      learningDue++;
+      continue;
+    }
     if (introducedToday) continue;
-    if (st?.card && dayKey(st.card.dueAt) <= today) dueReviews++;
+    if (dayKey(st.card.dueAt) <= today) dueReviews++;
     else if (st?.lastAnsweredAt && dayKey(st.lastAnsweredAt) === today) reviewedToday++;
   }
   const daysLeft = examDate ? daysUntilExam(now, examDate) : null;
@@ -89,15 +97,18 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   const reviewLoad = dueReviews + reviewedToday;
   const budgetTarget = Math.max(10, Math.floor((dailyMinutes - reviewLoad * MIN_PER_REVIEW) / MIN_PER_NEW));
   const newTarget = Math.max(0, Math.min(paceTarget, budgetTarget));
-  const estimatedMinutes = Math.round(dueReviews * MIN_PER_REVIEW + Math.max(0, newTarget - newToday) * MIN_PER_NEW);
+  const estimatedMinutes = Math.round(
+    (dueReviews + learningDue) * MIN_PER_REVIEW + Math.max(0, newTarget - newToday) * MIN_PER_NEW,
+  );
   return {
     daysLeft,
     dueReviews,
+    learningDue,
     newTarget,
     newToday,
     remainingNew,
     estimatedMinutes,
-    goalReached: dueReviews === 0 && newToday >= newTarget,
+    goalReached: dueReviews === 0 && learningDue === 0 && newToday >= newTarget,
   };
 }
 

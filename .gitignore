@@ -25,3 +25,5 @@ test-results/
 .DS_Store
 *.log
 src/generated/
+.pglite*/
+.pglite-e2e/

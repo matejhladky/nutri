@@ -20,9 +20,19 @@ Findings to carry forward:
   glycogen amounts). Always grep the whole script.
 - 45 min/day ≈ 250 new points in 14 days → keep bank ≈ 250–300 tier A.
 
-## M1 — Usable study loop (local) ⏳ next
+## M1 — Usable study loop (local) ✅ (2026-11-22)
 
-Acceptance:
+Done: login, Dnes, study session (intro + 4 exercise types, feedback, worked solutions, disputed notes, report button),
+thin Témata (list, topic page, topic practice) and Pokrok (per competency, weak points), Nastavení (exam date,
+daily minutes, logout). Persistence via PGlite/Neon, outbox, session resume.
+
+Verified: `pnpm validate` (45 unit tests) and `pnpm test:e2e` (6 tests, Pixel 7 + desktop): login → study → reload
+resumes the same card → events on server; offline answers sync after reconnect; 401 without session. Visual check of
+all screens at 390 px and 1280 px.
+
+Not done yet: deployment (needs approval + accounts), content beyond the 4 pilot chapters, client cases.
+
+Original acceptance:
 - Dnes screen (days left, today's goal, one *Začít/Pokračovat* button) → session → cards for all 4 types → feedback
   (explanation, source page, disputed note) → suggests stopping at goal, *Pokračovat* continues.
 - Persistence: Postgres via Drizzle (PGlite locally, Neon-ready); events idempotent; reload/resume mid-session; retry queue.

@@ -184,6 +184,16 @@ describe("dailyPlan pacing", () => {
     expect(plan.newTarget).toBe(5);
   });
 
+  it("counts owed first retrievals; the goal is not reached until they are answered", () => {
+    const pts = [pt("a1", "A", 0)];
+    const states = withEvents([intro("a1", NOW)]);
+    const plan = dailyPlan(input(pts, states));
+    expect(plan.learningDue).toBe(1);
+    expect(plan.goalReached).toBe(false);
+    const answered = withEvents([intro("a1", NOW), ans("a1", new Date(NOW.getTime() + 60_000), Grade.Good)]);
+    expect(dailyPlan(input(pts, answered)).goalReached).toBe(true);
+  });
+
   it("caps the target by the daily time budget", () => {
     const plan = dailyPlan({ ...input(many(1200), new Map()), dailyMinutes: 30 });
     expect(plan.newTarget).toBe(20); // 30 min / 1.5

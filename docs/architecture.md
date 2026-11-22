@@ -10,9 +10,30 @@ content/criteria.yaml, content/topics/*.yaml ──pnpm content:build──▶ s
 Browser: planner + evaluate + scheduler (same pure engine) ──events──▶ server ──▶ Postgres (events = source of truth)
 ```
 
-- **Stack:** Next.js 16 (App Router, TS), Tailwind 4, ts-fsrs 6 (FSRS-7), zod 4, Vitest. Planned: Drizzle + Neon
-  Postgres (PGlite locally), passphrase auth with a signed cookie, Playwright smoke test.
-- **Content is static and versioned** in the repo; the database stores only learner data.
+- **Stack:** Next.js 16 (App Router, TS), Tailwind 4, ts-fsrs 6 (FSRS-7), zod 4, Postgres (Neon in production,
+  embedded PGlite locally), Vitest, Playwright.
+- **Content is static and versioned** in the repo, bundled into the client; the database stores only learner data.
+
+## App structure
+
+- **Planning runs in the browser.** The client holds content + point states, runs `planner`/`evaluate`/`scheduler`
+  locally (instant, works offline) and records events. The server stores events and rebuilds point state with the same
+  reducer — authoritative on the next sync.
+- **Outbox** (`src/client/outbox.ts`): every event is written to localStorage first, then POSTed (batches, idempotent
+  ids); retried every 15 s and on `online`. On load, unconfirmed events are re-applied on top of server state.
+- **Session persistence** (`src/client/session.ts`): current card incl. seed (numeric parameters, option order) and the
+  session history survive reloads; a new study day starts a new session.
+- **Server** (`src/server/`): `db.ts` tiny SQL adapter (Neon HTTP if `DATABASE_URL`, else PGlite in `PGLITE_DIR`;
+  idempotent `CREATE TABLE IF NOT EXISTS`), `store.ts` (events, point_state, settings, reports), `session.ts` (auth).
+  No ORM — four tables don't justify Drizzle + migrations tooling.
+- **Auth:** one passphrase (`APP_PASSPHRASE`) → httpOnly cookie `exp.HMAC(SESSION_SECRET, exp)`, 90 days.
+  `src/proxy.ts` redirects pages to `/login`; every API route checks the session again.
+- **API:** `GET /api/state`, `POST /api/events`, `POST /api/settings`, `POST /api/reports`, `POST /api/login|logout`.
+- **Reports:** an open report hides that exercise (or the whole point if no exercise id) until resolved in the DB.
+- `cacheComponents` is **off**: every page is per-learner and dynamic; the static-shell model adds Suspense
+  constraints without benefit here.
+- **UI:** Czech, mobile-first, one card at a time; keyboard: Enter = confirm/next, Space = reveal, 1–4 = options /
+  self-grade. Routes: `/` Dnes, `/studium[?tema=id][&navic=1]`, `/temata`, `/temata/[id]`, `/pokrok`, `/nastaveni`.
 
 ## Content model (two entities)
 
@@ -82,3 +103,6 @@ until reviewed.
 | 2026-11-22 | FSRS-7, steps 10m/1d, no Easy, 7-day cap independent of exam | see Scheduler; simulation evidence |
 | 2026-11-22 | Budget computed from start-of-day review load | otherwise finishing reviews unlocked extra new points |
 | 2026-11-22 | Course method for calculations (BMR + NEAT coef + MET·kg·h + 10 % TEF; 1 kcal = 4.2 kJ) | exam follows the course |
+| 2026-11-22 | Client-side planning + durable outbox; server replays events | instant UI, offline-tolerant, one source of truth |
+| 2026-11-22 | Plain SQL adapter (PGlite/Neon) instead of Drizzle | 4 tables; zero-setup local DB |
+| 2026-11-22 | Goal not reached while first retrievals / learning steps are owed | otherwise "done" appeared with loose ends |

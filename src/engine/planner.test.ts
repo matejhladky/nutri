@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeAll } from "vitest";
-import { dailyPlan, nextCard, pickExercise, sweepPick, INTRO_GAP, FIRST_RETRIEVAL_DELAY_MS, type PlannerInput, type SessionItem } from "./planner";
+import { dailyPlan, nextCard, pickExercise, sweepPick, INTRO_GAP, FIRST_RETRIEVAL_DELAY_MS, NEW_SHARE, type PlannerInput, type SessionItem } from "./planner";
 import { getScheduler, retrievability, type Scheduler } from "./scheduler";
 import { applyEvent } from "./state";
 import { Grade, type PointState, type StudyEvent } from "./types";
@@ -24,6 +24,7 @@ function pt(id: string, topicId: string, order: number, opts: Partial<PointWithT
     title: id,
     kind: "fact",
     tier: "A",
+    safety: false,
     status: "course",
     criteria: ["1c"],
     source: { pages: [1] },
@@ -298,9 +299,43 @@ describe("dailyPlan pacing", () => {
     expect(dailyPlan(input(pts, answered)).goalReached).toBe(true);
   });
 
+  it("due reviews beyond the time budget are deferred; new material keeps its reserved share", () => {
+    const old = new Date(NOW.getTime() - 5 * 86400_000);
+    const reviewed = Array.from({ length: 120 }, (_, i) => pt(`r${i}`, "R", i, { criteria: ["1c"] }));
+    const fresh = Array.from({ length: 60 }, (_, i) => pt(`n${i}`, "N", i, { criteria: ["2a"] }));
+    const evs = reviewed.flatMap((p) => [intro(p.id, old), ans(p.id, old, Grade.Good)]);
+    const states = withEvents(evs);
+    const plan = dailyPlan(input([...reviewed, ...fresh], states, { dailyMinutes: 30 }));
+    expect(plan.dueReviews + plan.deferredReviews).toBe(120);
+    expect(plan.deferredReviews).toBeGreaterThan(0);
+    expect(plan.dueReviews * 0.5).toBeLessThanOrEqual(30 * (1 - NEW_SHARE) + 1); // ≈ 18 min of reviews
+    expect(plan.newTarget).toBeGreaterThan(0);
+    // The daily flow never shows a deferred review; "continue" may.
+    const shown = new Set<string>();
+    let session: SessionItem[] = [];
+    for (let i = 0; i < 40; i++) {
+      const c = nextCard(input([...reviewed, ...fresh], states, { dailyMinutes: 30, session }));
+      if (c.kind !== "exercise" || c.reason !== "review") break;
+      shown.add(c.pointId);
+      session = [...session, { pointId: c.pointId, kind: "exercise", isNew: false }];
+    }
+    for (const id of shown) expect(plan.selectedReviewIds).toContain(id);
+  });
+
+  it("a safety review is selected before an ordinary one when the budget is tight", () => {
+    const old = new Date(NOW.getTime() - 5 * 86400_000);
+    const ordinary = Array.from({ length: 60 }, (_, i) => pt(`o${i}`, "O", i));
+    const safe = pt("s1", "S", 0, { safety: true });
+    const all = [...ordinary, safe];
+    const states = withEvents(all.flatMap((p) => [intro(p.id, old), ans(p.id, old, Grade.Good)]));
+    const plan = dailyPlan(input(all, states, { dailyMinutes: 10 }));
+    expect(plan.deferredReviews).toBeGreaterThan(0);
+    expect(plan.selectedReviewIds).toContain("s1");
+  });
+
   it("caps the target by the daily time budget", () => {
     const plan = dailyPlan({ ...input(many(1200), new Map()), dailyMinutes: 30 });
-    expect(plan.newTarget).toBe(20); // 30 min / 1.5
+    expect(plan.newTarget).toBe(16); // 30 min / (0.6 intro + 2 × 0.5 choice × 1.25 expected relearning)
   });
 });
 
@@ -312,5 +347,20 @@ describe("pickExercise", () => {
     expect(pickExercise(exs, st).id).toBe("r");
     const mature = { exerciseCounts: { c: 1, r: 1 }, lastExerciseId: "r", answers: 3 } as unknown as PointState;
     expect(pickExercise(exs, mature).id).toBe("x");
+  });
+});
+
+describe("same-day relearning", () => {
+  it("a point failed twice today rests until tomorrow instead of looping", () => {
+    const pts = [pt("a1", "A", 0)];
+    const old = new Date(NOW.getTime() - 3 * 86400_000);
+    const t1 = new Date(NOW.getTime() - 30 * 60_000);
+    const states = withEvents([intro("a1", old), ans("a1", old, Grade.Good), ans("a1", t1, Grade.Again), ans("a1", new Date(t1.getTime() + 11 * 60_000), Grade.Again)]);
+    expect(states.get("a1")!.failsThatDay).toBe(2);
+    const c = nextCard(input(pts, states, { now: new Date(NOW.getTime() + 3600_000) }));
+    expect(c.kind).toBe("done");
+    expect(dailyPlan(input(pts, states)).learningDue).toBe(0);
+    const tomorrow = new Date(NOW.getTime() + 86400_000);
+    expect(nextCard(input(pts, states, { now: tomorrow }))).toMatchObject({ kind: "exercise", pointId: "a1" });
   });
 });

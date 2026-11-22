@@ -329,6 +329,7 @@ points:
     title: Bezpečná dávka kofeinu a pro koho není vhodný
     kind: fact
     tier: A
+    safety: true
     status: course-disputed
     note: >-
       S. 177 uvádí jako maximální bezpečnou dávku podle EFSA 200–400 mg/den pro běžnou populaci; EFSA

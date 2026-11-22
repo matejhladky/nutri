@@ -1,126 +1,105 @@
 /**
- * Planner simulation: a synthetic learner studies every day until the daily goal, at full-syllabus scale.
- * Reports per-day workload and final coverage, to sanity-check pacing before real use.
+ * Planner workload simulation on the REAL content bank (src/generated/content.json — run `pnpm content:build` first).
  *
- *   pnpm simulate [points=500] [days=14] [minutes=45]
- *   pnpm simulate real [days] [minutes]   — use the built content bank (src/generated/content.json)
+ *   pnpm simulate [days=11] [minutes=45] [accuracy=1] [--detail]   one scenario; --detail lists omitted points
+ *   pnpm simulate matrix [days=11]                                 30/45/60 min × typical/weaker learner
+ *
+ * Everything printed here is a MODEL ESTIMATE, not observed learning:
+ *  - answer time per card = DEFAULT_TIMING by exercise type (src/engine/planner.ts); intro 0.6 min
+ *  - P(correct) = max(0.25, R × accuracy), with R = FSRS-predicted recall (0.8 × accuracy for a first retrieval)
+ *    — FSRS grading its own predictions, so "recall at exam" is optimistic by construction
+ *  - she studies until the daily goal (capped at 1.6 × the nominal minutes), never beyond
+ * Use it to compare planner policies and to see WHAT gets left out; calibrate with her real durations later.
  */
+import { readFileSync } from "node:fs";
 import { getScheduler, retrievability } from "../src/engine/scheduler";
 import { applyEvent } from "../src/engine/state";
-import { dailyPlan, nextCard, type SessionItem } from "../src/engine/planner";
+import { DEFAULT_TIMING, examMoment, nextCard, type SessionItem } from "../src/engine/planner";
 import { Grade, type PointState, type StudyEvent } from "../src/engine/types";
 import { rng } from "../src/content/formulas";
-import type { PointWithTopic } from "../src/content/schema";
-import { dayKey } from "../src/engine/time";
-import { readFileSync } from "node:fs";
+import type { ContentBundle, PointWithTopic } from "../src/content/schema";
 
-const REAL = process.argv[2] === "real";
-const N = REAL ? 0 : Number(process.argv[2] ?? 500);
-const DAYS = Number(process.argv[3] ?? 14);
-const MINUTES = Number(process.argv[4] ?? 45);
-const SEC_PER_CARD = { intro: 30, exercise: 25, case: 180 };
-
-const rand = rng(1);
-const criteria = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2d", "2e", "2f", "2g", "3a", "3b", "4a", "4b", "4c", "5e", "7h", "8a"];
-const synthetic: PointWithTopic[] = Array.from({ length: N }, (_, i) => ({
-  id: `p${i}`,
-  title: `p${i}`,
-  kind: "fact",
-  tier: rand() < 0.65 ? "A" : rand() < 0.85 ? "B" : "C",
-  status: "course",
-  criteria: [criteria[Math.floor(i / (N / criteria.length))] ?? "1a"],
-  source: { pages: [1] },
-  explanation: "x",
-  prereqs: [],
-  confusableWith: [],
-  exercises: [{ id: "e", version: 1, type: "reveal", prompt: "Otázka?", answer: "x" }],
-  topicId: `t${Math.floor(i / 20)}`,
-  order: i % 20,
-}));
-
-const points: PointWithTopic[] = REAL
-  ? (JSON.parse(readFileSync("src/generated/content.json", "utf8")) as { points: PointWithTopic[] }).points
-  : synthetic;
-
-const start = new Date("2026-11-22T17:00:00Z");
-const exam = new Date(start.getTime() + DAYS * 86400_000);
-const examDate = dayKey(exam);
-
+const bundle = JSON.parse(readFileSync("src/generated/content.json", "utf8")) as ContentBundle;
+const points: PointWithTopic[] = bundle.points;
+const EXAM = "2026-12-04";
+const START = new Date("2026-11-23T17:00:00Z");
 const s = await getScheduler();
-const states = new Map<string, PointState>();
-let evId = 0;
-const apply = (ev: Omit<StudyEvent, "id">) => {
-  const e = { ...ev, id: String(evId++) } as StudyEvent;
-  states.set(e.pointId, applyEvent(states.get(e.pointId), e, s));
-};
 
-console.log(`Simulating ${N} points (${points.filter((p) => p.tier !== "C").length} A/B), ${DAYS} days, ${MINUTES} min/day budget`);
-console.log("day | daysLeft | due | newTarget | cards | new | minutes");
-for (let d = 0; d < DAYS; d++) {
-  let now = new Date(start.getTime() + d * 86400_000);
-  const plan = dailyPlan({ now, examDate, points, states, dailyMinutes: MINUTES });
-  const session: SessionItem[] = [];
-  let seconds = 0;
-  let newCount = 0;
-  for (let guard = 0; guard < 2000; guard++) {
-    const c = nextCard({
-      now,
-      examDate,
-      points,
-      states,
-      session,
-      mode: { kind: "daily" },
-      beyondGoal: false,
-      dailyMinutes: MINUTES,
-      retrievability: (st, t) => retrievability(s, st.card, t),
-    });
-    if (c.kind === "done") break;
-    if (c.kind === "intro") {
-      apply({ pointId: c.pointId, at: now.toISOString(), kind: "intro" });
-      session.push({ pointId: c.pointId, kind: "intro", isNew: true });
-      seconds += SEC_PER_CARD.intro;
-      newCount++;
-    } else {
-      const st = states.get(c.pointId)!;
-      const r = st.card ? retrievability(s, st.card, now) : 0.75;
-      const correct = rand() < Math.max(0.35, r);
-      apply({
-        pointId: c.pointId,
-        at: now.toISOString(),
-        kind: "answer",
-        exerciseId: c.exerciseId,
-        grade: correct ? Grade.Good : Grade.Again,
-        outcome: correct ? "correct" : "wrong",
-      });
-      session.push({ pointId: c.pointId, kind: "exercise", isNew: false });
-      const ex = points.find((q) => q.id === c.pointId)?.exercises.find((e) => e.id === c.exerciseId);
-      seconds += ex?.type === "case" ? SEC_PER_CARD.case : SEC_PER_CARD.exercise;
+type Result = { minutes: number[]; seenA: number; totalA: number; safety: [number, number]; cases: [number, number]; expRecall: number; omitted: PointWithTopic[] };
+
+function run(days: number, minutes: number, accuracy: number): Result {
+  const rand = rng(7);
+  const states = new Map<string, PointState>();
+  const byId = new Map(points.map((p) => [p.id, p]));
+  let evId = 0;
+  const apply = (ev: Omit<StudyEvent, "id">) => {
+    const e = { ...ev, id: String(evId++) } as StudyEvent;
+    states.set(e.pointId, applyEvent(states.get(e.pointId), e, s));
+  };
+  const used: number[] = [];
+  for (let d = 0; d < days; d++) {
+    let now = new Date(START.getTime() + d * 86400_000);
+    const session: SessionItem[] = [];
+    let sec = 0;
+    for (let guard = 0; guard < 3000 && sec < minutes * 60 * 1.6; guard++) {
+      const c = nextCard({ now, examDate: EXAM, points, states, session, mode: { kind: "daily" }, beyondGoal: false, dailyMinutes: minutes, retrievability: (st, t) => retrievability(s, st.card, t) });
+      if (c.kind === "done") {
+        // A pending learning step later today: she comes back for it (a short second sitting).
+        if (c.reason === "wait" && c.nextAt) {
+          now = new Date(Date.parse(c.nextAt) + 1000);
+          continue;
+        }
+        break;
+      }
+      if (c.kind === "intro") {
+        apply({ pointId: c.pointId, at: now.toISOString(), kind: "intro" });
+        session.push({ pointId: c.pointId, kind: "intro", isNew: true });
+        sec += DEFAULT_TIMING.intro * 60;
+      } else {
+        const st = states.get(c.pointId);
+        const ex = byId.get(c.pointId)!.exercises.find((e) => e.id === c.exerciseId)!;
+        const r = st?.card ? retrievability(s, st.card, now) : 0.8;
+        const ok = rand() < Math.max(0.25, r * accuracy);
+        apply({ pointId: c.pointId, at: now.toISOString(), kind: "answer", exerciseId: c.exerciseId, grade: ok ? Grade.Good : Grade.Again, outcome: ok ? "correct" : "wrong" });
+        session.push({ pointId: c.pointId, kind: "exercise", isNew: c.reason === "new" });
+        sec += DEFAULT_TIMING[ex.type] * 60;
+      }
+      now = new Date(now.getTime() + 20_000);
     }
-    now = new Date(now.getTime() + 25_000);
+    used.push(Math.round(sec / 60));
   }
-  console.log(
-    `${String(d + 1).padStart(3)} | ${String(plan.daysLeft).padStart(8)} | ${String(plan.dueReviews).padStart(3)} | ${String(plan.newTarget).padStart(9)} | ${String(session.length).padStart(5)} | ${String(newCount).padStart(3)} | ${Math.round(seconds / 60)}`,
-  );
+  const A = points.filter((p) => p.tier === "A");
+  const seen = (p: PointWithTopic) => !!states.get(p.id)?.introducedAt;
+  const at = examMoment(EXAM);
+  const safety = points.filter((p) => p.safety);
+  const cases = points.filter((p) => p.exercises.some((e) => e.type === "case"));
+  return {
+    minutes: used,
+    seenA: A.filter(seen).length,
+    totalA: A.length,
+    safety: [safety.filter(seen).length, safety.length],
+    cases: [cases.filter(seen).length, cases.length],
+    expRecall: A.reduce((n, p) => n + (states.get(p.id)?.card ? retrievability(s, states.get(p.id)!.card, at) : 0), 0),
+    omitted: A.filter((p) => !seen(p)),
+  };
 }
 
-const ab = points.filter((p) => p.tier !== "C");
-const introduced = ab.filter((p) => states.get(p.id)?.introducedAt).length;
-const rAtExam = ab
-  .map((p) => states.get(p.id))
-  .filter((st): st is PointState => !!st?.card)
-  .map((st) => retrievability(s, st.card, exam));
-const avgR = rAtExam.reduce((a, b) => a + b, 0) / Math.max(1, rAtExam.length);
-const aLeft = points.filter((p) => p.tier === "A" && !states.get(p.id)?.introducedAt).length;
-console.log(`\nIntroduced ${introduced}/${ab.length} A/B points; tier-A never seen: ${aLeft}; mean predicted recall on exam day: ${avgR.toFixed(2)}`);
+const line = (label: string, r: Result) =>
+  `${label.padEnd(26)} min/day ${r.minutes.join(",").padEnd(42)} tier A ${r.seenA}/${r.totalA}  safety ${r.safety.join("/")}  cases ${r.cases.join("/")}  ≈${r.expRecall.toFixed(0)} tier A recalled (model)`;
 
-// Coverage of tier-A points per primary criterion at exam time (written test needs ≥ 50 % per criterion).
-const byCrit = new Map<string, { total: number; seen: number }>();
-for (const p of points) {
-  if (p.tier !== "A") continue;
-  const c = byCrit.get(p.criteria[0]) ?? { total: 0, seen: 0 };
-  c.total++;
-  if (states.get(p.id)?.introducedAt) c.seen++;
-  byCrit.set(p.criteria[0], c);
+const args = process.argv.slice(2);
+if (args[0] === "matrix") {
+  const days = Number(args[1] ?? 11);
+  console.log(`Simulated ${days} days to ${EXAM}; model estimates only (see header).`);
+  for (const acc of [1, 0.8]) for (const m of [30, 45, 60]) console.log(line(`${m} min, ${acc === 1 ? "typical" : "weaker"} learner`, run(days, m, acc)));
+} else {
+  const [days, minutes, accuracy] = [Number(args[0] ?? 11), Number(args[1] ?? 45), Number(args[2] ?? 1)];
+  const r = run(days, minutes, accuracy);
+  console.log(`Simulated ${days} days, ${minutes} min/day planned, accuracy ×${accuracy}; model estimates only (see header).`);
+  console.log(line("result", r));
+  const byCrit = new Map<string, PointWithTopic[]>();
+  for (const p of r.omitted) byCrit.set(p.criteria[0], [...(byCrit.get(p.criteria[0]) ?? []), p]);
+  console.log(`Tier-A points never introduced: ${r.omitted.length} — by criterion: ${[...byCrit].sort().map(([c, ps]) => `${c}(${ps.length})`).join(" ") || "none"}`);
+  if (args.includes("--detail")) for (const [c, ps] of [...byCrit].sort()) console.log(`  ${c}: ${ps.map((p) => `${p.id}${p.safety ? " [bezpečnost]" : ""}`).join(", ")}`);
 }
-const weak = [...byCrit].filter(([, c]) => c.seen / c.total < 0.75).map(([k, c]) => `${k} ${c.seen}/${c.total}`);
-console.log(`Criteria with < 75 % of tier A seen: ${weak.length ? weak.join(", ") : "none"}`);
+process.exit(0);

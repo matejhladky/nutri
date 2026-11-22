@@ -13,12 +13,12 @@ const clock = (iso: string) => new Date(iso).toLocaleTimeString("cs-CZ", { hour:
 
 export default function TodayPage() {
   const router = useRouter();
-  const { states, settings, points, todayCards, pending, syncError } = useStudy();
+  const { states, settings, points, todayCards, pending, syncError, retrievability, timing } = useStudy();
   const now = useMemo(() => new Date(), []);
 
   const plan = useMemo(
-    () => dailyPlan({ now, examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes }),
-    [now, settings, points, states],
+    () => dailyPlan({ now, examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
+    [now, settings, points, states, retrievability, timing],
   );
   const core = points.filter((p) => p.tier !== "C");
   const seen = core.filter((p) => states.get(p.id)?.introducedAt).length;
@@ -74,6 +74,12 @@ export default function TodayPage() {
                   <li className="flex justify-between">
                     <span className="text-muted">K zopakování</span>
                     <span className="font-medium">{plural(plan.dueReviews, "poznatek", "poznatky", "poznatků")}</span>
+                  </li>
+                )}
+                {plan.deferredReviews > 0 && (
+                  <li className="flex justify-between text-sm">
+                    <span className="text-faint">Odloženo na další dny (nevejde se do času)</span>
+                    <span className="text-faint">{plan.deferredReviews}</span>
                   </li>
                 )}
                 {newLeft > 0 && (

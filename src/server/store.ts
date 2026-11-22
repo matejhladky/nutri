@@ -5,8 +5,9 @@ import "server-only";
 import { z } from "zod";
 import { getDb, type Db } from "./db";
 import { getScheduler, type Scheduler } from "@/engine/scheduler";
-import { replay } from "@/engine/state";
+import { replay, STATE_VERSION } from "@/engine/state";
 import type { PointState, StudyEvent } from "@/engine/types";
+import type { Timing } from "@/engine/planner";
 
 const ResponseSchema = z.union([
   z.object({ type: z.literal("dontKnow") }),
@@ -78,7 +79,18 @@ export const DEFAULT_SETTINGS: Settings = { dailyMinutes: 45 };
 export async function getAllStates(): Promise<Record<string, PointState>> {
   const db = await getDb();
   const rows = await db.query<{ point_id: string; state: PointState }>("SELECT point_id, state FROM point_state");
-  return Object.fromEntries(rows.map((r) => [r.point_id, r.state]));
+  const out: Record<string, PointState> = {};
+  let s: Scheduler | null = null;
+  for (const r of rows) {
+    if (r.state.v === STATE_VERSION) out[r.point_id] = r.state;
+    else {
+      // Produced by an older reducer: rebuild from the event log (the source of truth) and re-cache.
+      s ??= await getScheduler();
+      const st = await rebuildPoint(db, s, r.point_id);
+      if (st) out[r.point_id] = st;
+    }
+  }
+  return out;
 }
 
 /** Insert events idempotently, then rebuild the cached state of every affected point. */
@@ -133,6 +145,38 @@ export async function rebuildPoint(db: Db, s: Scheduler, pointId: string): Promi
     await new Promise((r) => setTimeout(r, 5 + Math.random() * 20 * (attempt + 1)));
   }
   throw new Error(`point_state for ${pointId}: too many concurrent updates`);
+}
+
+/**
+ * Her observed timing (median minutes per exercise type, from answer durations) and review success rate, for
+ * calibrating the planner's time budget. Only types with enough samples are returned; the planner falls back to its
+ * model defaults otherwise — observed data is kept separate from model assumptions.
+ */
+export async function getObservedTiming(typeOf: (pointId: string, exerciseId: string) => string | undefined): Promise<Timing> {
+  const db = await getDb();
+  const rows = await db.query<{ payload: StudyEvent }>(
+    "SELECT payload FROM events WHERE payload->>'kind' = 'answer' ORDER BY at DESC LIMIT 400",
+  );
+  const byType = new Map<string, number[]>();
+  let reviews = 0;
+  let ok = 0;
+  for (const { payload: e } of rows) {
+    const type = e.exerciseId ? typeOf(e.pointId, e.exerciseId) : undefined;
+    // Ignore walk-aways (> 10 min) — they are pauses, not answering time.
+    if (type && e.durationMs && e.durationMs < 600_000) byType.set(type, [...(byType.get(type) ?? []), e.durationMs / 60_000]);
+    if (e.outcome && e.outcome !== "unknown") {
+      reviews++;
+      if (e.outcome === "correct") ok++;
+    }
+  }
+  const out: Timing = {};
+  for (const [type, xs] of byType) {
+    if (xs.length < 8) continue;
+    const sorted = [...xs].sort((a, b) => a - b);
+    (out as Record<string, number>)[type] = Math.round(sorted[Math.floor(sorted.length / 2)] * 100) / 100;
+  }
+  if (reviews >= 30) out.successRate = Math.round((ok / reviews) * 100) / 100;
+  return out;
 }
 
 /** Maintenance: rebuild every cached point state from the event log (the source of truth). */

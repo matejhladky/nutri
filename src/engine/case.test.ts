@@ -73,7 +73,7 @@ describe("client cases", () => {
           topic: { id: "t", title: "T", pages: [1, 2] as [number, number], summary: "Souhrn tématu.", order: 1 },
           points: [
             {
-              id: "t.p", title: "P", kind: "procedure" as const, tier: "A" as const, status: "course" as const, criteria: ["5e"],
+              id: "t.p", title: "P", kind: "procedure" as const, tier: "A" as const, safety: false, status: "course" as const, criteria: ["5e"],
               source: { pages: [1] }, explanation: "Vysvětlení.", prereqs: [], confusableWith: [], exercises: [bad],
             },
           ],

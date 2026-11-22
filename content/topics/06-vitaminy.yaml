@@ -100,6 +100,7 @@ points:
     title: Vitamin A (retinol)
     kind: fact
     tier: A
+    safety: true
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     confusableWith: [vit.d]
@@ -240,6 +241,7 @@ points:
     title: Vitamin K – srážení krve a warfarin
     kind: fact
     tier: A
+    safety: true
     criteria: [1e]
     prereqs: [vit.definice-deleni]
     confusableWith: [vit.d]
@@ -599,6 +601,7 @@ points:
     title: Hypovitaminóza, avitaminóza, hypervitaminóza
     kind: concept
     tier: A
+    safety: true
     criteria: [1e]
     prereqs: [vit.rozpustnost-dusledky]
     confusableWith: [vit.avitaminozy]

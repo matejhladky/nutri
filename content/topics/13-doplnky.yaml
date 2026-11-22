@@ -382,6 +382,7 @@ points:
     title: Rizika užívání doplňků
     kind: concept
     tier: A
+    safety: true
     criteria: [8b, 8d]
     source: { pages: [120, 128, 133, 134], anchor: "přírodní složení nemusí znamenat, že je látka bezpečná" }
     explanation: >-
@@ -445,6 +446,7 @@ points:
     title: Rozhodovací rámec před doporučením doplňku
     kind: procedure
     tier: A
+    safety: true
     criteria: [8d, 8b]
     source: { pages: [125, 126], anchor: "doplněk je až poslední krok, ne první reflex" }
     explanation: >-
@@ -478,6 +480,7 @@ points:
     title: Red flags – klient patří k lékaři
     kind: procedure
     tier: A
+    safety: true
     criteria: [8d]
     prereqs: [dpl.rozhodovaci-ramec]
     source: { pages: [126], anchor: "Kdy patří klient k lékaři, ne k doplňku" }
@@ -522,6 +525,7 @@ points:
     title: Interakce doplňků s léky
     kind: concept
     tier: A
+    safety: true
     criteria: [8d, 8b]
     prereqs: [dpl.rozhodovaci-ramec]
     source: { pages: [125], anchor: "Mezi nejznámější interakce patří vitamin K a warfarin" }
@@ -560,6 +564,7 @@ points:
     title: Doplňky v těhotenství a při kojení
     kind: procedure
     tier: A
+    safety: true
     criteria: [8d, 8a]
     source: { pages: [135, 141], anchor: "prenatální doplněk obsahuje jód a kyselinu listovou" }
     explanation: >-
@@ -845,6 +850,7 @@ points:
     title: Železo – jen při potvrzeném nedostatku
     kind: procedure
     tier: A
+    safety: true
     criteria: [8a, 8d]
     source: { pages: [134, 135], anchor: "Suplementaci železa vždy vázejte na potvrzený nedostatek z krevního obrazu" }
     explanation: >-

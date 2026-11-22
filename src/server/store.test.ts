@@ -102,3 +102,35 @@ describe("event validation", () => {
     ]);
   });
 });
+
+describe("state versioning", () => {
+  it("rebuilds cached states written by an older reducer when read", async () => {
+    const { getDb } = await import("./db");
+    const db = await getDb();
+    const e = answer("p.old", 1);
+    await store.addEvents([e]);
+    // Simulate a cache row from an older reducer version.
+    await db.query("UPDATE point_state SET state = state - 'v' WHERE point_id = $1", ["p.old"]);
+    const st = (await store.getAllStates())["p.old"];
+    const { STATE_VERSION } = await import("@/engine/state");
+    expect(st.v).toBe(STATE_VERSION);
+    expect(st.answers).toBe(1);
+  });
+});
+
+describe("observed timing", () => {
+  it("returns medians per exercise type only with enough samples, and the review success rate", async () => {
+    const evs: StudyEvent[] = Array.from({ length: 40 }, (_, i) => ({
+      ...answer("p.time", 100 + i),
+      exerciseId: i < 30 ? "c" : "x",
+      durationMs: i < 30 ? 30_000 + (i % 3) * 6_000 : 90_000,
+      outcome: i % 4 === 0 ? "wrong" : "correct",
+      grade: i % 4 === 0 ? Grade.Again : Grade.Good,
+    }));
+    await store.addEvents(evs);
+    const t = await store.getObservedTiming((_p, ex) => (ex === "c" ? "choice" : ex === "x" ? "explain" : undefined));
+    expect(t.choice).toBeCloseTo(0.6, 1); // median of 30/36/42 s
+    expect(t.explain).toBeCloseTo(1.5, 1); // 10 samples of 90 s
+    expect(t.successRate).toBeGreaterThan(0.5);
+  });
+});

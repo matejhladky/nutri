@@ -576,6 +576,7 @@ points:
     title: Výživa při diabetu 2. typu
     kind: procedure
     tier: A
+    safety: true
     note: >-
       Doplněno nad rámec skript jako bezpečnostní rámec: u DM 2 léčeného inzulinem nebo jinými léky
       snižujícími glykémii hrozí při omezení sacharidů hypoglykémie a při onemocnění ledvin je
@@ -849,6 +850,7 @@ points:
     title: Podezření na celiakii – nejdřív lékař, pak bezlepková dieta
     kind: procedure
     tier: A
+    safety: true
     status: supplementary
     note: >-
       Skripta jen obecně uvádějí, že intolerance a alergie má ideálně diagnostikovat lékař (s. 248).
@@ -1158,6 +1160,7 @@ points:
     title: Warfarin a vitamin K
     kind: procedure
     tier: A
+    safety: true
     status: course-disputed
     note: >-
       Skripta (s. 243) radí omezit nejbohatší zdroje vitaminu K a jako příklad uvádějí růžičkovou
@@ -1206,6 +1209,7 @@ points:
     title: Hypoglykémie a hyperglykémie – první pomoc
     kind: procedure
     tier: A
+    safety: true
     note: >-
       Pravidlo pro bezvědomí (nic ústy, volat 155) a pokyn volat 155, když se stav nezlepší, jsou doplněny
       nad rámec skript jako standardní první pomoc; skripta (s. 250) uvádějí jen podání rychle
@@ -1359,6 +1363,7 @@ points:
     title: Kde končí kompetence výživového poradce
     kind: procedure
     tier: A
+    safety: true
     criteria: [7g, 3c]
     prereqs: [prx.hranice-kompetenci]
     source: { pages: [238], anchor: "Tato omezení jsou vysoce individuální a nutriční intervence patří" }

@@ -157,6 +157,8 @@ export const Point = z.object({
   kind: z.enum(["fact", "concept", "comparison", "procedure"]),
   /** A = core / criterion-critical, B = useful, C = not scheduled in the main flow. */
   tier: z.enum(["A", "B", "C"]),
+  /** Wrong knowledge here could harm a client, or the right action is referral. Raises planning priority. */
+  safety: z.boolean().default(false),
   status: PointStatus.default("course"),
   criteria: z.array(z.string()).min(1),
   source: SourceRef,

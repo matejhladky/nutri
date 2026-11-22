@@ -381,6 +381,7 @@ points:
     title: RED-S a nízká energetická dostupnost
     kind: concept
     tier: B
+    safety: true
     criteria: [7d, 10c]
     confusableWith: [en.energeticka-dostupnost]
     source: { pages: [211], anchor: "nemusí být spojen s podváhou ani s poruchou příjmu potravy" }

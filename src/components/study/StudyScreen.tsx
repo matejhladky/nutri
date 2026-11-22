@@ -16,7 +16,7 @@ type Done = Extract<NextCard, { kind: "done" }>;
 type ScreenState = { session: StoredSession; done: Done | null };
 
 export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal: boolean }) {
-  const { getStates, settings, points, record, retrievability, todayCards, syncError, states } = useStudy();
+  const { getStates, settings, points, record, retrievability, todayCards, syncError, states, timing } = useStudy();
   const exitHref = mode.kind === "topic" ? `/temata/${mode.topicId}` : "/";
   const pointsById = useMemo(() => new Map(points.map((p) => [p.id, p])), [points]);
 
@@ -39,6 +39,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       beyondGoal: session.beyondGoal,
       dailyMinutes: settings.dailyMinutes,
       retrievability,
+      timing,
     });
     if (n.kind === "done") return { session: { ...session, current: null }, done: n };
     return { session: { ...session, current: { next: n, seed: newSeed(), shownAt: now.toISOString() } }, done: null };
@@ -62,8 +63,8 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const point = current ? pointsById.get(current.next.pointId) : undefined;
 
   const plan = useMemo(
-    () => dailyPlan({ now: new Date(), examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes }),
-    [settings, points, states],
+    () => dailyPlan({ now: new Date(), examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
+    [settings, points, states, retrievability, timing],
   );
 
   const onIntroDone = (skipped: boolean) => {

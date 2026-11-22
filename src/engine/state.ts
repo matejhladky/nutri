@@ -4,7 +4,11 @@
  * on the server (authoritative).
  */
 import { review, type Scheduler } from "./scheduler";
+import { dayKey } from "./time";
 import type { PointState, StudyEvent } from "./types";
+
+/** Bump when PointState's shape or the reducer's logic changes: cached states are then rebuilt from events. */
+export const STATE_VERSION = 2;
 
 export function emptyState(pointId: string): PointState {
   return {
@@ -18,6 +22,9 @@ export function emptyState(pointId: string): PointState {
     lastExerciseId: null,
     exerciseCounts: {},
     recent: [],
+    failDay: null,
+    failsThatDay: 0,
+    v: STATE_VERSION,
   };
 }
 
@@ -30,6 +37,7 @@ export function applyEvent(
     ? { ...prev, exerciseCounts: { ...prev.exerciseCounts }, recent: [...prev.recent] }
     : emptyState(ev.pointId);
 
+  st.v = STATE_VERSION;
   if (ev.kind === "intro") {
     st.introducedAt ??= ev.at;
     return st;
@@ -48,6 +56,11 @@ export function applyEvent(
     st.exerciseCounts[ev.exerciseId] = (st.exerciseCounts[ev.exerciseId] ?? 0) + 1;
   }
   st.recent = [...st.recent, ev.outcome].slice(-5);
+  if (ev.outcome === "wrong" || ev.outcome === "unknown") {
+    const d = dayKey(ev.at);
+    st.failsThatDay = st.failDay === d ? (st.failsThatDay ?? 0) + 1 : 1;
+    st.failDay = d;
+  }
   return st;
 }
 

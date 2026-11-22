@@ -12,6 +12,7 @@ import type { PointState, StudyEvent } from "@/engine/types";
 import { dayKey } from "@/engine/time";
 import { visiblePoints } from "@/lib/content";
 import type { PointWithTopic } from "@/content/schema";
+import type { Timing } from "@/engine/planner";
 import { enqueue, flush, pendingEvents, UnauthorizedError } from "./outbox";
 
 export type Settings = { dailyMinutes: number };
@@ -28,6 +29,7 @@ type Store = {
   pending: number;
   syncError: boolean;
   todayCards: number;
+  timing: Timing;
   record: (ev: StudyEvent) => void;
   saveSettings: (patch: Partial<Settings>) => Promise<void>;
   report: (r: Report & { message: string }) => Promise<void>;
@@ -89,6 +91,8 @@ export function StudyProvider({ children }: { children: ReactNode }) {
   }, []);
   const [settings, setSettings] = useState<Settings>({ dailyMinutes: 45 });
   const [reports, setReports] = useState<Report[]>([]);
+  /** Her observed timing (server-computed); empty until enough answers exist — the planner then uses its defaults. */
+  const [timing, setTiming] = useState<Timing>({});
   const [pending, setPending] = useState(0);
   const [syncError, setSyncError] = useState(false);
   const [todayCards, setTodayCards] = useState(0);
@@ -133,7 +137,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
         const res = await fetch("/api/state", { cache: "no-store" });
         if (res.status === 401) return toLogin();
         if (!res.ok) throw new Error(`Server odpověděl ${res.status}`);
-        const data = (await res.json()) as { states: Record<string, PointState>; settings: Settings; reports: Report[] };
+        const data = (await res.json()) as { states: Record<string, PointState>; settings: Settings; reports: Report[]; timing?: Timing };
         if (cancelled) return;
         const map = new Map(Object.entries(data.states));
         // Apply events not yet confirmed by the server (offline answers, closed tab mid-sync).
@@ -143,6 +147,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
         setStates(() => map);
         setSettings(data.settings);
         setReports(data.reports);
+        setTiming(data.timing ?? {});
         setTodayCards(readToday());
         setPending(pendingEvents().length);
         setStatus("ready");
@@ -223,6 +228,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
     pending,
     syncError,
     todayCards,
+    timing,
     record,
     saveSettings,
     report,

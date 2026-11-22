@@ -89,10 +89,17 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
    ≥ 2 min. Nothing is shown early: when nothing is due the session stops ("Pro tuhle chvíli hotovo", next time
    shown); `dailyPlan` reports `laterToday` / `nextLaterAt` separately from what is due now.
 2. Due reviews (lowest retrievability first) interleaved with new points (≈ 1 new per k reviews).
-3. New points: per topic in authored order (separately per tier), prerequisites respected; across topics ranked by
-   `tier weight × (0.5 + uncovered fraction of primary criterion)` → breadth across criteria.
-4. Daily new target = min(pace, budget): pace = remaining A+B ÷ (days left − 2); final 2 days only missing tier A.
-   Budget = (daily minutes − start-of-day review load × 0.5 min) ÷ 1.5 min, at least 10.
+3. New points: every prerequisite-ready point competes; score = `tier weight × (0.5 + uncovered fraction of primary
+   criterion) × contrast × priority` (`src/engine/priority.ts`: safety ×3 — hand-tagged `safety: true`; model case
+   ×2.5; foundation ×(1 + 0.06·dependants)). Prerequisites inherit the score of what they unlock. Ranking for review:
+   `reports/priority.md`.
+4. **Time budget in minutes.** Per-card minutes by exercise type (`DEFAULT_TIMING`, model estimates; replaced by her
+   observed medians and review success rate from `/api/state` once enough answers exist). While new material remains
+   (and > 2 days left), 40 % of the daily minutes are reserved for new points; due reviews fill the rest by value per
+   minute (priority × (1 − R) ÷ cost) — the rest is **deferred** (shown on Dnes, available via "continue").
+   New target = min(pace, whole-day budget ÷ cost per new point); pace = remaining A+B ÷ (days left − 2); the final
+   two days only missing tier A. Reviews already done today count against the budget, so targets stay stable.
+   After **2 failures in one day** a point rests until tomorrow (no relearning loops).
 5. Confusable partners (symmetric) are introduced close together (×1.2 when a partner is known); feedback contrasts them.
    Never two consecutive cards from the same topic when an alternative exists. Topic mode = same engine filtered to one
    topic, no daily cap, then extra practice on weakest points.
@@ -103,8 +110,9 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
    learning steps and not answered within the last hour. Practice answers are normal FSRS reviews (FSRS handles
    early reviews; measured effect on review-state cards is negligible).
 
-**Simulation** (`pnpm simulate 500 14 45`): steady ~40 min/day, no final spike, mean predicted recall on exam day ≈ 0.93,
-but only ~240 new points fit in 14 days at 45 min/day (≈ 320 at 60 min). ⇒ keep the bank focused (≈ 250–300 tier A).
+**Simulation** (`pnpm simulate [days] [min] [accuracy] [--detail]`, `pnpm simulate matrix`): real bank, per-type
+timing, learner-strength variants; reports minutes/day, tier-A / safety / case coverage and which objectives are
+omitted. All outputs are **model estimates** (FSRS grading its own predictions), not observed learning.
 
 ## Content pipeline
 
@@ -134,4 +142,7 @@ until reviewed.
 | 2026-11-22 | Pre-exam sweep by predicted recall at the exam; case time weighted | last days = consolidation, honest minutes |
 | 2026-11-22 | No early retrieval; extra practice only past learning steps and ≥ 1 h since last answer | reproduced immediate repeats; meaningful spacing over "never empty" |
 | 2026-11-22 | Answered state + case steps in the stored session; version-checked cache writes; per-event validation | reproduced duplicate grading on reload, lost case work, stale-cache race, queue blocking |
+| 2026-11-22 | Transparent priority (safety, case, foundation) instead of a binary "essential" set | review: safety/case points were starved; owner asked for a ranking |
+| 2026-11-22 | Minutes-based budget, 40 % reserved for new, value-per-minute review selection, deferral | honest time model showed reviews crowding out coverage and overruns |
+| 2026-11-22 | Max 2 failures per point per day; observed timing calibrates the model; STATE_VERSION lazy rebuild | relearning loops; simulated ≠ observed |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

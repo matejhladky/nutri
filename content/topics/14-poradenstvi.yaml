@@ -477,6 +477,7 @@ points:
     title: Komu bioimpedanci nedělat
     kind: fact
     tier: A
+    safety: true
     criteria: [3b]
     prereqs: [por.bia-princip]
     source: { pages: [150, 151], anchor: "lidé s kardiostimulátorem nebo ICD" }

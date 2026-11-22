@@ -16,7 +16,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5e, 6b, 7b]
-    prereqs: [en.bmr-mifflin, en.neat, en.eat, en.tef, en.tdee-vypocet, jid.redukce-prijem]
+    prereqs: [en.tdee-vypocet, jid.redukce-prijem]
     source: { pages: [169, 170, 171, 172, 180], anchor: "nesnižovat příjem skokově o více než přibližně 500 kcal" }
     explanation: >-
       Postup u redukce: 1) BMR podle Mifflin-St Jeor (složení těla neznáš), 2) NEAT = BMR × koeficient
@@ -116,7 +116,7 @@ points:
     kind: procedure
     tier: A
     criteria: [6b, 5e]
-    prereqs: [en.tdee-vypocet, en.tdee-pal]
+    prereqs: [en.tdee-pal]
     source: { pages: [172], anchor: "vhodná zejména pro nesportující klienty nebo naopak profesionální sportovce" }
     explanation: >-
       Skripta uvádějí dva výpočty TDEE. Po složkách (BMR + NEAT + EAT + TEF) – vhodný hlavně pro
@@ -219,7 +219,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5e, 3b]
-    prereqs: [en.bmr-mifflin, en.bmr-katch, en.bmr-rovnice-volba, en.bmr-metody, por.bia-zasady]
+    prereqs: [en.bmr-mifflin, en.bmr-katch]
     source: { pages: [169, 151], anchor: "Pokud je k dispozici dostatečně spolehlivý údaj o beztukové hmotě" }
     explanation: >-
       Se spolehlivě změřeným složením těla počítej BMR rovnicí Katch-McArdle: FFM = hmotnost × (1 − % tuku
@@ -307,7 +307,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5e]
-    prereqs: [en.bmr-harris, en.bmr-mifflin, en.bmr-rovnice-volba, en.pod-bmr, por.bmi]
+    prereqs: [en.bmr-rovnice-volba]
     source: { pages: [169, 170, 172], anchor: "Nejstarším výpočtem je Harris-Benedictova rovnice" }
     explanation: >-
       Když složení těla neznáš, skripta uvádějí pro BMR rovnici Mifflin-St Jeor; Harris-Benedict je
@@ -391,7 +391,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5c, 5e, 7d]
-    prereqs: [en.tdee-pal, jid.nabirani, jid.makra-postup, spo.faze]
+    prereqs: [jid.makra-postup, jid.nabirani]
     note: >-
       Bílkoviny pro sportovce uvádějí skripta v několika rozmezích podle situace (viz spo.bilkoviny):
       obecně pro sportující asi 4× týdně 1,4–2,0 g/kg (ISSN, s. 204), v tabulce fází přípravy pro
@@ -498,7 +498,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5e, 5b, 3b]
-    prereqs: [por.bmi, por.whr, por.obvod-pasu, por.tuk-normy, por.easo-obezita, prx.vstupni-mereni]
+    prereqs: [por.bmi, por.whr]
     source: { pages: [152, 153, 158, 254], anchor: "Výsledek slouží pouze k orientačním účelům, nelze jej považovat za zdravotně závazný" }
     explanation: >-
       Spočítej BMI a WHR, zhodnoť pas a % tuku. BMI: pod 18,5 podváha, 18,5–24,9 norma, 25–29,9
@@ -581,7 +581,7 @@ points:
     kind: procedure
     tier: A
     criteria: [5d, 5c, 7c]
-    prereqs: [jid.makra-postup, jid.rozlozeni-energie, prx.druha-konzultace]
+    prereqs: [jid.makra-postup]
     source: { pages: [181, 182, 254], anchor: "je dobré vycházet z dosavadního stravování klienta a myslet na pravidelnost" }
     explanation: >-
       Se známým cílovým příjmem: 1) bílkoviny v g/kg (× 4 kcal), 2) tuky 25–35 % energie (: 9),
@@ -656,8 +656,9 @@ points:
     title: Energetická dostupnost u běžkyně
     kind: procedure
     tier: A
+    safety: true
     criteria: [7d, 3c, 5e]
-    prereqs: [en.energeticka-dostupnost, en.eat, spo.red-s, por.tuk-normy]
+    prereqs: [en.energeticka-dostupnost]
     source: { pages: [173, 171, 211], anchor: "varovné signály RED-S patří vždy do rukou lékaře nebo nutričního terapeuta" }
     explanation: >-
       Energetická dostupnost (ED) = (denní příjem − energie vydaná na pohyb) / FFM. Postup: FFM =
@@ -746,7 +747,7 @@ points:
     kind: procedure
     tier: A
     criteria: [7f, 5c, 7e]
-    prereqs: [obd.senior-zmeny, obd.senior-bilkoviny, obd.senior-pitny-rezim, pit.potreba]
+    prereqs: [obd.senior-bilkoviny]
     source: { pages: [227, 228, 174], anchor: "rozložte cílový příjem bílkovin rovnoměrně do všech denních jídel" }
     explanation: >-
       Ve stáří klesá energetická potřeba, ale potřeba bílkovin roste: zdravý senior 1,0–1,2 g/kg/den,
@@ -824,8 +825,9 @@ points:
     title: Varovné příznaky ve vstupním dotazníku
     kind: procedure
     tier: A
+    safety: true
     criteria: [3c]
-    prereqs: [prx.hranice-kompetenci, prx.red-flags-lekar, nem.dm-akutni-stavy]
+    prereqs: [prx.red-flags-lekar]
     source: { pages: [250, 205, 206], anchor: "V tomto případě je nutná okamžitá hospitalizace" }
     explanation: >-
       Ve vstupním rozhovoru hledej příznaky, které patří lékaři. Žízeň, časté močení, rozmazané vidění,
@@ -898,8 +900,9 @@ points:
     title: Podezření na poruchu příjmu potravy při redukci
     kind: procedure
     tier: A
+    safety: true
     criteria: [3c, 10c]
-    prereqs: [obd.ppp-znaky, obd.ppp-role-poradce, prx.ppp-podezreni]
+    prereqs: [obd.ppp-znaky]
     source: { pages: [230, 231, 232], anchor: "U podezření na PPP je vždy na místě doporučit vyšetření u psychiatra" }
     explanation: >-
       Varovné znaky PPP posuzuj v kombinaci: hubnutí a skrývání postavy, vynechávání společných jídel,
@@ -978,7 +981,6 @@ points:
     tier: A
     status: supplementary
     criteria: [11b]
-    prereqs: [prx.ostychavy, prx.agresivni, prx.precitliveny]
     note: >-
       Skripta typy klientů nerozebírají; uvádějí jen význam neverbální komunikace (s. 257), motivačního
       rozhovoru (s. 256) a hledání praktických překážek místo mravního apelu (s. 255). Postupy jsou

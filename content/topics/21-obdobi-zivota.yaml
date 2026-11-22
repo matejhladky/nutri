@@ -168,6 +168,7 @@ points:
     title: Klíčové mikroživiny v těhotenství
     kind: fact
     tier: A
+    safety: true
     status: course-disputed
     note: >-
       Skripta jsou nejednotná u železa a jódu. Tabulka (s. 218) uvádí železo 16 mg/den, stejnou hodnotu
@@ -222,6 +223,7 @@ points:
     title: Kofein, alkohol a rizikové potraviny v těhotenství
     kind: fact
     tier: A
+    safety: true
     status: course-disputed
     note: >-
       Seznam „co nejíst“ ve skriptech (s. 218–219) obsahuje i vyhýbání se alergenům u alergiček a tvrzení,
@@ -768,6 +770,7 @@ points:
     title: Mentální anorexie
     kind: concept
     tier: A
+    safety: true
     criteria: [10c]
     confusableWith: [obd.bulimie]
     source: { pages: [230], anchor: "klasickým diagnostickým vodítkem (podle ICD-10) je BMI 17,5 a nižší" }
@@ -805,6 +808,7 @@ points:
     title: Mentální bulimie
     kind: concept
     tier: A
+    safety: true
     criteria: [10c]
     confusableWith: [obd.anorexie, obd.prejidani]
     source: { pages: [230], anchor: "jedinci s bulimií mívají postavu normální nebo s mírnou nadváhou" }
@@ -862,6 +866,7 @@ points:
     title: Varovné znaky poruchy příjmu potravy
     kind: concept
     tier: A
+    safety: true
     criteria: [10c, 3c]
     prereqs: [obd.anorexie]
     source: { pages: [231], anchor: "všímejte si kombinace více znaků najednou" }
@@ -907,6 +912,7 @@ points:
     title: Role a limity poradce u PPP
     kind: procedure
     tier: A
+    safety: true
     note: >-
       Věta o akutním ohrožení (lékař / 155, zapojení rodičů u nezletilé) je bezpečnostní doplněk nad
       rámec skript.

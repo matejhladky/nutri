@@ -127,17 +127,32 @@ browser (Playwright, mobile + desktop): reload after answering, reload mid-case,
 
 Known limits: the Neon path is still unverified until deployment; cross-device: each device keeps its own session.
 
+## R2 — Planner: cover what matters ✅ (2026-11-22)
+
+Done: transparent priority (30 hand-tagged safety points, cases, foundation; `reports/priority.md`); case
+prerequisites cut to 1–2; tier C no longer uses the daily new target; minutes-based budget with per-type timing,
+expected relearning, 40 % reserved for new material, value-per-minute review selection and visible deferral; max two
+failures per point per day; calibration from her observed medians/success rate (server, ≥ 8 samples per type /
+≥ 30 reviews); state versioning with lazy rebuild; simulation v2 with matrix. Also fixed two bugs found on the way
+(new target growing during the day; first-retrieval wait livelock).
+
+Simulation matrix (11 days; MODEL ESTIMATES — FSRS grading its own predictions; to be checked against her data):
+
+| daily plan | typical learner: minutes/day · tier A · safety · cases | weaker (−20 % accuracy) |
+|---|---|---|
+| 30 min | 23–45 · 71/297 · 29/30 · 8/12 | 31–50 · 46/297 · 23/30 · 6/12 |
+| 45 min | 36–52 (one day 69) · 118/297 · 30/30 · 11/12 | 40–73 · 86/297 · 30/30 · 9/12 |
+| 60 min | 44–70 (one day 89) · 164/297 · 30/30 · 12/12 | 49–100 · 124/297 · 30/30 · 11/12 |
+
+Honest compromise: with realistic timing only ~40 % (45 min) to ~55 % (60 min) of tier A can be *introduced* in
+11 days; safety points and cases come first, the rest is spread proportionally across criteria. Material she already
+knows from the lectures will be cheaper once R3 (ask first) is in — not modelled here. Overruns for a weaker learner
+remain until calibration from her real success rate kicks in.
+
 ## Next (decisions of 2026-11-22)
 
-Deploy as soon as R2-min and the safety audit are done; the rest continues after deployment (content fixes redeploy,
-progress is kept).
+Owner decision: no deployment until the whole roadmap is finished.
 
-- **R2 — Planner: cover what matters.** Transparent *priority ranking* (not a binary flag, no fixed count), grounded in
-  the official competencies, foundational importance, practical relevance and safety; I propose it, the owner reviews.
-  Cases unlock with fewer prerequisites. Fix tier-C counting toward the daily target. Simulation v2: per-type answer
-  times, learner-strength variants, report *which* objectives are omitted. Targets are reported, not hard-coded;
-  simulated estimates are kept separate from observed outcomes, and timing is calibrated from her real `durationMs`
-  once available. **R2-min before deployment:** ranking + case prerequisites + tier-C fix.
 - **R4a — Safety audit before deployment.** Tier-A health/safety content (3c, 7h, 7f, 8b, 8d, 10c, red flags,
   supplements, pregnancy) checked against primary sources; disputed notes in the three-part form (script · current
   evidence/regulation · what is actually known about the exam — never claiming the examiner's answer without

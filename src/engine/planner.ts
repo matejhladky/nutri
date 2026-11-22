@@ -11,6 +11,7 @@
 import type { PointWithTopic, Exercise } from "@/content/schema";
 import type { PointState } from "./types";
 import { dayKey, daysUntilExam } from "./time";
+import { computePriorities, type Priority } from "./priority";
 
 export type SessionItem = { pointId: string; kind: "intro" | "exercise"; isNew: boolean };
 
@@ -26,7 +27,20 @@ export type PlannerInput = {
   beyondGoal: boolean;
   dailyMinutes: number;
   retrievability: (st: PointState, now: Date) => number;
+  /** Observed minutes per exercise type (her own medians, when enough data); defaults otherwise. */
+  timing?: Timing;
 };
+
+export type Timing = Partial<Record<Exercise["type"] | "intro", number>> & {
+  /** Her observed success rate on reviews (0–1), when enough data: sets the expected relearning cost. */
+  successRate?: number;
+};
+
+/**
+ * Default minutes per card by exercise type — model ESTIMATES (reading, answering, feedback), replaced by her observed
+ * medians once available. The planner's time budget is built from these, so they matter for honest daily targets.
+ */
+export const DEFAULT_TIMING: Required<Omit<Timing, "successRate">> = { intro: 0.6, choice: 0.5, reveal: 0.5, explain: 1.4, numeric: 1.3, case: 4 };
 
 export type NextCard =
   | { kind: "intro"; pointId: string }
@@ -36,7 +50,12 @@ export type NextCard =
 
 export type DailyPlan = {
   daysLeft: number | null;
+  /** Due reviews selected for today's goal (still to do). */
   dueReviews: number;
+  /** Due reviews that do not fit today's time budget — postponed (still available via "continue"). */
+  deferredReviews: number;
+  /** Ids of the selected due reviews (the planner shows only these in the daily flow). */
+  selectedReviewIds: string[];
   /** First retrievals and learning steps due NOW. */
   learningDue: number;
   /** Learning steps / first retrievals scheduled for later today (not part of "now"). */
@@ -50,6 +69,10 @@ export type DailyPlan = {
   goalReached: boolean;
 };
 
+/** After this many failures on one study day a point rests until tomorrow (no same-day relearning loops). */
+export const MAX_FAILS_PER_DAY = 2;
+const restingToday = (st: PointState | undefined, today: string) => !!st && st.failDay === today && (st.failsThatDay ?? 0) >= MAX_FAILS_PER_DAY;
+
 /** First retrieval after an intro: at least this many other cards AND this much time in between. */
 export const INTRO_GAP = 3;
 export const FIRST_RETRIEVAL_DELAY_MS = 2 * 60_000;
@@ -58,45 +81,73 @@ export const FIRST_RETRIEVAL_DELAY_MS = 2 * 60_000;
  * never repeats a point answered within this window — scheduled spacing is not short-circuited.
  */
 export const PRACTICE_MIN_GAP_MS = 60 * 60_000;
-const MIN_PER_REVIEW = 0.5;
-const MIN_PER_NEW = 1.5;
 const TIER_WEIGHT = { A: 1, B: 0.4, C: 0 } as const;
 const CONTRAST_BONUS = 1.2;
 
 const isIntroduced = (st: PointState | undefined) => !!st?.introducedAt;
-const MIN_PER_CASE = 3;
-const isCasePoint = (p: PointWithTopic) => p.exercises.every((e) => e.type === "case" || e.type === "explain") && p.exercises.some((e) => e.type === "case");
-const reviewMinutes = (p: PointWithTopic) => (isCasePoint(p) ? MIN_PER_CASE : MIN_PER_REVIEW);
+
+const priorityCache = new WeakMap<PointWithTopic[], Map<string, Priority>>();
+/** Priorities depend only on the content, so compute once per points array. */
+function prioritiesFor(points: PointWithTopic[]): Map<string, Priority> {
+  let m = priorityCache.get(points);
+  if (!m) priorityCache.set(points, (m = computePriorities(points)));
+  return m;
+}
+const minutesFor = (t: Timing | undefined, k: keyof typeof DEFAULT_TIMING) => t?.[k] ?? DEFAULT_TIMING[k];
+/** Minutes for one retrieval of a point (the exercise the rotation would pick). */
+const cardMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing) => minutesFor(t, pickExercise(p.exercises, st).type);
+/** Expected share of retrievals that fail and cost an extra relearning retrieval the same day (model assumption). */
+const RELEARN_NEW = 0.25;
+/**
+ * While new material remains (and outside the final two days), this share of the daily minutes is reserved for it;
+ * due reviews fill the rest, best value per minute first. Without it, accumulating reviews crowd out coverage.
+ */
+export const NEW_SHARE = 0.4;
+/** Expected minutes for a due review incl. the relearning step a lapse adds: card × (1 + P(fail)), P(fail) ≈ 1 − R. */
+const reviewMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing, r = 0.9) =>
+  cardMinutes(p, st, t) * (2 - Math.min(r, t?.successRate ?? 1));
+/** Expected minutes to learn a new point today: intro (or pretest) + first retrieval + one learning step (+ relearning). */
+const newMinutes = (p: PointWithTopic, t?: Timing) => minutesFor(t, "intro") + 2 * cardMinutes(p, undefined, t) * (1 + RELEARN_NEW);
 
 function eligibleForDaily(p: PointWithTopic) {
   return p.tier !== "C";
 }
 
 /** Daily goal: due reviews + paced number of new points. */
-export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyondGoal" | "retrievability">): DailyPlan {
-  const { now, examDate, points, states, dailyMinutes } = input;
+export function dailyPlan(
+  input: Omit<PlannerInput, "session" | "mode" | "beyondGoal" | "retrievability"> & Partial<Pick<PlannerInput, "retrievability">>,
+): DailyPlan {
+  const { now, examDate, points, states, dailyMinutes, timing } = input;
+  const prio = prioritiesFor(points);
+  const due: { id: string; minutes: number; value: number }[] = [];
+  let doneReviewMinutes = 0;
+  let learningMinutes = 0;
   const today = dayKey(now);
-  let dueReviews = 0;
   let learningDue = 0;
-  // Minutes rather than counts: a client case takes several minutes, a flashcard half a minute.
-  let dueMinutes = 0;
   let laterToday = 0;
+  let newCostSum = 0;
   let nextLater: number | null = null;
-  let startLoadMinutes = 0;
   let newToday = 0;
   let remainingA = 0;
   let remainingB = 0;
   for (const p of points) {
     const st = states.get(p.id);
     const introducedToday = !!st?.introducedAt && dayKey(st.introducedAt) === today;
-    if (introducedToday) newToday++;
+    // Tier C (only ever introduced from Témata) does not use up the daily target of new A/B points.
     if (!eligibleForDaily(p)) continue;
+    if (introducedToday) newToday++;
     if (!isIntroduced(st)) {
       if (p.tier === "A") remainingA++;
       else remainingB++;
+      newCostSum += newMinutes(p, timing);
       continue;
     }
+    // Any earlier-learned point already answered today used review time — whatever its state now (a failed review
+    // sits in relearning). Counting it keeps today's new target stable while she works through the day.
+    const answeredToday = !introducedToday && !!st?.lastAnsweredAt && dayKey(st.lastAnsweredAt) === today;
+    if (answeredToday) doneReviewMinutes += cardMinutes(p, st, timing);
     const shortStep = st?.card && (st.card.scheduleStatus === "learning" || st.card.scheduleStatus === "relearning");
+    if (restingToday(st, today)) continue; // failed twice today: back tomorrow, not part of today's plan
     if (!st?.card || (shortStep && dayKey(st.card.dueAt) <= today)) {
       const dueAt = st?.card ? Date.parse(st.card.dueAt) : Date.parse(st!.introducedAt!) + FIRST_RETRIEVAL_DELAY_MS;
       if (dueAt <= now.getTime()) learningDue++;
@@ -104,16 +155,16 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
         laterToday++;
         if (nextLater === null || dueAt < nextLater) nextLater = dueAt;
       }
-      dueMinutes += reviewMinutes(p);
+      // Learning steps of points introduced today are already part of their new-point cost.
+      if (!introducedToday) learningMinutes += cardMinutes(p, st, timing);
       continue;
     }
     if (introducedToday) continue;
     if (dayKey(st.card.dueAt) <= today) {
-      dueReviews++;
-      dueMinutes += reviewMinutes(p);
-      startLoadMinutes += reviewMinutes(p);
-    } else if (st?.lastAnsweredAt && dayKey(st.lastAnsweredAt) === today) {
-      startLoadMinutes += reviewMinutes(p);
+      const r = input.retrievability ? input.retrievability(st, now) : 0.9;
+      const minutes = reviewMinutes(p, st, timing, r);
+      // Value per minute: how much is at stake (priority × chance it is forgotten) for the time it costs.
+      due.push({ id: p.id, minutes, value: ((prio.get(p.id)?.factor ?? 1) * (TIER_WEIGHT[p.tier] || 0.1) * (1.05 - r)) / minutes });
     }
   }
   const daysLeft = examDate ? daysUntilExam(now, examDate) : null;
@@ -123,13 +174,32 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   if (daysLeft === null) paceTarget = Math.ceil((remainingNew + newToday) / 14);
   else if (daysLeft > 2) paceTarget = Math.ceil((remainingNew + newToday) / (daysLeft - 2));
   else paceTarget = newToday + remainingA; // final days: only tier A still missing
-  // Budget uses the review load at the START of the day, so finishing reviews doesn't unlock extra new points.
-  const budgetTarget = Math.max(10, Math.floor((dailyMinutes - startLoadMinutes) / MIN_PER_NEW));
-  const newTarget = Math.max(0, Math.min(paceTarget, budgetTarget));
-  const estimatedMinutes = Math.round(dueMinutes + Math.max(0, newTarget - newToday) * MIN_PER_NEW);
+  // Reviews: select the most valuable per minute until the review budget is used. Minutes of reviews already done
+  // today count against it, so the selection (and the new target) stay stable while she works through the day.
+  const reserveForNew = remainingNew > 0 && (daysLeft === null || daysLeft > 2);
+  const reviewBudget = dailyMinutes * (reserveForNew ? 1 - NEW_SHARE : 1);
+  let left = reviewBudget - doneReviewMinutes;
+  const selected: typeof due = [];
+  for (const d of [...due].sort((a, b) => b.value - a.value)) {
+    if (d.minutes <= left || selected.length === 0) {
+      selected.push(d);
+      left -= d.minutes;
+    }
+  }
+  const selectedMinutes = selected.reduce((n, d) => n + d.minutes, 0);
+  // New points get what remains of the day (≥ the reserved share while new material remains).
+  const perNew = remainingNew ? newCostSum / remainingNew : minutesFor(timing, "intro") + 2 * minutesFor(timing, "choice") * (1 + RELEARN_NEW);
+  // Whole-day number of new points from minutes that stay constant during the day (done + selected reviews).
+  const newMinutesForDay = dailyMinutes - doneReviewMinutes - selectedMinutes - learningMinutes;
+  const budgetTarget = Math.floor(Math.max(0, newMinutesForDay) / perNew);
+  const newTarget = Math.max(0, Math.min(paceTarget, Math.max(budgetTarget, newToday)));
+  const estimatedMinutes = Math.round(selectedMinutes + learningMinutes + Math.max(0, newTarget - newToday) * perNew);
+  const dueReviews = selected.length;
   return {
     daysLeft,
     dueReviews,
+    deferredReviews: due.length - selected.length,
+    selectedReviewIds: selected.map((d) => d.id),
     learningDue,
     laterToday,
     nextLaterAt: nextLater === null ? null : new Date(nextLater).toISOString(),
@@ -153,17 +223,20 @@ export function nextCard(input: PlannerInput): NextCard {
 
   // ---- classify introduced points ----
   type Cand = { p: PointWithTopic; st: PointState; due: number };
-  const learningReady: Cand[] = []; // short step due now, or first retrieval after the intro gap
+  const learningReady: Cand[] = []; // short step due now, or first retrieval after the intro gap and delay
+  const learningSoon: Cand[] = []; // first retrieval whose delay has passed but with < INTRO_GAP cards in between
   const learningPending: Cand[] = []; // due later today / intro too recent
   const reviews: Cand[] = [];
   for (const p of inScope) {
     const st = states.get(p.id);
     if (!st?.introducedAt) continue;
+    if (restingToday(st, today)) continue;
     if (!st.card) {
       const idx = introIndex.get(p.id);
       const due = Date.parse(st.introducedAt) + FIRST_RETRIEVAL_DELAY_MS;
-      const ready = (idx === undefined || session.length - 1 - idx >= INTRO_GAP) && due <= now.getTime();
-      (ready ? learningReady : learningPending).push({ p, st, due });
+      const gapOk = idx === undefined || session.length - 1 - idx >= INTRO_GAP;
+      // Time is the spacing rule; the card gap only orders (interleaving) — never a reason to wait forever.
+      (due > now.getTime() ? learningPending : gapOk ? learningReady : learningSoon).push({ p, st, due });
       continue;
     }
     if (dayKey(st.card.dueAt) > today) continue;
@@ -188,8 +261,11 @@ export function nextCard(input: PlannerInput): NextCard {
   // In the final two days "continue" means the sweep below, not more new material.
   const finalDays = plan.daysLeft !== null && plan.daysLeft <= 2;
   const newAllowed = mode.kind === "topic" || (input.beyondGoal && !finalDays) || plan.newToday < plan.newTarget;
-  const newCand = newAllowed ? pickNew(inScope, states, lastTopic, mode.kind === "topic") : null;
-  const sortedReviews = notJustShown(reviews).sort(
+  const newCand = newAllowed ? pickNew(inScope, states, lastTopic, mode.kind === "topic", prioritiesFor(input.points)) : null;
+  // Daily flow: only the reviews selected for today's budget; "continue" and topic practice may take all due ones.
+  const selectedIds = new Set(plan.selectedReviewIds);
+  const reviewPool = mode.kind === "daily" && !input.beyondGoal ? reviews.filter((c) => selectedIds.has(c.p.id)) : reviews;
+  const sortedReviews = notJustShown(reviewPool).sort(
     (a, b) => input.retrievability(a.st, now) - input.retrievability(b.st, now) || a.due - b.due,
   );
   const reviewPick = sortedReviews.find((c) => c.p.topicId !== lastTopic) ?? sortedReviews[0];
@@ -197,7 +273,7 @@ export function nextCard(input: PlannerInput): NextCard {
   if (reviewPick && newCand) {
     // Roughly one new point per k reviews, k = due reviews / new points still planned today.
     const newRemaining = Math.max(1, plan.newTarget - plan.newToday);
-    const k = Math.max(1, Math.round(reviews.length / newRemaining));
+    const k = Math.max(1, Math.round(reviewPool.length / newRemaining));
     return cardsSinceLastNew(session) >= k ? { kind: "intro", pointId: newCand.id } : exercise(reviewPick.p, reviewPick.st, "review");
   }
   if (reviewPick) return exercise(reviewPick.p, reviewPick.st, "review");
@@ -213,6 +289,11 @@ export function nextCard(input: PlannerInput): NextCard {
   } else if (input.beyondGoal) {
     const sweep = sweepPick(input, inScope, states);
     if (sweep) return exercise(sweep.p, sweep.st, "practice");
+  }
+
+  if (learningSoon.length) {
+    const c = earliest(learningSoon);
+    return exercise(c.p, c.st, "learning");
   }
 
   // ---- 5. natural stopping point; say when the next scheduled step is due if that is still today ----
@@ -256,14 +337,16 @@ function cardsSinceLastNew(session: SessionItem[]): number {
 }
 
 /**
- * Choose the next new point. Within a topic, points are introduced in authored order (per tier);
- * across topics, breadth wins: score = tier weight × (0.5 + uncovered fraction of the point's primary criterion).
+ * Choose the next new point. Score = tier weight × (0.5 + uncovered fraction of the point's primary criterion)
+ * × contrast bonus × priority factor (src/engine/priority.ts: safety, model case, foundation). Prerequisites inherit
+ * the score of what they unlock; authored order breaks ties.
  */
 export function pickNew(
   inScope: PointWithTopic[],
   states: Map<string, PointState>,
   lastTopic: string | undefined,
   includeAllTiers: boolean,
+  priorities?: Map<string, Priority>,
 ): PointWithTopic | null {
   const introducedIds = new Set([...states.values()].filter((s) => s.introducedAt).map((s) => s.pointId));
   // Coverage per criterion among tier-A points.
@@ -293,7 +376,7 @@ export function pickNew(
     const t = total.get(c) ?? 0;
     const uncovered = t ? 1 - (covered.get(c) ?? 0) / t : 0.5;
     const contrast = [...(partners.get(p.id) ?? [])].some((q) => introducedIds.has(q)) ? CONTRAST_BONUS : 1;
-    return (TIER_WEIGHT[p.tier] || 0.1) * (0.5 + uncovered) * contrast;
+    return (TIER_WEIGHT[p.tier] || 0.1) * (0.5 + uncovered) * contrast * (priorities?.get(p.id)?.factor ?? 1);
   };
   // A prerequisite inherits the priority of the points it unlocks (a tier-B "map of the digestive tract" must not
   // hold back the tier-A digestion points behind it).

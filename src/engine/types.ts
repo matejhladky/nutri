@@ -79,4 +79,9 @@ export type PointState = {
   exerciseCounts: Record<string, number>;
   /** Most recent outcomes, newest last (max 5). */
   recent: Outcome[];
+  /** Study day (YYYY-MM-DD) of the latest failure and how many failures happened that day. */
+  failDay?: string | null;
+  failsThatDay?: number;
+  /** Reducer version that produced this state; older cached states are rebuilt on read. */
+  v?: number;
 };

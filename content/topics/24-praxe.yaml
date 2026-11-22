@@ -361,6 +361,7 @@ points:
     title: Hranice kompetencí výživového poradce
     kind: concept
     tier: A
+    safety: true
     criteria: [3c]
     source: { pages: [7, 48, 206, 236, 249], anchor: "spadá do kompetence lékařů" }
     explanation: >-
@@ -397,6 +398,7 @@ points:
     title: Podezření na poruchu příjmu potravy
     kind: procedure
     tier: A
+    safety: true
     criteria: [3c, 10c]
     prereqs: [prx.hranice-kompetenci, obd.ppp-role-poradce]
     confusableWith: [obd.ppp-role-poradce]
@@ -434,6 +436,7 @@ points:
     title: Varovné tělesné příznaky – poslat k lékaři
     kind: fact
     tier: A
+    safety: true
     status: supplementary
     criteria: [3c]
     prereqs: [prx.hranice-kompetenci]
@@ -482,6 +485,7 @@ points:
     title: Psychické varovné signály – psycholog či krizová pomoc
     kind: procedure
     tier: A
+    safety: true
     status: supplementary
     criteria: [3c, 11b]
     prereqs: [prx.hranice-kompetenci]

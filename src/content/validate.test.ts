@@ -26,6 +26,7 @@ const topic = (anchor: string, overrides: Partial<TopicFile["points"][number]> =
         title: "P",
         kind: "fact",
         tier: "A",
+        safety: false,
         status: "course",
         criteria: ["1c"],
         source: { pages: [1], anchor },

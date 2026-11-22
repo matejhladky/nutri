@@ -92,7 +92,24 @@ Done:
 Verified: `pnpm validate` (52 unit tests incl. case chaining/grading/validation), `pnpm test:e2e` 8/8 (new: a case is
 worked through and recorded as one answer), screenshots of a case at 390 px.
 
-## M4 — Pre-exam sweep & polish (next)
+## M4 — Pre-exam sweep & polish ✅ (2026-11-22)
 
-See the plan; proposed: final-days sweep of points with the lowest predicted recall on exam day, "practise in person"
-page, UX pass on the study screen, then deployment (needs approval).
+Done:
+- **Sweep:** after the daily goal, "Pokračovat" practises the introduced points with the lowest predicted recall on exam
+  morning (tier A first, no repeats within 10 cards). In the final two days it replaces extra new material
+  (Dnes: "Pokračovat: procvičit nejslabší místa"). Planner test added.
+- **Realistic time:** daily plan counts a client case as ~3 min (not 0.5); simulation uses 3 min per case.
+  `simulate real 11 45` → ~207 new, every criterion ≥ ~55 % of tier A introduced; at 60 min → ~272, ≥ 75 % everywhere.
+- **"Co trénovat naživo"** (`/priprava`, linked from Témata): what the app can't train — intake role-play, tape/BIA,
+  full calculation on paper, one-day menu, difficult-client role-play, referral, recording oral answers, exam logistics
+  to confirm with the examining body. Ticks stored per device.
+- Polish: case eyebrow shows the case title; Témata tab active on /priprava; web manifest + icons ("Přidat na plochu").
+- Deployment prepared, not executed: `docs/deploy.md` (runbook, smoke check, operating reports/content fixes); the app
+  refuses to start on Vercel without `DATABASE_URL`.
+
+Verified: `pnpm validate` (53 unit tests), `pnpm test:e2e` 8/8, screenshots of a session, Pokrok and /priprava at 390 px.
+
+## Next
+
+- **Deploy** (needs approval + accounts): follow `docs/deploy.md`. Neon path is untested until then (driver API checked).
+- During her use: fix reported items, watch real minutes per day vs. plan.

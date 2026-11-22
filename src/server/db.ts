@@ -42,6 +42,8 @@ async function create(): Promise<Db> {
     const sql = neon(process.env.DATABASE_URL);
     db = { query: async (text, params = []) => (await sql.query(text, params)) as never };
   } else {
+    // Serverless hosts have a read-only, per-instance filesystem: an embedded DB there would lose data silently.
+    if (process.env.VERCEL) throw new Error("DATABASE_URL is not set (required on Vercel; PGlite is for local use only).");
     const { PGlite } = await import("@electric-sql/pglite");
     const pg = new PGlite(process.env.PGLITE_DIR ?? ".pglite");
     await pg.waitReady;

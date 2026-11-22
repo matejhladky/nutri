@@ -87,6 +87,8 @@ simulation (360 reviews on day 14). A point due after the exam is already predic
    Never two consecutive cards from the same topic when an alternative exists. Topic mode = same engine filtered to one
    topic, no daily cap, then extra practice on weakest points.
 6. Study day = 04:00–04:00 Europe/Prague.
+7. After the goal, "continue" = new points, or (final two days / nothing new left) a **sweep** of introduced points with
+   the lowest predicted recall on exam morning. Time budget counts a client case as ~3 min.
 
 **Simulation** (`pnpm simulate 500 14 45`): steady ~40 min/day, no final spike, mean predicted recall on exam day ≈ 0.93,
 but only ~240 new points fit in 14 days at 45 min/day (≈ 320 at 60 min). ⇒ keep the bank focused (≈ 250–300 tier A).
@@ -116,4 +118,5 @@ until reviewed.
 | 2026-11-22 | Tier-A budget ≈ 210–230 points | simulation with 11 study days at 45 min/day |
 | 2026-11-22 | Confusables: symmetric, contrast bonus ×1.2 in pickNew, "Nezaměň s" in feedback | discrimination between look-alike facts |
 | 2026-11-22 | Planner: all prerequisite-ready points compete; prerequisites inherit dependants' priority | simulation: whole criteria were never reached |
+| 2026-11-22 | Pre-exam sweep by predicted recall at the exam; case time weighted | last days = consolidation, honest minutes |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

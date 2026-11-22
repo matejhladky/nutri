@@ -131,7 +131,8 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
             mode={mode}
             todayCards={todayCards}
             exitHref={exitHref}
-            canContinue={plan.remainingNew > 0 && mode.kind === "daily"}
+            canContinue={mode.kind === "daily" && (plan.remainingNew > 0 || states.size > 0)}
+            sweepOnly={plan.remainingNew === 0 || (plan.daysLeft !== null && plan.daysLeft <= 2)}
             onContinue={() => setScreen(fill({ ...session, beyondGoal: true, current: null }))}
           />
         ) : !current || !point ? (
@@ -168,6 +169,7 @@ function DoneView({
   todayCards,
   exitHref,
   canContinue,
+  sweepOnly,
   onContinue,
 }: {
   reason: Done;
@@ -175,6 +177,7 @@ function DoneView({
   todayCards: number;
   exitHref: string;
   canContinue: boolean;
+  sweepOnly: boolean;
   onContinue: () => void;
 }) {
   const topicDone = mode.kind === "topic";
@@ -200,7 +203,7 @@ function DoneView({
         </Link>
         {canContinue && reason === "goal-reached" && (
           <Button variant="secondary" onClick={onContinue}>
-            Přidat ještě pár nových
+            {sweepOnly ? "Procvičit nejslabší místa" : "Přidat ještě pár nových"}
           </Button>
         )}
       </div>

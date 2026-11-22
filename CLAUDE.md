@@ -1,7 +1,8 @@
 # Nutri
 
 Study companion for ONE learner preparing for the Czech exam *Výživový poradce* (NSK 69-042-N), ~2 weeks out.
-Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · Roadmap & progress log: `docs/roadmap.md`.
+Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · Roadmap & progress log: `docs/roadmap.md` ·
+Deployment runbook: `docs/deploy.md`.
 
 @AGENTS.md
 

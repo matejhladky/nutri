@@ -23,6 +23,8 @@ export default function TodayPage() {
   const solid = core.filter((p) => pointStatus(states.get(p.id)) === "solid").length;
   const newLeft = Math.max(0, plan.newTarget - plan.newToday);
   const started = todayCards > 0;
+  const finalDays = plan.daysLeft !== null && plan.daysLeft <= 2;
+  const sweepOnly = finalDays || plan.remainingNew === 0;
 
   return (
     <div className="flex flex-col gap-6 animate-rise">
@@ -46,13 +48,15 @@ export default function TodayPage() {
             <div>
               <h2 className="text-lg font-semibold">Dnešní plán je splněný</h2>
               <p className="mt-1 text-muted">
-                {started ? `Dnes ${plural(todayCards, "karta", "karty", "karet")}. ` : ""}Opakování ti teď nejvíc pomůže zítra —
-                paměť potřebuje odstup. Jestli máš chuť, můžeš ještě přidat nové poznatky.
+                {started ? `Dnes ${plural(todayCards, "karta", "karty", "karet")}. ` : ""}
+                {finalDays
+                  ? "Poslední dny před zkouškou už nové poznatky nepřidávám. Jestli máš chuť, procvič si místa, která by ti u zkoušky mohla vypadnout."
+                  : "Opakování ti teď nejvíc pomůže zítra — paměť potřebuje odstup. Jestli máš chuť, můžeš ještě pokračovat."}
               </p>
             </div>
-            {plan.remainingNew > 0 && (
+            {(plan.remainingNew > 0 || seen > 0) && (
               <Button variant="secondary" onClick={() => router.push("/studium?navic=1")}>
-                Pokračovat s novými poznatky
+                {sweepOnly ? "Pokračovat: procvičit nejslabší místa" : "Pokračovat s novými poznatky"}
               </Button>
             )}
           </div>

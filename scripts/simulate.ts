@@ -18,7 +18,7 @@ const REAL = process.argv[2] === "real";
 const N = REAL ? 0 : Number(process.argv[2] ?? 500);
 const DAYS = Number(process.argv[3] ?? 14);
 const MINUTES = Number(process.argv[4] ?? 45);
-const SEC_PER_CARD = { intro: 30, exercise: 25 };
+const SEC_PER_CARD = { intro: 30, exercise: 25, case: 180 };
 
 const rand = rng(1);
 const criteria = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2d", "2e", "2f", "2g", "3a", "3b", "4a", "4b", "4c", "5e", "7h", "8a"];
@@ -93,7 +93,8 @@ for (let d = 0; d < DAYS; d++) {
         outcome: correct ? "correct" : "wrong",
       });
       session.push({ pointId: c.pointId, kind: "exercise", isNew: false });
-      seconds += SEC_PER_CARD.exercise;
+      const ex = points.find((q) => q.id === c.pointId)?.exercises.find((e) => e.id === c.exerciseId);
+      seconds += ex?.type === "case" ? SEC_PER_CARD.case : SEC_PER_CARD.exercise;
     }
     now = new Date(now.getTime() + 25_000);
   }

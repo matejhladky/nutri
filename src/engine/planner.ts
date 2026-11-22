@@ -53,6 +53,9 @@ const TIER_WEIGHT = { A: 1, B: 0.4, C: 0 } as const;
 const CONTRAST_BONUS = 1.2;
 
 const isIntroduced = (st: PointState | undefined) => !!st?.introducedAt;
+const MIN_PER_CASE = 3;
+const isCasePoint = (p: PointWithTopic) => p.exercises.every((e) => e.type === "case" || e.type === "explain") && p.exercises.some((e) => e.type === "case");
+const reviewMinutes = (p: PointWithTopic) => (isCasePoint(p) ? MIN_PER_CASE : MIN_PER_REVIEW);
 
 function eligibleForDaily(p: PointWithTopic) {
   return p.tier !== "C";
@@ -64,7 +67,9 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   const today = dayKey(now);
   let dueReviews = 0;
   let learningDue = 0;
-  let reviewedToday = 0;
+  // Minutes rather than counts: a client case takes several minutes, a flashcard half a minute.
+  let dueMinutes = 0;
+  let startLoadMinutes = 0;
   let newToday = 0;
   let remainingA = 0;
   let remainingB = 0;
@@ -81,11 +86,17 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
     const shortStep = st?.card && (st.card.scheduleStatus === "learning" || st.card.scheduleStatus === "relearning");
     if (!st?.card || (shortStep && dayKey(st.card.dueAt) <= today)) {
       learningDue++;
+      dueMinutes += reviewMinutes(p);
       continue;
     }
     if (introducedToday) continue;
-    if (dayKey(st.card.dueAt) <= today) dueReviews++;
-    else if (st?.lastAnsweredAt && dayKey(st.lastAnsweredAt) === today) reviewedToday++;
+    if (dayKey(st.card.dueAt) <= today) {
+      dueReviews++;
+      dueMinutes += reviewMinutes(p);
+      startLoadMinutes += reviewMinutes(p);
+    } else if (st?.lastAnsweredAt && dayKey(st.lastAnsweredAt) === today) {
+      startLoadMinutes += reviewMinutes(p);
+    }
   }
   const daysLeft = examDate ? daysUntilExam(now, examDate) : null;
   const remainingNew = remainingA + remainingB;
@@ -95,12 +106,9 @@ export function dailyPlan(input: Omit<PlannerInput, "session" | "mode" | "beyond
   else if (daysLeft > 2) paceTarget = Math.ceil((remainingNew + newToday) / (daysLeft - 2));
   else paceTarget = newToday + remainingA; // final days: only tier A still missing
   // Budget uses the review load at the START of the day, so finishing reviews doesn't unlock extra new points.
-  const reviewLoad = dueReviews + reviewedToday;
-  const budgetTarget = Math.max(10, Math.floor((dailyMinutes - reviewLoad * MIN_PER_REVIEW) / MIN_PER_NEW));
+  const budgetTarget = Math.max(10, Math.floor((dailyMinutes - startLoadMinutes) / MIN_PER_NEW));
   const newTarget = Math.max(0, Math.min(paceTarget, budgetTarget));
-  const estimatedMinutes = Math.round(
-    (dueReviews + learningDue) * MIN_PER_REVIEW + Math.max(0, newTarget - newToday) * MIN_PER_NEW,
-  );
+  const estimatedMinutes = Math.round(dueMinutes + Math.max(0, newTarget - newToday) * MIN_PER_NEW);
   return {
     daysLeft,
     dueReviews,
@@ -155,7 +163,9 @@ export function nextCard(input: PlannerInput): NextCard {
 
   // ---- 2./3. reviews interleaved with new points ----
   const plan = dailyPlan(input);
-  const newAllowed = mode.kind === "topic" || input.beyondGoal || plan.newToday < plan.newTarget;
+  // In the final two days "continue" means the sweep below, not more new material.
+  const finalDays = plan.daysLeft !== null && plan.daysLeft <= 2;
+  const newAllowed = mode.kind === "topic" || (input.beyondGoal && !finalDays) || plan.newToday < plan.newTarget;
   const newCand = newAllowed ? pickNew(inScope, states, lastTopic, mode.kind === "topic") : null;
   const sortedReviews = notJustShown(reviews).sort(
     (a, b) => input.retrievability(a.st, now) - input.retrievability(b.st, now) || a.due - b.due,
@@ -191,7 +201,31 @@ export function nextCard(input: PlannerInput): NextCard {
     if (practice.length) return exercise(practice[0].p, practice[0].st, "practice");
     return { kind: "done", reason: "nothing-left" };
   }
-  return { kind: "done", reason: plan.remainingNew === 0 ? "nothing-left" : "goal-reached" };
+  if (input.beyondGoal) {
+    const sweep = sweepPick(input, inScope, states);
+    if (sweep) return exercise(sweep.p, sweep.st, "practice");
+  }
+  return { kind: "done", reason: plan.remainingNew === 0 && !anyIntroduced(inScope, states) ? "nothing-left" : "goal-reached" };
+}
+
+const anyIntroduced = (ps: PointWithTopic[], states: Map<string, PointState>) => ps.some((p) => states.get(p.id)?.card);
+
+/** Exam morning (Prague), for "how well will this be remembered at the exam". */
+export const examMoment = (examDate: string) => new Date(`${examDate}T08:00:00+01:00`);
+
+/**
+ * Pre-exam sweep (after the daily goal, on request): the introduced points with the LOWEST predicted recall at the
+ * exam, tier A before B at similar recall, not repeated within the last 10 cards.
+ */
+export function sweepPick(input: PlannerInput, inScope: PointWithTopic[], states: Map<string, PointState>) {
+  const at = input.examDate ? examMoment(input.examDate) : input.now;
+  const target = at > input.now ? at : input.now;
+  const recent = new Set(input.session.slice(-10).map((s) => s.pointId));
+  return inScope
+    .map((p) => ({ p, st: states.get(p.id) }))
+    .filter((x): x is { p: PointWithTopic; st: PointState } => !!x.st?.card && !recent.has(x.p.id))
+    .map((x) => ({ ...x, key: input.retrievability(x.st, target) + (x.p.tier === "A" ? 0 : 0.05) }))
+    .sort((a, b) => a.key - b.key)[0];
 }
 
 function cardsSinceLastNew(session: SessionItem[]): number {

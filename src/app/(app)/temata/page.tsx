@@ -14,6 +14,17 @@ export default function TopicsPage() {
         <h1 className="text-2xl font-semibold tracking-tight">Témata</h1>
         <p className="mt-1 text-muted">Kapitoly ze skript — přehled poznatků a procvičení jednoho tématu.</p>
       </header>
+      <Link href="/priprava" className="block">
+        <Panel className="flex items-center justify-between gap-3 border-sage-100 bg-sage-50/60 p-5 hover:border-sage-500">
+          <div>
+            <div className="font-medium">Co trénovat naživo</div>
+            <div className="mt-0.5 text-sm text-muted">Měření, výpočty na papíře, rozhovor s klientem — co aplikace nenacvičí</div>
+          </div>
+          <span className="text-faint" aria-hidden>
+            →
+          </span>
+        </Panel>
+      </Link>
       <ul className="flex flex-col gap-3">
         {content.topics.map((t) => {
           const ps = points.filter((p) => p.topicId === t.id);

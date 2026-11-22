@@ -40,7 +40,8 @@ export function AppFrame({ children }: { children: ReactNode }) {
       >
         <ul className="mx-auto flex max-w-xl">
           {tabs.map((t) => {
-            const active = t.href === "/" ? pathname === "/" : pathname.startsWith(t.href);
+            const active =
+              t.href === "/" ? pathname === "/" : pathname.startsWith(t.href) || (t.href === "/temata" && pathname.startsWith("/priprava"));
             return (
               <li key={t.href} className="flex-1">
                 <Link

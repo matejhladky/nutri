@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeAll } from "vitest";
-import { dailyPlan, nextCard, pickExercise, INTRO_GAP, type PlannerInput, type SessionItem } from "./planner";
+import { dailyPlan, nextCard, pickExercise, sweepPick, INTRO_GAP, type PlannerInput, type SessionItem } from "./planner";
 import { getScheduler, retrievability, type Scheduler } from "./scheduler";
 import { applyEvent } from "./state";
 import { Grade, type PointState, type StudyEvent } from "./types";
@@ -139,6 +139,24 @@ describe("nextCard", () => {
     expect(nextCard(input(pts, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "y1" });
     const reordered = [pts[0], pts[3], pts[1], pts[2]];
     expect(nextCard(input(reordered, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "y1" });
+  });
+
+  it("after the goal, 'continue' sweeps the points weakest at the exam; in the final two days instead of new ones", () => {
+    const pts = [pt("a1", "A", 0), pt("a2", "A", 1), pt("b1", "B", 0, { tier: "B", criteria: ["2f"] })];
+    const long = new Date(NOW.getTime() - 86400_000 * 6);
+    const recent = new Date(NOW.getTime() - 86400_000);
+    // a1 answered long ago (weaker at the exam), a2 recently; b1 still new.
+    const states = withEvents([intro("a1", long), ans("a1", long, Grade.Good), intro("a2", recent), ans("a2", recent, Grade.Good)]);
+    const finalDay = new Date("2026-12-02T17:00:00Z");
+    const r = (n: Date) => nextCard(input(pts, states, { now: n, examDate: EXAM_DATE, beyondGoal: true }));
+    // Final days: no new b1 — due reviews / the sweep keep going instead.
+    const fin = r(finalDay);
+    expect(fin.kind === "exercise" && ["a1", "a2"].includes(fin.pointId)).toBe(true);
+    // The sweep orders by predicted recall at the exam: a1 (answered longer ago) first.
+    const sweep = sweepPick(input(pts, states, { examDate: EXAM_DATE }), pts, states);
+    expect(sweep?.p.id).toBe("a1");
+    // Earlier: beyond the goal, new material still comes first.
+    expect(r(NOW)).toEqual({ kind: "intro", pointId: "b1" });
   });
 
   it("introduces the confusable partner of a known point sooner (contrast)", () => {

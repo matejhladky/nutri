@@ -16,7 +16,8 @@
     "simulate": "tsx scripts/simulate.ts",
     "validate": "pnpm content:check && pnpm typecheck && pnpm lint && pnpm test",
     "test:e2e": "playwright test",
-    "db:rebuild": "tsx --conditions=react-server scripts/rebuild-states.ts"
+    "db:rebuild": "tsx --conditions=react-server scripts/rebuild-states.ts",
+    "content:flags": "tsx scripts/flags.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.17",

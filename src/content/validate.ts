@@ -166,7 +166,6 @@ export function normalizeForMatch(s: string): string {
     .trim();
 }
 
-/** Verify that every anchor phrase appears on (one of) its cited pages. Requires source/pages. */
 function validateCase(ex: CaseExercise, ew: string): Issue[] {
   const out: Issue[] = [];
   const err = (m: string) => out.push({ level: "error", where: ew, message: m });
@@ -216,6 +215,7 @@ function validateCase(ex: CaseExercise, ew: string): Issue[] {
   return out;
 }
 
+/** Verify that every anchor phrase appears on (one of) its cited pages. Requires source/pages. */
 export function checkAnchors(topics: { file: string; data: TopicFileT }[], pagesDir = "source/pages"): Issue[] {
   const issues: Issue[] = [];
   if (!existsSync(pagesDir)) {

@@ -56,6 +56,7 @@ export function validateContent(criteria: CriteriaFileT, topics: { file: string;
   const warn = (where: string, message: string) => issues.push({ level: "warn", where, message });
 
   const criterionIds = new Set(criteria.competencies.flatMap((c) => c.criteria.map((k) => k.id)));
+  const criterionMethods = new Map(criteria.competencies.flatMap((c) => c.criteria.map((k) => [k.id, k.method] as const)));
   const topicIds = new Set<string>();
   const pointIds = new Map<string, string>();
 
@@ -79,7 +80,11 @@ export function validateContent(criteria: CriteriaFileT, topics: { file: string;
         err(where, `status ${p.status} requires a note`);
       }
       if (wordCount(p.explanation) > 90) warn(where, `explanation has ${wordCount(p.explanation)} words (aim ≤ 80)`);
-      if (p.source.anchor && wordCount(p.source.anchor) > 14) warn(where, "anchor longer than 14 words");
+      if (p.source.anchor && wordCount(p.source.anchor) > 12) warn(where, `anchor has ${wordCount(p.source.anchor)} words (max 12)`);
+      const oralOrPractical = p.criteria.some((c) => criterionMethods.get(c)?.some((m) => m === "U" || m === "PR"));
+      if (p.tier === "A" && oralOrPractical && !p.exercises.some((e) => e.type === "explain")) {
+        warn(where, "tier-A point with an oral/practical criterion has no explain exercise");
+      }
       const p0 = data.topic.pages[0] - 1;
       const p1 = data.topic.pages[1] + 1;
       for (const pg of p.source.pages) {
@@ -97,6 +102,8 @@ export function validateContent(criteria: CriteriaFileT, topics: { file: string;
           if (ex.multiple && correct < 1) err(ew, "multiple-choice needs at least 1 correct option");
           const texts = ex.options.map((o) => o.text.trim().toLowerCase());
           if (new Set(texts).size !== texts.length) err(ew, "duplicate option texts");
+          const noWhy = ex.options.filter((o) => !o.correct && !o.why).length;
+          if (noWhy) warn(ew, `${noWhy} wrong option(s) without "why"`);
         }
         if (ex.type === "numeric") {
           const f = formulas[ex.formula];

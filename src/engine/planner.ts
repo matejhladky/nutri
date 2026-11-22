@@ -239,8 +239,21 @@ export function pickNew(
     const contrast = [...(partners.get(p.id) ?? [])].some((q) => introducedIds.has(q)) ? CONTRAST_BONUS : 1;
     return (TIER_WEIGHT[p.tier] || 0.1) * (0.5 + uncovered) * contrast;
   };
+  // A prerequisite inherits the priority of the points it unlocks (a tier-B "map of the digestive tract" must not
+  // hold back the tier-A digestion points behind it).
+  const byId = new Map(inScope.map((q) => [q.id, q]));
+  const effective = new Map<string, number>();
+  const boost = (id: string, s: number, depth: number) => {
+    if (depth > 10 || introducedIds.has(id) || (effective.get(id) ?? -1) >= s) return;
+    effective.set(id, s);
+    for (const r of byId.get(id)?.prereqs ?? []) boost(r, s, depth + 1);
+  };
+  for (const p of inScope) {
+    if (introducedIds.has(p.id) || (!includeAllTiers && p.tier === "C")) continue;
+    boost(p.id, score(p), 0);
+  }
   const ranked = frontier
-    .map((p, i) => ({ p, s: score(p), i }))
+    .map((p, i) => ({ p, s: effective.get(p.id) ?? score(p), i }))
     .sort((a, b) => b.s - a.s || a.i - b.i);
   const best = ranked[0];
   if (best.p.topicId === lastTopic) {

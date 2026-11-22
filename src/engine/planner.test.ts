@@ -126,6 +126,21 @@ describe("nextCard", () => {
     expect(c).toEqual({ kind: "intro", pointId: "b1" });
   });
 
+  it("a low-tier prerequisite inherits the priority of the tier-A point it unlocks", () => {
+    const pts = [
+      pt("x1", "X", 0, { criteria: ["1e"] }),
+      pt("y1", "Y", 0, { tier: "B", criteria: ["2a"] }),
+      pt("y2", "Y", 1, { criteria: ["2a"], prereqs: ["y1"] }),
+      pt("z1", "Z", 0, { tier: "B", criteria: ["1f"] }),
+    ];
+    const earlier = new Date(NOW.getTime() - 86400_000 * 2);
+    const states = withEvents([intro("x1", earlier), ans("x1", earlier, Grade.Good)]);
+    // y1 (B) comes before z1 (B) because it unlocks tier-A y2 — also when z1 is authored first.
+    expect(nextCard(input(pts, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "y1" });
+    const reordered = [pts[0], pts[3], pts[1], pts[2]];
+    expect(nextCard(input(reordered, states, { beyondGoal: true }))).toEqual({ kind: "intro", pointId: "y1" });
+  });
+
   it("introduces the confusable partner of a known point sooner (contrast)", () => {
     const pts = [
       pt("a1", "A", 0, { criteria: ["1e"] }),

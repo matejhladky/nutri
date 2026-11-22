@@ -1,0 +1,90 @@
+# Official assessment standard: Výživový poradce / výživová poradkyně (69-042-N).
+# Source: https://www.narodnikvalifikace.cz/kvalifikace-1671-Vyzivovy_poradce_vyzivova_poradkyne/hodnotici-standard
+# Labels are concise paraphrases. Methods: P = písemné (written test), U = ústní (oral), PR = praktické předvedení.
+# Written test: 75 questions (comp. 1–4), pass ≥ 80 % overall AND ≥ 50 % per criterion.
+# Every competency must be passed individually.
+
+competencies:
+  - id: "1"
+    title: Základní pojmy a terminologie výživy
+    criteria:
+      - { id: 1a, method: [P], label: "Základy biochemie a třídění živin: makroživiny, mikroživiny, seminutrienty, nenutriční složky" }
+      - { id: 1b, method: [P], label: "Tuky: stavba, třídění, funkce, zdroje, doporučený příjem" }
+      - { id: 1c, method: [P], label: "Sacharidy: stavba, třídění, funkce, zdroje, doporučený příjem" }
+      - { id: 1d, method: [P], label: "Bílkoviny: stavba, třídění, funkce, zdroje, doporučený příjem" }
+      - { id: 1e, method: [P], label: "Vitaminy: třídění, funkce, zdroje, doporučený příjem" }
+      - { id: 1f, method: [P], label: "Minerální látky: třídění, funkce, zdroje, doporučený příjem" }
+  - id: "2"
+    title: Základy biochemie a fyziologie lidského organismu
+    criteria:
+      - { id: 2a, method: [P], label: "Stavba a funkce těla: trávení, žlázy s vnitřní a vnější sekrecí, enzymy, homeostáza, detoxikace, vylučování" }
+      - { id: 2b, method: [P], label: "Buňka, membrána, organely, mitochondrie; trávicí soustava a její poruchy" }
+      - { id: 2c, method: [P], label: "Hormonální řízení regulačních dějů v trávicím traktu" }
+      - { id: 2d, method: [P], label: "Metabolismus: přeměna živin na energii, transport živin, anabolismus, katabolismus" }
+      - { id: 2e, method: [P], label: "Metabolismus tuků" }
+      - { id: 2f, method: [P], label: "Metabolismus sacharidů" }
+      - { id: 2g, method: [P], label: "Metabolismus bílkovin" }
+  - id: "3"
+    title: Nutriční a tělesná diagnostika klienta
+    criteria:
+      - { id: 3a, method: [P], label: "Somatotypy, jejich měření a ovlivnitelnost, složení svalové tkáně, držení těla" }
+      - { id: 3b, method: [P], label: "Diagnostické přístroje a metody: tělesné míry, složení těla, biochemické ukazatele, stávající stravování" }
+      - { id: 3c, method: [PR], label: "Rozpoznat z dotazníku a rozhovoru příznaky patřící do péče jiných odborníků" }
+  - id: "4"
+    title: Technologie výroby potravin a jejich značení
+    criteria:
+      - { id: 4a, method: [P], label: "Technologie zpracování potravin" }
+      - { id: 4b, method: [P], label: "Aditiva: třídění, funkce, mýty a fakta, vliv na zdraví, legislativa" }
+      - { id: 4c, method: [P], label: "Značení potravin a etikety" }
+  - id: "5"
+    title: Komplexní nutriční a tělesná diagnostika klienta
+    criteria:
+      - { id: 5a, method: [U], label: "Vyrovnaná, negativní a pozitivní energetická bilance" }
+      - { id: 5b, method: [PR], label: "Záznam vstupní diagnostiky a karta klienta" }
+      - { id: 5c, method: [PR], label: "Výpočet makroživin pro krytí energetické potřeby klienta" }
+      - { id: 5d, method: [PR, U], label: "Zásady personalizovaného výživového plánu (ukázka na jeden den)" }
+      - { id: 5e, method: [PR, U], label: "Diagnostický závěr, BMR různými metodikami a jejich rozdíly, energetická potřeba klienta" }
+  - id: "6"
+    title: Základní a alternativní směry výživy
+    criteria:
+      - { id: 6a, method: [U], label: "Alternativní směry (makrobiotika, vegetariánství, veganství, RAW, tukový metabolismus): výhody, rizika, kompenzace" }
+      - { id: 6b, method: [PR], label: "Kvantitativní stránka výživy: energetická potřeba, nutriční vyváženost, dopady nevyrovnané bilance" }
+      - { id: 6c, method: [U], label: "Výživa v různých životních obdobích a nestandardních situacích (restaurace, cestování, směny)" }
+  - id: "7"
+    title: Sestavování jídelníčku pro různé skupiny klientů
+    criteria:
+      - { id: 7a, method: [U], label: "Vliv výživy na snižování a zvyšování hmotnosti" }
+      - { id: 7b, method: [PR, U], label: "Redukční jídelníček, změna životního stylu, přehled diet a způsobů hubnutí" }
+      - { id: 7c, method: [PR], label: "Zásady racionální stravy a rozložení jídel během dne (nesportovec, rekreační sportovec)" }
+      - { id: 7d, method: [U], label: "Specifika sportovní výživy" }
+      - { id: 7e, method: [U], label: "Pitný režim v běžném dni a v nestandardních situacích" }
+      - { id: 7f, method: [U], label: "Výživa těhotných a kojících žen, dětí do 6 let a seniorů" }
+      - { id: 7g, method: [U], label: "Základní typy dietních režimů (nutriční terapeuti, lékaři)" }
+      - { id: 7h, method: [U], label: "Výživa při DM 2. typu, dně, hypertenzi, hyperlipidemii, Crohnově chorobě, IBS, celiakii a intolerancích" }
+  - id: "8"
+    title: Sortiment doplňků stravy
+    criteria:
+      - { id: 8a, method: [U], label: "Charakteristika jednotlivých doplňků stravy" }
+      - { id: 8b, method: [U], label: "Druhy, zásady a rizika užívání doplňků" }
+      - { id: 8c, method: [U], label: "Legislativa a uvádění doplňků na trh" }
+      - { id: 8d, method: [PR], label: "Zařazení doplňků do stravovacího režimu klienta" }
+      - { id: 8e, method: [U], label: "Doplňky a růst svalové hmoty: vhodnost, kombinace, dávkování" }
+  - id: "9"
+    title: Označování a výběr potravin
+    criteria:
+      - { id: 9a, method: [U], label: "Značení potravin včetně technologie zpracování" }
+      - { id: 9b, method: [U], label: "Kontrola potravin a bezpečnost práce s nimi" }
+      - { id: 9c, method: [U], label: "Uvádění aditiv na etiketách" }
+      - { id: 9d, method: [U], label: "Zdravé potraviny a biopotraviny na českém trhu, farmářské a GMO potraviny" }
+  - id: "10"
+    title: Vedení klienta k racionalizaci výživových názorů
+    criteria:
+      - { id: 10a, method: [U], label: "Kvalita života: well-being, body image, sebevědomí, sebehodnocení" }
+      - { id: 10b, method: [U], label: "Stabilizace hmotnosti a význam návyků při hubnutí i nabírání" }
+      - { id: 10c, method: [U], label: "Výživa při poruchách příjmu potravy a poruchách metabolismu" }
+      - { id: 10d, method: [U], label: "Výživa jako primární prevence civilizačních chorob" }
+  - id: "11"
+    title: Jednání s klientem
+    criteria:
+      - { id: 11a, method: [U], label: "Fáze komunikace s klientem: úvod, dotazníky, ceník, smlouva, vstupní rozhovor" }
+      - { id: 11b, method: [PR], label: "Komunikace s různými typy klientů (ostýchavý, agresivní, přecitlivělý)" }

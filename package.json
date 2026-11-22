@@ -1,0 +1,40 @@
+{
+  "name": "nutri",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm content:build && next dev",
+    "build": "pnpm content:build && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "extract": "tsx scripts/extract.ts",
+    "content:build": "tsx scripts/content.ts build",
+    "content:check": "tsx scripts/content.ts check",
+    "simulate": "tsx scripts/simulate.ts",
+    "validate": "pnpm content:check && pnpm typecheck && pnpm lint && pnpm test"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "ts-fsrs": "^6.0.0",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.1.1"
+  },
+  "packageManager": "pnpm@11.3.0"
+}

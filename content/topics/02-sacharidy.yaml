@@ -1,0 +1,774 @@
+topic:
+  id: sacharidy
+  title: Sacharidy
+  chapter: 2
+  pages: [10, 21]
+  order: 20
+  summary: >-
+    Dělení sacharidů (mono-, oligo-, polysacharidy), hlavní zástupci a jejich složení, vláknina,
+    doporučený příjem, zdroje, glykemický index a nálož, polyoly.
+
+points:
+  - id: sach.funkce-esencialita
+    title: Funkce sacharidů a esencialita
+    kind: concept
+    tier: A
+    criteria: [1c, 1a]
+    source: { pages: [10], anchor: "jejichž primární funkce je dodat energii" }
+    explanation: >-
+      Hlavní funkcí sacharidů je dodat rychle dostupnou energii. Nejsou esenciální živinou: tělo si
+      glukózu umí vytvořit i z jiných látek (glukoneogeneze). Bez glukózy se ale tělo neobejde —
+      je jediným zdrojem energie pro červené krvinky a částečně pro mozek.
+    exercises:
+      - id: esencialita
+        type: choice
+        prompt: "Které tvrzení o sacharidech odpovídá skriptům?"
+        options:
+          - text: "Nejsou esenciální – glukózu si tělo umí vytvořit glukoneogenezí."
+            correct: true
+          - text: "Jsou esenciální, protože mozek umí využít výhradně glukózu."
+            why: "Mozek umí využít i ketolátky."
+          - text: "Jsou esenciální, protože bez nich nelze vytvořit glykogen."
+            why: "Glukózu (a z ní glykogen) lze vytvořit i z glycerolu, laktátu či aminokyselin."
+          - text: "Nejsou esenciální, protože žádná tkáň glukózu nutně nepotřebuje."
+            why: "Červené krvinky jsou na glukóze zcela závislé."
+      - id: funkce
+        type: reveal
+        prompt: "Jaká je hlavní funkce sacharidů ve výživě a proč nepatří mezi esenciální živiny?"
+        answer: >-
+          Rychlý zdroj energie. Nejsou esenciální, protože si tělo glukózu umí vyrobit z jiných látek
+          (glukoneogeneze).
+
+  - id: sach.glukoza-spotreba
+    title: Kdo spotřebovává glukózu
+    kind: fact
+    tier: A
+    criteria: [1c, 2f]
+    prereqs: [sach.funkce-esencialita]
+    source: { pages: [11], anchor: "Glukóza je výhradním zdrojem energie pro červené krvinky" }
+    explanation: >-
+      Největším spotřebitelem glukózy je mozek (orientačně 6 g/h), zbytek těla asi 4 g/h.
+      Pro červené krvinky je glukóza výhradním zdrojem energie. Mozek umí v nouzi fungovat
+      i na ketolátky.
+    exercises:
+      - id: cervene-krvinky
+        type: reveal
+        prompt: "Pro které buňky je glukóza výhradním zdrojem energie? A na co umí přejít mozek?"
+        answer: "Červené krvinky. Mozek umí využít i ketolátky."
+      - id: nejvetsi-spotrebitel
+        type: choice
+        prompt: "Který orgán je podle skript největším spotřebitelem glukózy (orientačně 6 g/h)?"
+        options:
+          - { text: "Mozek", correct: true }
+          - { text: "Kosterní svaly v klidu" }
+          - { text: "Játra" }
+          - { text: "Srdce" }
+
+  - id: sach.deleni
+    title: Chemické dělení sacharidů
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Kap. 2 uvádí polysacharidy jako „více než 10“ jednotek, kap. 11 (s. 85) „10 a více“. Počítej
+      s dělením z kap. 2: oligosacharidy 2–10, polysacharidy více než 10.
+    criteria: [1c, 1a]
+    source: { pages: [10, 11], anchor: "obsahují 2–10 cukerných jednotek" }
+    explanation: >-
+      Podle počtu cukerných jednotek: monosacharidy (1), oligosacharidy (2–10) a polysacharidy
+      (více než 10). Disacharidy (2 jednotky) se často uvádějí zvlášť. „Jednoduché cukry“ =
+      monosacharidy + disacharidy: sladká chuť a rychlé vstřebání.
+    exercises:
+      - id: pocty
+        type: reveal
+        prompt: "Jak se sacharidy dělí podle počtu cukerných jednotek? Uveď hranice."
+        answer: "Monosacharidy 1 jednotka, oligosacharidy 2–10, polysacharidy více než 10."
+      - id: jednoduche-cukry
+        type: choice
+        prompt: "Co se ve výživě myslí pojmem „jednoduché cukry“?"
+        options:
+          - { text: "Monosacharidy a disacharidy", correct: true }
+          - { text: "Pouze monosacharidy" }
+          - { text: "Monosacharidy, disacharidy a škrob" }
+          - { text: "Všechny oligosacharidy" }
+
+  - id: sach.monosacharidy
+    title: Monosacharidy a jejich triviální názvy
+    kind: fact
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta označují jako „mléčný cukr“ galaktózu i laktózu (obojí s. 12). V běžné terminologii
+      je mléčný cukr laktóza; galaktóza je její součást.
+    criteria: [1c]
+    prereqs: [sach.deleni]
+    confusableWith: [sach.disacharidy-vyskyt]
+    source: { pages: [11, 12], anchor: "Fruktóze se triviálně říká ovocný cukr" }
+    explanation: >-
+      Tři nutričně důležité monosacharidy: glukóza (hroznový či krevní cukr, starší název
+      dextróza), fruktóza (ovocný cukr) a galaktóza — volně se nevyskytuje, je součástí laktózy
+      v mléce.
+    exercises:
+      - id: zastupci
+        type: reveal
+        prompt: "Vyjmenuj tři nutričně důležité monosacharidy a jejich triviální názvy."
+        answer: >-
+          Glukóza – hroznový/krevní cukr (dextróza); fruktóza – ovocný cukr; galaktóza – součást
+          laktózy (skripta ji nazývají mléčným cukrem, běžně se tak ale říká laktóze).
+      - id: dextroza
+        type: choice
+        prompt: "Pod jakým názvem najdeš glukózu ve starších publikacích?"
+        options:
+          - { text: "Dextróza", correct: true }
+          - { text: "Levulóza" }
+          - { text: "Maltóza" }
+          - { text: "Sacharóza" }
+
+  - id: sach.glykemie-norma
+    title: Fyziologická hladina glykémie
+    kind: fact
+    tier: A
+    criteria: [1c, 3b]
+    source: { pages: [11], anchor: "3,6–5,6 mmol/l" }
+    explanation: >-
+      Tělo udržuje hladinu glukózy v krvi (glykémii). Fyziologické rozmezí uvedené ve skriptech
+      je 3,6–5,6 mmol/l. Po jídle glykémie stoupne a hormonální regulace ji opět vyrovná.
+    exercises:
+      - id: rozmezi
+        type: choice
+        prompt: "Jaké je podle skript fyziologické rozmezí glykémie?"
+        options:
+          - { text: "3,6–5,6 mmol/l", correct: true }
+          - { text: "5,6–7,0 mmol/l" }
+          - { text: "1,5–3,5 mmol/l" }
+          - { text: "7,0–11,1 mmol/l" }
+      - id: rozmezi-reveal
+        type: reveal
+        prompt: "Jaké je fyziologické rozmezí glykémie (v mmol/l)?"
+        answer: "3,6–5,6 mmol/l."
+
+  - id: sach.fruktoza
+    title: Fruktóza – metabolismus a rizika nadbytku
+    kind: concept
+    tier: A
+    criteria: [1c, 2f]
+    prereqs: [sach.monosacharidy]
+    source: { pages: [11, 12], anchor: "K jejímu metabolizmu dochází v játrech" }
+    explanation: >-
+      Fruktóza nemá významnou inzulinovou odezvu, takže glykémii téměř nezvedá. Zpracovávají ji
+      játra. Její nadbytek zvyšuje triacylglyceroly (TAG) a LDL cholesterol, podporuje jaterní
+      lipogenezi a může vést ke ztučnění jater (steatóze). Proto není „ideálním sladidlem“.
+    exercises:
+      - id: proc-ne-idealni
+        type: explain
+        prompt: "Klientka se ptá, jestli je fruktóza ideální sladidlo, když nezvedá cukr v krvi. Co jí odpovíš?"
+        keyPoints:
+          - "Fruktóza nemá významnou inzulinovou odezvu (glykémii téměř nezvedá)"
+          - "Metabolizují ji játra"
+          - "Nadbytek zvyšuje TAG a LDL cholesterol"
+          - "Podporuje jaterní lipogenezi → riziko ztučnění jater (steatózy)"
+        modelAnswer: >-
+          Fruktóza sice nezpůsobuje významnou inzulinovou odezvu, ale zpracovávají ji játra. Při
+          nadbytku zvyšuje triacylglyceroly a LDL cholesterol a podporuje tvorbu tuku v játrech,
+          což může vést až ke steatóze. Ideálním sladidlem tedy není.
+      - id: kde
+        type: choice
+        prompt: "Kde probíhá metabolismus fruktózy?"
+        options:
+          - { text: "V játrech", correct: true }
+          - { text: "Ve svalech" }
+          - { text: "V tukové tkáni" }
+          - { text: "Ve slinivce břišní" }
+
+  - id: sach.disacharidy-slozeni
+    title: Složení disacharidů
+    kind: comparison
+    tier: A
+    criteria: [1c]
+    prereqs: [sach.monosacharidy]
+    confusableWith: [sach.disacharidy-vyskyt]
+    source: { pages: [12, 13], anchor: "disacharid skládající se z jedné molekuly glukózy a jedné molekuly galaktózy" }
+    explanation: >-
+      Sacharóza = glukóza + fruktóza. Laktóza = glukóza + galaktóza. Maltóza = glukóza + glukóza.
+      Všechny tři obsahují glukózu — liší se druhou jednotkou.
+    exercises:
+      - id: laktoza
+        type: choice
+        prompt: "Z jakých monosacharidů se skládá laktóza?"
+        options:
+          - { text: "Glukóza + galaktóza", correct: true }
+          - { text: "Glukóza + fruktóza", why: "To je sacharóza." }
+          - { text: "Glukóza + glukóza", why: "To je maltóza." }
+          - { text: "Galaktóza + fruktóza" }
+      - id: vsechny
+        type: reveal
+        prompt: "Z čeho se skládá sacharóza, laktóza a maltóza?"
+        answer: "Sacharóza = glukóza + fruktóza; laktóza = glukóza + galaktóza; maltóza = 2× glukóza."
+      - id: sacharoza
+        type: choice
+        prompt: "Disacharid složený z glukózy a fruktózy je…"
+        options:
+          - { text: "sacharóza", correct: true }
+          - { text: "laktóza" }
+          - { text: "maltóza" }
+          - { text: "rafinóza", why: "Rafinóza je trisacharid (galaktóza navázaná na sacharózu)." }
+
+  - id: sach.disacharidy-vyskyt
+    title: Disacharidy – výskyt a názvy
+    kind: fact
+    tier: B
+    criteria: [1c]
+    prereqs: [sach.disacharidy-slozeni]
+    source: { pages: [12, 13], anchor: "Říká se jí také sladový cukr" }
+    explanation: >-
+      Sacharóza = běžný bílý či třtinový cukr (i javorový, datlový sirup); slouží jako měřítko
+      sladivosti. Laktóza = mléčný cukr, jen v mléce a mléčných výrobcích. Maltóza = sladový cukr
+      (slad, pivo) a vzniká i při trávení škrobu.
+    exercises:
+      - id: sladovy
+        type: choice
+        prompt: "Kterému disacharidu se říká sladový cukr?"
+        options:
+          - { text: "Maltóze", correct: true }
+          - { text: "Sacharóze" }
+          - { text: "Laktóze" }
+          - { text: "Galaktóze", why: "Galaktóza je monosacharid, ne disacharid." }
+      - id: meritko
+        type: reveal
+        prompt: "Který sacharid slouží jako měřítko sladivosti, se kterým se srovnávají ostatní sladidla?"
+        answer: "Sacharóza (běžný cukr)."
+
+  - id: sach.laktozova-intolerance
+    title: Laktózová intolerance
+    kind: concept
+    tier: A
+    criteria: [1c, 7h]
+    prereqs: [sach.disacharidy-slozeni]
+    source: { pages: [12], anchor: "Primární laktózová intolerance je dána geneticky" }
+    explanation: >-
+      Laktózu štěpí enzym laktáza. Při jeho snížené nebo chybějící produkci vzniká laktózová
+      intolerance. Primární je dána geneticky (skripta: asi 30 % Evropanů a 70 % Asiatů),
+      sekundární vzniká vlivem jiného onemocnění.
+    exercises:
+      - id: enzym-typy
+        type: reveal
+        prompt: "Který enzym štěpí laktózu a jaké dva typy laktózové intolerance rozlišujeme?"
+        answer: "Laktáza. Primární (geneticky daná) a sekundární (vlivem jiného onemocnění)."
+      - id: primarni
+        type: choice
+        prompt: "Co platí o primární laktózové intoleranci?"
+        options:
+          - { text: "Je dána geneticky.", correct: true }
+          - { text: "Vzniká vždy jako následek střevního zánětu.", why: "To popisuje sekundární intoleranci." }
+          - { text: "Je to alergie na mléčnou bílkovinu.", why: "Intolerance laktózy není alergie na bílkovinu." }
+          - { text: "Je způsobena nadbytkem laktázy." }
+
+  - id: sach.oligosacharidy-lusteniny
+    title: Oligosacharidy v luštěninách a nadýmání
+    kind: fact
+    tier: B
+    criteria: [1c]
+    source: { pages: [13], anchor: "Stachyóza a verbaskóza se vyskytují v luštěninách" }
+    explanation: >-
+      V luštěninách se vyskytují oligosacharidy rafinóza (tri-), stachyóza (tetra-) a verbaskóza
+      (pentasacharid). Stachyóza a verbaskóza mohou způsobovat nadýmání. Pomáhá namáčení luštěnin
+      ve vodě, které část vazeb rozštěpí.
+    exercises:
+      - id: nadymani
+        type: reveal
+        prompt: "Které oligosacharidy z luštěnin podle skript způsobují nadýmání a jak tomu lze předejít?"
+        answer: "Stachyóza a verbaskóza (v luštěninách je i rafinóza). Pomáhá namáčení luštěnin ve vodě."
+
+  - id: sach.fos-gos
+    title: FOS a GOS jako prebiotika
+    kind: concept
+    tier: B
+    criteria: [1c]
+    source: { pages: [13], anchor: "FOS v organizmu působí jako prebiotika" }
+    explanation: >-
+      Fruktooligosacharidy (FOS) a galaktooligosacharidy (GOS) slouží jako potrava pro střevní
+      bakterie (prebiotika) a chovají se jako rozpustná vláknina. FOS: chřest, cibule, čekanka.
+      GOS: mléčné výrobky; FOS i GOS jsou v mateřském mléce. Nadbytek může způsobit nadýmání.
+    exercises:
+      - id: prebiotika
+        type: choice
+        prompt: "Jak působí FOS a GOS v organismu?"
+        options:
+          - { text: "Jako prebiotika – potrava pro střevní bakterie", correct: true }
+          - { text: "Jako probiotika – živé prospěšné bakterie", why: "Probiotika jsou živé mikroorganismy, ne sacharidy." }
+          - { text: "Jako rychlý zdroj glukózy pro mozek" }
+          - { text: "Jako zásobní polysacharid jater" }
+
+  - id: sach.polysacharidy-funkce
+    title: Funkce polysacharidů a hlavní zástupci
+    kind: concept
+    tier: A
+    criteria: [1c]
+    prereqs: [sach.deleni]
+    source: { pages: [13], anchor: "Mezi funkce polysacharidů patří" }
+    explanation: >-
+      Funkce polysacharidů: zásobní (glykogen u živočichů; škrob a inulin u rostlin), stavební
+      (celulóza u rostlin, chitin u korýšů a hmyzu), pozitivní vliv na trávení a prevence
+      kolorektálního karcinomu (vláknina).
+    exercises:
+      - id: zasobni
+        type: choice
+        prompt: "Který polysacharid je zásobní formou sacharidů u živočichů?"
+        options:
+          - { text: "Glykogen", correct: true }
+          - { text: "Škrob", why: "Škrob je zásobní polysacharid rostlin." }
+          - { text: "Celulóza", why: "Celulóza má stavební funkci u rostlin." }
+          - { text: "Chitin", why: "Chitin je stavební látka krunýřů a kostry hmyzu." }
+      - id: funkce
+        type: reveal
+        prompt: "Vyjmenuj čtyři funkce polysacharidů uvedené ve skriptech."
+        answer: "Zásobní, stavební, pozitivní vliv na trávení, prevence kolorektálního karcinomu."
+
+  - id: sach.glykogen-zasoby
+    title: Glykogen – množství a rozložení
+    kind: fact
+    tier: A
+    status: course-disputed
+    criteria: [1c, 2f]
+    prereqs: [sach.polysacharidy-funkce]
+    source: { pages: [10, 14], anchor: "Jedna třetina v játrech zůstává a dvě třetiny" }
+    note: >-
+      Skripta uvádějí dvě různá čísla: na s. 10 „přibližně 250–400 g“, na s. 14 „přibližně
+      300–500 g“. Důležité je řádové množství (stovky gramů) a rozložení 1/3 játra : 2/3 svaly.
+      Mechanismus „glykogen se tvoří v játrech a dvě třetiny se ukládají do svalů“ je zjednodušený:
+      svaly si glykogen tvoří samy z glukózy z krve, játra jim ho nepředávají.
+    explanation: >-
+      Glykogen je uložen asi z 1/3 v játrech a ze 2/3 ve svalech, kde slouží jako pohotovostní
+      zdroj energie pro výkon. Celkem jde o stovky gramů (u sportovců i dvojnásobek). Zásoby
+      ovlivňuje hlavně strava bohatá na sacharidy.
+    exercises:
+      - id: rozlozeni
+        type: choice
+        prompt: "Jak je podle skript rozložen glykogen v těle?"
+        options:
+          - { text: "Asi 1/3 v játrech, 2/3 ve svalech", correct: true }
+          - { text: "Asi 2/3 v játrech, 1/3 ve svalech" }
+          - { text: "Většina v tukové tkáni" }
+          - { text: "Rovným dílem v játrech, svalech a mozku" }
+      - id: mnozstvi
+        type: reveal
+        prompt: "Kolik glykogenu má tělo přibližně uloženo a kde?"
+        answer: "Stovky gramů (skripta uvádějí 250–400 g i 300–500 g); asi 1/3 v játrech a 2/3 ve svalech."
+
+  - id: sach.glykogen-voda
+    title: Glykogen váže vodu
+    kind: fact
+    tier: A
+    criteria: [1c, 7a]
+    prereqs: [sach.glykogen-zasoby]
+    source: { pages: [14], anchor: "1 g glykogenu na sebe naváže přibližně 3 g vody" }
+    explanation: >-
+      1 g glykogenu na sebe váže přibližně 3 g vody. Změny zásob glykogenu proto mohou výrazně
+      pohnout s hmotností — např. rychlý „úbytek“ v prvních dnech nízkosacharidové stravy je
+      z velké části voda, ne tuk.
+    exercises:
+      - id: kolik-vody
+        type: choice
+        prompt: "Kolik vody naváže přibližně 1 g glykogenu?"
+        options:
+          - { text: "Asi 3 g", correct: true }
+          - { text: "Asi 0,3 g" }
+          - { text: "Asi 10 g" }
+          - { text: "Glykogen vodu neváže" }
+      - id: klient-vaha
+        type: explain
+        prompt: "Klient po 3 dnech bez pečiva a příloh zhubl 2 kg a je nadšený. Jak mu to vysvětlíš?"
+        keyPoints:
+          - "Při nízkém příjmu sacharidů se čerpají zásoby glykogenu"
+          - "1 g glykogenu váže asi 3 g vody"
+          - "Rychlý úbytek je tedy z velké části voda, ne tuk"
+        modelAnswer: >-
+          Při omezení sacharidů tělo spotřebuje část zásob glykogenu. Každý gram glykogenu váže asi
+          3 g vody, takže s ním odchází i voda. Rychlý pokles hmotnosti v prvních dnech je proto
+          hlavně voda, ne tuková tkáň.
+
+  - id: sach.skrob
+    title: Škrob – složení a trávení
+    kind: concept
+    tier: A
+    criteria: [1c, 2f]
+    prereqs: [sach.polysacharidy-funkce]
+    source: { pages: [14], anchor: "Jde o směs dvou polysacharidů (amylózy a amylopektinu)" }
+    explanation: >-
+      Škrob je zásobní polysacharid rostlin: směs amylózy a amylopektinu (asi 1 : 4), obojí z glukózy.
+      Zdroje: obiloviny, brambory, škrobnatá zelenina. Amylázy ho štěpí na dextriny a postupně až na
+      glukózu, takže energie se uvolňuje pozvolna.
+    exercises:
+      - id: slozeni
+        type: reveal
+        prompt: "Z jakých dvou složek se skládá škrob a v jakém přibližném poměru?"
+        answer: "Amylóza a amylopektin, přibližně 1 : 4."
+      - id: enzym
+        type: choice
+        prompt: "Které enzymy štěpí škrob na menší jednotky (dextriny)?"
+        options:
+          - { text: "Amylázy", correct: true }
+          - { text: "Laktázy" }
+          - { text: "Lipázy" }
+          - { text: "Proteázy" }
+
+  - id: sach.rezistentni-skrob
+    title: Rezistentní škrob a retrogradace
+    kind: concept
+    tier: B
+    criteria: [1c]
+    prereqs: [sach.skrob]
+    source: { pages: [14], anchor: "Při chladnutí potraviny se množství rezistentního škrobu" }
+    explanation: >-
+      Část škrobu odolává trávení v tenkém střevě — rezistentní škrob. Vzniká retrogradací:
+      při chladnutí uvařené potraviny (rýže, brambory) jeho podíl roste. Působí jako prebiotikum
+      a podobně jako vláknina snižuje glykemický index.
+    exercises:
+      - id: vznik
+        type: choice
+        prompt: "Jak se zvýší podíl rezistentního škrobu v uvařených bramborách?"
+        options:
+          - { text: "Necháme je vychladnout (retrogradace).", correct: true }
+          - { text: "Rozvaříme je do měkka.", why: "Rozvaření naopak zpřístupní škrob enzymům (želatinizace)." }
+          - { text: "Přidáme k nim cukr." }
+          - { text: "Rozmixujeme je na kaši." }
+
+  - id: sach.vlaknina-definice
+    title: Vláknina – definice a energetická hodnota
+    kind: concept
+    tier: A
+    criteria: [1c]
+    prereqs: [sach.polysacharidy-funkce]
+    source: { pages: [14], anchor: "kalorická hodnota stanovila na 8" }
+    explanation: >-
+      Vláknina je rostlinný polysacharid, který odolává trávicím enzymům v tenkém střevě. Část
+      vlákniny ale rozkládají bakterie tlustého střeva — výsledek závisí na mikrobiomu. EFSA proto
+      stanovila její energetickou hodnotu paušálně na 8 kJ/g.
+    exercises:
+      - id: energie
+        type: choice
+        prompt: "Jakou energetickou hodnotu vlákniny stanovila EFSA?"
+        options:
+          - { text: "8 kJ/g", correct: true }
+          - { text: "0 kJ/g" }
+          - { text: "17 kJ/g", why: "17 kJ/g je hodnota pro sacharidy a bílkoviny." }
+          - { text: "38 kJ/g", why: "38 kJ/g je hodnota pro tuky." }
+      - id: definice
+        type: reveal
+        prompt: "Co je vláknina a proč nelze jednoznačně určit její energetickou hodnotu?"
+        answer: >-
+          Rostlinný polysacharid odolný trávicím enzymům tenkého střeva. Část rozkládají bakterie
+          tlustého střeva podle složení mikrobiomu, proto je výtěžek energie individuální (EFSA: 8 kJ/g).
+
+  - id: sach.vlaknina-typy
+    title: Rozpustná vs. nerozpustná vláknina
+    kind: comparison
+    tier: A
+    criteria: [1c, 2a]
+    prereqs: [sach.vlaknina-definice]
+    source: { pages: [15], anchor: "V přítomnosti vody nabobtná a vytvoří gel" }
+    explanation: >-
+      Nerozpustná (hrubá): slupky, otruby, ořechy, celozrnné potraviny; zvětšuje objem tráveniny,
+      urychluje průchod střevem, podporuje peristaltiku i zdraví zubů. Rozpustná: oves, luštěniny,
+      ovoce, zelenina, brambory; s vodou tvoří gel, zpomaluje vstřebávání glukózy, je prebiotikem,
+      může snížit vstřebání železa a zinku.
+    exercises:
+      - id: rozpustna-ucinek
+        type: choice
+        multiple: true
+        prompt: "Které účinky patří k ROZPUSTNÉ vláknině? (vyber všechny správné)"
+        options:
+          - { text: "S vodou vytváří gel", correct: true }
+          - { text: "Zpomaluje vstřebávání glukózy", correct: true }
+          - { text: "Působí jako prebiotikum", correct: true }
+          - { text: "Výrazně urychluje průchod tráveniny střevem", why: "To je typické pro nerozpustnou vlákninu." }
+          - { text: "Zpevňuje zuby a chrání před kazem", why: "To přisuzují skripta nerozpustné vláknině." }
+      - id: porovnani
+        type: explain
+        prompt: "Vysvětli rozdíl mezi rozpustnou a nerozpustnou vlákninou (účinky + příklady zdrojů)."
+        keyPoints:
+          - "Nerozpustná: zvětšuje objem a urychluje průchod tráveniny, podporuje peristaltiku"
+          - "Nerozpustná: zdroje slupky, otruby, ořechy, celozrnné potraviny"
+          - "Rozpustná: s vodou tvoří gel, zpomaluje vstřebávání glukózy, prebiotikum"
+          - "Rozpustná: zdroje oves, luštěniny, ovoce, zelenina"
+        modelAnswer: >-
+          Nerozpustná vláknina (slupky obilných zrn, otruby, ořechy, celozrnné výrobky) nasaje trochu
+          vody, zvětší objem tráveniny a urychlí její průchod — podporuje pravidelné vyprazdňování.
+          Rozpustná vláknina (oves, luštěniny, ovoce, zelenina) s vodou nabobtná v gel, zpomalí
+          vstřebávání glukózy a slouží jako potrava pro střevní bakterie.
+      - id: zdroj
+        type: choice
+        prompt: "Který zdroj je typický pro NEROZPUSTNOU vlákninu?"
+        options:
+          - { text: "Otruby a slupky obilných zrn", correct: true }
+          - { text: "Ovesné vločky", why: "Oves je typický zdroj rozpustné vlákniny." }
+          - { text: "Čekankový sirup", why: "Čekanka je zdrojem inulinu – rozpustné vlákniny." }
+          - { text: "Vařené luštěniny", why: "Luštěniny skripta uvádějí jako zdroj rozpustné vlákniny." }
+
+  - id: sach.vlaknina-prijem
+    title: Doporučený příjem vlákniny
+    kind: fact
+    tier: A
+    criteria: [1c]
+    prereqs: [sach.vlaknina-typy]
+    source: { pages: [16], anchor: "alespoň 25 g na den (dle EFSA)" }
+    explanation: >-
+      Dospělí by měli přijímat alespoň 25 g vlákniny denně (EFSA), skripta uvádějí poměr 3 : 1 ve
+      prospěch nerozpustné. U dětí se v pediatrii používá pomůcka 5 g + věk. Nadbytek vlákniny může
+      vázat minerální látky i léčiva.
+    exercises:
+      - id: dospeli
+        type: choice
+        prompt: "Kolik vlákniny denně by měl podle EFSA přijímat dospělý?"
+        options:
+          - { text: "Alespoň 25 g", correct: true }
+          - { text: "Alespoň 10 g" }
+          - { text: "Nejvýše 15 g" }
+          - { text: "Alespoň 60 g" }
+      - id: deti
+        type: reveal
+        prompt: "Jakou jednoduchou pomůcku pro příjem vlákniny u dětí uvádějí skripta?"
+        answer: "5 g + věk dítěte (v letech) za den."
+
+  - id: sach.inulin
+    title: Inulin
+    kind: fact
+    tier: B
+    criteria: [1c]
+    prereqs: [sach.fos-gos]
+    source: { pages: [15], anchor: "Inulin je specifickým typem rozpustné vlákniny" }
+    explanation: >-
+      Inulin je rozpustná vláknina — v podstatě velký fruktooligosacharid (asi 30 jednotek).
+      Hlavní zdroj je kořen čekanky (čekankový sirup, kávové náhražky), dále topinambury a cibule.
+      Přidává se do potravin jako náhrada tuku; působí jako prebiotikum.
+    exercises:
+      - id: zdroj
+        type: choice
+        prompt: "Co je hlavním zdrojem inulinu?"
+        options:
+          - { text: "Kořen čekanky", correct: true }
+          - { text: "Pšeničné otruby" }
+          - { text: "Mléko" }
+          - { text: "Cukrová řepa" }
+
+  - id: sach.mnozstvi
+    title: Kolik sacharidů ve stravě
+    kind: concept
+    tier: A
+    criteria: [1c, 5c]
+    source: { pages: [16, 17], anchor: "Měly by tvořit 45–60 %" }
+    explanation: >-
+      Obecná doporučení: sacharidy 45–60 % denního energetického příjmu. U vytrvalců až kolem 75 %,
+      v praxi poradce často méně — a to nemusí být špatně. Prakticky se množství sacharidů odvodí
+      až nakonec: doplní energii, která zbude po pokrytí bílkovin a tuků.
+    exercises:
+      - id: procenta
+        type: choice
+        prompt: "Kolik procent denního energetického příjmu mají podle obecných doporučení tvořit sacharidy?"
+        options:
+          - { text: "45–60 %", correct: true }
+          - { text: "10–15 %", why: "To je doporučený podíl bílkovin." }
+          - { text: "25–35 %", why: "To odpovídá doporučenému podílu tuků." }
+          - { text: "70–80 %" }
+      - id: postup
+        type: reveal
+        prompt: "Jak se v praxi u běžné populace stanoví denní množství sacharidů?"
+        answer: "Jako zbytek: po pokrytí potřeby bílkovin a tuků doplní sacharidy zbývající energii."
+
+  - id: sach.rozlozeni-dne
+    title: Sacharidy během dne – mýtus o večeři
+    kind: concept
+    tier: B
+    criteria: [1c, 7c]
+    source: { pages: [17], anchor: "Večeře obsahující sacharidy podporuje kvalitu spánku" }
+    note: >-
+      Kap. 17 (s. 181) uvádí, že obecně bývá vhodnější sníst větší část energie v první polovině
+      dne — ale výslovně ne jako pravidlo.
+    explanation: >-
+      Představu, že sacharidy patří jen do první poloviny dne, skripta zpochybňují. Příliš
+      sacharidová snídaně bez bílkovin zvyšuje hlad a chutě; sacharidy ve večeři mohou podpořit
+      spánek. Rozložení má odpovídat režimu a aktivitě klienta.
+    exercises:
+      - id: vecere
+        type: explain
+        prompt: "Klientka se bojí jíst k večeři přílohu, „protože se to večer uloží“. Co jí řekneš?"
+        keyPoints:
+          - "Pravidlo „sacharidy jen dopoledne“ nezohledňuje, kdy je člověk aktivní"
+          - "Sacharidy ve večeři mohou podpořit kvalitu spánku"
+          - "Rozhoduje celkový příjem a individuální režim, ne denní doba"
+        modelAnswer: >-
+          O ukládání rozhoduje hlavně celková energetická bilance, ne hodina. Sacharidy ve večeři
+          mohou dokonce podpořit spánek, který je důležitý i pro hubnutí. Rozložení přizpůsobíme
+          jejímu dennímu režimu a aktivitě.
+
+  - id: sach.zdroje
+    title: Zdroje sacharidů
+    kind: fact
+    tier: B
+    criteria: [1c]
+    source: { pages: [17, 18], anchor: "Sacharidy najdeme převážně v rostlinných potravinách" }
+    explanation: >-
+      Hlavní zdroje: obiloviny a pseudoobiloviny a výrobky z nich, luštěniny (škrob, oligosacharidy),
+      ovoce (jednoduché cukry), zelenina (vláknina) a laktóza v mléčných výrobcích. Preferovat
+      celozrnné potraviny, zeleninu a ovoce kvůli vitaminům, minerálům a vláknině.
+    exercises:
+      - id: preferovat
+        type: reveal
+        prompt: "Které zdroje sacharidů je vhodné preferovat a proč?"
+        answer: "Celozrnné potraviny, zeleninu a ovoce – obsahují více vitaminů, minerálních látek a vlákniny."
+
+  - id: sach.gi
+    title: Glykemický index – definice a kategorie
+    kind: concept
+    tier: A
+    status: course-disputed
+    note: >-
+      Skripta definují GI jako „rychlost vstřebávání“ a vařené brambory řadí ke střednímu GI. Přesněji
+      GI porovnává plochu pod glykemickou křivkou (2 h) po potravině s 50 g využitelných sacharidů
+      vůči glukóze; vařené brambory mívají GI spíše vysoký. Kategorie (55 / 70) platí.
+    criteria: [1c, 2f]
+    confusableWith: [sach.gn, sach.inzulinovy-index]
+    source: { pages: [19], anchor: "Hodnoty glykemického indexu řadíme do 3 kategorií" }
+    explanation: >-
+      Glykemický index (GI) vyjadřuje, jak po jídle stoupá glykémie, ve srovnání se stejným množstvím
+      sacharidů z čisté glukózy (GI = 100). Kategorie: nízký do 55, střední do 70, vysoký nad 70. Nízký GI: luštěniny,
+      mléčné výrobky. Vysoký: sladkosti, rozvařená rýže, pivo.
+    exercises:
+      - id: kategorie
+        type: reveal
+        prompt: "Jaké jsou hranice kategorií glykemického indexu?"
+        answer: "Nízký do 55, střední do 70 (56–70), vysoký nad 70."
+      - id: referencni
+        type: choice
+        prompt: "S čím se při stanovení glykemického indexu porovnává rychlost vzestupu glykémie?"
+        options:
+          - { text: "S čistou glukózou (GI = 100)", correct: true }
+          - { text: "Se sacharózou (GI = 100)" }
+          - { text: "S medem (GI = 100)" }
+          - { text: "S fruktózou (GI = 0)" }
+
+  - id: sach.gi-faktory
+    title: Co ovlivňuje glykemický index
+    kind: concept
+    tier: A
+    criteria: [1c, 4a]
+    prereqs: [sach.gi]
+    source: { pages: [19, 20], anchor: "Glykemický index lze ovlivnit následujícími faktory" }
+    explanation: >-
+      GI zvyšuje: více jednoduchých cukrů (zralé ovoce), rozvaření, pufování a tepelná úprava
+      (želatinizace škrobu). GI snižuje: vláknina a rezistentní škrob, přídavek tuku a bílkovin
+      (zpomalí vyprazdňování žaludku), kyselost pokrmu, úprava al dente.
+    exercises:
+      - id: snizuje
+        type: choice
+        multiple: true
+        prompt: "Které úpravy glykemický index pokrmu SNÍŽÍ? (vyber všechny)"
+        options:
+          - { text: "Přidat k přílohám bílkoviny a trochu tuku", correct: true }
+          - { text: "Uvařit těstoviny al dente", correct: true }
+          - { text: "Přidat kyselou složku (např. ocet, citron)", correct: true }
+          - { text: "Rozvařit rýži do měkka", why: "Rozvaření GI zvyšuje (želatinizace škrobu)." }
+          - { text: "Nahradit celozrnné pečivo pufovanými chlebíčky", why: "Pufované výrobky mají velmi vysoký GI." }
+      - id: faktory
+        type: explain
+        prompt: "Vyjmenuj a vysvětli faktory, které ovlivňují glykemický index potraviny."
+        keyPoints:
+          - "Množství a typ sacharidů (jednoduché cukry ↑, zralost ovoce)"
+          - "Vláknina a rezistentní škrob ↓"
+          - "Tuk a bílkoviny ↓ (zpomalí vyprazdňování žaludku)"
+          - "Zpracování: rozvaření, pufování ↑; al dente ↓"
+          - "Kyselost ↓"
+        modelAnswer: >-
+          GI zvyšují jednoduché cukry (např. zralé ovoce) a intenzivní zpracování — rozvaření,
+          pufování, tepelná úprava. Snižuje ho vláknina a rezistentní škrob, přídavek tuku a bílkovin
+          a kyselost, protože zpomalují vyprazdňování žaludku; těstoviny al dente mají nižší GI.
+
+  - id: sach.gn
+    title: Glykemická nálož
+    kind: procedure
+    tier: A
+    criteria: [1c, 2f]
+    prereqs: [sach.gi]
+    confusableWith: [sach.gi]
+    source: { pages: [20], anchor: "GN = GI x g sacharidů / 100" }
+    explanation: >-
+      Glykemická nálož (GN) zohledňuje i množství sacharidů v porci: GN = GI × g sacharidů / 100.
+      Nízká do 10, střední 10–20, vysoká nad 20. Potravina s vysokým GI tak může mít v běžné porci
+      nízkou nálož (meloun: 70 × 4 / 100 ≈ 3).
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: glycemic-load
+        prompt: "Potravina má GI {gi} a porce obsahuje {carbs} g sacharidů. Jaká je glykemická nálož porce?"
+        params:
+          gi: { min: 30, max: 95, step: 5 }
+          carbs: { min: 5, max: 60, step: 1 }
+        unit: ""
+        tolerance: { abs: 0.6 }
+        decimals: 1
+        hint: "GN = GI × g sacharidů / 100"
+      - id: rozdil
+        type: choice
+        prompt: "Proč může mít potravina s vysokým GI přesto nízkou glykemickou nálož?"
+        options:
+          - { text: "Protože porce obsahuje málo sacharidů.", correct: true }
+          - { text: "Protože GN nezávisí na GI." }
+          - { text: "Protože GN měří odezvu inzulinu, ne glukózy.", why: "Odezvu inzulinu popisuje inzulinový index." }
+          - { text: "Protože GN se počítá jen pro tuky." }
+
+  - id: sach.inzulinovy-index
+    title: Inzulinový index
+    kind: concept
+    tier: B
+    criteria: [1c, 2f]
+    prereqs: [sach.gi]
+    source: { pages: [20], anchor: "Inzulínový index je hodnota vyjadřující zvýšení koncentrace inzulinu" }
+    explanation: >-
+      Inzulinový index vyjadřuje zvýšení koncentrace inzulinu 2 hodiny po jídle s definovanou
+      energií. Inzulin nezvyšují jen sacharidy: vysokou odezvu mají i bílkovinné potraviny
+      (proteinový nápoj) a kombinace sacharidů s tuky (čokoláda, sladké tyčinky).
+    exercises:
+      - id: priklad
+        type: choice
+        prompt: "Který příklad nejlépe ukazuje, proč inzulinový index doplňuje glykemický index?"
+        options:
+          - { text: "Proteinový nápoj má téměř nulový GI, ale výraznou inzulinovou odezvu.", correct: true }
+          - { text: "Glukóza má GI 100 i vysokou inzulinovou odezvu." }
+          - { text: "Vláknina snižuje GI pokrmu." }
+          - { text: "Meloun má vysoký GI, ale nízkou glykemickou nálož.", why: "To je příklad rozdílu GI a glykemické nálože." }
+
+  - id: sach.cgm-trend
+    title: Kontinuální monitory glukózy u zdravých
+    kind: concept
+    tier: C
+    criteria: [1c]
+    source: { pages: [20, 21], anchor: "plně funguje přirozená regulace inzulinem a glukagonem" }
+    explanation: >-
+      Kontinuální monitory glukózy a „sekvencování stravy“ jsou trendem. U zdravých lidí ale
+      funguje regulace inzulinem a glukagonem; výkyvy po jídle jsou fyziologické a zplošťování
+      křivky za každou cenu není nutné pro hubnutí ani zdraví.
+    exercises:
+      - id: zdravi
+        type: reveal
+        prompt: "Je u zdravého člověka nutné za každou cenu zplošťovat glykemickou křivku?"
+        answer: "Ne – výkyvy po jídle jsou fyziologické, regulace inzulinem a glukagonem funguje."
+
+  - id: sach.polyoly
+    title: Alkoholové cukry (polyoly)
+    kind: fact
+    tier: B
+    criteria: [1c, 4b]
+    source: { pages: [21], anchor: "Alkoholové cukry (odborně polyoly)" }
+    explanation: >-
+      Polyoly (erythritol, xylitol, maltitol) jsou sladidla s nižší energií — xylitol asi polovina
+      kalorií cukru, erythritol téměř nula. Nezpůsobují zubní kaz, glykémii ovlivňují minimálně,
+      chladí v ústech. Ve vyšších dávkách působí laxativně (nadýmání, průjem).
+    exercises:
+      - id: vlastnosti
+        type: choice
+        prompt: "Co platí o polyolech (např. xylitol, erythritol)?"
+        options:
+          - { text: "Nezpůsobují zubní kaz, ale ve vyšších dávkách mohou působit projímavě.", correct: true }
+          - { text: "Mají stejnou energetickou hodnotu jako cukr." }
+          - { text: "Výrazně zvyšují glykémii." }
+          - { text: "Jsou to bílkovinná sladidla." }

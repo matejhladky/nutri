@@ -1,0 +1,180 @@
+topic:
+  id: metabolismus
+  title: Metabolismus
+  chapter: 11
+  pages: [85, 87]
+  order: 110
+  summary: >-
+    Metabolické dráhy sacharidů (glykolýza, glykogeneze, glykogenolýza, glukoneogeneze)
+    a hormonální regulace glykémie inzulinem a glukagonem.
+
+points:
+  - id: met.sach-drahy
+    title: Dráhy metabolismu sacharidů – názvosloví
+    kind: comparison
+    tier: A
+    criteria: [2f, 2d]
+    source: { pages: [85], anchor: "Glykogeneze (novotvorba glykogenu)" }
+    explanation: >-
+      Geneze = novotvorba, lýza = rozklad. Glykogeneze: tvorba glykogenu z glukózy (po jídle,
+      inzulin). Glykogenolýza: rozklad glykogenu na glukózu. Glykolýza: rozklad glukózy.
+      Glukoneogeneze: tvorba glukózy z necukerných látek.
+    exercises:
+      - id: glukoneogeneze
+        type: choice
+        prompt: "Jak se nazývá novotvorba glukózy z necukerných látek?"
+        options:
+          - { text: "Glukoneogeneze", correct: true }
+          - { text: "Glykogeneze", why: "Glykogeneze je tvorba glykogenu." }
+          - { text: "Glykogenolýza", why: "Glykogenolýza je rozklad glykogenu." }
+          - { text: "Glykolýza", why: "Glykolýza je rozklad glukózy." }
+      - id: ctyri-drahy
+        type: reveal
+        prompt: "Vysvětli pojmy glykogeneze, glykogenolýza, glykolýza a glukoneogeneze."
+        answer: >-
+          Glykogeneze = tvorba glykogenu; glykogenolýza = rozklad glykogenu; glykolýza = rozklad
+          glukózy; glukoneogeneze = tvorba glukózy z necukerných látek.
+      - id: glykogenolyza
+        type: choice
+        prompt: "Jak se nazývá rozklad jaterního glykogenu, kterým játra při lačnění dodávají glukózu do krve?"
+        options:
+          - { text: "Glykogenolýza", correct: true }
+          - { text: "Glykogeneze", why: "Glykogeneze glykogen naopak tvoří (po jídle)." }
+          - { text: "Lipogeneze", why: "Lipogeneze je tvorba tuků." }
+          - { text: "β-oxidace", why: "β-oxidace je rozklad mastných kyselin." }
+
+  - id: met.glykolyza
+    title: Aerobní vs. anaerobní glykolýza
+    kind: comparison
+    tier: A
+    status: course-disputed
+    criteria: [2f, 2d]
+    prereqs: [met.sach-drahy]
+    source: { pages: [85], anchor: "v přítomnosti kyslíku získáme až 36 molekul ATP, bez kyslíku pouze 2" }
+    note: >-
+      Skripta uvádějí „až 36 ATP“ (starší učebnice též 38); novější odhady jsou nižší (zhruba 30–32 ATP) —
+      ke zkoušce počítej s údajem ze skript. Na s. 85 je jako produkt aerobní glykolýzy uveden
+      acetylkoenzym A, v příloze (s. 258) pyruvát. Přesně: glykolýza končí pyruvátem, ten se za
+      aerobních podmínek mění na acetylkoenzym A.
+    explanation: >-
+      Glukóza se v glykolýze mění na pyruvát. S dostatkem kyslíku (aerobně) pokračuje jako
+      acetylkoenzym A do Krebsova cyklu a dýchacího řetězce — zisk až 36 ATP. Bez kyslíku
+      (anaerobně) vzniká kyselina mléčná (laktát) a zisk jsou jen 2 ATP.
+    exercises:
+      - id: produkt
+        type: choice
+        prompt: "Co vzniká z pyruvátu při anaerobní glykolýze?"
+        options:
+          - { text: "Kyselina mléčná (laktát)", correct: true }
+          - { text: "Acetylkoenzym A", why: "Acetylkoenzym A vzniká za aerobních podmínek." }
+          - { text: "Glykogen" }
+          - { text: "Ketolátky" }
+      - id: srovnani
+        type: reveal
+        prompt: "Porovnej aerobní a anaerobní glykolýzu: produkt a energetický zisk."
+        answer: "Aerobní: pyruvát → acetylkoenzym A (Krebsův cyklus), až 36 ATP. Anaerobní: pyruvát → kyselina mléčná (laktát), 2 ATP."
+
+  - id: met.glykogen-jatra-svaly
+    title: Jaterní vs. svalový glykogen
+    kind: comparison
+    tier: A
+    criteria: [2f]
+    prereqs: [met.sach-drahy, sach.glykogen-zasoby]
+    source: { pages: [86], anchor: "sval si ho ponechává pro své vlastní potřeby" }
+    explanation: >-
+      Zásobárnou glukózy pro celé tělo při lačnění je jaterní glykogen — játra ho rozloží a glukózu
+      pošlou do krve. Svalový glykogen je sice objemnější, ale sval si ho ponechává pro vlastní
+      potřebu (pohotovostní zdroj energie při výkonu).
+    exercises:
+      - id: kdo-dodava
+        type: choice
+        prompt: "Který glykogen udržuje glykémii při lačnění?"
+        options:
+          - { text: "Jaterní", correct: true }
+          - { text: "Svalový", why: "Sval si svůj glykogen ponechává pro vlastní potřebu." }
+          - { text: "Mozkový" }
+          - { text: "Glykogen z tukové tkáně" }
+
+  - id: met.glukoneogeneze
+    title: Glukoneogeneze – výchozí látky
+    kind: fact
+    tier: A
+    criteria: [2f, 2d]
+    prereqs: [met.sach-drahy]
+    source: { pages: [86], anchor: "Jako výchozí látky pro tento účel slouží glycerol" }
+    explanation: >-
+      Při lačnění či hladovění tělo tvoří glukózu z necukerných látek, hlavně v játrech (a ledvinách).
+      Výchozí látky: glycerol (z tuků), kyselina mléčná (z pracujícího svalu a červených krvinek)
+      a alanin, případně další glukogenní aminokyseliny.
+    exercises:
+      - id: substraty
+        type: reveal
+        prompt: "Ze kterých tří hlavních látek tělo vytváří glukózu při glukoneogenezi?"
+        answer: "Glycerol (z tuků), kyselina mléčná (laktát) a alanin (aminokyselina ze svalu)."
+      - id: neni-substrat
+        type: choice
+        prompt: "Která látka NENÍ výchozí látkou glukoneogeneze podle skript?"
+        options:
+          - { text: "Mastné kyseliny", correct: true, why: "Mastné kyseliny se odbourávají β-oxidací na acetylkoenzym A; zdrojem pro glukoneogenezi je glycerol." }
+          - { text: "Glycerol" }
+          - { text: "Kyselina mléčná" }
+          - { text: "Alanin" }
+
+  - id: met.inzulin-tkane
+    title: Tkáně závislé a nezávislé na inzulinu
+    kind: comparison
+    tier: A
+    criteria: [2f, 2a]
+    source: { pages: [86, 87], anchor: "tkáň svalová, tuková a srdeční svalovina" }
+    explanation: >-
+      Glukóza vstupuje do buněk přes transportéry GLUT. Na inzulinu závisí vstup glukózy do
+      svalové tkáně, tukové tkáně a srdeční svaloviny. Mozek a červené krvinky jsou na inzulinu
+      nezávislé — glukózu dostanou vždy.
+    exercises:
+      - id: nezavisle
+        type: choice
+        multiple: true
+        prompt: "Které tkáně přijímají glukózu NEZÁVISLE na inzulinu? (vyber všechny)"
+        options:
+          - { text: "Mozek", correct: true }
+          - { text: "Červené krvinky", correct: true }
+          - { text: "Kosterní sval" }
+          - { text: "Tuková tkáň" }
+          - { text: "Srdeční svalovina" }
+      - id: zavisle
+        type: reveal
+        prompt: "Do kterých tkání je vstup glukózy závislý na inzulinu?"
+        answer: "Svalová tkáň, tuková tkáň a srdeční svalovina."
+
+  - id: met.inzulin-glukagon
+    title: Inzulin a glukagon – regulace glykémie
+    kind: comparison
+    tier: A
+    criteria: [2f, 2a]
+    prereqs: [met.sach-drahy]
+    source: { pages: [87], anchor: "V období lačnění je hladina inzulinu nízká a stoupá hladina glukagonu" }
+    explanation: >-
+      Oba hormony tvoří slinivka břišní. Inzulin se uvolňuje po jídle při vzestupu glykémie:
+      „otevírá“ buňky pro glukózu a podporuje tvorbu glykogenu, glykémii snižuje. Glukagon stoupá
+      při lačnění: spouští glykogenolýzu a glukoneogenezi, glykémii zvyšuje.
+    exercises:
+      - id: glukagon
+        type: choice
+        prompt: "Co dělá glukagon při lačnění?"
+        options:
+          - { text: "Spouští glykogenolýzu a glukoneogenezi – zvyšuje glykémii.", correct: true }
+          - { text: "Podporuje glykogenezi – snižuje glykémii.", why: "To je účinek inzulinu." }
+          - { text: "Zvyšuje vstup glukózy do tukové tkáně." }
+          - { text: "Zastavuje uvolňování glukózy z jater." }
+      - id: vysvetli
+        type: explain
+        prompt: "Vysvětli, jak tělo udržuje glykémii po jídle a při lačnění."
+        keyPoints:
+          - "Po jídle stoupne glykémie → slinivka vyloučí inzulin"
+          - "Inzulin umožní vstup glukózy do buněk (sval, tuk) a tvorbu glykogenu"
+          - "Při lačnění klesá inzulin a stoupá glukagon"
+          - "Glukagon: glykogenolýza (jaterní glykogen) a glukoneogeneze → glukóza do krve"
+        modelAnswer: >-
+          Po jídle glykémie stoupne a slinivka vyloučí inzulin, který umožní vstup glukózy do svalových
+          a tukových buněk a její uložení do glykogenu. Při lačnění inzulin klesá a roste glukagon,
+          který rozkládá jaterní glykogen a spouští glukoneogenezi, takže se glukóza dostává do krve.

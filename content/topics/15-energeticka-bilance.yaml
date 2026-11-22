@@ -1,0 +1,644 @@
+topic:
+  id: energeticka-bilance
+  title: Energetická bilance
+  chapter: 15
+  pages: [167, 173]
+  order: 150
+  summary: >-
+    Příjem a výdej energie, jednotky, složky výdeje (BMR, NEAT, EAT, TEF), predikční rovnice,
+    výpočet celkového denního výdeje (TDEE), adaptivní termogeneze, jojo efekt a energetická dostupnost.
+
+points:
+  - id: en.bilance
+    title: Typy energetické bilance
+    kind: concept
+    tier: A
+    criteria: [5a, 6b, 7a]
+    source: { pages: [167], anchor: "energetická bilance kladná, záporná nebo vyrovnaná" }
+    explanation: >-
+      Energetická bilance = vztah přijaté a vydané energie. Kladná (příjem > výdej) vede k nárůstu
+      hmotnosti, záporná (příjem < výdej) k poklesu, vyrovnaná k udržení. Princip CICO
+      („calories in, calories out“) vychází ze zákona zachování energie.
+    exercises:
+      - id: typy
+        type: explain
+        prompt: "Vysvětli tři typy energetické bilance a jejich dopad na hmotnost."
+        keyPoints:
+          - "Kladná: příjem > výdej → hmotnost roste"
+          - "Záporná: příjem < výdej → hmotnost klesá"
+          - "Vyrovnaná: příjem ≈ výdej → hmotnost stabilní"
+          - "Příjem = jídlo a nápoje; výdej = činnost orgánů, běžné činnosti, sport"
+        modelAnswer: >-
+          Energetická bilance porovnává energii přijatou z jídla a nápojů s energií vydanou na činnost
+          orgánů, běžné aktivity a sport. Je-li příjem vyšší než výdej, je bilance kladná a hmotnost
+          roste; je-li nižší, je záporná a hmotnost klesá; při rovnosti je vyrovnaná a hmotnost se udržuje.
+      - id: zaporna
+        type: choice
+        prompt: "Klient chce zhubnout. Jakou energetickou bilanci potřebuje?"
+        options:
+          - { text: "Zápornou (příjem nižší než výdej)", correct: true }
+          - { text: "Kladnou (příjem vyšší než výdej)" }
+          - { text: "Vyrovnanou" }
+          - { text: "Na bilanci nezáleží, jen na složení stravy" }
+
+  - id: en.energie-zivin
+    title: Energetická hodnota živin
+    kind: fact
+    tier: A
+    criteria: [5c, 1a]
+    source: { pages: [167], anchor: "Alkohol - obsah 29 kJ/7 kcal v 1 g" }
+    explanation: >-
+      Sacharidy 17 kJ / 4 kcal na 1 g, bílkoviny 17 kJ / 4 kcal, tuky 38 kJ / 9 kcal, alkohol
+      29 kJ / 7 kcal. Vláknina se podle EFSA počítá 8 kJ/g.
+    exercises:
+      - id: hodnoty
+        type: reveal
+        prompt: "Kolik kJ a kcal obsahuje 1 g sacharidů, bílkovin, tuků a alkoholu?"
+        answer: "Sacharidy a bílkoviny 17 kJ / 4 kcal, tuky 38 kJ / 9 kcal, alkohol 29 kJ / 7 kcal."
+      - id: alkohol
+        type: choice
+        prompt: "Kolik energie obsahuje 1 g alkoholu?"
+        options:
+          - { text: "29 kJ / 7 kcal", correct: true }
+          - { text: "17 kJ / 4 kcal" }
+          - { text: "38 kJ / 9 kcal" }
+          - { text: "Alkohol energii neobsahuje" }
+      - id: vypocet
+        type: numeric
+        formula: energy-from-macros
+        prompt: "Jídlo obsahuje {carbs} g sacharidů, {protein} g bílkovin a {fat} g tuků. Kolik má kcal?"
+        params:
+          carbs: { min: 10, max: 120, step: 5 }
+          protein: { min: 5, max: 60, step: 5 }
+          fat: { min: 2, max: 40, step: 1 }
+        unit: kcal
+        tolerance: { abs: 2 }
+        hint: "Sacharidy a bílkoviny × 4, tuky × 9."
+
+  - id: en.jednotky
+    title: Převod kJ a kcal
+    kind: procedure
+    tier: A
+    criteria: [5c, 6b]
+    source: { pages: [167], anchor: "1 kcal odpovídá přibližně 4,2 kJ" }
+    explanation: >-
+      1 kcal ≈ 4,2 kJ a 1 kJ ≈ 0,24 kcal. Z kcal na kJ tedy násobíme 4,2, z kJ na kcal dělíme 4,2
+      (nebo násobíme 0,24).
+    exercises:
+      - id: kcal-kj
+        type: numeric
+        formula: kcal-to-kj
+        prompt: "Převeď {kcal} kcal na kJ (podle skript)."
+        params:
+          kcal: { min: 100, max: 3000, step: 50 }
+        unit: kJ
+        tolerance: { rel: 0.01 }
+        hint: "1 kcal ≈ 4,2 kJ"
+      - id: kj-kcal
+        type: numeric
+        formula: kj-to-kcal
+        prompt: "Na etiketě je {kj} kJ. Kolik je to přibližně kcal?"
+        params:
+          kj: { min: 200, max: 4000, step: 50 }
+        unit: kcal
+        tolerance: { rel: 0.02 }
+        hint: "1 kJ ≈ 0,24 kcal (dělíme 4,2)"
+
+  - id: en.podhodnoceni
+    title: Podhodnocování příjmu
+    kind: fact
+    tier: B
+    criteria: [5a, 3b]
+    source: { pages: [168], anchor: "podceňovat svůj denní energetický příjem o 30–55 %" }
+    explanation: >-
+      Lidé mají tendenci podceňovat svůj denní energetický příjem o 30–55 %. Proto je záznam
+      stravy jen odhad a je potřeba ho porovnávat s vývojem hmotnosti.
+    exercises:
+      - id: kolik
+        type: choice
+        prompt: "O kolik lidé podle skript obvykle podceňují svůj denní energetický příjem?"
+        options:
+          - { text: "O 30–55 %", correct: true }
+          - { text: "O 5–10 %" }
+          - { text: "Nepodceňují, spíše přeceňují" }
+          - { text: "O 80–90 %" }
+
+  - id: en.tdee-slozky
+    title: Složky celkového výdeje (TDEE)
+    kind: concept
+    tier: A
+    criteria: [5e, 6b]
+    source: { pages: [168], anchor: "TDEE (Total Daily Energy Expenditure)" }
+    explanation: >-
+      TDEE = BMR + NEAT + EAT + TEF. BMR (bazální metabolismus) asi 60 % výdeje; NEAT (běžná
+      nesportovní aktivita) 10–25 %; EAT (cílený sport) 0–30 %; TEF (termický efekt potravy)
+      kolem 10 %. Výdej zvyšuje i stres, nemoc, regenerace, těhotenství a kojení.
+    exercises:
+      - id: zkratky
+        type: reveal
+        prompt: "Co znamenají zkratky BMR, NEAT, EAT a TEF?"
+        answer: >-
+          BMR = bazální metabolismus; NEAT = energie na běžnou nesportovní aktivitu; EAT = energie
+          na cílenou sportovní aktivitu; TEF = termický efekt potravy.
+      - id: nejvetsi
+        type: choice
+        prompt: "Která složka tvoří obvykle největší podíl celkového denního výdeje?"
+        options:
+          - { text: "BMR (asi 60 %)", correct: true }
+          - { text: "NEAT", why: "NEAT tvoří asi 10–25 %." }
+          - { text: "EAT", why: "EAT tvoří asi 0–30 %." }
+          - { text: "TEF", why: "TEF tvoří kolem 10 %." }
+      - id: neat-vs-eat
+        type: choice
+        prompt: "Kterou složku výdeje lze podle skript u nesportovců každý den nejvýrazněji ovlivnit?"
+        options:
+          - { text: "NEAT – běžnou denní aktivitu", correct: true }
+          - { text: "BMR" }
+          - { text: "TEF" }
+          - { text: "Žádnou – výdej je daný" }
+
+  - id: en.bmr-definice
+    title: Bazální metabolismus – definice
+    kind: concept
+    tier: A
+    criteria: [5e]
+    prereqs: [en.tdee-slozky]
+    source: { pages: [169], anchor: "při neutrální teplotě (21–27 °C), po dobu 12 hodin" }
+    explanation: >-
+      BMR je energie ležícího člověka v naprostém klidu, při neutrální teplotě (21–27 °C) a nalačno
+      (12 h bez trávení). Kryje jen životně důležité funkce orgánů. Tvoří asi 60 % výdeje; podle
+      skript se výrazněji nemění až do 60 let, pak mírně klesá.
+    exercises:
+      - id: podminky
+        type: reveal
+        prompt: "Za jakých podmínek se definuje bazální metabolismus?"
+        answer: "Vleže, v naprostém klidu, při neutrální teplotě 21–27 °C a nalačno (12 hodin bez trávení)."
+      - id: vek
+        type: choice
+        prompt: "Jak se podle skript mění BMR s věkem?"
+        options:
+          - { text: "Do zhruba 60 let se výrazně nemění, pak mírně klesá.", correct: true }
+          - { text: "Klesá rychle už od 25 let." }
+          - { text: "S věkem stoupá." }
+          - { text: "Mění se hlavně podle ročního období." }
+
+  - id: en.bmr-metody
+    title: Metody stanovení BMR
+    kind: comparison
+    tier: A
+    criteria: [5e, 3b]
+    prereqs: [en.bmr-definice]
+    source: { pages: [169], anchor: "metoda přímé kalorimetrie, která je považovaná za nejpřesnější" }
+    explanation: >-
+      Přímá kalorimetrie = nejpřesnější, v praxi nereálná. DLW (dvojitě značená voda) = nepřímá,
+      přesná, drahá, měří celkový výdej. DEXA = nejpřesnější měření složení těla, BMR dopočítá.
+      Bioimpedance = nejběžnější; ovlivní ji pot, postoj, plocha chodidel, čistota přístroje —
+      hodí se ke sledování trendu.
+    exercises:
+      - id: nejpresnejsi
+        type: choice
+        prompt: "Která metoda stanovení BMR je považována za nejpřesnější?"
+        options:
+          - { text: "Přímá kalorimetrie", correct: true }
+          - { text: "Bioimpedance", why: "Bioimpedance je nejběžnější, ale ne nejpřesnější." }
+          - { text: "Rovnice Harris-Benedict" }
+          - { text: "Chytré hodinky" }
+      - id: bioimpedance
+        type: explain
+        prompt: "Klientka se ptá, jak přesné je měření na bioimpedanční váze. Co jí vysvětlíš?"
+        keyPoints:
+          - "Je to nejběžnější metoda, BMR se dopočítává ze složení těla"
+          - "Přesnost není dokonalá"
+          - "Ovlivní ji pot, postoj a jeho klid, plocha chodidel, čistota přístroje"
+          - "Výhoda: lze opakovat a sledovat trend v čase"
+        modelAnswer: >-
+          Bioimpedance je v praxi nejběžnější — přístroj změří složení těla a z něj BMR dopočítá.
+          Přesnost není dokonalá: ovlivňuje ji pot, postoj, plocha chodidel i čistota přístroje.
+          Hodnota je ale v tom, že měření můžeme opakovat za stejných podmínek a sledovat trend.
+
+  - id: en.bmr-rovnice-volba
+    title: Volba predikční rovnice pro BMR
+    kind: comparison
+    tier: A
+    criteria: [5e]
+    prereqs: [en.bmr-definice]
+    source: { pages: [169, 170], anchor: "U sportovců bývá výpočet bazálního metabolizmu bez zahrnutí složení těla" }
+    explanation: >-
+      Katch-McArdle použij, když znáš spolehlivě beztukovou hmotu (FFM). Mifflin-St Jeor, když
+      složení těla neznáš. Harris-Benedict je nejstarší. Rovnice bez složení těla u obézních
+      klientů BMR nadhodnocují, u sportovců podhodnocují. Každá rovnice je jen odhad.
+    exercises:
+      - id: kdy-katch
+        type: choice
+        prompt: "Kdy je vhodné použít rovnici Katch-McArdle?"
+        options:
+          - { text: "Když máme spolehlivý údaj o beztukové hmotě (FFM).", correct: true }
+          - { text: "Když neznáme složení těla.", why: "Pak skripta doporučují Mifflin-St Jeor." }
+          - { text: "Pouze u dětí." }
+          - { text: "Když chceme co nejstarší a nejověřenější rovnici.", why: "Nejstarší je Harris-Benedict." }
+      - id: obezni-sportovci
+        type: choice
+        prompt: "Jak se chová výpočet BMR bez složení těla u obézního klienta a u sportovce?"
+        options:
+          - { text: "U obézního nadhodnocuje, u sportovce podhodnocuje.", correct: true }
+          - { text: "U obézního podhodnocuje, u sportovce nadhodnocuje." }
+          - { text: "U obou je přesný." }
+          - { text: "U obou nadhodnocuje." }
+      - id: rozdily
+        type: explain
+        prompt: "U zkoušky máš vysvětlit rozdíly mezi metodikami výpočtu BMR. Co řekneš?"
+        keyPoints:
+          - "Katch-McArdle počítá s beztukovou hmotou (FFM) – vhodná, když složení těla známe"
+          - "Mifflin-St Jeor – z hmotnosti, výšky, věku a pohlaví, když složení neznáme"
+          - "Harris-Benedict – nejstarší rovnice"
+          - "Bez složení těla: u obézních nadhodnocení, u sportovců podhodnocení"
+          - "Všechny jsou jen odhad – ověřit podle vývoje klienta"
+        modelAnswer: >-
+          Když mám spolehlivý údaj o beztukové hmotě, použiji Katch-McArdle, protože pracuje přímo
+          s FFM. Bez znalosti složení těla použiji Mifflin-St Jeor z hmotnosti, výšky, věku a pohlaví;
+          Harris-Benedict je nejstarší rovnice. Rovnice bez složení těla u obézních BMR nadhodnocují
+          a u sportovců podhodnocují. Výsledek je vždy odhad, který ověřuji podle vývoje klienta.
+
+  - id: en.bmr-mifflin
+    title: Výpočet BMR – Mifflin-St Jeor
+    kind: procedure
+    tier: A
+    criteria: [5e, 6b]
+    prereqs: [en.bmr-rovnice-volba]
+    confusableWith: [en.bmr-harris]
+    source: { pages: [169], anchor: "10 * hmotnost + 6,25 * výška - 5 * věk + 5" }
+    explanation: >-
+      Mifflin-St Jeor: 10 × hmotnost (kg) + 6,25 × výška (cm) − 5 × věk (roky) + 5 u mužů,
+      u žen místo +5 odečítáme 161.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: bmr-mifflin
+        prompt: "Vypočítej BMR podle Mifflin-St Jeor. Klient: {sex}, {age} let, výška {height} cm, hmotnost {weight} kg."
+        params:
+          sex: { choices: [{ value: M, label: muž }, { value: F, label: žena }] }
+          age: { min: 20, max: 65, step: 1 }
+          height: { min: 155, max: 195, step: 1 }
+          weight: { min: 50, max: 120, step: 1 }
+        unit: kcal
+        tolerance: { abs: 10 }
+        hint: "10 × hmotnost + 6,25 × výška − 5 × věk; muži + 5, ženy − 161."
+      - id: vzorec
+        type: reveal
+        prompt: "Napiš (aspoň v duchu) rovnici Mifflin-St Jeor pro muže a pro ženy."
+        answer: "10 × kg + 6,25 × cm − 5 × věk; muži + 5, ženy − 161."
+
+  - id: en.bmr-harris
+    title: Výpočet BMR – Harris-Benedict
+    kind: procedure
+    tier: B
+    status: course-disputed
+    note: >-
+      Skripta uvádějí u mužů koeficient věku 6,775; v původní rovnici je 6,755 (rozdíl asi 1 kcal).
+      Počítej podle skript.
+    criteria: [5e]
+    prereqs: [en.bmr-rovnice-volba]
+    confusableWith: [en.bmr-mifflin]
+    source: { pages: [169], anchor: "13.75 * hmotnost + 5.003 * výška v cm" }
+    explanation: >-
+      Harris-Benedict (nejstarší rovnice). Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5.
+      Ženy: 9,563 × kg + 1,85 × cm − 4,676 × věk + 655,1. Koeficienty jsou složité; podstatné je
+      vědět, že jde o nejstarší rovnici a čím se liší od ostatních.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: bmr-harris
+        prompt: "Vypočítej BMR podle Harris-Benedicta. Klient: {sex}, {age} let, výška {height} cm, hmotnost {weight} kg."
+        params:
+          sex: { choices: [{ value: M, label: muž }, { value: F, label: žena }] }
+          age: { min: 20, max: 65, step: 1 }
+          height: { min: 155, max: 195, step: 1 }
+          weight: { min: 50, max: 120, step: 1 }
+        unit: kcal
+        tolerance: { abs: 10 }
+        hint: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5. Ženy: 9,563 × kg + 1,85 × cm − 4,676 × věk + 655,1."
+
+  - id: en.bmr-katch
+    title: Výpočet BMR – Katch-McArdle
+    kind: procedure
+    tier: A
+    criteria: [5e]
+    prereqs: [en.bmr-rovnice-volba]
+    source: { pages: [169], anchor: "21.6 * FFM (Fat Free Mass) + 370" }
+    explanation: >-
+      Katch-McArdle: BMR = 21,6 × FFM + 370, kde FFM je beztuková hmota v kg. Když znáš hmotnost
+      a procento tuku: FFM = hmotnost × (1 − % tuku / 100).
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: bmr-katch
+        prompt: "Klientka váží {weight} kg a bioimpedance ukázala {bodyFat} % tuku. Vypočítej BMR podle Katch-McArdle."
+        params:
+          weight: { min: 50, max: 110, step: 1 }
+          bodyFat: { min: 15, max: 45, step: 1 }
+        unit: kcal
+        tolerance: { abs: 10 }
+        hint: "Nejdřív FFM = hmotnost × (1 − tuk/100), potom 21,6 × FFM + 370."
+
+  - id: en.pod-bmr
+    title: Jíst pod hodnotu BMR?
+    kind: concept
+    tier: B
+    criteria: [5e, 7b]
+    prereqs: [en.bmr-rovnice-volba]
+    source: { pages: [170], anchor: "S příjmem pod hodnotu BMR se lze setkat na obezitologických klinikách" }
+    explanation: >-
+      Jíst méně než BMR obecně nedává smysl — každý vydá víc než klidovou hodnotu. Vypočítané BMR
+      je ale jen odhad; u obézních klientů bez pohybu se s příjmem pod vypočítané BMR lze dostat.
+      Takový příjem patří pod lékařský dohled (obezitologie) a na omezenou dobu.
+    exercises:
+      - id: kdy
+        type: choice
+        prompt: "Kde se podle skript lze setkat s energetickým příjmem pod hodnotou BMR?"
+        options:
+          - { text: "Na obezitologických klinikách pod dohledem lékaře, po omezenou dobu", correct: true }
+          - { text: "Běžně u každého redukčního jídelníčku" }
+          - { text: "U sportovců před závody" }
+          - { text: "U dětí v období růstu" }
+
+  - id: en.neat
+    title: NEAT a koeficienty aktivity
+    kind: procedure
+    tier: A
+    criteria: [5e, 6b]
+    prereqs: [en.tdee-slozky, en.bmr-mifflin]
+    source: { pages: [170], anchor: "NEAT tvoří přibližně 10–25 % celkového energetického výdeje" }
+    explanation: >-
+      NEAT = energie na běžnou nesportovní aktivitu (chůze, úklid…), asi 10–25 % výdeje. Odhad:
+      NEAT = BMR × koeficient — 0,1 nízká aktivita (sedavá práce), 0,2 střední (lehčí práce,
+      domácí práce, snaha chodit), 0,35 vysoká (náročná práce, stále v pohybu).
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: neat
+        prompt: "BMR klienta je {bmr} kcal, jeho běžná denní aktivita odpovídá koeficientu {coef}. Kolik kcal je NEAT?"
+        params:
+          bmr: { min: 1200, max: 2200, step: 5 }
+          coef: { choices: [{ value: 0.1, label: "0,1" }, { value: 0.2, label: "0,2" }, { value: 0.35, label: "0,35" }] }
+        unit: kcal
+        tolerance: { abs: 5 }
+        hint: "NEAT = BMR × koeficient"
+      - id: koeficienty
+        type: choice
+        prompt: "Klientka má sedavé zaměstnání, jezdí autem a večer odpočívá. Jaký koeficient NEAT zvolíš?"
+        options:
+          - { text: "0,1", correct: true }
+          - { text: "0,2", why: "0,2 odpovídá střední aktivitě (lehčí práce, domácí práce, snaha chodit); skripta ho v příkladu použijí pro sedavou práci s běžnými domácími pracemi." }
+          - { text: "0,35", why: "0,35 odpovídá vysoké aktivitě." }
+          - { text: "1,2", why: "1,2 je koeficient PAL pro sedavý způsob života, ne NEAT." }
+
+  - id: en.eat
+    title: EAT a MET jednotky
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Hodnota MET zahrnuje i klidový výdej, takže součet BMR + EAT ho během sportu částečně počítá
+      dvakrát. Ke zkoušce počítej podle skript.
+    criteria: [5e, 6b, 7d]
+    prereqs: [en.tdee-slozky]
+    source: { pages: [171], anchor: "EAT = hmotnost (kg) x MET x čas (h)" }
+    explanation: >-
+      EAT = energie na cílenou sportovní aktivitu, orientačně 0–30 % výdeje. Počítá se pomocí MET:
+      1 MET = 1 kcal na 1 kg za 1 hodinu. EAT = hmotnost (kg) × MET × čas (h). Příklady MET:
+      tenis 5, posilování 6, běh 10 km/h 10.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: eat
+        prompt: "Klient vážící {weight} kg se {minutes} minut věnoval aktivitě s hodnotou {met} MET. Kolik kcal vydal (EAT)?"
+        params:
+          weight: { min: 50, max: 110, step: 1 }
+          minutes: { choices: [{ value: 30, label: "30" }, { value: 45, label: "45" }, { value: 60, label: "60" }, { value: 90, label: "90" }] }
+          met: { choices: [{ value: 3, label: "3" }, { value: 5, label: "5" }, { value: 6, label: "6" }, { value: 8, label: "8" }, { value: 10, label: "10" }] }
+        unit: kcal
+        tolerance: { abs: 3 }
+        hint: "EAT = kg × MET × hodiny (minuty převeď na hodiny)."
+      - id: met-definice
+        type: reveal
+        prompt: "Co znamená 1 MET?"
+        answer: "Zátěž, při které se spálí 1 kcal na 1 kg tělesné hmotnosti za 1 hodinu."
+
+  - id: en.tef
+    title: Termický efekt potravy (TEF)
+    kind: fact
+    tier: A
+    criteria: [5e, 6b]
+    prereqs: [en.tdee-slozky]
+    source: { pages: [171], anchor: "TEF bílkovin je nejvyšší a to 25–30 %" }
+    explanation: >-
+      TEF = energie na trávení a zpracování potravy. Nejvyšší u bílkovin (25–30 %), u sacharidů
+      3–10 %, u tuků 3 %. Průměrně 10–15 %; pro praktický výpočet se bere 10 % ze součtu
+      BMR + NEAT + EAT.
+    exercises:
+      - id: zivina
+        type: choice
+        prompt: "Která živina má nejvyšší termický efekt?"
+        options:
+          - { text: "Bílkoviny (25–30 %)", correct: true }
+          - { text: "Sacharidy", why: "Sacharidy mají TEF 3–10 %." }
+          - { text: "Tuky", why: "Tuky mají nejnižší TEF, asi 3 %." }
+          - { text: "Všechny mají stejný TEF" }
+      - id: prakticky
+        type: reveal
+        prompt: "Jak se TEF zjednodušeně počítá v praxi?"
+        answer: "Jako 10 % ze součtu BMR + NEAT + EAT."
+
+  - id: en.tdee-vypocet
+    title: Výpočet TDEE po složkách
+    kind: procedure
+    tier: A
+    criteria: [5e, 6b]
+    prereqs: [en.bmr-mifflin, en.neat, en.eat, en.tef]
+    source: { pages: [172], anchor: "TDEE = BMR + NEAT + EAT + TEF" }
+    explanation: >-
+      Postup: 1) BMR rovnicí (Katch-McArdle, bez FFM Mifflin-St Jeor), 2) NEAT = BMR × koeficient,
+      3) EAT = kg × MET × h, 4) TEF = 10 % z (BMR + NEAT + EAT), 5) sečíst. Vhodné hlavně pro
+      nesportující klienty nebo naopak profesionální sportovce.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: tdee-components
+        prompt: >-
+          Klient: {sex}, {age} let, {height} cm, {weight} kg. Běžná aktivita odpovídá koeficientu NEAT {coef},
+          denně se {minutes} min věnuje sportu s hodnotou {met} MET. Vypočítej TDEE po složkách (BMR podle Mifflin-St Jeor).
+        params:
+          sex: { choices: [{ value: M, label: muž }, { value: F, label: žena }] }
+          age: { min: 20, max: 60, step: 1 }
+          height: { min: 158, max: 192, step: 1 }
+          weight: { min: 55, max: 105, step: 1 }
+          coef: { choices: [{ value: 0.1, label: "0,1" }, { value: 0.2, label: "0,2" }, { value: 0.35, label: "0,35" }] }
+          minutes: { choices: [{ value: 30, label: "30" }, { value: 45, label: "45" }, { value: 60, label: "60" }] }
+          met: { choices: [{ value: 5, label: "5" }, { value: 6, label: "6" }, { value: 8, label: "8" }] }
+        unit: kcal
+        tolerance: { abs: 25 }
+        hint: "BMR → NEAT (BMR × koef.) → EAT (kg × MET × h) → TEF (10 % součtu) → sečti."
+      - id: postup
+        type: explain
+        prompt: "Popiš krok za krokem, jak spočítáš celkový denní energetický výdej klienta po složkách."
+        keyPoints:
+          - "BMR predikční rovnicí (Katch-McArdle, jinak Mifflin-St Jeor)"
+          - "NEAT = BMR × koeficient (0,1 / 0,2 / 0,35)"
+          - "EAT = hmotnost × MET × čas v hodinách"
+          - "TEF = 10 % z BMR + NEAT + EAT"
+          - "TDEE = součet; výsledek je odhad, ověřit vývojem hmotnosti"
+        modelAnswer: >-
+          Nejprve stanovím BMR — se známou beztukovou hmotou rovnicí Katch-McArdle, jinak Mifflin-St Jeor.
+          NEAT odhadnu násobkem BMR podle běžné aktivity (0,1, 0,2 nebo 0,35). EAT spočítám jako
+          hmotnost × MET × čas v hodinách. TEF vezmu jako 10 % součtu BMR, NEAT a EAT. Součtem dostanu
+          TDEE, které je jen odhadem a ověřím ho podle vývoje hmotnosti klienta.
+
+  - id: en.tdee-pal
+    title: TDEE pomocí PAL
+    kind: procedure
+    tier: A
+    criteria: [5e, 6b]
+    prereqs: [en.tdee-vypocet]
+    confusableWith: [en.neat]
+    source: { pages: [172], anchor: "1,2 pro sedavý způsob života, 1,375 pro lehkou aktivitu" }
+    explanation: >-
+      Druhý způsob: TDEE = BMR × PAL. PAL: 1,2 sedavý, 1,375 lehká aktivita, 1,55 střední,
+      1,725 vysoká, 1,9 extrémně vysoká. Vhodné hlavně pro klienty sportující asi 3–5× týdně.
+      Pozor: PAL zahrnuje celý výdej, kdežto koeficient NEAT jen běžnou aktivitu.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: tdee-pal
+        prompt: "BMR klientky je {bmr} kcal a její PAL je {pal}. Jaký je její celkový denní výdej?"
+        params:
+          bmr: { min: 1200, max: 2000, step: 10 }
+          pal: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.375, label: "1,375" }, { value: 1.55, label: "1,55" }, { value: 1.725, label: "1,725" }] }
+        unit: kcal
+        tolerance: { abs: 10 }
+        hint: "TDEE = BMR × PAL"
+      - id: kdy
+        type: choice
+        prompt: "Pro koho je podle skript vhodný výpočet TDEE = BMR × PAL?"
+        options:
+          - { text: "Pro klienty, kteří pravidelně sportují asi 3–5× týdně", correct: true }
+          - { text: "Pro profesionální sportovce", why: "U nich skripta doporučují výpočet po složkách." }
+          - { text: "Výhradně pro nesportující klienty", why: "U nesportujících skripta doporučují výpočet po složkách." }
+          - { text: "Pouze pro děti" }
+
+  - id: en.chyby
+    title: Nejčastější chyby při odhadu výdeje
+    kind: concept
+    tier: B
+    criteria: [5e, 3b]
+    prereqs: [en.tdee-slozky]
+    source: { pages: [172], anchor: "1 kg svalové hmoty spotřebuje 54,6 kJ / kg / den" }
+    explanation: >-
+      Časté chyby: neznalost vlastního složení těla, soustředění jen na sport (EAT) a přílišná důvěra
+      v tabulky a chytré hodinky (rozdíly v desítkách procent). Sval spotřebuje víc energie než tuk
+      (54,6 vs 18,9 kJ/kg/den). Proto je důležitý pravidelný monitoring a sledování trendu.
+    exercises:
+      - id: chyby
+        type: reveal
+        prompt: "Jaké jsou nejčastější chyby při stanovení energetického výdeje?"
+        answer: "Neznalost složení vlastního těla, soustředění jen na EAT a přílišná důvěra v tabulky či chytré hodinky."
+
+  - id: en.adaptivni-termogeneze
+    title: „Zpomalený metabolismus“ a adaptivní termogeneze
+    kind: concept
+    tier: A
+    criteria: [5a, 7a, 10b]
+    prereqs: [en.bmr-definice]
+    source: { pages: [173], anchor: "Adaptivní termogeneze představuje snížení energetického výdeje" }
+    explanation: >-
+      Rychlost metabolismu je u dospělých zhruba do 60 let stabilní. „Zpomalení“ po hubnutí má hlavně
+      prozaické příčiny: nižší hmotnost znamená nižší potřebu a po dlouhé redukci často klesne NEAT.
+      Navíc může působit adaptivní termogeneze — snížení výdeje nad rámec změny hmotnosti a složení
+      těla, řádově nižší stovky kcal.
+    exercises:
+      - id: klientka
+        type: explain
+        prompt: "Klientka po půl roce hubnutí říká: „Zničila jsem si metabolismus.“ Co jí vysvětlíš?"
+        keyPoints:
+          - "Nižší hmotnost = nižší energetická potřeba"
+          - "Po dlouhé redukci často klesá NEAT (méně spontánního pohybu)"
+          - "Adaptivní termogeneze: výdej může klesnout víc, než odpovídá úbytku hmotnosti"
+          - "Jde řádově o nižší stovky kcal, ne o „zničený“ metabolismus"
+        modelAnswer: >-
+          Metabolismus si nezničila. Při nižší hmotnosti tělo potřebuje méně energie a po dlouhé redukci
+          se často nevědomky méně hýbe, takže klesne NEAT. Přidat se může adaptivní termogeneze, kdy výdej
+          klesne o něco víc, než by odpovídalo úbytku hmotnosti — řádově o nižší stovky kcal.
+      - id: definice
+        type: choice
+        prompt: "Co je adaptivní termogeneze?"
+        options:
+          - { text: "Snížení výdeje v reakci na deficit, větší než odpovídá změně hmotnosti a složení těla", correct: true }
+          - { text: "Zvýšení výdeje po jídle bohatém na bílkoviny", why: "To popisuje termický efekt potravy (TEF)." }
+          - { text: "Trvalé poškození metabolismu po dietě" }
+          - { text: "Pokles BMR s věkem po 30. roce" }
+
+  - id: en.jojo
+    title: Jojo efekt a jak mu předcházet
+    kind: concept
+    tier: A
+    criteria: [10b, 7a, 7b]
+    prereqs: [en.adaptivni-termogeneze]
+    source: { pages: [173], anchor: "Jojo efekt označuje opakované střídání redukce" }
+    explanation: >-
+      Jojo efekt = opakované střídání hubnutí a návratu hmotnosti. Přispívají biologické adaptace,
+      zvýšený hlad a chuť k jídlu, nižší výdej, návrat ke starým návykům a příliš restriktivní režim.
+      Prevence: realistický cíl, postupné udržitelné změny, žádné zbytečné zákazy, oblíbená jídla
+      a aktivity, pravidelný pohyb.
+    exercises:
+      - id: prevence
+        type: explain
+        prompt: "Jak klientovi pomůžeš, aby po redukci nepřibral zpátky (jojo efekt)?"
+        keyPoints:
+          - "Realistický cíl a postupné, dlouhodobě udržitelné změny"
+          - "Žádné zbytečné zákazy, zařadit oblíbená jídla"
+          - "Pravidelný pohyb"
+          - "Stravování, které zvládne udržet i po skončení redukce"
+        modelAnswer: >-
+          Nastavíme realistický cíl a měníme návyky postupně, aby byly udržitelné. Vyhneme se zbytečným
+          zákazům, necháme v jídelníčku oblíbená jídla a zařadíme pravidelný pohyb. Cílem je způsob
+          stravování, který zvládne držet i po skončení redukční fáze.
+      - id: priciny
+        type: reveal
+        prompt: "Co podle skript přispívá k jojo efektu?"
+        answer: >-
+          Biologické adaptace po zhubnutí, vyšší hlad a chuť k jídlu, nižší výdej energie, návrat
+          k původním návykům a příliš restriktivní, neudržitelný režim.
+
+  - id: en.energeticka-dostupnost
+    title: Energetická dostupnost a RED-S
+    kind: procedure
+    tier: B
+    criteria: [7d, 5e]
+    prereqs: [en.eat]
+    source: { pages: [173], anchor: "Energetická dostupnost (ED) vyjadřuje množství energie" }
+    explanation: >-
+      Energetická dostupnost (ED) = (denní příjem − energie vydaná na pohyb) / FFM (kg). Optimum asi
+      45 kcal/kg FFM u žen a 40 kcal/kg FFM u mužů. Dlouhodobě nízká dostupnost (NED) souvisí
+      s RED-S — syndromem relativního nedostatku energie ve sportu.
+    exercises:
+      - id: vypocet
+        type: numeric
+        formula: energy-availability
+        prompt: >-
+          Sportovkyně přijímá {intake} kcal denně, tréninkem vydá {exercise} kcal a má {ffm} kg beztukové
+          hmoty. Jaká je její energetická dostupnost (kcal/kg FFM)?
+        params:
+          intake: { min: 1600, max: 3000, step: 50 }
+          exercise: { min: 200, max: 900, step: 50 }
+          ffm: { min: 40, max: 60, step: 1 }
+        unit: kcal/kg FFM
+        tolerance: { abs: 0.6 }
+        decimals: 1
+        hint: "ED = (příjem − výdej na pohyb) / FFM"
+      - id: optimum
+        type: choice
+        prompt: "Jaká je podle skript optimální energetická dostupnost u žen?"
+        options:
+          - { text: "Asi 45 kcal/kg FFM", correct: true }
+          - { text: "Asi 40 kcal/kg FFM", why: "To je hodnota uváděná pro muže." }
+          - { text: "Asi 25 kcal/kg tělesné hmotnosti" }
+          - { text: "Asi 4,2 kcal/kg FFM" }

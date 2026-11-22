@@ -1,0 +1,251 @@
+topic:
+  id: nastaveni-jidelnicku
+  title: Nastavení jídelníčku
+  chapter: 17
+  pages: [179, 182]
+  order: 170
+  summary: >-
+    Cíl klienta, analýza stravovacích návyků, nastavení energetického příjmu pro redukci,
+    udržení i nabírání, rozložení jídel a makroživin během dne.
+
+points:
+  - id: jid.cil
+    title: Cíl klienta jako první krok
+    kind: concept
+    tier: A
+    criteria: [5d, 7b, 10b]
+    source: { pages: [179], anchor: "Jako úplně první informaci je třeba znát cíl klienta" }
+    explanation: >-
+      Nejdřív je potřeba znát cíl klienta (redukce, nabírání, udržení, výkon, prevence) a jasně ho
+      s ním specifikovat, ideálně s měřitelnými dílčími cíli. Nerealistický nebo zdraví ohrožující
+      cíl poradce neplní slepě — upraví ho tak, aby byl reálný a bezpečný.
+    exercises:
+      - id: nerealny
+        type: explain
+        prompt: "Padesátiletá klientka chce vážit tolik co v 18 letech. Jak s takovým cílem naložíš?"
+        keyPoints:
+          - "Cíl klienta respektuji, ale nesplňuji ho slepě"
+          - "Zdraví je na prvním místě – cíl musí být reálný a bezpečný"
+          - "Společně cíl přeformuluji, s měřitelnými dílčími cíli"
+        modelAnswer: >-
+          Její přání beru vážně, ale jako poradkyně ho nemusím slepě plnit, pokud není reálné nebo by
+          ohrozilo zdraví. Vysvětlím proč a společně nastavíme realistický cíl s měřitelnými dílčími
+          kroky, který bude bezpečný a zároveň splní její očekávání.
+      - id: prvni-krok
+        type: choice
+        prompt: "Co je podle skript úplně první informace, kterou při tvorbě jídelníčku potřebuješ?"
+        options:
+          - { text: "Cíl klienta", correct: true }
+          - { text: "Poměr makroživin" }
+          - { text: "Počet jídel denně" }
+          - { text: "Seznam oblíbených receptů" }
+
+  - id: jid.analyza
+    title: Analýza stravovacích návyků
+    kind: procedure
+    tier: A
+    criteria: [3b, 5b]
+    source: { pages: [179], anchor: "Záznam by měl vycházet alespoň z týdenního záznamu" }
+    explanation: >-
+      Záznam stravy alespoň za týden: všechno jídlo včetně svačin a ujídání, nápoje, ideálně časy,
+      pohyb, délka a kvalita spánku, pocity hladu či únavy. Množství nejlépe v g/ml. Klienta
+      neodsuzovat. Z analýzy se odhadne dosavadní příjem energie a makroživin (např. Kalorické tabulky).
+    exercises:
+      - id: co-zaznamenat
+        type: explain
+        prompt: "Klientovi zadáváš záznam stravy. Co a jak dlouho má zapisovat?"
+        keyPoints:
+          - "Alespoň týden"
+          - "Veškeré jídlo včetně svačin, ujídání a nápojů"
+          - "Ideálně časy, množství v g/ml"
+          - "Pohyb, spánek, pocity hladu/přejedení/únavy"
+          - "Upřímnost – a z mé strany žádné odsuzování"
+        modelAnswer: >-
+          Alespoň týden zapisuje veškeré jídlo a pití včetně svačin a ujídání, ideálně s časy a množstvím
+          v gramech či mililitrech. Přidá pohybovou aktivitu, délku a kvalitu spánku a pocity hladu,
+          přejedení nebo únavy. Domluvíme se na upřímnosti a já záznam nebudu kritizovat.
+      - id: delka
+        type: choice
+        prompt: "Jak dlouhý má být podle skript minimálně záznam pro analýzu stravovacích návyků?"
+        options:
+          - { text: "Alespoň týden", correct: true }
+          - { text: "Jeden den" }
+          - { text: "Tři měsíce" }
+          - { text: "Stačí víkend" }
+
+  - id: jid.redukce-prijem
+    title: Nastavení příjmu při redukci
+    kind: procedure
+    tier: A
+    criteria: [7a, 7b, 6b]
+    prereqs: [en.bilance]
+    confusableWith: [jid.nabirani]
+    source: { pages: [180], anchor: "Orientačně lze pracovat s kalorickým deficitem přibližně 5–25 %" }
+    explanation: >-
+      Redukce = energetický deficit. Orientačně 5–25 % pod výdej, ale nesnižovat skokově o víc než
+      asi 500 kcal oproti současnému stravování. Vycházet ze skutečného vývoje hmotnosti: pokud
+      klient už při současném příjmu hubne přiměřeně, není nutné příjem dál snižovat.
+    exercises:
+      - id: deficit
+        type: choice
+        prompt: "Jaký deficit a jaké maximální snížení příjmu uvádějí skripta pro redukci?"
+        options:
+          - { text: "Deficit asi 5–25 %, snížení nejvýš o ~500 kcal oproti současnému příjmu", correct: true }
+          - { text: "Deficit 40–50 %, pak postupně přidávat" }
+          - { text: "Vždy rovnou na hodnotu BMR" }
+          - { text: "Deficit přesně 1000 kcal u každého klienta" }
+      - id: skok
+        type: explain
+        prompt: "Klient jí 3200 kcal a přibírá, vypočítaný výdej je 2400 kcal. Na kolik mu příjem nastavíš a proč?"
+        keyPoints:
+          - "Ne hned na vypočítaný výdej – skok by byl obtížně udržitelný"
+          - "Snížit postupně, nejvýš asi o 500 kcal (tj. ~2700 kcal)"
+          - "Vyhodnotit vývoj hmotnosti a podle něj dál upravit"
+        modelAnswer: >-
+          Nesnížím ho rovnou na 2400 kcal — takový skok by zvýšil hlad a chutě a těžko by ho dodržel.
+          Začnu menším snížením, nejvýše asi o 500 kcal, tedy zhruba na 2700 kcal, a podle vývoje
+          hmotnosti příjem dál upravím.
+
+  - id: jid.nabirani
+    title: Nastavení příjmu při nabírání
+    kind: procedure
+    tier: A
+    status: course-disputed
+    note: >-
+      Navýšení podle somatotypu je orientační pomůcka kurzu bez silné vědecké opory — skripta sama
+      zdůrazňují, že rozhoduje skutečná reakce klienta.
+    criteria: [7a, 6b, 3a]
+    prereqs: [en.bilance]
+    confusableWith: [jid.redukce-prijem]
+    source: { pages: [180, 181], anchor: "u mezomorfního typu například o 250–350 kcal" }
+    explanation: >-
+      Nabírání = kladná bilance, navýšení asi o 5–25 %, nejvýš ~500 kcal oproti současnému příjmu.
+      Orientačně podle somatotypu: ektomorf až +500 kcal, mezomorf +250–350 kcal, endomorf jen
+      +100–150 kcal. Vždy ověřit podle reakce klienta.
+    exercises:
+      - id: somatotyp
+        type: choice
+        prompt: "Kterému somatotypu skripta doporučují při nabírání nejmenší navýšení (asi o 100–150 kcal)?"
+        options:
+          - { text: "Endomorfovi", correct: true }
+          - { text: "Ektomorfovi", why: "Ektomorf může navýšit nejvíc, až o 500 kcal." }
+          - { text: "Mezomorfovi", why: "Mezomorf orientačně o 250–350 kcal." }
+          - { text: "Všem stejně" }
+      - id: hodnoty
+        type: reveal
+        prompt: "O kolik kcal orientačně navýšit příjem při nabírání u ektomorfa, mezomorfa a endomorfa?"
+        answer: "Ektomorf až o 500 kcal, mezomorf o 250–350 kcal, endomorf o 100–150 kcal."
+
+  - id: jid.rozpor
+    title: Když údaje nedávají smysl
+    kind: concept
+    tier: B
+    criteria: [5e, 7b]
+    prereqs: [jid.analyza]
+    source: { pages: [180], anchor: "je potřeba hledat příčinu tohoto rozporu" }
+    explanation: >-
+      Uvádí-li klient velmi nízký příjem a hmotnost se přesto nemění, není správné příjem dál snižovat.
+      Nejdřív hledat příčinu: nezapsané jídlo, nápoje, alkohol, ochutnávání; nadhodnocený výdej;
+      nepřesně stanovené BMR; dlouhodobá adaptace na deficit.
+    exercises:
+      - id: priciny
+        type: explain
+        prompt: "Klientka zapisuje 1200 kcal denně, výdej má vypočítaný na 2000 kcal, ale nehubne. Co uděláš?"
+        keyPoints:
+          - "Příjem automaticky dál nesnižuji"
+          - "Možná nezapsaná jídla, nápoje, alkohol, ochutnávání"
+          - "Možná nadhodnocený výdej (aktivita) nebo nepřesné BMR"
+          - "Možná adaptace na dlouhodobý deficit"
+        modelAnswer: >-
+          Příjem dál nesnížím, ale budu hledat příčinu rozporu: zda zapisuje všechno včetně nápojů,
+          alkoholu a ochutnávání, zda jsme nenadhodnotili její aktivitu nebo BMR a zda nejde o adaptaci
+          na dlouhodobý deficit.
+
+  - id: jid.rozlozeni-energie
+    title: Rozložení energie během dne
+    kind: fact
+    tier: A
+    criteria: [7c, 5d]
+    source: { pages: [181], anchor: "Snídaně 25 %" }
+    explanation: >-
+      Ukázkové rozložení: snídaně 25 %, dopolední svačina 10 %, oběd 35 %, odpolední svačina 10 %,
+      večeře 20 %. Počet jídel sám o sobě není pro hmotnost rozhodující — vyvážený jídelníček jde
+      sestavit z 2 i 6 porcí, prakticky bývá lepší držet se středu.
+    exercises:
+      - id: procenta
+        type: reveal
+        prompt: "Jaké orientační rozložení energie do pěti jídel uvádějí skripta?"
+        answer: "Snídaně 25 %, svačina 10 %, oběd 35 %, svačina 10 %, večeře 20 %."
+      - id: obed
+        type: choice
+        prompt: "Kolik procent denní energie připadá podle ukázkového rozložení na oběd?"
+        options:
+          - { text: "35 %", correct: true }
+          - { text: "25 %", why: "25 % připadá na snídani." }
+          - { text: "20 %", why: "20 % připadá na večeři." }
+          - { text: "50 %" }
+
+  - id: jid.makra-postup
+    title: Nastavení makroživin v praxi
+    kind: procedure
+    tier: A
+    criteria: [5c, 5d, 1d]
+    prereqs: [en.energie-zivin]
+    note: >-
+      Tuky se ve skriptech liší podle kapitoly: kap. 17 uvádí doporučení 30 % a prakticky 25–35 %
+      (0,5–1 g/kg), kap. 3 (s. 29–30) 25–35 %, orientačně kolem 1 g/kg (minimum 0,5, horní hranice 1,5 g/kg).
+    source: { pages: [182], anchor: "Při praktickém nastavení makroživin je vhodné začít bílkovinami" }
+    explanation: >-
+      Doporučení pro populaci: sacharidy 45–60 %, bílkoviny 10–15 %, tuky 30 %. V praxi: 1) bílkoviny
+      v g/kg (minimum 0,8–1 g/kg, většina klientů víc; navyšovat po 0,3–0,4 g/kg), 2) tuky 25–35 %
+      energie (asi 0,5–1 g/kg), 3) sacharidy doplní zbytek.
+    exercises:
+      - id: poradi
+        type: choice
+        prompt: "V jakém pořadí se podle skript nastavují makroživiny?"
+        options:
+          - { text: "Bílkoviny → tuky → sacharidy jako zbytek", correct: true }
+          - { text: "Sacharidy → bílkoviny → tuky" }
+          - { text: "Tuky → sacharidy → bílkoviny" }
+          - { text: "Všechny podle pevných procent 50/20/30" }
+      - id: vypocet
+        type: numeric
+        formula: macro-carbs
+        prompt: >-
+          Klientka váží {weight} kg, energetický příjem je nastaven na {energy} kcal. Bílkoviny {proteinPerKg} g/kg,
+          tuky {fatPct} % energie. Kolik gramů sacharidů zbývá?
+        params:
+          weight: { min: 55, max: 95, step: 1 }
+          energy: { min: 1600, max: 2600, step: 50 }
+          proteinPerKg: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.4, label: "1,4" }, { value: 1.6, label: "1,6" }, { value: 1.8, label: "1,8" }] }
+          fatPct: { choices: [{ value: 25, label: "25" }, { value: 30, label: "30" }, { value: 35, label: "35" }] }
+        unit: g
+        tolerance: { abs: 3 }
+        hint: "Bílkoviny g = kg × g/kg (× 4 kcal). Tuky kcal = % × energie. Zbytek kcal : 4 = g sacharidů."
+      - id: bilkoviny-krok
+        type: reveal
+        prompt: "Klient přijímá málo bílkovin. Jak rychle mu příjem navyšovat a proč?"
+        answer: "Postupně, asi o 0,3–0,4 g/kg/den v jednom kroku – aby si zvykl a neměl trávicí obtíže."
+
+  - id: jid.zmeny-prijmu
+    title: Kdy příjem zvýšit nebo snížit
+    kind: concept
+    tier: B
+    criteria: [7b, 10b]
+    prereqs: [jid.redukce-prijem]
+    source: { pages: [182], anchor: "Navýšení energetického příjmu je vhodné zvážit v případě" }
+    explanation: >-
+      Zvýšit: klient hubne příliš rychle, má hlad, zvýší aktivitu nebo podíl svalů, případně při
+      zastavené redukci jako „dietní pauza“. Snížit: dlouhodobě přibírá či nehubne, výrazně omezí
+      pohyb nebo se cítí přejedený. Změny raději postupně.
+    exercises:
+      - id: zvysit
+        type: choice
+        multiple: true
+        prompt: "Kdy je vhodné zvážit NAVÝŠENÍ energetického příjmu? (vyber všechny)"
+        options:
+          - { text: "Klient hubne příliš rychle", correct: true }
+          - { text: "Klient výrazně zvýšil pohybovou aktivitu", correct: true }
+          - { text: "Redukce se zastavila a je vhodná dietní pauza", correct: true }
+          - { text: "Klient dlouhodobě přibírá", why: "Tehdy je vhodné příjem snížit." }
+          - { text: "Klient se cítí přejedený", why: "To je důvod ke snížení." }

@@ -190,10 +190,11 @@ points:
           - { text: "Veganům omega-3 nehrozí", why: "Omega-3 patří mezi rizikové živiny veganů." }
       - id: zinek
         type: choice
+        version: 2
         prompt: "Proč celozrnné výrobky nejsou pro vegany spolehlivým zdrojem zinku?"
         options:
           - { text: "Fytin v nich snižuje využitelnost zinku.", correct: true }
-          - { text: "Zinek v nich prakticky vůbec není, je jen v mase.", why: "Zinku obsahují poměrně dost, problém je využitelnost." }
+          - { text: "Obsah zinku v obilí je velmi nízký.", why: "Zinku obsahují poměrně dost, problém je jeho využitelnost kvůli fytinu." }
           - { text: "Zinek se z nich ztrácí při pečení a vaření.", why: "Skripta jako důvod uvádějí fytin, ne tepelnou úpravu." }
           - { text: "Vláknina v nich zinek váže a vylučuje močí.", why: "Problémem je fytin, ne vylučování močí." }
       - id: b12
@@ -331,11 +332,12 @@ points:
           - { text: "50 % energie", why: "LCHF tvoří obvykle 15–25 % energie." }
       - id: riziko
         type: choice
+        version: 2
         prompt: "Které riziko nízkosacharidové stravy skripta uvádějí?"
         options:
           - { text: "Zácpa kvůli nízkému příjmu vlákniny", correct: true }
           - { text: "Nadbytek vlákniny a nadýmání", why: "Vlákniny je naopak málo." }
-          - { text: "Nadměrný příjem vlákniny", why: "Vlákniny je naopak málo." }
+          - { text: "Příliš nízký příjem tuků", why: "Tuků je naopak hodně; skripta varují spíš před nadbytkem nasycených tuků." }
           - { text: "Nedostatek bílkovin", why: "Bílkovin bývá dost – základem je maso, ryby, vejce, mléčné výrobky." }
 
   - id: alt.lchf-deleni
@@ -608,12 +610,12 @@ points:
     criteria: [7b]
     source: { pages: [200, 201], anchor: "střídá období jídla s obdobími půstu" }
     explanation: >-
-      IF střídá období jídla a půstu. Metody: 16/8 (jí se v 8hodinovém okně) a 5:2 (dva dny v týdnu
-      500–600 kcal). Může zlepšit inzulinovou senzitivitu a lipidy; hubne se díky deficitu – podobně
-      jako při klasické redukční dietě. Nevhodný při poruchách příjmu potravy, v těhotenství, pro
-      děti a při náročném fyzickém režimu; u žen může narušit cyklus. Riziko přejídání v okně, nízká
-      adherence. DGE: žádná výhoda oproti jiné redukci; AND ho podle skript nedoporučuje (nevhodný
-      i pro diabetiky – diabetik na lécích jen po domluvě s lékařem).
+      IF střídá období jídla a půstu: 16/8 (jí se v 8hodinovém okně) nebo 5:2 (dva dny v týdnu
+      500–600 kcal). Může zlepšit inzulinovou senzitivitu a lipidy; hubne se díky deficitu, podobně
+      jako při klasické redukci. Nevhodný při PPP, v těhotenství, pro děti a při náročném fyzickém
+      režimu; u žen může narušit cyklus. Rizika: přejídání v okně, nízká adherence. DGE: žádná výhoda
+      oproti jiné redukci; AND ho podle skript nedoporučuje. Nevhodný i pro diabetiky (na lécích jen po
+      domluvě s lékařem).
     exercises:
       - id: hodnoceni
         type: explain
@@ -662,12 +664,13 @@ points:
     exercises:
       - id: obezita
         type: choice
+        version: 2
         prompt: "Proč nemusí být intuitivní stravování vhodnou samostatnou strategií u klienta s obezitou?"
         options:
           - { text: "Mívá narušené fyziologické signály hladu a sytosti.", correct: true }
           - { text: "Protože intuitivní stravování zakazuje sacharidy.", why: "Intuitivní stravování nic nezakazuje." }
           - { text: "Protože vyžaduje přesné vážení jídla.", why: "Intuitivní stravování nic neváží ani nepočítá." }
-          - { text: "Protože je určené jen pro sportovce.", why: "Není určené konkrétní skupině; problémem jsou narušené signály hladu a sytosti." }
+          - { text: "Protože vede k přísným pravidlům místo hladu.", why: "Je to naopak – stojí na vnímání hladu a sytosti, které bývají u obezity narušené." }
       - id: princip
         type: reveal
         prompt: "Na čem je založeno intuitivní stravování?"

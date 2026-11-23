@@ -20,9 +20,10 @@ points:
       Fytochemikálie jsou sekundární metabolity rostlin – přirozeně se vyskytují v rostlinných
       potravinách. Rostlinu chrání (stres, mikroby, škůdci) a dávají jí chuť, barvu a vůni. U člověka
       působí jako antioxidanty, antikarcinogeny a fytoncidy (rostlinná antibiotika) a mohou přispět
-      k prevenci nemocí srdce či rakoviny. Ve třídění živin patří s vlákninou mezi seminutrienty.
-      Podle zastoupení ve stravě: fenolické látky, karotenoidy, fytosteroly, sirné sloučeniny;
-      zvlášť stojí imunomodulační polysacharidy.
+      k prevenci nemocí srdce či rakoviny. Ve třídění
+      živin patří s vlákninou mezi seminutrienty. Dělení podle chemické struktury: karotenoidy,
+      flavonoidy, glukosinoláty, fytosteroly; podle zastoupení ve stravě: fenolické látky,
+      karotenoidy, fytosteroly, sirné sloučeniny (zvlášť imunomodulační polysacharidy).
     exercises:
       - id: seminutrienty
         type: choice
@@ -157,13 +158,14 @@ points:
       je vzácná sitosterolemie, kdy naopak LDL zvyšují. Ergosterol (houby) je prekurzorem vitaminu D2.
     exercises:
       - id: ucinek
+        version: 2
         type: choice
         prompt: "Jak působí fytosteroly na cholesterol?"
         options:
           - { text: "Brzdí vstřebávání cholesterolu ve střevě.", correct: true }
           - { text: "Zvyšují tvorbu HDL cholesterolu v játrech.", why: "Skripta uvádějí blokádu vstřebávání cholesterolu, ne vliv na HDL." }
           - { text: "Přeměňují se v těle na vitamin D3.", why: "Ergosterol je prekurzor vitaminu D2, ne D3, a jde o houbový sterol." }
-          - { text: "Zvyšují LDL cholesterol u všech lidí.", why: "LDL zvyšují jen u vzácné sitosterolemie." }
+          - { text: "Tlumí tvorbu cholesterolu v játrech.", why: "Tvorbu v játrech tlumí léky (statiny); fytosteroly brzdí vstřebávání cholesterolu ve střevě." }
       - id: vyuziti
         type: reveal
         prompt: "Kde se fytosteroly prakticky využívají a u koho jsou nevhodné?"

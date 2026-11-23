@@ -143,12 +143,12 @@ points:
     tier: A
     criteria: [1a]
     prereqs: [uv.deleni-zivin]
-    source: { pages: [6, 10, 23, 38, 46], anchor: "esenciálních živin (například mastné kyseliny, aminokyseliny, fosfor, vápník, vitamin D" }
+    source: { pages: [6, 10, 23, 29, 38, 46], anchor: "esenciálních živin (například mastné kyseliny, aminokyseliny, fosfor, vápník, vitamin D" }
     explanation: >-
       Esenciální živina je látka, kterou si tělo neumí vytvořit (nebo v dostatečném množství), a
       musí ji proto přijímat stravou. Patří sem některé mastné kyseliny (linolová, alfa-linolenová),
       esenciální aminokyseliny, vitaminy a minerální látky. Sacharidy esenciální nejsou (glukózu
-      tělo vyrobí glukoneogenezí) a alkohol také ne.
+      tělo vyrobí glukoneogenezí), ani cholesterol (tělo si ho vyrobí asi 1 g denně).
     exercises:
       - id: definice
         type: reveal
@@ -165,10 +165,11 @@ points:
           - { text: "Glukóza", why: "Sacharidy nejsou esenciální – tělo si glukózu vytvoří glukoneogenezí." }
           - { text: "Kyselina palmitová", why: "Nasycené MK si tělo umí vytvořit samo." }
       - id: neesencialni
+        version: 2
         type: choice
         prompt: "Která z těchto látek NENÍ esenciální živinou?"
         options:
-          - { text: "Alkohol", correct: true }
+          - { text: "Cholesterol", correct: true, why: "Tělo si ho vyrobí samo, asi 1 g denně – víc, než sníme (s. 29)." }
           - { text: "Kyselina alfa-linolenová", why: "Je to esenciální n-3 mastná kyselina." }
           - { text: "Vitamin C", why: "Vitaminy jsou esenciální." }
           - { text: "Tryptofan", why: "Je to esenciální aminokyselina." }
@@ -205,14 +206,14 @@ points:
           předám lékaři nebo nutričnímu terapeutovi. Řeším pitný režim, denní režim, spánek, stres a psychiku,
           vztah k jídlu, abych nepřispěla k poruše příjmu potravy, a případně vhodnou suplementaci.
       - id: predani
-        version: 3
+        version: 4
         type: choice
         prompt: "Klient má složité zdravotní komplikace, kterým nerozumíš. Jak správně postupuješ?"
         options:
           - { text: "Předám ho lékaři nebo nutričnímu terapeutovi", correct: true }
-          - { text: "Sestavit běžný redukční jídelníček a sledovat, co se stane", why: "Klient nesmí hubnout na úkor zdraví." }
-          - { text: "Doporučit doplňky stravy podle příznaků, které popisuje", why: "Neznámé zdravotní potíže nelze řešit doplňky – nejdřív jim porozumět, případně klienta předat." }
-          - { text: "Ukončit spolupráci bez dalšího doporučení", why: "Klienta nenecháš bez pomoci – doporučíš mu odborníka, který jeho potíže zvládne." }
+          - { text: "Sestavím mírný redukční jídelníček a budu sledovat, co se stane", why: "Klient nesmí hubnout na úkor zdraví; dokud jeho potížím nerozumíš, plán nesestavuj." }
+          - { text: "Doporučím doplňky stravy podle příznaků, které popisuje", why: "Neznámé zdravotní potíže nelze řešit doplňky – nejdřív jim porozumět, případně klienta předat." }
+          - { text: "Pokračuji a vše si dohledám sama, ať klienta nezatěžuji dalším odborníkem", why: "Složité komplikace patří odborníkovi hned – samostudium za zkušeného lékaře nebo terapeuta nezastoupí." }
 
   - id: uv.mozek-energie
     title: Mozek a energie

@@ -894,14 +894,15 @@ points:
     exercises:
       - id: postup
         type: choice
+        version: 2
         prompt: "Klientka má po pečivu trávicí potíže a myslí si, že má celiakii. Jaký je správný postup?"
         options:
           - text: "Doporučit vyšetření u lékaře ještě před vyřazením lepku."
             correct: true
           - text: "Nasadit na měsíc přísnou bezlepkovou dietu a podle reakce rozhodnout."
             why: "Dieta před vyšetřením může zkreslit výsledky a diagnózu oddálit."
-          - text: "Doporučit jí jen omezit pečivo, celiakie se u dospělých neobjevuje."
-            why: "Celiakie se může projevit v jakémkoli věku; diagnózu stanoví lékař."
+          - text: "Doporučit jí zatím omezit pečivo a sledovat, jestli se potíže zlepší."
+            why: "I částečné vyřazení lepku před vyšetřením může zkreslit výsledky; nejdřív vyšetření u lékaře."
           - text: "Doporučit doplněk s trávicími enzymy na lepek."
             why: "Jedinou léčbou celiakie je bezlepková dieta a diagnózu stanoví lékař."
       - id: vysvetli
@@ -1206,11 +1207,11 @@ points:
     source: { pages: [243], anchor: "Neplatí mýtus, že zeleninu je třeba z jídelníčku vyřadit" }
     explanation: >-
       Warfarin ředí krev – působí jako antagonista vitaminu K, potřebného pro tvorbu srážecích faktorů.
-      Dávku určuje lékař podle krevních testů (Quickův test, INR). Vitamin K (hlavně zelená zelenina)
-      se ze stravy nevyřazuje; jeho příjem má být co nejstabilnější, bez náhlých výrazných změn
-      (skripta navíc radí omezit nejbohatší druhy). Opatrně s alkoholem. Grapefruitovou a brusinkovou
-      šťávu, třezalku a doplňky s vitaminem K NHS při warfarinu nedoporučuje vůbec – každou takovou
-      změnu ať klient probere s lékařem. Novější antikoagulancia (DOAC) na vitamin K nereagují.
+      Dávku určuje lékař podle krevních testů (Quickův test, INR). Vitamin K (hlavně zelená zelenina) se ze stravy
+      nevyřazuje; jeho příjem má být co nejstabilnější, bez náhlých změn (skripta navíc radí
+      omezit nejbohatší druhy). Opatrně s alkoholem. Grapefruitovou a brusinkovou šťávu, třezalku
+      a doplňky s vitaminem K NHS při warfarinu nedoporučuje – každou změnu ať klient probere
+      s lékařem. Novější antikoagulancia (DOAC) na vitamin K nereagují.
     exercises:
       - id: zasada
         type: choice
@@ -1252,12 +1253,14 @@ points:
       15–20 g glukózy či jiného rychlého cukru, po 15 minutách při trvajících potížích zopakovat; při
       bezvědomí nic ústy, zotavovací poloha, volat 155 (lékař může podat glukagon). Projevy ze skript
       (dehydratace, nízký tlak, zrychlený tep, bolesti břicha) odpovídají hyperglykemické krizi, proto
-      okamžitá lékařská pomoc; mírně zvýšená glykémie bez těchto projevů akutní stav není.
+      okamžitá lékařská pomoc; mírně zvýšená glykémie bez těchto projevů akutní stav není. Projevy
+      hypoglykémie (slabost, třes, pocení, hlad, zmatenost) skripta neuvádějí – doplněny podle ADA.
     criteria: [3c, 7h]
     prereqs: [nem.dm-typy]
     source: { pages: [250], anchor: "podání rychle vstřebatelného cukru" }
     explanation: >-
-      Dva akutní stavy. Při hypoglykémii (nízký cukr), je-li diabetik při vědomí a polyká,
+      Dva akutní stavy. Hypoglykémie (nízký cukr) se projevuje náhlou slabostí, třesem, pocením,
+      hladem a zmateností. Je-li diabetik při vědomí a polyká,
       pomůže rychle vstřebatelný cukr (asi 15–20 g) – ovocný džus, jiný sladký nápoj nebo cukr; po
       15 minutách, pokud potíže trvají, zopakovat. V bezvědomí nebo když nemůže
       polykat nic ústy: stabilizovaná poloha a volat 155; volat i tehdy, když se stav nelepší.
@@ -1267,15 +1270,19 @@ points:
     exercises:
       - id: hypo
         type: choice
-        prompt: "Diabetička se na konzultaci náhle cítí slabá, třese se a potí – má hypoglykémii. Co uděláš?"
+        version: 2
+        prompt: >-
+          Klientka s diabetem léčeným inzulinem se během konzultace náhle cítí slabá, třese se, potí se
+          a je zmatená. Je při vědomí a polyká. Co uděláš?
         options:
-          - text: "Podám jí rychle vstřebatelný cukr – džus, sladký nápoj nebo cukr."
+          - text: "Dám jí hned rychle vstřebatelný cukr – džus, sladký nápoj nebo cukr."
             correct: true
+            why: "Náhlá slabost, třes, pocení a zmatenost u diabetičky na inzulinu ukazují na hypoglykémii; při vědomí pomůže rychle vstřebatelný cukr (s. 250)."
+          - text: "Zavolám 155 a do příjezdu jí nic nedám, může jít o vysoký cukr."
+            why: "Je při vědomí a polyká, proto nejdřív rychlý cukr – čekáním se hypoglykémie zhorší. 155 voláš, když se stav nelepší nebo nemůže polykat."
           - text: "Nabídnu jí celozrnný chléb se sýrem, aby cukr stoupal pomalu."
             why: "Při hypoglykémii je potřeba rychle vstřebatelný cukr."
-          - text: "Dám jí vodu a počkáme, až to přejde."
-            why: "Voda cukr nezvýší; stav se může zhoršit."
-          - text: "Doporučím jí aplikovat inzulin."
+          - text: "Připomenu jí, ať si aplikuje svou dávku inzulinu."
             why: "Inzulin by glykémii dál snížil."
       - id: hyper
         type: reveal
@@ -1386,12 +1393,15 @@ points:
           ledviny – omezení bílkovin, fosfátů a draslíku.
       - id: vysvetli
         type: explain
+        version: 2
         prompt: "Vyjmenuj základní typy dietních úprav, se kterými se u klientů s onemocněním setkáš."
         keyPoints:
           - "Nízkopurinová (dna), bezlepková (celiakie)"
           - "Omezení laktózy (intolerance) vs. bez mléčných výrobků (alergie)"
-          - "Nízkohistaminová, bezezbytková (Crohn v relapsu), lehká plnohodnotná (trávicí potíže)"
-          - "Omezení bílkovin, fosfátů, draslíku (ledviny); soli (hypertenze); nízký GI (DM 2)"
+          - "Nízkohistaminová; bezezbytková (Crohn v relapsu)"
+          - "Lehká plnohodnotná strava (nemoci trávení)"
+          - "Omezení bílkovin, fosfátů a draslíku (selhávání ledvin)"
+          - "Omezení soli (hypertenze); potraviny s nízkým GI (DM 2)"
           - "Léčebné diety nastavuje lékař / nutriční terapeut"
         modelAnswer: >-
           Podle onemocnění se používá nízkopurinová dieta při dně, přísná bezlepková při celiakii,
@@ -1418,14 +1428,15 @@ points:
     exercises:
       - id: crohn-aktivni
         type: choice
+        version: 2
         prompt: "Klient s Crohnovou chorobou v aktivní fázi chce, abys mu sestavila jídelníček. Jak postupuješ?"
         options:
           - text: "Pošlu ho k lékaři či nutričnímu terapeutovi a pracuji v mezích jejich rad."
             correct: true
           - text: "Sestavím mu sama léčebnou dietu podle toho, co skripta píšou o relapsu."
             why: "Nutriční intervence u střevních zánětů patří lékařům a dietologům."
-          - text: "Doporučím mu vysadit léky a zvládnout to jen úpravou jídelníčku."
-            why: "Do léčby a léků poradce nezasahuje; léčba Crohnovy choroby je farmakologická."
+          - text: "Dám mu obecné zásady zdravé stravy s celozrnným pečivem a syrovou zeleninou."
+            why: "V relapsu může vláknina (celozrnné výrobky, syrová zelenina) potíže zhoršit; stravu v aktivní fázi vede lékař či nutriční terapeut."
           - text: "Nasadím mu na zkoušku přísnou bezlepkovou dietu."
             why: "Bezlepková dieta je léčbou celiakie a léčebnou dietu stejně nenastavuje poradce."
       - id: vysvetli

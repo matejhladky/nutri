@@ -28,9 +28,10 @@ points:
     exercises:
       - id: princip-voda
         type: choice
+        version: 2
         prompt: "Na jakém principu prodlužuje trvanlivost solení nebo sušení?"
         options:
-          - text: "Snižuje obsah vody, kterou mikroorganismy potřebují"
+          - text: "Snižuje obsah vody dostupné pro mikroorganismy"
             correct: true
           - text: "Snižuje pH potraviny"
             why: "To dělá nakládání do octa nebo přídavek kyselin."
@@ -92,18 +93,18 @@ points:
             why: "Vysoká pasterace je zahřátí na nejméně 85 °C."
           - text: "Paskalizace"
             why: "Paskalizace pracuje s vysokým tlakem, ne s teplotou."
-      - id: pasterace
+      - id: bez-konzervantu
         type: choice
-        prompt: "Jaké parametry má podle skript pasterace?"
+        prompt: "Proč sterilované potraviny v konzervě (rybičky, kompot) nepotřebují konzervanty?"
         options:
-          - text: "Nejméně 71,7 °C po dobu 15 s"
+          - text: "Ohřev v uzavřeném obalu zničil mikroorganismy"
             correct: true
-          - text: "Nejméně 85 °C"
-            why: "To je vysoká pasterace."
-          - text: "Nejméně 135 °C po dobu 1 s"
-            why: "To je UHT."
-          - text: "Nad 100 °C v hermeticky uzavřeném obalu"
-            why: "To je sterilizace."
+          - text: "Při sterilizaci v nich vznikají ochranné látky"
+            why: "Ochranné látky vznikají při fermentaci; sterilizace mikroorganismy zničí (s. 97)."
+          - text: "Kovový obal uvolňuje látky, které brzdí mikroby"
+            why: "Obal jen brání novému znečištění; mikroorganismy usmrtil ohřev v hermeticky uzavřeném obalu."
+          - text: "Sterilizace sníží obsah vody pod hranici pro mikroby"
+            why: "To je princip sušení nebo solení; sterilizace je nepřímý ohřev v uzavřeném obalu."
       - id: vyklad
         type: explain
         prompt: "Vysvětli rozdíl mezi pasterací, UHT a sterilizací."
@@ -694,18 +695,19 @@ points:
             why: "Syntetické látky (např. cyklamáty) nemají přírodní vzor se stejnou strukturou."
           - text: "nepatří mezi aditiva"
             why: "Kyselina askorbová se jako aditivum používá."
-      - id: synteticke
+      - id: e-kod-puvod
         type: choice
-        prompt: "Které z těchto aditiv uvádějí skripta jako příklad syntetického?"
+        prompt: "Klientka: „Když má látka E-kód, je to umělá chemie.“ Co platí?"
         options:
-          - text: "Cyklamáty"
+          - text: "Původ z E-kódu nepoznáš, v každé skupině je obojí"
             correct: true
-          - text: "Pektin"
-            why: "Pektin je přírodní aditivum."
-          - text: "Karamel"
-            why: "Karamel je přírodní aditivum."
-          - text: "Kyselina askorbová"
-            why: "Kyselina askorbová je přírodně identická."
+            why: "V každé kategorii éček jsou látky různého původu (s. 107)."
+          - text: "E-kód mají syntetické látky, přírodní se píšou názvem"
+            why: "E-kód mají i přírodní aditiva (pektin, karamel); kódem nebo názvem lze uvést kterékoli."
+          - text: "E-kód znamená přírodně identickou látku"
+            why: "Přírodně identická je jen jedna ze tří skupin (např. kyselina askorbová)."
+          - text: "Přírodní aditiva mají nižší čísla E než syntetická"
+            why: "Číslo o původu nic neříká; éčka se dělí do kategorií podle účelu (konzervanty, barviva…)."
       - id: rozdeleni
         type: reveal
         prompt: "Jak se dělí „éčka“ podle původu? Ke každé skupině uveď příklad."
@@ -774,6 +776,7 @@ points:
     exercises:
       - id: dusitany
         type: choice
+        version: 2
         prompt: "Čím je podle skript způsobena růžová barva uzenin?"
         options:
           - text: "Dusitany"
@@ -783,19 +786,20 @@ points:
           - text: "Karamelem"
             why: "Karamel je hnědé barvivo."
           - text: "Červenou řepou"
-            why: "Barvu uzenin dávají dusitany."
+            why: "Řepa je přírodní barvivo, růžovou barvu uzenin ale podle skript dávají dusitany – lidé je často nechtějí, a přitom chtějí růžovou, ne šedou uzeninu (s. 95)."
       - id: kdo
         type: choice
+        version: 2
         prompt: "Komu skripta doporučují se syntetickým „E“ spíše vyhýbat?"
         options:
           - text: "Dětem, seniorům a některým nemocným"
             correct: true
-          - text: "Pouze lidem s celiakií"
-            why: "Doporučení je širší a s lepkem nesouvisí."
-          - text: "Všem bez výjimky – jsou vždy škodlivá"
-            why: "Aditiva jsou povolena jen tehdy, když nepředstavují nadměrné riziko."
-          - text: "Nikomu – syntetická E jsou bezpečnější než přírodní"
-            why: "Skripta naopak doporučují citlivým skupinám se jim vyhýbat."
+          - text: "Lidem s celiakií"
+            why: "Celiakie se týká lepku, ne éček; doporučení skript míří na děti, seniory a některé nemocné."
+          - text: "Sportovcům a lidem v redukci"
+            why: "Tyto skupiny skripta v doporučení nejmenují; uvádějí děti, seniory a některé nemocné."
+          - text: "Těhotným a kojícím ženám"
+            why: "Skripta je v tomto doporučení nejmenují; uvádějí děti, seniory a některé nemocné."
       - id: vyklad
         type: explain
         version: 2
@@ -1130,10 +1134,11 @@ points:
     kind: fact
     tier: A
     criteria: [4c, 9a]
-    source: { pages: [94, 109], anchor: "Obsah těchto živin musí být přepočten na 100 g nebo 100 ml" }
+    source: { pages: [94, 109, 85], anchor: "Obsah těchto živin musí být přepočten na 100 g nebo 100 ml" }
     explanation: >-
       Povinné výživové údaje: energetická hodnota (kJ/kcal), tuky, z toho nasycené mastné kyseliny,
-      sacharidy, z toho cukry, bílkoviny a sůl. Vláknina je dobrovolná. Vše se přepočítává na 100 g
+      sacharidy, z toho cukry (všechny mono- a disacharidy, přidané i přirozené, např. laktóza),
+      bílkoviny a sůl. Vláknina je dobrovolná. Vše se přepočítává na 100 g
       nebo 100 ml, případně navíc na porci. Vitaminy a minerální látky jsou povinné jen tehdy, když
       je na obalu tvrzení nebo jde o fortifikovanou potravinu – pak s množstvím i % referenční
       hodnoty příjmu (dříve DDD).
@@ -1167,6 +1172,19 @@ points:
             why: "Povinný základ je 100 g / 100 ml."
           - text: "Na 1 000 kJ energie"
             why: "Takový přepočet se nepoužívá."
+      - id: z-toho-cukry
+        type: choice
+        prompt: "Bílý jogurt má v tabulce „sacharidy 4,7 g, z toho cukry 4,5 g“. Co zahrnuje údaj „z toho cukry“?"
+        options:
+          - text: "Mono- a disacharidy včetně laktózy z mléka"
+            correct: true
+            why: "Cukry = všechny mono- a disacharidy (s. 85), přidané i přirozeně přítomné – v jogurtu hlavně laktóza."
+          - text: "Cukr, který do jogurtu přidal výrobce"
+            why: "Údaj nerozlišuje přidané a přirozené cukry; zahrnuje i mléčnou laktózu."
+          - text: "Sacharidy celkem včetně škrobu"
+            why: "To je řádek Sacharidy; „z toho cukry“ jsou jen mono- a disacharidy."
+          - text: "Přidané cukry a sladidla dohromady"
+            why: "Sladidla nejsou cukry; údaj zahrnuje mono- a disacharidy, přidané i přirozené."
       - id: vyklad
         type: explain
         prompt: "Vysvětli klientce, co najde v tabulce výživových údajů a jak ji číst."
@@ -1262,16 +1280,16 @@ points:
     exercises:
       - id: jak
         type: choice
-        version: 2
+        version: 3
         prompt: "Jak musí být alergeny uvedeny na balené potravině?"
         options:
           - text: "Zvýrazněně přímo v seznamu složek (např. tučně)"
             correct: true
-          - text: "Jen symbolem na přední straně obalu"
+          - text: "Symbolem nebo ikonou na přední straně obalu"
             why: "Alergeny se zvýrazňují přímo ve složení."
-          - text: "Stačí je uvést na webu výrobce"
-            why: "Musí být přímo na obalu."
-          - text: "Uvádějí se jen u potravin určených alergikům"
+          - text: "Na webu výrobce, na který odkazuje obal"
+            why: "Musí být přímo na obalu, ve složení."
+          - text: "Povinně u potravin určených alergikům"
             why: "Povinnost platí pro všechny balené potraviny."
       - id: stopy
         type: reveal
@@ -1361,15 +1379,15 @@ points:
     exercises:
       - id: dzus
         type: choice
-        version: 2
+        version: 3
         prompt: "Ovocná přesnídávka nese tvrzení „bez přídavku cukrů“. Co z toho plyne?"
         options:
-          - text: "Může obsahovat cukry přirozeně přítomné v ovoci"
+          - text: "Může obsahovat cukry přirozeně z ovoce"
             correct: true
-          - text: "Neobsahuje žádné mono- ani disacharidy"
+          - text: "Neobsahuje mono- ani disacharidy"
             why: "To by odpovídalo tvrzení „bez cukrů“ (podle EU nejvýše 0,5 g na 100 g)."
-          - text: "Je určitě slazený sladidly"
-            why: "Tvrzení o sladidlech nic neříká."
+          - text: "Je slazená sladidly místo cukru"
+            why: "Tvrzení o sladidlech nic neříká; nepřidaly se cukry ani sladké potraviny, sladkost je z ovoce."
           - text: "Nejde o výživové tvrzení"
             why: "Výživovým tvrzením není „neslazeno“, „bez přídavku cukrů“ ano."
       - id: neni-tvrzeni
@@ -1633,6 +1651,7 @@ points:
     exercises:
       - id: rucitel
         type: choice
+        version: 2
         prompt: "Kdo podle skript ručí za balenou potravinu?"
         options:
           - text: "PPP uvedený na obalu"
@@ -1641,8 +1660,8 @@ points:
             why: "Prodejce ručí za kvalitu až po uplynutí data minimální trvanlivosti."
           - text: "SZPI, která ji kontroluje"
             why: "SZPI je dozorový orgán, za potravinu neručí."
-          - text: "Vždy pěstitel nebo chovatel suroviny"
-            why: "Ručí ten, kdo je uveden na obalu jako PPP."
+          - text: "Pěstitel nebo chovatel hlavní suroviny"
+            why: "Ručí ten, kdo je uveden na obalu jako PPP (provozovatel potravinářského podniku)."
       - id: jakost
         type: choice
         multiple: true
@@ -2312,34 +2331,29 @@ points:
     exercises:
       - id: ecka
         type: choice
-        version: 2
+        version: 3
         prompt: "Co platí o „éčkách“ v biopotravinách?"
         options:
           - text: "Mohou obsahovat některá „éčka“ i aromata"
             correct: true
-          - text: "Nesmějí obsahovat žádná „éčka“"
+          - text: "Jsou bez „éček“"
             why: "Častý mýtus – i v BIO jsou některá aditiva povolena."
           - text: "Smějí mít éčka, ale aromata jsou zakázána"
             why: "Aromata (podle EU přírodní) v biopotravinách povolena jsou."
           - text: "Platí stejná pravidla jako u konvenčních"
             why: "Pro BIO platí přísnější pravidla pro aditiva i postupy."
-      - id: procesy
+      - id: vitaminy
         type: choice
-        multiple: true
-        prompt: "Které procesy jsou podle skript u biopotravin zakázané?"
+        prompt: "Klientka: „BIO mrkev má víc vitaminů než běžná.“ Co jí řekneš?"
         options:
-          - text: "Hydrogenace"
+          - text: "Vyšší obsah vitaminů a minerálů u BIO potvrzen nebyl"
             correct: true
-          - text: "Ozařování"
-            correct: true
-          - text: "Mikrovlnný ohřev"
-            correct: true
-          - text: "Bělení"
-            correct: true
-          - text: "Pasterace"
-            why: "Skripta ji mezi zakázané procesy neřadí."
-          - text: "Fermentace"
-            why: "Skripta ji mezi zakázané procesy neřadí."
+          - text: "Ano, protože roste bez umělých hnojiv a pesticidů"
+            why: "Pěstování je šetrnější k přírodě, vyšší obsah vitaminů či minerálů ale potvrzen nebyl (s. 103)."
+          - text: "Ano, pokud je lokální a sezónní"
+            why: "Lokální a sezónní BIO dává největší smysl, ne však kvůli vitaminům – vyšší obsah potvrzen nebyl."
+          - text: "Ne, BIO má vitaminů méně, protože se nesmí hnojit"
+            why: "Méně vitaminů také potvrzeno nebylo a hnojit se smí – skripta zmiňují dusíkatá hnojiva u jarní BIO zeleniny."
       - id: vyklad
         type: explain
         version: 3
@@ -2514,17 +2528,17 @@ points:
             why: "5 % je hranice pro uvádění přidané vody."
       - id: krmivo
         type: choice
-        version: 2
+        version: 3
         prompt: "Musí být označeno maso zvířete krmeného GMO sójou?"
         options:
           - text: "Ne, produkty zvířat krmených GMO se neoznačují"
             correct: true
-          - text: "Ano, vždy"
-            why: "Povinnost označení se na produkty zvířat krmených GMO nevztahuje."
+          - text: "Ano, stejně jako potraviny z GMO"
+            why: "Označuje se potravina z GMO; na produkty zvířat krmených GMO se povinnost nevztahuje (s. 105)."
           - text: "Ano, pokud krmivo obsahovalo nad 0,9 % GMO"
             why: "Takové krmivo se označuje, maso z něj krmených zvířat ne."
-          - text: "Jen pokud je maso v BIO kvalitě"
-            why: "V ekologickém chovu je GMO krmivo zakázané."
+          - text: "Ano, pokud GMO tvořilo přes polovinu krmiva"
+            why: "Na podíl krmiva se nehledí – produkty zvířat krmených GMO se neoznačují."
       - id: vyklad
         type: explain
         version: 2

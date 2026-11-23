@@ -189,9 +189,23 @@ Seven auditor subagents (one per file group, `docs/content-audit.md`) + an indep
 Simulation after R4 (11 days, prior 0.5, model estimates): 45 min → ≈ 87/186 tier A introduced (typical learner),
 60 min → ≈ 133/186; safety 30/30 and cases 11–12/12 except the 30-min / weaker-learner scenarios.
 
+## R5 — Final fixes & educational audit ✅ (2026-11-23)
+
+- **UI:** a failed report keeps the card (retry, error shown); today's answer count comes from the event log
+  (server), not localStorage. Explain self-check: target stated up front ("Zkus zmínit N bodů"), key points judged one
+  at a time with later ones hidden, then missed points + model answer + note (grading unchanged). A lucky guess
+  ("Tipuji") now shows the Výklad. Dnes checked at 390/820/1440/1920 px: no layout fixes needed.
+- **Educational audit** (4 read-only reviewers: ch. 1–9, 10–13, 14–25 + cases, cross-cutting design; reports kept
+  outside the repo). No wrong keys found in tier A; main weaknesses were test-wise cues, strawman distractors,
+  duplicated scenarios and fixed judgement in cases. 89 exercises changed, 21 added, 13 replaced (removed) by 3 non-overlapping editors, then an independent
+  verifier (1 must-fix: PAL labels; 12 should-fix) — all applied. Ids kept; changed meaning → new id or version bump.
+- **Flags:** `content:flags` gained `absolute-wrong`, `hedge-key`, `longest-key` for the remaining distractor pass.
+- **Not done (owner decision):** tier reallocations, new points/cases (capstone, food diary, 8d, DM2), judgement
+  variants of cases, exemplar diagnostic conclusion and one-day menu, splitting multi-fact points.
+
 ## Status
 
-All roadmap milestones (M0–M4, R1–R4) are done locally. Not done (owner decision): deployment — runbook in
+All roadmap milestones (M0–M4, R1–R5) are done locally. Not done (owner decision): deployment — runbook in
 `docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
 AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
 food law changed in 2024–2025 and may change again.

@@ -112,20 +112,22 @@ points:
           každou potravinu kontrolují dozorové orgány, hlavně SZPI.
       - id: kdy
         type: choice
+        version: 2
         prompt: "Kdy nejpozději musí firma splnit oznamovací povinnost k doplňku stravy?"
         options:
           - { text: "Nejpozději v den uvedení výrobku na trh", correct: true }
-          - { text: "Rok před uvedením na trh", why: "Žádná taková lhůta neexistuje." }
+          - { text: "Nejpozději 30 dní před uvedením na trh", why: "Lhůta před uvedením na trh není; stačí nejpozději v den uvedení (s. 120)." }
           - { text: "Až po schválení klinické studie", why: "Doplněk se neschvaluje a klinickou studii nepotřebuje." }
           - { text: "Do 30 dnů po uvedení na trh", why: "Notifikace musí být nejpozději v den uvedení na trh." }
       - id: kde
         type: choice
+        version: 2
         prompt: "U kterého úřadu se podává notifikace doplňku stravy?"
         options:
           - { text: "Ministerstvo zemědělství", correct: true }
           - { text: "Státní ústav pro kontrolu léčiv", why: "Ten se týká léčiv, doplněk je potravina." }
           - { text: "Ministerstvo zdravotnictví", why: "Podle skript se notifikace podává v systému Ministerstva zemědělství." }
-          - { text: "Žádnému – doplněk se nijak neoznamuje", why: "Oznamovací povinnost existuje." }
+          - { text: "Státní zemědělské a potravinářské inspekci", why: "SZPI výrobky na trhu kontroluje; notifikace se podává v systému Ministerstva zemědělství." }
 
   - id: dpl.tvrzeni-typy
     title: Čtyři typy tvrzení na doplňcích
@@ -518,8 +520,7 @@ points:
       bušení srdce; neurologických příznacích (necitlivost, slabost jedné strany, porucha řeči či
       vidění); příznaku, který se týdny nelepší i po úpravě životního stylu; podezření na nežádoucí
       účinek nebo interakci. U těhotných, kojících, dětí a chronicky nemocných je práh nižší.
-      V nejistotě doporuč lékaře navíc – doplněk a odeslání k lékaři se nevylučují; doporučení si
-      poznamenej.
+      V nejistotě doporuč lékaře a doporučení si poznamenej.
     exercises:
       - id: vyjmenuj
         type: explain
@@ -581,12 +582,13 @@ points:
           mít jeho souhlas.
       - id: warfarin
         type: choice
+        version: 2
         prompt: "U klienta užívajícího warfarin je potřeba opatrnost hlavně u kterého doplňku?"
         options:
-          - { text: "Vitamin K", correct: true }
-          - { text: "Vitamin B12", why: "Interakce s warfarinem se týká vitaminu K." }
-          - { text: "Kreatin", why: "Interakce s warfarinem se týká vitaminu K." }
-          - { text: "Zinek", why: "Interakce s warfarinem se týká vitaminu K." }
+          - { text: "Vitamin K", correct: true, why: "Warfarin působí proti vitaminu K, který je potřebný pro srážení krve; doplněk s vitaminem K – i „kostní“ směs s K2 – může jeho účinek oslabit." }
+          - { text: "Vitamin B12", why: "B12 se řeší hlavně u veganů a seniorů; nejznámější interakcí s warfarinem je vitamin K." }
+          - { text: "Kreatin", why: "Kreatin je sportovní doplněk pro silový výkon; srážení krve se netýká." }
+          - { text: "Zinek", why: "Zinek se uvádí u imunity a nachlazení; nejznámější interakcí s warfarinem je vitamin K." }
 
   - id: dpl.tehotenstvi
     title: Doplňky v těhotenství a při kojení
@@ -625,12 +627,13 @@ points:
           beta-karoten. Konkrétní dávky a nejasné situace má rozhodnout lékař nebo gynekolog.
       - id: vitamin-a
         type: choice
+        version: 2
         prompt: "Kterou formu vitaminu A je v těhotenství vhodné preferovat v doplňcích?"
         options:
           - { text: "Beta-karoten", correct: true }
-          - { text: "Retinol ve vysoké dávce", why: "Vysoké dávky retinolu zvyšují riziko vrozených vad." }
+          - { text: "Retinol (např. retinyl-acetát)", why: "Předem vytvořený vitamin A – nad 10 000 IU denně roste riziko vrozených vad; NICE radí se mu v těhotenství vyhnout." }
           - { text: "Játra jako přirozený zdroj retinolu", why: "Doporučení NICE radí těhotným vyhýbat se i játrům." }
-          - { text: "Na formě nezáleží", why: "U těhotných je to podle skript zásadní rozdíl." }
+          - { text: "Retinol i beta-karoten rovnocenně", why: "Rovnocenné nejsou: u retinolu hrozí ve vysokých dávkách vrozené vady, u beta-karotenu se toxicita prakticky nepopisuje (s. 135)." }
 
   - id: dpl.predpoklady
     title: Předpoklady pro doporučování a prodej
@@ -765,13 +768,11 @@ points:
     criteria: [8a]
     source: { pages: [130, 131], anchor: "Sportovcům je doporučeno užívat 500–1000 mg/den" }
     explanation: >-
-      EPA a DHA jsou dlouhé omega-3 mastné kyseliny, které si tělo samo dostatečně nevytvoří; zdrojem
-      jsou tučné ryby (losos, sleď, makrela) a rybí nebo řasový olej. Rostlinná ALA (vlašské ořechy,
-      lněný olej) je třetí omega-3. Podle metaanalýzy z roku 2024 snižuje doplnění riziko závažných
-      kardiovaskulárních příhod, nejvíc samotná EPA. U doplňku
-      sleduj množství EPA a DHA v denní dávce, jejich zdroj a poměr. Sportovcům se doporučuje
-      500–1000 mg/den, horní hranice podle amerických doporučení je 3000 mg/den. Tvrzení o mozku
-      a zraku vyžaduje přívod 250 mg DHA denně.
+      EPA a DHA jsou dlouhé omega-3 mastné kyseliny, které si tělo dostatečně nevytvoří; zdrojem jsou
+      tučné ryby a rybí nebo řasový olej (rostlinná ALA z ořechů a lnu je třetí omega-3). Doplnění
+      podle metaanalýzy z roku 2024 snižuje riziko závažných kardiovaskulárních příhod, nejvíc samotná
+      EPA. U doplňku sleduj množství EPA a DHA v dávce, zdroj a poměr. Sportovcům 500–1000 mg/den,
+      horní hranice podle amerických doporučení 3000 mg/den. Tvrzení o mozku a zraku: 250 mg DHA denně.
     exercises:
       - id: charakteristika
         type: explain
@@ -814,7 +815,7 @@ points:
     note: >-
       **Skripta:** tři různá čísla – doporučený příjem 15–20 µg (600–800 IU, s. 50), hranice 1000 IU
       v denní dávce pro doplněk stravy (vyšší = lék, s. 120) a „bezpečná preventivní dávka“ kolem
-      2000 IU/den (Pro praxi, s. 131). Děti: kojenci 400–500 IU/den do konce 1. roku, po 1. roce jen
+      2000 IU/den (Pro praxi, s. 131) – podle vlastní hranice skript by taková dávka už byla lékem. Děti: kojenci 400–500 IU/den do konce 1. roku, po 1. roce jen
       rizikové děti (s. 221; s. 141 uvádí plošně i batolata). **Současné poznatky / předpisy:** EFSA
       (2023) stanovila horní hranici bezpečného příjmu pro dospělé 100 µg = 4000 IU/den; SÚKL od roku
       2024 nepovažuje za léky výrobky do 4000 IU v denní dávce (sukl.gov.cz). 2000 IU/den je tedy pod
@@ -825,12 +826,11 @@ points:
     prereqs: [dpl.definice]
     source: { pages: [131, 50, 221], anchor: "mezi říjnem a březnem prakticky vůbec" }
     explanation: >-
-      Vitamin D si tělo tvoří v kůži působením slunce, v našich šířkách ale od října do března
-      prakticky vůbec; nedostatek (pod 50 nmol/l) je u velké části Čechů celoroční. Doporučený příjem
-      je 600–800 IU (15–20 µg) denně. Kojenci ho dostávají plošně (400–500 IU/den do 1 roku). Skripta
-      uvádějí jako bezpečnou preventivní dávku pro dospělé kolem 2000 IU/den; přesné dávkování by se
-      mělo řídit hladinou 25-OH-D v krvi. Horní hranice bezpečného příjmu (EFSA) je 4000 IU/den;
-      do této dávky ho dnes SÚKL řadí mezi doplňky stravy (skripta uvádějí 1000 IU).
+      Kůže tvoří vitamin D ze slunce, u nás ale od října do března prakticky vůbec; nedostatek
+      (pod 50 nmol/l) je častý celoročně. Doporučený příjem je 600–800 IU (15–20 µg) denně, kojenci
+      dostávají 400–500 IU do 1 roku. Jako bezpečnou preventivní dávku pro dospělé uvádějí skripta
+      kolem 2000 IU/den, ideálně podle hladiny 25-OH-D. Horní hranice (EFSA) je 4000 IU/den – do ní
+      ho dnes SÚKL řadí k doplňkům (skripta: 1000 IU).
     exercises:
       - id: proc
         type: explain
@@ -850,12 +850,21 @@ points:
           denně; vyšší dávky patří jen pod dohled lékaře.
       - id: obdobi
         type: choice
+        version: 2
         prompt: "Kdy si v našich zeměpisných šířkách kůže vitamin D prakticky netvoří?"
         options:
           - { text: "Zhruba od října do března", correct: true }
-          - { text: "Jen v prosinci a lednu", why: "Skripta uvádějí období říjen–březen." }
+          - { text: "V prosinci a lednu", why: "Skripta uvádějí delší období: zhruba říjen–březen." }
           - { text: "Od května do srpna", why: "V létě je syntéza nejvyšší." }
           - { text: "Tvoří si ho celoročně stejně", why: "Syntéza závisí na slunečním záření a ročním období." }
+      - id: davky
+        type: choice
+        prompt: "Jakou denní dávku vitaminu D uvádějí skripta jako bezpečnou preventivní dávku pro dospělé?"
+        options:
+          - { text: "2000 IU", correct: true, why: "„Pro praxi“ na s. 131; je pod horní hranicí EFSA 4000 IU." }
+          - { text: "600–800 IU", why: "To je doporučený denní příjem (s. 50), ne preventivní dávka z doplňku." }
+          - { text: "4000 IU", why: "To je horní hranice bezpečného příjmu (EFSA) – strop, ne doporučená dávka." }
+          - { text: "400–500 IU", why: "To je dávka pro kojence do 1 roku." }
 
   - id: dpl.horcik
     title: Hořčík – formy a vstřebatelnost
@@ -932,17 +941,22 @@ points:
           může zlepšit vstřebávání.
       - id: ob-den
         type: choice
+        version: 2
         prompt: "Proč může být užívání železa ob den výhodnější než každý den?"
         options:
-          - { text: "Mezitím klesne hladina hepcidinu, který vstřebávání železa blokuje", correct: true }
-          - { text: "Železo se ukládá do jater a denní dávka by je poškodila", why: "Skripta to vysvětlují hepcidinem." }
-          - { text: "Ob den se lépe snáší vitamin C", why: "Nesouvisí s vitaminem C." }
-          - { text: "Denní užívání způsobuje předávkování už v běžné dávce", why: "Důvodem je hepcidin, ne předávkování." }
+          - { text: "Klesne hepcidin, který vstřebávání železa blokuje", correct: true }
+          - { text: "Mezitím se doplní vitamin C, který vstřebání zvyšuje", why: "Vitamin C vstřebávání zlepšuje, výhodu užívání ob den ale skripta vysvětlují poklesem hepcidinu." }
+          - { text: "Střevní sliznice se za dva dny obnoví a přijme víc železa", why: "Po dávce železa stoupne hormon hepcidin a vstřebávání brzdí; za den volna jeho hladina klesne." }
+          - { text: "Při denním užívání se železo hromadí a hrozí předávkování", why: "Přetížení hrozí hlavně při zbytečném doplňování; výhodu ob den skripta vysvětlují hepcidinem." }
 
   - id: dpl.probiotika
     title: Probiotika – kmen, dávka, kdy nasadit
     kind: concept
     tier: A
+    status: course-disputed
+    note: >-
+      Skripta: s. 136 váže účinek na „konkrétní druhy“ bakterií, s. 142 na konkrétní kmen, „ne rod
+      nebo druh“. Současné poznatky: účinek je vázaný na kmen. Ke zkoušce: „kmen, ne rod“ (s. 142).
     criteria: [8a, 8d]
     source: { pages: [136, 142], anchor: "alespoň 10 mld KTJ/CFU" }
     explanation: >-
@@ -1029,12 +1043,13 @@ points:
     exercises:
       - id: vitamin-c
         type: choice
+        version: 2
         prompt: "Co podle skript platí o vitaminu C a nachlazení?"
         options:
-          - { text: "Pravidelné užívání předem zkracuje trvání nachlazení, nástup až při příznacích nepomáhá", correct: true }
+          - { text: "Pravidelné užívání předem zkrátí nachlazení, nástup při příznacích ne", correct: true }
           - { text: "Pravidelné užívání spolehlivě brání tomu, aby člověk nachlazení dostal", why: "Riziko onemocnění u běžné populace nesnižuje." }
           - { text: "Nejúčinnější je začít ve vysoké dávce až při prvních příznacích", why: "Zahájení po objevení příznaků na délku nachlazení vliv nemá." }
-          - { text: "Na nachlazení nemá žádný vliv", why: "Zkracuje jeho trvání (dospělí ~8 %, děti ~14 %)." }
+          - { text: "Na průběh nachlazení vliv nemá", why: "Pravidelné užívání zkracuje jeho trvání (dospělí ~8 %, děti ~14 %)." }
       - id: zinek
         type: reveal
         prompt: "Proč nebrat vysoké dávky zinku dlouhodobě?"
@@ -1272,12 +1287,13 @@ points:
           v těhotenství, při kojení nebo s léky má rozhodnout lékař.
       - id: davka
         type: choice
+        version: 2
         prompt: "Jaké je standardní dávkování kreatin monohydrátu podle skript?"
         options:
           - { text: "3–5 g denně dlouhodobě", correct: true }
           - { text: "20 g denně dlouhodobě", why: "20 g/den je jen volitelná nasycovací fáze na 5–7 dní." }
-          - { text: "0,5 g denně", why: "Příliš nízká dávka." }
-          - { text: "3–5 g jen v tréninkové dny těsně po tréninku", why: "Užívá se denně a na čase nezáleží." }
+          - { text: "0,5 g denně dlouhodobě", why: "Neodpovídá dávce ze studií; standard je 3–5 g denně." }
+          - { text: "3–5 g v tréninkové dny těsně po tréninku", why: "Užívá se denně a na čase nezáleží." }
       - id: nasyceni
         type: choice
         prompt: "Je u kreatinu nutná nasycovací fáze?"
@@ -1310,9 +1326,10 @@ points:
       - id: vypocet
         type: numeric
         formula: per-kg
+        version: 2
         prompt: "Sportovkyně váží {weight} kg. Kolik mg kofeinu odpovídá dávce {perKg} mg/kg před výkonem?"
         params:
-          weight: { min: 50, max: 100, step: 1 }
+          weight: { min: 50, max: 66, step: 1 }
           perKg:
             choices:
               - { value: 3, label: "3" }

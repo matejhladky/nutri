@@ -213,13 +213,14 @@ points:
           - { text: "Retinol v těhotenství výrazně zvyšuje riziko gestačního diabetu", why: "Riziko vysokých dávek retinolu jsou vrozené vývojové vady." }
           - { text: "Potřeba vitaminu A v těhotenství klesá téměř na nulu", why: "Potřeba je naopak mírně zvýšená." }
       - id: vysvetli
-        version: 2
+        version: 3
         type: explain
         prompt: "Které mikroživiny jsou v těhotenství klíčové a na co si dát pozor?"
         keyPoints:
           - "Kyselina listová 600 µg (prevence vad neurální trubice)"
           - "Jód 250 µg — plod ho má jen od matky; ryby, jodizovaná sůl"
-          - "Vitamin D 15 µg; vápník 1 000 mg; železo – potřeba roste, EFSA číslo 16 mg nenavyšuje"
+          - "Vitamin D 15 µg a vápník 1 000 mg"
+          - "Železo: potřeba roste, ale EFSA referenční hodnotu 16 mg nenavyšuje"
           - "Pozor na retinol (vitamin A) — preferovat beta-karoten"
           - "Deficity (např. železo) řeší lékař podle laboratoře"
         modelAnswer: >-
@@ -592,13 +593,14 @@ points:
           - { text: "1,6–2,2 g/kg/den", why: "To je rozmezí pro sportovce při nabírání svalů." }
       - id: nemocny
         type: numeric
+        version: 2
         formula: per-kg
         prompt: >-
-          Seniorka s chronickým onemocněním váží {weight} kg. Kolik gramů bílkovin denně odpovídá HORNÍ
+          Seniorka s chronickým onemocněním váží {weight} kg. Kolik gramů bílkovin denně odpovídá SPODNÍ
           hranici doporučení pro nemocné seniory?
         params:
           weight: { min: 45, max: 90, step: 1 }
-          perKg: { choices: [{ value: 1.5, label: "1,5" }] }
+          perKg: { choices: [{ value: 1.2, label: "1,2" }] }
         unit: g
         tolerance: { abs: 2 }
         hint: "Při akutním či chronickém onemocnění 1,2–1,5 g/kg."
@@ -686,12 +688,13 @@ points:
     exercises:
       - id: proc-pribira
         type: choice
+        version: 2
         prompt: "Proč ženy po menopauze často přibírají?"
         options:
           - { text: "Klesá jim bazální metabolismus a potřeba energie", correct: true }
           - { text: "Zvyšuje se jim potřeba energie, a proto přirozeně víc jedí", why: "Potřeba energie naopak klesá." }
-          - { text: "Přestanou úplně vstřebávat vápník, a tím i ostatní živiny", why: "Vstřebávání se úplně nezastaví; roste riziko osteoporózy." }
-          - { text: "Přírůstek hmotnosti je jen zadržená voda, tuk nepřibývá", why: "Skripta popisují úbytek svalů a zvýšené ukládání tuku." }
+          - { text: "Přibývá jim svalová hmota, která váží víc než tuk", why: "Svalová hmota po menopauze naopak ubývá a přibývá tuk." }
+          - { text: "Přibývá hlavně zadržená voda, tuk se neukládá", why: "Skripta popisují úbytek svalů a zvýšené ukládání tuku." }
       - id: rizika
         type: explain
         prompt: "Jaké změny a zdravotní rizika přináší menopauza z pohledu výživy?"
@@ -780,11 +783,12 @@ points:
     exercises:
       - id: len
         type: choice
+        version: 2
         prompt: "Jak má klientka v menopauze jíst lněné semínko, aby z něj měla užitek?"
         options:
           - { text: "Pomleté, namočené nebo důkladně rozkousané", correct: true }
           - { text: "Celé a nenamočené, aby se zachovaly lignany", why: "Celé semínko projde trávicím traktem většinou nestrávené." }
-          - { text: "Jedině ve formě oleje smaženého při vysoké teplotě", why: "Lněný olej se na smažení nehodí; skripta doporučují semínko pomleté nebo namočené." }
+          - { text: "Celé, ale opražené na pánvi, aby se lignany uvolnily", why: "Pražení nepomůže – celé semínko projde většinou nestrávené; je třeba ho pomlít, namočit nebo rozkousat." }
       - id: zdroje
         version: 2
         type: reveal
@@ -852,11 +856,12 @@ points:
     exercises:
       - id: rozdil
         type: choice
+        version: 2
         prompt: "Čím se bulimie typicky liší od anorexie?"
         options:
           - { text: "Hmotnost bývá normální, přejídání se kompenzuje", correct: true }
-          - { text: "U bulimie je BMI vždy pod 17,5 a nemocná jídlo odmítá", why: "Nízké BMI a odmítání jídla jsou vodítkem anorexie." }
-          - { text: "Bulimie se týká hlavně starších mužů po padesátce", why: "Vyskytuje se především u mladých žen." }
+          - { text: "BMI bývá pod 17,5 a nemocná jídlo odmítá", why: "Nízké BMI a odmítání jídla jsou vodítkem anorexie." }
+          - { text: "Záchvaty přejídání se ničím nekompenzují", why: "Bez kompenzace (zvracení, projímadla, cvičení) jde o psychogenní přejídání; bulimie přejídání kompenzuje." }
           - { text: "U bulimie chybí strach z tloušťky i zájem o vzhled", why: "Strach z tloušťky a závislost na vzhledu jsou typické." }
       - id: srovnani
         type: explain
@@ -920,11 +925,12 @@ points:
           - { text: "Jí pravidelně tři hlavní jídla denně se zbytkem rodiny", why: "To je znak normálního, flexibilního stravování." }
       - id: kombinace
         type: choice
+        version: 2
         prompt: "Klientka zmíní, že začala být vegetariánka. Jak to vyhodnotíš?"
         options:
           - { text: "Sleduji, zda se nepřidají další znaky", correct: true }
-          - { text: "Je to jasný důkaz anorexie, okamžitě ji posílám k psychiatrovi", why: "Jeden projev sám o sobě nic neznamená." }
-          - { text: "Nehraje to žádnou roli, poruchy příjmu potravy se týkají jen sportovkyň", why: "PPP se mohou týkat kohokoli." }
+          - { text: "Je to jasný znak anorexie, posílám ji k psychiatrovi", why: "Jeden projev sám o sobě nic neznamená; rozhoduje kombinace více znaků." }
+          - { text: "S poruchami příjmu potravy to nesouvisí, neřeším to", why: "Vegetariánství může sloužit i jako výmluva k vynechávání jídel – samo nic neznamená, ale v kombinaci s dalšími znaky je varovné." }
       - id: vysvetli
         type: explain
         prompt: "Jakých znaků si všimneš, které mohou ukazovat na poruchu příjmu potravy?"

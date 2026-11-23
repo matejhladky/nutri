@@ -227,7 +227,8 @@ points:
     explanation: >-
       Doporučení pro populaci: sacharidy 45–60 %, bílkoviny 10–15 %, tuky 30 %. V praxi: 1) bílkoviny
       v g/kg (minimum 0,8–1 g/kg, většina klientů víc; navyšovat po 0,3–0,4 g/kg), 2) tuky 25–35 %
-      energie (asi 0,5–1 g/kg), 3) sacharidy doplní zbytek.
+      energie (asi 0,5–1 g/kg), 3) sacharidy doplní zbytek. Při vyšším příjmu vyjde 25–35 % i nad
+      1 g/kg – kap. 3 připouští až asi 1,5 g/kg.
     exercises:
       - id: poradi
         type: choice

@@ -8,6 +8,9 @@
  *  disputed-mcq    a choice question on a course-disputed point whose prompt does not say "podle skript"
  *  near-duplicate  two exercises of different points with very similar wording (token Jaccard ≥ 0.5)
  *  recognition-only a tier-A point whose exercises are all multiple choice
+ *  absolute-wrong  single choice where a distractor carries an absolute word ("vždy", "nikdy", "zcela", …) and the key not
+ *  hedge-key       single choice where only the key is hedged ("přibližně", "asi", "zhruba", "kolem")
+ *  longest-key     single choice whose key is the longest option by ≥ 10 % (a mild, systematic cue in aggregate)
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -55,6 +58,17 @@ for (const p of b.points) {
       const others = e.options.filter((o) => !o.correct).map((o) => o.text.length);
       if (c > 15 && c > 1.3 * Math.max(...others)) add("length-cue", p, e, `correct ${c} chars vs longest distractor ${Math.max(...others)}`);
     }
+    if (!e.multiple) {
+      const key = e.options.find((o) => o.correct)!.text;
+      const wrong = e.options.filter((o) => !o.correct).map((o) => o.text);
+      const absolute = /(?<!\p{L})(vždy|nikdy|zcela|úplně|nijak|určitě|jedině|bez výjimky|všem|všechny|žádn[éáý]|nezáleží)(?!\p{L})/iu;
+      const hit = wrong.find((w) => absolute.test(w));
+      if (hit && !absolute.test(key)) add("absolute-wrong", p, e, hit.slice(0, 90));
+      const hedge = /^(přibližně|asi|zhruba|kolem|cca)(?!\p{L})/iu;
+      if (hedge.test(key) && !wrong.some((w) => hedge.test(w))) add("hedge-key", p, e, key.slice(0, 90));
+      const longest = Math.max(...wrong.map((w) => w.length));
+      if (key.length >= 1.1 * longest && key.length <= 1.3 * longest) add("longest-key", p, e, `${key.length} vs ${longest} chars`);
+    }
     // disputed MCQ without "podle skript"
     if (p.status === "course-disputed" && !/podle skript|ve skriptech|skripta/i.test(e.prompt)) add("disputed-mcq", p, e, e.prompt.slice(0, 90));
   }
@@ -83,7 +97,7 @@ for (let i = 0; i < items.length; i++)
     if (jac >= 0.5) add("near-duplicate", items[i].p, items[i].e, `~ ${items[j].p.id}/${items[j].e.id} (${jac.toFixed(2)})`);
   }
 
-const kinds = ["length-cue", "number", "disputed-mcq", "near-duplicate", "recognition-only"];
+const kinds = ["length-cue", "longest-key", "absolute-wrong", "hedge-key", "number", "disputed-mcq", "near-duplicate", "recognition-only"];
 const lines = [
   "# Content quality flags",
   "",

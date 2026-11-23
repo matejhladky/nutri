@@ -423,9 +423,10 @@ points:
     exercises:
       - id: uloha
         type: choice
+        version: 2
         prompt: "Jaká je hlavní úloha žluči při trávení?"
         options:
-          - { text: "Rozptýlí tuky do micel dostupných pro lipázu", correct: true }
+          - { text: "Rozptýlí tuky na drobné částice (micely)", correct: true }
           - { text: "Sama štěpí tuky na mastné kyseliny", why: "Štěpení zajišťuje lipáza; žluč tuky jen rozptýlí." }
           - { text: "Štěpí bílkoviny ve dvanáctníku", why: "To dělají trypsin, chymotrypsin a elastáza." }
           - { text: "Štěpí škrob ve dvanáctníku", why: "Škrob štěpí amyláza ze slinivky." }
@@ -646,6 +647,14 @@ points:
         answer: >-
           Monosacharidy a aminokyseliny do krve → vrátnicovou žílou do jater → do dalších tkání. Tuky
           s vitaminy A, D, E, K do lymfy. Minerály a vitaminy rozpustné ve vodě přes speciální transportéry.
+      - id: nizkotucna
+        type: choice
+        prompt: "Klientka jí dlouhodobě extrémně málo tuku. Vstřebávání čeho se jí může zhoršit?"
+        options:
+          - { text: "Vitaminů A, D, E a K", correct: true, why: "Vstřebávají se společně s tuky, takže nedostatek tuku v potravě jejich vstřebání snižuje." }
+          - { text: "Vitaminu C a vitaminů skupiny B", why: "Vitaminy rozpustné ve vodě vstřebávají transportéry nezávisle na tuku." }
+          - { text: "Aminokyselin z bílkovin", why: "Aminokyseliny jdou do krve a vrátnicovou žílou do jater; tuk k tomu nepotřebují." }
+          - { text: "Glukózy ze škrobu", why: "Jednoduché cukry se vstřebávají do krve bez ohledu na tuk." }
 
   - id: telo.vstrebavani-mikroziviny
     title: Vstřebávání B12, železa a vápníku
@@ -693,11 +702,13 @@ points:
     exercises:
       - id: slinivka
         type: choice
+        version: 2
         prompt: "Která funkce slinivky je exokrinní?"
         options:
           - { text: "Tvorba trávicích enzymů", correct: true }
-          - { text: "Tvorba inzulinu β-buňkami", why: "Hormony do krve = endokrinní funkce." }
-          - { text: "Tvorba glukagonu α-buňkami", why: "Hormony do krve = endokrinní funkce." }
+          - { text: "Tvorba inzulinu a glukagonu", why: "Hormony jdou přímo do krve – to je endokrinní funkce slinivky." }
+          - { text: "Tvorba žluči", why: "Žluč tvoří játra; se šťávou ze slinivky se jen potká ve dvanáctníku." }
+          - { text: "Vstřebávání živin do krve", why: "Živiny vstřebává tenké střevo, ne slinivka." }
       - id: endokrinni
         type: choice
         prompt: "Která žláza patří mezi žlázy s vnitřní sekrecí?"
@@ -1068,7 +1079,7 @@ points:
     status: supplementary
     criteria: [2c]
     prereqs: [telo.zaludek]
-    confusableWith: [telo.ghrelin-leptin, telo.sekretin]
+    confusableWith: [telo.ghrelin-leptin, telo.sekretin, telo.cck]
     source: { pages: [74, 78], anchor: "dále trávicí trakt a tuková tkáň" }
     note: >-
       Trávicí hormony (gastrin, sekretin, cholecystokinin, ghrelin) skripta nejmenují – jen uvádějí,

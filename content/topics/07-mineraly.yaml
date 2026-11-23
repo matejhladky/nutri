@@ -78,8 +78,8 @@ points:
         prompt: "Jaká denní potřeba odděluje makroelementy od mikroelementů?"
         options:
           - { text: "100 mg", correct: true }
-          - { text: "1 g", why: "Hranice je 100 mg za den." }
-          - { text: "10 mg", why: "Hranice je 100 mg za den." }
+          - { text: "1 g", why: "Tolik denně nepotřebujeme ani vápníku (asi 950 mg), a ten je makroelement; hranice je 100 mg." }
+          - { text: "10 mg", why: "Pod 100 mg denně leží mikroelementy jako železo, zinek či jód; 10 mg je příliš nízko." }
           - { text: "100 µg", why: "Mikrogramy se uvádějí u mikroelementů, hranice je ale 100 mg." }
       - id: mikro
         type: reveal
@@ -109,6 +109,7 @@ points:
           - { text: "Přibližně 50 %", why: "V kostech a zubech je téměř všechen vápník – asi 99 %." }
           - { text: "Přibližně 70 %", why: "V kostech a zubech je asi 99 % vápníku." }
       - id: zdroje
+        version: 2
         type: choice
         multiple: true
         prompt: "Které potraviny jsou podle skript významným zdrojem vápníku?"
@@ -116,8 +117,8 @@ points:
           - { text: "Mák a sezam", correct: true }
           - { text: "Sardinky jedené i s kostmi", correct: true }
           - { text: "Mléčné výrobky", correct: true }
-          - { text: "Bílé pečivo", why: "Bílé pečivo není významným zdrojem vápníku." }
-          - { text: "Jablka", why: "Ovoce obsahuje vápníku málo." }
+          - { text: "Kuřecí maso", why: "Maso je zdrojem bílkovin a železa, vápníku ale obsahuje málo; z ryb se počítají ty jedené i s kostmi." }
+          - { text: "Banány", why: "Ovoce obsahuje vápníku málo; mezi zdroji ho skripta neuvádějí." }
       - id: funkce
         type: reveal
         prompt: "Jaké má vápník v těle funkce?"
@@ -138,13 +139,14 @@ points:
       důležitá pohybová zátěž kostí. Hladina vápníku v krvi o jeho zásobení moc neřekne.
     exercises:
       - id: spenat
+        version: 2
         type: choice
         prompt: "Proč je špenát podle skript špatně využitelným zdrojem vápníku?"
         options:
           - { text: "Obsahuje oxaláty, které využitelnost vápníku snižují.", correct: true }
           - { text: "Obsahuje málo vápníku.", why: "Problém není množství, ale využitelnost kvůli oxalátům." }
           - { text: "Neobsahuje vitamin D.", why: "Vstřebávání ovlivňuje stav vitaminu D v těle, ne jeho obsah ve špenátu." }
-          - { text: "Vápník se ze všech rostlin vstřebává jen 5–10 %.", why: "Skripta výslovně říkají, že takto paušalizovat nelze." }
+          - { text: "Z rostlinných zdrojů se vápník vstřebává obecně hůř než z mléka.", why: "Skripta říkají, že to nelze paušalizovat – z některé brukvovité zeleniny se vápník využije velmi dobře." }
       - id: mlecne
         type: choice
         prompt: "Kolik vápníku se přibližně vstřebá z mléčných výrobků?"
@@ -455,6 +457,7 @@ points:
       dědičné hemochromatóze). Doplňovat jen po vyšetření.
     exercises:
       - id: suplementace
+        version: 2
         type: choice
         prompt: "Klientka je unavená a chce si „pro jistotu“ koupit vysoké dávky železa. Co jí poradíš?"
         options:
@@ -462,8 +465,8 @@ points:
             correct: true
           - text: "Je to v pořádku, přebytek železa se vyloučí."
             why: "Nadbytek železa je škodlivý (reaktivní formy kyslíku, poškození tkání)."
-          - text: "Je to vhodné, únava je vždy známkou nedostatku železa."
-            why: "Únava má mnoho příčin; bez vyšetření se suplementovat nemá."
+          - text: "Je to vhodné, únava u žen bývá nejčastěji z nedostatku železa."
+            why: "Únava má mnoho příčin a nadbytek železa škodí; bez vyšetření se suplementovat nemá."
           - text: "Stačí, když ho zapije kávou kvůli lepšímu vstřebání."
             why: "Polyfenoly z kávy vstřebávání železa snižují."
       - id: riziko
@@ -497,9 +500,8 @@ points:
       Jód je součástí hormonů štítné žlázy tyroxinu (T4) a trijodtyroninu (T3), které řídí
       metabolismus, růst a vývoj. Zvlášť důležitý je v těhotenství a raném dětství pro vývoj
       nervové soustavy. Dospělí asi 150 µg denně, těhotné a kojící více (EFSA 200 µg, skripta podle
-      WHO 250 µg). Zdroje: jodizovaná sůl,
-      mořské ryby a plody, mléčné výrobky; mořské řasy mohou mít extrémně mnoho. Nedostatek: porucha
-      štítné žlázy a její zvětšení (struma). Škodí i nadbytek (hypo- i hypertyreóza). Strumigenní
+      WHO 250 µg). Zdroje: jodizovaná sůl, mořské ryby a plody, mléčné výrobky; mořské řasy mohou
+      mít extrémně mnoho. Nedostatek: porucha štítné žlázy, struma. Škodí i nadbytek. Strumigenní
       látky z brukvovité zeleniny nevadí při dostatku jódu.
     exercises:
       - id: hormony
@@ -715,13 +717,14 @@ points:
           - { text: "Přibližně 350 mg", why: "350 mg je adekvátní příjem hořčíku u mužů." }
           - { text: "Přibližně 3 500 mg", why: "3 500 mg je adekvátní příjem draslíku." }
       - id: jod
+        version: 2
         type: choice
         prompt: "Jaký je podle EFSA adekvátní denní příjem jódu pro dospělé?"
         options:
-          - { text: "Přibližně 150 µg", correct: true }
-          - { text: "Přibližně 70 µg", why: "70 µg je adekvátní příjem selenu." }
+          - { text: "150 µg", correct: true }
+          - { text: "70 µg", why: "70 µg je adekvátní příjem selenu." }
           - { text: "250 µg", why: "250 µg uvádějí skripta (WHO) pro těhotné a kojící." }
-          - { text: "Přibližně 3 mg", why: "3 mg je adekvátní příjem manganu." }
+          - { text: "3 mg", why: "3 mg je adekvátní příjem manganu." }
       - id: prehled
         type: reveal
         prompt: "Kolik hořčíku, draslíku a selenu denně doporučuje EFSA dospělým?"

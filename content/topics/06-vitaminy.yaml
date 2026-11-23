@@ -33,13 +33,14 @@ points:
           - { text: "Vitamin B12", why: "B12 je rozpustný ve vodě, i když se ukládá do zásob." }
           - { text: "Kyselina listová", why: "Patří mezi vitaminy skupiny B, rozpustné ve vodě." }
       - id: pocet
+        version: 2
         type: choice
         prompt: "Kolik vitaminů u člověka rozlišujeme?"
         options:
           - { text: "13", correct: true }
           - { text: "9", why: "Devět je jen počet vitaminů rozpustných ve vodě (C + osm B)." }
           - { text: "4", why: "Čtyři jsou vitaminy rozpustné v tucích (A, D, E, K)." }
-          - { text: "21", why: "Skripta uvádějí 13 vitaminů – 4 rozpustné v tucích a 9 ve vodě." }
+          - { text: "8", why: "Osm je jen počet vitaminů skupiny B; celkem je vitaminů 13 (4 v tucích, 9 ve vodě)." }
       - id: vyjmenuj
         type: reveal
         prompt: "Vyjmenuj vitaminy rozpustné v tucích a ve vodě."
@@ -162,7 +163,7 @@ points:
     tier: A
     criteria: [1e]
     prereqs: [vit.definice-deleni]
-    confusableWith: [vit.a, vit.k]
+    confusableWith: [vit.a, vit.k, dpl.vitamin-d]
     source: { pages: [50, 78], anchor: "Primárním zdrojem je naše vlastní syntéza" }
     explanation: >-
       Vitamin D (kalciferol) je netypický vitamin – působí podobně jako hormon (prohormon). Řídí
@@ -271,19 +272,20 @@ points:
     explanation: >-
       Vitamin K je skupina látek: K1 (fylochinon) a K2 (menachinony). Hlavní funkcí je srážení krve,
       účastní se i metabolismu kostí. Zdroje: listová zelenina, kiwi, avokádo, ořechy; část K2 tvoří
-      střevní bakterie. Nedostatek: zvýšená krvácivost (i do orgánů, tmavá dehtovitá stolice).
+      střevní bakterie. Nedostatek: zvýšená krvácivost.
       Warfarin je antagonista vitaminu K – u lidí, kteří ho užívají, se vitamin K ze stravy
       nevyřazuje, ale jeho příjem má být co nejstabilnější, bez náhlých výrazných změn. Větší změny
       stravy a doplňky s vitaminem K řeší klient s ošetřujícím lékařem.
     exercises:
       - id: warfarin
         type: choice
+        version: 2
         prompt: "Klient užívá warfarin. Co mu ohledně vitaminu K poradíš podle skript?"
         options:
           - text: "Udržovat příjem vitaminu K co nejstabilnější."
             correct: true
-          - text: "Vyřadit listovou zeleninu úplně."
-            why: "Cílem není vitamin K vyřadit, ale nekolísat s jeho příjmem."
+          - text: "Omezit listovou zeleninu na minimum."
+            why: "Výrazně vitamin K omezovat není cílem – jde o stabilní příjem; omezují se nanejvýš nejbohatší druhy (např. kysané zelí, růžičková kapusta)."
           - text: "Doplňovat vitamin K vysokými dávkami."
             why: "Vitamin K působí proti warfarinu – vysoké a kolísavé dávky jsou nežádoucí."
           - text: "Střídat dny s listovou zeleninou a dny bez ní."
@@ -435,11 +437,12 @@ points:
       proto má klient před odběrem krve informovat zdravotníka.
     exercises:
       - id: b6
+        version: 2
         type: choice
         prompt: "Čím hrozí dlouhodobé užívání vysokých dávek vitaminu B6?"
         options:
           - { text: "Periferní neuropatií (poškozením nervů)", correct: true }
-          - { text: "Ničím, přebytek se vždy vyloučí močí", why: "Skripta B6 uvádějí právě jako příklad vitaminu rozpustného ve vodě, který škodí." }
+          - { text: "Ničím vážným, přebytek vitaminů rozpustných ve vodě se vyloučí močí", why: "Skripta B6 uvádějí právě jako příklad vitaminu rozpustného ve vodě, který škodí." }
           - { text: "Ukládáním v tukové tkáni", why: "B6 je rozpustný ve vodě." }
           - { text: "Zkreslením krevních testů", why: "To je typické riziko vysokých dávek biotinu." }
       - id: soucet
@@ -600,7 +603,7 @@ points:
     tier: A
     criteria: [1e]
     prereqs: [vit.definice-deleni]
-    source: { pages: [54], anchor: "závažný nedostatek vitaminu C způsobuje kurděje" }
+    source: { pages: [52, 54], anchor: "závažný nedostatek vitaminu C způsobuje kurděje" }
     explanation: >-
       Typické nemoci z těžkého nedostatku: vitamin C → kurděje (skorbut, krvácení z dásní);
       B1 (thiamin) → beri-beri (nervy, srdce); niacin (B3) → pelagra (dermatitida, průjem, demence);
@@ -615,14 +618,14 @@ points:
           - { text: "niacinu (vitaminu B3)", why: "Nedostatek niacinu způsobuje pelagru." }
           - { text: "vitaminu C (kyseliny askorbové)", why: "Nedostatek vitaminu C způsobuje kurděje." }
           - { text: "vitaminu B12 (kobalaminu)", why: "Nedostatek B12 vede k megaloblastové anémii." }
-      - id: kurdeje
+      - id: pelagra-priznaky
         type: choice
-        prompt: "Kurděje (skorbut) vznikají při závažném nedostatku…"
+        prompt: "Dermatitida, průjem a demence ukazují na těžký nedostatek…"
         options:
-          - { text: "vitaminu C", correct: true }
-          - { text: "vitaminu K", why: "Nedostatek K také vede ke krvácivosti, ale kurděje jsou z nedostatku C." }
-          - { text: "vitaminu D", why: "Nedostatek D vede ke křivici." }
-          - { text: "vitaminu B1", why: "Nedostatek B1 vede k beri-beri." }
+          - { text: "niacinu (B3)", correct: true, why: "Je to pelagra (s. 52)." }
+          - { text: "thiaminu (B1)", why: "Nedostatek B1 způsobuje beri-beri – postihuje hlavně nervy a srdce." }
+          - { text: "vitaminu B12", why: "Nedostatek B12 (a folátu) vede k megaloblastové anémii." }
+          - { text: "vitaminu C", why: "Nedostatek C způsobuje kurděje – typické je krvácení z dásní." }
       - id: prirazeni
         type: reveal
         prompt: "Přiřaď vitaminy ke kurdějím, beri-beri, pelagře a křivici."
@@ -714,10 +717,11 @@ points:
           - { text: "Přibližně 110 mg", why: "110 mg je doporučení pro muže." }
           - { text: "Přibližně 1 g", why: "To je asi desetkrát víc, než je doporučený příjem (95–110 mg)." }
       - id: b12
+        version: 2
         type: choice
         prompt: "Jaký doporučený denní příjem vitaminu B12 uvádějí skripta podle EFSA?"
         options:
-          - { text: "Přibližně 4 µg", correct: true }
+          - { text: "4 µg", correct: true }
           - { text: "2,5 µg", why: "2,5 µg je 100 % RHP na etiketě." }
           - { text: "330 µg", why: "330 µg DFE je doporučení pro folát." }
           - { text: "40 µg", why: "40 µg je doporučení pro biotin." }

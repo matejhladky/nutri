@@ -206,12 +206,13 @@ points:
           - { text: "Mléko", why: "Mléko patří mezi vhodné zdroje tekutin." }
       - id: kava
         type: choice
+        version: 2
         prompt: "Klientka se ptá, jestli ji káva odvodňuje. Co jí podle skript odpovíš?"
         options:
           - { text: "Neodvodňuje a počítá se, ale hlavním zdrojem tekutin by být neměla.", correct: true }
           - { text: "Odvodňuje, za každou kávu musí vypít sklenici vody navíc.", why: "To je rozšířený mýtus." }
           - { text: "Neodvodňuje a může klidně tvořit hlavní zdroj tekutin.", why: "Má zůstat doplňkem vedle vody." }
-          - { text: "Do pitného režimu se nepočítá vůbec.", why: "Káva neodvodňuje a do pitného režimu se počítá." }
+          - { text: "Neodvodňuje, ale do pitného režimu se nezapočítává.", why: "Káva neodvodňuje a do pitného režimu se počítá – jen nemá být hlavním zdrojem tekutin." }
       - id: prehled
         type: explain
         prompt: "Co všechno se počítá do pitného režimu a co bys klientovi doporučila jako hlavní zdroj?"
@@ -378,12 +379,12 @@ points:
           vhodná konzultace s lékařem.
       - id: leky
         type: choice
+        version: 2
         prompt: "U klienta, který užívá které léky, by sis podle skript měla pohlídat interakci s kofeinem?"
         options:
           - { text: "Léky na epilepsii", correct: true }
-          - { text: "Vitamin D", why: "Interakci kofeinu s vitaminem D skripta neuvádějí." }
-          - { text: "Antihistaminika", why: "Skripta jako příklad interakce uvádějí léky na epilepsii." }
-          - { text: "Probiotika", why: "Interakci kofeinu s probiotiky skripta neuvádějí." }
+          - { text: "Léky na snížení cholesterolu (statiny)", why: "Významná interakce s kofeinem se u nich běžně neuvádí; skripta jako příklad uvádějí léky na epilepsii, jejichž účinek kofein snižuje." }
+          - { text: "Léky na alergii (antihistaminika)", why: "Ani u nich se významná interakce s kofeinem běžně neuvádí; skripta zmiňují léky na epilepsii – kofein snižuje jejich účinek." }
 
   - id: pit.nestandardni
     title: Pitný režim v nestandardních situacích
@@ -421,9 +422,10 @@ points:
           inclusive upozorním na riziko dehydratace a alkoholu.
       - id: senior
         type: choice
+        version: 2
         prompt: "Jak nastavíš pitný režim seniorovi se sníženým pocitem žízně?"
         options:
           - { text: "Pravidelně podle hodin, ne podle žízně.", correct: true }
-          - { text: "Pít jen při žízni, aby se nepřetěžovaly ledviny.", why: "Senior má žízeň oslabenou, na ni spoléhat nelze." }
+          - { text: "Pít podle žízně, aby se nepřetěžovaly ledviny.", why: "Senior má žízeň oslabenou, na ni spoléhat nelze." }
           - { text: "Hlavně kávou, protože povzbudí.", why: "Káva má být jen doplňkem." }
           - { text: "Omezit tekutiny na 1 l denně kvůli častému močení.", why: "Klinické minimum je asi 1,5 l; omezovat tekutiny je u seniora rizikové." }

@@ -60,13 +60,14 @@ points:
       hromadit v játrech. Při odbourávání vzniká toxický acetaldehyd.
     exercises:
       - id: oxidace
+        version: 2
         type: choice
         prompt: "Jak alkohol ovlivňuje metabolismus tuků?"
         options:
           - { text: "Jeho odbourávání má přednost a dočasně tlumí oxidaci tuků.", correct: true }
           - { text: "Zrychluje oxidaci tuků, protože zvyšuje tepelné ztráty těla.", why: "Naopak – oxidaci tuků dočasně tlumí." }
           - { text: "Mění se přímo na ketolátky, které tělo hned spálí jako tuk.", why: "Skripta popisují tlumení oxidace tuků, ne tvorbu ketolátek." }
-          - { text: "Metabolismus tuků neovlivňuje, pouze dodává energii navíc.", why: "Ovlivňuje – jeho odbourávání má přednost a spalování tuků brzdí." }
+          - { text: "Odbourává se až po tucích, takže jejich spalování nebrzdí.", why: "Je to naopak – odbourávání alkoholu má přednost a spalování tuků dočasně brzdí." }
       - id: hubnuti
         type: explain
         prompt: "Proč je pravidelné pití alkoholu problém pro klienta, který chce zhubnout?"
@@ -109,9 +110,9 @@ points:
         prompt: "Nedostatek kterého vitaminu je typický pro závislost na alkoholu?"
         options:
           - { text: "Vitamin B1 (thiamin)", correct: true }
-          - { text: "Vitamin B12 (kobalamin)", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
-          - { text: "Vitamin C", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
-          - { text: "Vitamin K", why: "Skripta jako typický uvádějí nedostatek B1 (thiaminu)." }
+          - { text: "Vitamin B12 (kobalamin)", why: "Nedostatek B12 hrozí hlavně veganům a seniorům; u alkoholu skripta zdůrazňují B1." }
+          - { text: "Vitamin C", why: "Vyšší potřebu vitaminu C mají kuřáci; u závislosti na alkoholu je typický nedostatek B1." }
+          - { text: "Vitamin K", why: "Vitamin K se řeší hlavně kvůli srážení krve a warfarinu; u alkoholu je typický nedostatek B1." }
       - id: b1-proc
         type: reveal
         prompt: "Proč lidem závislým na alkoholu často chybí vitamin B1 a čím to hrozí?"

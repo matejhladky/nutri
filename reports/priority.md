@@ -42,7 +42,7 @@ Safety tags are set by hand in the content (`safety: true`). Prerequisites inher
 | 3.00 | obd.bulimie | Mentální bulimie | 10c | bezpečnost |
 | 2.50 | kaz.nabirani-sportovec | Rekreační sportovec chce nabrat svaly | 5c, 5e, 7d | modelový případ |
 | 2.50 | kaz.jidelnicek-den | Makroživiny a rozvržení jednoho dne | 5d, 5c, 7c | modelový případ |
-| 2.50 | kaz.redukce-sedava | Klientka se sedavou prací chce zhubnout | 5e, 6b, 7b | modelový případ |
+| 2.50 | kaz.redukce-sedava | Klientka chce zhubnout – výdej po složkách | 5e, 6b, 7b | modelový případ |
 | 2.50 | kaz.dve-metody | BMR dvěma rovnicemi u klientky se známým složením těla | 5e, 3b | modelový případ |
 | 2.50 | kaz.harris-mifflin | Harris-Benedict vs. Mifflin-St Jeor u obézního klienta | 5e | modelový případ |
 | 2.50 | kaz.diagnosticky-zaver | Vstupní měření a diagnostický závěr | 5e, 5b, 3b | modelový případ |

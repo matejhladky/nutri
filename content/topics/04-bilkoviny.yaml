@@ -100,14 +100,14 @@ points:
           - { text: "transportní", why: "Transportní je např. hemoglobin." }
           - { text: "senzorickou", why: "Senzorický je rhodopsin." }
           - { text: "stavební", why: "Stavební jsou kolagen a keratin." }
-      - id: hemoglobin
+      - id: fibrinogen
         type: choice
-        prompt: "Hemoglobin je příkladem bílkoviny s funkcí…"
+        prompt: "Fibrinogen a fibrin (srážení krve) řadí skripta k bílkovinám s funkcí…"
         options:
-          - { text: "transportní", correct: true }
-          - { text: "obrannou", why: "Obranné jsou protilátky a imunoglobuliny." }
-          - { text: "zásobní", why: "Zásobní je ferritin." }
-          - { text: "regulační", why: "Regulační jsou hormony, enzymy, receptory." }
+          - { text: "obrannou", correct: true, why: "Spolu s protilátkami chrání organismus – srážení brání ztrátě krve (s. 37)." }
+          - { text: "stavební", why: "Fibrin sice tvoří vlákna sraženiny, skripta ho ale řadí k obranným; stavební jsou kolagen a keratin." }
+          - { text: "transportní", why: "Transportní bílkoviny přenášejí látky, např. hemoglobin kyslík a CO2." }
+          - { text: "regulační", why: "Regulační jsou hormony, enzymy a receptory." }
       - id: vycet
         type: reveal
         prompt: "Vyjmenuj funkce bílkovin v organismu a ke každé dej příklad."
@@ -423,14 +423,16 @@ points:
           - { text: "2,5–3,5 g/kg", why: "Tak vysoký příjem pro běžné lidi potřeba není; obvyklé rozmezí je 1,2–2 g/kg." }
           - { text: "0,4–0,6 g/kg", why: "Takové dávky se ve skriptech uvádějí na jedno jídlo." }
       - id: skupiny
+        version: 2
         type: choice
         multiple: true
-        prompt: "Kdo má podle skript zvýšenou potřebu bílkovin?"
+        prompt: "Komu doporučíš zvýšit příjem bílkovin nad běžnou potřebu?"
         options:
-          - { text: "Kojící žena", correct: true }
-          - { text: "Člověk v redukci hmotnosti", correct: true }
-          - { text: "Člověk po úrazu", correct: true }
-          - { text: "Sedavý člověk bez snahy o redukci", why: "Tomu stačí spíš nižší příjem." }
+          - { text: "Kojící ženě", correct: true }
+          - { text: "Klientce v redukci hmotnosti", correct: true }
+          - { text: "Klientovi po úrazu", correct: true }
+          - { text: "Klientovi s chronickým onemocněním ledvin", why: "Tady příjem bílkovin určuje lékař; vysoký příjem se u nemocných ledvin nedoporučuje." }
+          - { text: "Málo aktivnímu klientovi, který nehubne", why: "U málo aktivních se volí spíš nižší hodnoty; běžné doporučení mu stačí." }
       - id: vypocet
         type: numeric
         formula: per-kg

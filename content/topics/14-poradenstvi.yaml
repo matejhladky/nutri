@@ -192,10 +192,11 @@ points:
     exercises:
       - id: ovlivnitelnost
         type: choice
+        version: 2
         prompt: "Co platí o ovlivnitelnosti somatotypu podle skript?"
         options:
           - { text: "Hlavně se dědí, roli hraje i pohyb a strava v dětství.", correct: true }
-          - { text: "Je zcela dědičný, pohyb ani strava ho nijak neovlivní.", why: "Skripta zmiňují i vliv sportu a stravy v dětství." }
+          - { text: "Dědí se; pohyb a strava mění jen hmotnost, ne somatotyp.", why: "Skripta zmiňují i vliv sportu a stravy v dětství." }
           - { text: "Určuje ho hlavně strava a pohyb až v dospělém věku.", why: "Hlavní roli hraje dědičnost." }
           - { text: "Za rok cíleného tréninku se dá úplně změnit na jiný.", why: "Skripta zdůrazňují dědičnost a vliv pohybu a stravy v dětství, ne krátkodobý trénink." }
       - id: kritika
@@ -517,12 +518,13 @@ points:
         answer: "Bioimpedanci neprovádím (citlivá skupina, bezpečnost nelze ověřit); klientku jen klasicky zvážím."
       - id: deti
         type: choice
+        version: 2
         prompt: "Od kdy lze podle skript měřit bioimpedancí děti?"
         options:
-          - { text: "Podle váhy: od 5 let a 90 cm, jinde od 7 let a 100 cm", correct: true }
-          - { text: "U všech typů vah shodně od 3 let a výšky 80 cm", why: "Limity se liší podle typu váhy a začínají až od 5 let a 90 cm." }
+          - { text: "Podle typu váhy, zhruba od 5–7 let a 90–100 cm", correct: true }
+          - { text: "U všech typů vah shodně od 3 let a 80 cm", why: "Limity se liší podle typu váhy a začínají až od 5 let a 90 cm." }
           - { text: "Od 10 let věku, na výšce dítěte nezáleží", why: "Rozhoduje věk i výška a některé váhy měří už od 5 let." }
-          - { text: "Až od 18 let, dětem se neměří vůbec", why: "Některé váhy umožňují měření už od 5 let." }
+          - { text: "Od 15 let a výšky 150 cm, dřív ne", why: "Tak vysoké limity skripta neuvádějí; některé váhy měří už od 5 let a 90 cm." }
 
   - id: por.bia-zasady
     title: Zásady vážení a bioimpedančního měření
@@ -547,12 +549,13 @@ points:
           - { text: "Alkohol měření neovlivňuje", why: "Alkohol mění hydrataci a tím výsledek." }
       - id: tekutiny
         type: choice
+        version: 2
         prompt: "Kolik času před měřením by klient už neměl přijímat žádné tekutiny?"
         options:
           - { text: "2 hodiny", correct: true }
           - { text: "8–12 hodin", why: "To platí pro alkohol." }
           - { text: "5 minut", why: "5 minut je doporučený klid těsně před měřením." }
-          - { text: "Pít má naopak co nejvíc", why: "Velké množství tekutin výsledek zkreslí." }
+          - { text: "4 hodiny", why: "2–4 hodiny skripta uvádějí pro jídlo; pro tekutiny 2 hodiny." }
       - id: instrukce
         type: explain
         prompt: "Klientka se objednala na první měření složení těla. Jaké instrukce jí předem dáš?"
@@ -645,7 +648,9 @@ points:
     source: { pages: [152, 153], anchor: "hodnota WHR nad 0,90 u mužů a nad 0,85 u žen" }
     note: >-
       Skripta: kap. 14 (s. 152–153) uvádí podle WHO zvýšené riziko nad 0,90 u mužů a nad 0,85 u žen;
-      kap. o PPP (s. 230) píše, že u ženy je typické 0,75 a riziko je spojeno až s hodnotou nad 1.
+      tabulka 14.2 (s. 153) ale u mužů označuje 0,90–0,95 jako „spíše centrální“ a „centrální
+      rizikové“ až nad 0,95 (u žen shodně nad 0,85). Kap. o PPP (s. 230) píše, že u ženy je typické
+      0,75 a riziko je spojeno až s hodnotou nad 1.
       Současné poznatky: zpráva expertní konzultace WHO (Waist circumference and waist–hip ratio, 2008)
       uvádí podstatně zvýšené riziko od 0,90 (muži) a 0,85 (ženy) – tedy shodně s kap. 14. Ke zkoušce:
       otázky jsou formulované „podle WHO“, kde správná odpověď je 0,90 / 0,85; hodnota nad 1 je
@@ -759,11 +764,12 @@ points:
           - { text: "Záleží na pohlaví", why: "Současné hranice jsou pro muže i ženy stejné." }
       - id: limity
         type: choice
+        version: 2
         prompt: "Proč může BMI u silového sportovce klamat?"
         options:
           - { text: "Nerozliší svaly od tuku – ukáže falešnou nadváhu.", correct: true }
           - { text: "U sportovců se BMI počítá z obvodu pasu a boků.", why: "BMI se počítá vždy jen z hmotnosti a výšky." }
-          - { text: "Svalnatí sportovci mají BMI vždy pod 18,5.", why: "Svalnatí sportovci mívají BMI spíše vyšší." }
+          - { text: "U svalnatých ukáže spíš falešnou podváhu.", why: "Svalnatí sportovci mívají BMI naopak vyšší – falešnou nadváhu." }
           - { text: "Pro sportovce platí jiné hranice BMI než pro ostatní.", why: "Hranice BMI jsou pro dospělé jednotné; problém je, že BMI nerozliší svaly a tuk." }
 
   - id: por.easo-obezita

@@ -328,11 +328,12 @@ points:
     exercises:
       - id: sacharidy
         type: choice
+        version: 2
         prompt: "Jaký denní příjem sacharidů uvádějí skripta pro vytrvalostní sportovce?"
         options:
-          - { text: "3–12 g/kg/den podle objemu a intenzity tréninku", correct: true }
+          - { text: "3–12 g/kg/den podle tréninku", correct: true }
           - { text: "1–2 g/kg/den", why: "Málo; vytrvalci potřebují výrazně víc sacharidů (3–12 g/kg/den)." }
-          - { text: "Vždy 10–12 g/kg/den", why: "10–12 g/kg je jen krátkodobý carb-loading; jinak se sacharidy periodizují." }
+          - { text: "10–12 g/kg/den", why: "10–12 g/kg je jen krátkodobý carb-loading; jinak se sacharidy periodizují podle objemu a intenzity tréninku." }
           - { text: "Pod 50 g/den, aby tělo spalovalo tuky", why: "Skripta naopak zdůrazňují vysokou potřebu sacharidů u vytrvalců." }
       - id: vysvetli
         type: explain
@@ -407,17 +408,22 @@ points:
           - { text: "Rychlý nárůst svalové hmoty", why: "To není projev nedostatku energie." }
       - id: role
         type: explain
-        prompt: "Trenér ti pošle běžkyni, která má výpadky menstruace a opakovaná zranění. Co uděláš?"
+        version: 2
+        prompt: >-
+          Trenér ti pošle cyklistu s normální hmotností: poslední měsíce je pořád unavený, často nemocný,
+          klesá mu výkon a libido. Co uděláš?
         keyPoints:
           - "Podezření na RED-S / nízkou energetickou dostupnost"
+          - "RED-S se týká i mužů a nemusí jít o podváhu ani PPP"
           - "Zmapuji příjem energie a tréninkovou zátěž"
           - "Odkážu na lékaře / nutričního terapeuta, sama nediagnostikuji"
           - "Cíl: obnovit dostatečnou energetickou dostupnost, ne jen „přidat kalorie“"
         modelAnswer: >-
-          Jde o varovné signály RED-S, tedy dlouhodobě nízké energetické dostupnosti. Zmapuji její příjem
-          energie a tréninkovou zátěž, ale diagnostika patří lékaři nebo nutričnímu terapeutovi, kam ji
-          odkážu. Ve spolupráci pak pomáhám obnovit dostatečnou energetickou dostupnost a vhodné rozložení
-          jídla během dne a kolem tréninku.
+          Únava, častá nemocnost, pokles výkonu a libida jsou varovné signály RED-S, tedy dlouhodobě
+          nízké energetické dostupnosti. RED-S se týká i mužů a nemusí jít o podváhu ani o poruchu příjmu
+          potravy. Zmapuji jeho příjem energie a tréninkovou zátěž, ale diagnostika patří lékaři nebo
+          nutričnímu terapeutovi, kam ho odkážu. Ve spolupráci pak pomáhám obnovit dostatečnou
+          energetickou dostupnost a rozložení jídla během dne a kolem tréninku.
 
   - id: spo.ais-abcd
     title: Doplňky podle síly důkazů (AIS)

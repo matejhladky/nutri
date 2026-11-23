@@ -91,7 +91,7 @@ points:
         prompt: "Co se ve výživě myslí pojmem „jednoduché cukry“?"
         options:
           - { text: "Monosacharidy a disacharidy", correct: true }
-          - { text: "Pouze monosacharidy", why: "Patří sem i disacharidy – mají také sladkou chuť a rychle se vstřebávají." }
+          - { text: "Monosacharidy", why: "Patří sem i disacharidy – mají také sladkou chuť a rychle se vstřebávají." }
           - { text: "Monosacharidy, disacharidy a škrob", why: "Škrob je polysacharid (komplexní sacharid), ne jednoduchý cukr." }
           - { text: "Všechny oligosacharidy", why: "Jednoduché cukry jsou jen mono- a disacharidy; ostatní oligosacharidy (např. rafinóza) mezi ně nepatří." }
 
@@ -120,14 +120,14 @@ points:
         answer: >-
           Glukóza – hroznový/krevní cukr (dextróza); fruktóza – ovocný cukr; galaktóza – součást
           laktózy (skripta ji nazývají mléčným cukrem, běžně se tak ale říká laktóze).
-      - id: dextroza
+      - id: galaktoza
         type: choice
-        prompt: "Pod jakým názvem najdeš glukózu ve starších publikacích?"
+        prompt: "Který monosacharid se volně nevyskytuje a s glukózou tvoří laktózu?"
         options:
-          - { text: "Dextróza", correct: true }
-          - { text: "Levulóza", why: "Levulóza je starší název fruktózy, ne glukózy." }
-          - { text: "Maltóza", why: "Maltóza je disacharid ze dvou glukóz (sladový cukr)." }
-          - { text: "Sacharóza", why: "Sacharóza je disacharid glukóza + fruktóza (běžný cukr)." }
+          - { text: "Galaktóza", correct: true }
+          - { text: "Fruktóza", why: "Fruktóza (ovocný cukr) se volně vyskytuje v ovoci a medu; s glukózou tvoří sacharózu." }
+          - { text: "Maltóza", why: "Maltóza není monosacharid – je to disacharid ze dvou glukóz." }
+          - { text: "Glukóza", why: "Glukóza je druhou složkou laktózy; hledaná je ta, která se volně nevyskytuje." }
 
   - id: sach.glykemie-norma
     title: Fyziologická hladina glykémie
@@ -152,10 +152,12 @@ points:
           - { text: "5,6–7,0 mmol/l", why: "To je nad horní hranicí fyziologického rozmezí (5,6 mmol/l)." }
           - { text: "1,5–3,5 mmol/l", why: "To je pod dolní hranicí fyziologického rozmezí (3,6 mmol/l)." }
           - { text: "7,0–11,1 mmol/l", why: "Takové hodnoty jsou zvýšené, fyziologické rozmezí je 3,6–5,6 mmol/l." }
-      - id: rozmezi-reveal
+      - id: klientka-nalez
         type: reveal
-        prompt: "Jaké je fyziologické rozmezí glykémie nalačno (v mmol/l)?"
-        answer: "3,6–5,6 mmol/l."
+        prompt: "Klientka ti ukáže výsledek: glykémie nalačno 6,2 mmol/l. Co jí řekneš a co uděláš?"
+        answer: >-
+          Je to nad horní hranicí rozmezí skript (3,6–5,6 mmol/l). Diagnózu nestanovuji – hodnocení
+          nálezu patří lékaři, doporučím jí, ať to s ním probere. Obecné zásady stravy můžu probrat.
 
   - id: sach.fruktoza
     title: Fruktóza – metabolismus a rizika nadbytku
@@ -265,13 +267,14 @@ points:
         prompt: "Který enzym štěpí laktózu a jaké dva typy laktózové intolerance rozlišujeme?"
         answer: "Laktáza. Primární (geneticky daná) a sekundární (vlivem jiného onemocnění)."
       - id: primarni
+        version: 2
         type: choice
         prompt: "Co platí o primární laktózové intoleranci?"
         options:
           - { text: "Je dána geneticky.", correct: true }
-          - { text: "Vzniká vždy jako následek střevního zánětu.", why: "To popisuje sekundární intoleranci." }
-          - { text: "Je to alergie na mléčnou bílkovinu.", why: "Intolerance laktózy není alergie na bílkovinu." }
-          - { text: "Je způsobena nadbytkem laktázy.", why: "Naopak – laktázy je málo nebo chybí úplně." }
+          - { text: "Vzniká po zánětu střev nebo po antibiotikách a obvykle vymizí.", why: "To popisuje sekundární intoleranci (s. 247)." }
+          - { text: "Je to alergie na mléčnou bílkovinu.", why: "Intolerance laktózy není alergie na bílkovinu; jde o nedostatek enzymu laktázy." }
+          - { text: "Postihuje víc Evropanů než Asiatů.", why: "Obráceně: asi 30 % Evropanů a 70 % Asiatů (s. 12)." }
       - id: vysvetli
         type: explain
         prompt: "Klientovi po mléce bývá špatně a slyšel o laktózové intoleranci. Vysvětli mu, co to je."
@@ -537,11 +540,12 @@ points:
     tier: A
     criteria: [1c]
     prereqs: [sach.vlaknina-typy]
-    source: { pages: [16], anchor: "alespoň 25 g na den (dle EFSA)" }
+    source: { pages: [16, 133], anchor: "alespoň 25 g na den (dle EFSA)" }
     explanation: >-
       Dospělí by měli přijímat alespoň 25 g vlákniny denně (EFSA), skripta uvádějí poměr 3 : 1 ve
-      prospěch nerozpustné. U dětí se v pediatrii používá pomůcka 5 g + věk. Nadbytek vlákniny může
-      vázat minerální látky i léčiva.
+      prospěch nerozpustné. U dětí se v pediatrii používá pomůcka 5 g + věk. Nedostatek: nadýmání,
+      zácpa, hemoroidy; vláknina chrání před rakovinou tlustého střeva a snižuje cholesterol přijatý
+      stravou. Nadbytek může vázat minerální látky i léčiva; s vlákninou pít dost tekutin.
     exercises:
       - id: dospeli
         type: choice
@@ -555,6 +559,22 @@ points:
         type: reveal
         prompt: "Jakou jednoduchou pomůcku pro příjem vlákniny u dětí uvádějí skripta?"
         answer: "5 g + věk dítěte (v letech) za den."
+      - id: proc-pridat
+        type: explain
+        prompt: "Klient jí skoro bez vlákniny. Vysvětli mu, proč by ji měl přidat a na co si dát pozor."
+        keyPoints:
+          - "Nedostatek: nadýmání, zácpa, následně hemoroidy"
+          - "Vláknina je ochranným faktorem proti rakovině tlustého střeva"
+          - "Pomáhá snižovat vstřebávání cholesterolu ze stravy"
+          - "Dospělý alespoň 25 g denně (EFSA)"
+          - "Nadbytek váže minerální látky i léčiva"
+          - "S vlákninou pít dost tekutin, jinak může zácpu zhoršit"
+        modelAnswer: >-
+          Když vlákninu skoro nejíte, hrozí nadýmání a zácpa a časem i hemoroidy. Vláknina navíc patří
+          k faktorům, které chrání před rakovinou tlustého střeva, a pomáhá snižovat vstřebávání
+          cholesterolu. Dospělý by jí měl sníst alespoň 25 g denně. Nepřehánějte to ale – ve velkém
+          množství váže i minerální látky a léky – a s vlákninou pijte dost tekutin, jinak může zácpu
+          naopak zhoršit.
 
   - id: sach.inulin
     title: Inulin
@@ -582,6 +602,7 @@ points:
     kind: concept
     tier: A
     criteria: [1c, 5c]
+    confusableWith: [tuk.prijem]
     source: { pages: [16, 17], anchor: "Měly by tvořit 45–60 %" }
     explanation: >-
       Obecná doporučení: sacharidy 45–60 % denního energetického příjmu. U vytrvalců až kolem 75 %,
@@ -686,7 +707,7 @@ points:
         options:
           - { text: "S čistou glukózou (GI = 100)", correct: true }
           - { text: "Se sacharózou (GI = 100)", why: "Sacharóza je měřítko sladivosti, ne GI; referencí je čistá glukóza." }
-          - { text: "S medem (GI = 100)", why: "Referencí GI je čistá glukóza." }
+          - { text: "S medem (GI = 100)", why: "Med obsahuje i fruktózu, která glykémii zvedá jen málo; referencí je čistá glukóza." }
           - { text: "S fruktózou (GI = 0)", why: "Fruktóza referencí není; GI se vztahuje k čisté glukóze (100)." }
 
   - id: sach.gi-faktory
@@ -756,7 +777,15 @@ points:
           - { text: "Protože porce obsahuje málo sacharidů.", correct: true }
           - { text: "Protože GN nezávisí na GI.", why: "Závisí – GN = GI × g sacharidů / 100." }
           - { text: "Protože GN měří odezvu inzulinu, ne glukózy.", why: "Odezvu inzulinu popisuje inzulinový index." }
-          - { text: "Protože GN se vždy počítá na 100 g potraviny.", why: "GN se počítá pro konkrétní porci – z GI a gramů sacharidů v ní." }
+          - { text: "Protože GN se počítá na 100 g potraviny.", why: "GN se počítá pro konkrétní porci – z GI a gramů sacharidů v ní." }
+      - id: kategorie
+        type: choice
+        prompt: "Potravina má GI 50 a porce obsahuje 30 g sacharidů. Jakou má porce glykemickou nálož?"
+        options:
+          - { text: "Střední", correct: true, why: "GN = 50 × 30 / 100 = 15; střední nálož je 10–20." }
+          - { text: "Nízkou", why: "Nízký je GI (do 55), ale nálož vyjde 15 – nízká je jen do 10." }
+          - { text: "Vysokou", why: "Vysoká nálož je nad 20; tady vyjde 15." }
+          - { text: "Nedá se určit bez inzulinového indexu", why: "Stačí GI a gramy sacharidů v porci: GN = GI × g / 100." }
 
   - id: sach.inzulinovy-index
     title: Inzulinový index

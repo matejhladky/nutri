@@ -69,13 +69,14 @@ points:
           - { text: "Na glukózu a vodu", why: "ATP není sacharid; uvolňuje energii odštěpením fosfátu." }
           - { text: "Na acetylkoenzym A a CO2", why: "Acetylkoenzym A je meziprodukt odbourávání živin, ne produkt rozkladu ATP." }
           - { text: "Na kyselinu mléčnou", why: "Kyselina mléčná vzniká při anaerobní glykolýze." }
-      - id: kyslik
+      - id: odpad
         type: choice
-        prompt: "Kdy vzniká z živin nejvíce ATP?"
+        prompt: "Co vzniká jako odpadní produkt, když buňka za přítomnosti kyslíku přeměňuje energii živin na ATP?"
         options:
-          - { text: "Při dostatku kyslíku", correct: true }
-          - { text: "Při nedostatku kyslíku", why: "Bez kyslíku je zisk ATP výrazně nižší." }
-          - { text: "Při tvorbě glykogenu", why: "Glykogeneze je anabolický děj – energii spotřebovává." }
+          - { text: "Oxid uhličitý", correct: true, why: "Vydechujeme ho; aerobně přitom vzniká nejvíc ATP." }
+          - { text: "Kyselina mléčná", why: "Ta vzniká bez kyslíku (anaerobní glykolýza)." }
+          - { text: "Močovina", why: "Močovina odvádí dusík z aminokyselin; tvoří se v játrech." }
+          - { text: "Ketolátky", why: "Ketolátky tvoří játra z mastných kyselin při nedostatku sacharidů." }
       - id: platidlo
         type: reveal
         prompt: "Proč se ATP říká „energetické platidlo“ buňky?"
@@ -321,12 +322,13 @@ points:
     exercises:
       - id: kdo-dodava
         type: choice
+        version: 2
         prompt: "Který glykogen udržuje glykémii při lačnění?"
         options:
           - { text: "Jaterní", correct: true }
           - { text: "Svalový", why: "Sval si svůj glykogen ponechává pro vlastní potřebu." }
-          - { text: "Mozkový", why: "Mozek zásobu glykogenu pro tělo nedrží – je naopak největším spotřebitelem glukózy." }
-          - { text: "Glykogen z tukové tkáně", why: "Tuková tkáň ukládá tuk, ne glykogen." }
+          - { text: "Jaterní i svalový rovným dílem", why: "Do krve posílají glukózu játra; sval si svůj (objemnější) glykogen nechává pro sebe." }
+          - { text: "Glykogen ne, glykémii drží glukoneogeneze", why: "Glukoneogeneze pomáhá, pohotovou zásobárnou glukózy pro krev je ale jaterní glykogen (s. 86)." }
       - id: proc
         type: reveal
         prompt: "Proč při lačnění udržuje glykémii jaterní, a ne svalový glykogen?"
@@ -340,6 +342,7 @@ points:
     tier: A
     criteria: [2f, 2d]
     prereqs: [met.sach-drahy]
+    confusableWith: [met.glykolyza]
     source: { pages: [86], anchor: "Jako výchozí látky pro tento účel slouží glycerol" }
     explanation: >-
       Při lačnění či hladovění tělo tvoří glukózu z necukerných látek, hlavně v játrech (a ledvinách).
@@ -483,14 +486,14 @@ points:
           - { text: "Inzulin", why: "Inzulin podporuje naopak tvorbu tuků." }
           - { text: "Žluč", why: "Žluč rozptyluje tuky ve střevě." }
           - { text: "Kreatin", why: "Kreatin s přenosem mastných kyselin nesouvisí." }
-      - id: produkt
+      - id: kyslik
         type: choice
-        prompt: "Na co se mastné kyseliny při β-oxidaci mění?"
+        prompt: "Proč lze mastné kyseliny „spálit“ jen při dostatku kyslíku?"
         options:
-          - { text: "Na acetylkoenzym A", correct: true }
-          - { text: "Na glukózu", why: "Z mastných kyselin glukóza vzniknout nemůže." }
-          - { text: "Na kyselinu mléčnou", why: "Kyselina mléčná vzniká z pyruvátu (glukózy) bez kyslíku." }
-          - { text: "Na glycerol", why: "Glycerol vzniká při lipolýze, ne z mastných kyselin." }
+          - { text: "β-oxidace navazuje na dýchací řetězec, který potřebuje kyslík", correct: true, why: "Acetylkoenzym A z β-oxidace pokračuje Krebsovým cyklem do dýchacího řetězce – a ten bez kyslíku neběží." }
+          - { text: "Bez kyslíku se z nich v pracujícím svalu tvoří kyselina mléčná", why: "Kyselina mléčná vzniká bez kyslíku z glukózy (pyruvátu), ne z mastných kyselin." }
+          - { text: "Bez kyslíku se z nich v pracujícím svalu tvoří ketolátky", why: "Ketolátky tvoří játra při nedostatku sacharidů, ne pracující sval." }
+          - { text: "Kyslík je potřeba už k uvolnění tuku z tukové tkáně", why: "Uvolnění tuku je lipolýza; kyslík potřebuje až odbourání mastných kyselin v mitochondrii." }
       - id: cesta
         type: reveal
         prompt: "Popiš cestu mastné kyseliny z tukové tkáně až ke vzniku ATP."
@@ -697,11 +700,13 @@ points:
           - { text: "Tvorba glukózy z aminokyselin", why: "To je glukoneogeneze." }
       - id: svaly
         type: choice
+        version: 2
         prompt: "Proč je podle skript růst svalové hmoty složitý proces?"
         options:
           - { text: "Proteosyntéza je energeticky velmi náročná", correct: true }
-          - { text: "Svaly nedokážou využít aminokyseliny z potravy", why: "Aminokyseliny z potravy jsou stavebním materiálem pro proteosyntézu." }
-          - { text: "Bílkoviny ve svalu se nikdy nerozkládají", why: "Probíhá stálý obrat – syntéza i rozklad." }
+          - { text: "Bílkoviny musí přijít do 30 minut po tréninku", why: "„Anabolické okno“ je podle skript mnohem širší (až 5–6 h); rozhoduje hlavně celkový příjem (s. 139)." }
+          - { text: "Inzulin tvorbu svalových bílkovin brzdí", why: "Inzulin proteosyntézu naopak podporuje, stejně jako testosteron a růstový hormon." }
+          - { text: "Aminokyseliny se nejdřív mění na glukózu", why: "Aminokyseliny jsou přímo stavebním materiálem bílkovin; na glukózu se mění jen při jejím nedostatku." }
       - id: hormony
         type: reveal
         prompt: "Které hormony podporují proteosyntézu a co znamená metabolický obrat bílkovin?"
@@ -843,11 +848,13 @@ points:
           - { text: "Kyselina mléčná", why: "Laktát vzniká při anaerobní glykolýze." }
       - id: dna
         type: choice
+        version: 2
         prompt: "Proč se kyselina močová u dny ukládá v kloubech?"
         options:
           - { text: "Je ve vodě špatně rozpustná a při vyšší hladině se sráží", correct: true }
           - { text: "Je toxická a poškozuje kloubní chrupavku podobně jako amoniak", why: "Problém je nízká rozpustnost, ne toxicita." }
-          - { text: "Krví se přenáší v lipoproteinech, které se v kloubech usazují", why: "V lipoproteinech se přenášejí tuky a cholesterol." }
+          - { text: "Ledviny ji nevylučují, a tak se v těle hromadí", why: "Ledviny ji vylučují; potíž je, že se při vysoké hladině špatně rozpouští a sráží." }
+          - { text: "Váže na sebe vápník a vytváří kostní výrůstky", why: "V kloubech se ukládají krystaly samotné kyseliny močové, ne vápník." }
       - id: puvod
         type: reveal
         prompt: "Odkud pochází kyselina močová a proč se u dny ukládá v kloubech?"

@@ -23,11 +23,12 @@ points:
       buněčných membrán.
     exercises:
       - id: vitaminy
+        version: 2
         type: choice
         prompt: "Proč skripta doporučují přidat k zelenině trochu oleje i při přísné redukční dietě?"
         options:
           - { text: "Tuk je nutný pro vstřebání vitaminů rozpustných v tucích.", correct: true }
-          - { text: "Olej snižuje glykemický index zeleniny a zpomalí vstřebání cukrů.", why: "To není důvod, který skripta uvádějí." }
+          - { text: "Tuk urychlí vyprázdnění žaludku, takže se zelenina lépe stráví.", why: "Tuk vyprazdňování žaludku naopak zpomaluje (s. 19). Důvodem jsou vitaminy A, D, E, K." }
           - { text: "Olej zvyšuje obsah vlákniny a tím i sytost celého jídla.", why: "Olej vlákninu neobsahuje." }
           - { text: "Bez tuku tělo nedokáže strávit bílkoviny obsažené v zelenině.", why: "Bílkoviny se tráví i bez tuku; tuk je nutný pro vitaminy rozpustné v tucích." }
       - id: funkce-telo
@@ -84,14 +85,14 @@ points:
       tuhé a olivový olej (nenasycené MK) tekutý. MK se dále dělí podle délky řetězce, esenciality
       a typu vazby (cis/trans).
     exercises:
-      - id: mufa
+      - id: dve-vazby
         type: choice
-        prompt: "Kolik dvojných vazeb má mononenasycená mastná kyselina?"
+        prompt: "Mastná kyselina má v řetězci dvě dvojné vazby. Kam ji zařadíš?"
         options:
-          - { text: "Právě jednu", correct: true }
-          - { text: "Žádnou", why: "To je nasycená MK." }
-          - { text: "Dvě a více", why: "To jsou polynenasycené MK." }
-          - { text: "Jednu trojnou vazbu", why: "MK se dělí podle počtu dvojných vazeb; MUFA má právě jednu dvojnou vazbu." }
+          - { text: "Polynenasycené (PUFA)", correct: true, why: "PUFA mají víc než jednu dvojnou vazbu – tedy už dvě (s. 23)." }
+          - { text: "Mononenasycené (MUFA)", why: "MUFA mají právě jednu dvojnou vazbu." }
+          - { text: "Trans mastné kyseliny", why: "Cis/trans je typ dvojné vazby, ne jejich počet." }
+          - { text: "Nasycené (SFA)", why: "Nasycené MK nemají žádnou dvojnou vazbu." }
       - id: skupenstvi
         version: 2
         type: choice
@@ -244,12 +245,13 @@ points:
     criteria: [1b]
     prereqs: [tuk.deleni-mk]
     confusableWith: [tuk.esencialni-mk, tuk.mufa]
-    source: { pages: [25, 26], anchor: "první dvojná vazba se vyskytuje na šestém atomu uhlíku" }
+    source: { pages: [25, 26, 27, 28], anchor: "první dvojná vazba se vyskytuje na šestém atomu uhlíku" }
     explanation: >-
       Označení n-3 (starší omega-3) znamená, že první dvojná vazba je na 3. uhlíku od methylového
       konce (-CH3); n-6 na 6. uhlíku. Řada n-6: kyselina linolová (LA) a arachidonová (AA).
       Řada n-3: kyselina alfa-linolenová (ALA), eikosapentaenová (EPA) a dokosahexaenová (DHA).
-      PUFA najdeme v rostlinných i živočišných zdrojích.
+      EPA a DHA dodávají hlavně tučné mořské ryby; z ALA (lněný, řepkový olej) si je tělo vytvoří
+      jen málo (na EPA asi 5–10 %).
     exercises:
       - id: n3
         type: choice
@@ -269,10 +271,20 @@ points:
           - { text: "První dvojná vazba je na 6. uhlíku od karboxylové skupiny.", why: "Počítá se od methylového (-CH3) konce." }
           - { text: "Mastná kyselina má celkem 6 dvojných vazeb.", why: "Číslo udává polohu první dvojné vazby, ne jejich počet." }
           - { text: "Řetězec má 6 atomů uhlíku.", why: "Číslo neudává délku řetězce, ale polohu první dvojné vazby." }
-      - id: rady
+      - id: epa-dha-zdroj
+        type: choice
+        prompt: "Klientka chce víc omega-3 a ptá se, který zdroj jí dodá přímo EPA a DHA."
+        options:
+          - { text: "Tučné mořské ryby", correct: true, why: "Např. losos, makrela, sleď – EPA a DHA obsahují přímo." }
+          - { text: "Lněný olej", why: "Dodává ALA; tělo z ní na EPA přemění jen asi 5–10 %, na DHA ještě méně." }
+          - { text: "Řepkový olej", why: "Je zdrojem ALA (a MUFA), ne přímo EPA a DHA." }
+          - { text: "Slunečnicový olej", why: "Je bohatý hlavně na n-6 kyselinu linolovou." }
+      - id: bez-ryb
         type: reveal
-        prompt: "Rozděl do řad n-3 a n-6: kyselina linolová, ALA, EPA, DHA, kyselina arachidonová."
-        answer: "n-6: linolová, arachidonová. n-3: alfa-linolenová (ALA), EPA, DHA."
+        prompt: "Klientka nejí ryby a říká, že jí stačí lněný olej. Proč jí lněný olej ryby jako zdroj omega-3 plně nenahradí?"
+        answer: >-
+          Lněný olej dodává ALA. Tělo si z ní EPA vytvoří jen málo (asi 5–10 %) a DHA ještě méně. EPA a DHA
+          přímo dodávají hlavně tučné mořské ryby.
 
   - id: tuk.zdroje-n3-n6
     title: Zdroje ALA a kyseliny linolové
@@ -352,13 +364,13 @@ points:
       poměr n-3 : n-6 odhaduje kolem 1 : 25 – n-6 výrazně převažují.
     exercises:
       - id: pomer
-        version: 2
+        version: 3
         type: choice
         prompt: "Jaký poměr n-6 : n-3 mastných kyselin doporučují skripta?"
         options:
           - { text: "2–5 : 1", correct: true }
           - { text: "25 : 1", why: "To je odhad skutečného stavu v ČR, ne doporučení." }
-          - { text: "1 : 2 : 1", why: "To je doporučený poměr SFA : MUFA : PUFA." }
+          - { text: "1 : 2–5", why: "Obráceně – n-6 má být 2–5× víc než n-3. Skripta poměr píšou v obou směrech (s. 26: n-3 : n-6 = 1 : 2–5), hlídej si pořadí." }
           - { text: "10 : 1", why: "Tak velká převaha n-6 je nevhodná; doporučení je 2–5 : 1." }
       - id: ucinek
         type: choice
@@ -421,21 +433,23 @@ points:
     prereqs: [tuk.deleni-mk]
     source: { pages: [27, 28], anchor: "Denní dávka by neměla přesáhnout 1 % celkového energetického příjmu" }
     explanation: >-
-      U cis vazby jsou vodíky na stejné straně (v přírodě převažuje), u trans na opačných.
-      Přirozeně jsou trans MK téměř jen v tuku přežvýkavců (bachorová biohydrogenace). Průmyslově
-      vznikají při částečném ztužování tuků a při dezodoraci olejů – sušenky, levné polevy.
+      U cis vazby jsou vodíky na stejné straně, u trans na opačných.
+      Přirozeně jsou trans MK téměř jen v tuku přežvýkavců. Průmyslově
+      vznikají při částečném ztužování tuků (plně ztužené je dnes prakticky neobsahují) a při
+      dezodoraci olejů – sušenky, levné polevy.
       Zvyšují LDL a snižují HDL cholesterol, zvyšují riziko kardiovaskulárních nemocí a mohou
       přispět k diabetu 2. typu. Limit: max. 1 % energie (asi 2 g/den); v EU max. 2 g průmyslových
       trans MK na 100 g tuku.
     exercises:
       - id: ucinek
+        version: 2
         type: choice
         prompt: "Jak ovlivňují trans mastné kyseliny hladinu cholesterolu?"
         options:
           - { text: "Zvyšují LDL a snižují HDL cholesterol.", correct: true }
           - { text: "Snižují LDL a zvyšují HDL cholesterol.", why: "Je to přesně naopak." }
           - { text: "Zvyšují LDL i HDL cholesterol stejnou měrou.", why: "HDL cholesterol trans MK naopak snižují." }
-          - { text: "Na cholesterol nemají vliv, působí jen na glykémii.", why: "Zvyšují LDL a snižují HDL; navíc mohou přispět k diabetu 2. typu." }
+          - { text: "Snižují LDL, ale snižují i HDL cholesterol.", why: "LDL naopak zvyšují; HDL snižují – proto jsou tak nevýhodné." }
       - id: limit
         type: choice
         prompt: "Kolik by podle skript neměl přesáhnout denní příjem trans MK?"
@@ -445,11 +459,14 @@ points:
           - { text: "2 g na 100 g tuku", why: "To je legislativní limit EU pro obsah v potravině, ne denní příjem." }
           - { text: "300 mg denně", why: "To je doporučení pro cholesterol." }
       - id: zdroje
+        version: 2
         type: reveal
-        prompt: "Kde se trans MK vyskytují přirozeně a jak vznikají průmyslově?"
+        prompt: "Kde se trans MK vyskytují přirozeně a jak vznikají průmyslově? Obsahuje je každý ztužený tuk?"
         answer: >-
           Přirozeně v tuku přežvýkavců (mléčný a tkáňový tuk krav, ovcí, koz). Průmyslově při
-          částečném ztužování (hydrogenaci) tuků a při dezodoraci olejů za vysokých teplot.
+          částečném ztužování (hydrogenaci) tuků a při dezodoraci olejů za vysokých teplot. Plně
+          ztužené tuky se dnes vyrábějí tak, že trans MK prakticky neobsahují – problém jsou
+          částečně ztužené (sušenky, polevy, náhražky čokolády).
       - id: klient
         type: explain
         prompt: "Proč bys klientovi doporučila omezit trans mastné kyseliny a kde je hlavně najde?"
@@ -581,6 +598,7 @@ points:
       do 1 % energie; hodnoty v g/kg jsou praktická pravidla skript. Ke zkoušce: pokud se otázka ptá
       na kapitolu o tucích, odpověď skript je 25–35 %; toto rozmezí leží celé uvnitř rozmezí EFSA.
     criteria: [1b, 5c]
+    confusableWith: [bil.prijem-zakladni]
     source: { pages: [29, 30], anchor: "Minimální denní příjem by měl být 0,5 g na 1 kg" }
     explanation: >-
       Tuky by měly tvořit 25–35 % celkového denního energetického příjmu. V gramech orientačně
@@ -695,6 +713,13 @@ points:
     title: Kouřový bod a volba tuku k tepelné úpravě
     kind: concept
     tier: B
+    status: course-disputed
+    note: >-
+      Skripta: s. 33 obecně píšou, že k tepelné úpravě se hodí tuky s kouřovým bodem nad 180 °C;
+      s. 34 to odstupňují (vaření a dušení aspoň 100 °C, restování nad 160 °C, smažení nad 180 °C)
+      a ke smažení doporučují i kokosový olej, který má v nerafinované podobě podle tabulky 177 °C.
+      Současné poznatky: odstupňování podle teploty úpravy odpovídá praxi. Ke zkoušce: u otázky na
+      konkrétní úpravu platí odstupňované hodnoty ze s. 34; obecné „nad 180 °C“ patří ke smažení.
     criteria: [4a, 1b]
     source: { pages: [32, 33, 34], anchor: "Rafinované oleje snášejí vyšší teploty než jejich panenské varianty" }
     explanation: >-
@@ -731,7 +756,7 @@ points:
         options:
           - { text: "Aspoň 100 °C", correct: true }
           - { text: "Nad 160 °C", why: "To skripta doporučují pro rychlé restování." }
-          - { text: "Nad 180 °C", why: "To skripta doporučují pro prudké smažení a fritování." }
+          - { text: "Nad 180 °C", why: "To skripta na s. 34 uvádějí pro prudké smažení a fritování; obecné „nad 180 °C“ ze s. 33 se týká hlavně smažení." }
           - { text: "Nad 250 °C", why: "Tak vysoký kouřový bod nemá téměř žádný tuk; na vaření stačí aspoň 100 °C." }
 
   - id: tuk.ryby-rtut
@@ -832,3 +857,11 @@ points:
         type: reveal
         prompt: "K čemu se vztahuje údaj „30 %“ u sýra eidam 30 %?"
         answer: "K obsahu tuku v sušině, ne v celém výrobku. Tuk na 100 g je v tabulce nutričních hodnot."
+      - id: kategorie
+        type: choice
+        prompt: "Na obalu eidamu je „30 %“. Do které kategorie sýr patří?"
+        options:
+          - { text: "Polotučný", correct: true, why: "30 % tuku v sušině spadá do rozmezí 25–45 %." }
+          - { text: "Nízkotučný", why: "Nízkotučné sýry mají 10–25 % tuku v sušině." }
+          - { text: "Plnotučný", why: "Plnotučné sýry mají 45–50 % tuku v sušině." }
+          - { text: "Nedá se určit bez tuku na 100 g", why: "Kategorie se určuje právě podle tuku v sušině, který je na obalu." }

@@ -307,11 +307,12 @@ points:
           a mohli hodnotit trend.
       - id: proc
         type: choice
+        version: 2
         prompt: "K čemu slouží vstupní měření na první konzultaci?"
         options:
           - { text: "Jako výchozí bod pro sledování pokroku", correct: true }
           - { text: "K diagnóze obezity jako nemoci", why: "Diagnóza patří lékaři." }
-          - { text: "Jen jako podklad k fakturaci", why: "Měření slouží ke sledování vývoje." }
+          - { text: "K porovnání s ostatními klienty poradny", why: "Měření slouží jako výchozí bod pro sledování vývoje tohoto klienta, ne ke srovnávání s ostatními." }
           - { text: "K určení přesného BMR bez dalších výpočtů", why: "BMR se dál odhaduje rovnicemi." }
 
   - id: prx.karta-klienta
@@ -333,11 +334,13 @@ points:
     exercises:
       - id: obsah
         type: explain
+        version: 2
         prompt: "U praktické zkoušky máš vyplnit kartu klienta. Jaké oddíly v ní budou?"
         keyPoints:
           - "Osobní a kontaktní údaje, podepsané souhlasy (GDPR)"
           - "Zdravotní anamnéza: nemoci, léky, výsledky, alergie a intolerance"
-          - "Životní styl: strava, pohyb, spánek, pitný režim, práce a rodina"
+          - "Stravování a pitný režim"
+          - "Pohyb, spánek, práce a rodinná situace"
           - "Motivace a cíl klienta"
           - "Vstupní měření a záznamy z kontrol (datum, hodnoty, úpravy, další kroky)"
         modelAnswer: >-
@@ -431,14 +434,19 @@ points:
           Doporučím vyšetření u psychiatra nebo psychologa se specializací na PPP; léčba pak spojuje
           psychoterapii a nutriční péči. Při tak nízkém BMI je vhodné i vyšetření u praktického lékaře.
           Redukční plán jí nesestavím a doporučení si zapíšu do karty.
-      - id: redukce
+      - id: anorexie-otazka
         type: choice
-        prompt: "Klientka s BMI 17,2 chce jídelníček na zhubnutí dalších 3 kg, protože se cítí tlustá. Jak zareaguješ?"
+        prompt: "Klientka s BMI 17,2, která se cítí tlustá a chce zhubnout další 3 kg, se tě přímo zeptá: „Myslíte, že mám anorexii?“ Co odpovíš?"
         options:
-          - { text: "Plán nesestavím, řeknu, čeho si všímám, a doporučím specialistu.", correct: true }
-          - { text: "Sestavím jen mírný deficit, aby hubla aspoň bezpečně a pod dohledem.", why: "Při podezření na PPP hubnutí nepodporuji." }
-          - { text: "Řeknu jí, že má zřejmě anorexii, a pošlu ji rovnou k lékaři.", why: "Diagnózu poradce nestanovuje, jen vysloví podezření." }
-          - { text: "Spolupráci bez dalšího vysvětlování zdvořile odmítnu.", why: "Je třeba citlivě vysvětlit důvod a doporučit pomoc." }
+          - text: "Diagnózu stanovit nemůžu, ale znepokojuje mě to – doporučím vám specialistu."
+            correct: true
+            why: "Poradkyně diagnózu nestanovuje ani nevyvrací; citlivě pojmenuje obavu a doporučí psychiatra či psychologa se specializací na PPP."
+          - text: "Podle toho, co popisujete, to tak opravdu vypadá – měla byste začít s léčbou."
+            why: "Diagnózu poradkyně nestanovuje ani nepotvrzuje; vysloví jen podezření a doporučí specialistu."
+          - text: "Ne, s BMI 17,2 jde spíš o lehkou podváhu, anorexie by vypadala jinak."
+            why: "To posoudit nemůžeš – a BMI pod 17,5 je navíc vodítkem pro anorexii (s. 230). Patří to specialistovi."
+          - text: "To teď nechme stranou, hlavní je sestavit vám rozumný jídelníček."
+            why: "Otázce se nevyhýbáš a jídelníček na hubnutí nesestavuješ; citlivě pojmenuješ obavu a doporučíš specialistu."
 
   - id: prx.red-flags-lekar
     title: Varovné tělesné příznaky – poslat k lékaři

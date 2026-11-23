@@ -47,10 +47,11 @@ points:
           - { text: "Velký talíř těstovin, aby vydržela do rána", why: "V noci se volí jen malá porce." }
       - id: proc
         type: choice
+        version: 2
         prompt: "Proč se doporučuje v biologické noci spíše nejíst?"
         options:
           - { text: "Stejné jídlo má v noci horší glykemickou a inzulinovou odpověď.", correct: true }
-          - { text: "V noci se jídlo v trávicím traktu prakticky vůbec netráví.", why: "Tráví, jen je metabolická odpověď horší." }
+          - { text: "Noční jídlo zhorší hlavně spánek po směně, metabolismus ne.", why: "Hlavním důvodem je horší glykemická a inzulinová odpověď na stejné jídlo v noci." }
           - { text: "Jídlo snědené v noci se celé uloží do tukové tkáně.", why: "Energie jídla se neukládá „celá do tuku“; problém je horší metabolická odpověď." }
           - { text: "Noční jídlo výslovně zakazují pracovní předpisy WHO.", why: "WHO specifická časová doporučení pro noční práci nemá; doporučení je od NIOSH a CDC." }
 
@@ -122,12 +123,13 @@ points:
     exercises:
       - id: prvni-krok
         type: choice
+        version: 2
         prompt: "Klientka říká, že v práci nestíhá jíst. Co uděláš jako první?"
         options:
           - { text: "Zjistím, jestli jíst nechce, nebo nemůže.", correct: true }
           - { text: "Rovnou jí doporučím proteinové tyčinky.", why: "Bez znalosti příčiny nevíš, co pomůže." }
-          - { text: "Doporučím jí jíst jen večer.", why: "Narušilo by to pravidelnost stravy." }
-          - { text: "Doporučím jí změnit zaměstnání.", why: "Úkolem poradce je najít cestu v rámci jejích možností." }
+          - { text: "Poradím jí přesunout hlavní jídlo na večer.", why: "Narušilo by to pravidelnost stravy; nejdřív zjisti příčinu." }
+          - { text: "Vysvětlím jí, proč je pravidelné jídlo důležité.", why: "Apel bez znalosti příčiny nepomůže – skripta radí hledat praktické překážky; nejdřív zjisti, jestli nechce, nebo nemůže." }
       - id: teple
         type: reveal
         prompt: "Klient nemá v práci možnost ohřát jídlo. Co mu navrhneš?"
@@ -235,20 +237,22 @@ points:
           bílkoviny ho nezasytí.
       - id: minutka
         type: choice
+        version: 2
         prompt: "Proč skripta doporučují v restauraci spíše minutková jídla než hotovky?"
         options:
           - { text: "Dá se vybrat kombinace, často s libovým masem či rybou.", correct: true }
-          - { text: "Mají vždy méně kalorií než jakákoli hotovka.", why: "Rozhoduje složení a úprava, ne samotný typ jídla." }
+          - { text: "Mívají méně kalorií než hotovky.", why: "Energie záleží na složení a úpravě, ne na typu jídla; skripta zdůrazňují možnost výběru kombinace." }
           - { text: "Bývají levnější než hotová jídla z menu.", why: "Cenu skripta jako důvod neuvádějí." }
-          - { text: "Podávají se vždy bez přílohy, jen s masem.", why: "Minutka je typicky maso s přílohou." }
+          - { text: "Připravují se bez tuku, protože se nesmaží.", why: "I minutka může být smažená; skripta oceňují možnost vybrat si kombinaci, třeba libové maso či rybu." }
       - id: salat
         type: choice
+        version: 2
         prompt: "Klientka si v restauraci dává jen zeleninový salát. Na co ji upozorníš?"
         options:
           - { text: "Často nemá bílkovinu a má málo energie, takže nezasytí.", correct: true }
           - { text: "Salát je ideální volba a na jídelníčku nemusí nic měnit.", why: "Bez bílkoviny nezasytí a hrozí pozdější přejídání." }
-          - { text: "Salát bývá kaloricky nejnáročnější jídlo z celého menu.", why: "Saláty mívají naopak nízkou energetickou hodnotu." }
-          - { text: "Zeleninu v restauraci nejíst kvůli hygieně a pesticidům.", why: "Nic takového skripta neuvádějí; víc zeleniny místo příloh naopak doporučují." }
+          - { text: "Ať si k salátu přidá pečivo, aby měla dost energie.", why: "Pečivo přidá hlavně sacharidy; salátu obvykle chybí bílkovina – lepší s masem, rybou, vejcem nebo sýrem." }
+          - { text: "Hlavní je vynechat dresink, salát je jinak v pořádku.", why: "Dresink není hlavní problém – salát bývá bez bílkoviny a s nízkou energií, takže nezasytí." }
 
   - id: pri.restaurace-kontext
     title: Restaurace – večeře, pivo k obědu, konkrétní tipy
@@ -313,9 +317,10 @@ points:
           - { text: "Hladovění před oslavou skripta naopak doporučují.", why: "Skripta výslovně uvádějí, že se celodenní hladovění nevyplácí." }
       - id: caste-akce
         type: choice
+        version: 2
         prompt: "Co je podle skript hlavním rizikem, když má klient oslavy a večírky často?"
         options:
           - { text: "Alkohol", correct: true }
           - { text: "Nedostatek bílkovin", why: "Skripta ho jako hlavní riziko neuvádějí." }
-          - { text: "Příliš mnoho zeleniny", why: "Zelenina riziko nepředstavuje." }
+          - { text: "Kousek dortu na každé akci", why: "Malý dezert skripta připouštějí; hlavním rizikem častých akcí je alkohol (a opakované dojídání deficitu)." }
           - { text: "Pozdní hodina jídla", why: "Skripta jako hlavní riziko uvádějí alkohol a dojídání deficitu." }

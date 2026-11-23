@@ -14,32 +14,39 @@ points:
     kind: concept
     tier: A
     criteria: [5a, 6b, 7a]
-    source: { pages: [167], anchor: "energetická bilance kladná, záporná nebo vyrovnaná" }
+    source: { pages: [167, 173], anchor: "energetická bilance kladná, záporná nebo vyrovnaná" }
     explanation: >-
       Energetická bilance = vztah přijaté a vydané energie. Kladná (příjem > výdej) vede k nárůstu
       hmotnosti, záporná (příjem < výdej) k poklesu, vyrovnaná k udržení. Princip CICO
-      („calories in, calories out“) vychází ze zákona zachování energie.
+      („calories in, calories out“) vychází ze zákona zachování energie. Dlouhodobě záporná bilance
+      kromě hubnutí často sníží NEAT a může vést k adaptivní termogenezi (nižší výdej); dlouhodobě
+      kladná znamená postupné ukládání přebytku a nárůst hmotnosti.
     exercises:
       - id: typy
         type: explain
+        version: 2
         prompt: "Vysvětli tři typy energetické bilance a jejich dopad na hmotnost."
         keyPoints:
           - "Kladná: příjem > výdej → hmotnost roste"
           - "Záporná: příjem < výdej → hmotnost klesá"
           - "Vyrovnaná: příjem ≈ výdej → hmotnost stabilní"
           - "Příjem = jídlo a nápoje; výdej = činnost orgánů, běžné činnosti, sport"
+          - "Dlouhodobě záporná: kromě hubnutí často pokles NEAT a adaptivní termogeneze (nižší výdej)"
+          - "Dlouhodobě kladná: přebytek se postupně ukládá, hmotnost roste"
         modelAnswer: >-
           Energetická bilance porovnává energii přijatou z jídla a nápojů s energií vydanou na činnost
           orgánů, běžné aktivity a sport. Je-li příjem vyšší než výdej, je bilance kladná a hmotnost
           roste; je-li nižší, je záporná a hmotnost klesá; při rovnosti je vyrovnaná a hmotnost se udržuje.
-      - id: zaporna
+          Dlouhodobě záporná bilance navíc často sníží výdej (méně NEAT, adaptivní termogeneze);
+          dlouhodobě kladná vede k postupnému ukládání přebytku a růstu hmotnosti.
+      - id: stoji-hmotnost
         type: choice
-        prompt: "Klient chce zhubnout. Jakou energetickou bilanci potřebuje?"
+        prompt: "Klient chce zhubnout, ale měsíc jí pořád stejně a hmotnost mu stojí. Co to říká o jeho energetické bilanci?"
         options:
-          - { text: "Zápornou (příjem nižší než výdej)", correct: true }
-          - { text: "Kladnou (příjem vyšší než výdej)", why: "Kladná bilance vede k nárůstu hmotnosti." }
-          - { text: "Vyrovnanou", why: "Vyrovnaná bilance hmotnost jen udržuje." }
-          - { text: "Na bilanci nezáleží, jen na složení stravy", why: "Vývoj hmotnosti určuje poměr příjmu a výdeje (princip CICO)." }
+          - { text: "Je zhruba vyrovnaná – příjem odpovídá výdeji.", correct: true, why: "Stabilní hmotnost znamená, že příjem zhruba odpovídá výdeji; k hubnutí je potřeba záporná bilance." }
+          - { text: "Je záporná, jen se to na váze zatím neprojevilo.", why: "Při záporné bilanci hmotnost klesá; měsíc beze změny ukazuje na bilanci vyrovnanou." }
+          - { text: "Je kladná, protože hmotnost neklesá.", why: "Kladná bilance by vedla k nárůstu hmotnosti; stabilní hmotnost = vyrovnaná bilance." }
+          - { text: "O bilanci to nevypovídá, rozhoduje složení stravy.", why: "Vývoj hmotnosti určuje poměr příjmu a výdeje (princip CICO)." }
 
   - id: en.energie-zivin
     title: Energetická hodnota živin
@@ -176,20 +183,22 @@ points:
           těhotenství nebo kojení.
       - id: nejvetsi
         type: choice
+        version: 2
         prompt: "Která složka tvoří obvykle největší podíl celkového denního výdeje?"
         options:
-          - { text: "BMR (asi 60 %)", correct: true }
-          - { text: "NEAT", why: "NEAT tvoří asi 10–25 %." }
-          - { text: "EAT", why: "EAT tvoří asi 0–30 %." }
-          - { text: "TEF", why: "TEF tvoří kolem 10 %." }
+          - { text: "BMR – bazální metabolismus", correct: true, why: "BMR tvoří obvykle asi 60 % výdeje." }
+          - { text: "NEAT – běžná aktivita", why: "NEAT tvoří asi 10–25 %." }
+          - { text: "EAT – cílený sport", why: "EAT tvoří asi 0–30 %." }
+          - { text: "TEF – termický efekt stravy", why: "TEF tvoří kolem 10 %." }
       - id: neat-vs-eat
         type: choice
+        version: 2
         prompt: "Kterou složku výdeje lze podle skript u nesportovců každý den nejvýrazněji ovlivnit?"
         options:
-          - { text: "NEAT – běžnou denní aktivitu", correct: true }
-          - { text: "BMR", why: "BMR kryje životně důležité funkce v klidu – každodenním chováním ho výrazně nezměníš." }
-          - { text: "TEF", why: "TEF tvoří jen kolem 10 % výdeje a odvíjí se od jídla." }
-          - { text: "Žádnou – výdej je daný", why: "NEAT lze podle skript každý den významně ovlivnit." }
+          - { text: "NEAT – běžná denní aktivita", correct: true }
+          - { text: "BMR – bazální metabolismus", why: "BMR kryje životně důležité funkce v klidu – každodenním chováním ho výrazně nezměníš." }
+          - { text: "TEF – termický efekt stravy", why: "TEF tvoří jen kolem 10 % výdeje a odvíjí se od jídla." }
+          - { text: "EAT – cílený sport", why: "U nesportovců je EAT malý; NEAT může za den znamenat víc než hodina cíleného sportu (s. 170)." }
 
   - id: en.bmr-definice
     title: Bazální metabolismus – definice
@@ -276,11 +285,12 @@ points:
     exercises:
       - id: kdy-katch
         type: choice
+        version: 2
         prompt: "Kdy je vhodné použít rovnici Katch-McArdle?"
         options:
           - { text: "Když máme spolehlivý údaj o beztukové hmotě (FFM).", correct: true }
           - { text: "Když neznáme složení těla.", why: "Pak skripta doporučují Mifflin-St Jeor." }
-          - { text: "Pouze u dětí.", why: "Volbu rovnice určuje znalost beztukové hmoty, ne věk klienta." }
+          - { text: "U každého klienta, protože je nejpřesnější.", why: "Přesná je jen se spolehlivě změřenou beztukovou hmotou; bez ní ji nespočítáš." }
           - { text: "Když chceme co nejstarší a nejověřenější rovnici.", why: "Nejstarší je Harris-Benedict." }
       - id: obezni-sportovci
         type: choice
@@ -292,16 +302,20 @@ points:
           - { text: "U obou nadhodnocuje.", why: "U sportovce výpočet naopak podhodnocuje." }
       - id: rozdily
         type: explain
-        prompt: "U zkoušky máš vysvětlit rozdíly mezi metodikami výpočtu BMR. Co řekneš?"
+        version: 2
+        prompt: "U zkoušky máš vysvětlit rozdíly mezi metodikami stanovení BMR. Co řekneš?"
         keyPoints:
+          - "Měření: přímá kalorimetrie nejpřesnější, ale nereálná; DLW přesná, drahá; DEXA a bioimpedance (nejběžnější) BMR dopočítají"
           - "Katch-McArdle počítá s beztukovou hmotou (FFM) – vhodná, když složení těla známe"
           - "Mifflin-St Jeor – z hmotnosti, výšky, věku a pohlaví, když složení neznáme"
           - "Harris-Benedict – nejstarší rovnice"
           - "Bez složení těla: u obézních nadhodnocení, u sportovců podhodnocení"
           - "Všechny jsou jen odhad – ověřit podle vývoje klienta"
         modelAnswer: >-
-          Když mám spolehlivý údaj o beztukové hmotě, použiji Katch-McArdle, protože pracuje přímo
-          s FFM. Bez znalosti složení těla použiji Mifflin-St Jeor z hmotnosti, výšky, věku a pohlaví;
+          Nejpřesnější je přímá kalorimetrie, v praxi je ale nereálná; dvojitě značená voda je přesná,
+          ale drahá. DEXA a bioimpedance změří složení těla a BMR z něj dopočítají – bioimpedance je
+          nejběžnější. Bez měření použiji rovnici. Když mám spolehlivý údaj o beztukové hmotě, použiji
+          Katch-McArdle, protože pracuje přímo s FFM. Bez znalosti složení těla použiji Mifflin-St Jeor z hmotnosti, výšky, věku a pohlaví;
           Harris-Benedict je nejstarší rovnice. Rovnice bez složení těla u obézních BMR nadhodnocují
           a u sportovců podhodnocují. Výsledek je vždy odhad, který ověřuji podle vývoje klienta.
 
@@ -381,6 +395,7 @@ points:
     tier: B
     criteria: [5e]
     prereqs: [en.bmr-rovnice-volba]
+    confusableWith: [en.bmr-mifflin]
     source: { pages: [169], anchor: "21.6 * FFM (Fat Free Mass) + 370" }
     explanation: >-
       Katch-McArdle: BMR = 21,6 × FFM + 370, kde FFM je beztuková hmota v kg. Když znáš hmotnost

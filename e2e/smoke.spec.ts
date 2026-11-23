@@ -33,7 +33,7 @@ async function finishCaseSteps(page: Page) {
       await btn("Pokračovat").click();
     } else if (await btn("Mám hotovo — porovnat").isVisible()) {
       await btn("Mám hotovo — porovnat").click();
-      await page.getByRole("checkbox").first().click();
+      await reviewKeyPoints(page);
       await btn("Pokračovat").click();
     } else if (await btn("Ukázat odpověď").isVisible()) {
       await btn("Ukázat odpověď").click();
@@ -41,6 +41,18 @@ async function finishCaseSteps(page: Page) {
     }
   }
   await expect(btn("Další")).toBeVisible();
+}
+
+/** Self-check after an oral answer: key points come one at a time; say "Řekla jsem" to the first, "Neřekla" to the rest. */
+async function reviewKeyPoints(page: Page) {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  const total = Number((await page.getByText(/^Bod 1 z \d+$/).textContent())?.match(/z (\d+)/)?.[1]);
+  expect(total).toBeGreaterThan(1);
+  await btn("Řekla jsem").click();
+  for (let i = 1; i < total; i++) {
+    await expect(page.getByText(`Bod ${i + 1} z ${total}`)).toBeVisible();
+    await btn("Neřekla").click();
+  }
 }
 
 /** Answer whatever card is on screen. Returns a label of what was done, or null at the end of the session. */
@@ -71,8 +83,11 @@ async function answerCard(page: Page): Promise<string | null> {
   }
   if (await btn("Mám hotovo — porovnat").isVisible()) {
     await btn("Mám hotovo — porovnat").click();
-    await page.getByRole("checkbox").first().click();
-    await btn("Hotovo").click();
+    await reviewKeyPoints(page);
+    // Not every point was said, so the feedback shows what was missing and the model answer before moving on.
+    await expect(page.getByText(/^\d+ z \d+ bodů$/)).toBeVisible();
+    await expect(page.getByText("Příště nezapomeň")).toBeVisible();
+    await btn("Další").click();
     return "explain";
   }
   if (await btn("Potvrdit").isVisible()) {
@@ -385,4 +400,35 @@ test("today's answer count comes from the server, so another device sees it", as
   await expect(other.getByText(new RegExp(`Probráno`))).toBeVisible();
   expect(await count(other)).toBe(before + answered);
   await other.close();
+});
+
+test("explain self-check: key points one at a time, then what was missed and the model answer", async ({ page }) => {
+  await login(page);
+  // Put a known explain card on screen through the persisted session (planner order is not deterministic here).
+  await page.evaluate(() => {
+    const day = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Prague" }).format(new Date(Date.now() - 4 * 3600e3));
+    const current = { next: { kind: "exercise", pointId: "uv.poradce-temata", exerciseId: "temata", reason: "review" }, seed: 1, shownAt: new Date().toISOString() };
+    localStorage.setItem("nutri.session.v1", JSON.stringify({ day, mode: { kind: "topic", topicId: "uvod" }, history: [], beyondGoal: false, current }));
+  });
+  await page.goto("/studium?tema=uvod");
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  await expect(page.getByText(/Zkus zmínit 5 hlavních bodů/)).toBeVisible();
+  await btn("Mám hotovo — porovnat").click();
+
+  // Only the current point is shown; later ones stay hidden until judged.
+  await expect(page.getByText("Bod 1 z 5")).toBeVisible();
+  await expect(page.getByText("Bod 2 z 5")).toHaveCount(0);
+  await btn("Řekla jsem").click();
+  await expect(page.getByText("Bod 2 z 5")).toBeVisible();
+  await btn("Neřekla").click();
+  for (let i = 3; i <= 5; i++) {
+    await expect(page.getByText(`Bod ${i} z 5`)).toBeVisible();
+    await btn("Řekla jsem").click();
+  }
+
+  // 4 of 5: the missed point and the model answer are shown before moving on (grading unchanged: ≥ ½ → partial).
+  await expect(page.getByText("4 z 5 bodů")).toBeVisible();
+  await expect(page.getByText("Příště nezapomeň")).toBeVisible();
+  await expect(page.getByText("Vzorová odpověď")).toBeVisible();
+  await expect(btn("Další")).toBeVisible();
 });

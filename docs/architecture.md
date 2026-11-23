@@ -59,7 +59,7 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
 | `reveal` | think → reveal → *Nevěděla / S námahou / Věděla* | self-grade → Again / Hard / Good |
 | `choice` | single or multiple selection, optional *Tipuji* | auto; guessed or hint → Hard; multi partial (no wrong picks) → Hard |
 | `numeric` | typed number; parameters generated from a seed | `src/content/formulas.ts` computes answer + worked solution; tolerance |
-| `explain` | answer aloud (typing optional) → tick key points covered | all → Good, ≥ ½ → Hard, else Again |
+| `explain` | answer aloud (typing optional; "Zkus zmínit N bodů") → judge key points one at a time ("Řekla jsem" / "Neřekla"; later points hidden) → missed points + model answer | all → Good, ≥ ½ → Hard, else Again |
 | `case` | generated client → 2–8 steps (numeric / choice / explain / reveal), feedback after each step | step score (correct 1, partial ½): all → Good, ≥ ½ → Hard, else Again |
 
 **Client cases** (`CaseView.tsx`, `instantiateCase`): numeric steps take formula inputs from the client params or from

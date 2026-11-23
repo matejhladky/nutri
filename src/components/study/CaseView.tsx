@@ -11,8 +11,9 @@ import { evaluateCaseStep } from "@/engine/evaluate";
 import type { CaseStepResponse, Evaluation, Outcome } from "@/engine/types";
 import type { CaseStepDone } from "@/client/session";
 import { ActionBar, Button } from "../ui";
+import { plural } from "@/lib/format";
 import { FeedbackFooter, Reading, useKeys, VerdictBadge } from "./shared";
-import { GuessToggle, KeyPointChecklist, NumberInput, OptionList, useRecorder, useShuffled, Worked, type ExerciseProps } from "./parts";
+import { GuessToggle, KeyPointResult, KeyPointReview, NumberInput, OptionList, useRecorder, useShuffled, Worked, type ExerciseProps } from "./parts";
 
 type Done = CaseStepDone;
 
@@ -234,24 +235,30 @@ function ChoiceStep({
 // ---------- explain ----------
 
 function ExplainStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "explain" }>; inst: CaseStepInstance; onDone: (d: Done) => void }) {
-  const [phase, setPhase] = useState<"answer" | "check">("answer");
+  const [phase, setPhase] = useState<"answer" | "check" | "result">("answer");
   const [covered, setCovered] = useState<number[]>([]);
-  const toggle = (i: number) => setCovered((c) => (c.includes(i) ? c.filter((x) => x !== i) : [...c, i]));
   useKeys({ Space: () => setPhase("check") }, phase === "answer");
   const finish = (response: CaseStepResponse) =>
     onDone({ response, outcome: evaluateCaseStep(step, inst, response), summary: `${stripQuestion(inst.prompt)} (ústně)` });
-  const keys: Record<string, () => void> = { Enter: () => finish({ type: "explain", covered }) };
-  step.keyPoints.forEach((_, i) => (keys[String(i + 1)] = () => toggle(i)));
-  useKeys(keys, phase === "check");
+  const reviewed = (c: number[]) => {
+    // Everything said: straight on. Otherwise show what was missing and the model answer before the next step.
+    if (c.length === step.keyPoints.length) finish({ type: "explain", covered: c });
+    else {
+      setCovered(c);
+      setPhase("result");
+    }
+  };
 
   return (
     <>
       <StepPrompt>{inst.prompt}</StepPrompt>
-      {phase === "answer" ? (
+      {phase === "answer" && (
         <>
-          <p className="text-[15.5px] text-muted">Odpověz nahlas, jako bys mluvila s klientem.</p>
+          <p className="text-[15.5px] text-muted">
+            Odpověz nahlas, jako bys mluvila s klientem. Zkus zmínit {plural(step.keyPoints.length, "hlavní bod", "hlavní body", "hlavních bodů")}.
+          </p>
           <ActionBar>
-            <Button variant="ghost" size="lg" onClick={() => setPhase("check")}>
+            <Button variant="ghost" size="lg" onClick={() => reviewed([])}>
               Nevím, ukaž vzor
             </Button>
             <Button size="lg" className="flex-1 md:flex-none" onClick={() => setPhase("check")} kbd="␣" autoFocus>
@@ -259,21 +266,16 @@ function ExplainStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "
             </Button>
           </ActionBar>
         </>
-      ) : (
+      )}
+      {phase === "check" && (
+        <div className="animate-rise">
+          <KeyPointReview keyPoints={step.keyPoints} onDone={reviewed} />
+        </div>
+      )}
+      {phase === "result" && (
         <div className="flex flex-col gap-5 animate-rise">
-          <KeyPointChecklist keyPoints={step.keyPoints} covered={covered} onToggle={toggle} />
-          <details className="group">
-            <summary className="cursor-pointer list-none font-medium text-sage-600">
-              <span className="group-open:hidden">Ukázat vzorovou odpověď</span>
-              <span className="hidden group-open:inline">Vzorová odpověď</span>
-            </summary>
-            <Reading className="mt-2">{step.modelAnswer}</Reading>
-          </details>
-          <ActionBar>
-            <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={() => finish({ type: "explain", covered })} kbd="↵">
-              Pokračovat
-            </Button>
-          </ActionBar>
+          <KeyPointResult keyPoints={step.keyPoints} covered={covered} modelAnswer={step.modelAnswer} />
+          <ContinueBar onClick={() => finish({ type: "explain", covered })} />
         </div>
       )}
     </>

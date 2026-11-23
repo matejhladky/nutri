@@ -5,9 +5,10 @@ import { fmt, instantiate } from "@/content/formulas";
 import { evaluate } from "@/engine/evaluate";
 import type { Evaluation } from "@/engine/types";
 import { topicsById } from "@/lib/content";
+import { plural } from "@/lib/format";
 import { ActionBar, Button, CardMeta } from "../ui";
 import { FeedbackFooter, MetaLine, Reading, useKeys, VerdictBadge } from "./shared";
-import { GuessToggle, HintButton, KeyPointChecklist, NumberInput, OptionList, Prompt, useRecorder, useShuffled, Worked, type ExerciseProps as Props } from "./parts";
+import { GuessToggle, HintButton, KeyPointResult, KeyPointReview, NumberInput, OptionList, Prompt, useRecorder, useShuffled, Worked, type ExerciseProps as Props } from "./parts";
 import { CaseView } from "./CaseView";
 
 export type { AnswerRecord } from "./parts";
@@ -139,7 +140,7 @@ function ChoiceView(props: Props & { exercise: ChoiceExercise }) {
         </>
       )}
       {result && (
-        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={props.reason === "new" || result.outcome !== "correct"}>
+        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={props.reason === "new" || result.outcome !== "correct" || guessed}>
           <VerdictBadge verdict={result.outcome}>{result.outcome === "correct" && guessed ? "tip vyšel, zopakujeme to" : null}</VerdictBadge>
           {exercise.explanation && <p className="-mt-2 text-[15.5px] text-muted">{exercise.explanation}</p>}
         </FeedbackFooter>
@@ -212,27 +213,39 @@ function ExplainView(props: Props & { exercise: ExplainExercise }) {
   const [writing, setWriting] = useState(false);
   const [text, setText] = useState(prev?.text ?? "");
   const [covered, setCovered] = useState<number[]>(prev?.covered ?? []);
-  const toggle = (i: number) => setCovered((c) => (c.includes(i) ? c.filter((x) => x !== i) : [...c, i]));
+  const [result, setResult] = useState<Evaluation | null>(props.restored?.evaluation ?? null);
+  const n = exercise.keyPoints.length;
 
-  const finish = () => {
-    record({ type: "explain", covered, text: text.trim() || undefined });
-    onNext();
+  const finish = (c: number[]) => {
+    setCovered(c);
+    setResult(record({ type: "explain", covered: c, text: text.trim() || undefined }));
+    setPhase("done");
   };
   const dontKnow = () => {
     record({ type: "dontKnow" });
     setPhase("dontKnow");
   };
   useKeys({ Space: () => setPhase("check") }, phase === "answer" && !writing);
-  const keys: Record<string, () => void> = { Enter: finish };
-  exercise.keyPoints.forEach((_, i) => (keys[String(i + 1)] = () => toggle(i)));
-  useKeys(keys, phase === "check");
 
   return (
     <>
       <Prompt>{exercise.prompt}</Prompt>
       {phase === "answer" && (
         <>
-          {writing ? (
+          <p className="text-[15.5px] text-muted">
+            Zkus zmínit {plural(n, "hlavní bod", "hlavní body", "hlavních bodů")}. Odpověz nahlas, nebo{" "}
+            {writing ? (
+              "napiš odpověď."
+            ) : (
+              <>
+                <button type="button" onClick={() => setWriting(true)} className="font-medium text-sage-600 underline underline-offset-4">
+                  napiš odpověď
+                </button>
+                .
+              </>
+            )}
+          </p>
+          {writing && (
             <textarea
               rows={5}
               autoFocus
@@ -241,14 +254,6 @@ function ExplainView(props: Props & { exercise: ExplainExercise }) {
               className="rounded-2xl border border-line-strong bg-card px-4 py-3 text-[16px] leading-relaxed outline-none focus:border-sage-600"
               placeholder="Tvoje odpověď…"
             />
-          ) : (
-            <p className="text-[15.5px] text-muted">
-              Odpověz nahlas, nebo{" "}
-              <button type="button" onClick={() => setWriting(true)} className="font-medium text-sage-600 underline underline-offset-4">
-                napiš odpověď
-              </button>
-              .
-            </p>
           )}
           <ActionBar>
             <Button variant="ghost" size="lg" onClick={dontKnow}>
@@ -263,28 +268,15 @@ function ExplainView(props: Props & { exercise: ExplainExercise }) {
       {phase === "check" && (
         <div className="flex flex-col gap-5 animate-rise">
           {text.trim() && <p className="rounded-2xl bg-card px-4 py-3 text-[15px] whitespace-pre-line text-muted ring-1 ring-line">{text}</p>}
-          <KeyPointChecklist keyPoints={exercise.keyPoints} covered={covered} onToggle={toggle} />
-          <details className="group">
-            <summary className="cursor-pointer list-none font-medium text-sage-600">
-              <span className="group-open:hidden">Ukázat vzorovou odpověď</span>
-              <span className="hidden group-open:inline">Vzorová odpověď</span>
-            </summary>
-            <Reading className="mt-2">{exercise.modelAnswer}</Reading>
-          </details>
-          <MetaLine point={point} exerciseId={exercise.id} />
-          <ActionBar>
-            <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={finish} kbd="↵">
-              Hotovo
-            </Button>
-          </ActionBar>
+          <KeyPointReview keyPoints={exercise.keyPoints} onDone={finish} />
         </div>
       )}
-      {phase === "done" && props.restored && (
-        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={false}>
-          <VerdictBadge verdict={props.restored.evaluation.outcome}>
-            {covered.length} z {exercise.keyPoints.length} bodů
+      {phase === "done" && result && (
+        <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={result.outcome !== "correct"}>
+          <VerdictBadge verdict={result.outcome}>
+            {covered.length} z {n} bodů
           </VerdictBadge>
-          <Reading>{exercise.modelAnswer}</Reading>
+          <KeyPointResult keyPoints={exercise.keyPoints} covered={covered} modelAnswer={exercise.modelAnswer} />
         </FeedbackFooter>
       )}
       {phase === "dontKnow" && (

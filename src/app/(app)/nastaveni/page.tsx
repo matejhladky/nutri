@@ -27,17 +27,14 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="flex flex-col gap-5 animate-rise">
+    <div className="flex max-w-xl flex-col gap-5 animate-rise">
       <Link href="/" className="self-start text-sm text-muted hover:text-ink">
         ← Dnes
       </Link>
-      <h1 className="text-2xl font-semibold tracking-tight">Nastavení</h1>
+      <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Nastavení</h1>
       <Panel className="p-5">
         <form onSubmit={save} className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1">
-            <span className="font-medium">Zkouška: {czDate(EXAM_DATE)}</span>
-            <span className="text-sm text-muted">Nové poznatky rozvrhuju tak, aby poslední dva dny zbyly na opakování.</span>
-          </div>
+          <p className="font-medium">Zkouška {czDate(EXAM_DATE)}</p>
           <fieldset className="flex flex-col gap-2">
             <legend className="mb-2 font-medium">Kolik času denně zhruba máš?</legend>
             <div className="flex flex-wrap gap-2">

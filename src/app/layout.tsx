@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Figtree, Literata } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin", "latin-ext"] });
+const figtree = Figtree({ variable: "--font-figtree", subsets: ["latin", "latin-ext"] });
+/** Book serif for what she reads: questions, answers, explanations. */
+const literata = Literata({ variable: "--font-literata", subsets: ["latin", "latin-ext"], axes: ["opsz"] });
 
 export const metadata: Metadata = {
   title: "Nutri",
@@ -11,14 +13,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf7f2",
+  themeColor: "#f7f5f0",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="cs" className={`${inter.variable} h-full antialiased`}>
+    <html lang="cs" className={`${figtree.variable} ${literata.variable} h-full antialiased`}>
       <body className="min-h-full font-sans text-[17px] leading-relaxed">{children}</body>
     </html>
   );

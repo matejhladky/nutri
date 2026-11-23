@@ -6,21 +6,21 @@
  */
 import { useMemo, useState } from "react";
 import type { CaseExercise, CaseStep } from "@/content/schema";
-import { fmt, instantiateCase, rng, type CaseStepInstance } from "@/content/formulas";
+import { fmt, instantiateCase, type CaseStepInstance } from "@/content/formulas";
 import { evaluateCaseStep } from "@/engine/evaluate";
 import type { CaseStepResponse, Evaluation, Outcome } from "@/engine/types";
 import type { CaseStepDone } from "@/client/session";
-import { Button, Kbd } from "../ui";
-import { FeedbackFooter, useKeys, VerdictBadge } from "./shared";
-import { useRecorder, type ExerciseProps } from "./parts";
+import { ActionBar, Button } from "../ui";
+import { FeedbackFooter, Reading, useKeys, VerdictBadge } from "./shared";
+import { GuessToggle, KeyPointChecklist, NumberInput, OptionList, useRecorder, useShuffled, Worked, type ExerciseProps } from "./parts";
 
 type Done = CaseStepDone;
 
-const dot: Record<Outcome, string> = {
-  correct: "bg-sage-600",
-  partial: "bg-amber-500",
-  wrong: "bg-clay-600",
-  unknown: "bg-line-strong",
+const marker: Record<Outcome, string> = {
+  correct: "bg-sage-600 text-white",
+  partial: "bg-amber-600 text-white",
+  wrong: "bg-clay-600 text-white",
+  unknown: "bg-line-strong text-white",
 };
 
 export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
@@ -43,28 +43,35 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
 
   return (
     <>
-      <div className="rounded-2xl border border-line bg-paper px-4 py-3">
-        <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-faint">Klient</div>
-        <p className="text-[16px] leading-relaxed whitespace-pre-line">{inst.prompt}</p>
+      <div className="rounded-2xl bg-card px-5 py-4 ring-1 ring-line">
+        <p className="mb-1 text-[13.5px] font-semibold text-muted">Klient</p>
+        <Reading className="!text-[16.5px] whitespace-pre-line">{inst.prompt}</Reading>
       </div>
 
       {done.length > 0 && (
-        <ol className="flex flex-col gap-1.5" aria-label="Hotové kroky">
+        <ol className="flex flex-col gap-2" aria-label="Hotové kroky">
           {done.map((d, i) => (
-            <li key={i} className="flex items-start gap-2 text-[15px]">
-              <span className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${dot[d.outcome]}`} aria-hidden />
-              <span className="text-muted">
-                {i + 1}. {d.summary}
+            <li key={i} className="flex items-start gap-3 text-[15px] leading-snug text-muted">
+              <span aria-hidden className={`mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${marker[d.outcome]}`}>
+                {i + 1}
               </span>
+              <span>{d.summary}</span>
             </li>
           ))}
         </ol>
       )}
 
       {!result && idx < total && (
-        <div className="flex flex-col gap-4" key={idx}>
-          <div className="text-sm font-medium text-sage-700">
-            Krok {idx + 1} z {total}
+        <div className="flex flex-col gap-5" key={idx}>
+          <div className="flex items-center gap-3">
+            <p className="text-[14px] font-semibold text-sage-600">
+              Krok {idx + 1} z {total}
+            </p>
+            <span aria-hidden className="flex flex-1 gap-1">
+              {exercise.steps.map((_, i) => (
+                <span key={i} className={`h-1 flex-1 rounded-full ${i < idx ? "bg-sage-600" : i === idx ? "bg-sage-200" : "bg-line"}`} />
+              ))}
+            </span>
           </div>
           <StepView step={exercise.steps[idx]} inst={inst.steps[idx]} seed={seed + idx} onDone={finishStep} />
         </div>
@@ -72,14 +79,11 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
 
       {result && (
         <FeedbackFooter point={point} exerciseId={exercise.id} onNext={onNext} showExplanation={result.outcome !== "correct"}>
-          <div className="flex flex-col gap-2">
-            <VerdictBadge verdict={result.outcome} />
-            <p className="text-[15px] text-muted">
-              {result.outcome === "correct"
-                ? "Celý případ bez chyby."
-                : `Správně ${(result.stepOutcomes ?? []).filter((o) => o === "correct").length} z ${total} kroků. Příště dostaneš jiného klienta se stejným postupem.`}
-            </p>
-          </div>
+          <VerdictBadge verdict={result.outcome}>
+            {result.outcome === "correct"
+              ? "celý případ bez chyby"
+              : `správně ${(result.stepOutcomes ?? []).filter((o) => o === "correct").length} z ${total} kroků`}
+          </VerdictBadge>
         </FeedbackFooter>
       )}
     </>
@@ -100,15 +104,17 @@ function StepView({ step, inst, seed, onDone }: { step: CaseStep; inst: CaseStep
 }
 
 function StepPrompt({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-lg font-semibold leading-snug whitespace-pre-line">{children}</h2>;
+  return <h2 className="font-serif text-[20px] font-medium leading-[1.4] whitespace-pre-line md:text-[22px]">{children}</h2>;
 }
 
-function ContinueButton({ onClick }: { onClick: () => void }) {
+function ContinueBar({ onClick }: { onClick: () => void }) {
   useKeys({ Enter: onClick });
   return (
-    <Button size="lg" onClick={onClick} kbd="↵" autoFocus>
-      Pokračovat
-    </Button>
+    <ActionBar>
+      <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={onClick} kbd="↵" autoFocus>
+        Pokračovat
+      </Button>
+    </ActionBar>
   );
 }
 
@@ -133,49 +139,30 @@ function NumericStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "
     <>
       <StepPrompt>{inst.prompt}</StepPrompt>
       {!res ? (
-        <form onSubmit={check} className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <input
-              inputMode="decimal"
-              autoFocus
-              autoComplete="off"
-              aria-label="Výsledek"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              className="min-h-14 w-full rounded-2xl border border-line-strong bg-card px-4 text-xl tabular-nums outline-none focus:border-sage-500"
-              placeholder="Výsledek"
-            />
-            <span className="shrink-0 text-muted">{step.unit}</span>
-          </div>
+        <form onSubmit={check} className="flex flex-col gap-4">
+          <NumberInput value={value} onChange={setValue} unit={step.unit} />
           {step.hint &&
             (hint ? (
-              <div className="rounded-2xl bg-sage-50 px-4 py-3 text-[15px] text-sage-700">💡 {step.hint}</div>
+              <div className="rounded-2xl bg-sage-50 px-4 py-3 text-[15px] leading-relaxed text-sage-700">{step.hint}</div>
             ) : (
-              <button type="button" onClick={() => setHint(true)} className="self-start text-sm text-sage-700 underline-offset-4 hover:underline">
+              <button type="button" onClick={() => setHint(true)} className="self-start text-[15px] font-medium text-sage-600 underline-offset-4 hover:underline">
                 Nápověda
               </button>
             ))}
-          <Button size="lg" type="submit" disabled={!value.trim()} kbd="↵">
-            Zkontrolovat
-          </Button>
-          <Button variant="ghost" onClick={() => setRes({ response: { type: "dontKnow" }, outcome: "unknown" })}>
-            Nevím, ukaž postup
-          </Button>
+          <ActionBar>
+            <Button variant="ghost" size="lg" onClick={() => setRes({ response: { type: "dontKnow" }, outcome: "unknown" })}>
+              Nevím, ukaž postup
+            </Button>
+            <Button size="lg" type="submit" className="flex-1 md:flex-none md:min-w-40" disabled={!value.trim()} kbd="↵">
+              Zkontrolovat
+            </Button>
+          </ActionBar>
         </form>
       ) : (
-        <div className="flex flex-col gap-3 animate-rise">
-          <VerdictBadge verdict={res.outcome} />
-          <div className="text-[17px]">
-            Výsledek: <strong className="tabular-nums">{correctLabel}</strong>
-            {res.response.type === "numeric" && <span className="text-muted"> · tvoje odpověď {value}</span>}
-          </div>
-          <ol className="flex flex-col gap-1 rounded-2xl bg-paper px-4 py-3 text-[15px] tabular-nums">
-            {working.map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ol>
-          {res.outcome !== "correct" && <p className="text-sm text-muted">Dál počítáme se správnou hodnotou.</p>}
-          <ContinueButton onClick={() => onDone({ ...res, summary: `${stripQuestion(inst.prompt)} → ${correctLabel}` })} />
+        <div className="flex flex-col gap-4 border-t border-line pt-5 animate-rise">
+          <VerdictBadge verdict={res.outcome}>{res.outcome !== "correct" ? "dál počítáme se správnou hodnotou" : null}</VerdictBadge>
+          <Worked answer={correctLabel} mine={res.response.type === "numeric" ? value : null} steps={working} />
+          <ContinueBar onClick={() => onDone({ ...res, summary: `${stripQuestion(inst.prompt)} → ${correctLabel}` })} />
         </div>
       )}
     </>
@@ -195,15 +182,7 @@ function ChoiceStep({
   seed: number;
   onDone: (d: Done) => void;
 }) {
-  const order = useMemo(() => {
-    const idx = step.options.map((_, i) => i);
-    const r = rng(seed);
-    for (let i = idx.length - 1; i > 0; i--) {
-      const j = Math.floor(r() * (i + 1));
-      [idx[i], idx[j]] = [idx[j], idx[i]];
-    }
-    return idx;
-  }, [step.options, seed]);
+  const order = useShuffled(step.options.length, seed);
   const [selected, setSelected] = useState<number[]>([]);
   const [guessed, setGuessed] = useState(false);
   const [res, setRes] = useState<{ response: CaseStepResponse; outcome: Outcome } | null>(null);
@@ -224,54 +203,28 @@ function ChoiceStep({
 
   return (
     <>
-      <StepPrompt>{inst.prompt}</StepPrompt>
-      {step.multiple && !res && <p className="-mt-2 text-sm text-muted">Může být správně víc možností.</p>}
-      <ul className="flex flex-col gap-2" role={step.multiple ? "group" : "radiogroup"}>
-        {order.map((orig, i) => {
-          const opt = step.options[orig];
-          const isSel = selected.includes(orig);
-          let cls = "border-line-strong bg-card hover:border-sage-500";
-          if (!res && isSel) cls = "border-sage-600 bg-sage-50 ring-1 ring-sage-600";
-          if (res) cls = opt.correct ? "border-sage-600 bg-sage-50" : isSel ? "border-clay-600 bg-clay-50" : "border-line bg-card opacity-70";
-          return (
-            <li key={orig}>
-              <button
-                type="button"
-                role={step.multiple ? "checkbox" : "radio"}
-                aria-checked={isSel}
-                disabled={!!res}
-                onClick={() => toggle(orig)}
-                className={`flex w-full items-start gap-3 rounded-2xl border px-4 py-3 text-left text-[16px] leading-snug transition-colors ${cls}`}
-              >
-                <span className="flex-1">
-                  {opt.text}
-                  {res && opt.why && (isSel || opt.correct) && <span className="mt-1 block text-sm text-muted">{opt.why}</span>}
-                </span>
-                {!res && <Kbd>{i + 1}</Kbd>}
-                {res && opt.correct && <span className="text-sm font-medium text-sage-700">správně</span>}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="flex flex-col gap-2">
+        <StepPrompt>{inst.prompt}</StepPrompt>
+        {step.multiple && !res && <p className="text-[15px] text-muted">Vyber všechny správné.</p>}
+      </div>
+      <OptionList options={step.options} order={order} selected={selected} multiple={step.multiple} revealed={!!res} onToggle={toggle} />
       {!res ? (
-        <div className="flex flex-col gap-2">
-          <label className="flex cursor-pointer items-center gap-2 self-start text-sm text-muted">
-            <input type="checkbox" checked={guessed} onChange={(e) => setGuessed(e.target.checked)} className="h-4 w-4 accent-sage-600" />
-            Tipuji
-          </label>
-          <Button size="lg" onClick={submit} disabled={!selected.length} kbd="↵">
-            Potvrdit
-          </Button>
-          <Button variant="ghost" onClick={() => setRes({ response: { type: "dontKnow" }, outcome: "unknown" })}>
-            Nevím
-          </Button>
-        </div>
+        <>
+          <GuessToggle checked={guessed} onChange={setGuessed} />
+          <ActionBar>
+            <Button variant="ghost" size="lg" onClick={() => setRes({ response: { type: "dontKnow" }, outcome: "unknown" })}>
+              Nevím
+            </Button>
+            <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={submit} disabled={!selected.length} kbd="↵">
+              Potvrdit
+            </Button>
+          </ActionBar>
+        </>
       ) : (
         <div className="flex flex-col gap-3 animate-rise">
           <VerdictBadge verdict={res.outcome} />
-          {step.explanation && <p className="text-[15px]">{step.explanation}</p>}
-          <ContinueButton onClick={() => onDone({ ...res, summary: `${stripQuestion(inst.prompt)} → ${correctText}` })} />
+          {step.explanation && <p className="text-[15.5px] text-muted">{step.explanation}</p>}
+          <ContinueBar onClick={() => onDone({ ...res, summary: `${stripQuestion(inst.prompt)} → ${correctText}` })} />
         </div>
       )}
     </>
@@ -283,11 +236,12 @@ function ChoiceStep({
 function ExplainStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "explain" }>; inst: CaseStepInstance; onDone: (d: Done) => void }) {
   const [phase, setPhase] = useState<"answer" | "check">("answer");
   const [covered, setCovered] = useState<number[]>([]);
+  const toggle = (i: number) => setCovered((c) => (c.includes(i) ? c.filter((x) => x !== i) : [...c, i]));
   useKeys({ Space: () => setPhase("check") }, phase === "answer");
   const finish = (response: CaseStepResponse) =>
     onDone({ response, outcome: evaluateCaseStep(step, inst, response), summary: `${stripQuestion(inst.prompt)} (ústně)` });
   const keys: Record<string, () => void> = { Enter: () => finish({ type: "explain", covered }) };
-  step.keyPoints.forEach((_, i) => (keys[String(i + 1)] = () => setCovered((c) => (c.includes(i) ? c.filter((x) => x !== i) : [...c, i]))));
+  step.keyPoints.forEach((_, i) => (keys[String(i + 1)] = () => toggle(i)));
   useKeys(keys, phase === "check");
 
   return (
@@ -295,48 +249,31 @@ function ExplainStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "
       <StepPrompt>{inst.prompt}</StepPrompt>
       {phase === "answer" ? (
         <>
-          <p className="text-[15px] text-muted">Odpověz nahlas, jako bys mluvila s klientem nebo se zkoušejícím.</p>
-          <Button size="lg" onClick={() => setPhase("check")} kbd="␣" autoFocus>
-            Mám hotovo — porovnat
-          </Button>
-          <Button variant="ghost" onClick={() => setPhase("check")}>
-            Nevím, ukaž vzor
-          </Button>
+          <p className="text-[15.5px] text-muted">Odpověz nahlas, jako bys mluvila s klientem.</p>
+          <ActionBar>
+            <Button variant="ghost" size="lg" onClick={() => setPhase("check")}>
+              Nevím, ukaž vzor
+            </Button>
+            <Button size="lg" className="flex-1 md:flex-none" onClick={() => setPhase("check")} kbd="␣" autoFocus>
+              Mám hotovo — porovnat
+            </Button>
+          </ActionBar>
         </>
       ) : (
-        <div className="flex flex-col gap-4 animate-rise">
-          <div>
-            <p className="mb-2 font-medium">Co z toho jsi zmínila?</p>
-            <ul className="flex flex-col gap-2">
-              {step.keyPoints.map((kp, i) => {
-                const on = covered.includes(i);
-                return (
-                  <li key={i}>
-                    <button
-                      type="button"
-                      role="checkbox"
-                      aria-checked={on}
-                      onClick={() => setCovered((c) => (on ? c.filter((x) => x !== i) : [...c, i]))}
-                      className={`flex w-full items-start gap-3 rounded-2xl border px-4 py-3 text-left text-[15px] leading-snug ${on ? "border-sage-600 bg-sage-50" : "border-line-strong bg-card"}`}
-                    >
-                      <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${on ? "border-sage-600 bg-sage-600 text-white" : "border-line-strong"}`} aria-hidden>
-                        {on && <span className="text-[11px]">✓</span>}
-                      </span>
-                      <span className="flex-1">{kp}</span>
-                      <Kbd>{i + 1}</Kbd>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <details className="rounded-2xl bg-paper px-4 py-3 text-[15px]">
-            <summary className="cursor-pointer font-medium text-muted">Vzorová odpověď</summary>
-            <p className="mt-2 leading-relaxed">{step.modelAnswer}</p>
+        <div className="flex flex-col gap-5 animate-rise">
+          <KeyPointChecklist keyPoints={step.keyPoints} covered={covered} onToggle={toggle} />
+          <details className="group">
+            <summary className="cursor-pointer list-none font-medium text-sage-600">
+              <span className="group-open:hidden">Ukázat vzorovou odpověď</span>
+              <span className="hidden group-open:inline">Vzorová odpověď</span>
+            </summary>
+            <Reading className="mt-2">{step.modelAnswer}</Reading>
           </details>
-          <Button size="lg" onClick={() => finish({ type: "explain", covered })} kbd="↵">
-            Pokračovat
-          </Button>
+          <ActionBar>
+            <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={() => finish({ type: "explain", covered })} kbd="↵">
+              Pokračovat
+            </Button>
+          </ActionBar>
         </div>
       )}
     </>
@@ -357,23 +294,26 @@ function RevealStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "r
     <>
       <StepPrompt>{inst.prompt}</StepPrompt>
       {!shown ? (
-        <Button size="lg" onClick={() => setShown(true)} kbd="␣" autoFocus>
-          Ukázat odpověď
-        </Button>
+        <ActionBar>
+          <Button size="lg" className="flex-1 md:flex-none md:min-w-48" onClick={() => setShown(true)} kbd="␣" autoFocus>
+            Ukázat odpověď
+          </Button>
+        </ActionBar>
       ) : (
-        <div className="flex flex-col gap-3 animate-rise">
-          <div className="rounded-2xl border border-sage-100 bg-sage-50/60 px-4 py-3 text-[17px] leading-relaxed">{step.answer}</div>
-          <div className="grid grid-cols-3 gap-2">
-            <Button variant="secondary" className="!px-2 text-clay-600" onClick={() => grade("again")} kbd="1">
+        <div className="flex flex-col gap-4 animate-rise">
+          <Reading className="rounded-2xl bg-sage-50 px-5 py-4 text-ink">{step.answer}</Reading>
+          <p className="-mb-3 font-medium text-muted md:mb-0 md:text-right">Jak to šlo?</p>
+          <ActionBar className="md:!mt-0">
+            <Button variant="secondary" className="flex-1 !px-2 text-clay-600 md:flex-none md:!px-5" onClick={() => grade("again")} kbd="1">
               Nevěděla
             </Button>
-            <Button variant="secondary" className="!px-2 text-amber-600" onClick={() => grade("hard")} kbd="2">
+            <Button variant="secondary" className="flex-1 !px-2 text-amber-700 md:flex-none md:!px-5" onClick={() => grade("hard")} kbd="2">
               S námahou
             </Button>
-            <Button variant="secondary" className="!px-2 text-sage-700" onClick={() => grade("good")} kbd="3">
+            <Button variant="secondary" className="flex-1 !px-2 text-sage-600 md:flex-none md:!px-5" onClick={() => grade("good")} kbd="3">
               Věděla
             </Button>
-          </div>
+          </ActionBar>
         </div>
       )}
     </>
@@ -385,4 +325,3 @@ function stripQuestion(prompt: string): string {
   const first = prompt.split(/(?<=[.?!])\s/).filter((s) => s.trim()).pop() ?? prompt;
   return first.replace(/[?:]\s*$/, "").slice(0, 90);
 }
-

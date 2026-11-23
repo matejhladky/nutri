@@ -8,7 +8,7 @@ import { dailyPlan, nextCard, pickExercise, type NextCard, type SessionItem } fr
 import { topicsById, withoutReported } from "@/lib/content";
 import type { PointWithTopic } from "@/content/schema";
 import { plural } from "@/lib/format";
-import { Button, Spinner } from "../ui";
+import { Button, Icon, Spinner } from "../ui";
 import { ExerciseCard, type AnswerRecord } from "./ExerciseCard";
 import { IntroCard } from "./IntroCard";
 import { ReportedContext } from "./shared";
@@ -128,28 +128,34 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const progress = mode.kind === "daily" && total > 0 ? Math.min(1, todayCards / total) : null;
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5">
-      <header className="sticky top-0 z-10 -mx-5 flex items-center gap-4 bg-paper/90 px-5 py-3 backdrop-blur">
-        <Link href={exitHref} className="-ml-2 rounded-full p-2 text-muted hover:bg-black/[0.04] hover:text-ink" aria-label="Ukončit studium">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
-            <path d="M6 6l12 12M18 6 6 18" />
-          </svg>
-        </Link>
-        <div className="flex-1">
-          {progress !== null ? (
-            <div className="h-1.5 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)} aria-label="Dnešní plán">
-              <div className="h-full rounded-full bg-sage-500 transition-[width] duration-500" style={{ width: `${progress * 100}%` }} />
-            </div>
-          ) : (
-            <div className="truncate text-sm font-medium text-muted">{mode.kind === "topic" ? topicsById.get(mode.topicId)?.title : ""}</div>
-          )}
-        </div>
-        <div className="text-xs tabular-nums text-faint" title="Odpovědí dnes">
-          {todayCards}
+    <div className="flex min-h-dvh flex-col">
+      <header className="sticky top-0 z-20 bg-paper/95 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center gap-4 px-3 py-2.5 md:px-6 md:py-4">
+          <Link
+            href={exitHref}
+            className="flex min-h-10 items-center gap-1.5 rounded-xl px-2.5 text-[15px] text-muted hover:bg-ink/[0.04] hover:text-ink"
+            aria-label="Ukončit studium"
+          >
+            <Icon name="close" />
+            <span className="hidden md:inline">Ukončit</span>
+          </Link>
+          <div className="mx-auto w-full max-w-[680px] flex-1">
+            {progress !== null ? (
+              <div className="h-1 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)} aria-label="Dnešní plán">
+                <div className="h-full rounded-full bg-sage-600 transition-[width] duration-500" style={{ width: `${progress * 100}%` }} />
+              </div>
+            ) : (
+              <div className="truncate text-center text-[15px] font-medium text-muted">{mode.kind === "topic" ? topicsById.get(mode.topicId)?.title : ""}</div>
+            )}
+          </div>
+          <div className="min-w-10 px-2 text-right text-[13px] tabular-nums text-faint md:min-w-24" title="Odpovědí dnes">
+            {todayCards}
+            <span className="hidden md:inline"> {plural(todayCards, "odpověď", "odpovědi", "odpovědí", false)}</span>
+          </div>
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col justify-center py-6">
+      <main className="mx-auto flex w-full max-w-[720px] flex-1 flex-col px-5 pt-6 pb-32 md:px-5 md:pt-12 md:pb-20">
         {done ? (
           <DoneView
             done={done}
@@ -215,36 +221,32 @@ function DoneView({
   const nextClock = done.nextAt
     ? new Date(done.nextAt).toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Prague" })
     : null;
+  const title =
+    reason === "wait" ? "Pro tuhle chvíli hotovo" : topicDone ? "Téma je pro teď procvičené" : reason === "goal-reached" ? "Dnešní plán je splněný" : "Pro dnešek je hotovo";
+  const text =
+    reason === "wait" && nextClock
+      ? `Další krátké opakování bude připravené kolem ${nextClock}.`
+      : topicDone
+        ? "Další opakování přijdou v následujících dnech."
+        : "Opakování s odstupem funguje líp než dlouhé biflování.";
   return (
-    <div className="flex flex-col items-center gap-5 text-center animate-rise">
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-50 text-2xl text-sage-600" aria-hidden>
-        ✓
-      </div>
-      <div>
-        <h2 className="text-xl font-semibold">
-          {reason === "wait"
-            ? "Pro tuhle chvíli hotovo"
-            : topicDone
-              ? "Téma je pro teď procvičené"
-              : reason === "goal-reached"
-                ? "Dnešní plán je splněný"
-                : "Pro dnešek je hotovo"}
-        </h2>
-        <p className="mt-2 text-muted">
+    <div className="flex flex-1 flex-col items-start justify-center gap-6 py-10 animate-rise md:items-center md:text-center">
+      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sage-600 text-white" aria-hidden>
+        <Icon name="check" size={22} />
+      </span>
+      <div className="flex flex-col gap-2">
+        <h2 className="font-serif text-[26px] font-medium leading-tight md:text-[30px]">{title}</h2>
+        <p className="text-muted">
           {todayCards > 0 && <>Dnes {plural(todayCards, "odpověď", "odpovědi", "odpovědí")}. </>}
-          {reason === "wait" && nextClock
-            ? `Další krátké opakování bude připravené kolem ${nextClock} — s odstupem funguje líp než hned po sobě.`
-            : topicDone
-            ? "Ostatní opakování naplánuji na další dny."
-            : "Teď je nejlepší dát mozku pauzu — opakování s odstupem funguje líp než dlouhé biflování."}
+          {text}
         </p>
       </div>
-      <div className="flex w-full max-w-xs flex-col gap-2">
-        <Link href={exitHref} className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-sage-600 px-5 font-medium text-white hover:bg-sage-700">
+      <div className="flex w-full max-w-sm flex-col gap-2">
+        <Link href={exitHref} className="inline-flex min-h-[52px] items-center justify-center rounded-[14px] bg-sage-600 px-5 font-semibold text-white hover:bg-sage-700">
           {topicDone ? "Zpět na téma" : "Zpět na přehled"}
         </Link>
         {canContinue && reason === "goal-reached" && (
-          <Button variant="secondary" onClick={onContinue}>
+          <Button variant="ghost" size="lg" onClick={onContinue}>
             {sweepOnly ? "Procvičit nejslabší místa" : "Přidat ještě pár nových"}
           </Button>
         )}

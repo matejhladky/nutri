@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { useStudy } from "@/client/store";
 import { pointStatus } from "@/engine/state";
-import { criterionInfo, pagesLabel, topicsById } from "@/lib/content";
-import { Panel } from "@/components/ui";
+import { pagesLabel, topicsById } from "@/lib/content";
+import { Icon } from "@/components/ui";
 import { StatusDot, statusMeta } from "@/components/StatusDot";
+import { NoteBox, Reading } from "@/components/study/shared";
 
 export default function TopicPage() {
   const { id } = useParams<{ id: string }>();
@@ -13,80 +14,54 @@ export default function TopicPage() {
   const topic = topicsById.get(id);
   if (!topic) notFound();
   const ps = points.filter((p) => p.topicId === id);
-  const criteria = [...new Set(ps.flatMap((p) => p.criteria))].sort((a, b) => a.localeCompare(b, "cs", { numeric: true }));
 
   return (
-    <div className="flex flex-col gap-5 animate-rise">
-      <Link href="/temata" className="self-start text-sm text-muted hover:text-ink">
-        ← Témata
+    <div className="flex flex-col gap-7 animate-rise lg:max-w-3xl">
+      <Link href="/temata" className="-ml-1 flex items-center gap-1 self-start text-[15px] text-muted hover:text-ink">
+        <Icon name="back" size={18} />
+        Témata
       </Link>
-      <header>
-        <div className="text-sm text-faint">
-          {topic.chapter ? `Kapitola ${topic.chapter} · ` : ""}skripta s. {topic.pages[0]}–{topic.pages[1]}
-        </div>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight">{topic.title}</h1>
-        <p className="mt-2 text-muted">{topic.summary}</p>
+      <header className="flex flex-col gap-2">
+        <h1 className="text-[28px] font-semibold leading-tight tracking-tight lg:text-[34px]">{topic.title}</h1>
+        <p className="text-[14px] text-faint">
+          {topic.chapter ? `Kapitola ${topic.chapter}, ` : ""}skripta s. {topic.pages[0]}–{topic.pages[1]}
+        </p>
+        <p className="mt-1 max-w-2xl text-muted">{topic.summary}</p>
       </header>
 
       <Link
         href={`/studium?tema=${topic.id}`}
-        className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-sage-600 px-5 font-medium text-white shadow-sm hover:bg-sage-700"
+        className="inline-flex min-h-[52px] items-center justify-center rounded-[14px] bg-sage-600 px-7 font-semibold text-white hover:bg-sage-700 sm:self-start"
       >
         Procvičit toto téma
       </Link>
 
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-faint">Poznatky</h2>
-        <ul className="flex flex-col gap-2">
-          {ps.map((p) => {
-            const st = pointStatus(states.get(p.id), p);
-            return (
-              <li key={p.id}>
-                <Panel className="p-0">
-                  <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3">
-                      <StatusDot status={st} />
-                      <span className="flex-1 font-medium leading-snug">{p.title}</span>
-                      {p.tier === "C" && <span className="text-xs text-faint">doplňkové</span>}
-                      <span className="text-faint transition-transform group-open:rotate-90" aria-hidden>
-                        ›
-                      </span>
-                    </summary>
-                    <div className="flex flex-col gap-3 border-t border-line px-4 py-3 text-[15px] leading-relaxed">
-                      <p>{p.explanation}</p>
-                      {p.note && (
-                        <p className="rounded-xl bg-amber-50 px-3 py-2 text-sm">
-                          <span className="font-semibold text-amber-600">Pozn.: </span>
-                          {p.note}
-                        </p>
-                      )}
-                      <div className="flex flex-wrap justify-between gap-2 text-xs text-faint">
-                        <span>Skripta {pagesLabel(p.source.pages)}</span>
-                        <span>{statusMeta[st].label}</span>
-                      </div>
-                    </div>
-                  </details>
-                </Panel>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-faint">Kritéria zkoušky</h2>
-        <ul className="flex flex-col gap-1.5 text-sm text-muted">
-          {criteria.map((c) => {
-            const info = criterionInfo(c);
-            return (
-              <li key={c}>
-                <span className="mr-2 font-medium text-ink tabular-nums">{c}</span>
-                {info?.criterion.label}
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <ul className="border-t border-line">
+        {ps.map((p) => {
+          const st = pointStatus(states.get(p.id), p);
+          return (
+            <li key={p.id} className="border-b border-line">
+              <details className="group">
+                <summary className="flex cursor-pointer list-none items-center gap-3.5 py-3.5 hover:text-sage-700">
+                  <StatusDot status={st} />
+                  <span className="flex-1 text-[16.5px] leading-snug">{p.title}</span>
+                  {p.tier === "C" && <span className="text-[13px] text-faint">doplňkové</span>}
+                  <span className="text-faint transition-transform group-open:rotate-90">
+                    <Icon name="chevron" size={16} />
+                  </span>
+                </summary>
+                <div className="flex flex-col gap-4 pb-5 pl-6">
+                  <Reading className="!text-[16.5px]">{p.explanation}</Reading>
+                  <NoteBox point={p} />
+                  <p className="text-[13.5px] text-faint">
+                    Skripta {pagesLabel(p.source.pages)}, {statusMeta[st].label.toLowerCase()}
+                  </p>
+                </div>
+              </details>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

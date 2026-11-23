@@ -1,34 +1,41 @@
 @import "tailwindcss";
 
-/* Warm, restrained palette. Sage = primary/success, amber = partial, clay = incorrect. */
+/*
+ * Warm paper, herb green. Sage = primary / correct, amber (honey) = partial / "skripta se liší",
+ * clay (beetroot) = incorrect. Feedback colours also differ in lightness, not hue alone.
+ */
 @theme {
-  --color-paper: #faf7f2;
+  --color-paper: #f7f5f0;
   --color-card: #ffffff;
-  --color-ink: #2a2622;
-  --color-muted: #6e665c;
-  --color-faint: #9a9187;
-  --color-line: #e9e2d7;
-  --color-line-strong: #d8cfc1;
+  --color-cream: #f3f1ea;
+  --color-ink: #1e2420;
+  --color-muted: #4f574f;
+  --color-faint: #6b716a;
+  --color-line: #e6e2d8;
+  --color-line-strong: #d3cdc0;
 
-  --color-sage-50: #eef4ef;
-  --color-sage-100: #dce9df;
-  --color-sage-500: #4f7c5f;
-  --color-sage-600: #3f6a4f;
-  --color-sage-700: #335841;
+  --color-sage-50: #edf3ee;
+  --color-sage-100: #dce8de;
+  --color-sage-200: #b9cbbe;
+  --color-sage-500: #4b7a60;
+  --color-sage-600: #2f5d46;
+  --color-sage-700: #1f3f30;
 
-  --color-amber-50: #fbf3e3;
-  --color-amber-600: #a86e16;
+  --color-amber-50: #f6eedc;
+  --color-amber-600: #a06c16;
+  --color-amber-700: #6e4c12;
 
-  --color-clay-50: #f9ebe7;
-  --color-clay-600: #a5483d;
+  --color-clay-50: #f8eeef;
+  --color-clay-600: #9b3b4a;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-literata), Georgia, serif;
 
-  --animate-rise: rise 220ms ease-out;
+  --animate-rise: rise 200ms ease-out;
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(4px);
     }
     to {
       opacity: 1;
@@ -50,6 +57,10 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-sage-500);
   outline-offset: 2px;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

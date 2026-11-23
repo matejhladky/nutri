@@ -55,7 +55,7 @@ async function answerCard(page: Page): Promise<string | null> {
   }
   if (await btn("Rozumím").isVisible()) {
     // Go straight to the question: after "Rozumím" the first retrieval is (by design) ≥ 2 minutes away.
-    await btn("Tohle už znám — rovnou se zeptej").click();
+    await btn("Už to znám").click();
     return "intro";
   }
   if (await btn("Ukázat odpověď").isVisible()) {
@@ -127,7 +127,7 @@ test("library and progress pages render", async ({ page }) => {
   await page.getByRole("link", { name: /Energetická bilance/ }).click();
   await expect(page.getByRole("link", { name: "Procvičit toto téma" })).toBeVisible();
   await page.getByRole("link", { name: "Pokrok" }).click();
-  await expect(page.getByText("Podle kompetencí zkoušky")).toBeVisible();
+  await expect(page.getByText("Písemná zkouška")).toBeVisible();
 });
 
 test("answers given offline are kept and sent when the connection returns", async ({ page, context }) => {
@@ -157,7 +157,7 @@ test("answers given offline are kept and sent when the connection returns", asyn
 test("a model client case is worked through step by step and recorded as one answer", async ({ page }) => {
   await login(page);
   await page.goto("/studium?tema=pripady");
-  const skip = page.getByRole("button", { name: "Tohle už znám — rovnou se zeptej" });
+  const skip = page.getByRole("button", { name: "Už to znám" });
   await expect(skip.or(page.getByText(/^Krok 1 z \d+$/))).toBeVisible();
   if (await skip.isVisible()) await skip.click();
   await expect(page.getByText("Modelový případ", { exact: false }).first()).toBeVisible();
@@ -190,7 +190,7 @@ test("reloading after answering shows the recorded result and never records a se
   await page.goto("/studium?tema=sacharidy");
   // Get to a multiple-choice question (skip intros straight to the question).
   for (let i = 0; i < 8 && !(await btn("Potvrdit").isVisible()); i++) {
-    const skip = btn("Tohle už znám — rovnou se zeptej");
+    const skip = btn("Už to znám");
     await expect(skip.or(btn("Potvrdit")).or(btn("Ukázat odpověď")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat"))).toBeVisible();
     if (await skip.isVisible()) await skip.click();
     else if (!(await btn("Potvrdit").isVisible())) await answerCard(page);
@@ -217,7 +217,7 @@ test("reloading in the middle of a client case resumes at the same step and reco
   const btn = (name: string) => page.getByRole("button", { name, exact: true });
   await login(page);
   await page.goto("/studium?tema=pripady");
-  const skip = btn("Tohle už znám — rovnou se zeptej");
+  const skip = btn("Už to znám");
   await expect(skip.or(page.getByText(/^Krok \d+ z \d+$/))).toBeVisible();
   if (await skip.isVisible()) await skip.click();
   await expect(page.getByText(/^Krok 1 z \d+$/)).toBeVisible();
@@ -287,7 +287,7 @@ test("reporting the current question moves the session on, records nothing and h
   await login(page);
   await page.goto("/studium?tema=sacharidy");
   for (let i = 0; i < 8 && !(await btn("Potvrdit").isVisible()); i++) {
-    const skip = btn("Tohle už znám — rovnou se zeptej");
+    const skip = btn("Už to znám");
     await expect(skip.or(btn("Potvrdit")).or(btn("Ukázat odpověď")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat"))).toBeVisible();
     if (await skip.isVisible()) await skip.click();
     else if (!(await btn("Potvrdit").isVisible())) await answerCard(page);
@@ -304,7 +304,7 @@ test("reporting the current question moves the session on, records nothing and h
   page.on("request", (r) => {
     if (r.method() === "POST" && r.url().endsWith("/api/reports")) reportPosts++;
   });
-  await page.getByRole("button", { name: "Nahlásit problém s otázkou" }).click();
+  await page.getByRole("button", { name: "Nahlásit chybu" }).click();
   await btn("Odeslat a skrýt otázku").click();
 
   // The session moves on: another card or a done screen — never a stuck spinner.

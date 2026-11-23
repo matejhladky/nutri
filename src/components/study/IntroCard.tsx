@@ -1,10 +1,10 @@
 "use client";
 import type { PointWithTopic } from "@/content/schema";
 import { topicsById } from "@/lib/content";
-import { Button, Eyebrow } from "../ui";
-import { NoteBox, SourceLine, useKeys } from "./shared";
+import { ActionBar, Button, CardMeta } from "../ui";
+import { NoteBox, Reading, SourceLine, useKeys } from "./shared";
 
-/** Výklad — shown before the first retrieval of a new point. */
+/** Výklad — shown before the first retrieval of a new concept, procedure or case. */
 export function IntroCard({
   point,
   onDone,
@@ -14,23 +14,22 @@ export function IntroCard({
 }) {
   useKeys({ Enter: () => onDone(false) });
   return (
-    <div className="flex flex-col gap-5 animate-rise">
-      <div>
-        <Eyebrow>Nové · {topicsById.get(point.topicId)?.title}</Eyebrow>
-        <h2 className="mt-2 text-xl font-semibold leading-snug">{point.title}</h2>
-      </div>
-      <p className="text-[17px] leading-relaxed">{point.explanation}</p>
+    <div className="flex flex-col gap-6 animate-rise">
+      <CardMeta badge="Nové">{topicsById.get(point.topicId)?.title}</CardMeta>
+      <h2 className="text-[24px] font-semibold leading-tight tracking-tight md:text-[28px]">{point.title}</h2>
+      <Reading className="!text-[18px] !leading-[1.7]">{point.explanation}</Reading>
       <NoteBox point={point} />
-      <SourceLine point={point} />
-      <div className="mt-2 flex flex-col gap-2">
-        <Button size="lg" onClick={() => onDone(false)} kbd="↵" autoFocus>
+      <p className="text-[13.5px] text-faint">
+        <SourceLine point={point} />
+      </p>
+      <ActionBar>
+        <Button variant="ghost" size="lg" className="md:!px-5" onClick={() => onDone(true)}>
+          Už to znám
+        </Button>
+        <Button size="lg" className="flex-1 md:flex-none md:min-w-40" onClick={() => onDone(false)} kbd="↵" autoFocus>
           Rozumím
         </Button>
-        <Button variant="ghost" onClick={() => onDone(true)}>
-          Tohle už znám — rovnou se zeptej
-        </Button>
-      </div>
-      <p className="text-center text-xs text-faint">Za chvíli se tě na to zeptám.</p>
+      </ActionBar>
     </div>
   );
 }

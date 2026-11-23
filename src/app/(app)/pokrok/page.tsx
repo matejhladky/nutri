@@ -1,16 +1,15 @@
 "use client";
 import Link from "next/link";
 import { useStudy } from "@/client/store";
-import { pointStatus, type PointStatus } from "@/engine/state";
+import { pointStatus } from "@/engine/state";
 import { content, topicsById } from "@/lib/content";
-import { Panel } from "@/components/ui";
-import { plural } from "@/lib/format";
-import { emptyCounts, StatusBar, StatusDot, statusMeta } from "@/components/StatusDot";
+import { emptyCounts, STATUS_ORDER, StatusBar, StatusDot, statusMeta } from "@/components/StatusDot";
 
-const METHOD_LABEL = { P: "písemně", U: "ústně", PR: "prakticky" } as const;
+/** Competencies 1–4 are tested in writing, 5–11 orally and practically. */
+const WRITTEN = new Set(["1", "2", "3", "4"]);
 
 export default function ProgressPage() {
-  const { points, states, todayCards } = useStudy();
+  const { points, states } = useStudy();
   const core = points.filter((p) => p.tier !== "C");
 
   const total = emptyCounts();
@@ -22,72 +21,65 @@ export default function ProgressPage() {
     const ps = core.filter((p) => ids.has(p.criteria[0]));
     const counts = emptyCounts();
     for (const p of ps) counts[pointStatus(states.get(p.id), p)]++;
-    const methods = [...new Set(comp.criteria.flatMap((c) => c.method))];
-    return { comp, ps, counts, methods };
+    return { comp, ps, counts };
   });
-
-  const weak = core.filter((p) => pointStatus(states.get(p.id), p) === "weak").slice(0, 10);
+  const groups = [
+    { title: "Písemná zkouška", rows: rows.filter((r) => WRITTEN.has(r.comp.id)) },
+    { title: "Ústní a praktická zkouška", rows: rows.filter((r) => !WRITTEN.has(r.comp.id)) },
+  ];
+  const weak = core.filter((p) => pointStatus(states.get(p.id), p) === "weak").slice(0, 5);
 
   return (
-    <div className="flex flex-col gap-6 animate-rise">
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight">Pokrok</h1>
-        <p className="mt-1 text-muted">Kolik látky už máš za sebou a co si zaslouží pozornost.</p>
-      </header>
+    <div className="flex flex-col gap-10 animate-rise">
+      <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Pokrok</h1>
 
-      <Panel className="flex flex-col gap-4 p-5">
+      <section className="flex max-w-3xl flex-col gap-4">
         <StatusBar counts={total} />
-        <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-          {(["solid", "learning", "weak", "new"] as PointStatus[]).map((s) => (
+        <ul className="flex flex-wrap gap-x-7 gap-y-2 text-[15px]">
+          {STATUS_ORDER.map((s) => (
             <li key={s} className="flex items-center gap-2">
               <StatusDot status={s} />
               <span className="text-muted">{statusMeta[s].label}</span>
-              <span className="ml-auto font-medium tabular-nums">{total[s]}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="text-xs text-faint">
-          „Upevněno“ = naposledy vybaveno bez nápovědy a bez tipování, aspoň den po prvním setkání (a u poznatků, které
-          mají otázku na vlastní vybavení, aspoň jednou právě takovou odpovědí). Dnes {plural(todayCards, "odpověď", "odpovědi", "odpovědí")}.
-        </p>
-      </Panel>
-
-      {weak.length > 0 && (
-        <section>
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-faint">Potřebuje opakovat</h2>
-          <Panel className="divide-y divide-line">
-            {weak.map((p) => (
-              <Link key={p.id} href={`/temata/${p.topicId}`} className="flex items-center gap-3 px-4 py-3 hover:bg-paper">
-                <StatusDot status="weak" />
-                <span className="flex-1 leading-snug">{p.title}</span>
-                <span className="text-xs text-faint">{topicsById.get(p.topicId)?.title}</span>
-              </Link>
-            ))}
-          </Panel>
-          <p className="mt-2 text-xs text-faint">Tyhle poznatky ti plán sám zařadí znovu — nemusíš nic dělat.</p>
-        </section>
-      )}
-
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-faint">Podle kompetencí zkoušky</h2>
-        <ul className="flex flex-col gap-2">
-          {rows.map(({ comp, ps, counts, methods }) => (
-            <li key={comp.id}>
-              <Panel className="flex flex-col gap-2.5 p-4">
-                <div className="flex items-baseline justify-between gap-3">
-                  <div className="leading-snug">
-                    <span className="mr-2 text-faint tabular-nums">{comp.id}.</span>
-                    <span className="font-medium">{comp.title}</span>
-                  </div>
-                  <span className="shrink-0 text-sm tabular-nums text-muted">{ps.length ? `${ps.length - counts.new}/${ps.length}` : "—"}</span>
-                </div>
-                {ps.length ? <StatusBar counts={counts} /> : <p className="text-xs text-faint">Otázky k této kompetenci se připravují.</p>}
-                <div className="text-xs text-faint">Ověřuje se {methods.map((m) => METHOD_LABEL[m]).join(", ")}</div>
-              </Panel>
+              <span className="font-semibold tabular-nums">{total[s]}</span>
             </li>
           ))}
         </ul>
       </section>
+
+      {weak.length > 0 && (
+        <section className="max-w-3xl">
+          <h2 className="mb-1 text-[15px] font-semibold text-muted">Potřebuje opakovat</h2>
+          <ul>
+            {weak.map((p) => (
+              <li key={p.id}>
+                <Link href={`/temata/${p.topicId}`} className="flex items-baseline gap-4 border-b border-line py-3 hover:text-sage-700">
+                  <span className="flex-1 text-[16px] leading-snug">{p.title}</span>
+                  <span className="hidden shrink-0 text-[13.5px] text-faint sm:inline">{topicsById.get(p.topicId)?.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <div className="grid gap-10 lg:grid-cols-2 lg:gap-x-14">
+        {groups.map((g) => (
+          <section key={g.title}>
+            <h2 className="mb-1 text-[15px] font-semibold text-muted">{g.title}</h2>
+            <ul>
+              {g.rows.map(({ comp, ps, counts }) => (
+                <li key={comp.id} className="flex flex-col gap-2 border-b border-line py-3.5">
+                  <span className="flex items-baseline justify-between gap-4">
+                    <span className="text-[16px] leading-snug">{comp.title}</span>
+                    <span className="shrink-0 text-[14px] tabular-nums text-faint">{ps.length ? `${ps.length - counts.new}/${ps.length}` : "—"}</span>
+                  </span>
+                  <StatusBar counts={counts} thin />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

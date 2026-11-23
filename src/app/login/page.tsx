@@ -34,8 +34,8 @@ export default function LoginPage() {
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-5">
-      <div className="mb-8 text-center">
-        <div className="text-3xl font-semibold tracking-tight text-sage-700">Nutri</div>
+      <div className="mb-8">
+        <div className="font-serif text-[34px] font-semibold text-sage-700">Nutri</div>
         <p className="mt-1 text-muted">Příprava na zkoušku výživové poradkyně</p>
       </div>
       <Panel className="p-6">
@@ -48,7 +48,7 @@ export default function LoginPage() {
               autoFocus
               value={passphrase}
               onChange={(e) => setPassphrase(e.target.value)}
-              className="min-h-12 rounded-xl border border-line-strong bg-paper px-4 text-base outline-none focus:border-sage-500"
+              className="min-h-12 rounded-[14px] border border-line-strong bg-paper px-4 text-base outline-none focus:border-sage-600"
             />
           </label>
           {error && (
@@ -59,7 +59,6 @@ export default function LoginPage() {
           <Button type="submit" disabled={busy || !passphrase}>
             {busy ? "Přihlašuji…" : "Vstoupit"}
           </Button>
-          <p className="text-center text-xs text-faint">Na tomto zařízení zůstaneš přihlášená 90 dní.</p>
         </form>
       </Panel>
     </main>

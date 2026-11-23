@@ -310,8 +310,12 @@ test("reporting the current question moves the session on, records nothing and h
   // The session moves on: another card or a done screen — never a stuck spinner.
   await expect(page.getByRole("status")).toHaveCount(0, { timeout: 5_000 });
   await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
-  const after = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
-  expect(after?.pointId === cur.pointId && after?.exerciseId === cur.exerciseId).toBe(false);
+  await expect
+    .poll(async () => {
+      const after = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
+      return after?.pointId === cur.pointId && after?.exerciseId === cur.exerciseId;
+    })
+    .toBe(false);
 
   // The report was sent exactly once and is stored; the answer count did not change.
   await expect
@@ -325,4 +329,60 @@ test("reporting the current question moves the session on, records nothing and h
   await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
   const reloaded = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
   expect(reloaded?.pointId === cur.pointId && reloaded?.exerciseId === cur.exerciseId).toBe(false);
+});
+
+test("a report that fails to send keeps the card on screen, says so, and can be retried", async ({ page }) => {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  await login(page);
+  await page.goto("/studium?tema=tuky");
+  for (let i = 0; i < 8 && !(await btn("Potvrdit").isVisible()); i++) {
+    const skip = btn("Už to znám");
+    await expect(skip.or(btn("Potvrdit")).or(btn("Ukázat odpověď")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat"))).toBeVisible();
+    if (await skip.isVisible()) await skip.click();
+    else if (!(await btn("Potvrdit").isVisible())) await answerCard(page);
+  }
+  await expect(btn("Potvrdit")).toBeVisible();
+  const cur = (await sessionNow(page)).current!.next as { pointId: string; exerciseId: string };
+  await page.locator('[role="radio"],[role="checkbox"]').first().click();
+  await btn("Potvrdit").click();
+  await expect(btn("Další")).toBeVisible();
+
+  let fail = true;
+  await page.route("**/api/reports", (route) => (fail ? route.fulfill({ status: 500, body: "{}" }) : route.continue()));
+  await btn("Nahlásit chybu").click();
+  await btn("Odeslat a skrýt otázku").click();
+  await expect(page.getByText("Hlášení se neodeslalo")).toBeVisible();
+  // Still the same card; nothing hidden.
+  await expect(btn("Další")).toBeVisible();
+  expect((await sessionNow(page)).current?.next).toMatchObject({ pointId: cur.pointId, exerciseId: cur.exerciseId });
+
+  fail = false;
+  await btn("Odeslat a skrýt otázku").click();
+  await expect.poll(async () => {
+    const n = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
+    return n?.pointId === cur.pointId && n?.exerciseId === cur.exerciseId;
+  }).toBe(false);
+});
+
+test("today's answer count comes from the server, so another device sees it", async ({ page, browser }) => {
+  await login(page);
+  const count = async (p: Page) => {
+    const d = (await (await p.request.get("/api/state")).json()) as { todayAnswers: number };
+    return d.todayAnswers;
+  };
+  const before = await count(page);
+  await startButton(page).click();
+  let answered = 0;
+  for (let i = 0; i < 6 && answered < 2; i++) {
+    const r = await answerCard(page);
+    if (!r) break;
+    if (r !== "intro") answered++;
+  }
+  await expect.poll(() => count(page)).toBe(before + answered);
+  // A fresh browser context (another device) shows the same count on Dnes.
+  const other = await browser.newPage();
+  await login(other);
+  await expect(other.getByText(new RegExp(`Probráno`))).toBeVisible();
+  expect(await count(other)).toBe(before + answered);
+  await other.close();
 });

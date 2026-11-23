@@ -88,6 +88,7 @@ export function ReportLink({ pointId, exerciseId }: { pointId: string; exerciseI
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const sending = useRef(false);
 
   if (state === "sent") return <span>Díky, otázka je skrytá.</span>;
   if (!open)
@@ -115,26 +116,32 @@ export function ReportLink({ pointId, exerciseId }: { pointId: string; exerciseI
           variant="secondary"
           disabled={state === "sending"}
           onClick={async () => {
-            if (state === "sending") return;
+            if (sending.current) return;
+            sending.current = true;
             setState("sending");
-            // The report hides the item at once (optimistic); in a study session, move on in the same update.
-            const sent = report({ pointId, exerciseId, message });
-            onReported?.({ pointId, exerciseId });
             try {
-              await sent;
+              await report({ pointId, exerciseId, message });
+              // Stored on the server: hide it and, in a study session, move on (same update as the hide).
               setState("sent");
+              onReported?.({ pointId, exerciseId });
             } catch {
               setState("error");
+            } finally {
+              sending.current = false;
             }
           }}
         >
-          Odeslat a skrýt otázku
+          {state === "sending" ? "Odesílám…" : "Odeslat a skrýt otázku"}
         </Button>
         <Button size="sm" variant="ghost" onClick={() => setOpen(false)}>
           Zrušit
         </Button>
       </div>
-      {state === "error" && <p className="text-xs text-clay-600">Nepodařilo se odeslat. Zkus to znovu.</p>}
+      {state === "error" && (
+        <p className="text-sm text-clay-600" role="alert">
+          Hlášení se neodeslalo, otázka zůstává. Zkus to znovu.
+        </p>
+      )}
     </div>
   );
 }

@@ -134,3 +134,18 @@ describe("observed timing", () => {
     expect(t.successRate).toBeGreaterThan(0.5);
   });
 });
+
+describe("today's answers", () => {
+  it("counts answers of the current study day (04:00 Prague) from the event log, intros excluded", async () => {
+    const now = new Date("2026-11-26T10:00:00Z"); // 11:00 Prague
+    const ev = (id: string, at: string, kind: "answer" | "intro" = "answer"): StudyEvent =>
+      kind === "intro" ? { id, pointId: "p.today", at, kind } : { ...answer("p.today", 1), id, at };
+    await store.addEvents([
+      ev("today-answer-1", "2026-11-26T03:30:00Z"), // 04:30 Prague — today
+      ev("today-answer-2", "2026-11-26T09:00:00Z"),
+      ev("today-intro-01", "2026-11-26T09:10:00Z", "intro"),
+      ev("yesterday-late", "2026-11-26T02:30:00Z"), // 03:30 Prague — still yesterday's study day
+    ]);
+    expect(await store.getTodayAnswers(now)).toBe(2);
+  });
+});

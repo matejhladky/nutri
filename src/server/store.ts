@@ -6,6 +6,7 @@ import { z } from "zod";
 import { getDb, type Db } from "./db";
 import { getScheduler, type Scheduler } from "@/engine/scheduler";
 import { replay, STATE_VERSION } from "@/engine/state";
+import { dayKey } from "@/engine/time";
 import type { PointState, StudyEvent } from "@/engine/types";
 import type { Timing } from "@/engine/planner";
 
@@ -178,6 +179,17 @@ export async function getObservedTiming(typeOf: (pointId: string, exerciseId: st
   }
   if (reviews >= 30) out.successRate = Math.round((ok / reviews) * 100) / 100;
   return out;
+}
+
+/** Answers recorded today (study day 04:00–04:00 Europe/Prague), from any device. */
+export async function getTodayAnswers(now = new Date()): Promise<number> {
+  const db = await getDb();
+  const rows = await db.query<{ at: string | Date }>(
+    "SELECT at FROM events WHERE payload->>'kind' = 'answer' AND at > $1",
+    [new Date(now.getTime() - 30 * 3600_000).toISOString()],
+  );
+  const today = dayKey(now);
+  return rows.filter((r) => dayKey(new Date(r.at)) === today).length;
 }
 
 /** Maintenance: rebuild every cached point state from the event log (the source of truth). */

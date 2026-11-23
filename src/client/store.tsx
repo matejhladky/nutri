@@ -58,24 +58,11 @@ function applySafely(prev: PointState | undefined, ev: StudyEvent, s: Scheduler)
   }
 }
 
-const TODAY_KEY = "nutri.today.v1";
-function readToday(): number {
-  try {
-    const t = JSON.parse(localStorage.getItem(TODAY_KEY) ?? "null") as { day: string; cards: number } | null;
-    return t && t.day === dayKey(new Date()) ? t.cards : 0;
-  } catch {
-    return 0;
-  }
-}
-function bumpToday(): number {
-  const cards = readToday() + 1;
-  try {
-    localStorage.setItem(TODAY_KEY, JSON.stringify({ day: dayKey(new Date()), cards }));
-  } catch {
-    /* ignore */
-  }
-  return cards;
-}
+/** Answers given today that the server does not know about yet (still in the outbox). */
+const pendingAnswersToday = () => {
+  const today = dayKey(new Date());
+  return pendingEvents().filter((e) => e.kind === "answer" && dayKey(e.at) === today).length;
+};
 
 export function StudyProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -137,7 +124,13 @@ export function StudyProvider({ children }: { children: ReactNode }) {
         const res = await fetch("/api/state", { cache: "no-store" });
         if (res.status === 401) return toLogin();
         if (!res.ok) throw new Error(`Server odpověděl ${res.status}`);
-        const data = (await res.json()) as { states: Record<string, PointState>; settings: Settings; reports: Report[]; timing?: Timing };
+        const data = (await res.json()) as {
+          states: Record<string, PointState>;
+          settings: Settings;
+          reports: Report[];
+          timing?: Timing;
+          todayAnswers?: number;
+        };
         if (cancelled) return;
         const map = new Map(Object.entries(data.states));
         // Apply events not yet confirmed by the server (offline answers, closed tab mid-sync).
@@ -148,7 +141,8 @@ export function StudyProvider({ children }: { children: ReactNode }) {
         setSettings(data.settings);
         setReports(data.reports);
         setTiming(data.timing ?? {});
-        setTodayCards(readToday());
+        // Today's answers = stored on the server (any device) + still queued here.
+        setTodayCards((data.todayAnswers ?? 0) + pendingAnswersToday());
         setPending(pendingEvents().length);
         setStatus("ready");
         void sync();
@@ -183,7 +177,7 @@ export function StudyProvider({ children }: { children: ReactNode }) {
       enqueue(ev);
       setStates((prev) => new Map(prev).set(ev.pointId, applySafely(prev.get(ev.pointId), ev, s)));
       setPending(pendingEvents().length);
-      if (ev.kind === "answer") setTodayCards(bumpToday()); // answers only — reading an explanation is not an answer
+      if (ev.kind === "answer") setTodayCards((n) => n + 1); // answers only — reading an explanation is not an answer
       void sync();
     },
     [sync, setStates],
@@ -200,15 +194,19 @@ export function StudyProvider({ children }: { children: ReactNode }) {
     setSettings(((await res.json()) as { settings: Settings }).settings);
   }, [toLogin]);
 
+  /** Send a report; the item is hidden only once the server has stored it. Throws if it was not stored. */
   const report = useCallback(async (r: Report & { message: string }) => {
-    setReports((prev) => [...prev, { pointId: r.pointId, exerciseId: r.exerciseId }]);
     const res = await fetch("/api/reports", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(r),
     });
-    if (res.status === 401) return toLogin();
+    if (res.status === 401) {
+      toLogin();
+      throw new Error("Nejsi přihlášená.");
+    }
     if (!res.ok) throw new Error("Hlášení se nepodařilo odeslat.");
+    setReports((prev) => [...prev, { pointId: r.pointId, exerciseId: r.exerciseId }]);
   }, [toLogin]);
 
   const retrievability = useCallback(

@@ -41,7 +41,7 @@ export default function TodayPage() {
   const summary = parts.length ? parts.join(" a ") : "Pár krátkých opakování";
 
   return (
-    <div className="flex flex-col gap-8 animate-rise lg:max-w-3xl lg:gap-10">
+    <div className="flex flex-col gap-8 animate-rise lg:mx-auto lg:w-full lg:max-w-3xl lg:gap-10">
       <header className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">{greeting(now)}</h1>

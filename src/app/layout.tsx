@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="cs" className={`${figtree.variable} ${literata.variable} h-full antialiased`}>
+    <html lang="cs" suppressHydrationWarning className={`${figtree.variable} ${literata.variable} h-full antialiased`}>
       <body className="min-h-full font-sans text-[17px] leading-relaxed">{children}</body>
     </html>
   );

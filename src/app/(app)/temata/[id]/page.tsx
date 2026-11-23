@@ -16,7 +16,7 @@ export default function TopicPage() {
   const ps = points.filter((p) => p.topicId === id);
 
   return (
-    <div className="flex flex-col gap-7 animate-rise lg:max-w-3xl">
+    <div className="flex flex-col gap-7 animate-rise lg:mx-auto lg:w-full lg:max-w-3xl">
       <Link href="/temata" className="-ml-1 flex items-center gap-1 self-start text-[15px] text-muted hover:text-ink">
         <Icon name="back" size={18} />
         Témata

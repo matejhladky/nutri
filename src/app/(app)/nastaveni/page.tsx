@@ -27,7 +27,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="flex max-w-xl flex-col gap-5 animate-rise">
+    <div className="flex max-w-xl flex-col gap-5 animate-rise lg:mx-auto lg:w-full">
       <Link href="/" className="self-start text-sm text-muted hover:text-ink">
         ← Dnes
       </Link>

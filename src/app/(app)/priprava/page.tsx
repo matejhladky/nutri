@@ -100,7 +100,7 @@ export default function PracticePage() {
   const total = GROUPS.reduce((n, g) => n + g.items.length, 0);
 
   return (
-    <div className="flex flex-col gap-5 animate-rise">
+    <div className="flex flex-col gap-5 animate-rise lg:mx-auto lg:w-full lg:max-w-3xl">
       <Link href="/temata" className="self-start text-sm text-muted hover:text-ink">
         ← Témata
       </Link>

@@ -33,7 +33,7 @@ export default function ProgressPage() {
     <div className="flex flex-col gap-10 animate-rise">
       <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Pokrok</h1>
 
-      <section className="flex max-w-3xl flex-col gap-4">
+      <section className="flex flex-col gap-4">
         <StatusBar counts={total} />
         <ul className="flex flex-wrap gap-x-7 gap-y-2 text-[15px]">
           {STATUS_ORDER.map((s) => (
@@ -47,7 +47,7 @@ export default function ProgressPage() {
       </section>
 
       {weak.length > 0 && (
-        <section className="max-w-3xl">
+        <section>
           <h2 className="mb-1 text-[15px] font-semibold text-muted">Potřebuje opakovat</h2>
           <ul>
             {weak.map((p) => (

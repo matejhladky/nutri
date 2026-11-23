@@ -276,3 +276,53 @@ test("a malformed queued event is rejected on its own and does not block later a
   }
   await expect.poll(total, { timeout: 20_000 }).toBeGreaterThan(before);
 });
+
+test("reporting the current question moves the session on, records nothing and hides only that item", async ({ page }) => {
+  const btn = (name: string) => page.getByRole("button", { name, exact: true });
+  const state = async () =>
+    (await (await page.request.get("/api/state")).json()) as {
+      states: Record<string, { answers: number }>;
+      reports: { pointId: string; exerciseId: string | null }[];
+    };
+  await login(page);
+  await page.goto("/studium?tema=sacharidy");
+  for (let i = 0; i < 8 && !(await btn("Potvrdit").isVisible()); i++) {
+    const skip = btn("Tohle už znám — rovnou se zeptej");
+    await expect(skip.or(btn("Potvrdit")).or(btn("Ukázat odpověď")).or(btn("Zkontrolovat")).or(btn("Mám hotovo — porovnat"))).toBeVisible();
+    if (await skip.isVisible()) await skip.click();
+    else if (!(await btn("Potvrdit").isVisible())) await answerCard(page);
+  }
+  await expect(btn("Potvrdit")).toBeVisible();
+  const cur = (await sessionNow(page)).current!.next as { pointId: string; exerciseId: string };
+  await page.locator('[role="radio"],[role="checkbox"]').first().click();
+  await btn("Potvrdit").click();
+  await expect(btn("Další")).toBeVisible();
+  await expect.poll(async () => (await state()).states[cur.pointId]?.answers ?? 0).toBeGreaterThan(0);
+  const answersBefore = (await state()).states[cur.pointId].answers;
+
+  let reportPosts = 0;
+  page.on("request", (r) => {
+    if (r.method() === "POST" && r.url().endsWith("/api/reports")) reportPosts++;
+  });
+  await page.getByRole("button", { name: "Nahlásit problém s otázkou" }).click();
+  await btn("Odeslat a skrýt otázku").click();
+
+  // The session moves on: another card or a done screen — never a stuck spinner.
+  await expect(page.getByRole("status")).toHaveCount(0, { timeout: 5_000 });
+  await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
+  const after = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
+  expect(after?.pointId === cur.pointId && after?.exerciseId === cur.exerciseId).toBe(false);
+
+  // The report was sent exactly once and is stored; the answer count did not change.
+  await expect
+    .poll(async () => (await state()).reports.some((r) => r.pointId === cur.pointId && r.exerciseId === cur.exerciseId))
+    .toBe(true);
+  expect(reportPosts).toBe(1);
+  expect((await state()).states[cur.pointId].answers).toBe(answersBefore);
+
+  // After a reload the reported exercise stays hidden.
+  await page.reload();
+  await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
+  const reloaded = (await sessionNow(page)).current?.next as { pointId: string; exerciseId?: string } | undefined;
+  expect(reloaded?.pointId === cur.pointId && reloaded?.exerciseId === cur.exerciseId).toBe(false);
+});

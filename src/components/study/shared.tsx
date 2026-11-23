@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { PointWithTopic } from "@/content/schema";
 import { useStudy } from "@/client/store";
 import { confusablesOf, pagesLabel } from "@/lib/content";
@@ -47,8 +47,15 @@ export function NoteBox({ point }: { point: PointWithTopic }) {
   );
 }
 
+/**
+ * Set by the study screen: called the moment an item is reported, so the session moves on instead of keeping a card
+ * that the report has just hidden from the content bank.
+ */
+export const ReportedContext = createContext<((r: { pointId: string; exerciseId: string | null }) => void) | null>(null);
+
 export function ReportLink({ pointId, exerciseId }: { pointId: string; exerciseId: string | null }) {
   const { report } = useStudy();
+  const onReported = useContext(ReportedContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -79,9 +86,13 @@ export function ReportLink({ pointId, exerciseId }: { pointId: string; exerciseI
           variant="secondary"
           disabled={state === "sending"}
           onClick={async () => {
+            if (state === "sending") return;
             setState("sending");
+            // The report hides the item at once (optimistic); in a study session, move on in the same update.
+            const sent = report({ pointId, exerciseId, message });
+            onReported?.({ pointId, exerciseId });
             try {
-              await report({ pointId, exerciseId, message });
+              await sent;
               setState("sent");
             } catch {
               setState("error");

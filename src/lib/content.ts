@@ -30,5 +30,14 @@ export function visiblePoints(reports: { pointId: string; exerciseId: string | n
   });
 }
 
+/** The same bank without one just-reported item (exercise, or the whole point when no exercise id / none left). */
+export function withoutReported(points: PointWithTopic[], r: { pointId: string; exerciseId: string | null }): PointWithTopic[] {
+  return points.flatMap((p) => {
+    if (p.id !== r.pointId) return [p];
+    const exercises = r.exerciseId ? p.exercises.filter((e) => e.id !== r.exerciseId) : [];
+    return exercises.length ? [{ ...p, exercises }] : [];
+  });
+}
+
 /** "s. 12" / "s. 12, 14" */
 export const pagesLabel = (pages: number[]) => `s. ${pages.join(", ")}`;

@@ -5,11 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useStudy } from "@/client/store";
 import { loadSession, newSeed, saveSession, uuid, type StoredSession, type StudyMode } from "@/client/session";
 import { dailyPlan, nextCard, pickExercise, type NextCard, type SessionItem } from "@/engine/planner";
-import { topicsById } from "@/lib/content";
+import { topicsById, withoutReported } from "@/lib/content";
+import type { PointWithTopic } from "@/content/schema";
 import { plural } from "@/lib/format";
 import { Button, Spinner } from "../ui";
 import { ExerciseCard, type AnswerRecord } from "./ExerciseCard";
 import { IntroCard } from "./IntroCard";
+import { ReportedContext } from "./shared";
 
 type Done = Extract<NextCard, { kind: "done" }>;
 
@@ -21,7 +23,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const pointsById = useMemo(() => new Map(points.map((p) => [p.id, p])), [points]);
 
   /** Pure transition: fill `current` with the planner's next card, or mark the session done. */
-  const fill = (session: StoredSession): ScreenState => {
+  const fill = (session: StoredSession, pts: PointWithTopic[] = points): ScreenState => {
     const cur = session.current;
     if (cur) {
       const p = pointsById.get(cur.next.pointId);
@@ -32,7 +34,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
     const n = nextCard({
       now,
       examDate: EXAM_DATE,
-      points,
+      points: pts,
       states: getStates(),
       session: session.history,
       mode,
@@ -89,6 +91,16 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const commit = (next: StoredSession) => {
     saveSession(next);
     setScreen({ done: null, session: next });
+  };
+
+  /** The current item was just reported (and hidden): move on without recording anything for it. */
+  const onReported = (r: { pointId: string; exerciseId: string | null }) => {
+    if (!current) return;
+    const next = current.next;
+    const isNew = next.kind === "exercise" && next.reason === "new";
+    const item: SessionItem = { pointId: next.pointId, kind: next.kind === "intro" ? "intro" : "exercise", isNew };
+    // Plan with the reported item already excluded — `points` from this render does not know about the report yet.
+    setScreen(fill({ ...session, current: null, history: [...session.history, item] }, withoutReported(points, r)));
   };
 
   const onRecord = (a: AnswerRecord) => {
@@ -158,18 +170,20 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
             const exercise = point.exercises.find((e) => e.id === exId);
             if (!exercise) return <Spinner label="" />;
             return (
-              <ExerciseCard
-                key={`${point.id}/${exercise.id}/${current.seed}`}
-                point={point}
-                exercise={exercise}
-                seed={current.seed}
-                reason={current.next.reason}
-                restored={current.answer}
-                caseSteps={current.caseSteps}
-                onCaseProgress={(steps) => commit({ ...session, current: { ...current, caseSteps: steps } })}
-                onRecord={onRecord}
-                onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: current.next.kind === "exercise" && current.next.reason === "new" })}
-              />
+              <ReportedContext.Provider value={onReported}>
+                <ExerciseCard
+                  key={`${point.id}/${exercise.id}/${current.seed}`}
+                  point={point}
+                  exercise={exercise}
+                  seed={current.seed}
+                  reason={current.next.reason}
+                  restored={current.answer}
+                  caseSteps={current.caseSteps}
+                  onCaseProgress={(steps) => commit({ ...session, current: { ...current, caseSteps: steps } })}
+                  onRecord={onRecord}
+                  onNext={() => advance({ pointId: point.id, kind: "exercise", isNew: current.next.kind === "exercise" && current.next.reason === "new" })}
+                />
+              </ReportedContext.Provider>
             );
           })()
         )}

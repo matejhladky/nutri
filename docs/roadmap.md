@@ -38,7 +38,7 @@ Original acceptance:
   (explanation, source page, disputed note) → suggests stopping at goal, *Pokračovat* continues.
 - Persistence: Postgres via Drizzle (PGlite locally, Neon-ready); events idempotent; reload/resume mid-session; retry queue.
 - Passphrase auth (signed httpOnly cookie). Exam date + daily minutes settable (minimal).
-- "Nahlásit problém" stores a report and hides the item.
+- "Nahlásit chybu" stores a report and hides the item.
 - Playwright smoke: log in → 10 cards → reload → continue → state persisted. Manual check at 390 px and desktop.
 
 ## M2 — Syllabus content + planner v2 ✅ (2026-11-22)

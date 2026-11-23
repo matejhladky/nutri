@@ -1,22 +1,26 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { useStudy } from "@/client/store";
 import { dailyPlan } from "@/engine/planner";
 import { pointStatus } from "@/engine/state";
 import { examCountdown } from "@/components/AppFrame";
 import { emptyCounts, StatusBar } from "@/components/StatusDot";
 import { Icon } from "@/components/ui";
-import { greeting, plural } from "@/lib/format";
+import { plural } from "@/lib/format";
+import { pickQuote } from "@/lib/quotes";
 import { EXAM_DATE } from "@/lib/exam";
 
+const noSubscribe = () => () => {};
 const clock = (iso: string) => new Date(iso).toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Prague" });
 
 export default function TodayPage() {
   const router = useRouter();
   const { states, settings, points, todayCards, pending, syncError, retrievability, timing } = useStudy();
   const now = useMemo(() => new Date(), []);
+  // Random per app load; null on the server so a server render can never mismatch the client.
+  const quote = useSyncExternalStore(noSubscribe, pickQuote, () => null);
 
   const plan = useMemo(
     () => dailyPlan({ now, examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
@@ -44,8 +48,9 @@ export default function TodayPage() {
     <div className="flex flex-col gap-8 animate-rise lg:mx-auto lg:w-full lg:max-w-3xl lg:gap-10">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">{greeting(now)}</h1>
-          <p className="mt-1 text-muted lg:hidden">{examDay ? "Dnes je zkouška. Hodně štěstí!" : `Zkouška ${examCountdown(now)}, v pátek 4. 12.`}</p>
+          <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Ahoj Lucko ☀️</h1>
+          {quote && <p className="mt-1.5 max-w-xl font-serif text-[15.5px] leading-snug text-muted italic">„{quote}“</p>}
+          <p className="mt-3 text-muted lg:hidden">{examDay ? "Dnes je zkouška. Hodně štěstí!" : `Zkouška ${examCountdown(now)}, v pátek 4. 12.`}</p>
         </div>
         <Link href="/nastaveni" aria-label="Nastavení" className="-mr-2 rounded-xl p-2 text-faint hover:text-ink lg:hidden">
           <Icon name="settings" size={22} />

@@ -33,7 +33,7 @@ passphrase. Nothing here costs money on the free tiers; check the current tier l
 
 - **Content fixes:** edit `content/topics/*.yaml` → `pnpm validate` → commit → push → Vercel redeploys. Her progress is
   kept (it is stored per point; exercise edits never lose it; bump an exercise `version` if its meaning changes).
-- **Her reports ("Nahlásit problém"):** Neon SQL editor: `SELECT * FROM reports WHERE NOT resolved ORDER BY created_at;`
+- **Her reports ("Nahlásit chybu"):** Neon SQL editor: `SELECT * FROM reports WHERE NOT resolved ORDER BY created_at;`
   fix the item, deploy, then `UPDATE reports SET resolved = true WHERE id = …;` (the item reappears for her).
 - **Backup / inspection:** Neon keeps point-in-time history; the `events` table is the source of truth and
   `point_state` can be rebuilt from it.

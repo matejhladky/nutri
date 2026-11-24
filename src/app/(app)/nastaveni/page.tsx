@@ -1,17 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useStudy } from "@/client/store";
 import { Button, Panel } from "@/components/ui";
 import { czDate } from "@/lib/format";
-import { EXAM_DATE } from "@/lib/exam";
 
 const MINUTES = [20, 30, 45, 60, 90];
 
 export default function SettingsPage() {
-  const router = useRouter();
-  const { settings, saveSettings } = useStudy();
+  const { settings, saveSettings, learner } = useStudy();
   const [minutes, setMinutes] = useState(settings.dailyMinutes);
   const [state, setState] = useState<"idle" | "saving" | "saved" | "error">("idle");
 
@@ -34,7 +31,7 @@ export default function SettingsPage() {
       <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Nastavení</h1>
       <Panel className="p-5">
         <form onSubmit={save} className="flex flex-col gap-5">
-          <p className="font-medium">Zkouška {czDate(EXAM_DATE)}</p>
+          <p className="font-medium">Zkouška {czDate(learner.examDate)}</p>
           <fieldset className="flex flex-col gap-2">
             <legend className="mb-2 font-medium">Kolik času denně zhruba máš?</legend>
             <div className="flex flex-wrap gap-2">
@@ -66,7 +63,7 @@ export default function SettingsPage() {
           size="sm"
           onClick={async () => {
             await fetch("/api/logout", { method: "POST" });
-            router.replace("/login");
+            window.location.replace("/login");
           }}
         >
           Odhlásit se na tomto zařízení

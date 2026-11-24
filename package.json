@@ -17,6 +17,7 @@
     "validate": "pnpm content:check && pnpm typecheck && pnpm lint && pnpm test",
     "test:e2e": "playwright test",
     "db:rebuild": "tsx --conditions=react-server scripts/rebuild-states.ts",
+    "db:backup": "tsx scripts/db-backup.ts",
     "content:flags": "tsx scripts/flags.ts"
   },
   "dependencies": {

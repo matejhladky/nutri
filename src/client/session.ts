@@ -1,10 +1,12 @@
 /**
  * The current study session, persisted in localStorage so a reload (or closing the phone) resumes
- * exactly where she left off — same card, same generated numbers, same option order.
+ * exactly where she left off — same card, same generated numbers, same option order. One session per learner.
  */
 import type { NextCard, SessionItem } from "@/engine/planner";
 import type { CaseStepResponse, Evaluation, Outcome, Response } from "@/engine/types";
 import { dayKey } from "@/engine/time";
+import type { LearnerId } from "@/lib/learner";
+import { learnerKey } from "./learner-storage";
 
 export type StudyMode = { kind: "daily" } | { kind: "topic"; topicId: string };
 
@@ -30,13 +32,13 @@ export type StoredSession = {
   beyondGoal: boolean;
 };
 
-const KEY = "nutri.session.v1";
+const key = (learner: LearnerId) => learnerKey("nutri.session.v1", learner);
 const sameMode = (a: StudyMode, b: StudyMode) =>
   a.kind === b.kind && (a.kind === "daily" || (b.kind === "topic" && a.topicId === b.topicId));
 
-export function loadSession(mode: StudyMode, now = new Date()): StoredSession {
+export function loadSession(learner: LearnerId, mode: StudyMode, now = new Date()): StoredSession {
   try {
-    const s = JSON.parse(localStorage.getItem(KEY) ?? "null") as StoredSession | null;
+    const s = JSON.parse(localStorage.getItem(key(learner)) ?? "null") as StoredSession | null;
     if (s && s.day === dayKey(now) && sameMode(s.mode, mode)) return s;
   } catch {
     /* ignore corrupt session */
@@ -44,9 +46,9 @@ export function loadSession(mode: StudyMode, now = new Date()): StoredSession {
   return { day: dayKey(now), mode, history: [], current: null, beyondGoal: false };
 }
 
-export function saveSession(s: StoredSession) {
+export function saveSession(learner: LearnerId, s: StoredSession) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(s));
+    localStorage.setItem(key(learner), JSON.stringify(s));
   } catch {
     /* ignore */
   }

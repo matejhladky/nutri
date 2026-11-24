@@ -1,11 +1,14 @@
 "use client";
 /**
  * "Co trénovat naživo": what the app cannot train (hands-on measuring, role-play, paper calculations, exam logistics).
- * Ticks are a per-device convenience (localStorage), not learner data.
+ * Ticks are a per-device convenience (localStorage), kept per learner.
  */
 import Link from "next/link";
 import { useState } from "react";
 import { Panel } from "@/components/ui";
+import { useStudy } from "@/client/store";
+import { learnerKey } from "@/client/learner-storage";
+import type { LearnerId } from "@/lib/learner";
 
 type Item = { id: string; title: string; detail: string };
 type Group = { title: string; why: string; items: Item[] };
@@ -76,23 +79,24 @@ const GROUPS: Group[] = [
   },
 ];
 
-const KEY = "nutri.priprava.v1";
+const key = (learner: LearnerId) => learnerKey("nutri.priprava.v1", learner);
 
-function loadTicks(): string[] {
+function loadTicks(learner: LearnerId): string[] {
   try {
-    return JSON.parse(localStorage.getItem(KEY) ?? "[]") as string[];
+    return JSON.parse(localStorage.getItem(key(learner)) ?? "[]") as string[];
   } catch {
     return [];
   }
 }
 
 export default function PracticePage() {
-  const [ticks, setTicks] = useState<string[]>(() => (typeof window === "undefined" ? [] : loadTicks()));
+  const { learner } = useStudy();
+  const [ticks, setTicks] = useState<string[]>(() => (typeof window === "undefined" ? [] : loadTicks(learner.id)));
   const toggle = (id: string) => {
     const next = ticks.includes(id) ? ticks.filter((t) => t !== id) : [...ticks, id];
     setTicks(next);
     try {
-      localStorage.setItem(KEY, JSON.stringify(next));
+      localStorage.setItem(key(learner.id), JSON.stringify(next));
     } catch {
       /* private mode: ticks just won't persist */
     }

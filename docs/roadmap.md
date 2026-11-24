@@ -203,9 +203,42 @@ Simulation after R4 (11 days, prior 0.5, model estimates): 45 min → ≈ 87/186
 - **Not done (owner decision):** tier reallocations, new points/cases (capstone, food diary, 8d, DM2), judgement
   variants of cases, exemplar diagnostic conclusion and one-day menu, splitting multi-fact points.
 
+## R6 — Two learners ✅ (2026-11-24)
+
+A second learner (Danča, a friend of Lucka's) shares the app. Each has her own passphrase (`LEARNER_1/2_PASSPHRASE`), greeting
+name and exam date; all personal data is scoped by `learner_id` (events, point state, reports, settings, observed
+timing, today's count) and browser storage is per learner. Stale tabs after switching accounts are refused (409) and
+reload as the current learner; their queued answers wait for their owner. Existing production data migrates to
+learner 1 on first start; learner 2 starts empty. Engine, planner, content and UI unchanged.
+
+Verified: unit tests for token/passphrase handling, per-learner store isolation (same point, reused event id, today's
+count, timing, settings, reports, full rebuild) and the migration from the old schema (incl. a dry run on a copy of a
+real dev DB); browser tests for separate greeting/date/settings/progress, account switching on one device with a queued
+offline answer, and a stale tab of the other learner. Upgrade procedure: `docs/deploy.md`.
+
+## R7 — Study activity ✅ (2026-11-24)
+
+Pokrok opens with the last 14 study days: one sentence for the past 7 days (answers, days with studying, points met for
+the first time) and a quiet 14-bar chart (last 7 days darker, today marked, empty days as stubs). Dnes acknowledges
+today's answers inside the plan card once she has started, and below it shows the path to the exam (study days so
+far sized by answers, today, the days left, the exam) and a map of the syllabus — one square per core point, one bed
+per topic, coloured by status, today's new points ringed with a one-off fade-in. Data: answer events per study day from the event log,
+scoped to the learner; no new tables. Tests: per-day bucketing (04:00 boundary, 14-day window, intros and re-sends
+excluded), date helpers across a month/DST change, the 7-day window for new points, Pokrok/Dnes in the browser,
+activity isolation between learners.
+
+## R8 — Admin area ✅ (2026-11-24)
+
+`/admin` behind `ADMIN_PASSPHRASE`: per learner (switch in the header) the path to the exam, scheduled reviews,
+activity, statuses, weak points, reports, competencies and topics — the same components and calculations as the app,
+read-only on the server. Content explorer: topics → points (Výklad, note, source, criteria, links) → exercises with the
+answer key; "Vyzkoušet" opens the real card in a sandbox. Tests: admin/learner tokens not interchangeable, read-only
+guard, an overview writes nothing, learners can't open admin, an admin session can't read or write learner APIs,
+switching learners shows each one's data, the preview makes no requests and changes no state.
+
 ## Status
 
-All roadmap milestones (M0–M4, R1–R5) are done locally. Not done (owner decision): deployment — runbook in
+All roadmap milestones (M0–M4, R1–R8) are done locally. Not done (owner decision): deployment — runbook in
 `docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
 AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
 food law changed in 2024–2025 and may change again.

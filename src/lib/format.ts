@@ -12,6 +12,14 @@ export function greeting(now = new Date()): string {
   return "Dobrý večer";
 }
 
+const WEEKDAY_IN = ["v neděli", "v pondělí", "v úterý", "ve středu", "ve čtvrtek", "v pátek", "v sobotu"];
+
+/** "v pátek 4. 12." */
+export function czDayWithWeekday(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${WEEKDAY_IN[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]} ${d}. ${m}.`;
+}
+
 /** "6. 12. 2026" */
 export function czDate(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);

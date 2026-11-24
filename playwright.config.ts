@@ -14,7 +14,7 @@ export default defineConfig({
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
   ],
   webServer: {
-    command: `rm -rf .pglite-e2e && pnpm build && PGLITE_DIR=.pglite-e2e APP_PASSPHRASE=e2e-heslo SESSION_SECRET=e2e-secret-0123456789abcdef npx next start -p ${PORT}`,
+    command: `rm -rf .pglite-e2e && pnpm build && PGLITE_DIR=.pglite-e2e LEARNER_1_PASSPHRASE=e2e-heslo LEARNER_2_PASSPHRASE=e2e-heslo-2 LEARNER_2_EXAM_DATE=2026-12-10 ADMIN_PASSPHRASE=e2e-admin SESSION_SECRET=e2e-secret-0123456789abcdef npx next start -p ${PORT}`,
     url: `http://localhost:${PORT}/login`,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,

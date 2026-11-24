@@ -28,5 +28,8 @@ src/generated/
 .pglite*/
 .pglite-e2e/
 
+# database exports (learner data) — never commit
+backups/
+
 # local archives (may contain materials/ or source/)
 *.zip

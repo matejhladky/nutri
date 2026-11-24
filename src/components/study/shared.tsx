@@ -83,12 +83,14 @@ export function NoteBox({ point }: { point: PointWithTopic }) {
 export const ReportedContext = createContext<((r: { pointId: string; exerciseId: string | null }) => void) | null>(null);
 
 export function ReportLink({ pointId, exerciseId }: { pointId: string; exerciseId: string | null }) {
-  const { report } = useStudy();
+  const { report, preview } = useStudy();
   const onReported = useContext(ReportedContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const sending = useRef(false);
+
+  if (preview) return null; // the admin preview reports nothing
 
   if (state === "sent") return <span>Díky, otázka je skrytá.</span>;
   if (!open)

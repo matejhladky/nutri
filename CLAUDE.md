@@ -1,6 +1,6 @@
 # Nutri
 
-Study companion for ONE learner preparing for the Czech exam *Výživový poradce* (NSK 69-042-N), ~2 weeks out.
+Study companion for TWO known learners (Lucka = `l1`, Danča = `l2`; separate passphrases, fully separate data) preparing for the Czech exam *Výživový poradce* (NSK 69-042-N), ~2 weeks out.
 Vision: `docs/vision.md` · Architecture & decisions: `docs/architecture.md` · Roadmap & progress log: `docs/roadmap.md` ·
 Deployment runbook: `docs/deploy.md`.
 
@@ -14,15 +14,17 @@ Deployment runbook: `docs/deploy.md`.
   (`--only a.yaml,b.yaml`: check just those files against committed content, write nothing)
 - `pnpm validate` — content:check, typecheck, lint, unit tests. **Run before every commit.**
 - `pnpm simulate [points] [days] [minutes]` — planner workload simulation
-- `pnpm dev` — local app (needs `.env.local` with `APP_PASSPHRASE`, `SESSION_SECRET`; see `.env.example`;
+- `pnpm dev` — local app (needs `.env.local` with `LEARNER_1_PASSPHRASE`, `SESSION_SECRET`; see `.env.example`;
   without `DATABASE_URL` data lives in embedded PGlite `.pglite/`)
 - `pnpm test:e2e` — Playwright smoke tests; builds and serves on :3100 with an isolated `.pglite-e2e/` DB
 - `pnpm db:rebuild` — rebuild the cached `point_state` from the event log (DATABASE_URL or local PGlite)
+- `pnpm db:backup` — export all tables to `backups/*.json` (gitignored) without touching the schema
 - `pnpm content:flags` — quality flags for inspection (`reports/flags.md`); `pnpm simulate matrix` — planner scenarios
 
 ## Hard constraints
 
 - **Never commit** `materials/` (copyrighted PDF), `source/` (verbatim extraction), `.env*`, or secrets. Repo stays private.
+- Learner data is **always scoped by `learner_id`** (server queries, browser storage keys, API learner header).
 - Content is **paraphrased**; anchor phrases ≤ 12 words. No long verbatim passages anywhere in the repo.
 - Learner-facing text is **Czech**, informal "ty", feminine forms where addressing her ("Věděla jsem").
 - Do not deploy, push, or create external services without the user's explicit approval. Build locally.

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { badRequest, denyUnlessAuthed } from "@/server/http";
+import { badRequest, authLearner } from "@/server/http";
 import { addEvents, partitionEvents } from "@/server/store";
 
 const Body = z.object({ events: z.array(z.unknown()).min(1).max(500) });
@@ -11,12 +11,13 @@ const Body = z.object({ events: z.array(z.unknown()).min(1).max(500) });
  * affected points.
  */
 export async function POST(req: Request) {
-  const denied = await denyUnlessAuthed();
-  if (denied) return denied;
+  const auth = await authLearner();
+  if ("denied" in auth) return auth.denied;
+  const { learner } = auth;
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return badRequest(parsed.error.message);
   const { valid, rejected } = partitionEvents(parsed.data.events);
   if (rejected.length) console.warn("rejected events", JSON.stringify(rejected));
-  const states = valid.length ? await addEvents(valid) : {};
+  const states = valid.length ? await addEvents(learner, valid) : {};
   return NextResponse.json({ states, rejected });
 }

@@ -33,4 +33,4 @@ analyser, caliper, meal-planning software or live role-play; those need in-perso
 - **Témata** — concise topic library mapped to the script and criteria; practise a single topic (same progress state).
 - **Pokrok** — per competency: not seen / started / recalled / needs attention; weak points; recent activity.
 
-Out of scope for now: exam simulation, settings beyond exam date & daily time, authoring UI, gamification, multi-user.
+Out of scope for now: exam simulation, settings beyond exam date & daily time, authoring UI, gamification, accounts / more than two learners (two fixed learners since 2026-11-24).

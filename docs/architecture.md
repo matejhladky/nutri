@@ -34,9 +34,28 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
   (kept in `nutri.rejected.v1`), so one bad event cannot block the queue; the client also skips unappliable queued
   events instead of failing to load.
   No ORM — four tables don't justify Drizzle + migrations tooling.
-- **Auth:** one passphrase (`APP_PASSPHRASE`) → httpOnly cookie `exp.HMAC(SESSION_SECRET, exp)`, 90 days.
-  `src/proxy.ts` redirects pages to `/login`; every API route checks the session again.
+- **Two learners** (`l1` = Lucka, `l2` = Danča), no accounts: each has her own passphrase (`LEARNER_n_PASSPHRASE`), greeting
+  name and optional exam date (`src/server/learners.ts`). Login → httpOnly cookie
+  `<learner>.<exp>.HMAC(SESSION_SECRET, "<learner>.<exp>")`, 90 days; a learner without a passphrase cannot log in and
+  her sessions stop working. `src/proxy.ts` redirects pages to `/login`; the `(app)` layout renders for the cookie's
+  learner; every API route checks the session again (`authLearner`).
+- **Isolation:** every row of learner data carries `learner_id` (`events`, `point_state` with key
+  `(learner_id, point_id)`, `reports`; settings under `learner:<id>`) and every store query filters by it. Event ids
+  stay globally unique, so a replayed id of the other learner is ignored. Browser storage is per learner
+  (`nutri.outbox.v1.<id>`, `nutri.session.v1.<id>`, `nutri.priprava.v1.<id>`); legacy unsuffixed keys are adopted by l1
+  only. Every API call sends `x-nutri-learner`; the server answers 409 when it differs from the cookie (a tab still
+  open for the other learner) and the tab reloads as the current learner — its queued events wait for their owner.
+  Login/logout are full page loads. Existing single-learner data migrates to `l1` on first start (`db.ts`, one atomic
+  `DO` block under an advisory lock).
 - **API:** `GET /api/state`, `POST /api/events`, `POST /api/settings`, `POST /api/reports`, `POST /api/login|logout`.
+- **Activity** (Pokrok, Dnes): `GET /api/state` returns `answersByDay` — answer events (not intros) per study day for
+  the last 14 days, this learner only; the client adds queued answers and counts live. "New points" = points whose
+  `introducedAt` falls in the last 7 study days. No goals, streaks or estimates.
+- **Admin** (`/admin`, `src/server/admin.ts`): own passphrase (`ADMIN_PASSPHRASE`), own cookie `nutri_admin` with token
+  `admin.<exp>.<sig>` — never valid as a learner session and vice versa; the proxy and the admin layout both check it.
+  Pages are server components that read learner data through `readOnly(db)` (refuses anything but one SELECT; stale
+  caches are replayed in memory, not rewritten). There is no admin data or write API. The exercise preview renders the
+  real cards inside `PreviewProvider` (empty in-memory store, `record` keeps nothing, reporting hidden, no requests).
 - **Reports:** an open report hides that exercise (or the whole point if no exercise id) until resolved in the DB.
 - `cacheComponents` is **off**: every page is per-learner and dynamic; the static-shell model adds Suspense
   constraints without benefit here.
@@ -144,7 +163,7 @@ until reviewed.
 | 2026-11-22 | Client-side planning + durable outbox; server replays events | instant UI, offline-tolerant, one source of truth |
 | 2026-11-22 | Plain SQL adapter (PGlite/Neon) instead of Drizzle | 4 tables; zero-setup local DB |
 | 2026-11-22 | Goal not reached while first retrievals / learning steps are owed | otherwise "done" appeared with loose ends |
-| 2026-11-22 | Exam date hard-coded (2026-12-04), setting removed | confirmed by the user; one less thing to get wrong |
+| 2026-11-22 | Exam date hard-coded (2026-12-04), setting removed | confirmed by the user; one less thing to get wrong (since 2026-11-24 the default; per learner via env) |
 | 2026-11-22 | Tier-A budget ≈ 210–230 points | simulation with 11 study days at 45 min/day |
 | 2026-11-22 | Confusables: symmetric, contrast bonus ×1.2 in pickNew, "Nezaměň s" in feedback | discrimination between look-alike facts |
 | 2026-11-22 | Planner: all prerequisite-ready points compete; prerequisites inherit dependants' priority | simulation: whole criteria were never reached |
@@ -156,4 +175,5 @@ until reviewed.
 | 2026-11-22 | Max 2 failures per point per day; observed timing calibrates the model; STATE_VERSION lazy rebuild | relearning loops; simulated ≠ observed |
 | 2026-11-23 | Ask-first for facts/comparisons; explanation-first for concepts/procedures/cases | pretesting with feedback vs worked-example effect; she attended the lectures |
 | 2026-11-23 | "Upevněno" requires unaided Good, spacing and production evidence; counter = answers | review: status overstated recognition/guessed/hinted answers |
+| 2026-11-24 | Two fixed learners by passphrase; `learner_id` on every table; learner header + 409 for stale tabs | a second learner joined; smallest change that keeps the engine and UI as they are |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

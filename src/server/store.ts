@@ -1,14 +1,16 @@
 import "server-only";
 /**
  * Learner data access. Events are the source of truth; point_state is a cache rebuilt per point by replay.
+ * Every function is scoped to one learner: no query reads or writes another learner's rows.
  */
 import { z } from "zod";
 import { getDb, type Db } from "./db";
 import { getScheduler, type Scheduler } from "@/engine/scheduler";
 import { replay, STATE_VERSION } from "@/engine/state";
-import { dayKey } from "@/engine/time";
+import { dayDiff, dayKey } from "@/engine/time";
 import type { PointState, StudyEvent } from "@/engine/types";
 import type { Timing } from "@/engine/planner";
+import type { LearnerId } from "@/lib/learner";
 
 const ResponseSchema = z.union([
   z.object({ type: z.literal("dontKnow") }),
@@ -78,9 +80,11 @@ export const SettingsSchema = z.object({
 export type Settings = z.infer<typeof SettingsSchema>;
 export const DEFAULT_SETTINGS: Settings = { dailyMinutes: 45 };
 
-export async function getAllStates(): Promise<Record<string, PointState>> {
+export async function getAllStates(learner: LearnerId): Promise<Record<string, PointState>> {
   const db = await getDb();
-  const rows = await db.query<{ point_id: string; state: PointState }>("SELECT point_id, state FROM point_state");
+  const rows = await db.query<{ point_id: string; state: PointState }>("SELECT point_id, state FROM point_state WHERE learner_id = $1", [
+    learner,
+  ]);
   const out: Record<string, PointState> = {};
   let s: Scheduler | null = null;
   for (const r of rows) {
@@ -88,28 +92,29 @@ export async function getAllStates(): Promise<Record<string, PointState>> {
     else {
       // Produced by an older reducer: rebuild from the event log (the source of truth) and re-cache.
       s ??= await getScheduler();
-      const st = await rebuildPoint(db, s, r.point_id);
+      const st = await rebuildPoint(db, s, learner, r.point_id);
       if (st) out[r.point_id] = st;
     }
   }
   return out;
 }
 
-/** Insert events idempotently, then rebuild the cached state of every affected point. */
-export async function addEvents(events: StudyEvent[]): Promise<Record<string, PointState>> {
+/**
+ * Insert events idempotently, then rebuild the cached state of every affected point. An id that already exists is
+ * ignored — also when it belongs to the other learner, whose log therefore can never be changed from here.
+ */
+export async function addEvents(learner: LearnerId, events: StudyEvent[]): Promise<Record<string, PointState>> {
   const db = await getDb();
   for (const ev of events) {
-    await db.query("INSERT INTO events (id, point_id, at, payload) VALUES ($1, $2, $3, $4) ON CONFLICT (id) DO NOTHING", [
-      ev.id,
-      ev.pointId,
-      ev.at,
-      JSON.stringify(ev),
-    ]);
+    await db.query(
+      "INSERT INTO events (id, learner_id, point_id, at, payload) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING",
+      [ev.id, learner, ev.pointId, ev.at, JSON.stringify(ev)],
+    );
   }
   const s = await getScheduler();
   const out: Record<string, PointState> = {};
   for (const pointId of new Set(events.map((e) => e.pointId))) {
-    const st = await rebuildPoint(db, s, pointId);
+    const st = await rebuildPoint(db, s, learner, pointId);
     if (st) out[pointId] = st;
   }
   return out;
@@ -121,10 +126,16 @@ export async function addEvents(events: StudyEvent[]): Promise<Record<string, Po
  * a writer holding an older snapshot (concurrent tabs/devices/retries) fails, re-reads and retries, and can never
  * overwrite a state that already includes more events. Works with single-statement autocommit (Neon HTTP).
  */
-export async function rebuildPoint(db: Db, s: Scheduler, pointId: string): Promise<PointState | undefined> {
+export async function rebuildPoint(db: Db, s: Scheduler, learner: LearnerId, pointId: string): Promise<PointState | undefined> {
   for (let attempt = 0; attempt < 25; attempt++) {
-    const cur = await db.query<{ version: number }>("SELECT version FROM point_state WHERE point_id = $1", [pointId]);
-    const rows = await db.query<{ payload: StudyEvent }>("SELECT payload FROM events WHERE point_id = $1", [pointId]);
+    const cur = await db.query<{ version: number }>("SELECT version FROM point_state WHERE learner_id = $1 AND point_id = $2", [
+      learner,
+      pointId,
+    ]);
+    const rows = await db.query<{ payload: StudyEvent }>("SELECT payload FROM events WHERE learner_id = $1 AND point_id = $2", [
+      learner,
+      pointId,
+    ]);
     const st = replay(
       rows.map((r) => r.payload),
       s,
@@ -133,14 +144,14 @@ export async function rebuildPoint(db: Db, s: Scheduler, pointId: string): Promi
     const json = JSON.stringify(st);
     const written = cur.length
       ? await db.query(
-          `UPDATE point_state SET state = $2, version = version + 1, updated_at = now()
-           WHERE point_id = $1 AND version = $3 RETURNING point_id`,
-          [pointId, json, cur[0].version],
+          `UPDATE point_state SET state = $3, version = version + 1, updated_at = now()
+           WHERE learner_id = $1 AND point_id = $2 AND version = $4 RETURNING point_id`,
+          [learner, pointId, json, cur[0].version],
         )
       : await db.query(
-          `INSERT INTO point_state (point_id, state, version, updated_at) VALUES ($1, $2, 1, now())
-           ON CONFLICT (point_id) DO NOTHING RETURNING point_id`,
-          [pointId, json],
+          `INSERT INTO point_state (learner_id, point_id, state, version, updated_at) VALUES ($1, $2, $3, 1, now())
+           ON CONFLICT (learner_id, point_id) DO NOTHING RETURNING point_id`,
+          [learner, pointId, json],
         );
     if (written.length) return st;
     // Lost the race: back off with jitter so concurrent writers don't retry in lock-step.
@@ -154,10 +165,14 @@ export async function rebuildPoint(db: Db, s: Scheduler, pointId: string): Promi
  * calibrating the planner's time budget. Only types with enough samples are returned; the planner falls back to its
  * model defaults otherwise — observed data is kept separate from model assumptions.
  */
-export async function getObservedTiming(typeOf: (pointId: string, exerciseId: string) => string | undefined): Promise<Timing> {
+export async function getObservedTiming(
+  learner: LearnerId,
+  typeOf: (pointId: string, exerciseId: string) => string | undefined,
+): Promise<Timing> {
   const db = await getDb();
   const rows = await db.query<{ payload: StudyEvent }>(
-    "SELECT payload FROM events WHERE payload->>'kind' = 'answer' ORDER BY at DESC LIMIT 400",
+    "SELECT payload FROM events WHERE learner_id = $1 AND payload->>'kind' = 'answer' ORDER BY at DESC LIMIT 400",
+    [learner],
   );
   const byType = new Map<string, number[]>();
   let reviews = 0;
@@ -181,54 +196,119 @@ export async function getObservedTiming(typeOf: (pointId: string, exerciseId: st
   return out;
 }
 
-/** Answers recorded today (study day 04:00–04:00 Europe/Prague), from any device. */
-export async function getTodayAnswers(now = new Date()): Promise<number> {
-  const db = await getDb();
+/**
+ * Answers per study day (04:00–04:00 Europe/Prague) for the last `days` study days including today, from the event
+ * log, any device. Intros are not answers; each stored event counts once (ids are unique, re-sends are ignored).
+ * Days without answers are omitted.
+ */
+export async function getAnswersByDay(learner: LearnerId, now = new Date(), days = 14, from?: Db): Promise<Record<string, number>> {
+  const db = from ?? (await getDb());
   const rows = await db.query<{ at: string | Date }>(
-    "SELECT at FROM events WHERE payload->>'kind' = 'answer' AND at > $1",
-    [new Date(now.getTime() - 30 * 3600_000).toISOString()],
+    "SELECT at FROM events WHERE learner_id = $1 AND payload->>'kind' = 'answer' AND at > $2",
+    [learner, new Date(now.getTime() - (days + 1) * 86400_000).toISOString()],
   );
   const today = dayKey(now);
-  return rows.filter((r) => dayKey(new Date(r.at)) === today).length;
+  const out: Record<string, number> = {};
+  for (const r of rows) {
+    const d = dayKey(new Date(r.at));
+    const ago = dayDiff(d, today);
+    if (ago >= 0 && ago < days) out[d] = (out[d] ?? 0) + 1;
+  }
+  return out;
 }
 
 /** Maintenance: rebuild every cached point state from the event log (the source of truth). */
 export async function rebuildAllStates(): Promise<number> {
   const db = await getDb();
   const s = await getScheduler();
-  const ids = await db.query<{ point_id: string }>("SELECT DISTINCT point_id FROM events");
-  for (const { point_id } of ids) await rebuildPoint(db, s, point_id);
+  const ids = await db.query<{ learner_id: LearnerId; point_id: string }>("SELECT DISTINCT learner_id, point_id FROM events");
+  for (const { learner_id, point_id } of ids) await rebuildPoint(db, s, learner_id, point_id);
   return ids.length;
 }
 
-export async function getSettings(): Promise<Settings> {
-  const db = await getDb();
-  const rows = await db.query<{ value: Settings }>("SELECT value FROM settings WHERE key = 'learner'");
+const settingsKey = (learner: LearnerId) => `learner:${learner}`;
+
+export async function getSettings(learner: LearnerId, from?: Db): Promise<Settings> {
+  const db = from ?? (await getDb());
+  const rows = await db.query<{ value: Settings }>("SELECT value FROM settings WHERE key = $1", [settingsKey(learner)]);
   const parsed = SettingsSchema.safeParse({ ...DEFAULT_SETTINGS, ...(rows[0]?.value ?? {}) });
   return parsed.success ? parsed.data : DEFAULT_SETTINGS;
 }
 
-export async function saveSettings(patch: Partial<Settings>): Promise<Settings> {
-  const next = SettingsSchema.parse({ ...(await getSettings()), ...patch });
+export async function saveSettings(learner: LearnerId, patch: Partial<Settings>): Promise<Settings> {
+  const next = SettingsSchema.parse({ ...(await getSettings(learner)), ...patch });
   const db = await getDb();
   await db.query(
-    `INSERT INTO settings (key, value) VALUES ('learner', $1) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`,
-    [JSON.stringify(next)],
+    `INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`,
+    [settingsKey(learner), JSON.stringify(next)],
   );
   return next;
 }
 
 export type OpenReport = { pointId: string; exerciseId: string | null };
 
-export async function addReport(r: { pointId: string; exerciseId: string | null; message: string }): Promise<void> {
+export async function addReport(learner: LearnerId, r: { pointId: string; exerciseId: string | null; message: string }): Promise<void> {
   const db = await getDb();
-  await db.query("INSERT INTO reports (point_id, exercise_id, message) VALUES ($1, $2, $3)", [r.pointId, r.exerciseId, r.message]);
+  await db.query("INSERT INTO reports (learner_id, point_id, exercise_id, message) VALUES ($1, $2, $3, $4)", [
+    learner,
+    r.pointId,
+    r.exerciseId,
+    r.message,
+  ]);
 }
 
-export async function openReports(): Promise<OpenReport[]> {
+/** Items this learner reported (hidden for her only; the other learner still sees them). */
+export async function openReports(learner: LearnerId): Promise<OpenReport[]> {
   const db = await getDb();
   const rows = await db.query<{ point_id: string; exercise_id: string | null }>(
-    "SELECT DISTINCT point_id, exercise_id FROM reports WHERE NOT resolved",
+    "SELECT DISTINCT point_id, exercise_id FROM reports WHERE learner_id = $1 AND NOT resolved",
+    [learner],
   );
   return rows.map((r) => ({ pointId: r.point_id, exerciseId: r.exercise_id }));
+}
+
+/**
+ * Point states for reading only (admin): cached rows, and any written by an older reducer replayed in memory from the
+ * event log — nothing is written back.
+ */
+export async function readStates(learner: LearnerId, db: Db): Promise<Record<string, PointState>> {
+  const rows = await db.query<{ point_id: string; state: PointState }>("SELECT point_id, state FROM point_state WHERE learner_id = $1", [
+    learner,
+  ]);
+  const out: Record<string, PointState> = {};
+  const stale: string[] = [];
+  for (const r of rows) {
+    if (r.state.v === STATE_VERSION) out[r.point_id] = r.state;
+    else stale.push(r.point_id);
+  }
+  if (stale.length) {
+    const evs = await db.query<{ payload: StudyEvent }>("SELECT payload FROM events WHERE learner_id = $1 AND point_id = ANY($2)", [learner, stale]);
+    const replayed = replay(
+      evs.map((e) => e.payload),
+      await getScheduler(),
+    );
+    for (const id of stale) {
+      const st = replayed.get(id);
+      if (st) out[id] = st;
+    }
+  }
+  return out;
+}
+
+export type ReportRow = { id: number; pointId: string; exerciseId: string | null; message: string; createdAt: string; resolved: boolean };
+
+/** All of a learner's reports, newest first (admin). */
+export async function listReports(learner: LearnerId, db: Db): Promise<ReportRow[]> {
+  const rows = await db.query<{ id: number; point_id: string; exercise_id: string | null; message: string; created_at: string | Date; resolved: boolean }>(
+    "SELECT id, point_id, exercise_id, message, created_at, resolved FROM reports WHERE learner_id = $1 ORDER BY created_at DESC",
+    [learner],
+  );
+  return rows.map((r) => ({
+    id: r.id,
+    pointId: r.point_id,
+    exerciseId: r.exercise_id,
+    message: r.message,
+    createdAt: new Date(r.created_at).toISOString(),
+    resolved: r.resolved,
+  }));
 }

@@ -5,26 +5,25 @@ import { useMemo, useSyncExternalStore } from "react";
 import { useStudy } from "@/client/store";
 import { dailyPlan } from "@/engine/planner";
 import { pointStatus } from "@/engine/state";
-import { examCountdown } from "@/components/AppFrame";
-import { emptyCounts, StatusBar } from "@/components/StatusDot";
+import { emptyCounts } from "@/components/StatusDot";
 import { Icon } from "@/components/ui";
+import { ExamPath, KnowledgeMap } from "@/components/TodayVisuals";
 import { plural } from "@/lib/format";
 import { pickQuote } from "@/lib/quotes";
-import { EXAM_DATE } from "@/lib/exam";
 
 const noSubscribe = () => () => {};
 const clock = (iso: string) => new Date(iso).toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Prague" });
 
 export default function TodayPage() {
   const router = useRouter();
-  const { states, settings, points, todayCards, pending, syncError, retrievability, timing } = useStudy();
+  const { learner, states, settings, points, todayCards, answersByDay, pending, syncError, retrievability, timing } = useStudy();
   const now = useMemo(() => new Date(), []);
   // Random per app load; null on the server so a server render can never mismatch the client.
   const quote = useSyncExternalStore(noSubscribe, pickQuote, () => null);
 
   const plan = useMemo(
-    () => dailyPlan({ now, examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
-    [now, settings, points, states, retrievability, timing],
+    () => dailyPlan({ now, examDate: learner.examDate, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
+    [now, learner.examDate, settings, points, states, retrievability, timing],
   );
   const core = points.filter((p) => p.tier !== "C");
   const counts = emptyCounts();
@@ -48,9 +47,9 @@ export default function TodayPage() {
     <div className="flex flex-col gap-8 animate-rise lg:mx-auto lg:w-full lg:max-w-3xl lg:gap-10">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">Ahoj Lucko ☀️</h1>
+          <h1 className="text-[28px] font-semibold tracking-tight lg:text-[34px]">{learner.name ? `Ahoj ${learner.name} ☀️` : "Ahoj ☀️"}</h1>
           {quote && <p className="mt-1.5 max-w-xl font-serif text-[15.5px] leading-snug text-muted italic">„{quote}“</p>}
-          <p className="mt-3 text-muted lg:hidden">{examDay ? "Dnes je zkouška. Hodně štěstí!" : `Zkouška ${examCountdown(now)}, v pátek 4. 12.`}</p>
+          {examDay && <p className="mt-3 text-muted">Dnes je zkouška. Hodně štěstí!</p>}
         </div>
         <Link href="/nastaveni" aria-label="Nastavení" className="-mr-2 rounded-xl p-2 text-faint hover:text-ink lg:hidden">
           <Icon name="settings" size={22} />
@@ -101,17 +100,27 @@ export default function TodayPage() {
             )}
           </>
         )}
+        {todayCards > 0 && (
+          // Acknowledges what is done today — a count, no target. The 14-day picture is on Pokrok.
+          <p className="border-t border-cream/15 pt-5 text-[15px] text-sage-200">
+            Dnes máš za sebou <span className="font-semibold text-cream tabular-nums">{plural(todayCards, "odpověď", "odpovědi", "odpovědí")}</span>.
+          </p>
+        )}
       </section>
 
-      <Link href="/pokrok" className="group flex flex-col gap-3">
-        <span className="flex items-baseline justify-between gap-4 text-[15.5px]">
-          <span className="text-muted">
+      <ExamPath answersByDay={answersByDay} examDate={learner.examDate} now={now} />
+
+      <section aria-labelledby="mapa" className="flex flex-col gap-4">
+        <div className="flex items-baseline justify-between gap-4 text-[15.5px]">
+          <h2 id="mapa" className="text-muted">
             Probráno {seen} z {core.length} poznatků
-          </span>
-          <span className="font-semibold text-sage-600 group-hover:underline">Pokrok</span>
-        </span>
-        <StatusBar counts={counts} />
-      </Link>
+          </h2>
+          <Link href="/pokrok" className="font-semibold text-sage-600 hover:underline">
+            Pokrok
+          </Link>
+        </div>
+        <KnowledgeMap points={points} states={states} now={now} />
+      </section>
 
       {(pending > 0 || syncError) && (
         <p className="text-[13.5px] text-faint">{syncError ? "Jsi offline. Odpovědi se uloží, až bude spojení." : "Ukládám…"}</p>

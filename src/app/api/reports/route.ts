@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { badRequest, denyUnlessAuthed } from "@/server/http";
+import { badRequest, authLearner } from "@/server/http";
 import { addReport } from "@/server/store";
 
 const Body = z.object({
@@ -10,10 +10,11 @@ const Body = z.object({
 });
 
 export async function POST(req: Request) {
-  const denied = await denyUnlessAuthed();
-  if (denied) return denied;
+  const auth = await authLearner();
+  if ("denied" in auth) return auth.denied;
+  const { learner } = auth;
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return badRequest(parsed.error.message);
-  await addReport(parsed.data);
+  await addReport(learner, parsed.data);
   return NextResponse.json({ ok: true });
 }

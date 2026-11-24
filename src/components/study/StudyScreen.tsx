@@ -1,5 +1,4 @@
 "use client";
-import { EXAM_DATE } from "@/lib/exam";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useStudy } from "@/client/store";
@@ -18,7 +17,7 @@ type Done = Extract<NextCard, { kind: "done" }>;
 type ScreenState = { session: StoredSession; done: Done | null };
 
 export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal: boolean }) {
-  const { getStates, settings, points, record, retrievability, todayCards, syncError, states, timing } = useStudy();
+  const { learner, getStates, settings, points, record, retrievability, todayCards, syncError, states, timing } = useStudy();
   const exitHref = mode.kind === "topic" ? `/temata/${mode.topicId}` : "/";
   const pointsById = useMemo(() => new Map(points.map((p) => [p.id, p])), [points]);
 
@@ -33,7 +32,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
     const now = new Date();
     const n = nextCard({
       now,
-      examDate: EXAM_DATE,
+      examDate: learner.examDate,
       points: pts,
       states: getStates(),
       session: session.history,
@@ -49,7 +48,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
 
   // Mounted only once the store is ready (AppFrame shows a spinner before), so localStorage is available.
   const [screen, setScreen] = useState<ScreenState>(() => {
-    const s = loadSession(mode);
+    const s = loadSession(learner.id, mode);
     if (beyondGoal) s.beyondGoal = true;
     return fill(s);
   });
@@ -57,7 +56,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
 
 
   // Persist the session (external system sync).
-  useEffect(() => saveSession(session), [session]);
+  useEffect(() => saveSession(learner.id, session), [learner.id, session]);
 
   const advance = (item: SessionItem) => setScreen(fill({ ...session, current: null, history: [...session.history, item] }));
 
@@ -65,8 +64,8 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const point = current ? pointsById.get(current.next.pointId) : undefined;
 
   const plan = useMemo(
-    () => dailyPlan({ now: new Date(), examDate: EXAM_DATE, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
-    [settings, points, states, retrievability, timing],
+    () => dailyPlan({ now: new Date(), examDate: learner.examDate, points, states, dailyMinutes: settings.dailyMinutes, retrievability, timing }),
+    [learner.examDate, settings, points, states, retrievability, timing],
   );
 
   const onIntroDone = (skipped: boolean) => {
@@ -89,7 +88,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   /** Persist the session now (not in the effect), in the same task as the event is queued: no reload can fall between. */
   /** Persist the session now (not in the effect), in the same task as the event is queued: no reload can fall between. */
   const commit = (next: StoredSession) => {
-    saveSession(next);
+    saveSession(learner.id, next);
     setScreen({ done: null, session: next });
   };
 

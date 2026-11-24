@@ -1,15 +1,22 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { SESSION_COOKIE, verifySessionToken } from "@/server/session";
+import { ADMIN_COOKIE, SESSION_COOKIE, verifyAdminToken, verifySessionToken } from "@/server/session";
 
-/** Optimistic gate: unauthenticated page requests → /login. API routes check the session themselves too. */
+/**
+ * Optimistic gate (pages and API routes check again themselves):
+ *  - /admin, /api/admin → admin session only (a learner session never opens them);
+ *  - everything else → learner session (an admin session never opens a learner's app or API).
+ */
 export async function proxy(req: NextRequest) {
-  const ok = await verifySessionToken(req.cookies.get(SESSION_COOKIE)?.value);
-  if (ok) return NextResponse.next();
-  if (req.nextUrl.pathname.startsWith("/api/")) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  const path = req.nextUrl.pathname;
+  const isApi = path.startsWith("/api/");
+  const deny = (login: string) =>
+    isApi ? NextResponse.json({ error: "unauthorized" }, { status: 401 }) : NextResponse.redirect(new URL(login, req.url));
+
+  if (path === "/admin" || path.startsWith("/admin/") || path.startsWith("/api/admin/")) {
+    if (path === "/admin/login" || path === "/api/admin/login") return NextResponse.next();
+    return (await verifyAdminToken(req.cookies.get(ADMIN_COOKIE)?.value)) ? NextResponse.next() : deny("/admin/login");
   }
-  const url = new URL("/login", req.url);
-  return NextResponse.redirect(url);
+  return (await verifySessionToken(req.cookies.get(SESSION_COOKIE)?.value)) ? NextResponse.next() : deny("/login");
 }
 
 export const config = {

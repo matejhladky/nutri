@@ -3,7 +3,8 @@ import { buddyLine, type Buddy, type DaySummary } from "./buddy";
 
 const me = (o: Partial<DaySummary> = {}): DaySummary => ({ answers: 0, extra: 0, planDone: false, days7: 0, ...o });
 const danca = (o: Partial<DaySummary> = {}): Buddy => ({ label: "Danča", labelWith: "Dančou", ...me(o) });
-const line = (a: Partial<DaySummary>, b: Partial<DaySummary>) => buddyLine(me(a), danca(b));
+const NOON = new Date("2026-11-25T11:00:00Z"); // 12:00 Prague
+const line = (a: Partial<DaySummary>, b: Partial<DaySummary>) => buddyLine(me(a), danca(b), NOON);
 
 describe("comparison line", () => {
   it("covers every state in priority order, with real numbers", () => {
@@ -37,8 +38,22 @@ describe("comparison line", () => {
   });
 
   it("works the other way round with Lucka's names", () => {
-    const l = buddyLine(me({ answers: 0 }), { label: "Lucka", labelWith: "Luckou", ...me({ answers: 25 }) });
+    const l = buddyLine(me({ answers: 0 }), { label: "Lucka", labelWith: "Luckou", ...me({ answers: 25 }) }, NOON);
     expect(l.line1).toBe("Lucka už má dneska 25 odpovědí.");
-    expect(buddyLine(me({ answers: 6 }), { label: "Lucka", labelWith: "Luckou", ...me({ answers: 7 }) }).line1).toBe("S Luckou jste na tom dneska nastejno.");
+    expect(buddyLine(me({ answers: 6 }), { label: "Lucka", labelWith: "Luckou", ...me({ answers: 7 }) }, NOON).line1).toBe("S Luckou jste na tom dneska nastejno.");
+  });
+
+  it("between midnight and 04:00 treats today as not started — yesterday's study day is not 'dneska'", () => {
+    const threeAm = new Date("2026-11-26T02:00:00Z"); // 03:00 Prague, study day still 25. 11.
+    const lucka = { label: "Lucka", labelWith: "Luckou" };
+    // Danča at 3 am: Lucka answered 39 yesterday evening, Danča nothing — not "Lucka ti dneska utíká o 39".
+    expect(buddyLine(me({ answers: 0, days7: 2 }), { ...lucka, ...me({ answers: 39, extra: 12, planDone: true, days7: 2 }) }, threeAm)).toMatchObject({
+      emoji: "🐢",
+      line1: "Lucka dneska ještě nezačala.",
+    });
+    // The week still counts at night.
+    expect(buddyLine(me({ days7: 1 }), { ...lucka, ...me({ answers: 39, days7: 4 }) }, threeAm)).toMatchObject({ emoji: "📅" });
+    // From 04:00 the new study day is today again.
+    expect(buddyLine(me({}), { ...lucka, ...me({ answers: 5 }) }, new Date("2026-11-26T03:30:00Z"))).toMatchObject({ emoji: "👀" });
   });
 });

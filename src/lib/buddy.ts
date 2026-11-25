@@ -3,6 +3,7 @@
  * Only effort is compared — plan done, answers today, answers over plan, study days this week — never accuracy or
  * topics. The first rule that applies wins (order matters). Numbers are always real.
  */
+import { beforeStudyDayStarts } from "@/engine/time";
 import { plural } from "./format";
 
 export type DaySummary = {
@@ -30,7 +31,17 @@ export const LEAD_MIN = 5;
 
 const answers = (n: number) => plural(n, "odpověď", "odpovědi", "odpovědí");
 
-export function buddyLine(me: DaySummary, her: Buddy): BuddyLine {
+/** Today's numbers zeroed (the week stays): a new calendar day that nobody has started yet. */
+const freshDay = <T extends DaySummary>(d: T): T => ({ ...d, answers: 0, extra: 0, planDone: false });
+
+/**
+ * `now` matters between midnight and 04:00: the study day (and the plan card) still belong to yesterday, but the line
+ * says "dneska", which reads as the new calendar day — so both start from zero then instead of comparing yesterday.
+ */
+export function buddyLine(meToday: DaySummary, herToday: Buddy, now = new Date()): BuddyLine {
+  const night = beforeStudyDayStarts(now);
+  const me = night ? freshDay(meToday) : meToday;
+  const her = night ? freshDay(herToday) : herToday;
   const H = her.label;
   const meFire = me.extra >= EXTRA_MIN;
   const herFire = her.extra >= EXTRA_MIN;

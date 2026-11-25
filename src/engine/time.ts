@@ -12,6 +12,14 @@ export function dayKey(at: Date | string): string {
   return shifted.toLocaleDateString("sv-SE", { timeZone: TZ });
 }
 
+/**
+ * Between midnight and 04:00 the study day is still the previous one (see dayKey), although the calendar — and anyone
+ * reading "dneska" — is already on the next day.
+ */
+export function beforeStudyDayStarts(at: Date): boolean {
+  return dayKey(at) !== at.toLocaleDateString("sv-SE", { timeZone: TZ });
+}
+
 /** Whole study days from a to b (b − a), using day keys. */
 export function dayDiff(a: string, b: string): number {
   return Math.round((Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / 86400_000);

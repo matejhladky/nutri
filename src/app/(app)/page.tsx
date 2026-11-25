@@ -58,6 +58,7 @@ export default function TodayPage() {
     ? buddyLine(
         { answers: todayCards, extra: extraToday, planDone: plan.goalReached, days7: recentDays(answersByDay, now, 7).filter((d) => d.answers > 0).length },
         buddy,
+        now,
       )
     : null;
 

@@ -18,7 +18,7 @@ import type { Buddy } from "@/lib/buddy";
 import { adoptLegacyStorage } from "./learner-storage";
 import { apiFetch, enqueue, flush, LearnerChangedError, pendingEvents, UnauthorizedError } from "./outbox";
 
-export type Settings = { dailyMinutes: number };
+export type Settings = { dailyMinutes: number; seenNews?: string[] };
 export type Report = { pointId: string; exerciseId: string | null };
 
 type Store = {

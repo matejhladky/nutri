@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { useStudy } from "@/client/store";
 import { dailyPlan } from "@/engine/planner";
 import { pointStatus } from "@/engine/state";
@@ -9,6 +9,8 @@ import { recentDays } from "@/components/Activity";
 import { Icon } from "@/components/ui";
 import { ExamPath, KnowledgeMap } from "@/components/TodayVisuals";
 import { buddyLine, type BuddyTone } from "@/lib/buddy";
+import { NewsCard } from "@/components/NewsCard";
+import { NEWS, pendingNews } from "@/lib/news";
 import { plural } from "@/lib/format";
 import { pickQuote } from "@/lib/quotes";
 
@@ -25,7 +27,20 @@ const TONE: Record<BuddyTone, string> = {
 
 export default function TodayPage() {
   const router = useRouter();
-  const { learner, states, settings, points, todayCards, answersByDay, extraToday, buddy, pending, syncError, retrievability, timing } = useStudy();
+  const { learner, states, settings, saveSettings, points, todayCards, answersByDay, extraToday, buddy, pending, syncError, retrievability, timing } = useStudy();
+  // Newest notice she hasn't dismissed (and announced after she started); hidden at once on dismiss, saved to settings.
+  const [dismissed, setDismissed] = useState<string[]>([]);
+  const since = useMemo(() => {
+    let first: string | null = null;
+    for (const st of states.values()) if (st.introducedAt && (!first || st.introducedAt < first)) first = st.introducedAt;
+    return first;
+  }, [states]);
+  const news = pendingNews(NEWS, [...(settings.seenNews ?? []), ...dismissed], since);
+  const dismissNews = () => {
+    if (!news) return;
+    setDismissed((d) => [...d, news.id]);
+    void saveSettings({ seenNews: [...(settings.seenNews ?? []), news.id] }).catch(() => {});
+  };
   const now = useMemo(() => new Date(), []);
   // Random per app load; null on the server so a server render can never mismatch the client.
   const quote = useSyncExternalStore(noSubscribe, pickQuote, () => null);
@@ -45,12 +60,16 @@ export default function TodayPage() {
   const examDay = plan.daysLeft !== null && plan.daysLeft <= 0;
   const minutes = Math.max(5, plan.estimatedMinutes);
 
-  const parts = [
-    reviews > 0 ? `${reviews} opakování` : null,
-    newLeft > 0 ? plural(newLeft, "nový poznatek", "nové poznatky", "nových poznatků") : null,
-  ].filter(Boolean);
-  const summary = parts.length ? parts.join(" a ") : "Pár krátkých opakování";
-  const heading = plan.goalReached ? "Dnešní plán je splněný" : started ? `Ještě ${summary.charAt(0).toLowerCase()}${summary.slice(1)}` : summary;
+  // The card speaks in time and questions — what they experience — not in the planner's terms.
+  const newPoints = newLeft > 0 ? plural(newLeft, "nový poznatek", "nové poznatky", "nových poznatků") : null;
+  const contents = reviews > 0 ? (newPoints ? `Opakování a ${newPoints}.` : "Dnes jen opakování.") : newPoints ? `${newPoints.charAt(0).toUpperCase()}${newPoints.slice(1)}.` : "Pár krátkých otázek.";
+  const heading = plan.goalReached
+    ? plan.laterToday > 0
+      ? "Zatím hotovo"
+      : "Pro dnešek hotovo"
+    : started
+      ? `Ještě asi ${minutes} minut`
+      : `Asi ${minutes} minut`;
   // Share of today's plan done, in planned minutes (an estimate — shown as a bar, never as a number).
   const progress = plan.goalReached ? 1 : Math.min(0.97, plan.doneMinutes / Math.max(1, plan.doneMinutes + plan.estimatedMinutes));
 
@@ -62,13 +81,17 @@ export default function TodayPage() {
       )
     : null;
 
-  const answered = <strong className="font-semibold text-cream tabular-nums">{plural(todayCards, "odpověď", "odpovědi", "odpovědí")}</strong>;
+  const answered = started ? (
+    <>
+      Máš za sebou <strong className="font-semibold text-cream tabular-nums">{plural(todayCards, "otázku", "otázky", "otázek")}</strong>.
+    </>
+  ) : null;
   const doneNote =
     plan.laterToday > 0 && plan.nextLaterAt
-      ? `Později ještě ${plural(plan.laterToday, "krátké opakování", "krátká opakování", "krátkých opakování")}, kolem ${clock(plan.nextLaterAt)}.`
+      ? `Kolem ${clock(plan.nextLaterAt)} jich tu ještě pár přibude.`
       : finalDays
-        ? "Nové poznatky už nepřibývají. Můžeš si procvičit nejslabší místa."
-        : "Další opakování přijdou zítra.";
+        ? "Před zkouškou už jen opakuješ."
+        : null;
 
   return (
     <div className="flex flex-col animate-rise">
@@ -82,6 +105,8 @@ export default function TodayPage() {
           <Icon name="settings" size={22} />
         </Link>
       </header>
+
+      {news && <NewsCard item={news} onDismiss={dismissNews} />}
 
       <section
         aria-labelledby="plan"
@@ -107,23 +132,17 @@ export default function TodayPage() {
                 <div className="h-full rounded-full bg-sage-200" style={{ width: `${Math.max(3, progress * 100)}%` }} />
               </div>
             )}
-            <p className="text-[14px] text-sage-200 lg:text-[14.5px]">
-              {plan.goalReached ? (
-                <>
-                  {started && <>{answered} za sebou. </>}
-                  {doneNote}
-                </>
-              ) : started ? (
-                <>
-                  {answered} za sebou, zbývá asi {minutes} minut
-                </>
-              ) : (
-                <>Zabere asi {minutes} minut</>
-              )}
-            </p>
-            {!plan.goalReached && plan.deferredReviews > 0 && (
-              <p className="text-[13.5px] text-sage-200/80">
-                {plural(plan.deferredReviews, "opakování", "opakování", "opakování")} se dnes nevejde, přijde zítra.
+            {(started || !plan.goalReached || doneNote) && (
+              <p className="text-[14px] text-sage-200 lg:text-[14.5px]">
+                {plan.goalReached ? (
+                  <>
+                    {answered} {doneNote}
+                  </>
+                ) : started ? (
+                  answered
+                ) : (
+                  contents
+                )}
               </p>
             )}
           </div>
@@ -135,7 +154,7 @@ export default function TodayPage() {
               onClick={() => router.push("/studium?navic=1")}
               className="min-h-14 rounded-2xl border border-cream/40 px-5 py-3 text-[16px] font-semibold leading-snug hover:bg-cream/10 lg:min-h-[60px]"
             >
-              {sweepOnly ? "Procvičit nejslabší místa" : "Pokračovat s novými poznatky"}
+              {sweepOnly ? "Procvičit nejslabší místa" : "Pokračovat dál"}
             </button>
           )
         ) : (

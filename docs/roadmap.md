@@ -258,9 +258,17 @@ rovnici Mifflin-St Jeor"; the Mifflin/Katch explain key points ask for the metho
 incl. earlier hinted answers, exercise choice, content (every calculation has a formula or a knowledge hint; no
 equation asked by heart), browser: formula visible, short case end to end.
 
+## R11 — Plain plan card + "Novinka" notices ✅ (2026-11-26)
+
+Plan card in time and questions only ("Asi 75 minut" / "Ještě asi 67 minut" / "Máš za sebou 24 otázek." / "Pro
+dnešek hotovo"; "Kolem 18:30 jich tu ještě pár přibude."); the "se dnes nevejde, přijde zítra" line is gone.
+Notices about bigger changes: `src/lib/news.ts` (add an entry to announce one); each learner sees the newest one she
+hasn't dismissed, only if she studied before that change; dismissal stored in her settings (`seenNews`, all devices).
+First notice: the calculation change (R10).
+
 ## Status
 
-All roadmap milestones (M0–M4, R1–R10) are done locally. Not done (owner decision): deployment — runbook in
+All roadmap milestones (M0–M4, R1–R11) are done locally. Not done (owner decision): deployment — runbook in
 `docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
 AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
 food law changed in 2024–2025 and may change again.

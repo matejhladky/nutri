@@ -406,7 +406,10 @@ test("today's answer count comes from the server, so another device sees it", as
   await login(other);
   await expect(other.getByText(new RegExp(`Probráno`))).toBeVisible();
   expect(await count(other)).toBe(before + answered);
-  if (before + answered > 0) await expect(other.getByText(/\d+ odpověd\S* za sebou/)).toBeVisible();
+  if (before + answered > 0) await expect(other.getByText(/^Máš za sebou \d+ otáz/)).toBeVisible();
+  // The plan card speaks in time, not in planner terms.
+  await expect(other.getByRole("heading", { level: 2, name: /^(Asi \d+ minut|Ještě asi \d+ minut|Pro dnešek hotovo|Zatím hotovo)$/ })).toBeVisible();
+  await expect(other.getByText(/nevejde/)).toHaveCount(0);
   await other.close();
 });
 
@@ -754,4 +757,31 @@ test("a case whose calculations are mastered repeats only its decisions", async 
   await answerCase(page);
   await expect.poll(() => answersOf(page, point.id)).toBe(before + 1);
   await expect.poll(() => page.evaluate(() => (JSON.parse(localStorage.getItem("nutri.outbox.v1.l1") ?? "[]") as unknown[]).length)).toBe(0);
+});
+
+// ---------- "Novinka" notices ----------
+
+test("a notice about a change shows once and stays dismissed on every device", async ({ page, browser }) => {
+  await login(page);
+  // She has studied since before the change (the notice is only for those who knew the old behaviour)…
+  const old = { id: `news-intro-${Date.now()}`, pointId: "uv.poradce-temata", at: "2026-11-20T10:00:00.000Z", kind: "intro" };
+  expect((await page.request.post("/api/events", { ...AS_L1, data: { events: [old] } })).ok()).toBe(true);
+  // …and hasn't dismissed it yet (the two browser projects share one database).
+  expect((await page.request.post("/api/settings", { ...AS_L1, data: { seenNews: [] } })).ok()).toBe(true);
+  await page.reload();
+
+  const notice = page.getByRole("region", { name: "Vzorce už nemusíš drtit nazpaměť" });
+  await expect(notice).toBeVisible();
+  await expect(notice.getByText("Novinka")).toBeVisible();
+  await notice.getByRole("button", { name: "Fuck yeah!" }).click();
+  await expect(notice).toHaveCount(0);
+  await expect.poll(async () => ((await (await page.request.get("/api/state", AS_L1)).json()) as { settings: { seenNews: string[] } }).settings.seenNews).toContain("2026-11-25-vzorce");
+
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "Ahoj Lucko ☀️" })).toBeVisible();
+  await expect(page.getByText("Vzorce už nemusíš drtit nazpaměť")).toHaveCount(0);
+  const other = await browser.newPage(); // another device
+  await login(other);
+  await expect(other.getByText("Vzorce už nemusíš drtit nazpaměť")).toHaveCount(0);
+  await other.close();
 });

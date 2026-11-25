@@ -79,9 +79,11 @@ export function partitionEvents(raw: unknown[]): { valid: StudyEvent[]; rejected
 
 export const SettingsSchema = z.object({
   dailyMinutes: z.number().int().min(10).max(240),
+  /** Ids of "Novinka" notices she has dismissed (src/lib/news.ts). */
+  seenNews: z.array(z.string().min(1).max(64)).max(100).default([]),
 });
 export type Settings = z.infer<typeof SettingsSchema>;
-export const DEFAULT_SETTINGS: Settings = { dailyMinutes: 45 };
+export const DEFAULT_SETTINGS: Settings = { dailyMinutes: 45, seenNews: [] };
 
 export async function getAllStates(learner: LearnerId): Promise<Record<string, PointState>> {
   const db = await getDb();

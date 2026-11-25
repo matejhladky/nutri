@@ -301,3 +301,13 @@ describe("calculations: event format", () => {
     expect(valid[0].calcOk).toBe(true);
   });
 });
+
+describe("settings: dismissed notices", () => {
+  it("are stored per learner and survive saving the daily time", async () => {
+    await store.saveSettings("l1", { seenNews: ["2026-11-25-vzorce"] });
+    await store.saveSettings("l1", { dailyMinutes: 60 });
+    expect(await store.getSettings("l1")).toMatchObject({ dailyMinutes: 60, seenNews: ["2026-11-25-vzorce"] });
+    expect((await store.getSettings("l2")).seenNews).not.toContain("2026-11-25-vzorce");
+    await store.saveSettings("l1", { dailyMinutes: 45 });
+  });
+});

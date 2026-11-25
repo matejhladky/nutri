@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
 
 const PASS = process.env.E2E_PASSPHRASE ?? "e2e-heslo";
 const PASS_2 = process.env.E2E_PASSPHRASE_2 ?? "e2e-heslo-2";
@@ -694,4 +695,63 @@ test("content explorer preview is a sandbox: no requests, no events, no state ch
   const data = ({ states, answersByDay, todayAnswers, settings }: ServerState) => ({ states, answersByDay, todayAnswers, settings });
   expect(data(await stateAs(l1, AS_L1))).toEqual(data(before[0]));
   expect(data(await stateAs(l2, AS_L2))).toEqual(data(before[1]));
+});
+
+// ---------- Calculations: formula shown, solved cases repeat only the decisions ----------
+
+const studyDay = () => new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Prague" }).format(new Date(Date.now() - 4 * 3600e3));
+/** Put a known card on screen through the persisted session (the planner order is not deterministic here). */
+async function showCard(page: Page, topicId: string, pointId: string, exerciseId: string) {
+  await page.evaluate(
+    ({ day, topicId, pointId, exerciseId }) => {
+      const current = { next: { kind: "exercise", pointId, exerciseId, reason: "review" }, seed: 7, shownAt: new Date().toISOString() };
+      localStorage.setItem("nutri.session.v1.l1", JSON.stringify({ day, mode: { kind: "topic", topicId }, history: [], beyondGoal: false, current }));
+    },
+    { day: studyDay(), topicId, pointId, exerciseId },
+  );
+  await page.goto(`/studium?tema=${topicId}`);
+}
+
+test("a calculation shows its formula openly — no hint button, no penalty", async ({ page }) => {
+  await login(page);
+  await showCard(page, "energeticka-bilance", "en.bmr-mifflin", "vypocet");
+  await expect(page.getByText("Vzorec")).toBeVisible();
+  await expect(page.getByText(/10 × hmotnost \+ 6,25 × výška/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Nápověda" })).toHaveCount(0);
+});
+
+test("a case whose calculations are mastered repeats only its decisions", async ({ page }) => {
+  await login(page);
+  const content = JSON.parse(readFileSync("src/generated/content.json", "utf8")) as { points: { id: string; topicId: string; exercises: { id: string; type: string; steps?: { type: string }[] }[] }[] };
+  const point = content.points.find((p) => p.id === "kaz.redukce-sedava")!;
+  const kase = point.exercises.find((e) => e.type === "case")!;
+  const calcSteps = kase.steps!.filter((s) => s.type === "numeric").length;
+  const asked = kase.steps!.length - calcSteps;
+
+  // Her earlier full run had every calculation right (calcOk), even if a decision was not.
+  const solved = {
+    id: `calc-solved-${Date.now()}`,
+    pointId: point.id,
+    at: new Date(Date.now() - 2 * 86400e3).toISOString(),
+    kind: "answer",
+    exerciseId: kase.id,
+    exerciseType: "case",
+    grade: 2,
+    outcome: "partial",
+    calcOk: true,
+  };
+  expect((await page.request.post("/api/events", { ...AS_L1, data: { events: [solved] } })).ok()).toBe(true);
+  const before = await answersOf(page, point.id);
+
+  await page.reload();
+  await showCard(page, point.topicId, point.id, kase.id);
+  await expect(page.getByText("Výpočty už máš zvládnuté – čísla jsou spočítaná, zbývá rozhodnout.")).toBeVisible();
+  await expect(page.getByText(`Krok 1 z ${asked}`)).toBeVisible();
+  // The calculations are listed worked out, marked "=" instead of a step number.
+  await expect(page.getByRole("list", { name: "Hotové kroky" }).getByRole("listitem")).toHaveCount(calcSteps);
+  await expect(page.getByText("Zkontrolovat")).toHaveCount(0);
+
+  await answerCase(page);
+  await expect.poll(() => answersOf(page, point.id)).toBe(before + 1);
+  await expect.poll(() => page.evaluate(() => (JSON.parse(localStorage.getItem("nutri.outbox.v1.l1") ?? "[]") as unknown[]).length)).toBe(0);
 });

@@ -342,21 +342,20 @@ points:
           weight: { min: 50, max: 120, step: 1 }
         unit: kcal
         tolerance: { abs: 10 }
-        hint: "10 × hmotnost + 6,25 × výška − 5 × věk; muži + 5, ženy − 161."
-      - id: vzorec
-        type: reveal
-        prompt: "Napiš (aspoň v duchu) rovnici Mifflin-St Jeor pro muže a pro ženy."
-        answer: "10 × kg + 6,25 × cm − 5 × věk; muži + 5, ženy − 161."
+        formulaText: "10 × hmotnost + 6,25 × výška − 5 × věk; muži + 5, ženy − 161."
       - id: vysvetli
         type: explain
+        version: 2
         prompt: "Vysvětli, jaké údaje od klienta potřebuješ a jak spočítáš BMR podle Mifflin-St Jeor."
         keyPoints:
           - "Potřebuji hmotnost (kg), výšku (cm), věk (roky) a pohlaví"
-          - "10 × hmotnost + 6,25 × výška − 5 × věk"
-          - "Muži + 5, ženy − 161"
+          - "Údaje dosadím do rovnice Mifflin-St Jeor (vzorec mám před sebou)"
+          - "Rovnice se liší pro muže a pro ženy"
+          - "Výsledek je odhad klidového výdeje – základ pro další výpočet"
         modelAnswer: >-
-          Potřebuji hmotnost v kilogramech, výšku v centimetrech, věk a pohlaví. Spočítám 10 × hmotnost
-          + 6,25 × výška − 5 × věk. U mužů k výsledku přičtu 5, u žen odečtu 161.
+          Potřebuji hmotnost v kilogramech, výšku v centimetrech, věk a pohlaví. Údaje dosadím do rovnice
+          Mifflin-St Jeor, která má jinou verzi pro muže a pro ženy. Vyjde mi odhad bazálního metabolismu, ze
+          kterého pak počítám celkový výdej.
 
   - id: en.bmr-harris
     title: Výpočet BMR – Harris-Benedict
@@ -387,7 +386,7 @@ points:
           weight: { min: 50, max: 120, step: 1 }
         unit: kcal
         tolerance: { abs: 10 }
-        hint: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5. Ženy: 9,563 × kg + 1,85 × cm − 4,676 × věk + 655,1."
+        formulaText: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5. Ženy: 9,563 × kg + 1,85 × cm − 4,676 × věk + 655,1."
 
   - id: en.bmr-katch
     title: Výpočet BMR – Katch-McArdle
@@ -410,18 +409,19 @@ points:
           bodyFat: { min: 15, max: 45, step: 1 }
         unit: kcal
         tolerance: { abs: 10 }
-        hint: "Nejdřív FFM = hmotnost × (1 − tuk/100), potom 21,6 × FFM + 370."
+        formulaText: "Nejdřív FFM = hmotnost × (1 − tuk/100), potom 21,6 × FFM + 370."
       - id: vysvetli
         type: explain
+        version: 2
         prompt: "Klientka má změřené složení těla. Popiš, jak spočítáš její BMR podle Katch-McArdle."
         keyPoints:
           - "Potřebuji beztukovou hmotu (FFM) v kg"
-          - "FFM = hmotnost × (1 − % tuku / 100)"
-          - "BMR = 21,6 × FFM + 370"
+          - "FFM spočítám z hmotnosti a změřeného procenta tuku"
+          - "FFM dosadím do rovnice Katch-McArdle (vzorec mám před sebou)"
         modelAnswer: >-
-          Rovnice Katch-McArdle pracuje s beztukovou hmotou. Z hmotnosti a procenta tuku ji spočítám jako
-          hmotnost × (1 − % tuku / 100) – např. 70 kg a 30 % tuku dá 49 kg FFM. Pak BMR = 21,6 × FFM + 370,
-          tedy asi 1428 kcal.
+          Rovnice Katch-McArdle pracuje s beztukovou hmotou. Z hmotnosti a procenta tuku spočítám, kolik kilogramů
+          tvoří beztuková hmota – např. 70 kg a 30 % tuku dá 49 kg FFM. Tu dosadím do rovnice Katch-McArdle a
+          vyjde mi odhad BMR.
 
   - id: en.pod-bmr
     title: Jíst pod hodnotu BMR?
@@ -465,7 +465,7 @@ points:
           coef: { choices: [{ value: 0.1, label: "0,1" }, { value: 0.2, label: "0,2" }, { value: 0.35, label: "0,35" }] }
         unit: kcal
         tolerance: { abs: 5 }
-        hint: "NEAT = BMR × koeficient"
+        formulaText: "NEAT = BMR × koeficient"
       - id: koeficienty
         type: choice
         prompt: "Klientka má sedavé zaměstnání, jezdí autem a večer odpočívá. Jaký koeficient NEAT zvolíš?"
@@ -517,7 +517,7 @@ points:
           met: { choices: [{ value: 3, label: "3" }, { value: 5, label: "5" }, { value: 6, label: "6" }, { value: 8, label: "8" }, { value: 10, label: "10" }] }
         unit: kcal
         tolerance: { abs: 3 }
-        hint: "EAT = kg × MET × hodiny (minuty převeď na hodiny)."
+        formulaText: "EAT = kg × MET × hodiny (minuty převeď na hodiny)."
       - id: met-definice
         type: reveal
         prompt: "Co znamená 1 MET?"
@@ -599,7 +599,7 @@ points:
           met: { choices: [{ value: 5, label: "5" }, { value: 6, label: "6" }, { value: 8, label: "8" }] }
         unit: kcal
         tolerance: { abs: 25 }
-        hint: "BMR → NEAT (BMR × koef.) → EAT (kg × MET × h) → TEF (10 % součtu) → sečti."
+        formulaText: "BMR → NEAT (BMR × koef.) → EAT (kg × MET × h) → TEF (10 % součtu) → sečti."
       - id: postup
         type: explain
         prompt: "Popiš krok za krokem, jak spočítáš celkový denní energetický výdej klienta po složkách."
@@ -637,7 +637,7 @@ points:
           pal: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.375, label: "1,375" }, { value: 1.55, label: "1,55" }, { value: 1.725, label: "1,725" }] }
         unit: kcal
         tolerance: { abs: 10 }
-        hint: "TDEE = BMR × PAL"
+        formulaText: "TDEE = BMR × PAL"
       - id: kdy
         type: choice
         prompt: "Pro koho je podle skript vhodný výpočet TDEE = BMR × PAL?"
@@ -775,7 +775,7 @@ points:
         unit: kcal/kg FFM
         tolerance: { abs: 0.6 }
         decimals: 1
-        hint: "ED = (příjem − výdej na pohyb) / FFM"
+        formulaText: "ED = (příjem − výdej na pohyb) / FFM"
       - id: optimum
         type: choice
         prompt: "Jaká je podle skript optimální energetická dostupnost u žen?"

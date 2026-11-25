@@ -63,8 +63,10 @@ function evaluateRaw(ex: Exercise, res: Response): Omit<Evaluation, "grade"> {
       const r = res as Extract<Response, { type: "case" }>;
       const inst = instantiateCase(ex, r.seed);
       const stepOutcomes = ex.steps.map((step, i) => evaluateCaseStep(step, inst.steps[i], r.steps[i] ?? { type: "dontKnow" }));
-      if (stepOutcomes.every((o) => o === "unknown")) return { outcome: "unknown", stepOutcomes };
-      const score = stepOutcomes.reduce((a, o) => a + (o === "correct" ? 1 : o === "partial" ? 0.5 : 0), 0) / stepOutcomes.length;
+      // Steps shown already worked out (a solved case repeated) are not graded: only the asked ones count.
+      const asked = stepOutcomes.filter((_, i) => r.steps[i]?.type !== "given");
+      if (asked.every((o) => o === "unknown")) return { outcome: "unknown", stepOutcomes };
+      const score = asked.reduce((a, o) => a + (o === "correct" ? 1 : o === "partial" ? 0.5 : 0), 0) / asked.length;
       return { outcome: score === 1 ? "correct" : score >= 0.5 ? "partial" : "wrong", stepOutcomes };
     }
   }
@@ -78,6 +80,7 @@ const explainOutcome = (coveredIdx: number[], total: number): Outcome => {
 /** Outcome of one case step. A guessed correct choice counts as partial. */
 export function evaluateCaseStep(step: CaseStep, inst: CaseStepInstance, res: CaseStepResponse): Outcome {
   if (res.type === "dontKnow") return "unknown";
+  if (res.type === "given") return step.type === "numeric" ? "correct" : "wrong"; // not graded (see evaluate)
   if (res.type !== step.type) return "wrong";
   switch (step.type) {
     case "numeric": {

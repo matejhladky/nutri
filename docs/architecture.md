@@ -86,6 +86,14 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
 | `explain` | answer aloud (typing optional; "Zkus zmínit N bodů") → judge key points one at a time ("Řekla jsem" / "Neřekla"; later points hidden) → missed points + model answer | all → Good, ≥ ½ → Hard, else Again |
 | `case` | generated client → 2–8 steps (numeric / choice / explain / reveal), feedback after each step | step score (correct 1, partial ½): all → Good, ≥ ½ → Hard, else Again |
 
+**Calculations without drill** (`src/engine/calc.ts`, 2026-11-25; learners: "formulas we don't need by heart keep
+repeating"): every calculation shows its formula openly (`formulaText`, "Vzorec" box, no penalty); `hint` (counts as
+help) is kept only where the hint is the fact being tested (recommended ranges, choosing the NEAT/PAL level, 4/4/9 kcal
+and 4,2 kJ in the points that teach them). `PointState.solved` counts answers that solved each exercise (correct; for a
+case also `calcOk` = every calculation step right). A solved calculation gives way to the point's other questions; a
+solved case repeats "short": calculation steps appear worked out (`{type: "given"}`, not graded) and only the decisions
+are asked; the planner budgets it at the asked share of a case. STATE_VERSION 4.
+
 **Client cases** (`CaseView.tsx`, `instantiateCase`): numeric steps take formula inputs from the client params or from
 earlier steps' *correct, displayed* results, so one slip doesn't spoil the rest and later prompts can say "BMR = {bmr}".
 The case is recorded as one answer; each repetition is a new seed = a new client with the same procedure.

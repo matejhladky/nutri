@@ -66,6 +66,10 @@ How to write a topic batch. The verification counterpart is `docs/content-verifi
   - **Every tier-A point under an oral (U) or practical (PR) criterion gets one.**
 - **`numeric`:** only with a formula already registered in `src/content/formulas.ts` (do NOT edit that file). If you
   think a new formula is needed, describe it in your final report instead.
+- **Formulas are shown, not memorised** (numeric exercises and numeric case steps): put the formula in `formulaText`
+  ("BMR = 10 × kg + 6,25 × cm − 5 × věk − 161") — it is displayed with the question, no penalty. Use `hint` only when
+  the hint is the fact the question checks (a recommended range, which coefficient fits); a hint counts as help. Never
+  ask to reproduce an equation from memory; explain key points name the method and the data, not the constants.
 - Prompts address her informally ("ty"). Self-reference uses the feminine form.
 - Czech must be natural and correct.
 

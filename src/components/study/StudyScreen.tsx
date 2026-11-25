@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useStudy } from "@/client/store";
 import { loadSession, newSeed, saveSession, uuid, type StoredSession, type StudyMode } from "@/client/session";
+import { caseCalcOk } from "@/engine/calc";
 import { dailyPlan, nextCard, pickExercise, type NextCard, type SessionItem } from "@/engine/planner";
 import { topicsById, withoutReported } from "@/lib/content";
 import type { PointWithTopic } from "@/content/schema";
@@ -105,6 +106,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
   const onRecord = (a: AnswerRecord) => {
     if (!point || !current || current.answer) return; // a card is graded at most once, also after a reload
     const eventId = uuid();
+    const exercise = point.exercises.find((e) => e.id === a.exerciseId);
     const answer = { eventId, response: a.response, evaluation: a.evaluation, hintUsed: a.hintUsed };
     commit({ ...session, current: { ...current, answer, caseSteps: a.caseSteps ?? current.caseSteps } });
     record({
@@ -114,7 +116,7 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       kind: "answer",
       exerciseId: a.exerciseId,
       exerciseVersion: a.exerciseVersion,
-      exerciseType: point.exercises.find((e) => e.id === a.exerciseId)?.type,
+      exerciseType: exercise?.type,
       outcome: a.evaluation.outcome,
       grade: a.evaluation.grade,
       hintUsed: a.hintUsed || undefined,
@@ -122,6 +124,8 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       durationMs: a.durationMs,
       // Answered after today's plan was already complete: counts as "nad plán" (display only).
       extra: plan.goalReached || undefined,
+      // A case whose calculations were all right: they are mastered — later runs repeat only the decisions.
+      calcOk: (a.response.type === "case" && exercise && caseCalcOk(exercise, a.response.steps, a.evaluation)) || undefined,
     });
   };
 

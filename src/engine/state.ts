@@ -8,7 +8,7 @@ import { dayKey } from "./time";
 import { Grade, type PointState, type StudyEvent } from "./types";
 
 /** Bump when PointState's shape or the reducer's logic changes: cached states are then rebuilt from events. */
-export const STATE_VERSION = 3;
+export const STATE_VERSION = 4;
 
 export function emptyState(pointId: string): PointState {
   return {
@@ -21,6 +21,7 @@ export function emptyState(pointId: string): PointState {
     lastAnsweredAt: null,
     lastExerciseId: null,
     exerciseCounts: {},
+    solved: {},
     recent: [],
     failDay: null,
     failsThatDay: 0,
@@ -36,7 +37,7 @@ export function applyEvent(
   s: Scheduler,
 ): PointState {
   const st: PointState = prev
-    ? { ...prev, exerciseCounts: { ...prev.exerciseCounts }, recent: [...prev.recent] }
+    ? { ...prev, exerciseCounts: { ...prev.exerciseCounts }, solved: { ...prev.solved }, recent: [...prev.recent] }
     : emptyState(ev.pointId);
 
   st.v = STATE_VERSION;
@@ -56,6 +57,7 @@ export function applyEvent(
   if (ev.exerciseId) {
     st.lastExerciseId = ev.exerciseId;
     st.exerciseCounts[ev.exerciseId] = (st.exerciseCounts[ev.exerciseId] ?? 0) + 1;
+    if (ev.outcome === "correct" || ev.calcOk) st.solved = { ...st.solved, [ev.exerciseId]: (st.solved?.[ev.exerciseId] ?? 0) + 1 };
   }
   st.recent = [...st.recent, ev.outcome].slice(-5);
   st.lastGrade = ev.grade;

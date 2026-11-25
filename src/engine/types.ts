@@ -17,6 +17,8 @@ export type Response =
 /** Response to one step of a client case (choice indices refer to the ORIGINAL option order). */
 export type CaseStepResponse =
   | { type: "dontKnow" }
+  /** A calculation step shown already worked out (a solved case repeated: only the decisions are asked). */
+  | { type: "given" }
   | { type: "numeric"; value: string; hint?: boolean }
   | { type: "choice"; selected: number[]; guessed: boolean }
   | { type: "explain"; covered: number[] }
@@ -69,6 +71,8 @@ export type StudyEvent = {
   durationMs?: number;
   /** answer: given after today's plan was already complete ("nad plán"). Display only; scheduling ignores it. */
   extra?: boolean;
+  /** case answer: every calculation step was answered correctly (the case's calculations are mastered). */
+  calcOk?: boolean;
 };
 
 export type PointState = {
@@ -81,6 +85,11 @@ export type PointState = {
   lastAnsweredAt: string | null;
   lastExerciseId: string | null;
   exerciseCounts: Record<string, number>;
+  /**
+   * Per exercise: answers that solved it (outcome correct; for a case also all calculations right). A solved
+   * calculation is not asked again while the point has other questions; a solved case repeats only its decisions.
+   */
+  solved?: Record<string, number>;
   /** Most recent outcomes, newest last (max 5). */
   recent: Outcome[];
   /** Study day (YYYY-MM-DD) of the latest failure and how many failures happened that day. */

@@ -25,6 +25,7 @@ const ResponseSchema = z.union([
       .array(
         z.union([
           z.object({ type: z.literal("dontKnow") }),
+          z.object({ type: z.literal("given") }),
           z.object({ type: z.literal("numeric"), value: z.string().max(50), hint: z.boolean().optional() }),
           z.object({ type: z.literal("choice"), selected: z.array(z.number().int()), guessed: z.boolean() }),
           z.object({ type: z.literal("explain"), covered: z.array(z.number().int()) }),
@@ -50,6 +51,7 @@ export const EventSchema = z.object({
   response: ResponseSchema.optional(),
   durationMs: z.number().int().nonnegative().max(86_400_000).optional(),
   extra: z.boolean().optional(),
+  calcOk: z.boolean().optional(),
 }).refine((e) => e.kind !== "answer" || (e.grade !== undefined && e.outcome !== undefined), {
   // replay() cannot apply an answer without a grade — such an event must never reach the log.
   message: "answer event needs grade and outcome",

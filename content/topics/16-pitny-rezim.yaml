@@ -99,7 +99,7 @@ points:
           perKg: { min: 30, max: 40, step: 5 }
         unit: ml
         tolerance: { abs: 1 }
-        hint: "Ideální hmotnost × 30–40 ml"
+        formulaText: "Ideální hmotnost × 30–40 ml"
       - id: jaka-hmotnost
         type: choice
         prompt: "Klient váží 110 kg, jeho ideální hmotnost je 80 kg. Z jaké hmotnosti počítáš potřebu tekutin?"

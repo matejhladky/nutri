@@ -8,6 +8,7 @@
  *     paced so all tier A/B points are introduced 2 days before the exam
  * Consecutive cards avoid the same topic when an alternative exists; confusable partners are introduced close together.
  */
+import { askedShare, caseIsShort, isSolved } from "./calc";
 import type { PointWithTopic, Exercise } from "@/content/schema";
 import type { PointState } from "./types";
 import { dayKey, daysUntilExam } from "./time";
@@ -104,7 +105,12 @@ function prioritiesFor(points: PointWithTopic[]): Map<string, Priority> {
 }
 const minutesFor = (t: Timing | undefined, k: keyof typeof DEFAULT_TIMING) => t?.[k] ?? DEFAULT_TIMING[k];
 /** Minutes for one retrieval of a point (the exercise the rotation would pick). */
-const cardMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing) => minutesFor(t, pickExercise(p.exercises, st).type);
+const cardMinutes = (p: PointWithTopic, st: PointState | undefined, t?: Timing) => {
+  const ex = pickExercise(p.exercises, st);
+  const m = minutesFor(t, ex.type);
+  // A solved case repeats only its decisions.
+  return ex.type === "case" && caseIsShort(ex, st) ? Math.max(1, m * askedShare(ex)) : m;
+};
 /** Expected share of retrievals that fail and cost an extra relearning retrieval the same day (model assumption). */
 const RELEARN_NEW = 0.25;
 const RELEARN_ASK_FIRST = 0.5;
@@ -466,7 +472,10 @@ function exercise(p: PointWithTopic, st: PointState | undefined, reason: "learni
  * Rotate exercise variants: least-used first, never the same one twice in a row when there is a choice.
  * Early (fewer than 2 answers) prefer recognition/self-check forms; later prefer production forms.
  */
-export function pickExercise(exercises: Exercise[], st: PointState | undefined): Exercise {
+export function pickExercise(all: Exercise[], st: PointState | undefined): Exercise {
+  // A calculation solved once is not drilled again while the point has other questions (see engine/calc.ts).
+  const open = all.filter((e) => !(e.type === "numeric" && isSolved(st, e.id)));
+  const exercises = open.length ? open : all;
   if (exercises.length === 1) return exercises[0];
   // Only the very first retrieval prefers recognition; after that, production (recall, explanation, calculation).
   const early = !st || st.answers < 1;

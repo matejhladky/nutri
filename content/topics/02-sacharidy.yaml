@@ -769,7 +769,7 @@ points:
         unit: ""
         tolerance: { abs: 0.6 }
         decimals: 1
-        hint: "GN = GI × g sacharidů / 100"
+        formulaText: "GN = GI × g sacharidů / 100"
       - id: rozdil
         type: choice
         prompt: "Proč může mít potravina s vysokým GI přesto nízkou glykemickou nálož?"

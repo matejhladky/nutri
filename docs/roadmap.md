@@ -245,9 +245,22 @@ knowledge map as one 4-row block per topic sorted by status with today's new poi
 duplicated in the sidebar on Dnes. "Upevněno" renamed "Naučeno". Tests: every line state and plural, the server
 summary (only aggregates, read-only, per learner), answers over plan, map/timeline markup, browser checks.
 
+## R10 — Calculations without drill ✅ (2026-11-25)
+
+Learner feedback: the formula calculations kept repeating although the formulas need not be known by heart, which was
+annoying and slow. Cause: the formula sat behind "Nápověda", using it graded the answer Hard (case step: partial) and
+brought the calculation back sooner; cases redid the whole chain every repeat. Now: formulas shown openly with every
+calculation (47 of 60; the 13 hints that ARE the tested fact stay as hints); a calculation solved once gives way to the
+point's other questions; a solved case repeats only its decisions (calculations shown worked out). Retired "Napiš
+rovnici Mifflin-St Jeor"; the Mifflin/Katch explain key points ask for the method, not the constants (v2). Simulation
+(9 days, model estimate): calculations 82 → 51 at 45 min/day, 97 → 84 at 60, 91 → 60 at 90; the formula being visible
+(fewer failures) is not modelled, so the real effect should be larger. Tests: grading with given steps, solved state
+incl. earlier hinted answers, exercise choice, content (every calculation has a formula or a knowledge hint; no
+equation asked by heart), browser: formula visible, short case end to end.
+
 ## Status
 
-All roadmap milestones (M0–M4, R1–R9) are done locally. Not done (owner decision): deployment — runbook in
+All roadmap milestones (M0–M4, R1–R10) are done locally. Not done (owner decision): deployment — runbook in
 `docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
 AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
 food law changed in 2024–2025 and may change again.

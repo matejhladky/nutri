@@ -56,7 +56,7 @@ points:
             formula: bmr-mifflin
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
+            formulaText: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
           - type: numeric
             id: neat
             prompt: "BMR = {bmr} kcal. Zvol koeficient NEAT podle její běžné denní aktivity (bez nordic walkingu). Kolik kcal je NEAT?"
@@ -71,18 +71,19 @@ points:
             formula: eat
             unit: kcal
             tolerance: { abs: 5 }
-            hint: "EAT = kg × MET × čas v hodinách."
+            formulaText: "EAT = kg × MET × čas v hodinách."
           - type: numeric
             id: tef
             prompt: "EAT = {eat} kcal. Kolik je termický efekt potravy (TEF) podle zjednodušeného výpočtu ze skript?"
             formula: tef
             unit: kcal
             tolerance: { abs: 5 }
-            hint: "TEF = 10 % ze součtu BMR + NEAT + EAT."
+            formulaText: "TEF = 10 % ze součtu BMR + NEAT + EAT."
           - type: numeric
             id: tdee
             prompt: "TEF = {tef} kcal. Jaký je její celkový denní výdej (TDEE)?"
             formula: tdee-sum
+            formulaText: "TDEE = BMR + NEAT + EAT + TEF."
             unit: kcal
             tolerance: { abs: 10 }
           - type: numeric
@@ -91,7 +92,7 @@ points:
             formula: energy-goal
             unit: kcal
             tolerance: { rel: 0.02 }
-            hint: "Cíl = TDEE × (1 − deficit)."
+            formulaText: "Cíl = TDEE × (1 − deficit)."
           - type: choice
             prompt: >-
               Cíl vyšel {cil} kcal. Ze záznamu stravy ale vychází, že teď jí zhruba o 900 kcal víc, než je
@@ -158,7 +159,7 @@ points:
             formula: bmr-mifflin
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+            formulaText: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
           - type: numeric
             id: neat
             prompt: "BMR = {bmr} kcal. Zvol koeficient NEAT podle jeho běžné aktivity. Kolik kcal je NEAT?"
@@ -174,11 +175,12 @@ points:
             inputs: { bmr: bmr, neat: neat, eat: 0 }
             unit: kcal
             tolerance: { abs: 5 }
-            hint: "TEF = 10 % ze součtu BMR + NEAT + EAT."
+            formulaText: "TEF = 10 % ze součtu BMR + NEAT + EAT."
           - type: numeric
             id: slozky
             prompt: "TEF = {tef} kcal. Jaký je jeho TDEE po složkách?"
             formula: tdee-sum
+            formulaText: "TDEE = BMR + NEAT + EAT + TEF (EAT je tu 0)."
             inputs: { bmr: bmr, neat: neat, eat: 0, tef: tef }
             unit: kcal
             tolerance: { abs: 10 }
@@ -189,7 +191,7 @@ points:
             inputs: { bmr: bmr, pal: 1.2 }
             unit: kcal
             tolerance: { abs: 10 }
-            hint: "Sedavý způsob života = PAL 1,2; TDEE = BMR × PAL."
+            formulaText: "Sedavý způsob života = PAL 1,2; TDEE = BMR × PAL."
           - type: choice
             prompt: "Po složkách {slozky} kcal, pomocí PAL {tdeepal} kcal. Který výpočet je podle skript pro tohoto klienta vhodnější?"
             options:
@@ -263,7 +265,7 @@ points:
             formula: bmr-mifflin
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
+            formulaText: "10 × kg + 6,25 × cm − 5 × věk − 161 (žena)"
           - type: numeric
             id: ffm
             prompt: "Mifflin-St Jeor = {mifflin} kcal. Kolik kg má beztukové hmoty (FFM)?"
@@ -271,14 +273,14 @@ points:
             unit: kg
             decimals: 1
             tolerance: { abs: 0.5 }
-            hint: "FFM = hmotnost − hmotnost × % tuku / 100."
+            formulaText: "FFM = hmotnost − hmotnost × % tuku / 100."
           - type: numeric
             id: katch
             prompt: "FFM = {ffm} kg. Spočítej BMR podle Katch-McArdle."
             formula: bmr-katch
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "BMR = 21,6 × FFM + 370."
+            formulaText: "BMR = 21,6 × FFM + 370."
           - type: choice
             prompt: "Mifflin-St Jeor dal {mifflin} kcal, Katch-McArdle {katch} kcal. S kterou hodnotou budeš dál pracovat?"
             options:
@@ -351,21 +353,21 @@ points:
             unit: kg/m²
             decimals: 1
             tolerance: { abs: 0.2 }
-            hint: "BMI = kg / (výška v m)²"
+            formulaText: "BMI = kg / (výška v m)²"
           - type: numeric
             id: harris
             prompt: "BMI = {bmi}. Spočítej BMR podle Harris-Benedicta."
             formula: bmr-harris
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5."
+            formulaText: "Muži: 13,75 × kg + 5,003 × cm − 6,775 × věk + 66,5."
           - type: numeric
             id: mifflin
             prompt: "Harris-Benedict = {harris} kcal. Teď spočítej BMR podle Mifflin-St Jeor."
             formula: bmr-mifflin
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+            formulaText: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
           - type: choice
             prompt: "Harris-Benedict {harris} kcal, Mifflin-St Jeor {mifflin} kcal. Kterou rovnici skripta uvádějí pro klienta, jehož složení těla neznáme?"
             options:
@@ -448,7 +450,7 @@ points:
             formula: bmr-mifflin
             unit: kcal
             tolerance: { abs: 15 }
-            hint: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
+            formulaText: "10 × kg + 6,25 × cm − 5 × věk + 5 (muž)"
           - type: numeric
             id: tdee
             prompt: "BMR = {bmr} kcal. Sportuje 4× týdně, proto použiješ PAL – zvol ho podle jeho celkové aktivity. Jaký je jeho celkový denní výdej (TDEE)?"
@@ -460,6 +462,7 @@ points:
             id: cil
             prompt: "TDEE = {tdee} kcal. Domluvili jste se na navýšení o {pct} %. Jaký příjem nastavíš?"
             formula: energy-goal
+            formulaText: "Cíl = TDEE × (1 + navýšení)."
             unit: kcal
             tolerance: { rel: 0.02 }
           - type: numeric
@@ -477,7 +480,7 @@ points:
             inputs: { energy: cil, fatPct: fatPct }
             unit: g
             tolerance: { abs: 3 }
-            hint: "kcal z tuků = % × příjem; gramy = kcal : 9."
+            formulaText: "kcal z tuků = % × příjem; gramy = kcal : 9."
           - type: numeric
             id: sacharidy
             prompt: "Tuky = {tuky} g. Kolik gramů sacharidů doplní zbytek energie?"
@@ -485,7 +488,7 @@ points:
             inputs: { energy: cil, weight: weight, proteinPerKg: 1.6, fatPct: fatPct }
             unit: g
             tolerance: { abs: 3 }
-            hint: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
+            formulaText: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
           - type: choice
             prompt: "Po čtyřech týdnech se hmotnost nezměnila, trénink i jídelníček dodržuje. Co uděláš?"
             options:
@@ -555,7 +558,7 @@ points:
             unit: kg/m²
             decimals: 1
             tolerance: { abs: 0.2 }
-            hint: "BMI = kg / (výška v m)²"
+            formulaText: "BMI = kg / (výška v m)²"
           - type: numeric
             id: whr
             prompt: "BMI = {bmi}. Spočítej WHR."
@@ -563,7 +566,7 @@ points:
             unit: ""
             decimals: 2
             tolerance: { abs: 0.01 }
-            hint: "WHR = obvod pasu / obvod boků."
+            formulaText: "WHR = obvod pasu / obvod boků."
           - type: choice
             prompt: "BMI = {bmi}, WHR = {whr}. Jaký diagnostický závěr z měření vyplývá?"
             options:
@@ -633,6 +636,7 @@ points:
             id: bilkoviny
             prompt: "Kolik gramů bílkovin denně jí vychází?"
             formula: per-kg
+            formulaText: "Bílkoviny (g) = hmotnost (kg) × g/kg ze zadání."
             inputs: { weight: weight, perKg: proteinPerKg }
             unit: g
             tolerance: { abs: 3 }
@@ -642,14 +646,14 @@ points:
             formula: macro-fat
             unit: g
             tolerance: { abs: 3 }
-            hint: "kcal z tuků = % × příjem; gramy = kcal : 9."
+            formulaText: "kcal z tuků = % × příjem; gramy = kcal : 9."
           - type: numeric
             id: sacharidy
             prompt: "Tuky = {tuky} g. Kolik gramů sacharidů doplní zbytek energie?"
             formula: macro-carbs
             unit: g
             tolerance: { abs: 3 }
-            hint: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
+            formulaText: "Od příjmu odečti kcal z bílkovin (g × 4) a z tuků; zbytek : 4."
           - type: choice
             prompt: "Dopolední svačinu mezi hodinami nestihne. Jak naložíš s ukázkovým rozložením 25/10/35/10/20 %?"
             options:
@@ -719,7 +723,7 @@ points:
             unit: kg
             decimals: 1
             tolerance: { abs: 0.5 }
-            hint: "FFM = hmotnost − hmotnost × % tuku / 100."
+            formulaText: "FFM = hmotnost − hmotnost × % tuku / 100."
           - type: numeric
             id: eat
             prompt: "FFM = {ffm} kg. Kolik kcal vydá jedním tréninkem (EAT)?"
@@ -727,7 +731,7 @@ points:
             inputs: { weight: weight, met: 10, minutes: minutes }
             unit: kcal
             tolerance: { abs: 5 }
-            hint: "EAT = kg × MET × čas v hodinách."
+            formulaText: "EAT = kg × MET × čas v hodinách."
           - type: numeric
             id: ed
             prompt: "Výdej na trénink = {eat} kcal. Jaká je její energetická dostupnost?"
@@ -736,7 +740,7 @@ points:
             unit: kcal/kg FFM
             decimals: 1
             tolerance: { abs: 1 }
-            hint: "ED = (příjem − výdej na pohyb) / FFM."
+            formulaText: "ED = (příjem − výdej na pohyb) / FFM."
           - type: choice
             prompt: "ED = {ed} kcal/kg FFM. Jak výsledek vyhodnotíš?"
             options:
@@ -828,7 +832,7 @@ points:
             inputs: { weight: ideal, perKg: 30 }
             unit: ml
             tolerance: { abs: 20 }
-            hint: "Tekutiny = ideální hmotnost × 30 ml."
+            formulaText: "Tekutiny = ideální hmotnost × 30 ml."
           - type: choice
             prompt: "Tekutiny = {tekutiny} ml. Co jí poradíš k tomu, že pije, jen když má žízeň?"
             options:

@@ -117,6 +117,7 @@ function Body({ e }: { e: Exercise }) {
       return (
         <>
           <p className="text-[16.5px] font-medium leading-snug">{inst.prompt}</p>
+          {e.formulaText && <Line label="Vzorec">{e.formulaText}</Line>}
           <Line label="Výsledek">
             {fmt(inst.answer, e.decimals)} {e.unit}
             <span className="text-faint"> (příklad; tolerance {tol(e.tolerance)})</span>
@@ -151,6 +152,8 @@ function Body({ e }: { e: Exercise }) {
                   <span className="mr-2 text-faint tabular-nums">{i + 1}.</span>
                   {inst.steps[i].prompt}
                 </span>
+                {s.type === "numeric" && s.formulaText && <Line label="Vzorec">{s.formulaText}</Line>}
+                {s.type === "numeric" && s.hint && <Line label="Nápověda">{s.hint}</Line>}
                 {s.type === "choice" && <Options options={s.options} />}
                 {s.type === "reveal" && <Line label="Odpověď">{s.answer}</Line>}
                 {s.type === "explain" && <Line label="Hlavní body">{s.keyPoints.join("; ")}</Line>}

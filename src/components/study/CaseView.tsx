@@ -3,17 +3,21 @@
  * Model client case: the client card stays on top, steps are worked through one at a time with immediate feedback
  * (a numeric step shows the correct value and working, which later steps then build on). The whole case is recorded
  * as ONE answer at the end, graded from the step outcomes (src/engine/evaluate.ts).
+ * A case whose calculations are already mastered repeats "short": calculation steps appear worked out (given) and only
+ * the decisions are asked and graded (src/engine/calc.ts).
  */
 import { useMemo, useState } from "react";
+import { useStudy } from "@/client/store";
+import { caseIsShort } from "@/engine/calc";
 import type { CaseExercise, CaseStep } from "@/content/schema";
-import { fmt, instantiateCase, type CaseStepInstance } from "@/content/formulas";
+import { fmt, formulas, instantiateCase, type CaseStepInstance } from "@/content/formulas";
 import { evaluateCaseStep } from "@/engine/evaluate";
 import type { CaseStepResponse, Evaluation, Outcome } from "@/engine/types";
 import type { CaseStepDone } from "@/client/session";
 import { ActionBar, Button } from "../ui";
 import { plural } from "@/lib/format";
 import { FeedbackFooter, Reading, useKeys, VerdictBadge } from "./shared";
-import { GuessToggle, KeyPointResult, KeyPointReview, NumberInput, OptionList, useRecorder, useShuffled, Worked, type ExerciseProps } from "./parts";
+import { FormulaNote, GuessToggle, KeyPointResult, KeyPointReview, NumberInput, OptionList, useRecorder, useShuffled, Worked, type ExerciseProps } from "./parts";
 
 type Done = CaseStepDone;
 
@@ -23,19 +27,36 @@ const marker: Record<Outcome, string> = {
   wrong: "bg-clay-600 text-white",
   unknown: "bg-line-strong text-white",
 };
+const givenMarker = "bg-cream text-faint ring-1 ring-line-strong";
 
 export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
   const { exercise, point, seed, onNext } = props;
   const { record } = useRecorder(props);
+  const { states } = useStudy();
   const inst = useMemo(() => instantiateCase(exercise, seed), [exercise, seed]);
+  const total = exercise.steps.length;
+  // Decided once per card: recording this very case changes the state.
+  const [short] = useState(() => !props.restored && caseIsShort(exercise, states.get(point.id)));
+  /** In a short case, calculation steps from `from` on are filled in as given until the next step to decide. */
+  const withGiven = (list: Done[]): Done[] => {
+    const out = [...list];
+    for (let i = out.length; short && i < total; i++) {
+      const step = exercise.steps[i];
+      const si = inst.steps[i];
+      if (step.type !== "numeric" || si.type !== "numeric") break;
+      out.push({ response: { type: "given" }, outcome: "correct", summary: `${givenLabel(step)}: ${fmt(si.answer, step.decimals)} ${step.unit}` });
+    }
+    return out;
+  };
   // Finished steps survive a reload (persisted by StudyScreen via onCaseProgress); a finished case is restored.
-  const [done, setDone] = useState<Done[]>(props.caseSteps ?? []);
+  const [done, setDone] = useState<Done[]>(() => withGiven(props.caseSteps ?? []));
   const [result, setResult] = useState<Evaluation | null>(props.restored?.evaluation ?? null);
   const idx = done.length;
-  const total = exercise.steps.length;
+  const askedTotal = short ? exercise.steps.filter((s) => s.type !== "numeric").length : total;
+  const askedDone = done.filter((d) => d.response.type !== "given").length;
 
   const finishStep = (d: Done) => {
-    const next = [...done, d];
+    const next = withGiven([...done, d]);
     setDone(next);
     // The final step is saved together with the recorded answer (one session write); earlier ones on their own.
     if (next.length < total) props.onCaseProgress?.(next);
@@ -49,14 +70,22 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
         <Reading className="!text-[16.5px] whitespace-pre-line">{inst.prompt}</Reading>
       </div>
 
+      {short && !result && <p className="text-[14.5px] text-muted">Výpočty už máš zvládnuté – čísla jsou spočítaná, zbývá rozhodnout.</p>}
+
       {done.length > 0 && (
         <ol className="flex flex-col gap-2" aria-label="Hotové kroky">
           {done.map((d, i) => (
             <li key={i} className="flex items-start gap-3 text-[15px] leading-snug text-muted">
-              <span aria-hidden className={`mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${marker[d.outcome]}`}>
-                {i + 1}
+              <span
+                aria-hidden
+                className={`mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${d.response.type === "given" ? givenMarker : marker[d.outcome]}`}
+              >
+                {d.response.type === "given" ? "=" : i + 1}
               </span>
-              <span>{d.summary}</span>
+              <span>
+                {d.summary}
+                {d.response.type === "given" && <span className="sr-only"> (spočítáno)</span>}
+              </span>
             </li>
           ))}
         </ol>
@@ -66,11 +95,11 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
         <div className="flex flex-col gap-5" key={idx}>
           <div className="flex items-center gap-3">
             <p className="text-[14px] font-semibold text-sage-600">
-              Krok {idx + 1} z {total}
+              Krok {askedDone + 1} z {askedTotal}
             </p>
             <span aria-hidden className="flex flex-1 gap-1">
-              {exercise.steps.map((_, i) => (
-                <span key={i} className={`h-1 flex-1 rounded-full ${i < idx ? "bg-sage-600" : i === idx ? "bg-sage-200" : "bg-line"}`} />
+              {Array.from({ length: askedTotal }, (_, i) => (
+                <span key={i} className={`h-1 flex-1 rounded-full ${i < askedDone ? "bg-sage-600" : i === askedDone ? "bg-sage-200" : "bg-line"}`} />
               ))}
             </span>
           </div>
@@ -83,7 +112,7 @@ export function CaseView(props: ExerciseProps & { exercise: CaseExercise }) {
           <VerdictBadge verdict={result.outcome}>
             {result.outcome === "correct"
               ? "celý případ bez chyby"
-              : `správně ${(result.stepOutcomes ?? []).filter((o) => o === "correct").length} z ${total} kroků`}
+              : `správně ${(result.stepOutcomes ?? []).filter((o, i) => o === "correct" && done[i]?.response.type !== "given").length} z ${done.filter((d) => d.response.type !== "given").length || total} kroků`}
           </VerdictBadge>
         </FeedbackFooter>
       )}
@@ -139,6 +168,7 @@ function NumericStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "
   return (
     <>
       <StepPrompt>{inst.prompt}</StepPrompt>
+      {!res && <FormulaNote text={step.formulaText} />}
       {!res ? (
         <form onSubmit={check} className="flex flex-col gap-4">
           <NumberInput value={value} onChange={setValue} unit={step.unit} />
@@ -320,6 +350,12 @@ function RevealStep({ step, inst, onDone }: { step: Extract<CaseStep, { type: "r
       )}
     </>
   );
+}
+
+/** Name of a worked-out value in a short case: "BMR Mifflin-St Jeor: 1 418 kcal". */
+function givenLabel(step: Extract<CaseStep, { type: "numeric" }>): string {
+  if (step.formula === "per-kg") return step.unit === "ml" ? "Tekutiny" : step.unit === "g" ? "Bílkoviny" : "Dávka na kg";
+  return formulas[step.formula]?.label ?? step.id;
 }
 
 /** Short label for the done-steps list: the prompt's last sentence (the actual question), without "?" or ":". */

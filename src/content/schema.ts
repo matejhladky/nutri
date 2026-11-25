@@ -69,6 +69,11 @@ export const NumericExercise = z.object({
   tolerance: z.object({ abs: z.number().nonnegative().optional(), rel: z.number().nonnegative().optional() }),
   /** Number of decimals to show in the worked solution. */
   decimals: z.number().int().min(0).max(3).default(0),
+  /**
+   * How to calculate, shown openly with the question (no penalty): formulas need not be known by heart. Facts the
+   * question itself checks (a recommended range, which coefficient fits) stay in `hint`, which counts as help.
+   */
+  formulaText: z.string().optional(),
 });
 
 /** Oral-exam rehearsal: answer aloud (typing optional), then tick the key points covered. */
@@ -93,6 +98,8 @@ export const CaseNumericStep = z.object({
   unit: z.string(),
   tolerance: z.object({ abs: z.number().nonnegative().optional(), rel: z.number().nonnegative().optional() }),
   decimals: z.number().int().min(0).max(3).default(0),
+  /** Shown openly with the step (see NumericExercise.formulaText); `hint` counts as help. */
+  formulaText: z.string().optional(),
   hint: z.string().optional(),
 });
 export const CaseChoiceStep = z.object({

@@ -251,7 +251,7 @@ points:
           fatPct: { choices: [{ value: 25, label: "25" }, { value: 30, label: "30" }, { value: 35, label: "35" }] }
         unit: g
         tolerance: { abs: 3 }
-        hint: "Bílkoviny g = kg × g/kg (× 4 kcal). Tuky kcal = % × energie. Zbytek kcal : 4 = g sacharidů."
+        formulaText: "Bílkoviny g = kg × g/kg (× 4 kcal). Tuky kcal = % × energie. Zbytek kcal : 4 = g sacharidů."
       - id: bilkoviny-krok
         type: reveal
         prompt: "Klient přijímá málo bílkovin. Jak rychle mu příjem navyšovat a proč?"

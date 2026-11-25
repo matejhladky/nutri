@@ -673,7 +673,7 @@ points:
         unit: ""
         tolerance: { abs: 0.01 }
         decimals: 2
-        hint: "Pas děleno boky; riziko nad 0,90 (muži) / 0,85 (ženy)."
+        formulaText: "Pas děleno boky; riziko nad 0,90 (muži) / 0,85 (ženy)."
       - id: hranice
         type: choice
         prompt: "Od jaké hodnoty WHR mluvíme podle WHO o zvýšeném zdravotním riziku u ženy?"
@@ -753,7 +753,7 @@ points:
         unit: kg/m²
         tolerance: { abs: 0.2 }
         decimals: 1
-        hint: "Výšku převeď na metry a umocni na druhou."
+        formulaText: "Výšku převeď na metry a umocni na druhou."
       - id: kategorie
         type: choice
         prompt: "Do jaké kategorie patří dospělý s BMI 27,3?"
@@ -849,7 +849,7 @@ points:
         unit: kg
         tolerance: { abs: 0.3 }
         decimals: 1
-        hint: "Nejdřív spočítej kg tuku, pak je odečti od hmotnosti."
+        formulaText: "Nejdřív spočítej kg tuku, pak je odečti od hmotnosti."
 
   - id: por.podkozni-visceralni
     title: Podkožní vs. viscerální tuk

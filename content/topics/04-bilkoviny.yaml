@@ -442,7 +442,7 @@ points:
           perKg: { choices: [{ value: 1.2, label: "1,2" }, { value: 1.5, label: "1,5" }, { value: 1.8, label: "1,8" }, { value: 2, label: "2" }] }
         unit: g
         tolerance: { abs: 1 }
-        hint: "Hmotnost × dávka na kg."
+        formulaText: "Hmotnost × dávka na kg."
       - id: klientka
         type: explain
         prompt: "Kolik bílkovin doporučíš sportující klientce v redukci a podle čeho rozhodneš?"

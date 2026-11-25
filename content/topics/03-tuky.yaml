@@ -635,7 +635,7 @@ points:
         unit: "%"
         tolerance: { abs: 1 }
         decimals: 1
-        hint: "Gramy × 9 = kcal z tuků; vyděl celkovou energií a vynásob 100. Doporučení je 25–35 %."
+        formulaText: "Gramy × 9 = kcal z tuků; vyděl celkovou energií a vynásob 100. Doporučení je 25–35 %."
       - id: nastaveni
         type: explain
         prompt: "Jak nastavíš klientce příjem tuků a na co si dáš pozor?"

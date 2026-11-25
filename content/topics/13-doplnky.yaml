@@ -1226,7 +1226,7 @@ points:
               - { value: 2.2, label: "2,2" }
         unit: g
         tolerance: { rel: 0.02 }
-        hint: "Hmotnost × dávka na kg."
+        formulaText: "Hmotnost × dávka na kg."
       - id: plato
         type: choice
         prompt: "Nad jakým denním příjmem bílkovin se podle kap. 13 přínos pro sílu a svaly výrazně zpomaluje?"
@@ -1336,7 +1336,7 @@ points:
               - { value: 6, label: "6" }
         unit: mg
         tolerance: { rel: 0.02 }
-        hint: "Hmotnost × dávka na kg; účinné rozmezí je 3–6 mg/kg. Pozor na denní maximum 400 mg (EFSA)."
+        formulaText: "Hmotnost × dávka na kg; účinné rozmezí je 3–6 mg/kg. Pozor na denní maximum 400 mg (EFSA)."
       - id: davka
         type: choice
         prompt: "Jaká dávka kofeinu je podle skript účinná pro sportovní výkon?"
@@ -1470,7 +1470,7 @@ points:
         unit: g
         tolerance: { rel: 0.03 }
         decimals: 1
-        hint: "Hmotnost × dávka na kg; běžná porce je 0,25–0,4 g/kg."
+        formulaText: "Hmotnost × dávka na kg; běžná porce je 0,25–0,4 g/kg."
       - id: kasein
         type: choice
         prompt: "Který protein je díky pomalejšímu vstřebávání vhodný jako svačina nebo před spaním?"

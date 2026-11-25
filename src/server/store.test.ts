@@ -286,3 +286,18 @@ describe("comparison line: the other learner's day", () => {
     expect(await buddySummary("l1", now)).toBeNull();
   });
 });
+
+describe("calculations: event format", () => {
+  it("accepts case answers with given steps and the calcOk flag", () => {
+    const { valid, rejected } = store.partitionEvents([
+      {
+        ...answer("kaz.short", 1),
+        exerciseType: "case",
+        calcOk: true,
+        response: { type: "case", seed: 1, steps: [{ type: "given" }, { type: "given" }, { type: "choice", selected: [0], guessed: false }] },
+      },
+    ]);
+    expect(rejected).toEqual([]);
+    expect(valid[0].calcOk).toBe(true);
+  });
+});

@@ -8,7 +8,7 @@ import { topicsById } from "@/lib/content";
 import { plural } from "@/lib/format";
 import { ActionBar, Button, CardMeta } from "../ui";
 import { FeedbackFooter, MetaLine, Reading, useKeys, VerdictBadge } from "./shared";
-import { GuessToggle, HintButton, KeyPointResult, KeyPointReview, NumberInput, OptionList, Prompt, useRecorder, useShuffled, Worked, type ExerciseProps as Props } from "./parts";
+import { FormulaNote, GuessToggle, HintButton, KeyPointResult, KeyPointReview, NumberInput, OptionList, Prompt, useRecorder, useShuffled, Worked, type ExerciseProps as Props } from "./parts";
 import { CaseView } from "./CaseView";
 
 export type { AnswerRecord } from "./parts";
@@ -173,6 +173,7 @@ function NumericView(props: Props & { exercise: NumericExercise }) {
   return (
     <>
       <Prompt>{inst.prompt}</Prompt>
+      {!result && <FormulaNote text={exercise.formulaText} />}
       {!result && (
         <form onSubmit={submit} className="flex flex-col gap-4">
           <NumberInput value={value} onChange={setValue} unit={exercise.unit} />

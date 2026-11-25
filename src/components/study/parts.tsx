@@ -61,6 +61,17 @@ export function Prompt({ children }: { children: React.ReactNode }) {
   return <h2 className="font-serif text-[22px] font-medium leading-[1.38] whitespace-pre-line text-ink md:text-[27px] md:leading-[1.32]">{children}</h2>;
 }
 
+/** The formula for a calculation, always visible: knowing it by heart is not the point. */
+export function FormulaNote({ text }: { text?: string }) {
+  if (!text) return null;
+  return (
+    <p className="rounded-2xl bg-sage-50 px-4 py-3 text-[15px] leading-relaxed text-sage-700">
+      <span className="mr-2 text-[13px] font-semibold tracking-wide">Vzorec</span>
+      {text}
+    </p>
+  );
+}
+
 export function HintButton({ hint, shown, onShow }: { hint?: string; shown: boolean; onShow: () => void }) {
   if (!hint) return null;
   if (shown) return <div className="rounded-2xl bg-sage-50 px-4 py-3 text-[15px] leading-relaxed text-sage-700 animate-rise">{hint}</div>;

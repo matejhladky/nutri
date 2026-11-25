@@ -67,6 +67,8 @@ export type StudyEvent = {
   hintUsed?: boolean;
   response?: Response;
   durationMs?: number;
+  /** answer: given after today's plan was already complete ("nad plán"). Display only; scheduling ignores it. */
+  extra?: boolean;
 };
 
 export type PointState = {

@@ -71,5 +71,5 @@ describe("migration from the single-learner schema", () => {
     await store.addEvents("l2", [{ ...ev("p.a", 9), id: "l2-first-answer" }]);
     expect((await store.getAllStates("l2"))["p.a"].answers).toBe(1);
     expect((await store.getAllStates("l1"))["p.a"]).toEqual(replayed.get("p.a"));
-  });
+  }, 30_000); // starts its own embedded Postgres: slow when test files run in parallel
 });

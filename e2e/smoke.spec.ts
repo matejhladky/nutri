@@ -405,7 +405,7 @@ test("today's answer count comes from the server, so another device sees it", as
   await login(other);
   await expect(other.getByText(new RegExp(`Probráno`))).toBeVisible();
   expect(await count(other)).toBe(before + answered);
-  if (before + answered > 0) await expect(other.getByText(/Dnes máš za sebou \d+ odpověd/)).toBeVisible();
+  if (before + answered > 0) await expect(other.getByText(/\d+ odpověd\S* za sebou/)).toBeVisible();
   await other.close();
 });
 
@@ -471,10 +471,18 @@ test("each learner has her own greeting, exam date, settings and progress", asyn
   await login(b, PASS_2);
   await expect(a.getByRole("heading", { name: "Ahoj Lucko ☀️" })).toBeVisible();
   await expect(b.getByRole("heading", { name: "Ahoj Dančo ☀️" })).toBeVisible();
-  // Each sees her own exam at the end of her path to the exam.
-  await expect(a.getByText("Cesta ke zkoušce")).toBeVisible();
-  await expect(a.getByText(/^pá 4\. 12\.$/)).toBeVisible();
-  await expect(b.getByText(/^čt 10\. 12\.$/)).toBeVisible();
+  // Each counts down to her own exam (4. 12. vs 10. 12.: six days apart).
+  const daysLeft = async (p: Page) => Number((await p.locator("#cesta").textContent())?.match(/Do zkoušky zbýv\S+ (\d+)/)?.[1]);
+  expect((await daysLeft(b)) - (await daysLeft(a))).toBe(6);
+  // The comparison line is about the other one: Lucka reads about Danča and vice versa, never about herself.
+  await expect(a.getByTestId("buddy")).toBeVisible();
+  await expect(b.getByTestId("buddy")).toBeVisible();
+  await expect(a.getByTestId("buddy")).not.toContainText("Lucka");
+  await expect(b.getByTestId("buddy")).not.toContainText("Danča");
+  // Only aggregate numbers of the other learner reach the client.
+  const buddyOfA = ((await (await a.request.get("/api/state", AS_L1)).json()) as { buddy: Record<string, unknown> }).buddy;
+  expect(Object.keys(buddyOfA).sort()).toEqual(["answers", "days7", "extra", "label", "labelWith", "planDone"]);
+  expect(buddyOfA.label).toBe("Danča");
 
   const b0 = await stateAs(b, AS_L2);
   const a0 = await stateAs(a, AS_L1);

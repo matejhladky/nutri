@@ -65,10 +65,13 @@ export function AppFrame({ children }: { children: ReactNode }) {
           })}
         </ul>
         <div className="mt-auto flex flex-col gap-4 px-3">
-          <div>
-            <p className="text-[13.5px] text-faint">Zkouška {czDayWithWeekday(learner.examDate)}</p>
-            <p className="text-[20px] font-semibold text-sage-700">{examCountdown(now, learner.examDate)}</p>
-          </div>
+          {/* Dnes shows the countdown itself (exam timeline) — once is enough there. */}
+          {pathname !== "/" && (
+            <div>
+              <p className="text-[13.5px] text-faint">Zkouška {czDayWithWeekday(learner.examDate)}</p>
+              <p className="text-[20px] font-semibold text-sage-700">{examCountdown(now, learner.examDate)}</p>
+            </div>
+          )}
           <Link href="/nastaveni" className={`text-[14px] ${pathname === "/nastaveni" ? "font-semibold text-ink" : "text-faint hover:text-ink"}`}>
             Nastavení
           </Link>

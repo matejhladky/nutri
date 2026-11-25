@@ -236,9 +236,18 @@ answer key; "Vyzkoušet" opens the real card in a sandbox. Tests: admin/learner 
 guard, an overview writes nothing, learners can't open admin, an admin session can't read or write learner APIs,
 switching learners shows each one's data, the preview makes no requests and changes no state.
 
+## R9 — Dnes redesign + comparison line ✅ (2026-11-25)
+
+Dnes reworked after two independent design reviews: one dark plan card ("Plán na dnešek", "Ještě …", progress bar in
+planned minutes, one caption, button right on desktop), the comparison line with Danča/Lucka right under it (11 states,
+emoji, effort only), then on the paper with hairlines: "Do zkoušky zbývá N dní" + a calendar timeline, and the
+knowledge map as one 4-row block per topic sorted by status with today's new points dotted. Countdown no longer
+duplicated in the sidebar on Dnes. "Upevněno" renamed "Naučeno". Tests: every line state and plural, the server
+summary (only aggregates, read-only, per learner), answers over plan, map/timeline markup, browser checks.
+
 ## Status
 
-All roadmap milestones (M0–M4, R1–R8) are done locally. Not done (owner decision): deployment — runbook in
+All roadmap milestones (M0–M4, R1–R9) are done locally. Not done (owner decision): deployment — runbook in
 `docs/deploy.md`; the Neon path is the one untested component. Remaining known limits: content is AI-authored and
 AI-verified (no human review); the time model is an estimate until calibrated by her own answers; Czech supplement and
 food law changed in 2024–2025 and may change again.

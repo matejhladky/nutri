@@ -249,6 +249,9 @@ describe("nextCard", () => {
     expect(plan.goalReached).toBe(true);
     expect(nextCard(input(pts, states))).toEqual({ kind: "done", reason: "goal-reached" });
     expect(nextCard(input(pts, states, { beyondGoal: true })).kind).toBe("intro");
+    // Progress for the plan card: nothing done before, the introduced points' time after.
+    expect(plan0.doneMinutes).toBe(0);
+    expect(plan.doneMinutes).toBeGreaterThan(0);
   });
 
   it("avoids the same topic twice in a row when possible", () => {

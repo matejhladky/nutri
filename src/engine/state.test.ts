@@ -90,7 +90,7 @@ describe("status definitions", () => {
     ...answer(id, minutes, grade, grade === Grade.Again ? "wrong" : "correct"),
     exerciseType,
   });
-  it("'upevněno' needs an unaided Good a day later — and production evidence when the point has a recall exercise", () => {
+  it("'naučeno' needs an unaided Good a day later — and production evidence when the point has a recall exercise", () => {
     const base = [ev("1", 0, Grade.Good, "choice")];
     const recognitionOnly = replay([...base, ev("2", 24 * 60 + 60, Grade.Good, "choice")], sch).get("p")!;
     expect(pointStatus(recognitionOnly, onlyChoice)).toBe("solid");

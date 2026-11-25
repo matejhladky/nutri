@@ -56,6 +56,11 @@ Browser: planner + evaluate + scheduler (same pure engine) ──events──▶
   Pages are server components that read learner data through `readOnly(db)` (refuses anything but one SELECT; stale
   caches are replayed in memory, not rewritten). There is no admin data or write API. The exercise preview renders the
   real cards inside `PreviewProvider` (empty in-memory store, `record` keeps nothing, reporting hidden, no requests).
+- **Comparison line** (Dnes, `src/lib/buddy.ts`): one teasing line about the other learner's day, always on. The
+  state route adds `buddy` = `src/server/buddy.ts` — only her name and today's aggregates (answers, answers over plan,
+  plan done, study days in 7), read through `readOnly(db)`; her plan is computed with the same `dailyPlan`. Answers
+  given after today's plan was complete carry `extra: true` ("nad plán"; display only). First matching state wins
+  (🔥 over plan ≥ 10, both done, she/you done, answer leads ≥ 5, level, week, nobody yet). Compares effort only.
 - **Reports:** an open report hides that exercise (or the whole point if no exercise id) until resolved in the DB.
 - `cacheComponents` is **off**: every page is per-learner and dynamic; the static-shell model adds Suspense
   constraints without benefit here.
@@ -98,7 +103,7 @@ scenario questions are written in these four forms; client cases will be sequenc
 - **First contact (ask-first policy):** facts and comparisons start with a question (*Nevím* is fine; feedback always
   shows the Výklad for a new point); concepts, procedures/calculations and client cases start with the explanation
   (worked example). A failed first question follows the normal learning steps.
-- **Status** (`pointStatus`, Pokrok/Témata): *upevněno* = latest answer Good (unaided: no hint, not guessed), ≥ ~1 day
+- **Status** (`pointStatus`, Pokrok/Témata): *naučeno* (formerly "upevněno") = latest answer Good (unaided: no hint, not guessed), ≥ ~1 day
   after first exposure, review state, and — if the point has a recall/explanation/calculation exercise — at least one
   Good on such a production exercise. *Potřebuje opakovat* = last answer wrong / Nevím, or repeated lapses with a recent
   failure. *Rozpracováno* = the rest. The daily counter counts **answers**, not explanation cards. Events carry
@@ -174,6 +179,6 @@ until reviewed.
 | 2026-11-22 | Minutes-based budget, 40 % reserved for new, value-per-minute review selection, deferral | honest time model showed reviews crowding out coverage and overruns |
 | 2026-11-22 | Max 2 failures per point per day; observed timing calibrates the model; STATE_VERSION lazy rebuild | relearning loops; simulated ≠ observed |
 | 2026-11-23 | Ask-first for facts/comparisons; explanation-first for concepts/procedures/cases | pretesting with feedback vs worked-example effect; she attended the lectures |
-| 2026-11-23 | "Upevněno" requires unaided Good, spacing and production evidence; counter = answers | review: status overstated recognition/guessed/hinted answers |
+| 2026-11-23 | "Upevněno" (now "Naučeno") requires unaided Good, spacing and production evidence; counter = answers | review: status overstated recognition/guessed/hinted answers |
 | 2026-11-24 | Two fixed learners by passphrase; `learner_id` on every table; learner header + 409 for stale tabs | a second learner joined; smallest change that keeps the engine and UI as they are |
 | 2026-11-22 | Client cases as one exercise type with chained steps, graded as a whole, scheduled per point | practical exam = flows, not single facts; reuses the 4 step UIs |

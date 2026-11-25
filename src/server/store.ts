@@ -49,6 +49,7 @@ export const EventSchema = z.object({
   hintUsed: z.boolean().optional(),
   response: ResponseSchema.optional(),
   durationMs: z.number().int().nonnegative().max(86_400_000).optional(),
+  extra: z.boolean().optional(),
 }).refine((e) => e.kind !== "answer" || (e.grade !== undefined && e.outcome !== undefined), {
   // replay() cannot apply an answer without a grade — such an event must never reach the log.
   message: "answer event needs grade and outcome",
@@ -168,8 +169,9 @@ export async function rebuildPoint(db: Db, s: Scheduler, learner: LearnerId, poi
 export async function getObservedTiming(
   learner: LearnerId,
   typeOf: (pointId: string, exerciseId: string) => string | undefined,
+  from?: Db,
 ): Promise<Timing> {
-  const db = await getDb();
+  const db = from ?? (await getDb());
   const rows = await db.query<{ payload: StudyEvent }>(
     "SELECT payload FROM events WHERE learner_id = $1 AND payload->>'kind' = 'answer' ORDER BY at DESC LIMIT 400",
     [learner],
@@ -215,6 +217,17 @@ export async function getAnswersByDay(learner: LearnerId, now = new Date(), days
     if (ago >= 0 && ago < days) out[d] = (out[d] ?? 0) + 1;
   }
   return out;
+}
+
+/** Answers given today (study day) after the plan was already complete — "nad plán". */
+export async function getExtraAnswersToday(learner: LearnerId, now = new Date(), from?: Db): Promise<number> {
+  const db = from ?? (await getDb());
+  const rows = await db.query<{ at: string | Date }>(
+    "SELECT at FROM events WHERE learner_id = $1 AND payload->>'kind' = 'answer' AND payload->>'extra' = 'true' AND at > $2",
+    [learner, new Date(now.getTime() - 30 * 3600_000).toISOString()],
+  );
+  const today = dayKey(now);
+  return rows.filter((r) => dayKey(new Date(r.at)) === today).length;
 }
 
 /** Maintenance: rebuild every cached point state from the event log (the source of truth). */

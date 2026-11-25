@@ -80,7 +80,7 @@ export function replay(events: StudyEvent[], s: Scheduler): Map<string, PointSta
  * Coarse, honest status used by progress views — no percentages.
  *  new       never seen
  *  weak      last answer wrong / "Nevím", or repeated lapses with a recent failure ("potřebuje opakovat")
- *  solid     "upevněno": latest answer Good (unaided — not guessed, no hint), at least ~1 day after first exposure,
+ *  solid     "naučeno": latest answer Good (unaided — not guessed, no hint), at least ~1 day after first exposure,
  *            in review state; and if the point has a recall/explanation/calculation exercise, at least one Good on
  *            such a production exercise (recognition alone is not enough)
  *  learning  everything in between ("rozpracováno")

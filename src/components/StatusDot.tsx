@@ -2,7 +2,7 @@ import type { PointStatus } from "@/engine/state";
 
 /** Dark green = solid, pale green = in progress, honey = needs repeating, line = not yet seen. */
 export const statusMeta: Record<PointStatus, { label: string; dot: string; bar: string }> = {
-  solid: { label: "Upevněno", dot: "bg-sage-600", bar: "bg-sage-600" },
+  solid: { label: "Naučeno", dot: "bg-sage-600", bar: "bg-sage-600" },
   learning: { label: "Rozpracováno", dot: "bg-sage-200", bar: "bg-sage-200" },
   weak: { label: "Potřebuje opakovat", dot: "bg-amber-600", bar: "bg-amber-600" },
   new: { label: "Zatím neprobráno", dot: "bg-line-strong", bar: "bg-line" },

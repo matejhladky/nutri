@@ -65,6 +65,8 @@ export type DailyPlan = {
   newTarget: number;
   newToday: number;
   remainingNew: number;
+  /** Estimated minutes of today's plan already done (reviews answered + new points introduced), for progress. */
+  doneMinutes: number;
   estimatedMinutes: number;
   goalReached: boolean;
 };
@@ -238,6 +240,7 @@ export function dailyPlan(
     newTarget,
     newToday,
     remainingNew,
+    doneMinutes: Math.round(doneReviewMinutes + newToday * perNew),
     estimatedMinutes,
     goalReached: dueReviews === 0 && learningDue === 0 && newToday >= newTarget,
   };

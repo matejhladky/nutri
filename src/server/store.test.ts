@@ -249,3 +249,40 @@ describe("admin: read-only", () => {
     expect(l1.reports).toEqual([]);
   });
 });
+
+describe("comparison line: the other learner's day", () => {
+  it("returns only her aggregate numbers, counts answers over plan, and writes nothing", async () => {
+    const env = process.env as Record<string, string | undefined>;
+    env.LEARNER_1_PASSPHRASE = "jarni louka";
+    env.LEARNER_2_PASSPHRASE = "modra konvice";
+    const { buddySummary } = await import("./buddy");
+    const { getDb } = await import("./db");
+    const db = await getDb();
+    const now = new Date("2027-04-10T10:00:00Z");
+    const ev = (id: string, at: string, extra = false): StudyEvent => ({ ...answer("p.buddy", 1), id, at, ...(extra ? { extra: true } : {}) });
+    await store.addEvents("l2", [
+      ev("buddy-today-1", "2027-04-10T08:00:00Z"),
+      ev("buddy-today-2", "2027-04-10T08:05:00Z"),
+      ev("buddy-today-3", "2027-04-10T09:00:00Z", true),
+      ev("buddy-day-2", "2027-04-08T09:00:00Z"),
+      ev("buddy-day-3", "2027-04-04T09:00:00Z"), // 6 days ago: still in the week
+      ev("buddy-old-01", "2027-04-01T09:00:00Z"), // 9 days ago: not
+    ]);
+    await store.addEvents("l1", [ev("buddy-l1-today", "2027-04-10T07:00:00Z", true)]); // Lucka's own: never counted for Danča
+    const snapshot = async () => JSON.stringify(await Promise.all(["events", "point_state", "reports", "settings"].map((t) => db.query(`SELECT * FROM ${t} ORDER BY 1, 2`))));
+    const before = await snapshot();
+
+    const forLucka = await buddySummary("l1", now);
+    expect(forLucka).toEqual({ label: "Danča", labelWith: "Dančou", answers: 3, extra: 1, planDone: false, days7: 3 });
+    expect(Object.keys(forLucka!).sort()).toEqual(["answers", "days7", "extra", "label", "labelWith", "planDone"]); // nothing else leaves
+    expect(await snapshot()).toBe(before);
+
+    // Danča sees Lucka's day (here: 1 answer today, given over plan).
+    expect(await buddySummary("l2", now)).toMatchObject({ label: "Lucka", labelWith: "Luckou", answers: 1, extra: 1 });
+    // The schema keeps the flag; extra is per learner.
+    expect(await store.getExtraAnswersToday("l2", now)).toBe(1);
+
+    delete env.LEARNER_2_PASSPHRASE; // no second learner configured: no line
+    expect(await buddySummary("l1", now)).toBeNull();
+  });
+});

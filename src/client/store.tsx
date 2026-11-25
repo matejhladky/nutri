@@ -14,6 +14,7 @@ import { visiblePoints } from "@/lib/content";
 import type { PointWithTopic } from "@/content/schema";
 import type { Timing } from "@/engine/planner";
 import type { Learner } from "@/lib/learner";
+import type { Buddy } from "@/lib/buddy";
 import { adoptLegacyStorage } from "./learner-storage";
 import { apiFetch, enqueue, flush, LearnerChangedError, pendingEvents, UnauthorizedError } from "./outbox";
 
@@ -36,6 +37,10 @@ type Store = {
   todayCards: number;
   /** Answers per study day ("YYYY-MM-DD"), last 14 days; same sources as todayCards. Days without answers are absent. */
   answersByDay: Record<string, number>;
+  /** Today's answers given after the plan was complete ("nad plán"). */
+  extraToday: number;
+  /** The other learner's numbers for today (comparison line); null when there is no other learner. */
+  buddy: Buddy | null;
   timing: Timing;
   record: (ev: StudyEvent) => void;
   saveSettings: (patch: Partial<Settings>) => Promise<void>;
@@ -97,6 +102,8 @@ export function StudyProvider({ learner, children }: { learner: Learner; childre
   const [pending, setPending] = useState(0);
   const [syncError, setSyncError] = useState(false);
   const [answersByDay, setAnswersByDay] = useState<Record<string, number>>({});
+  const [extraToday, setExtraToday] = useState(0);
+  const [buddy, setBuddy] = useState<Buddy | null>(null);
   const sched = useRef<Scheduler | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -145,6 +152,8 @@ export function StudyProvider({ learner, children }: { learner: Learner; childre
           reports: Report[];
           timing?: Timing;
           answersByDay?: Record<string, number>;
+          extraToday?: number;
+          buddy?: Buddy | null;
         };
         if (cancelled) return;
         const map = new Map(Object.entries(data.states));
@@ -158,6 +167,9 @@ export function StudyProvider({ learner, children }: { learner: Learner; childre
         setTiming(data.timing ?? {});
         // Today's answers = stored on the server (any device) + still queued here.
         setAnswersByDay(withPending(data.answersByDay ?? {}, me));
+        const today = dayKey(new Date());
+        setExtraToday((data.extraToday ?? 0) + pendingEvents(me).filter((e) => e.kind === "answer" && e.extra && dayKey(e.at) === today).length);
+        setBuddy(data.buddy ?? null);
         setPending(pendingEvents(me).length);
         setStatus("ready");
         void sync();
@@ -196,6 +208,7 @@ export function StudyProvider({ learner, children }: { learner: Learner; childre
       setPending(pendingEvents(me).length);
       // Answers only — reading an explanation is not an answer.
       if (ev.kind === "answer") setAnswersByDay((m) => ({ ...m, [dayKey(ev.at)]: (m[dayKey(ev.at)] ?? 0) + 1 }));
+      if (ev.kind === "answer" && ev.extra) setExtraToday((n) => n + 1);
       void sync();
     },
     [sync, setStates, me],
@@ -249,6 +262,8 @@ export function StudyProvider({ learner, children }: { learner: Learner; childre
     syncError,
     todayCards: answersByDay[dayKey(new Date())] ?? 0,
     answersByDay,
+    extraToday,
+    buddy,
     timing,
     record,
     saveSettings,
@@ -282,6 +297,8 @@ export function PreviewProvider({ examDate, children }: { examDate: string; chil
     syncError: false,
     todayCards: 0,
     answersByDay: {},
+    extraToday: 0,
+    buddy: null,
     timing: {},
     record: () => {},
     saveSettings: noNetwork,

@@ -120,6 +120,8 @@ export function StudyScreen({ mode, beyondGoal }: { mode: StudyMode; beyondGoal:
       hintUsed: a.hintUsed || undefined,
       response: a.response,
       durationMs: a.durationMs,
+      // Answered after today's plan was already complete: counts as "nad plán" (display only).
+      extra: plan.goalReached || undefined,
     });
   };
 
